@@ -2,8 +2,8 @@
 Your project's description...
 
 ## Environments
-- Preview: https://main--eds-with-universal-editor--SampleFranklin.hlx.page/
-- Live: https://main--eds-with-universal-editor--SampleFranklin.hlx.live/
+- Preview: https://main--eds-universal-editor--SampleFranklin.hlx.page/
+- Live: https://main--eds-universal-editor--SampleFranklin.hlx.live/
 
 ## Installation
 
