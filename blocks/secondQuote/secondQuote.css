@@ -1,4 +1,4 @@
-.block.second-quote {
+.second-quote {
     background-color: blue;
     padding: 0 0 24px;
     display: flex;
@@ -6,19 +6,19 @@
     margin: 1rem 0;
 }
 
-.block.second-quote secondblockquote {
+.second-quote blockquote {
     margin: 16px;
     text-indent: 0;
 }
 
-.block.second-quote > div:last-child > div {
+.second-quote > div:last-child > div {
     margin: 0 16px;
     font-size: small;
     font-style: italic;
     position: relative;
 }
 
-.block.second-quote > div:last-child > div::after {
+.second-quote > div:last-child > div::after {
     content: "";
     display: block;
     position: absolute;
