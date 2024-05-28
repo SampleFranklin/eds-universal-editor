@@ -8,10 +8,15 @@ sampleRUM('cwv');
 
 function loadMetadata() {
     fetch('/metadata.json').then( res => {
-        console.log(res);
         if(res.ok) {
-            res.text().then(data => {
-                console.log(data);
+            res.json().then(data => {
+                data.data.forEach(item => {
+                    const meta = document.createElement('meta');
+                    Object.keys(item).forEach(key => {
+                        meta.setAttribute(key, item[key]);
+                    });
+                    document.getElementsByTagName('head')[0].appendChild(meta);
+                });
             });
         }
     });
