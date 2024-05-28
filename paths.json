@@ -1,5 +1,6 @@
 {
   "mappings": [
-    "/content/eds-universal-editor/:/"
+    "/content/eds-universal-editor/:/",
+    "/content/eds-universal-editor/metadata:/metadata.json"
   ]
 }
