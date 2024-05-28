@@ -29,13 +29,27 @@
       "cards",
       "columns",
       "quote",
-      "personal"
+      "personal",
+      "teaser",
+      "list"
     ]
   },
   {
     "id": "cards",
     "components": [
       "card"
+    ]
+  },
+  {
+    "id": "list",
+    "components": [
+      "listItem"
+    ]
+  },
+  {
+    "id": "teaser",
+    "components": [
+      "cta"
     ]
   }
 ]
