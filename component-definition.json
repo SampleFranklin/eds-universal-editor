@@ -213,6 +213,7 @@
                 "template": {
                   "name": "List Item",
                   "model": "teaser",
+                  "filter": "teaser",
                   "title": "List Item Title",
                   "description": "<p>This is <b>description</b></p>"
                 }
