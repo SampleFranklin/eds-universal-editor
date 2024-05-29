@@ -247,7 +247,7 @@
                   "name": "Carousel",
                   "model": "carousel",
                   "title": "Carousel Title",
-                  "description": "<p>This is <b>descriptions</b></p>"
+                  "description": "<p>This is <b>description</b></p>"
                 }
               }
             }
