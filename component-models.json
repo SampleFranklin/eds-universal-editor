@@ -237,6 +237,7 @@
         "valueType": "string"
       },
       {
+        "component": "container",
         "label": "Actions",
         "name": "actions",
         "multi": true,
