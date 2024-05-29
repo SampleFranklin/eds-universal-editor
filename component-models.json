@@ -237,24 +237,21 @@
         "valueType": "string"
       },
       {
-        "component": "container",
         "label": "Actions",
         "name": "actions",
-        "valueType": "string[]",
+        "multi": true,
         "fields": [
           {
-            "component": "aem-content",
+            "component": "text-input",
             "name": "name",
             "label": "Name",
-            "valueType": "string",
-            "multi": true
+            "valueType": "string"
           },
           {
-            "component": "text",
+            "component": "aem-content",
             "valueType": "string",
             "name": "href",
-            "label": "Link",
-            "multi": true
+            "label": "Link"
           }
         ]
       }
@@ -264,13 +261,13 @@
     "id": "cta",
     "fields": [
       {
-        "component": "aem-content",
+        "component": "text-input",
         "name": "name",
         "label": "Name",
         "valueType": "string"
       },
       {
-        "component": "text",
+        "component": "aem-content",
         "valueType": "string",
         "name": "href",
         "label": "Link"
