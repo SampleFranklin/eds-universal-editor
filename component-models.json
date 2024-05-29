@@ -241,19 +241,20 @@
         "label": "Actions",
         "name": "actions",
         "valueType": "string[]",
-        "multi": true,
         "fields": [
           {
             "component": "text-input",
             "name": "name",
             "label": "Name",
-            "valueType": "string"
+            "valueType": "string",
+            "multi": true
           },
           {
             "component": "text",
             "valueType": "string",
             "name": "href",
-            "label": "Link"
+            "label": "Link",
+            "multi": true
           }
         ]
       }
