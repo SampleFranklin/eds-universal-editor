@@ -261,5 +261,38 @@
         "label": "Link"
       }
     ]
+  },
+  {
+    "id": "carousel",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": true
+      },
+      {
+        "component": "text-input",
+        "name": "heading",
+        "value": "",
+        "label": "Heading",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "cta",
+        "label": "CTA",
+        "multi": false
+      }
+    ]
   }
 ]
