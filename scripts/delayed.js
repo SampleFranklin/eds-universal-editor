@@ -9,5 +9,9 @@ var chatbotScript = `<script src="https://unity-plugin.iamdave.ai/conversation-p
 
 const chatbotDiv = document.createElement('div');
 chatbotDiv.innerHTML = chatbotScript;
+chatbotDiv.firstChild.type = "text/javascript";
+chatbotDiv.firstChild.onload = function(){
+    console.log("Chatbot loaded");
+}
 document.getElementsByTagName('body')[0].appendChild(chatbotDiv.firstChild);
 
