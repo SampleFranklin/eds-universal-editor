@@ -24,9 +24,9 @@ chatScript.src = "//chatbot-plugin.iamdave.ai/assets/js/9.1/library-loader.js";
 chatScript.type = "text/javascript";
 
 const bodyTag = document.getElementsByTagName('body')[0];
-bodyTag.appendChild(chatDiv.getElementsByTagName('div')[0]);
-console.log(chatDiv.getElementsByTagName('div'));
-// bodyTag.appendChild(chatDiv.getElementsByTagName('div')[1]);
+chatDiv.getElementsByTagName('div').array.forEach(element => {
+    bodyTag.appendChild(element);
+});;
 bodyTag.appendChild(chatScript);
 // document.getElementsByTagName('body')[0].appendChild(chatScript);
 
