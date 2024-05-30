@@ -25,7 +25,7 @@ chatScript.type = "text/javascript";
 
 const bodyTag = document.getElementsByTagName('body')[0];
 bodyTag.appendChild(chatDiv.getElementsByTagName('div')[0]);
-bodyTag.appendChild(chatDiv.getElementsByTagName('div')[1]);
+// bodyTag.appendChild(chatDiv.getElementsByTagName('div')[1]);
 bodyTag.appendChild(chatScript);
 // document.getElementsByTagName('body')[0].appendChild(chatScript);
 
