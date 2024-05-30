@@ -24,9 +24,10 @@ chatScript.src = "//chatbot-plugin.iamdave.ai/assets/js/9.1/library-loader.js";
 chatScript.type = "text/javascript";
 
 const bodyTag = document.getElementsByTagName('body')[0];
-chatDiv.getElementsByTagName('div').array.forEach(element => {
-    bodyTag.appendChild(element);
-});;
+
+for(const el of chatDiv.getElementsByTagName('div')){
+    bodyTag.appendChild(el);
+}
 bodyTag.appendChild(chatScript);
 // document.getElementsByTagName('body')[0].appendChild(chatScript);
 
