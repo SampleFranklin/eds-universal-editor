@@ -66,7 +66,7 @@
   {
     "id": "carousel",
     "components": [
-      "teaser"
+      "columns"
     ]
   },
   {
@@ -74,10 +74,5 @@
     "components": [
       "cta"
     ]
- },
- {
-  "id": "container",
-  "components": [
-  ]
  }
 ]
