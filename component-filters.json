@@ -60,5 +60,11 @@
     "components": [
       "teaser"
     ]
+  },
+  {
+    "id": "listItem",
+    "components": [
+      "cta"
+    ]
   }
 ]
