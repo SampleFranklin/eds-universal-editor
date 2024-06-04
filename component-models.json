@@ -274,5 +274,16 @@
         "label": "Link"
       }
     ]
+  },
+  {
+    "id": "columns",
+    "fields": [
+      {
+        "component": "text-input",
+        "name": "name",
+        "label": "Name",
+        "valueType": "string"
+      }
+    ]
   }
 ]
