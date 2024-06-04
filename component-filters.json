@@ -54,5 +54,11 @@
     "components": [
       "cta"
     ]
+  },
+  {
+    "id": "carousel",
+    "components": [
+      "teaser"
+    ]
   }
 ]
