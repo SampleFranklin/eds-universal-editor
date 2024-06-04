@@ -274,5 +274,37 @@
         "label": "Link"
       }
     ]
+  },
+  {
+    "id": "3dConfigurator",
+    "fields": [
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "cdnUrl",
+        "label": "CDN Url"
+      },
+      {
+        "component": "text",
+        "name": "modelId",
+        "label": "ONE3D Model ID",
+        "valueType": "string",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "name": "variantId",
+        "label": "ONE3D Variant ID",
+        "valueType": "string",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "colorId",
+        "name": "colorId",
+        "label": "ONE3D Color ID",
+        "value": ""
+      }
+    ]
   }
 ]
