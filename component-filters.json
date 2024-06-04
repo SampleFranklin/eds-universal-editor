@@ -36,7 +36,8 @@
       "list",
       "carousel",
       "3dConfigurator",
-      "container"
+      "container",
+      "customColumns"
     ]
   },
   {
