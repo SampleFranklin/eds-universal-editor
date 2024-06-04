@@ -73,5 +73,11 @@
     "components": [
       "cta"
     ]
-  }
+ },
+ {
+  "id": "container",
+  "components": [
+    "columns"
+  ]
+ }
 ]
