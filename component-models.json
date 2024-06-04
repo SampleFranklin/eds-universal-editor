@@ -280,8 +280,20 @@
     "fields": [
       {
         "component": "text-input",
-        "name": "name",
-        "label": "Name",
+        "name": "style",
+        "label": "Style",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "rows",
+        "label": "Rows",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "columns",
+        "label": "Columns",
         "valueType": "string"
       }
     ]
