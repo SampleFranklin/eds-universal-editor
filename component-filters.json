@@ -2,7 +2,8 @@
   {
     "id": "main",
     "components": [
-      "section"
+      "section",
+      "customSection"
     ]
   },
   {
@@ -34,7 +35,15 @@
       "teaser",
       "list",
       "carousel",
-      "3dConfigurator"
+      "3dConfigurator",
+      "container",
+      "customColumns"
+    ]
+  },
+  {
+    "id": "customSection",
+    "components": [
+      "list"
     ]
   },
   {
@@ -58,7 +67,14 @@
   {
     "id": "carousel",
     "components": [
-      "teaser"
+      "cta",
+      "columns"
     ]
-  }
+  },
+  {
+    "id": "listItem",
+    "components": [
+      "cta"
+    ]
+ }
 ]

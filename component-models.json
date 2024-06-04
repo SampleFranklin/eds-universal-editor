@@ -276,34 +276,25 @@
     ]
   },
   {
-    "id": "3dConfigurator",
+    "id": "columns",
     "fields": [
       {
-        "component": "aem-content",
-        "valueType": "string",
-        "name": "cdnUrl",
-        "label": "CDN Url"
+        "component": "text-input",
+        "name": "style",
+        "label": "Style",
+        "valueType": "string"
       },
       {
-        "component": "text",
-        "name": "modelId",
-        "label": "ONE3D Model ID",
-        "valueType": "string",
-        "value": ""
+        "component": "text-input",
+        "name": "rows",
+        "label": "Rows",
+        "valueType": "string"
       },
       {
-        "component": "text",
-        "name": "variantId",
-        "label": "ONE3D Variant ID",
-        "valueType": "string",
-        "value": ""
-      },
-      {
-        "component": "text",
-        "valueType": "colorId",
-        "name": "colorId",
-        "label": "ONE3D Color ID",
-        "value": ""
+        "component": "text-input",
+        "name": "columns",
+        "label": "Columns",
+        "valueType": "string"
       }
     ]
   }
