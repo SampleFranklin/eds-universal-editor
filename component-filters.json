@@ -38,6 +38,12 @@
     ]
   },
   {
+    "id": "customSection",
+    "components": [
+      "list"
+    ]
+  },
+  {
     "id": "cards",
     "components": [
       "card"
