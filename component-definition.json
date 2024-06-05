@@ -318,7 +318,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "linkItem",
+                  "name": "Link Item",
                   "model": "linkItem"
                 }
               }

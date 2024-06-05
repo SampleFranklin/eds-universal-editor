@@ -314,8 +314,8 @@
     "fields": [
       {
         "component": "text-input",
-        "name": "name",
-        "label": "Name",
+        "name": "linkTitle",
+        "label": "Link Title",
         "valueType": "string"
       },
       {
