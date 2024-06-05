@@ -18,7 +18,8 @@
       "button",
       "title",
       "teaser",
-      "columns"
+      "columns",
+      "links"
     ]
   },
   {
@@ -38,7 +39,8 @@
       "carousel",
       "3dConfigurator",
       "container",
-      "customColumns"
+      "customColumns",
+      "links"
     ]
   },
   {
@@ -78,5 +80,11 @@
     "components": [
       "cta"
     ]
+ },
+ {
+  "id": "links",
+  "components": [
+    "linkItem"
+  ]
  }
 ]

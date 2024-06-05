@@ -297,5 +297,33 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "links",
+    "fields": [
+      {
+        "component": "text-input",
+        "name": "title",
+        "label": "Title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "linkItem",
+    "fields": [
+      {
+        "component": "text-input",
+        "name": "name",
+        "label": "Name",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "href",
+        "label": "Link"
+      }
+    ]
   }
 ]
