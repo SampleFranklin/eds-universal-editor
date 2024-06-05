@@ -68,7 +68,7 @@
     "id": "carousel",
     "components": [
       "cta",
-      "columns"
+      "teaser"
     ]
   },
   {

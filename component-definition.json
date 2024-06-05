@@ -77,8 +77,9 @@
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/section/v1/section",
-                "template": {},
-                "filter": "customSection"
+                "template": {
+                  "filter": "customSection"
+                }
               }
             }
           }
