@@ -209,6 +209,6 @@ main .section.highlight {
   background-color: var(--light-color);
 }
 
-main .customStyledSection {
+main .customstyledsection {
   background-color: blue;
 }
