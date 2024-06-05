@@ -276,28 +276,41 @@
     ]
   },
   {
-    "id": "columns",
+    "id": "3dConfigurator",
     "fields": [
       {
         "component": "text-input",
-        "name": "style",
-        "label": "Style",
+        "name": "cdnurl",
+        "label": "CDN Url",
         "valueType": "string"
       },
       {
         "component": "text-input",
-        "name": "rows",
-        "label": "Rows",
+        "name": "colorId",
+        "label": "Color ID",
         "valueType": "string"
       },
       {
         "component": "text-input",
-        "name": "columns",
-        "label": "Columns",
+        "name": "modelId",
+        "label": "Model ID",
         "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "variantId",
+        "label": "Variant ID",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "name": "videoUrl",
+        "label": "Video Url",
+        "valueType": "string",
+        "multi": false
       }
     ]
-  },
+  }
   {
     "id": "links",
     "fields": [
