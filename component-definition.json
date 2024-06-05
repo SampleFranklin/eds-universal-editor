@@ -324,6 +324,21 @@
               }
             }
           }
+        },
+        {
+          "title": "Link Grid",
+          "id": "linkgrid",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Link List",
+                  "model": "link-list"
+                }
+              }
+            }
+          }
         }
       ]
     }
