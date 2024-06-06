@@ -395,5 +395,23 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "logo",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "logo",
+        "label": "Logo",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "href",
+        "label": "Link"
+      }
+    ]
   }
 ]
