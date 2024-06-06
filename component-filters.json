@@ -40,9 +40,10 @@
       "3dConfigurator",
       "container",
       "customColumns",
-      "links",
-      "visualCompare",
-      "linkgrid"
+      "links"
+      "visual-compare",
+      "link-grid",
+      "logo"
     ]
   },
   {

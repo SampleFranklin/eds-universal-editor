@@ -340,7 +340,7 @@
     ]
   },
   {
-    "id": "visualComparison",
+    "id": "visual-comparison",
     "fields": [
       {
         "component": "reference",
@@ -393,6 +393,35 @@
         "name": "rte3",
         "label": "Rich Text - List",
         "valueType": "string"
+      },
+      {
+        "component": "tab",
+        "label": "Column 4",
+        "name": "col4"
+      },
+      {
+        "component": "richtext",
+        "name": "rte4",
+        "label": "Rich Text - List",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "logo",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "logo",
+        "label": "Logo",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "href",
+        "label": "Link"
       }
     ]
   }
