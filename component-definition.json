@@ -327,7 +327,7 @@
         },
         {
           "title": "Link Grid",
-          "id": "linkgrid",
+          "id": "link-grid",
           "plugins": {
             "xwalk": {
               "page": {
