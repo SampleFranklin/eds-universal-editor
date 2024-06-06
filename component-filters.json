@@ -86,7 +86,8 @@
  {
   "id": "links",
   "components": [
-    "linkItem"
+    "linkItem",
+    "linkgrid"
   ]
  }
 ]
