@@ -209,6 +209,7 @@
                 "template": {
                   "name": "Teaser",
                   "model": "teaser",
+                  "filter": "teaser",
                   "title": "Teaser Title",
                   "description": "<p>This is <b>description</b></p>"
                 }
