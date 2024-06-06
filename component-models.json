@@ -237,44 +237,16 @@
         "valueType": "string"
       },
       {
-        "component": "container",
-        "label": "CTA",
-        "name": "cta",
-        "fields": [
-          {
-            "component": "text-input",
-            "name": "ctaText",
-            "label": "CTA Text",
-            "valueType": "string"
-          },
-          {
-            "component": "aem-content",
-            "valueType": "string",
-            "name": "ctaLink",
-            "label": "CTA Link"
-          },
-          {
-            "id": "target",
-            "fields": [
-              {
-                "component": "select",
-                "label": "Target",
-                "name": "target",
-                "valueType": "string",
-                "options": [
-                  {
-                    "name": "Self",
-                    "value": "_self"
-                  },
-                  {
-                    "name": "New Tab",
-                    "value": "_blank"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+        "component": "text-input",
+        "name": "ctaText",
+        "label": "CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "ctaLink",
+        "label": "CTA Link"
       }
     ]
   },
