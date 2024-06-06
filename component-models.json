@@ -235,18 +235,6 @@
         "value": "",
         "label": "Description",
         "valueType": "string"
-      },
-      {
-        "component": "text-input",
-        "name": "ctaText",
-        "label": "CTA Text",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "valueType": "string",
-        "name": "ctaLink",
-        "label": "CTA Link"
       }
     ]
   },
