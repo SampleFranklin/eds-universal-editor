@@ -41,7 +41,9 @@
       "container",
       "customColumns",
       "links"
-      "visual-compare"
+      "visual-compare",
+      "link-grid",
+      "logo"
     ]
   },
   {
@@ -85,7 +87,8 @@
  {
   "id": "links",
   "components": [
-    "linkItem"
+    "linkItem",
+    "linkgrid"
   ]
  }
 ]
