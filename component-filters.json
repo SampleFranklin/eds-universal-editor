@@ -40,7 +40,7 @@
       "3dConfigurator",
       "container",
       "customColumns",
-      "links"
+      "links",
       "visual-compare",
       "link-grid",
       "logo"
@@ -65,11 +65,7 @@
     ]
   },
   {
-    "id": "teaser",
-    "components": [
-      "button",
-      "cta"
-    ]
+    "id": "teaser"
   },
   {
     "id": "carousel",
