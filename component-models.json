@@ -393,6 +393,17 @@
         "name": "rte3",
         "label": "Rich Text - List",
         "valueType": "string"
+      },
+      {
+        "component": "tab",
+        "label": "Column 4",
+        "name": "col4"
+      },
+      {
+        "component": "richtext",
+        "name": "rte4",
+        "label": "Rich Text - List",
+        "valueType": "string"
       }
     ]
   },
