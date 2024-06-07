@@ -44,7 +44,8 @@
       "visual-compare",
       "link-grid",
       "logo",
-      "nav-test"
+      "nav-test",
+      "teaser-list"
     ]
   },
   {
@@ -90,5 +91,11 @@
     "linkItem",
     "linkgrid"
   ]
- }
+ },
+  {
+    "id": "teaser-list",
+    "components": [
+      "teaser"
+    ]
+  }
 ]

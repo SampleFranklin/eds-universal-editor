@@ -459,5 +459,17 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "teaser-list",
+    "fields": [
+      {
+        "component": "text-input",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      }
+    ]
   }
 ]
