@@ -235,26 +235,6 @@
         "value": "",
         "label": "Description",
         "valueType": "string"
-      },
-      {
-        "component": "container",
-        "label": "Actions",
-        "name": "actions",
-        "multi": true,
-        "fields": [
-          {
-            "component": "text-input",
-            "name": "name",
-            "label": "Name",
-            "valueType": "string"
-          },
-          {
-            "component": "aem-content",
-            "valueType": "string",
-            "name": "href",
-            "label": "Link"
-          }
-        ]
       }
     ]
   },
@@ -263,15 +243,15 @@
     "fields": [
       {
         "component": "text-input",
-        "name": "name",
-        "label": "Name",
+        "name": "ctaText",
+        "label": "CTA Text",
         "valueType": "string"
       },
       {
         "component": "aem-content",
         "valueType": "string",
-        "name": "href",
-        "label": "Link"
+        "name": "ctaLink",
+        "label": "CTA Link"
       }
     ]
   },

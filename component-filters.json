@@ -68,7 +68,6 @@
   {
     "id": "teaser",
     "components": [
-      "button",
       "cta"
     ]
   },
