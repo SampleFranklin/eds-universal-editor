@@ -40,10 +40,11 @@
       "3dConfigurator",
       "container",
       "customColumns",
-      "links"
+      "links",
       "visual-compare",
       "link-grid",
-      "logo"
+      "logo",
+      "nav-test"
     ]
   },
   {
