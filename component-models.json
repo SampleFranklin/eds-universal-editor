@@ -484,15 +484,15 @@
       },
       {
         "component": "text-input",
-        "name": "name",
-        "label": "Name",
+        "name": "ctaText",
+        "label": "CTA Text",
         "valueType": "string"
       },
       {
         "component": "aem-content",
         "valueType": "string",
         "name": "href",
-        "label": "Link"
+        "label": "CTA Link"
       }
     ]
   }
