@@ -45,7 +45,8 @@
       "link-grid",
       "logo",
       "nav-test",
-      "teaser-list"
+      "teaser-list",
+      "sign-in"
     ]
   },
   {
@@ -84,18 +85,24 @@
     "components": [
       "cta"
     ]
- },
- {
-  "id": "links",
-  "components": [
-    "linkItem",
-    "linkgrid"
-  ]
- },
+  },
+  {
+    "id": "links",
+    "components": [
+      "linkItem",
+      "linkgrid"
+    ]
+  },
   {
     "id": "teaser-list",
     "components": [
       "teaser"
+    ]
+  },
+  {
+    "id": "sign-in",
+    "components": [
+      "ctaWithIcon"
     ]
   }
 ]
