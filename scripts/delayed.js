@@ -24,7 +24,10 @@ chatScript.setAttribute("data-asserts","//unity-plugin.iamdave.ai/conversation-p
 chatScript.type = "text/javascript";
 
 const bodyTag = document.getElementsByTagName('body')[0];
-// bodyTag.appendChild(chatDiv);
-// bodyTag.appendChild(chatScript);
-// document.getElementsByTagName('body')[0].appendChild(chatScript);
+
+if(window.location.pathname === '/us/en/chatbot') {
+    bodyTag.appendChild(chatDiv);
+    bodyTag.appendChild(chatScript);
+    document.getElementsByTagName('body')[0].appendChild(chatScript);
+}
 
