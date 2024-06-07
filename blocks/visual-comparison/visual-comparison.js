@@ -1,11 +1,10 @@
 export default function decorate(block) {
     console.log("inside visualComparison");
-    console.log("riya block check", block);
+    console.log("block check", block);
 
     const links =  block.querySelectorAll(':scope > div > div > p > a');
     const outerDiv = document.createElement('div');
     outerDiv.classList.add('outer-div');
-    outerDiv.innerHTML="<p>hey outer div</p>"
 
     const videos = [];
 
@@ -13,8 +12,6 @@ export default function decorate(block) {
         const url = link.attributes['href'].nodeValue;
         const innerDiv = document.createElement('div');
         innerDiv.classList.add('inner-div');
-
-        innerDiv.innerHTML = "<p>hey inner div</p>"
 
         const video = document.createElement('video');
         video.src = url;
@@ -58,7 +55,4 @@ export default function decorate(block) {
 
     block.textContent = '';
     block.append(outerDiv);
-
-    // const values = document.querySelector(':scope > div > div > p');
-    // console.log("vcompare:"+values);
 }
