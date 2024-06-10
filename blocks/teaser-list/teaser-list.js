@@ -50,6 +50,7 @@ export default function decorate(block) {
         });
 
         newHtml += `</div>`;
-        block.innerHTML='';
-        block.innerHTML = newHtml;
+        console.log(newHtml);
+        // block.innerHTML='';
+        // block.innerHTML = newHtml;
 }
