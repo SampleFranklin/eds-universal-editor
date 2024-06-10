@@ -473,13 +473,8 @@
     ]
   },
   {
-    "id": "account",
+    "id": "sign-in",
     "fields": [
-      {
-        "component": "tab",
-        "label": "Sign In",
-        "name": "sign-in"
-      },
       {
         "component": "richtext",
         "name": "rte",
@@ -501,29 +496,20 @@
         "multi": false
       },
       {
-        "component": "tab",
-        "label": "Account links",
-        "name": "accountLinks"
-      },
-      {
-        "component": "reference",
+        "component": "text",
         "valueType": "string",
-        "name": "icon",
-        "label": "Icon",
-        "multi": false
+        "name": "desktopAlt",
+        "value": "Default alt",
+        "label": "Desktop Alt Text"
       },
       {
-        "component": "text-input",
-        "name": "ctaText",
-        "label": "CTA Text",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
+        "component": "text",
         "valueType": "string",
-        "name": "href",
-        "label": "CTA Link"
+        "name": "mobileAlt",
+        "value": "Default alt",
+        "label": "Mobile Alt Text"
       }
+
     ]
   },
   {
