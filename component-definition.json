@@ -69,20 +69,6 @@
               }
             }
           }
-        },
-        {
-          "title": "Custom Section",
-          "id": "customSection",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/section/v1/section",
-                "template": {
-                  "filter": "customSection"
-                }
-              }
-            }
-          }
         }
       ]
     },
@@ -256,7 +242,7 @@
           "plugins": {
             "xwalk": {
               "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
+                "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
                   "name": "CTA",
                   "model": "cta"
@@ -312,14 +298,14 @@
         },
         {
           "title": "Visual Comparison",
-          "id": "visualComparison",
+          "id": "visual-comparison",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
                   "name": "Visual Comparison",
-                  "model": "visualComparison"
+                  "model": "visual-comparison"
                 }
               }
             }
@@ -350,6 +336,67 @@
                 "template": {
                   "name": "Logo",
                   "model": "logo"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav Test",
+          "id": "nav-test",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Nav Test",
+                  "model": "nav-test"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Teaser List",
+          "id": "teaser-list",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Teaser List",
+                  "filter": "teaser-list",
+                  "model": "teaser-list"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Sign In",
+          "id": "sign-in",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Sign In",
+                  "filter": "sign-in"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "CTA with Icon",
+          "id": "ctaWithIcon",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "CTA with Icon",
+                  "model": "ctaWithIcon"
                 }
               }
             }

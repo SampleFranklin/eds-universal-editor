@@ -235,26 +235,6 @@
         "value": "",
         "label": "Description",
         "valueType": "string"
-      },
-      {
-        "component": "container",
-        "label": "Actions",
-        "name": "actions",
-        "multi": true,
-        "fields": [
-          {
-            "component": "text-input",
-            "name": "name",
-            "label": "Name",
-            "valueType": "string"
-          },
-          {
-            "component": "aem-content",
-            "valueType": "string",
-            "name": "href",
-            "label": "Link"
-          }
-        ]
       }
     ]
   },
@@ -263,15 +243,15 @@
     "fields": [
       {
         "component": "text-input",
-        "name": "name",
-        "label": "Name",
+        "name": "ctaText",
+        "label": "CTA Text",
         "valueType": "string"
       },
       {
         "component": "aem-content",
         "valueType": "string",
-        "name": "href",
-        "label": "Link"
+        "name": "ctaLink",
+        "label": "CTA Link"
       }
     ]
   },
@@ -340,7 +320,7 @@
     ]
   },
   {
-    "id": "visualComparison",
+    "id": "visual-comparison",
     "fields": [
       {
         "component": "reference",
@@ -422,6 +402,97 @@
         "valueType": "string",
         "name": "href",
         "label": "Link"
+      }
+    ]
+  },
+  {
+    "id": "nav-test",
+    "fields": [
+      {
+        "component": "tab",
+        "label": "Column 1",
+        "name": "col1"
+      },
+      {
+        "component": "aem-content",
+        "name": "aem-content",
+        "label": "Fragment",
+        "valueType": "string"
+      },
+      {
+        "component": "tab",
+        "label": "Column 2",
+        "name": "col2"
+      },
+      {
+        "component": "reference",
+        "name": "reference",
+        "label": "Fragment ref",
+        "valueType": "string"
+      },
+      {
+        "component": "tab",
+        "label": "Column 3",
+        "name": "col3"
+      },
+      {
+        "component": "richtext",
+        "name": "rte3",
+        "label": "Rich Text - List",
+        "valueType": "string"
+      },
+      {
+        "component": "tab",
+        "label": "Column 4",
+        "name": "col4"
+      },
+      {
+        "component": "richtext",
+        "name": "rte4",
+        "label": "Rich Text - List",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "rte5",
+        "label": "Rich Text - List",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "teaser-list",
+    "fields": [
+      {
+        "component": "text-input",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "ctaWithIcon",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "icon",
+        "label": "Icon",
+        "multi": false
+      },
+      {
+        "component": "text-input",
+        "name": "ctaText",
+        "label": "CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "href",
+        "label": "CTA Link"
       }
     ]
   }

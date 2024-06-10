@@ -2,8 +2,7 @@
   {
     "id": "main",
     "components": [
-      "section",
-      "customSection"
+      "section"
     ]
   },
   {
@@ -41,9 +40,12 @@
       "container",
       "customColumns",
       "links",
-      "visualCompare",
+      "visual-comparison",
       "link-grid",
-      "logo"
+      "logo",
+      "nav-test",
+      "teaser-list",
+      "sign-in"
     ]
   },
   {
@@ -67,7 +69,6 @@
   {
     "id": "teaser",
     "components": [
-      "button",
       "cta"
     ]
   },
@@ -83,12 +84,24 @@
     "components": [
       "cta"
     ]
- },
- {
-  "id": "links",
-  "components": [
-    "linkItem",
-    "linkgrid"
-  ]
- }
+  },
+  {
+    "id": "links",
+    "components": [
+      "linkItem",
+      "linkgrid"
+    ]
+  },
+  {
+    "id": "teaser-list",
+    "components": [
+      "teaser"
+    ]
+  },
+  {
+    "id": "sign-in",
+    "components": [
+      "ctaWithIcon"
+    ]
+  }
 ]
