@@ -87,5 +87,7 @@ export default function decorate(block) {
         });
 
         newHtml += `</div>`;
-        block.innerHTML = newHtml;
+        const el = document.createElement('div');
+        el.innerHTML = newHtml;
+        block.append(el);
 }
