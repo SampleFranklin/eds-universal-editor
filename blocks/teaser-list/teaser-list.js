@@ -21,13 +21,17 @@ export default function decorate(block) {
     skeletonHtml += `</div>`;
     block.innerHTML = skeletonHtml;
 
+    console.log("Here 1");
 
-     const commonTitle = tempBlock.querySelector('.teaser-list > div:first-child > div > p').innerText;
+
+     const commonTitle = tempBlock.querySelector('.teaser-list > div:first-child > div > p')?.innerText;
         let newHtml = `<h1>${commonTitle}</h1><div style="display: flex;">`;
+    console.log("Here 2");
 
        // const cards = tempBlock.querySelectorAll('.teaser-list > div:not(:first-child)');
 
         cards.forEach(card => {
+            console.log("Here 3");
             const imgSrc = card.querySelector('img').src;
             const preTitle = card.querySelector('div:nth-of-type(2) > p').innerText;
             const title = card.querySelector('div:nth-of-type(3) > p').innerText;
@@ -47,10 +51,11 @@ export default function decorate(block) {
                     <div>${cta2}</div>
                 </div>
             `;
+            console.log("Here 4");
         });
 
         newHtml += `</div>`;
-        console.log(newHtml);
+        console.log("Here 5");
         // block.innerHTML='';
         // block.innerHTML = newHtml;
 }
