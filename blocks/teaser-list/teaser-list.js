@@ -86,6 +86,8 @@ export default function decorate(block) {
             `;
         });
 
+        console.log(newHtml);
+
         newHtml += `</div>`;
         block.innerHTML = newHtml;
 }
