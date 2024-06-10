@@ -77,12 +77,22 @@ export default function decorate(block) {
 
             newHtml += `
                 <div style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
-                    <img src="${imgSrc}" alt="" style="max-width: 100%;">
-                    <p>${preTitle}</p>
-                    <h2>${title}</h2>
-                    <p>${description}</p>
-                    <div>${cta1}</div>
-                    <div>${cta2}</div>
+                    <picture>
+                        <img src="${imgSrc}" alt="" style="max-width: 100%;">
+                    </picture>
+                    <div>
+                        <p>${preTitle}</p>
+                    </div>
+                    <div>
+                        <h2>${title}</h2>
+                    </div>
+                    <div>
+                        <p>${description}</p>
+                    </div>
+                    <div>
+                        <div>${cta1}</div>
+                        <div>${cta2}</div>
+                    </div>
                 </div>
             `;
         });
