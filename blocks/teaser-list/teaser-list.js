@@ -59,6 +59,7 @@ export default function decorate(block) {
         // block.innerHTML='';
         // block.innerHTML = newHtml;
 
+        console.log(block.cloneNode(true));
          const commonTitle = block.querySelector('.teaser-list > div:first-child > div > p').innerText;
         let newHtml = `<h1>${commonTitle}</h1><div style="display: flex;">`;
 
