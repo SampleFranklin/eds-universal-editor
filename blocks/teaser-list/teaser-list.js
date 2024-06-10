@@ -1,7 +1,7 @@
 export default function decorate(block) {
 
     let tempBlock= block.cloneNode(true);
-    console.log(tempBlock.clone(true));
+    console.log(tempBlock.cloneNode(true));
     let skeletonHtml = `<h1></h1><div style="display: flex;">`;
 
     const cards = tempBlock.querySelectorAll('.teaser-list > div:not(:first-child)');
