@@ -2,16 +2,20 @@ export default function decorate(block) {
 
     let tempBlock= block.cloneNode(true);
     let skeletonHtml = `<h1></h1><div style="display: flex;">`;
+
+    const cards = tempBlock.querySelectorAll('.teaser-list > div:not(:first-child)');
+    cards.forEach(card => {
     skeletonHtml += `
-                    <div style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
-                        <img src="" alt="" style="max-width: 100%;">
-                        <p></p>
-                        <h2></h2>
-                        <p></p>
-                        <div></div>
-                        <div></div>
-                    </div>
-                `;
+                        <div style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
+                            <img src="" alt="" style="max-width: 100%;">
+                            <p></p>
+                            <h2></h2>
+                            <p></p>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    `;
+    });
 
     skeletonHtml += `</div>`;
     block.innerHTML = skeletonHtml;
@@ -20,7 +24,7 @@ export default function decorate(block) {
      const commonTitle = tempBlock.querySelector('.teaser-list > div:first-child > div > p').innerText;
         let newHtml = `<h1>${commonTitle}</h1><div style="display: flex;">`;
 
-        const cards = tempBlock.querySelectorAll('.teaser-list > div:not(:first-child)');
+       // const cards = tempBlock.querySelectorAll('.teaser-list > div:not(:first-child)');
 
         cards.forEach(card => {
             const imgSrc = card.querySelector('img').src;
