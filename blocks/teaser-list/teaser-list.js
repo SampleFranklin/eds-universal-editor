@@ -19,7 +19,7 @@ export default function decorate(block) {
     });
 
     skeletonHtml += `</div>`;
-    block.innerHTML = skeletonHtml;
+    // block.innerHTML = skeletonHtml;
 
     console.log("Here 1");
 
