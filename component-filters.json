@@ -108,6 +108,7 @@
   {
     "id": "contact",
     "components": [
+      "title",
       "ctaWithIcon"
     ]
   }
