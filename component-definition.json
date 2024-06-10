@@ -373,23 +373,6 @@
           }
         },
         {
-          "title": "Teaser Item",
-          "id": "teaser-item",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "name": "Teaser Item",
-                  "model": "teaser",
-                  "title": "Teaser Title",
-                  "description": "<p>This is <b>description</b></p>"
-                }
-              }
-            }
-          }
-        },
-        {
           "title": "Sign In",
           "id": "sign-in",
           "plugins": {

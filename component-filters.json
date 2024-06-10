@@ -96,8 +96,7 @@
   {
     "id": "teaser-list",
     "components": [
-      "teaser",
-      "teaser-item"
+      "teaser"
     ]
   },
   {
