@@ -140,10 +140,24 @@
         "multi": false
       },
       {
-        "component": "richtext",
-        "name": "text",
+        "component": "text-input",
+        "name": "pretitle",
         "value": "",
-        "label": "Text",
+        "label": "Pretitle",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
         "valueType": "string"
       }
     ]
@@ -235,6 +249,23 @@
         "value": "",
         "label": "Description",
         "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "target",
+        "value": "",
+        "label": "Open Link in New Page ?",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Yes",
+            "value": "__blank"
+          },
+          {
+            "name": "No",
+            "value": "__self"
+          }
+        ]
       }
     ]
   },
@@ -406,61 +437,6 @@
     ]
   },
   {
-    "id": "nav-test",
-    "fields": [
-      {
-        "component": "tab",
-        "label": "Column 1",
-        "name": "col1"
-      },
-      {
-        "component": "aem-content",
-        "name": "aem-content",
-        "label": "Fragment",
-        "valueType": "string"
-      },
-      {
-        "component": "tab",
-        "label": "Column 2",
-        "name": "col2"
-      },
-      {
-        "component": "reference",
-        "name": "reference",
-        "label": "Fragment ref",
-        "valueType": "string"
-      },
-      {
-        "component": "tab",
-        "label": "Column 3",
-        "name": "col3"
-      },
-      {
-        "component": "richtext",
-        "name": "rte3",
-        "label": "Rich Text - List",
-        "valueType": "string"
-      },
-      {
-        "component": "tab",
-        "label": "Column 4",
-        "name": "col4"
-      },
-      {
-        "component": "richtext",
-        "name": "rte4",
-        "label": "Rich Text - List",
-        "valueType": "string"
-      },
-      {
-        "component": "richtext",
-        "name": "rte5",
-        "label": "Rich Text - List",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
     "id": "teaser-list",
     "fields": [
       {
@@ -535,5 +511,39 @@
         "label": "CTA Link"
       }
     ]
+  },
+  {
+    "id": "nav-cars",
+    "fields": [
+      {
+        "component": "text-input",
+        "valueType": "string",
+        "name": "cars",
+        "label": "Cars"
+      }
+    ]
+  },
+  {
+    "id": "nav-compare",
+    "fields": [
+      {
+        "component": "text-input",
+        "valueType": "string",
+        "name": "compare",
+        "label": "Compare"
+      }
+    ]
+  },
+  {
+    "id": "search",
+    "fields": [
+      {
+        "component": "text-input",
+        "valueType": "string",
+        "name": "search",
+        "label": "Search"
+      }
+    ]
   }
+
 ]
