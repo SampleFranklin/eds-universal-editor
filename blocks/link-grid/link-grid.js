@@ -1,22 +1,29 @@
 export default function decorate(block) {
-    var gridContainer = document.createElement('div');
+    const gridContainer = document.createElement('div');
     gridContainer.className = 'link-container-section';
-    var tabHeadings = block.querySelectorAll('.link-grid h3');
-    tabHeadings.forEach(function (heading, index) {
-        var columnDiv = document.createElement('div');
+    const columns = []
+    for (let i = 0; i < block.children.length; i++) {
+        const item = block.children.item(i);
+        const el = item.querySelector('p');
+        if (el) {
+            columns.push(item);
+        }
+    }
+    columns.forEach(function (el) {
+        const columnDiv = document.createElement('div');
         columnDiv.className = 'link-grid-column';
 
-        var buttonContainer = document.createElement('p');
+        const buttonContainer = document.createElement('p');
         buttonContainer.className = 'button-container';
 
-        var tabDiv = heading.parentNode;
+        const tabDiv = el;
 
-        var links = tabDiv.querySelectorAll('p.button-container a');
+        const links = tabDiv.querySelectorAll('p.button-container a');
         links.forEach(function (link) {
-            var linkText = link.textContent;
-            var href = link.getAttribute('href');
+            const linkText = link.textContent;
+            const href = link.getAttribute('href');
 
-            var a = document.createElement('a');
+            const a = document.createElement('a');
             a.textContent = linkText;
             a.href = href;
 
@@ -29,12 +36,18 @@ export default function decorate(block) {
             buttonContainer.appendChild(a);
         });
 
-        columnDiv.appendChild(heading.cloneNode(true));
+        if(el.querySelector('h3')) {
+            columnDiv.appendChild(el.querySelector('h3'));
+        } else {
+            columnDiv.classList.add('no-heading-column');
+        }
         columnDiv.appendChild(buttonContainer);
         gridContainer.appendChild(columnDiv);
     });
+
     block.innerHTML = "";
     block.append(gridContainer);
+    console.log(block);
 }
 
 function isInternalLink(href) {

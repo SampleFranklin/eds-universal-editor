@@ -45,7 +45,8 @@
       "logo",
       "nav-test",
       "teaser-list",
-      "sign-in"
+      "sign-in",
+      "contact"
     ]
   },
   {
@@ -101,6 +102,13 @@
   {
     "id": "sign-in",
     "components": [
+      "ctaWithIcon"
+    ]
+  },
+  {
+    "id": "contact",
+    "components": [
+      "title",
       "ctaWithIcon"
     ]
   }
