@@ -13,7 +13,7 @@ export default function decorate(block) {
         const columnDiv = document.createElement('div');
         columnDiv.className = 'link-grid-column';
 
-        const buttonContainer = document.createElement('p');
+        const buttonContainer = document.createElement('ul');
         buttonContainer.className = 'button-container';
 
         const tabDiv = el;
@@ -22,18 +22,18 @@ export default function decorate(block) {
         links.forEach(function (link) {
             const linkText = link.textContent;
             const href = link.getAttribute('href');
-
+            const li = document.createElement('li')
             const a = document.createElement('a');
             a.textContent = linkText;
             a.href = href;
-
+            li.appendChild(a);
             if (isInternalLink(href)) {
                 a.target = '_self';
             } else {
                 a.target = '_blank';
             }
 
-            buttonContainer.appendChild(a);
+            buttonContainer.appendChild(li);
         });
 
         if(el.querySelector('h3')) {
