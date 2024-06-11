@@ -4,10 +4,10 @@ export default function decorate(block) {
     let newHtml = `
     <div>
         <h1>${commonTitle}</h1>
-    </div>
-    <div style="display: flex;">`;
+    </div>`;
 
     const cards = block.querySelectorAll('.teaser-list > div:not(:first-child)');
+    const teasers = document.createElement('div');
 
     cards.forEach(card => {
         const imgSrc = card.querySelector('img').src;
@@ -18,8 +18,7 @@ export default function decorate(block) {
         const ctaElements = card.querySelectorAll('div:nth-of-type(4) > p.button-container > a');
         const cta1 = ctaElements[0] ? ctaElements[0].outerHTML : '';
         const cta2 = ctaElements[1] ? ctaElements[1].outerHTML : '';
-
-        newHtml += `
+        card.innerHTML = `
                 <div style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
                     <img src="${imgSrc}" alt="" style="max-width: 100%;">
                     <p>${preTitle}</p>
@@ -29,9 +28,14 @@ export default function decorate(block) {
                     <div>${cta2}</div>
                 </div>
             `;
+        teasers.append(card);
     });
 
-    newHtml += `</div>`;
+    newHtml += `
+    <div style="display: flex;">
+        ${teasers.innerHTML}
+    </div>
+    `;
     block.innerHTML = newHtml;
     console.log(block)
 }
