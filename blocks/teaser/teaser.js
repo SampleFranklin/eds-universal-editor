@@ -36,14 +36,16 @@ export default function decorate(block) {
     const descriptionEl = block.querySelector('div:nth-child(4) div');
     let descriptionHtml = "";
 
-    const links = descriptionEl?.querySelectorAll('div:nth-child(4) .button-container');
+    const target = block.querySelector('div:nth-child(5)').textContent.trim();
+    const link = descriptionEl?.querySelector('.button-container');
     let ctaHtml = "";
-    if(links && links.length > 0) {
-        links.forEach((item) => {
-            ctaHtml += item.innerHTML;
-            item.remove();
-        });
+
+    if(link){
+        link.querySelector('a').setAttribute('target',target);
+        ctaHtml = link.innerHTML;
     }
+
+    descriptionEl?.querySelectorAll('.button-container')?.forEach(item => item.remove());
 
     if(ctaHtml) {
         ctaHtml = `
@@ -53,7 +55,7 @@ export default function decorate(block) {
         `;
     }
 
-    if(descriptionEl) {
+    if(descriptionEl?.innerHTML) {
         descriptionHtml = `
         <div class="teaser-description">
             ${descriptionEl.innerHTML}
@@ -65,9 +67,11 @@ export default function decorate(block) {
     <div class="teaser-card">
         ${imageHtml}
         <div class="teaser-content">
-            ${pretitleHtml}
-            ${titleHtml}
-            ${descriptionHtml}
+            <div>
+                ${pretitleHtml}
+                ${titleHtml}
+                ${descriptionHtml}
+            </div>
             ${ctaHtml}
         </div>
     </div>
