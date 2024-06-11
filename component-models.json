@@ -259,11 +259,11 @@
         "options": [
           {
             "name": "Yes",
-            "value": "__blank"
+            "value": "_blank"
           },
           {
             "name": "No",
-            "value": "__self"
+            "value": "_self"
           }
         ]
       }

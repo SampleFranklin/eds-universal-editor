@@ -197,7 +197,8 @@
                   "model": "teaser",
                   "filter": "teaser",
                   "title": "Teaser Title",
-                  "description": "<p>This is <b>description</b></p>"
+                  "description": "<p>This is <b>description</b></p>",
+                  "target":"_self"
                 }
               }
             }
