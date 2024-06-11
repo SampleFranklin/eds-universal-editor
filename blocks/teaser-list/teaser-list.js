@@ -66,32 +66,40 @@ export default function decorate(block) {
         const cards = block.querySelectorAll('.teaser-list > div:not(:first-child)');
 
         cards.forEach(card => {
-            const imgSrc = card.querySelector('img').src;
-            const preTitle = card.querySelector('div:nth-of-type(2) > p').innerText;
-            const title = card.querySelector('div:nth-of-type(3) > p').innerText;
-            const description = Array.from(card.querySelectorAll('div:nth-of-type(4) p:not(.button-container)')).map(p => p.innerText).join(' ');
+            const img = card.querySelector('picture');
+            img.querySelector('img').removeAttribute('height');
+            img.querySelector('img').removeAttribute('width');
 
-            const ctaElements = card.querySelectorAll('div:nth-of-type(4) p.button-container a');
-            const cta1 = ctaElements[0] ? ctaElements[0].outerHTML : '';
-            const cta2 = ctaElements[1] ? ctaElements[1].outerHTML : '';
+            const preTitle = card.querySelector('div:nth-of-type(2)');
+            const title = card.querySelector('div:nth-of-type(3)');
+            const description = card.querySelector('div:nth-of-type(4)');
+            const actions = description.querySelectorAll('div:nth-of-type(4) .button-container');
+            let ctaHtml = "";
+            actions.forEach(item => {
+                ctaHtml += `<div>${item.innerHTML}</div>`;
+                item.remove();
+            });
 
             newHtml += `
                 <div style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
-                    <picture>
-                        <img src="${imgSrc}" alt="" style="max-width: 100%;">
-                    </picture>
                     <div>
-                        <p>${preTitle}</p>
+                        <picture>
+                            ${img.innerHTML}
+                        </picture>
                     </div>
                     <div>
-                        <h2>${title}</h2>
-                    </div>
-                    <div>
-                        <p>${description}</p>
-                    </div>
-                    <div>
-                        <div>${cta1}</div>
-                        <div>${cta2}</div>
+                        <div>
+                            ${preTitle.innerHTML}
+                        </div>
+                        <div>
+                            ${title.innerHTML}
+                        </div>
+                        <div>
+                            ${description.innerHTML}
+                        </div>
+                        <div>
+                            ${ctaHtml}
+                        </div>
                     </div>
                 </div>
             `;
