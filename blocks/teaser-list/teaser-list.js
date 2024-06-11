@@ -35,4 +35,5 @@ export default function decorate(block) {
 
     newHtml += `</div>`;
     block.innerHTML = newHtml;
+    console.log(block);
 }
