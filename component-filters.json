@@ -45,7 +45,10 @@
       "logo",
       "nav-test",
       "teaser-list",
-      "sign-in"
+      "sign-in",
+      "nav-cars",
+      "nav-compare",
+      "search"
     ]
   },
   {
