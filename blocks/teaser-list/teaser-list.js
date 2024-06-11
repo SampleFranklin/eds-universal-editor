@@ -13,9 +13,9 @@ export default function decorate(block) {
         const imgSrc = card.querySelector('img').src;
         const preTitle = card.querySelector('div:nth-of-type(2) > p').innerText;
         const title = card.querySelector('div:nth-of-type(3) > p').innerText;
-        const description = Array.from(card.querySelectorAll('div:nth-of-type(4) > p:not(.button-container)')).map(p => p.innerText).join(' ');
+        const description = Array.from(card.querySelectorAll('div:nth-of-type(4) p:not(.button-container)')).map(p => p.innerText).join(' ');
 
-        const ctaElements = card.querySelectorAll('div:nth-of-type(4) > p.button-container > a');
+        const ctaElements = card.querySelectorAll('div:nth-of-type(4) p.button-container a');
         const cta1 = ctaElements[0] ? ctaElements[0].outerHTML : '';
         const cta2 = ctaElements[1] ? ctaElements[1].outerHTML : '';
         card.innerHTML = `
