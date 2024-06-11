@@ -1,8 +1,5 @@
-import { moveInstrumentation } from "../../scripts/scripts";
-
 export default function decorate(block) {
     console.log(block.cloneNode(true));
-
     const commonTitle = block.querySelector('.teaser-list > div:first-child > div > p').innerText;
     let newHtml = `
     <div>
@@ -22,7 +19,7 @@ export default function decorate(block) {
         const cta1 = ctaElements[0] ? ctaElements[0].outerHTML : '';
         const cta2 = ctaElements[1] ? ctaElements[1].outerHTML : '';
 
-        card.innerHtml = `
+        newHtml += `
                 <div style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
                     <img src="${imgSrc}" alt="" style="max-width: 100%;">
                     <p>${preTitle}</p>
@@ -31,13 +28,10 @@ export default function decorate(block) {
                     <div>${cta1}</div>
                     <div>${cta2}</div>
                 </div>
-        `;
-        const teaserDiv = document.createElement('div');
-        teaserDiv.append(card);
-        newHtml += `${teaserDiv.innerHTML}`;
+            `;
     });
 
     newHtml += `</div>`;
     block.innerHTML = newHtml;
-    console.log(block);
+    console.log(block)
 }
