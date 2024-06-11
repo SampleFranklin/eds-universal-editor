@@ -81,8 +81,6 @@ export default function decorate(block) {
             });
 
             newHtml += `
-                <div>
-                <div style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
                     <div>
                         <picture>
                             ${img.innerHTML}
@@ -102,8 +100,6 @@ export default function decorate(block) {
                             ${ctaHtml}
                         </div>
                     </div>
-                </div>
-                </div>
             `;
         });
 
