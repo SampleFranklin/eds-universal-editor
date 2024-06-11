@@ -48,7 +48,8 @@
       "sign-in",
       "nav-cars",
       "nav-compare",
-      "search"
+      "search",
+      "contact"
     ]
   },
   {
@@ -104,6 +105,13 @@
   {
     "id": "sign-in",
     "components": [
+      "ctaWithIcon"
+    ]
+  },
+  {
+    "id": "contact",
+    "components": [
+      "title",
       "ctaWithIcon"
     ]
   }
