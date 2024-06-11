@@ -81,25 +81,25 @@ export default function decorate(block) {
             });
 
             newHtml += `
+                <div style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
                     <div>
                         <picture>
                             ${img.innerHTML}
                         </picture>
                     </div>
                     <div>
-                        <div>
-                            ${preTitle.innerHTML}
-                        </div>
-                        <div>
-                            ${title.innerHTML}
-                        </div>
-                        <div>
-                            ${description.innerHTML}
-                        </div>
-                        <div>
-                            ${ctaHtml}
-                        </div>
+                        ${preTitle.innerHTML}
                     </div>
+                    <div>
+                        ${title.innerHTML}
+                    </div>
+                    <div>
+                        ${description.innerHTML}
+                    </div>
+                    <div>
+                        ${ctaHtml}
+                    </div>
+                </div>
             `;
         });
 
