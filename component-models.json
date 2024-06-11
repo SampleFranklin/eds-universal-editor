@@ -140,24 +140,10 @@
         "multi": false
       },
       {
-        "component": "text-input",
-        "name": "pretitle",
-        "value": "",
-        "label": "Pretitle",
-        "valueType": "string"
-      },
-      {
-        "component": "text-input",
-        "name": "title",
-        "value": "",
-        "label": "Title",
-        "valueType": "string"
-      },
-      {
         "component": "richtext",
-        "name": "description",
+        "name": "text",
         "value": "",
-        "label": "Description",
+        "label": "Text",
         "valueType": "string"
       }
     ]
@@ -501,46 +487,6 @@
         "label": "Title",
         "valueType": "string"
       }
-    ]
-  },
-  {
-    "id": "sign-in",
-    "fields": [
-      {
-        "component": "richtext",
-        "name": "rte",
-        "label": "Rich Text",
-        "valueType": "string"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "desktopImage",
-        "label": "Desktop Image",
-        "multi": false
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "mobileImage",
-        "label": "Mobile Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "desktopAlt",
-        "value": "Default alt",
-        "label": "Desktop Alt Text"
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "mobileAlt",
-        "value": "Default alt",
-        "label": "Mobile Alt Text"
-      }
-
     ]
   },
   {
