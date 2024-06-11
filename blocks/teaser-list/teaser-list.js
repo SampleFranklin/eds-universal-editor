@@ -54,7 +54,7 @@ export default function decorate(block) {
     //     block.innerHTML = newHtml;
 
     const commonTitle = block.querySelector('.teaser-list > div:first-child > div > p').innerText;
-    let newHtml = `<div><h1>${commonTitle}</h1></div><div style="display: flex;">`;
+    let newHtml = `<div><h1>${commonTitle}</h1></div>`;
 
     const cards = block.querySelectorAll('.teaser-list > div:not(:first-child)');
 
@@ -80,6 +80,6 @@ export default function decorate(block) {
                `;
     });
 
-    newHtml += `</div>`;
+    newHtml += ``;
     block.innerHTML = newHtml;
 }
