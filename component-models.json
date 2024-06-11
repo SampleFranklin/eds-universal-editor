@@ -544,5 +544,51 @@
         "label": "Search"
       }
     ]
+  },
+  {
+    "id": "nitesh-test",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "foreground-rte",
+        "label": "Rich Text",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "foreground-title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "foreground-desktopImage",
+        "label": "Desktop Image",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "foreground-mobileImage",
+        "label": "Mobile Image1",
+        "multi": false
+      }, 
+      {
+        "component": "text-input",
+        "name": "background-title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "background-mobileImage",
+        "label": "Mobile Image2",
+        "multi": false
+      }
+    ]
   }
 ]
