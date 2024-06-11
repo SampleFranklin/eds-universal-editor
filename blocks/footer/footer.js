@@ -19,6 +19,7 @@ export default async function decorate(block) {
   const topSection = footer.querySelector('.footer-top-section .default-content-wrapper');
   const linkGridSection = footer.querySelector('.footer-center-section .link-grid');
   const contactUsSection = footer.querySelector('.footer-center-section .default-content-wrapper');
+  const socialLinks = footer.querySelector('.footer-center-section .contact-wrapper');
   const bottomSection = footer.querySelector('.footer-bottom-section');
 
   const disclaimerSection = bottomSection?.querySelector('.columns div');
@@ -53,6 +54,7 @@ export default async function decorate(block) {
     contactUsSectionHtml = `
       <div class="contact-us-section">
         ${contactUsSection.innerHTML}
+        ${(socialLinks.innerHTML) ? socialLinks.innerHTML : '' }
       </div>
     `;
   }
