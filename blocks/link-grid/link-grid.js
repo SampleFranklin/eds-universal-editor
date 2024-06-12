@@ -1,53 +1,44 @@
 export default function decorate(block) {
     const gridContainer = document.createElement('div');
-    gridContainer.className = 'link-container-section';
-    const columns = []
-    for (let i = 0; i < block.children.length; i++) {
-        const item = block.children.item(i);
-        const el = item.querySelector('p');
-        if (el) {
-            columns.push(item);
-        }
-    }
-    columns.forEach(function (el) {
-        const columnDiv = document.createElement('div');
-        columnDiv.className = 'link-grid-column';
+    gridContainer.classList.add('link-container-section');
 
-        const buttonContainer = document.createElement('ul');
-        buttonContainer.className = 'button-container';
+    // Filter out columns that contain paragraphs
+    const columns = Array.from(block.children).filter(item => item.querySelector('p'));
 
-        const tabDiv = el;
+    // Create HTML for each column and join them
+    const columnsHTML = columns.map(column => {
+        const buttonContainerHTML = Array.from(column.querySelectorAll('p.button-container a'))
+            .map(link => {
+                const href = link.getAttribute('href');
+                // Check if href attribute exists
+                if (href) {
+                    const linkText = link.textContent || 'Link';
+                    const target = isInternalLink(href) ? '_self' : '_blank';
+                    return `<li><a href="${href}" target="${target}" aria-label="${linkText}">${linkText}</a></li>`;
+                }
+                // If href attribute doesn't exist, return an empty string
+                return '';
+            })
+            .join('');
 
-        const links = tabDiv.querySelectorAll('p.button-container a');
-        links.forEach(function (link) {
-            const linkText = link.textContent;
-            const href = link.getAttribute('href');
-            const li = document.createElement('li')
-            const a = document.createElement('a');
-            a.textContent = linkText;
-            a.href = href;
-            li.appendChild(a);
-            if (isInternalLink(href)) {
-                a.target = '_self';
-            } else {
-                a.target = '_blank';
-            }
+        const headingHTML = column.querySelector('h3') ? column.querySelector('h3').outerHTML : '<div class="no-heading-column"></div>';
 
-            buttonContainer.appendChild(li);
-        });
+        return `
+            <div class="link-grid-column">
+                ${headingHTML}
+                <ul class="button-container">
+                    ${buttonContainerHTML}
+                </ul>
+            </div>
+        `;
+    }).join('');
 
-        if(el.querySelector('h3')) {
-            columnDiv.appendChild(el.querySelector('h3'));
-        } else {
-            columnDiv.classList.add('no-heading-column');
-        }
-        columnDiv.appendChild(buttonContainer);
-        gridContainer.appendChild(columnDiv);
-    });
+    // Append the HTML for all columns to the grid container
+    gridContainer.innerHTML = columnsHTML;
 
+    // Clear the block and append the grid container
     block.innerHTML = "";
-    block.append(gridContainer);
-    console.log(block);
+    block.appendChild(gridContainer);
 }
 
 function isInternalLink(href) {

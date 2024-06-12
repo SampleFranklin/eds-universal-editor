@@ -1,4 +1,4 @@
-import { getContent } from '../../scripts/scripts.js';
+import { getContent } from '../../scripts/utils.js';
 
 export default function decorate(block) {
     const image = block.querySelector('picture');
