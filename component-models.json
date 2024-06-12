@@ -435,8 +435,8 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "logo",
-        "label": "Logo",
+        "name": "logoImage",
+        "label": "Logo Image",
         "multi": false
       },
       {
