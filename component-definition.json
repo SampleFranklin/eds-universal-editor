@@ -198,7 +198,7 @@
                   "filter": "teaser",
                   "title": "Teaser Title",
                   "description": "<p>This is <b>description</b></p>",
-                  "target":"_self"
+                  "target": "_self"
                 }
               }
             }
@@ -460,12 +460,13 @@
                 "template": {
                   "name": "CTA with Icon",
                   "model": "ctaWithIcon",
-                  "target":"_self"
+                  "target": "_self"
                 }
               }
             }
           }
-        },{
+        },
+        {
           "title": "Icon with Title",
           "id": "icontitle",
           "plugins": {
@@ -507,13 +508,17 @@
                   "name": "Immersive Teaser",
                   "filter": "immersive-teaser",
                   "model": "teaser",
+                  "title": "Immersive Teaser",
+                  "description": "<p>Descrition</p>",
                   "teaser": {
+                    "id": "teaser",
                     "name": "Teaser",
                     "model": "teaser",
                     "resourceType": "core/franklin/components/block/v1/block",
-                    "target": "_blank"
-                  },
-                  "limit": 1
+                    "target": "_blank",
+                    "title": "Teaser",
+                    "description": "<p>Descrition</p>"
+                  }
                 }
               }
             }
