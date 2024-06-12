@@ -475,7 +475,10 @@
                 "template": {
                   "name": "Immersive Teaser",
                   "filter": "immersive-teaser",
-                  "model": "teaser"
+                  "model": "teaser",
+                  "teaser": {
+                    "target": "_blank"
+                  }
                 }
               }
             }
