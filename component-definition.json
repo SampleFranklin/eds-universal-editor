@@ -482,7 +482,8 @@
                     "model": "teaser",
                     "resourceType": "core/franklin/components/block/v1/block",
                     "target": "_blank"
-                  }
+                  },
+                  "limit": 1
                 }
               }
             }

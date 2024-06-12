@@ -122,7 +122,6 @@
     "id": "immersive-teaser",
     "components": [
       "teaser"
-    ],
-    "limit": 1
+    ]
   }
 ]
