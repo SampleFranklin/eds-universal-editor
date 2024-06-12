@@ -116,5 +116,11 @@
       "title",
       "ctaWithIcon"
     ]
+  },
+  {
+    "id": "immersive-teaser",
+    "components": [
+      "teaser"
+    ]
   }
 ]
