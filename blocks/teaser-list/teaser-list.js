@@ -1,15 +1,6 @@
 export default function decorate(block) {
-    console.log(block.cloneNode(true));
     const commonTitle = block.querySelector('.teaser-list > div:first-child > div > p').innerText;
-    let newHtml = `
-    <div>
-        <h1>${commonTitle}</h1>
-    </div>`;
-
-    const cards = block.querySelectorAll('.teaser-list > div:not(:first-child)');
-    const teasers = document.createElement('div');
-
-    cards.forEach(card => {
+    const teasers = Array.from(block.querySelectorAll('.teaser-list > div:not(:first-child)')).map(card => {
         const imgSrc = card.querySelector('img').src;
         const preTitle = card.querySelector('div:nth-of-type(2) > p').innerText;
         const title = card.querySelector('div:nth-of-type(3) > p').innerText;
@@ -19,23 +10,26 @@ export default function decorate(block) {
         const cta1 = ctaElements[0] ? ctaElements[0].outerHTML : '';
         const cta2 = ctaElements[1] ? ctaElements[1].outerHTML : '';
         card.innerHTML = `
-                <div style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
-                    <img src="${imgSrc}" alt="" style="max-width: 100%;">
-                    <p>${preTitle}</p>
-                    <h2>${title}</h2>
-                    <p>${description}</p>
-                    <div>${cta1}</div>
-                    <div>${cta2}</div>
-                </div>
-            `;
-        teasers.append(card);
+            <div style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
+                <img src="${imgSrc}" alt="" style="max-width: 100%;">
+                <p>${preTitle}</p>
+                <h2>${title}</h2>
+                <p>${description}</p>
+                <div>${cta1}</div>
+                <div>${cta2}</div>
+            </div>
+        `;
+        return card.outerHTML;
     });
 
-    newHtml += `
-    <div style="display: flex;">
-        ${teasers.innerHTML}
-    </div>
+    const newHtml = `
+        <div>
+            <h1>${commonTitle}</h1>
+        </div>
+        <div style="display: flex;">
+            ${teasers.join('')}
+        </div>
     `;
+
     block.innerHTML = newHtml;
-    console.log(block)
 }
