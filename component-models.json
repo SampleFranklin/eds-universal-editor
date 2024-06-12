@@ -287,7 +287,7 @@
     ]
   },
   {
-    "id": "3dConfigurator",
+    "id": "3dConfigurator-js",
     "fields": [
       {
         "component": "text-input",
@@ -323,7 +323,7 @@
     ]
   },
   {
-    "id": "3dConfigurator-js",
+    "id": "3dConfigurator",
     "fields": [
       {
         "component": "text-input",
@@ -332,7 +332,7 @@
         "label": "Search"
       }
     ]
-  }
+  },
   {
     "id": "links",
     "fields": [
