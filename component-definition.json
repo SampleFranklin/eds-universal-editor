@@ -477,7 +477,11 @@
                   "filter": "immersive-teaser",
                   "model": "teaser",
                   "teaser": {
-                    "target": "_blank"
+                    "id": "teaser",
+                    "title":"Teaser",
+                    "model": "teaser",
+                    "target": "_blank",
+                    "resourceType": "core/franklin/components/block/v1/block"
                   }
                 }
               }
