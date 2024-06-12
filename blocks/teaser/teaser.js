@@ -1,3 +1,5 @@
+import { getContent } from '../../scripts/scripts.js';
+
 export default function decorate(block) {
     const image = block.querySelector('picture');
 
@@ -19,18 +21,13 @@ export default function decorate(block) {
         `;
     }
 
-    const getContent = (selector) => {
-        const element = block.querySelector(selector);
-        return element ? element.innerHTML : '';
-    };
-
-    const pretitleHtml = `<div class="teaser-pretitle"><p>${getContent('div:nth-child(3)')}</p></div>`;
-    const titleHtml = `<div class="teaser-title"><h1>${getContent('div:nth-child(4)')}</h1></div>`;
-    const descriptionHtml = `<div class="teaser-description">${getContent('div:nth-child(5) div')}</div>`;
+    const pretitleHtml = `<div class="teaser-pretitle"><p>${getContent(block, 'div:nth-child(3)')}</p></div>`;
+    const titleHtml = `<div class="teaser-title"><h1>${getContent(block, 'div:nth-child(4)')}</h1></div>`;
+    const descriptionHtml = `<div class="teaser-description">${getContent(block, 'div:nth-child(5) div')}</div>`;
 
     const ctaContainer = block.querySelector('div:nth-child(6)');
     const target = ctaContainer.textContent.trim();
-    const ctaLink = block.querySelector('div:nth-child(5) div .button-container');
+    const ctaLink = block.querySelector('div:nth-child(6) div .button-container');
     let ctaHtml = '';
     if (ctaLink) {
         ctaLink.querySelector('a').setAttribute('target', target);
