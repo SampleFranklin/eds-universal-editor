@@ -51,7 +51,8 @@
       "search",
       "contact",
       "nitesh-test",
-      "ctaWithIcon"
+      "ctaWithIcon",
+      "immersive-teaser"
     ]
   },
   {
@@ -101,8 +102,7 @@
   {
     "id": "teaser-list",
     "components": [
-      "teaser",
-      "teaser-item"
+      "teaser"
     ]
   },
   {
@@ -117,5 +117,12 @@
       "title",
       "ctaWithIcon"
     ]
+  },
+  {
+    "id": "immersive-teaser",
+    "components": [
+      "teaser"
+    ],
+    "limit": 1
   }
 ]
