@@ -107,4 +107,13 @@ export default async function decorate(block) {
     ${bottomSectionHtml}
   </div>
   `;
+
+  // Adding Black / White background to link grid
+  const footerSection = document.querySelector('.footer-wrapper');
+      if (footerSection.querySelector('.link-container-section')) {
+          footerSection.querySelector('.link-container-section').classList.add('whiteGrid');
+      } else {
+          footerSection.classList.add('blackGrid');
+      }
+
 }
