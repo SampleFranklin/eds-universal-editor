@@ -447,6 +447,13 @@
         "multi": false
       },
       {
+        "component": "text-input",
+        "name": "alt",
+        "value": "",
+        "label": "Alt Text",
+        "valueType": "string"
+      },
+      {
         "component": "aem-content",
         "valueType": "string",
         "name": "href",
