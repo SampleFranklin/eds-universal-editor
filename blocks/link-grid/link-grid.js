@@ -14,7 +14,7 @@ export default function decorate(block) {
                 if (href) {
                     const linkText = link.textContent || 'Link';
                     const target = isInternalLink(href) ? '_self' : '_blank';
-                    return `<li><a href="${href}" target="${target}">${linkText}</a></li>`;
+                    return `<li><a href="${href}" target="${target}" aria-label="${linkText}">${linkText}</a></li>`;
                 }
                 // If href attribute doesn't exist, return an empty string
                 return '';
