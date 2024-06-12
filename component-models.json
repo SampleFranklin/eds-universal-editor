@@ -231,6 +231,13 @@
       },
       {
         "component": "text-input",
+        "name": "alt",
+        "value": "",
+        "label": "Alt Text",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
         "name": "pretitle",
         "value": "",
         "label": "Pretitle",
