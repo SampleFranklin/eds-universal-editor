@@ -12,7 +12,9 @@ export default function decorate(block) {
 
         card.innerHTML = `
             <div style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
-                <img src="${imgSrc}" alt=${altText || title} style="max-width: 100%;">
+                <div class="image-container">
+                    <img src="${imgSrc}" alt="${altText || title}" width="750" height="422" loading="lazy">
+                </div>
                 <p>${preTitle}</p>
                 <h2>${title}</h2>
                 <p>${description}</p>
