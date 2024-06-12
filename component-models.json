@@ -328,8 +328,8 @@
       {
         "component": "text-input",
         "valueType": "string",
-        "name": "Configurator Title",
-        "label": "Search"
+        "name": "configTitle",
+        "label": "Configurator Title"
       }
     ]
   },
