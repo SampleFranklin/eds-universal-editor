@@ -465,6 +465,20 @@
               }
             }
           }
+        },{
+          "title": "Icon with Title",
+          "id": "icontitle",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Icon with Title",
+                  "model": "icontitle"
+                }
+              }
+            }
+          }
         },
         {
           "title": "Nitesh Test Component",

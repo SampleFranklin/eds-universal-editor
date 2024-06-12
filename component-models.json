@@ -585,6 +585,23 @@
     ]
   },
   {
+    "id": "icontitle",
+    "fields": [
+      {
+        "component": "text-input",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "icon",
+        "label": "Icon"
+      }
+    ]
+  },
+  {
     "id": "nitesh-test",
     "fields": [
       {
