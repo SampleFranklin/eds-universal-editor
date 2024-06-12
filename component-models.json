@@ -513,6 +513,17 @@
     ]
   },
   {
+    "id": "contact",
+    "fields": [
+      {
+        "component": "text-input",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title"
+      }
+    ]
+  },
+  {
     "id": "nav-cars",
     "fields": [
       {
