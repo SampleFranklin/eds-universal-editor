@@ -107,5 +107,4 @@ export default async function decorate(block) {
     ${bottomSectionHtml}
   </div>
   `;
-  console.log(block);
 }

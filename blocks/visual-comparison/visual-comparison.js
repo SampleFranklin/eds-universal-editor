@@ -1,6 +1,4 @@
 export default function decorate(block) {
-    console.log("inside visualComparison");
-    console.log("block check", block);
 
     const links =  block.querySelectorAll(':scope > div > div > p > a');
     const outerDiv = document.createElement('div');

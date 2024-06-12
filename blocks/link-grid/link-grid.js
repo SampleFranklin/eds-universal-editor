@@ -9,10 +9,15 @@ export default function decorate(block) {
     const columnsHTML = columns.map(column => {
         const buttonContainerHTML = Array.from(column.querySelectorAll('p.button-container a'))
             .map(link => {
-                const href = link.getAttribute('href') || '#';
-                const linkText = link.textContent || 'Link';
-                const target = isInternalLink(href) ? '_self' : '_blank';
-                return `<li><a href="${href}" target="${target}">${linkText}</a></li>`;
+                const href = link.getAttribute('href');
+                // Check if href attribute exists
+                if (href) {
+                    const linkText = link.textContent || 'Link';
+                    const target = isInternalLink(href) ? '_self' : '_blank';
+                    return `<li><a href="${href}" target="${target}">${linkText}</a></li>`;
+                }
+                // If href attribute doesn't exist, return an empty string
+                return '';
             })
             .join('');
 
