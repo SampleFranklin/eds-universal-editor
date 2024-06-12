@@ -123,11 +123,5 @@
     "components": [
       "teaser"
     ]
-  },
-  {
-    "id": "immersive-teaser",
-    "components": [
-      "teaser"
-    ]
   }
 ]
