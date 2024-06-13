@@ -49,7 +49,6 @@ export default function decorate(block) {
       for (const video in urlsData) {
         const videoContainer = document.createElement("video");
         videoContainer.classList.add("video-compare__video");
-        debugger
         if(currentUrl.includes('samplefranklin.hlx.live') || currentUrl.includes('localhost')){
           videoContainer.src = 'https://publish-p71852-e1137339.adobeaemcloud.com'+urlsData[video];
         }
