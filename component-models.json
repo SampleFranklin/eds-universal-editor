@@ -612,6 +612,12 @@
         "valueType": "string",
         "name": "icon",
         "label": "Icon"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "iconclicked",
+        "label": "Icon Clicked"
       }
     ]
   },
