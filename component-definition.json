@@ -467,7 +467,7 @@
           }
         },
         {
-          "title": "IconTitle",
+          "title": "Icon with Title",
           "id": "icontitle",
           "plugins": {
             "xwalk": {
