@@ -1,24 +1,53 @@
-export default function decorate(block) {
-    console.log("Inside Teaser");
-    console.log(block);
-    var teaserCard = document.createElement('div');
-    teaserCard.className = 'teaser-card';
-    var staticTeaser = block
-    var teaserImage = staticTeaser.querySelector('.teaser > div > div > picture').cloneNode(true);
-    var teaserTitle = staticTeaser.querySelector('.teaser > div:nth-child(3) > div > p').cloneNode(true);
-    var teaserDescription = staticTeaser.querySelector('.teaser > div:nth-child(4) > div > p').cloneNode(true);
-    var teaserCTAContainer = staticTeaser.querySelector('.teaser > div:nth-child(4) > div > .button-container').cloneNode(true);
-    teaserImage.querySelector('img').removeAttribute('width');
-    teaserImage.querySelector('img').removeAttribute('height');
-    teaserImage.classList.add('teaser-image');
-    teaserCard.appendChild(teaserImage);
-    var teaserContent = document.createElement('div');
-    teaserContent.className = 'teaser-content';
-    teaserContent.appendChild(teaserTitle);
-    teaserContent.appendChild(teaserDescription);
-    teaserContent.appendChild(teaserCTAContainer);
-    teaserCard.appendChild(teaserContent);
+import { getContent } from '../../scripts/utils.js';
 
-    block.innerHTML = "";
-    block.append(teaserCard);
+export default function decorate(block) {
+    const image = block.querySelector('picture');
+
+    const altTextElement = block.querySelector('div:nth-child(2)');
+    const altText = altTextElement.textContent.trim();
+
+    let imageHtml = '';
+    if (image) {
+        const img = image.querySelector('img');
+        img.removeAttribute('width');
+        img.removeAttribute('height');
+        img.setAttribute('alt', altText);
+        imageHtml = `
+            <div class="teaser-image">
+                <picture>
+                    ${image.innerHTML}
+                </picture>
+            </div>
+        `;
+    }
+
+    const pretitleHtml = `<div class="teaser-pretitle"><p>${getContent(block, 'div:nth-child(3)')}</p></div>`;
+    const titleHtml = `<div class="teaser-title"><h1>${getContent(block, 'div:nth-child(4)')}</h1></div>`;
+    const descriptionHtml = `<div class="teaser-description">${getContent(block, 'div:nth-child(5) div')}</div>`;
+
+    const ctaContainer = block.querySelector('div:nth-child(6)');
+    const target = ctaContainer.textContent.trim();
+    const ctaLink = block.querySelector('div:nth-child(6) div .button-container');
+    let ctaHtml = '';
+    if (ctaLink) {
+        ctaLink.querySelector('a').setAttribute('target', target);
+        ctaHtml = ctaLink.innerHTML;
+        ctaLink.remove();
+    }
+
+    const ctaActionsHtml = ctaHtml ? `<div class="teaser-actions">${ctaHtml}</div>` : '';
+
+    block.innerHTML = `
+        <div class="teaser-card">
+            ${imageHtml}
+            <div class="teaser-content">
+                <div>
+                    ${pretitleHtml}
+                    ${titleHtml}
+                    ${descriptionHtml}
+                </div>
+                ${ctaActionsHtml}
+            </div>
+        </div>
+    `;
 }
