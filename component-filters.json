@@ -37,15 +37,22 @@
       "list",
       "carousel",
       "3dConfigurator",
+      "3dConfigurator-js",
       "container",
       "customColumns",
       "links",
       "visual-comparison",
       "link-grid",
       "logo",
-      "nav-test",
       "teaser-list",
-      "sign-in"
+      "sign-in",
+      "nav-cars",
+      "nav-compare",
+      "search",
+      "contact",
+      "nitesh-test",
+      "immersive-teaser",
+      "icontitle"
     ]
   },
   {
@@ -102,6 +109,19 @@
     "id": "sign-in",
     "components": [
       "ctaWithIcon"
+    ]
+  },
+  {
+    "id": "contact",
+    "components": [
+      "title",
+      "ctaWithIcon"
+    ]
+  },
+  {
+    "id": "immersive-teaser",
+    "components": [
+      "teaser"
     ]
   }
 ]

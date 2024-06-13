@@ -1,40 +1,44 @@
 export default function decorate(block) {
-    var gridContainer = document.createElement('div');
-    gridContainer.className = 'link-container-section';
-    var tabHeadings = block.querySelectorAll('.link-grid h3');
-    tabHeadings.forEach(function (heading, index) {
-        var columnDiv = document.createElement('div');
-        columnDiv.className = 'link-grid-column';
+    const gridContainer = document.createElement('div');
+    gridContainer.classList.add('link-container-section');
 
-        var buttonContainer = document.createElement('p');
-        buttonContainer.className = 'button-container';
+    // Filter out columns that contain paragraphs
+    const columns = Array.from(block.children).filter(item => item.querySelector('p'));
 
-        var tabDiv = heading.parentNode;
+    // Create HTML for each column and join them
+    const columnsHTML = columns.map(column => {
+        const buttonContainerHTML = Array.from(column.querySelectorAll('p.button-container a'))
+            .map(link => {
+                const href = link.getAttribute('href');
+                // Check if href attribute exists
+                if (href) {
+                    const linkText = link.textContent || 'Link';
+                    const target = isInternalLink(href) ? '_self' : '_blank';
+                    return `<li><a href="${href}" target="${target}" aria-label="${linkText}">${linkText}</a></li>`;
+                }
+                // If href attribute doesn't exist, return an empty string
+                return '';
+            })
+            .join('');
 
-        var links = tabDiv.querySelectorAll('p.button-container a');
-        links.forEach(function (link) {
-            var linkText = link.textContent;
-            var href = link.getAttribute('href');
+        const headingHTML = column.querySelector('h3') ? column.querySelector('h3').outerHTML : '<div class="no-heading-column"></div>';
 
-            var a = document.createElement('a');
-            a.textContent = linkText;
-            a.href = href;
+        return `
+            <div class="link-grid-column">
+                ${headingHTML}
+                <ul class="button-container">
+                    ${buttonContainerHTML}
+                </ul>
+            </div>
+        `;
+    }).join('');
 
-            if (isInternalLink(href)) {
-                a.target = '_self';
-            } else {
-                a.target = '_blank';
-            }
+    // Append the HTML for all columns to the grid container
+    gridContainer.innerHTML = columnsHTML;
 
-            buttonContainer.appendChild(a);
-        });
-
-        columnDiv.appendChild(heading.cloneNode(true));
-        columnDiv.appendChild(buttonContainer);
-        gridContainer.appendChild(columnDiv);
-    });
+    // Clear the block and append the grid container
     block.innerHTML = "";
-    block.append(gridContainer);
+    block.appendChild(gridContainer);
 }
 
 function isInternalLink(href) {
