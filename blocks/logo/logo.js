@@ -1,19 +1,17 @@
 export default function decorate(block) {
-    var link =  block.querySelector(':scope > div > div > p > a');
-    var altText =  block.querySelector(':scope > div > div > p');
-    var imgTag =  block.querySelector(':scope > div > div > picture');
-    var image =  block.querySelector(':scope > div > div > picture > img');
-    var pTag = document.createElement('p');
-    var anchorTag = document.createElement('a');
+    const link =  block.querySelector('div a')?.getAttribute('href') || (new URL(window.location.href)).origin;
+    const altText =  block.querySelector('div:nth-child(2) div')?.textContent?.trim() || 'logo';
+    const picture =  block.querySelector('div picture');
 
-    image.setAttribute("alt",altText.innerHTML);
+    picture?.querySelector('img')?.setAttribute('alt',altText);
 
-    anchorTag.href = link;
-    anchorTag.appendChild(imgTag);
-
-    pTag.appendChild(anchorTag);
-    block.innerHTML = "";
-    block.append(pTag);
-
+    const htmlLiteral = `
+            <span>
+                <a class="logo" href="${link}">
+                    ${picture?.outerHTML || ''}
+                </a>
+            </span>
+        `;
+        block.innerHTML = htmlLiteral;
 }
 

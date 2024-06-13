@@ -479,7 +479,7 @@
       {
         "component": "richtext",
         "name": "rte",
-        "label": "Rich Text",
+        "label": "Description",
         "valueType": "string"
       },
       {
@@ -499,18 +499,32 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "desktopAlt",
-        "value": "Default alt",
+        "name": "desktopAltText",
         "label": "Desktop Alt Text"
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "mobileAlt",
-        "value": "Default alt",
+        "name": "mobileAltText",
         "label": "Mobile Alt Text"
+      },
+      {
+        "component": "select",
+        "name": "target",
+        "value": "",
+        "label": "Open Link in New Page ?",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Yes",
+            "value": "_blank"
+          },
+          {
+            "name": "No",
+            "value": "_self"
+          }
+        ]
       }
-
     ]
   },
   {
@@ -522,6 +536,12 @@
         "name": "icon",
         "label": "Icon",
         "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "alt",
+        "label": "Alt Text"
       },
       {
         "component": "text-input",

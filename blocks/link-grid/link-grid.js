@@ -1,29 +1,31 @@
+import { isInternalLink } from '../../scripts/utils.js';
+
 export default function decorate(block) {
-    const gridContainer = document.createElement('div');
-    gridContainer.classList.add('link-container-section');
+  const gridContainer = document.createElement('div');
+  gridContainer.classList.add('link-container-section');
 
-    // Filter out columns that contain paragraphs
-    const columns = Array.from(block.children).filter(item => item.querySelector('p'));
+  // Filter out columns that contain paragraphs
+  const columns = Array.from(block.children).filter((item) => item.querySelector('p'));
 
-    // Create HTML for each column and join them
-    const columnsHTML = columns.map(column => {
-        const buttonContainerHTML = Array.from(column.querySelectorAll('p.button-container a'))
-            .map(link => {
-                const href = link.getAttribute('href');
-                // Check if href attribute exists
-                if (href) {
-                    const linkText = link.textContent || 'Link';
-                    const target = isInternalLink(href) ? '_self' : '_blank';
-                    return `<li><a href="${href}" target="${target}" aria-label="${linkText}">${linkText}</a></li>`;
-                }
-                // If href attribute doesn't exist, return an empty string
-                return '';
-            })
-            .join('');
+  // Create HTML for each column and join them
+  const columnsHTML = columns.map((column) => {
+    const buttonContainerHTML = Array.from(column.querySelectorAll('p.button-container a'))
+      .map((link) => {
+        const href = link.getAttribute('href');
+        // Check if href attribute exists
+        if (href) {
+          const linkText = link.textContent || 'Link';
+          const target = isInternalLink(href) ? '_self' : '_blank';
+          return `<li><a href="${href}" target="${target}" aria-label="${linkText}">${linkText}</a></li>`;
+        }
+        // If href attribute doesn't exist, return an empty string
+        return '';
+      })
+      .join('');
 
-        const headingHTML = column.querySelector('h3') ? column.querySelector('h3').outerHTML : '<div class="no-heading-column"></div>';
+    const headingHTML = column.querySelector('h3') ? column.querySelector('h3').outerHTML : '<div class="no-heading-column"></div>';
 
-        return `
+    return `
             <div class="link-grid-column">
                 ${headingHTML}
                 <ul class="button-container">
@@ -31,16 +33,12 @@ export default function decorate(block) {
                 </ul>
             </div>
         `;
-    }).join('');
+  }).join('');
 
-    // Append the HTML for all columns to the grid container
-    gridContainer.innerHTML = columnsHTML;
+  // Append the HTML for all columns to the grid container
+  gridContainer.innerHTML = columnsHTML;
 
-    // Clear the block and append the grid container
-    block.innerHTML = "";
-    block.appendChild(gridContainer);
-}
-
-function isInternalLink(href) {
-    return !/^https?:\/\//i.test(href);
+  // Clear the block and append the grid container
+  block.innerHTML = '';
+  block.appendChild(gridContainer);
 }
