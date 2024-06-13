@@ -428,7 +428,8 @@
                 "template": {
                   "name": "Sign In",
                   "model": "sign-in",
-                  "filter": "sign-in"
+                  "filter": "sign-in",
+                  "target": "_self"
                 }
               }
             }

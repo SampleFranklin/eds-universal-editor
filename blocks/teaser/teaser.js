@@ -1,52 +1,45 @@
 import { getContent } from '../../scripts/utils.js';
 
 export default function decorate(block) {
-    const image = block.querySelector('picture');
+  const image = block.querySelector('picture');
 
-    const altTextElement = block.querySelector('div:nth-child(2)');
-    const altText = altTextElement.textContent.trim();
-
-    let imageHtml = '';
-    if (image) {
-        const img = image.querySelector('img');
-        img.removeAttribute('width');
-        img.removeAttribute('height');
-        img.setAttribute('alt', altText);
-        imageHtml = `
+  const altText = block.querySelector('div:nth-child(2)')?.textContent?.trim() || 'image';
+  let imageHtml = '';
+  if (image) {
+    const img = image.querySelector('img');
+    img.removeAttribute('width');
+    img.removeAttribute('height');
+    img.setAttribute('alt', altText);
+    imageHtml = `
             <div class="teaser-image">
-                <picture>
-                    ${image.innerHTML}
-                </picture>
+                ${image.outerHTML}
             </div>
         `;
-    }
+  }
 
-    const pretitleHtml = `<div class="teaser-pretitle"><p>${getContent(block, 'div:nth-child(3)')}</p></div>`;
-    const titleHtml = `<div class="teaser-title"><h1>${getContent(block, 'div:nth-child(4)')}</h1></div>`;
-    const descriptionHtml = `<div class="teaser-description">${getContent(block, 'div:nth-child(5) div')}</div>`;
+  const pretitle = getContent(block, 'div:nth-child(3) div');
+  const title = getContent(block, 'div:nth-child(4) p');
+  const description = block.querySelector('div:nth-child(5) div');
+  const target = block.querySelector('div:nth-child(6)')?.textContent?.trim() || '_self';
+  const ctaLink = description.querySelector('.button-container');
 
-    const ctaContainer = block.querySelector('div:nth-child(6)');
-    const target = ctaContainer.textContent.trim();
-    const ctaLink = block.querySelector('div:nth-child(6) div .button-container');
-    let ctaHtml = '';
-    if (ctaLink) {
-        ctaLink.querySelector('a').setAttribute('target', target);
-        ctaHtml = ctaLink.innerHTML;
-        ctaLink.remove();
-    }
+  let ctaHtml = '';
+  if (ctaLink) {
+    ctaLink.querySelector('a').setAttribute('target', target);
+    ctaHtml = ctaLink.innerHTML;
+    ctaLink.remove();
+  }
 
-    const ctaActionsHtml = ctaHtml ? `<div class="teaser-actions">${ctaHtml}</div>` : '';
-
-    block.innerHTML = `
+  block.innerHTML = `
         <div class="teaser-card">
             ${imageHtml}
             <div class="teaser-content">
                 <div>
-                    ${pretitleHtml}
-                    ${titleHtml}
-                    ${descriptionHtml}
+                    ${(pretitle) ? `<div class="teaser-pretitle">${pretitle}</div>` : ''}
+                    ${(title) ? `<div class="teaser-title"><h3>${title}</h3></div>` : ''}
+                    ${(description?.innerHTML) ? `<div class="teaser-description">${description.innerHTML}</div>` : ''}
                 </div>
-                ${ctaActionsHtml}
+                ${(ctaHtml) ? `<div class="teaser-actions">${ctaHtml}</div>` : ''}
             </div>
         </div>
     `;
