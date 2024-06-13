@@ -40,7 +40,7 @@ export default function decorate(block) {
   const innerVideoDiv = document.createElement("div");
   innerVideoDiv.classList.add("video-compare__sync-video-player");
   const videoUrlList = [];
-
+  const currentUrl = window.location.href;
   const createVideoElement = (urlsData) => {
     var videoTags = innerVideoDiv
       ? innerVideoDiv.querySelectorAll("video")
@@ -49,7 +49,13 @@ export default function decorate(block) {
       for (const video in urlsData) {
         const videoContainer = document.createElement("video");
         videoContainer.classList.add("video-compare__video");
-        videoContainer.src = urlsData[video];
+        debugger
+        if(currentUrl.includes('samplefranklin.hlx.live') || currentUrl.includes('localhost')){
+          videoContainer.src = 'https://publish-p71852-e1137339.adobeaemcloud.com'+urlsData[video];
+        }
+        else{
+          videoContainer.src = urlsData[video];
+        }
         videoContainer.loop = true;
         videoContainer.autoplay = true;
         innerVideoDiv.appendChild(videoContainer);
