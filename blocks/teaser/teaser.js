@@ -16,15 +16,12 @@ export default function decorate(block) {
 
   const pretitle = block.querySelector('div:nth-child(3)')?.textContent?.trim();
   const title = block.querySelector('div:nth-child(4)')?.textContent?.trim();
-  const description = block.querySelector('div:nth-child(5) div');
+  const description = Array.from(block.querySelectorAll('div:nth-of-type(5) p:not(.button-container)')).map((p) => p.innerText).join(' ');
+  const ctaLink = block.querySelector('div:nth-of-type(5) .button-container a');
   const target = block.querySelector('div:nth-child(6)')?.textContent?.trim() || '_self';
-  const ctaLink = description.querySelector('.button-container');
 
-  let ctaHtml = '';
   if (ctaLink) {
-    ctaLink.querySelector('a').setAttribute('target', target);
-    ctaHtml = ctaLink.innerHTML;
-    ctaLink.remove();
+    ctaLink.setAttribute('target', target);
   }
 
   block.innerHTML = `
@@ -34,9 +31,9 @@ export default function decorate(block) {
                 <div>
                     ${(pretitle) ? `<div class="teaser-pretitle"><p>${pretitle}</p></div>` : ''}
                     ${(title) ? `<div class="teaser-title"><h3>${title}</h3></div>` : ''}
-                    ${(description?.innerHTML) ? `<div class="teaser-description">${description.innerHTML}</div>` : ''}
+                    ${(description) ? `<div class="teaser-description"><p>${description}</p></div>` : ''}
                 </div>
-                ${(ctaHtml) ? `<div class="teaser-actions">${ctaHtml}</div>` : ''}
+                ${(ctaLink) ? `<div class="teaser-actions">${ctaLink.outerHTML}</div>` : ''}
             </div>
         </div>
     `;
