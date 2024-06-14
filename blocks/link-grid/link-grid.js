@@ -7,23 +7,23 @@ export default function decorate(block) {
   // Filter out columns that contain paragraphs
   const columns = Array.from(block.children).filter((item) => item.querySelector('p'));
 
-    // Create HTML for each column and join them
-    const columnsHTML = columns.map(column => {
-        const buttonContainerHTML = Array.from(column.querySelectorAll('p.button-container a'))
-            .map(link => {
-                const href = link.getAttribute('href');
-                // Check if href attribute exists
-                if (href) {
-                    const linkText = link.textContent || 'Link';
-                    const target = isInternalLink(href) ? '_self' : '_blank';
-                    return `<li><a href="${href}" target="${target}" aria-label="${linkText}">${linkText}</a></li>`;
-                }
-                // If href attribute doesn't exist, return an empty string
-                return '';
-            })
-            .join('');
-            let colHeading = column.querySelector('h3').textContent;
-        const headingHTML = column.querySelector('h3') ? `<h3 class="accordian-item">${colHeading}</h3>`: '<div class="no-heading-column"></div>';
+  // Create HTML for each column and join them
+  const columnsHTML = columns.map((column) => {
+    const buttonContainerHTML = Array.from(column.querySelectorAll('p.button-container a'))
+      .map((link) => {
+        const href = link.getAttribute('href');
+        // Check if href attribute exists
+        if (href) {
+          const linkText = link.textContent || 'Link';
+          const target = isInternalLink(href) ? '_self' : '_blank';
+          return `<li><a href="${href}" target="${target}" aria-label="${linkText}">${linkText}</a></li>`;
+        }
+        // If href attribute doesn't exist, return an empty string
+        return '';
+      })
+      .join('');
+    const colHeading = column.querySelector('h3').textContent;
+    const headingHTML = column.querySelector('h3') ? `<h3 class="accordian-item">${colHeading}</h3>` : '<div class="no-heading-column"></div>';
 
     return `
             <div class="link-grid-column">
