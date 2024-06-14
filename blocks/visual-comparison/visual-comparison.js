@@ -3,30 +3,30 @@ export default function decorate(block) {
   console.log("block check", block);
 
   const videoData = {
-    tab1: {
-      tab11: {
+    CarView1: {
+      feature1: {
         url1: "/content/dam/auto/english/videos/visual-compare/Artic White.mp4",
         url2: "/content/dam/auto/english/videos/visual-compare/Midnight Black.mp4",
       },
-      tab12: {
+      feature2: {
         url1: "/content/dam/auto/english/videos/visual-compare/Nexa Blue.mp4",
         url2: "/content/dam/auto/english/videos/visual-compare/Opulent Red.mp4",
       },
-      tab13: {
+      feature3: {
         url1: "/content/dam/auto/english/videos/visual-compare/Chestnut Brown.mp4",
         url2: "/content/dam/auto/english/videos/visual-compare/Grandeur Grey.mp4",
       },
     },
-    tab2: {
-      tab21: {
+    CarView2: {
+      feature1: {
         url1: "/content/dam/auto/english/videos/visual-compare/Chestnut Brown.mp4",
         url2: "/content/dam/auto/english/videos/visual-compare/Grandeur Grey.mp4",
       },
-      tab22: {
+      feature2: {
         url1: "/content/dam/auto/english/videos/visual-compare/Midnight Black.mp4",
         url2: "/content/dam/auto/english/videos/visual-compare/Artic White.mp4",
       },
-      tab23: {
+      feature3: {
         url1: "/content/dam/auto/english/videos/visual-compare/Nexa Blue.mp4",
         url2: "/content/dam/auto/english/videos/visual-compare/Opulent Red.mp4",
       },
@@ -39,8 +39,11 @@ export default function decorate(block) {
   videoDiv.classList.add("video-compare__video-container");
   const innerVideoDiv = document.createElement("div");
   innerVideoDiv.classList.add("video-compare__sync-video-player");
+  const innerTabList = document.createElement('div');
+  innerTabList.classList.add("video-compare__inner-tab-list");
   const videoUrlList = [];
   const currentUrl = window.location.href;
+
   const createVideoElement = (urlsData) => {
     var videoTags = innerVideoDiv
       ? innerVideoDiv.querySelectorAll("video")
@@ -106,27 +109,30 @@ export default function decorate(block) {
       parentTab.classList.add("active");
       for (const tab in tabsData) {
         const childTab = document.createElement("button");
-        childTab.classList.add("video-compare__inner-tab-buttom");
+        childTab.classList.add("video-compare__inner-tab-button");
         childTab.innerHTML = tab;
-        // const {url1, url2} = tabsData[tab] for blob
         childTab.addEventListener("click", () => createVideoElement(tabsData[tab]));
-        mainDiv.appendChild(childTab);
+        innerTabList.appendChild(childTab)
+        mainDiv.appendChild(innerTabList);
       }
     } else {
       buttons.forEach(function (button) {
-        mainDiv.removeChild(button);
+        innerTabList.removeChild(button);
       });
       createInternalTabElement(tabsData, parentTab);
     }
   };
 
   function generateVideoContent(data) {
+    const outerTabList = document.createElement('div');
+    outerTabList.classList.add('visual-comparison__outer-tab-list');
     for (const tab in data) {
       const parentTab = document.createElement("button");
       parentTab.classList.add("visual-comparison__outer-tab-button");
       parentTab.innerHTML = tab;
       parentTab.addEventListener("click", () => createInternalTabElement(data[tab], parentTab));
-      wrapperMainContainer.appendChild(parentTab);
+      outerTabList.appendChild(parentTab);
+      wrapperMainContainer.appendChild(outerTabList);
     }
   }
 
