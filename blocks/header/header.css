@@ -273,3 +273,27 @@ header nav .nav-sections ul > li > ul > li {
 header nav .nav-tools {
   grid-area: tools;
 }
+
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: #f1f1f1;
+  margin: 0;
+}
+
+.user__dropdown {
+  width: 100%;
+  background: var(--Tertiary-White, #fff);
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .user__dropdown {
+    width: 283px;
+    padding: 20px;
+  }
+}

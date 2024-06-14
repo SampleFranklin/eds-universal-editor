@@ -108,12 +108,38 @@ export default async function decorate(block) {
     if (section) section.classList.add(`nav-${c}`);
   });
 
-  const navBrand = nav.querySelector('.nav-brand');
-  const brandLink = navBrand.querySelector('.button');
-  if (brandLink) {
-    brandLink.className = '';
-    brandLink.closest('.button-container').className = '';
+  var section = nav.children
+  for(var i=0; i<section.length; i++){
+    if(section[i].classList.contains('nav-link'))
+      {section[i].classList.add('nav-sections')}
+    else if (section[i].classList.contains('profile-section'))
+      {section[i].classList.add('nav-tools')}
+    else
+      {section[i].classList.add('nav-brand')}
   }
+  // const navBrand = nav.querySelector('.nav-brand');
+  // const brandLink = navBrand.querySelector('.button');
+  // if (brandLink) {
+  //   brandLink.className = '';
+  //   brandLink.closest('.button-container').className = '';
+  // }
+
+  const profileDiv = nav.querySelector('.section.nav-tools.profile-section .default-content-wrapper');
+  const profilePicture = profileDiv.querySelector('img');
+  profilePicture.removeAttribute('width');
+  profilePicture.removeAttribute('height');
+  profileDiv.append(profilePicture);
+  profileDiv.removeChild(profileDiv.querySelector('p'));
+
+//  nav.querySelectorAll('.section .link-grid').forEach(card=>{
+//    card.remove();
+//  })
+//  nav.querySelectorAll('.section .icontitle-wrapper').forEach(card=>{
+//    card.remove();
+//  })
+  const user__dropdownDiv = nav.querySelector('.section.nav-tools .sign-in-wrapper .user__dropdown');
+  const contact = nav.querySelector('.section.nav-tools .contact-wrapper');
+  user__dropdownDiv.append(contact);
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
