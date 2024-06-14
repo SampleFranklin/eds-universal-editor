@@ -45,7 +45,6 @@ export default function decorate(block) {
   const currentUrl = window.location.href;
 
   const createVideoElement = (urlsData) => {
-    let isSyncing = false;
     var videoTags = innerVideoDiv
       ? innerVideoDiv.querySelectorAll("video")
       : null;
@@ -91,21 +90,9 @@ export default function decorate(block) {
             video2.currentTime = video1.currentTime;
           }
         }
-
-        function syncTime() {
-          if (!isSyncing) {
-              isSyncing = true;
-              video1.currentTime = video2.currentTime;
-              isSyncing = false;
-          }
-      }
-
         video1.addEventListener("play", syncPlay);
         video1.addEventListener("pause", syncPause);
         video1.addEventListener("timeupdate", syncTimeUpdate);
-
-        video1.addEventListener("seeking",syncTime);
-        video1.addEventListener("seeked", syncTime);
       }
     } else {
       videoTags.forEach(function (video) {
