@@ -273,6 +273,23 @@
             "value": "_self"
           }
         ]
+      },
+      {
+        "component": "select",
+        "name": "style",
+        "value": "",
+        "label": "Style",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": "default-teaser"
+          },
+          {
+            "name": "Black Background",
+            "value": "black-teaser"
+          }
+        ]
       }
     ]
   },
@@ -370,6 +387,25 @@
   },
   {
     "id": "visual-comparison",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "videoUrl1",
+        "label": "Video Url 1",
+        "valueType": "string",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "name": "videoUrl2",
+        "label": "Video Url 2",
+        "valueType": "string",
+        "multi": false
+      }
+    ]
+  },
+  {
+    "id": "visual-comparison-blob",
     "fields": [
       {
         "component": "reference",
