@@ -1,18 +1,27 @@
 export default function decorate(block) {
-    console.log("icontitle: "+ block.children)
     const icons = block.querySelectorAll('.icontitle picture');
-    const icon = icons[0];
-    const iconClicked = icons[1];
-    const title = block.querySelector('div:nth-child(1) > p').textContent.trim();
+    const titleElement = block.querySelector('div:nth-child(1) > p');
+    
+    if (!titleElement) {
+        console.error('Title element not found. Cannot proceed.');
+        return;
+    }
+    
+    const title = titleElement.textContent.trim();
     const iconImages = block.querySelectorAll('.icontitle img');
+    
     iconImages.forEach((img) => {
-    img.removeAttribute('width');
-    img.removeAttribute('height');
-    img.setAttribute('alt', title);
+        img.removeAttribute('width');
+        img.removeAttribute('height');
+        img.setAttribute('alt', title);
     });
-    block.innerHTML =`
+    
+    const icon = icons[0] ? icons[0].outerHTML : '';
+    const iconClicked = icons[1] ? icons[1].outerHTML : '';
+    
+    block.innerHTML = `
         <h2>${title}</h2>
-        <div class='icon'>${icon.outerHTML}</div>
-        ${iconClicked.outerHTML}
+        <div class='icon'>${icon}</div>
+        <div class='iconClicked'>${iconClicked}</div>
     `;
 }
