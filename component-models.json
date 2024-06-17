@@ -275,6 +275,82 @@
         ]
       },
       {
+        "component": "container",
+        "label": "CTA 1",
+        "name": "cta1",
+        "valueType": "string",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "text-input",
+            "name": "ctaText",
+            "label": "CTA Text",
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "valueType": "string",
+            "name": "href",
+            "label": "CTA Link"
+          },
+          {
+            "component": "select",
+            "name": "target",
+            "value": "",
+            "label": "Open Link in New Page ?",
+            "valueType": "string",
+            "options": [
+              {
+                "name": "Yes",
+                "value": "_blank"
+              },
+              {
+                "name": "No",
+                "value": "_self"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "label": "CTA 2",
+        "name": "cta2",
+        "valueType": "string",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "text-input",
+            "name": "ctaText",
+            "label": "CTA Text",
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "valueType": "string",
+            "name": "href",
+            "label": "CTA Link"
+          },
+          {
+            "component": "select",
+            "name": "target",
+            "value": "",
+            "label": "Open Link in New Page ?",
+            "valueType": "string",
+            "options": [
+              {
+                "name": "Yes",
+                "value": "_blank"
+              },
+              {
+                "name": "No",
+                "value": "_self"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "component": "select",
         "name": "style",
         "value": "",
@@ -706,7 +782,7 @@
         "name": "foreground-mobileImage",
         "label": "Mobile Image1",
         "multi": false
-      }, 
+      },
       {
         "component": "text-input",
         "name": "background-title",
