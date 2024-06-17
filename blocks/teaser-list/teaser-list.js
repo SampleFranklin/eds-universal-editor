@@ -2,7 +2,7 @@ import { sanitizeHtml } from "../../scripts/utils.js";
 import { getTeaser } from "../teaser/teaser.js";
 
 export default function decorate(block) {
-  
+
   let style= block.querySelector('.teaser-list > div:nth-child(2) > div > p').innerText.split(',')
   block.classList.add(...style);
   const commonTitle = block.querySelector('.teaser-list > div:first-child > div > p').innerText;
@@ -34,7 +34,6 @@ export default function decorate(block) {
   block.innerHTML = '';
   block.insertAdjacentHTML('beforeend', sanitizeHtml(newHtml));
   toggleFocusedClass();
-  mobileLazyLoading();
 }
 
 function mobileLazyLoading(teaser){
@@ -42,6 +41,9 @@ function mobileLazyLoading(teaser){
     const imgElement = teaser.querySelector('.teaser__image img');
     if (isMobile && imgElement) {
       imgElement.setAttribute('loading', 'lazy');
+    }
+    else if(!isMobile && imgElement){
+        imgElement.setAttribute('loading', 'eager');
     }
 }
 
