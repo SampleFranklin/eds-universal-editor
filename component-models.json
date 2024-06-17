@@ -260,8 +260,6 @@
       {
         "component": "container",
         "label": "Container",
-        "name": "container",
-        "valueType": "string",
         "collapsible": true,
         "fields": [
           {
