@@ -22,8 +22,12 @@
 .link-grid-column .links-container {
   display: flex;
   flex-direction: column;
-  gap: 8px;
   margin: 0;
+}
+
+.link-grid-column .links-container li {
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .link-grid-column .links-container li a {
@@ -76,4 +80,10 @@ ul {
 
 .whiteGrid .link-grid-column a {
   color: #262424;
+}
+
+@media (min-width: 768px) {
+  .link-grid-column .links-container {
+    gap: 8px;
+  }
 }
