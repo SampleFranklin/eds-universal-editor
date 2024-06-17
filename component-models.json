@@ -216,6 +216,44 @@
         "name": "author",
         "label": "Author",
         "value": ""
+      },
+      {
+        "component": "container",
+        "label": "Container",
+        "name": "container",
+        "valueType": "string",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "text-input",
+            "name": "primaryText",
+            "label": "CTA Text",
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "valueType": "string",
+            "name": "primaryLink",
+            "label": "CTA Link"
+          },
+          {
+            "component": "select",
+            "name": "primaryTarget",
+            "value": "",
+            "label": "Open Link in New Page ?",
+            "valueType": "string",
+            "options": [
+              {
+                "name": "Yes",
+                "value": "_blank"
+              },
+              {
+                "name": "No",
+                "value": "_self"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -258,10 +296,22 @@
         "valueType": "string"
       },
       {
+        "component": "text-input",
+        "name": "primaryText",
+        "label": "Primary CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "primaryLink",
+        "label": "Primary CTA Link"
+      },
+      {
         "component": "select",
-        "name": "target",
+        "name": "primaryTarget",
         "value": "",
-        "label": "Open Link in New Page ?",
+        "label": "Open Primary Link in New Page ?",
         "valueType": "string",
         "options": [
           {
@@ -271,6 +321,78 @@
           {
             "name": "No",
             "value": "_self"
+          }
+        ]
+      },
+      {
+        "component": "text-input",
+        "name": "secondaryText",
+        "label": "Secondary CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "secondaryLink",
+        "label": "Secondary CTA Link"
+      },
+      {
+        "component": "select",
+        "name": "secondaryTarget",
+        "value": "",
+        "label": "Open Secondary Link in New Page ?",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Yes",
+            "value": "_blank"
+          },
+          {
+            "name": "No",
+            "value": "_self"
+          }
+        ]
+      },
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "valueType": "string",
+        "maxSize": 2,
+        "options": [
+          {
+            "name": "Theme",
+            "children": [
+              {
+                "name": "Light",
+                "value": "light-teaser"
+              },
+              {
+                "name": "Dark",
+                "value": "dark-teaser"
+              }
+            ]
+          },
+          {
+            "name": "Type",
+            "children": [
+              {
+                "name": "Buyers Guide",
+                "value": "buyers-guide-teaser"
+              },
+              {
+                "name": "Finance Card",
+                "value": "finance-card-teaser"
+              },
+              {
+                "name": "Header Teaser",
+                "value": "header-image-teaser"
+              },
+              {
+                "name": "Text Only Teaser",
+                "value": "text-only-teaser"
+              }
+            ]
           }
         ]
       }
@@ -370,6 +492,25 @@
   },
   {
     "id": "visual-comparison",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "videoUrl1",
+        "label": "Video Url 1",
+        "valueType": "string",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "name": "videoUrl2",
+        "label": "Video Url 2",
+        "valueType": "string",
+        "multi": false
+      }
+    ]
+  },
+  {
+    "id": "visual-comparison-blob",
     "fields": [
       {
         "component": "reference",
@@ -670,7 +811,7 @@
         "name": "foreground-mobileImage",
         "label": "Mobile Image1",
         "multi": false
-      }, 
+      },
       {
         "component": "text-input",
         "name": "background-title",
@@ -696,6 +837,13 @@
         "name": "image",
         "label": "Image",
         "multi": false
+      },
+      {
+        "component": "text-input",
+        "name": "alt",
+        "value": "",
+        "label": "Alt Text",
+        "valueType": "string"
       },
       {
         "component": "text-input",
