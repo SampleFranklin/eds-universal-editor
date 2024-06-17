@@ -260,8 +260,6 @@
       {
         "component": "container",
         "label": "CTA 1",
-        "name": "primary_cta",
-        "valueType": "string",
         "collapsible": true,
         "fields": [
           {
@@ -298,8 +296,6 @@
       {
         "component": "container",
         "label": "CTA 2",
-        "name": "secondary_cta",
-        "valueType": "string",
         "collapsible": true,
         "fields": [
           {
