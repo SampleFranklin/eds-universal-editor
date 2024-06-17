@@ -259,8 +259,8 @@
       },
       {
         "component": "container",
-        "label": "CTA",
-        "name": "primaryCta",
+        "label": "Container",
+        "name": "container",
         "valueType": "string",
         "collapsible": true,
         "fields": [
