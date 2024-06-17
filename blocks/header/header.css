@@ -4,6 +4,13 @@ header .nav-wrapper {
   width: 100%;
   z-index: 2;
   position: fixed;
+
+  @media(min-width:768px) {
+    padding: 0px 64px;
+    background: var(--Primary-Main, #18171A);
+    backdrop-filter: blur(22px);
+    height: 80px;
+  }
 }
 
 header nav {
@@ -19,6 +26,11 @@ header nav {
   height: var(--nav-height);
   padding: 0 1rem;
   font-family: var(--body-font-family);
+  @media(min-width:768px){
+    color: white;
+    display: flex;
+    align-items: center;
+  }
 }
 
 header nav[aria-expanded="true"] {
@@ -241,6 +253,10 @@ header nav .nav-sections ul > li > ul > li {
     position: relative;
   }
 
+  header nav a:any-link {
+    text-decoration: underline;
+}
+
   header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded="true"] > ul {
     display: block;
     position: absolute;
@@ -250,12 +266,29 @@ header nav .nav-sections ul > li > ul > li {
     padding: 1em;
     background-color: var(--light-color);
     white-space: initial;
+    @media(min-width:768px) {
+        display: flex;
+        position: fixed;
+        width: 100%;
+        margin-top: 40px;
+        background: var(--Tertiary-Light-grey, #F2F2F2);
+        padding: 32px 64px;
+        /* justify-content: space-evenly; */
+        align-items: flex-start;
+        color: black;
+        color: var(--Tertiary-Black, #000);
+        font-family: "Fira Sans";
+        font-size: 14px;
+        font-style: normal;
+        /* font-weight: 400; */
+        line-height: 20px;
+        /* 142.857% */
+      }
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
     content: '';
     position: absolute;
-    top: -8px;
     left: 8px;
     width: 0;
     height: 0;
@@ -264,10 +297,19 @@ header nav .nav-sections ul > li > ul > li {
     border-bottom: 8px solid var(--light-color);
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
-    padding: 8px 0;
-  }
-}
+    header nav .nav-sections .default-content-wrapper>ul>li>ul>li {
+      padding: 8px 0;
+      @media(min-width:768px){
+        margin-right: 70px;
+        color: var(--Tertiary-Black, #000);
+        font-family: "Fira Sans";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+      }
+    }
+    }
 
 /* tools */
 header nav .nav-tools {
