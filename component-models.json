@@ -388,6 +388,25 @@
     ]
   },
   {
+    "id": "visual-comparison-blob",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "videoUrl1",
+        "label": "Video Url 1",
+        "valueType": "string",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "name": "videoUrl2",
+        "label": "Video Url 2",
+        "valueType": "string",
+        "multi": false
+      }
+    ]
+  },
+  {
     "id": "link-list",
     "fields": [
       {
