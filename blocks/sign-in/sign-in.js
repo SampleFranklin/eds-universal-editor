@@ -19,7 +19,7 @@ export default function decorate(block) {
             <div class="sign-in-teaser__desc">
                 ${signIn.outerHTML}
                 ${(link) ? `<a href="${href}" class="sign-in-teaser--link" target="${signInTarget}">
-                    ${ctaText}
+                    ${ctaText} <span class="sign-in-teaser--arrow"></span>
                 </a>` : ''}
             </div>
             <div class="sign-in-teaser__image">
