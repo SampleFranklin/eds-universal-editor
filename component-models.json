@@ -354,19 +354,45 @@
         ]
       },
       {
-        "component": "select",
+        "component": "multiselect",
         "name": "style",
-        "value": "",
-        "label": "Style",
+        "label": "Multiselect field",
         "valueType": "string",
+        "maxSize": 2,
         "options": [
           {
-            "name": "Default",
-            "value": "default-teaser"
+            "name": "Theme",
+            "children": [
+              {
+                "name": "Light",
+                "value": "light-teaser"
+              },
+              {
+                "name": "Dark",
+                "value": "dark-teaser"
+              }
+            ]
           },
           {
-            "name": "Black Background",
-            "value": "black-teaser"
+            "name": "Type",
+            "children": [
+              {
+                "name": "Buyers Guide",
+                "value": "buyers-guide-teaser"
+              },
+              {
+                "name": "Finance Card",
+                "value": "finance-card-teaser"
+              },
+              {
+                "name": "Header Teaser",
+                "value": "header-image-teaser"
+              },
+              {
+                "name": "Text Only Teaser",
+                "value": "text-only-teaser"
+              }
+            ]
           }
         ]
       }
