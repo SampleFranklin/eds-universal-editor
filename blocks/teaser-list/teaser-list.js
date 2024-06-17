@@ -1,3 +1,4 @@
+import { sanitizeHtml } from "../../scripts/utils.js";
 import { getTeaser } from "../teaser/teaser.js";
 
 export default function decorate(block) {
