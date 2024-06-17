@@ -297,19 +297,19 @@
       },
       {
         "component": "text-input",
-        "name": "primary_text",
+        "name": "primaryText",
         "label": "Primary CTA Text",
         "valueType": "string"
       },
       {
         "component": "aem-content",
         "valueType": "string",
-        "name": "primary_link",
+        "name": "primaryLink",
         "label": "Primary CTA Link"
       },
       {
         "component": "select",
-        "name": "primary_target",
+        "name": "primaryTarget",
         "value": "",
         "label": "Open Primary Link in New Page ?",
         "valueType": "string",
@@ -326,19 +326,19 @@
       },
       {
         "component": "text-input",
-        "name": "secondary_text",
+        "name": "secondaryText",
         "label": "Secondary CTA Text",
         "valueType": "string"
       },
       {
         "component": "aem-content",
         "valueType": "string",
-        "name": "secondary_link",
+        "name": "secondaryLink",
         "label": "Secondary CTA Link"
       },
       {
         "component": "select",
-        "name": "secondary_target",
+        "name": "secondaryTarget",
         "value": "",
         "label": "Open Secondary Link in New Page ?",
         "valueType": "string",
