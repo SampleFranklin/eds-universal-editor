@@ -6,3 +6,9 @@ export function getContent(block, selector) {
 export function isInternalLink(href) {
   return !/^https?:\/\//i.test(href);
 }
+
+export function sanitizeHtml(html) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  return doc.body.innerHTML;
+}
