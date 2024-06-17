@@ -167,3 +167,8 @@ finance-service__card style
    filter: grayscale(100%);
  }
 
+.finance-service__card--focused .image-container img{
+    height:250px;
+    width:250px;
+    object-fit: cover;
+}
