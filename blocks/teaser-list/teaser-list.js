@@ -5,7 +5,9 @@ export default function decorate(block) {
   block.classList.add('finance-service');
   const commonTitle = block.querySelector('.teaser-list > div:first-child > div > p').innerText;
   const teasers = Array.from(block.querySelectorAll('.teaser-list > div:not(:first-child)')).map((card) => {
-    return getTeaser(card).outerHTML;
+    const teaser = getTeaser(card);
+    mobileLazyLoading(teaser);
+    return teaser.outerHTML;
   });
 
   const newHtml = `
@@ -33,9 +35,9 @@ export default function decorate(block) {
   mobileLazyLoading();
 }
 
-function mobileLazyLoading(){
+function mobileLazyLoading(teaser){
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    const imgElement = document.querySelector('.image-container img');
+    const imgElement = teaser.querySelector('.teaser__image img');
     if (isMobile && imgElement) {
       imgElement.setAttribute('loading', 'lazy');
     }
