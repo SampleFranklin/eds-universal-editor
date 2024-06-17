@@ -611,6 +611,41 @@
         "value": "",
         "label": "Title",
         "valueType": "string"
+      },
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "valueType": "string",
+        "maxSize": 2,
+        "options": [
+          {
+            "name": "Theme",
+            "children": [
+              {
+                "name": "Light",
+                "value": "light-teaser-list"
+              },
+              {
+                "name": "Dark",
+                "value": "dark-teaser-list"
+              }
+            ]
+          },
+          {
+            "name": "Type",
+            "children": [
+              {
+                "name": "Finance Card List",
+                "value": "finance-card-list"
+              },
+              {
+                "name": "Arena Card List",
+                "value": "arena-card-list"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
