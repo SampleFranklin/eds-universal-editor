@@ -1,70 +1,70 @@
+import { moveInstrumentation } from '../../scripts/scripts.js';
 export default function decorate(block) {
     const signIn = block.querySelector('.sign-in > div:first-child > div');
     const link = signIn.querySelector('p.button-container a');
-    if (signIn.querySelector('h4'))
+    if (signIn.querySelector('h4') || link)
         signIn.querySelector('p.button-container')?.remove();
     signIn.classList.add('sign-in-teaser__desc-content');
 
-    const ctaText = link.innerText;
+    const ctaText = link?.textContent?.trim() || '';
+    const href = link?.href || '#';
     const desktopSrc = block.querySelector('.sign-in div:nth-of-type(2) > div > picture > img')?.src;
-    const desktopAltText = block.querySelector('.sign-in div:nth-of-type(4) > div > p')?.innerText;
+    const desktopAltText = block.querySelector('.sign-in div:nth-of-type(4) > div > p')?.textContent?.trim() || 'desktopImage';
     const mobileSrc = block.querySelector('.sign-in div:nth-of-type(3) > div > picture > img')?.src;
-    const mobileAltText = block.querySelector('.sign-in div:nth-of-type(5) > div > p')?.innerText;
-    const signInTarget = block.querySelector('.sign-in div:nth-of-type(6) > div > p')?.innerText;
+    const mobileAltText = block.querySelector('.sign-in div:nth-of-type(5) > div > p')?.textContent?.trim() || 'mobileImage';
+    const signInTarget = block.querySelector('.sign-in div:nth-of-type(6) > div > p')?.textContent?.trim() || '_self';
 
     const mobileSignInHtml = `
         <div class="sign-in-teaser">
             <div class="sign-in-teaser__desc">
                 ${signIn.outerHTML}
-                <a href="${link}" class="sign-in-teaser--link" target="${signInTarget}">
+                ${(link) ? `<a href="${href}" class="sign-in-teaser--link" target="${signInTarget}">
                     ${ctaText}
-                </a>
+                </a>` : ''}
             </div>
             <div class="sign-in-teaser__image">
-                <img src="${mobileSrc}" loading="lazy" alt="${mobileAltText || ""}"/>
+                <img src="${mobileSrc}" loading="lazy" alt="${mobileAltText}"/>
             </div>
         </div>
     `;
-    console.log("mobileSignInHtml:",mobileSignInHtml);
 
     const ctaElements = Array.from(block.querySelectorAll('.sign-in > div:nth-last-child(-n+2)')).map(element => {
-        const imgSrc = element.querySelector('img')?.src;
-        const altText = element.querySelector('div:nth-of-type(2) > p')?.innerText;
-        const ctaText = element.querySelector('div:nth-of-type(3) > p').innerText;
-        const link = element.querySelector('div:nth-of-type(4) p.button-container a');
-        const target = element.querySelector('div:nth-of-type(5) > p')?.innerText;
-        
+        const [imageEl, altTextEl, ctaTextEl, linkEl, targetEl] = element.children;
+        const imgSrc = imageEl?.querySelector('img')?.src;
+        const altText = altTextEl?.textContent?.trim() || 'icon';
+        const ctaText = ctaTextEl?.textContent?.trim() || '';
+        const link = linkEl?.querySelector('.button-container a')?.href;
+        const target = targetEl?.textContent?.trim() || '_self';
+
         element.innerHTML = `
             <a href="${link}" class="user__account--link" target="${target}">
                 <span class="user__account__list-icon">
-                    <img src="${imgSrc}" loading="lazy" alt="${altText || ""}"/>
+                    <img src="${imgSrc}" loading="lazy" alt="${altText}"/>
                 </span>
                 ${ctaText}
             </a>
         `;
+        moveInstrumentation(element, element.firstElementChild);
         return element.innerHTML;
-    });
+    }).join('');
 
 
     const desktopSignInHtml = `
         <div class="user__account">
-            <a href="${link}" class="user__account--link hide-sm" target="${signInTarget}">
+            ${(link) ? `<a href="${href}" class="user__account--link hide-sm" target="${signInTarget}">
                 <span class="user__account__list-icon">
-                    <img src="${desktopSrc}" loading="lazy" alt="${desktopAltText || ""}"/>
+                    <img src="${desktopSrc}" loading="lazy" alt="${desktopAltText}"/>
                 </span>
                 ${ctaText}
-            </a>
-            ${ctaElements.join('')}
+            </a>`: ''}
+            ${ctaElements}
         </div>
     `;
-        console.log("desktopSignInHtml:",desktopSignInHtml);
 
-    const newHtml = `
+    block.innerHTML = `
         <div class="user__dropdown">
             ${mobileSignInHtml}
             ${desktopSignInHtml}
         </div>
     `;
-    block.innerHTML = newHtml;
-    console.log(block);
 }
