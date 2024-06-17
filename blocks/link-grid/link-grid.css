@@ -1,63 +1,89 @@
 .link-container-section {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    background-color: inherit;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex: 1 1 55%;
 }
-
 .link-grid-column {
-    flex: 1;
-    margin-right: 0;
-    padding-right: 20px;
-    background-color: inherit;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  width: 0;
 }
-
-.link-grid-column:last-child {
-    margin-right: 0;
-    padding-right: 0;
-}
-
 .link-grid-column h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: inherit;
+  font-family: "Fira Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 20px;
+  margin: 0 0 32px 0;
 }
 
-.link-grid-column p {
-    margin: 0;
+.link-grid-column .links-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
 }
 
-.link-grid-column a {
-    display: block;
-    margin-bottom: 5px;
-    color: #007bff;
-    text-decoration: none;
+.link-grid-column .links-container li {
+  font-size: 14px;
+  line-height: 20px;
 }
 
-.link-grid-column a:hover {
-    text-decoration: underline;
+.link-grid-column .links-container li a {
+  display: inline-block;
+  font-family: "Fira Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 20px;
+  min-height: 40px;
+  color: #7b7777;
+}
+
+.accordion-item {
+  cursor: pointer;
+  user-select: none;
+}
+.accordion-item .content {
+  display: none;
+  padding-left: 20px;
+}
+.accordion-item.active .content {
+  display: block;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
 }
 
 .blackGrid {
-    background-color: black;
+  background-color: black;
 }
 
 .blackGrid .link-grid-column h3 {
-    color: white;
+  color: white;
 }
 
 .blackGrid .link-grid-column a {
-    color: #e5e7eb;
+  color: #e5e7eb;
 }
 
 .whiteGrid {
-    background-color: white;
+  background-color: white;
 }
 
 .whiteGrid .link-grid-column h3 {
-    color: black;
+  color: black;
 }
 
 .whiteGrid .link-grid-column a {
-    color: #262424;
+  color: #262424;
+}
+
+@media (min-width: 768px) {
+  .link-grid-column .links-container {
+    gap: 8px;
+  }
 }

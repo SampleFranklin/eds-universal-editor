@@ -22,13 +22,13 @@ export default function decorate(block) {
         return '';
       })
       .join('');
-
-    const headingHTML = column.querySelector('h3') ? column.querySelector('h3').outerHTML : '<div class="no-heading-column"></div>';
+    const colHeading = column.querySelector('h3').textContent;
+    const headingHTML = column.querySelector('h3') ? `<h3 class="accordian-item">${colHeading}</h3>` : '<div class="no-heading-column"></div>';
 
     return `
             <div class="link-grid-column">
                 ${headingHTML}
-                <ul class="button-container">
+                <ul class="content links-container">
                     ${buttonContainerHTML}
                 </ul>
             </div>
