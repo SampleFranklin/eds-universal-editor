@@ -80,6 +80,34 @@ function toggleFocusedClass() {
             this.classList.add('finance-service__card--focused');
         });
     });
+
+// Sroll the cards on click
+    const teaserCards = document.querySelectorAll('.finance-service__card');
+
+    teaserCards.forEach(teaserCard => {
+        teaserCard.addEventListener('click', () => {
+            teaserCards.forEach(c => c.classList.remove('finance-service__card--focused'));
+            teaserCard.classList.add('finance-service__card--focused');
+
+            const focusedTeaserCard = document.querySelector('.finance-service__card--focused');
+
+            if (focusedTeaserCard) {
+                const container = focusedTeaserCard.closest('.finance-service__cards');
+                const cardOffsetLeft = focusedTeaserCard.offsetLeft;
+                const containerOffsetLeft = container.offsetLeft;
+                const scrollLeft = cardOffsetLeft - containerOffsetLeft;
+                const cardWidth = focusedTeaserCard.offsetWidth;
+                const containerWidth = container.clientWidth;
+                const maxScrollLeft = Math.min(scrollLeft, container.scrollWidth - containerWidth);
+
+                container.scrollTo({
+                    left: maxScrollLeft,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
 }
 
 
