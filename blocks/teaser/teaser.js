@@ -46,15 +46,17 @@ export function getTeaser(block) {
   }
 
   if (secondaryCta) {
+    let linkSpan=sanitizeHtml(`<span class="link__icon"> </span>`);
     secondaryCta.innerHTML = ''
     secondaryCta.insertAdjacentHTML('beforeend', sanitizeHtml(secondaryCtaTextEl?.textContent?.trim() || ''));
     secondaryCta.classList.add('secondary__btn');
+    secondaryCta.insertAdjacentHTML('beforeend',linkSpan);
   }
 
   let ctaHtml = ``
   if (primaryCta || secondaryCta) {
     ctaHtml = `
-      <div class="teaser-actions">
+      <div class="teaser__actions">
         ${(primaryCta) ? primaryCta.outerHTML : ''}
         ${(secondaryCta) ? secondaryCta.outerHTML : ''}
       </div>
