@@ -867,8 +867,20 @@
         "valueType": "string"
       },
       {
+        "component": "text-input",
+        "name": "ctaText",
+        "label": "CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "ctaLink",
+        "label": "CTA Link"
+      },
+      {
         "component": "select",
-        "name": "target",
+        "name": "ctaTarget",
         "value": "",
         "label": "Open Link in New Page ?",
         "valueType": "string",

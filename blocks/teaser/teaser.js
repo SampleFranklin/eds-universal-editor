@@ -54,7 +54,7 @@ export function getTeaser(block) {
   let ctaHtml = ``
   if (primaryCta || secondaryCta) {
     ctaHtml = `
-      <div class="teaser-actions">
+      <div class="teaser__actions">
         ${(primaryCta) ? primaryCta.outerHTML : ''}
         ${(secondaryCta) ? secondaryCta.outerHTML : ''}
       </div>
