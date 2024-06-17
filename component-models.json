@@ -216,6 +216,44 @@
         "name": "author",
         "label": "Author",
         "value": ""
+      },
+      {
+        "component": "container",
+        "label": "Container",
+        "name": "container",
+        "valueType": "string",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "text-input",
+            "name": "primaryText",
+            "label": "CTA Text",
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "valueType": "string",
+            "name": "primaryLink",
+            "label": "CTA Link"
+          },
+          {
+            "component": "select",
+            "name": "primaryTarget",
+            "value": "",
+            "label": "Open Link in New Page ?",
+            "valueType": "string",
+            "options": [
+              {
+                "name": "Yes",
+                "value": "_blank"
+              },
+              {
+                "name": "No",
+                "value": "_self"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -260,6 +298,8 @@
       {
         "component": "container",
         "label": "Container",
+        "name": "container",
+        "valueType": "string",
         "collapsible": true,
         "fields": [
           {
