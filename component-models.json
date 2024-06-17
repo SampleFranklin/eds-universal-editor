@@ -356,7 +356,7 @@
       {
         "component": "multiselect",
         "name": "style",
-        "label": "Multiselect field",
+        "label": "Style",
         "valueType": "string",
         "maxSize": 2,
         "options": [
