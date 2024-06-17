@@ -122,3 +122,48 @@ finance-service__card style
     gap: 48px;
   }
 }
+
+/* My Edits */
+
+.finance-service__cards {
+    overflow: hidden;
+}
+
+/* WebKit specific CSS */
+.finance-service__cards::-webkit-scrollbar {
+    display: none;
+}
+
+.finance-service__card__description {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: #fff;
+}
+
+.finance-service__card__description .finance-service__card__pretitle {
+    color: #fff;
+}
+
+.finance-service__card--focused .finance-service__card__description {
+    justify-content: flex-start;
+    color: inherit;
+}
+
+.finance-service__card--focused .finance-service__card__pretitle {
+    color: inherit;
+}
+
+.finance-service__card__image {
+   /* Default styles for image */
+   transition: filter 0.3s ease;
+ }
+
+ .finance-service__card--focused .finance-service__card__image {
+   filter: none;
+ }
+
+ .finance-service__card__image {
+   filter: grayscale(100%);
+ }
+
