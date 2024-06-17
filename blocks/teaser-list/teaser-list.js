@@ -2,9 +2,11 @@ import { sanitizeHtml } from "../../scripts/utils.js";
 import { getTeaser } from "../teaser/teaser.js";
 
 export default function decorate(block) {
-  block.classList.add('finance-service');
+  
+  let style= block.querySelector('.teaser-list > div:nth-child(2) > div > p').innerText.split(',')
+  block.classList.add(...style);
   const commonTitle = block.querySelector('.teaser-list > div:first-child > div > p').innerText;
-  const teasers = Array.from(block.querySelectorAll('.teaser-list > div:not(:first-child)')).map((card) => {
+  const teasers = Array.from(block.querySelectorAll('.teaser-list > div:not(:first-child):not(:nth-child(2))')).map((card) => {
     const teaser = getTeaser(card);
     mobileLazyLoading(teaser);
     return teaser.outerHTML;
