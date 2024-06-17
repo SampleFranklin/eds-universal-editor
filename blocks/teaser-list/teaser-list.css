@@ -122,3 +122,49 @@ finance-service__card style
     gap: 48px;
   }
 }
+
+/* My Edits */
+
+.finance-service__cards {
+    overflow: hidden; /* Hide scrollbars */
+}
+
+/* WebKit specific CSS */
+.finance-service__cards::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
+}
+
+.finance-service__card__description {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Align content to the bottom */
+    color: #fff; /* Default white color */
+}
+
+.finance-service__card__description .finance-service__card__pretitle {
+    color: #fff; /* Ensure pretitle is white by default */
+}
+
+.finance-service__card--focused .finance-service__card__description {
+    justify-content: flex-start; /* Align content to the top when focused */
+    color: inherit; /* Reset color to inherit */
+}
+
+.finance-service__card--focused .finance-service__card__pretitle {
+    color: inherit; /* Ensure pretitle inherits color when focused */
+}
+
+.finance-service__card__image {
+   /* Default styles for image */
+   transition: filter 0.3s ease; /* Optional: Add a smooth transition */
+ }
+
+ .finance-service__card--focused .finance-service__card__image {
+   /* Styles for image when card is focused */
+   filter: none; /* Reset filter when focused */
+ }
+
+ .finance-service__card__image {
+   filter: grayscale(100%); /* Apply grayscale filter by default */
+ }
+
