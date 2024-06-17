@@ -258,19 +258,78 @@
         "valueType": "string"
       },
       {
-        "component": "select",
-        "name": "target",
-        "value": "",
-        "label": "Open Link in New Page ?",
+        "component": "container",
+        "label": "CTA 1",
+        "name": "primaryCTA",
         "valueType": "string",
-        "options": [
+        "collapsible": true,
+        "fields": [
           {
-            "name": "Yes",
-            "value": "_blank"
+            "component": "text-input",
+            "name": "primaryText",
+            "label": "CTA Text",
+            "valueType": "string"
           },
           {
-            "name": "No",
-            "value": "_self"
+            "component": "aem-content",
+            "valueType": "string",
+            "name": "primaryLink",
+            "label": "CTA Link"
+          },
+          {
+            "component": "select",
+            "name": "primaryTarget",
+            "value": "",
+            "label": "Open Link in New Page ?",
+            "valueType": "string",
+            "options": [
+              {
+                "name": "Yes",
+                "value": "_blank"
+              },
+              {
+                "name": "No",
+                "value": "_self"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "label": "CTA 2",
+        "name": "secondaryCTA",
+        "valueType": "string",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "text-input",
+            "name": "secondaryText",
+            "label": "CTA Text",
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "valueType": "string",
+            "name": "secondaryLink",
+            "label": "CTA Link"
+          },
+          {
+            "component": "select",
+            "name": "secondaryTarget",
+            "value": "",
+            "label": "Open Link in New Page ?",
+            "valueType": "string",
+            "options": [
+              {
+                "name": "Yes",
+                "value": "_blank"
+              },
+              {
+                "name": "No",
+                "value": "_self"
+              }
+            ]
           }
         ]
       },
@@ -706,7 +765,7 @@
         "name": "foreground-mobileImage",
         "label": "Mobile Image1",
         "multi": false
-      }, 
+      },
       {
         "component": "text-input",
         "name": "background-title",
