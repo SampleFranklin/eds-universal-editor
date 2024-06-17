@@ -42,19 +42,12 @@ export function getTeaser(block) {
     const primaryText = primaryCtaTextEl?.textContent?.trim() || '';
     primaryCta?.classList.add('primary__btn');
     primaryCta.innerHTML = '';
-    if (style) {
-      // primaryCta.insertAdjacentHTML('beforeend', `
-      //     <p>${primaryText}</p>
-      //     <div class='arrow_icon'></div>
-      // `);
-    } else {
-      primaryCta.insertAdjacentHTML('beforeend', primaryText);
-    }
+    primaryCta.insertAdjacentHTML('beforeend', sanitizeHtml(primaryText));
   }
 
   if (secondaryCta) {
     secondaryCta.innerHTML = ''
-    secondaryCta.insertAdjacentHTML('beforeend', secondaryCtaTextEl?.textContent?.trim() || '');
+    secondaryCta.insertAdjacentHTML('beforeend', sanitizeHtml(secondaryCtaTextEl?.textContent?.trim() || ''));
     secondaryCta.classList.add('secondary__btn');
   }
 

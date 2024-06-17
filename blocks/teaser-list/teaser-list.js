@@ -5,45 +5,6 @@ export default function decorate(block) {
   const commonTitle = block.querySelector('.teaser-list > div:first-child > div > p').innerText;
   const teasers = Array.from(block.querySelectorAll('.teaser-list > div:not(:first-child)')).map((card) => {
     return getTeaser(card).outerHTML;
-//     const imgSrc = card.querySelector('img')?.src;
-//     const altText = card.querySelector('div:nth-of-type(2) > p')?.innerText;
-//     const preTitle = card.querySelector('div:nth-of-type(3) > p')?.innerText;
-//     const title = card.querySelector('div:nth-of-type(4) > p')?.innerText;
-//     const description = Array.from(card.querySelectorAll('div:nth-of-type(5) p:not(.button-container)')).map((p) => p.innerText).join(' ');
-
-//    // const ctaElements = card.querySelectorAll('div:nth-of-type(5) p.button-container a');
-//    // const ctas = Array.from(ctaElements).map((cta) => cta.outerHTML);
-
-//     const ctaElements = card.querySelectorAll('div:nth-of-type(5) p.button-container a');
-//     const ctas = Array.from(ctaElements).map((cta, index) => {
-//         const buttonText = cta.textContent.trim();
-//         if (index === 0) {
-//             return `<button class="btn btn--primary-solid" href="#">${buttonText}</button>`;
-//         } else if (index === 1) {
-//             return `<a class="btn--link btn--link-primary" href="#">${buttonText} <span class="test-icon" ></span></a>`;
-//         }
-//     });
-//  //  ${ctas.map((cta, index) => `<div class="teaser-action teaser-action-${index}">${cta}</div>`).join('')}
-//     card.outerHTML = card.innerHTML;
-//     card.innerHTML = `
-//             <div class="finance-service__card">
-//                 <div class="finance-service__card__image">
-//                     ${(imgSrc) ? `<div class="image-container"><img src="${imgSrc}" alt="${altText || title}"></div>` : ''}
-//                 </div>
-//                 <div class="finance-service__card__content">
-//                   <div class="finance-service__card__description">
-//                       ${(preTitle) ? `<p class="finance-service__card__pretitle">${preTitle}</p>` : ''}
-//                       ${(title) ? `<h3>${title}</h3>` : ''}
-//                       ${(description) ? `<p class="finance-service__card__info">${description}</p>` : ''}
-//                   </div>
-//                   <div class="finance-service__card__actions">
-//                     ${ctas.map((cta, index) => `${cta}`).join('')}
-//                   </div>
-//                 </div>
-//             </div>
-
-//         `;
-//     return card.innerHTML;
   });
 
   const newHtml = `
@@ -65,7 +26,8 @@ export default function decorate(block) {
     </div>
     `;
 
-  block.innerHTML = newHtml;
+  block.innerHTML = '';
+  block.insertAdjacentHTML('beforeend', sanitizeHtml(newHtml));
 //   toggleFocusedClass();
   mobileLazyLoading();
 }
