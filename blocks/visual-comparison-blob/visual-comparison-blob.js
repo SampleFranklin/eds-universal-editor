@@ -33,35 +33,42 @@ export default function decorate(block) {
     },
   };
 
-  const wrapperMainContainer = document.getElementsByClassName("visual-comparison-container")[0];
+  const wrapperMainContainer = document.getElementsByClassName("visual-comparison-blob-container")[0];
   const mainDiv = document.createElement("div");
   const videoDiv = document.createElement("div");
   videoDiv.classList.add("video-compare__video-container");
   const innerVideoDiv = document.createElement("div");
   innerVideoDiv.classList.add("video-compare__sync-video-player");
-  const innerTabList = document.createElement('div');
-  innerTabList.classList.add("video-compare__inner-tab-list");
   const videoUrlList = [];
   const currentUrl = window.location.href;
+  const baseUrl = 'https://publish-p71852-e1137339.adobeaemcloud.com';
 
-  const createVideoElement = (urlsData) => {
-    var videoTags = innerVideoDiv
-      ? innerVideoDiv.querySelectorAll("video")
-      : null;
+  // Create and append loader
+  const loader = document.createElement("div");
+  loader.classList.add("loader");
+  loader.innerHTML = "Loading...";
+  loader.style.display = "none";
+  videoDiv.appendChild(loader);
+
+  const showLoader = () => {
+    loader.style.display = "block";
+  };
+
+  const hideLoader = () => {
+    loader.style.display = "none";
+  };
+
+  const createVideoElement = (urlsData, videoUrls) => {
+    const videoTags = innerVideoDiv ? innerVideoDiv.querySelectorAll("video") : null;
+
     if (videoTags.length === 0) {
       for (const video in urlsData) {
         const videoContainer = document.createElement("video");
         videoContainer.classList.add("video-compare__video");
-        if(currentUrl.includes('samplefranklin.hlx.live') || currentUrl.includes('localhost')){
-          videoContainer.src = 'https://publish-p71852-e1137339.adobeaemcloud.com'+urlsData[video];
-        }
-        else{
-          videoContainer.src = urlsData[video];
-        }
+        videoContainer.src = urlsData[video];
         videoContainer.loop = true;
         videoContainer.autoplay = true;
         innerVideoDiv.appendChild(videoContainer);
-
         videoUrlList.push(videoContainer);
       }
 
@@ -98,28 +105,55 @@ export default function decorate(block) {
       videoTags.forEach(function (video) {
         innerVideoDiv.removeChild(video);
       });
-      createVideoElement(urlsData);
+      fetchAndSetVideos(videoUrls);
     }
   };
 
-  const createInternalTabElement = (tabsData, parentTab) => {
+  const fetchAndSetVideos = async (videoUrls) => {
+    showLoader();
+    innerVideoDiv.innerHTML = "";
+    innerVideoDiv.appendChild(loader);
+    try {
+      const urls = Object.values(videoUrls).map(url => baseUrl + url);
+      const videoResponses = await Promise.all(urls.map((url) => fetch(url)));
+      videoResponses.forEach((response) => {
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.statusText}`);
+        }
+      });
+
+      const videoBlobs = await Promise.all(videoResponses.map((response) => response.blob()));
+      const videoDataUrls = videoBlobs.map((blob) => URL.createObjectURL(blob));
+      createVideoElement(videoDataUrls, videoUrls);
+    } catch (error) {
+      console.error("Error fetching videos:", error);
+    } finally {
+      hideLoader();
+    }
+  };
+
+  const createInternalTabElement = (tabsData) => {
     mainDiv.classList.add("video-compare");
+    const innerTabList = document.createElement('div');
+    innerTabList.classList.add("video-compare__inner-tab-list");
     var buttons = mainDiv ? mainDiv.querySelectorAll("button") : null;
-    if (buttons.length === 0) {
-      parentTab.classList.add("active");
+
+    if (buttons.length === 0) {  
       for (const tab in tabsData) {
         const childTab = document.createElement("button");
         childTab.classList.add("video-compare__inner-tab-button");
         childTab.innerHTML = tab;
-        childTab.addEventListener("click", () => createVideoElement(tabsData[tab]));
-        innerTabList.appendChild(childTab)
+        childTab.addEventListener("click", () => {
+          showLoader();
+          fetchAndSetVideos(tabsData[tab]);
+        });
+
+        innerTabList.appendChild(childTab);
         mainDiv.appendChild(innerTabList);
       }
     } else {
-      buttons.forEach(function (button) {
-        innerTabList.removeChild(button);
-      });
-      createInternalTabElement(tabsData, parentTab);
+      buttons.forEach(button => button.remove());
+      createInternalTabElement(tabsData);
     }
   };
 
@@ -130,7 +164,7 @@ export default function decorate(block) {
       const parentTab = document.createElement("button");
       parentTab.classList.add("visual-comparison__outer-tab-button");
       parentTab.innerHTML = tab;
-      parentTab.addEventListener("click", () => createInternalTabElement(data[tab], parentTab));
+      parentTab.addEventListener("click", () => createInternalTabElement(data[tab]));
       outerTabList.appendChild(parentTab);
       wrapperMainContainer.appendChild(outerTabList);
     }
