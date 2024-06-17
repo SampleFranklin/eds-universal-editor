@@ -524,17 +524,7 @@
                   "name": "Immersive Teaser",
                   "filter": "immersive-teaser",
                   "model": "immersive-teaser",
-                  "title": "Immersive Teaser",
-                  "description": "<p>Descrition</p>",
-                  "teaser": {
-                    "id": "teaser",
-                    "name": "Teaser",
-                    "model": "teaser",
-                    "resourceType": "core/franklin/components/block/v1/block",
-                    "target": "_blank",
-                    "title": "Teaser",
-                    "description": "<p>Descrition</p>"
-                  }
+                  "title": "Immersive Teaser"
                 }
               }
             }
