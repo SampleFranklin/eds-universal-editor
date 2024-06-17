@@ -64,6 +64,15 @@ export default function decorate(block) {
 
   block.innerHTML = newHtml;
   toggleFocusedClass();
+  mobileLazyLoading();
+}
+
+function mobileLazyLoading(){
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const imgElement = document.querySelector('.image-container img');
+    if (isMobile && imgElement) {
+      imgElement.setAttribute('loading', 'lazy');
+    }
 }
 
 
