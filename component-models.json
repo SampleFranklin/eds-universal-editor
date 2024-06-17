@@ -266,19 +266,19 @@
         "fields": [
           {
             "component": "text-input",
-            "name": "ctaText",
+            "name": "cta1Text",
             "label": "CTA Text",
             "valueType": "string"
           },
           {
             "component": "aem-content",
             "valueType": "string",
-            "name": "href",
+            "name": "cta1Link",
             "label": "CTA Link"
           },
           {
             "component": "select",
-            "name": "target",
+            "name": "cta1Target",
             "value": "",
             "label": "Open Link in New Page ?",
             "valueType": "string",
@@ -304,19 +304,19 @@
         "fields": [
           {
             "component": "text-input",
-            "name": "ctaText",
+            "name": "cta2Text",
             "label": "CTA Text",
             "valueType": "string"
           },
           {
             "component": "aem-content",
             "valueType": "string",
-            "name": "href",
+            "name": "cta2Link",
             "label": "CTA Link"
           },
           {
             "component": "select",
-            "name": "target",
+            "name": "cta2Target",
             "value": "",
             "label": "Open Link in New Page ?",
             "valueType": "string",
