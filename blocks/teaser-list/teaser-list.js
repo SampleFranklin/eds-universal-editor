@@ -25,7 +25,7 @@ export default function decorate(block) {
     card.innerHTML = `
             <div class="finance-service__card">
                 <div class="finance-service__card__image">
-                    ${(imgSrc) ? `<div class="image-container"><img src="${imgSrc}" alt="${altText || title}" loading="lazy"></div>` : ''}
+                    ${(imgSrc) ? `<div class="image-container"><img src="${imgSrc}" alt="${altText || title}"></div>` : ''}
                 </div>
                 <div class="finance-service__card__content">
                   <div class="finance-service__card__description">
