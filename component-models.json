@@ -283,7 +283,7 @@
         "options": [
           {
             "name": "Default",
-            "value": "default"
+            "value": "default-teaser"
           },
           {
             "name": "Black Background",

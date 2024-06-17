@@ -1,5 +1,5 @@
 export default function decorate(block) {
-  const [imageEl, altTextEl, pretitleEl, titleEl, descriptionEl, targetEl] = block.children;
+  const [imageEl, altTextEl, pretitleEl, titleEl, descriptionEl, targetEl, styleEl] = block.children;
   const image = imageEl?.querySelector('picture');
   if (image) {
     const img = image.querySelector('img');
@@ -15,15 +15,26 @@ export default function decorate(block) {
   const target = targetEl?.textContent?.trim() || '_self';
   const cta = descriptionEl?.querySelector('.button-container a');
   cta?.setAttribute('target', target);
+  cta?.classList.add('guide__cta');
+  const style = styleEl?.textContent?.trim() || 'default-teaser';
 
+  if(cta && 'black-teaser' === style) {
+    const ctaText = cta.textContent?.trim();
+    cta.innerHTML = `
+        <p>${ctaText}</p>
+        <div class='arrow_icon'></div>
+    `;
+  }
+
+  block.classList.add(style);
   block.innerHTML = `
-        <div class="teaser-card">
-            ${(image) ? `<div class="teaser-image">${image.outerHTML}</div>` : ''}
-            <div class="teaser-content">
+        <div class="teaser__card">
+            ${(image) ? `<div class="teaser__image">${image.outerHTML}</div>` : ''}
+            <div class="teaser__content">
                 <div>
-                    ${(pretitle) ? `<div class="teaser-pretitle"><p>${pretitle}</p></div>` : ''}
-                    ${(title) ? `<div class="teaser-title"><h3>${title}</h3></div>` : ''}
-                    ${(description) ? `<div class="teaser-description">${description}</div>` : ''}
+                    ${(pretitle) ? `<div class="teaser__pretitle"><p>${pretitle}</p></div>` : ''}
+                    ${(title) ? `<div class="teaser__title"><h3>${title}</h3></div>` : ''}
+                    ${(description) ? `<div class="teaser__description">${description}</div>` : ''}
                 </div>
                 ${(cta) ? `<div class="teaser-actions">${cta.outerHTML}</div>` : ''}
             </div>
