@@ -260,25 +260,25 @@
       {
         "component": "container",
         "label": "CTA 1",
-        "name": "cta1",
+        "name": "primaryCTA",
         "valueType": "string",
         "collapsible": true,
         "fields": [
           {
             "component": "text-input",
-            "name": "cta1Text",
+            "name": "primaryText",
             "label": "CTA Text",
             "valueType": "string"
           },
           {
             "component": "aem-content",
             "valueType": "string",
-            "name": "cta1Link",
+            "name": "primaryLink",
             "label": "CTA Link"
           },
           {
             "component": "select",
-            "name": "cta1Target",
+            "name": "primaryTarget",
             "value": "",
             "label": "Open Link in New Page ?",
             "valueType": "string",
@@ -298,25 +298,25 @@
       {
         "component": "container",
         "label": "CTA 2",
-        "name": "cta2",
+        "name": "secondaryCTA",
         "valueType": "string",
         "collapsible": true,
         "fields": [
           {
             "component": "text-input",
-            "name": "cta2Text",
+            "name": "secondaryText",
             "label": "CTA Text",
             "valueType": "string"
           },
           {
             "component": "aem-content",
             "valueType": "string",
-            "name": "cta2Link",
+            "name": "secondaryLink",
             "label": "CTA Link"
           },
           {
             "component": "select",
-            "name": "cta2Target",
+            "name": "secondaryTarget",
             "value": "",
             "label": "Open Link in New Page ?",
             "valueType": "string",
