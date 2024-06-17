@@ -33,7 +33,7 @@ export default function decorate(block) {
     },
   };
 
-  const wrapperMainContainer = document.getElementsByClassName("visual-comparison-container")[0];
+  const wrapperMainContainer = document.getElementsByClassName("visual-comparison-blob-container")[0];
   const mainDiv = document.createElement("div");
   const videoDiv = document.createElement("div");
   videoDiv.classList.add("video-compare__video-container");
@@ -169,10 +169,6 @@ export default function decorate(block) {
       wrapperMainContainer.appendChild(outerTabList);
     }
   }
-  // const fragment = document.createDocumentFragment();
-  // fragment.appendChild(mainDiv);
-  // fragment.appendChild(videoDiv);
-  // fragment.appendChild(innerVideoDiv);
 
   generateVideoContent(videoData);
 
