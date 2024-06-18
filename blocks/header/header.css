@@ -58,14 +58,14 @@ header nav a:any-link {
 }
 
 /* hamburger */
-header nav .nav-hamburger {
+.nav-hamburger {
   grid-area: hamburger;
   height: 22px;
-  display: flex;
+  display: none;
   align-items: center;
 }
 
-header nav .nav-hamburger button {
+.nav-hamburger button {
   height: 22px;
   margin: 0;
   border: 0;
@@ -78,57 +78,45 @@ header nav .nav-hamburger button {
   white-space: initial;
 }
 
-header nav .nav-hamburger-icon,
-header nav .nav-hamburger-icon::before,
-header nav .nav-hamburger-icon::after {
+.nav-hamburger-nexa button {
+  background-color: #f2f2f2;
+}
+
+.nav-hamburger-icon,
+.nav-hamburger-icon::before,
+.nav-hamburger-icon::after {
   box-sizing: border-box;
   display: block;
   position: relative;
   width: 20px;
 }
 
-header nav .nav-hamburger-icon::before,
-header nav .nav-hamburger-icon::after {
+.nav-hamburger-icon::before,
+.nav-hamburger-icon::after {
   content: "";
   position: absolute;
   background: currentcolor;
 }
 
-header nav[aria-expanded="false"] .nav-hamburger-icon,
-header nav[aria-expanded="false"] .nav-hamburger-icon::before,
-header nav[aria-expanded="false"] .nav-hamburger-icon::after {
+.nav-hamburger-icon,
+.nav-hamburger-icon::before,
+.nav-hamburger-icon::after {
   height: 2px;
   border-radius: 2px;
   background: currentcolor;
 }
 
-header nav[aria-expanded="false"] .nav-hamburger-icon::before {
-  top: -6px;
-}
-
-header nav[aria-expanded="false"] .nav-hamburger-icon::after {
+.nav-hamburger-icon::before,
+.nav-hamburger-icon::after {
   top: 6px;
-}
-
-header nav[aria-expanded="true"] .nav-hamburger-icon {
-  height: 22px;
-}
-
-header nav[aria-expanded="true"] .nav-hamburger-icon::before,
-header nav[aria-expanded="true"] .nav-hamburger-icon::after {
-  top: 3px;
-  left: 1px;
-  transform: rotate(45deg);
-  transform-origin: 2px 1px;
   width: 24px;
   height: 2px;
   border-radius: 2px;
 }
 
-header nav[aria-expanded="true"] .nav-hamburger-icon::after {
-  top: unset;
+.nav-hamburger-icon::after {
+  top: -6px;
   bottom: 3px;
-  transform: rotate(-45deg);
 }
 
 @media (width >= 900px) {
@@ -284,22 +272,32 @@ header nav .nav-tools {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: #ffffff;
   padding: 10px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.navbar-nexa {
+  background-color: #18171a;
 }
 .navbar img {
   height: 30px;
 }
 .navbar .links {
   display: flex;
-  gap: 20px;
 }
-.navbar .links span {
+.navbar .links .link-title {
   text-decoration: none;
-  color: #1a237e;
+  color: #171d9b;
   font-weight: bold;
   cursor: pointer;
+  font-size: 14px;
+  font-family: "Anek Latin";
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.navbar-nexa .links .link-title {
+  color: #f2f2f2;
 }
 .navbar .right {
   display: flex;
@@ -321,7 +319,7 @@ body {
 }
 
 .menu {
-  /* display: none; */
+  display: none;
   width: 100%;
   max-width: 100%;
   background-color: white;
@@ -339,6 +337,10 @@ body {
   border-bottom: 1px solid #ddd;
 }
 
+.menu-header-nexa {
+  background-color: #18171a;
+}
+
 .menu-header .back-arrow,
 .menu-header .close-icon {
   cursor: pointer;
@@ -346,8 +348,14 @@ body {
 }
 
 .menu-header .menu-title {
-  font-size: 20px;
-  color: #1a237e;
+  font-size: 24px;
+  color: #171d9b;
+}
+
+.menu-header-nexa .back-arrow,
+.menu-header-nexa .close-icon,
+.menu-header-nexa .menu-title {
+  color: #f2f2f2;
 }
 
 .menu-list {
@@ -390,22 +398,28 @@ body {
 .menu-list li.contact-us .contact-icons .icon {
   font-size: 24px;
 }
+
+.menu .menu-list li .menu-title {
+  font-size: 14px;
+}
+
 .menu-btn {
   display: none;
 }
 .car {
   display: none;
 }
-.accordion:after {
+.menu .accordion:after {
   content: "\2BC6";
   color: #777;
   font-weight: bold;
   position: absolute;
-  right: 5px;
+  right: 20px;
 }
-.active:after {
+.menu .active:after {
   content: "\2BC5";
 }
+
 .panel {
   padding: 0 18px;
   background-color: white;
@@ -413,10 +427,44 @@ body {
   overflow: hidden;
   transition: max-height 0.2s ease-out;
 }
-@media (max-width: 768px) {
+.desktop-panel {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 10; 
+  transition: opacity 0.3s ease; 
+  opacity: 0;
+  border-radius: 5px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  max-height: max-content;
+}
+
+.navbar .links .link-title:hover + .desktop-panel {
+  display: block;
+  opacity: 1; 
+}
+
+.navbar-nexa .links .link-title:hover + .desktop-panel {
+  display: block;
+  opacity: 1; 
+}
+
+@media (max-width: 900px) {
   .navbar .links,
   .navbar .right {
     display: none;
+  }
+  .car {
+    display: block;
+  }
+
+  .nav-hamburger {
+    display: flex;
   }
   .menu-btn,
   .car {
@@ -450,7 +498,7 @@ body {
   display: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 900px) {
   .nav-link.buy + .panel,
   .nav-link.owners + .panel {
     display: flex;

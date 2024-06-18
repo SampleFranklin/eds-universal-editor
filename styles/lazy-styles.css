@@ -281,7 +281,7 @@
 
 @media (min-width: 600px) {
   .container {
-    width: 600px;
+    width: 100%;
     margin-right: auto;
     margin-left: auto;
     padding-right: 32px;

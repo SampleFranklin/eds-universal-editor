@@ -1,5 +1,5 @@
-import { getMetadata } from '../../scripts/aem.js';
-import { loadFragment } from '../fragment/fragment.js';
+import { getMetadata } from "../../scripts/aem.js";
+import { loadFragment } from "../fragment/fragment.js";
 
 /**
  * loads and decorates the footer
@@ -7,14 +7,14 @@ import { loadFragment } from '../fragment/fragment.js';
  */
 export default async function decorate(block) {
   // load footer as fragment
-  const footerMeta = getMetadata('footer');
+  const footerMeta = getMetadata("footer");
   const footerPath = footerMeta
     ? new URL(footerMeta, window.location).pathname
-    : '/common/footer';
+    : "/common/footer";
   const fragment = await loadFragment(footerPath);
   // decorate footer DOM
-  block.textContent = '';
-  const footer = document.createElement('div');
+  block.textContent = "";
+  const footer = document.createElement("div");
   // Create footer element with class "footer"
 
   const topSection = fragment.firstElementChild;
@@ -22,26 +22,26 @@ export default async function decorate(block) {
 
   // Select all columns
   // const columns = footer.querySelectorAll(".link-grid-column");
-  const linkGridSection = footer.querySelector('.link-grid-wrapper');
+  const linkGridSection = footer.querySelector(".link-grid-wrapper");
   const contactUsSection = footer.querySelector(
-    '.footer-center-section .default-content-wrapper',
+    ".footer-center-section .default-content-wrapper"
   );
   const socialLinks = footer.querySelector(
-    '.footer-center-section .contact-wrapper',
+    ".footer-center-section .contact-wrapper"
   );
 
-  const bottomSection = footer.querySelector('.footer-bottom-section');
+  const bottomSection = footer.querySelector(".footer-bottom-section");
   const bottomFirstSection = bottomSection.querySelectorAll(
-    '.columns-wrapper > div > div > div',
+    ".columns-wrapper > div > div > div"
   );
   const bottomSecondSection = bottomSection.querySelector(
-    '.default-content-wrapper',
+    ".default-content-wrapper"
   );
 
   const bottomSectionHtmlText = [];
   bottomFirstSection.forEach((bottomElement) => {
-    const pElement = bottomElement.querySelectorAll('p');
-    let pElementString = '';
+    const pElement = bottomElement.querySelectorAll("p");
+    let pElementString = "";
     pElement.forEach((pStr) => {
       pElementString += `<p>${pStr.innerText}</p>`;
     });
@@ -49,17 +49,17 @@ export default async function decorate(block) {
   });
 
   let bottomSecondSectionHtml = '<div class="row">';
-  bottomSecondSection.querySelectorAll('p').forEach((bottomElement) => {
-    const anchor = bottomElement.querySelector('a');
+  bottomSecondSection.querySelectorAll("p").forEach((bottomElement) => {
+    const anchor = bottomElement.querySelector("a");
     if (anchor) {
       bottomSecondSectionHtml += ` <li><a href=${anchor.href}>Terms of use</a></li>`;
     } else {
       bottomSecondSectionHtml += `<div class="col-md-4 footer__copyright-left"><p>${bottomElement.textContent}</p></div><div class="col-md-8 footer__copyright-right"><ul>`;
     }
   });
-  bottomSecondSectionHtml += '</ul><div>';
+  bottomSecondSectionHtml += "</ul><div>";
 
-  let topSectionHtml = '';
+  let topSectionHtml = "";
   if (topSection?.innerHTML) {
     topSectionHtml = `
       <div class="row">
@@ -74,11 +74,11 @@ export default async function decorate(block) {
       <div class="container">
       ${topSectionHtml}
       <div class="row">
-      <div class="col-md-10 footer__columns">
+      <div class="col-md-9 footer__columns">
       ${linkGridSection.innerHTML}
       
       </div>
-      <div class="col-md-2 footer__columns footer__columns-contact">${contactUsSection.outerHTML}${socialLinks.innerHTML}</div>
+      <div class="col-md-3 footer__columns footer__columns-contact">${contactUsSection.outerHTML}${socialLinks.innerHTML}</div>
       <div class="col-md-12">
       <div class="footer__separator"></div>
       </div>
