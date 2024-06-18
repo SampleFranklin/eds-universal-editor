@@ -436,7 +436,7 @@ body {
 .desktop-panel {
   display: none;
   position: absolute;
-  top: 60px;
+  top: var(--nav-height);
   right: 0;
   width: 100%;
   background-color: white;
