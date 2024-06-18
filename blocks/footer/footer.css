@@ -5,14 +5,17 @@ footer {
   padding-left: 0px;
   padding-right: 0px;
 }
-.footer .default-content-wrapper {
+footer .link-container-section {
+  display: block;
+}
+footer .default-content-wrapper {
   display: none;
 }
-.footer .link-grid-column {
+footer .link-grid-column {
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
-.footer .link-grid-column h3,
-.footer #contact-us {
+footer .link-grid-column h3,
+footer #contact-us {
   color: var(--tertiary-white);
   margin: 0;
   padding: 16px 0;
@@ -20,10 +23,10 @@ footer {
 .accordian-item {
 }
 
-.footer .link-grid-column h3 {
+footer .link-grid-column h3 {
   position: relative;
 }
-.footer .link-grid-column h3::after {
+footer .link-grid-column h3::after {
   content: "";
   position: absolute;
   right: 0;
@@ -133,6 +136,9 @@ ul.content.links-container {
   footer {
     padding-top: 64px;
     padding-bottom: 64px;
+  }
+  footer .link-container-section {
+    display: flex;
   }
   .footer .link-grid-column h3,
   .footer #contact-us {
