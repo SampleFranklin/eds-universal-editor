@@ -1,1 +1,163 @@
 @import '../teaser/teaser.css';
+
+.banner-container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.banner-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.banner-content {
+    position: absolute;
+    top: 110px;
+    left: 64px;
+    text-align: left;
+}
+
+.banner-content h2 {
+    margin: 0;
+    margin-bottom: 48px;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 72px;
+    max-width: 640px;
+    letter-spacing: 1.28px;
+}
+
+.banner-content p strong {
+    margin: 0;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px;
+}
+
+.banner-content p {
+    margin-top: 12px;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 24px;
+    margin-bottom: 0;
+}
+
+.banner-content .action-btn {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 32px;
+}
+
+.banner-content .action-btn::after {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 41px;
+    margin-left: -1px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("./image/icons/right.svg");
+
+}
+
+.banner-content .action-btn::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 41px;
+    margin-right: -2px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("./image/icons/left.svg");
+
+}
+
+.banner-content .action-btn a {
+    display: flex;
+    padding: 8px 18px 8px 20px;
+    background-color: #ffffff;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    border: none;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.banner-content .action-btn a::after {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 8px;
+    background-image: url('./image/icons/north_east.png');
+}
+
+.banner-content .action-btn .left-svg,
+.banner-content .action-btn .right-svg {
+    display: block;
+}
+
+@media (max-width: 600px) {
+    .banner-content {
+        top: 48px;
+        left: 20px;
+    }
+
+    .banner-content h2 {
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 40px;
+        letter-spacing: 0.64px;
+        margin: 0;
+        max-width: 300px;
+    }
+
+    .banner-content h4 {
+        margin-top: 72px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+    }
+
+    .banner-content p {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+    }
+
+    .banner-content .action-btn {
+        margin-top: 24px;
+    }
+
+    .banner-content .action-btn button {
+        padding: 8px 12px;
+    }
+
+    .banner-content .action-btn button .btn-title {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+    }
+}
+
+.banner-container .teaser-wrapper {
+    position: absolute;
+    right: 65px;
+    bottom: 50px;
+}
+
+.banner-container .teaser-wrapper .teaser__card {
+    /* aspect-ratio: 320/204; */
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 65% 90%, 60% 100%, 0 100%);
+}
