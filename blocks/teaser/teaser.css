@@ -6,6 +6,16 @@
     --teaser-background-end: rgba(235, 235, 235, 0.5);
 }
 
+main .teaser-container {
+    padding: 0;
+    margin: 0;
+    margin-top: 64px;
+}
+
+main .teaser-container > div {
+    max-width: inherit;
+}
+
 .dark-teaser {
     &.finance-card-teaser {
         .teaser__card {
@@ -321,17 +331,20 @@ main .section.immersive-teaser-container {
     background-repeat: no-repeat;
     background-size: contain;
 
-    height: 30px;
-    width: 30px;
+    height: 80px;
+    width: 80px;
+}
 
-    @media(min-width:768px) {
-        width: 80px;
-        height: 80px;
+@media screen and (max-width: 768px) {
+    .light-teaser.buyers-guide-teaser .teaser__actions a::before {
+        width: 30px;
+        height: 30px;
     }
 }
 
 .dark-teaser.buyers-guide-teaser .teaser__card {
     /* aspect-ratio:360/240; */
+    position: relative;
     background-color: #1C1D1F;
     padding: 20px 20px 22px;
 
@@ -346,6 +359,7 @@ main .section.immersive-teaser-container {
 }
 
 .dark-teaser.buyers-guide-teaser .teaser__image>picture>img {
+    object-fit: cover;
     width: 180px;
     height:100px;
 

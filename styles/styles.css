@@ -223,7 +223,6 @@ main img {
 */
 
 /* sections */
-/*
 main .section {
   padding: 64px 16px;
 }
@@ -240,9 +239,7 @@ main .section {
     margin: auto;
   }
 }
-*/
 /* section metadata */
-/*
 main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
@@ -251,4 +248,3 @@ main .section.highlight {
 main .customstyledsection {
   background-color: blue;
 }
-*/
