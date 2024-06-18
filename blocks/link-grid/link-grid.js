@@ -22,8 +22,8 @@ export default function decorate(block) {
         return '';
       })
       .join('');
-    const colHeading = column.querySelector('h3').textContent;
-    const headingHTML = column.querySelector('h3') ? `<h3 class="accordian-item">${colHeading}</h3>` : '<div class="no-heading-column"></div>';
+    const colHeading = column.querySelector('h3')?.textContent;
+    const headingHTML = colHeading ? `<h3 class="accordian-item">${colHeading}</h3>` : '<div class="no-heading-column"></div>';
 
     return `
             <div class="link-grid-column">
