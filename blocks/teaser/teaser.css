@@ -391,7 +391,7 @@
 .dark-teaser.buyers-guide-teaser .teaser__actions {
     @media(max-width:768px) {
         position: absolute;
-        top: 20%;
+        top: 10%;
         right: 20px;
         aspect-ratio: 64/64;
     }
