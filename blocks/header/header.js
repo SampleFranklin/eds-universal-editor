@@ -92,7 +92,7 @@ export default async function decorate(block) {
   list.forEach((el, i) => {
     const linkEl = document.querySelector(".links");
     const menuList = document.querySelector(".menu-list");
-    linkEl.innerHTML += `<div class="link-title">${el.heading}</div> ${el.content || el.teaser ? `<div class="desktop-panel ${el.heading.toLowerCase()}">${el.content || ''}${el.teaser || ''}</div>` :''}`;
+    linkEl.innerHTML += `<div class="link-title">${el.heading}</div> ${el.content || el.teaser ? `<div class="desktop-panel panel ${el.heading.toLowerCase()}">${el.content || ''}${el.teaser || ''}</div>` :''}`;
     menuList.innerHTML += `<li id="menu-item-${i}" class="${el.content ?'accordion nav-link':''} ${el.heading.toLowerCase()}" ><span class="icon">${el.icon}</span> <span class="menu-title">${el.heading}</span></li>
     ${el.content || el.teaser ? `<div class="panel">${el.content || ''}${el.teaser || ''}</div>` :''}
     `;
