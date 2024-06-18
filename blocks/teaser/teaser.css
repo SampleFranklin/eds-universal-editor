@@ -177,6 +177,7 @@
         gap: 10.24px;
         color:var(--primary-main-color);
         border-radius:inherit;
+        background: inherit;
 
       }
       .secondary__btn:hover , .secondary__btn:focus{

@@ -1,10 +1,5 @@
 @import '../teaser/teaser.css';
 
-.test-icon{
-    background: url("/icons/external_arrow.svg");
-    width:17px;
-    height:17px;
-}
 .finance-card-list {
   background: var(--Primary-Main, #18171a);
   padding-top: 48px;
@@ -1193,46 +1188,3 @@ h2 {
 .text-color-tertiary {
   color: var(--Tertiary-White);
 }
-
-/* Button styles */
-.btn {
-  display: flex;
-  height: 32px;
-  padding: 8px 16px;
-  justify-content: center;
-  align-items: center;
-  border: none;
-}
-
-.btn--primary-solid {
-  background: var(--Primary-Main);
-  color: var(--Tertiary-White);
-  text-align: center;
-  font-family: "Fira Sans", sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px;
-}
-
-.btn--link {
-  font-family: "Fira Sans";
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 13px;
-  text-decoration: none;
-  display: flex;
-  align-items: flex-start;
-  gap: 10.24px;
-  border-bottom: 0.64px solid var(--Primary-Main);
-}
-
-.btn--link-primary {
-  color: var(--Primary-Main);
-}
-
-.btn--link img {
-  height: 16px;
-}
-
