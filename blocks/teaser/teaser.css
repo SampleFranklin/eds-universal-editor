@@ -194,6 +194,21 @@
     }
 }
 
+main .section.immersive-teaser-container {
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #18171A;
+    height: 1000px;
+    position: relative;
+
+    @media(min-width:768px) {
+        height: auto;
+    }
+}
+
+/* .light-teaser.buyers-guide-teaser {
+    max-width: 285px;
+} */
 .light-teaser.buyers-guide-teaser .teaser__card {
     /* aspect-ratio: 320/204; */
     background: linear-gradient(238deg, rgba(56, 79, 110, 0.60) -11.12%, rgba(91, 91, 91, 0.60) 111.5%);
@@ -259,7 +274,7 @@
     right: 16px;
     width: 18%;
 
-    @media(min-width:768px) {
+    @media(max-width:768px) {
         width: 25%;
         right: 32px;
     }
@@ -280,6 +295,7 @@
     gap: 4px;
     text-decoration: underline;
     text-underline-offset: 1px;
+    padding: 0;
 
     font-family: 'Fira Sans';
     font-size: 12px;
@@ -289,6 +305,7 @@
     order: 2;
     color: #FFF;
     padding-bottom: 1px;
+    background-color: transparent;
 
     @media(min-width:768px) {
         font-size: 16px;
@@ -300,15 +317,16 @@
 
 .light-teaser.buyers-guide-teaser .teaser__actions a::before {
     content: '';
-    background-image: url('../../icons/slant_arrow.svg');
+    background-image: url('../../icons/white-slant-arrow.svg');
     background-repeat: no-repeat;
-    background-size: 100%;
-    width: 80px;
-    height: 80px;
+    background-size: contain;
+
+    height: 30px;
+    width: 30px;
 
     @media(min-width:768px) {
-        height: 30px;
-        width: 30px;
+        width: 80px;
+        height: 80px;
     }
 }
 
@@ -407,6 +425,6 @@
     display: inline-block;
     background-image: url('../../icons/arrow_with_background.svg');
     background-size: 100%;
-    width:50px;
-    height:50px;
+    width: 50px;
+    height: 50px;
 }

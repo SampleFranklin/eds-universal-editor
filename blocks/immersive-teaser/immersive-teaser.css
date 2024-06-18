@@ -1,7 +1,17 @@
 @import '../teaser/teaser.css';
 
+main .immersive-teaser-container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+main .immersive-teaser-container > div {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: inherit;
+}
 .banner-container {
-    position: relative;
     text-align: center;
     color: white;
 }
@@ -46,6 +56,7 @@
     font-weight: 300;
     line-height: 24px;
     margin-bottom: 0;
+    max-width: 280px;
 }
 
 .banner-content .action-btn {
@@ -62,7 +73,7 @@
     margin-left: -1px;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url("./image/icons/right.svg");
+    background-image: url("../../icons/right.svg");
 
 }
 
@@ -70,11 +81,11 @@
     content: '';
     display: inline-block;
     width: 8px;
-    height: 41px;
-    margin-right: -2px;
+    height: 40px;
+    margin-right: -3px;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url("./image/icons/left.svg");
+    background-image: url("../../icons/left.svg");
 
 }
 
@@ -87,9 +98,11 @@
     align-self: stretch;
     border: none;
     font-size: 18px;
+    color: #18171A;
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
+    border-radius: unset;
 }
 
 .banner-content .action-btn a::after {
@@ -100,12 +113,16 @@
     background-size: contain;
     background-repeat: no-repeat;
     margin-left: 8px;
-    background-image: url('./image/icons/north_east.png');
+    background-image: url('../../icons/north_east.svg');
 }
 
 .banner-content .action-btn .left-svg,
 .banner-content .action-btn .right-svg {
     display: block;
+}
+
+.banner-container img {
+    width: 100%;
 }
 
 @media (max-width: 600px) {
@@ -140,14 +157,28 @@
         margin-top: 24px;
     }
 
-    .banner-content .action-btn button {
-        padding: 8px 12px;
-    }
-
-    .banner-content .action-btn button .btn-title {
+    .banner-content .action-btn a.btn-title {
         font-size: 16px;
         font-weight: 400;
         line-height: 24px;
+        padding: 8px 12px;
+        margin: 0;
+    }
+
+    .banner-content .action-btn::before {
+        margin-right: -3px;
+        height: 41px;
+    }
+
+    .banner-container img {
+        top: 35%;
+        position: absolute;
+        left: 0;
+    }
+
+    .banner-container .teaser-wrapper.buyers-guide-teaser {
+        right: 0;
+        bottom: 35px;
     }
 }
 
