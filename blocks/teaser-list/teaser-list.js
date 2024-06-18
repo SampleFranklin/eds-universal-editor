@@ -16,7 +16,7 @@ export default function decorate(block) {
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-sm-8 col-sm-10">
-                <h2 class="text-color-tertiary">
+                <h2 class="text-color">
                     ${commonTitle}
                 </h2>
             </div>
