@@ -321,25 +321,27 @@
         height: 240px;
         padding: 30px 64px;
         display: flex;
-
+        gap:40px;
+        align-items:center;
     }
 }
 
-.dark-teaser.buyers-guide-teaser .teaser__image>picture {
-    aspect-ratio: 180/100;
-    object-fit: cover;
+.dark-teaser.buyers-guide-teaser .teaser__image>picture>img {
+    width: 180px;
+    height:100px;
 
     @media(min-width:768px) {
-        aspect-ratio: 320/179;
+       width:320px;
+       height:178px;
     }
 }
 
 .dark-teaser.buyers-guide-teaser .teaser__content {
-    @media(min-width:400px) {
+    @media(min-width:768px) {
+        width:100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-left: 40px;
     }
 }
 
@@ -348,6 +350,7 @@
     font-feature-settings: 'clig' off, 'liga' off;
     font-style: normal;
     color: #FFF;
+    width:75%;
 }
 
 .dark-teaser.buyers-guide-teaser .teaser__title {
@@ -386,7 +389,7 @@
 .dark-teaser.buyers-guide-teaser .teaser__actions {
     @media(max-width:768px) {
         position: absolute;
-        top: 39px;
+        top: 20%;
         right: 20px;
         aspect-ratio: 64/64;
     }
@@ -404,8 +407,4 @@
     background-size: 100%;
     width:50px;
     height:50px;
-    @media(min-width:768px){
-        height:80px;
-        width:80px;
-    }
 }
