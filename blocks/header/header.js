@@ -1,5 +1,6 @@
 import { getMetadata } from "../../scripts/aem.js";
 import { loadFragment } from "../fragment/fragment.js";
+// import svg from "../../icons/chevron_left.svg";
 
 const list = [];
 const currentURL = window.location.href;
@@ -69,9 +70,9 @@ export default async function decorate(block) {
   const mobileHeader = `
     <div id="menu" class="menu ${isNexa && "menu-nexa"}">
       <div class="menu-header ${isNexa && "menu-header-nexa"}">
-        <div class="back-arrow">&#x2039;</div>
+        <div class="back-arrow"><img src="../../icons/chevron_left.svg" /></div>
         <span class="menu-title">Menu</span>
-        <span class="close-icon">&#x2715;</span>
+        <span class="close-icon"><img src="../../icons/close.svg" /></span>
       </div>
       <ul class="menu-list"></ul>
     </div>
@@ -92,7 +93,8 @@ export default async function decorate(block) {
   list.forEach((el, i) => {
     const linkEl = document.querySelector(".links");
     const menuList = document.querySelector(".menu-list");
-    linkEl.innerHTML += `<div class="link-title">${el.heading}</div> ${el.content || el.teaser ? `<div class="desktop-panel panel ${el.heading.toLowerCase()}">${el.content || ''}${el.teaser || ''}</div>` :''}`;
+    linkEl.innerHTML += `<div class="link-title"><span>${el.heading}</span></div> ${el.content || el.teaser ? `<div class="desktop-panel panel ${el.heading.toLowerCase()}">${el.content || ''}${el.teaser || ''}</div>` :''}`;
+    if (i === 0) return;
     menuList.innerHTML += `<li id="menu-item-${i}" class="${el.content ?'accordion nav-link':''} ${el.heading.toLowerCase()}" ><span class="icon">${el.icon}</span> <span class="menu-title">${el.heading}</span></li>
     ${el.content || el.teaser ? `<div class="panel">${el.content || ''}${el.teaser || ''}</div>` :''}
     `;

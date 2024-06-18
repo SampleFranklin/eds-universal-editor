@@ -273,7 +273,8 @@ header nav .nav-tools {
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
-  padding: 10px 20px;
+  padding: 0px 20px;
+  height: var(--nav-height);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .navbar-nexa {
@@ -284,6 +285,9 @@ header nav .nav-tools {
 }
 .navbar .links {
   display: flex;
+  height: -webkit-fill-available;
+  align-items: center;
+  gap: 10px;
 }
 .navbar .links .link-title {
   text-decoration: none;
@@ -292,8 +296,10 @@ header nav .nav-tools {
   cursor: pointer;
   font-size: 14px;
   font-family: "Anek Latin";
-  padding: 10px;
   border-radius: 5px;
+  height: -webkit-fill-available;
+  display: flex;
+  align-items: center;
 }
 
 .navbar-nexa .links .link-title {
@@ -410,14 +416,14 @@ body {
   display: none;
 }
 .menu .accordion:after {
-  content: "\2BC6";
+  content: url("../../icons/expand_more.svg");
   color: #777;
   font-weight: bold;
   position: absolute;
   right: 20px;
 }
 .menu .active:after {
-  content: "\2BC5";
+  content: url("../../icons/expand_less.svg");
 }
 
 .panel {
@@ -436,8 +442,8 @@ body {
   background-color: white;
   border: 1px solid #ccc;
   padding: 10px;
-  z-index: 10; 
-  transition: opacity 0.3s ease; 
+  z-index: 10;
+  transition: opacity 0.3s ease;
   opacity: 0;
   border-radius: 5px;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
@@ -446,12 +452,13 @@ body {
 
 .navbar .links .link-title:hover + .desktop-panel {
   display: block;
-  opacity: 1; 
+  opacity: 1;
 }
 
-.navbar-nexa .links .link-title:hover + .desktop-panel {
+.navbar-nexa .links .link-title:hover + .desktop-panel,
+.desktop-panel:hover {
   display: block;
-  opacity: 1; 
+  opacity: 1;
 }
 
 @media (max-width: 900px) {
@@ -553,7 +560,7 @@ body {
   }
 
   .panel .teaser__image img {
-    clip-path: polygon(0 0, 100% 0, 100% 80%, 85% 100%, 0 100%);;
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 85% 100%, 0 100%);
   }
 
   .panel .teaser__content {
