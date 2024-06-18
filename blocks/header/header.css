@@ -330,7 +330,7 @@ body {
   max-width: 100%;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: fixed;
+  position: absolute;
   top: 0;
   z-index: 999;
 }
@@ -505,7 +505,7 @@ body {
   display: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 900px) {
   .buy + .panel,
   .owners + .panel {
     display: flex;
