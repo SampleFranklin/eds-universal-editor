@@ -225,7 +225,8 @@
     }
 }
 
-.light-teaser.buyers-guide-teaser .teaser__title {
+.light-teaser.buyers-guide-teaser .teaser__title h3{
+    font-family: 'Fira Sans';
     margin-top: 48px;
     font-size: 16px;
     font-weight: 500;
@@ -353,7 +354,8 @@
     width:75%;
 }
 
-.dark-teaser.buyers-guide-teaser .teaser__title {
+.dark-teaser.buyers-guide-teaser .teaser__title h3{
+    font-family:'Anek Latin';
     font-size: 24px;
     font-weight: 800;
     line-height: 44px;
