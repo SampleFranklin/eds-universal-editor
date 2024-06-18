@@ -148,6 +148,7 @@ main pre {
 }
 
 /* links */
+/*
 a:any-link {
   color: var(--link-color);
   text-decoration: none;
@@ -157,8 +158,10 @@ a:hover {
   text-decoration: underline;
   color: var(--link-hover-color);
 }
+*/
 
 /* buttons */
+/*
 a.button:any-link,
 button {
   font-family: var(--body-font-family);
@@ -217,6 +220,7 @@ main img {
   height: 100%;
   width: 100%;
 }
+*/
 
 /* sections */
 main .section {
