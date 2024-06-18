@@ -10,8 +10,18 @@
  * governing permissions and limitations under the License.
  */
 
- :root {
-  /* colors */
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  /* Nexa colors */
+  --primary-main: #18171a;
+  --tertiary-white: #fff;
+  --tertiary-light-grey: #f2f2f2;
+  --tertiary-medium-grey: #b2b2b2;
+  --tertiary-deep-Grey: #767879;
+  --tertiary-black: #000;
+
+  /* AEM colors */
   --link-color: #035fe6;
   --link-hover-color: #136ff6;
   --background-color: white;
@@ -149,16 +159,19 @@ main pre {
 
 /* links */
 a:any-link {
-  color: var(--link-color);
+  /* color: var(--link-color); */
   text-decoration: none;
 }
 
+/*
 a:hover {
   text-decoration: underline;
   color: var(--link-hover-color);
 }
+*/
 
 /* buttons */
+/*
 a.button:any-link,
 button {
   font-family: var(--body-font-family);
@@ -217,8 +230,9 @@ main img {
   height: 100%;
   width: 100%;
 }
+*/
 
-/* sections */
+/* sections
 main .section {
   padding: 64px 16px;
 }
@@ -234,13 +248,10 @@ main .section {
     max-width: 1200px;
     margin: auto;
   }
-}
-/* section metadata */
+} */
+/* section metadata
 main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
 }
-
-main .customstyledsection {
-  background-color: blue;
-}
+*/

@@ -765,7 +765,7 @@
     "id": "nav-cars",
     "fields": [
       {
-        "component": "text-input",
+        "component": "richtext",
         "valueType": "string",
         "name": "cars",
         "label": "Cars"
