@@ -148,6 +148,7 @@ main pre {
 }
 
 /* links */
+/*
 a:any-link {
   color: var(--link-color);
   text-decoration: none;
@@ -157,8 +158,10 @@ a:hover {
   text-decoration: underline;
   color: var(--link-hover-color);
 }
+*/
 
 /* buttons */
+/*
 a.button:any-link,
 button {
   font-family: var(--body-font-family);
@@ -217,8 +220,10 @@ main img {
   height: 100%;
   width: 100%;
 }
+*/
 
 /* sections */
+/*
 main .section {
   padding: 64px 16px;
 }
@@ -235,7 +240,9 @@ main .section {
     margin: auto;
   }
 }
+*/
 /* section metadata */
+/*
 main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
@@ -244,3 +251,4 @@ main .section.highlight {
 main .customstyledsection {
   background-color: blue;
 }
+*/
