@@ -157,32 +157,32 @@ main .teaser-container > div {
                     border: none;
                 }
 
-                .primary__btn {
-                    background: var(--primary-main-color);
-                    color: var(--secondary-main-color);
-                    text-align: center;
-                    align-items: center;
-                    font-family: "Fira Sans", sans-serif;
-                    font-size: 14px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 20px;
-                    border-radius: inherit;
-                    margin: inherit;
-                }
-
-                .secondary__btn {
-                    font-family: "Fira Sans";
-                    font-size: 12px;
-                    font-style: normal;
-                    align-items: center;
-                    font-weight: 400;
-                    line-height: 13px;
-                    text-decoration: none;
-                    display: flex;
-                    gap: 10.24px;
-                    color: var(--primary-main-color);
-                    border-radius: inherit;
+      .primary__btn {
+        background: var(--primary-main-color);
+        color: var(--secondary-main-color);
+        text-align: center;
+        align-items: center;
+        font-family: "Fira Sans", sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        border-radius:inherit;
+        margin: inherit;
+      }
+      .secondary__btn {
+        font-family: "Fira Sans";
+        font-size: 12px;
+        font-style: normal;
+        align-items: center;
+        font-weight: 400;
+        line-height: 13px;
+        text-decoration: none;
+        display: flex;
+        gap: 10.24px;
+        color:var(--primary-main-color);
+        border-radius:inherit;
+        background: inherit;
 
                 }
 

@@ -1,15 +1,22 @@
 @import '../teaser/teaser.css';
 
-.test-icon{
-    background: url("/icons/external_arrow.svg");
-    width:17px;
-    height:17px;
-}
 .finance-card-list {
-  background: var(--Primary-Main, #18171a);
+  &.dark-teaser-list{
+    background: var(--primary-main-color);
+    .text-color{
+      color: var(--secondary-main-color);
+    }
+  }
+  &.light-teaser-list{
+      background: var(--secondary-main-color);
+      .text-color{
+        color: var(--primary-main-color);
+      }
+  }
   padding-top: 48px;
   padding-bottom: 48px;
 }
+
 .teaser__cards {
   display: grid;
   grid-auto-columns: 336px 336px;
@@ -25,13 +32,10 @@
   }
 }
 
-/* My Edits */
-
 .teaser__cards {
     overflow: hidden;
 }
 
-/* WebKit specific CSS */
 .teaser__cards::-webkit-scrollbar {
     display: none;
 }
@@ -1183,56 +1187,5 @@ h2 {
   font-weight: 600;
   line-height: 40px;
   letter-spacing: 0.64px;
-}
-
-/* Text color classes */
-.text-color-primary {
-  color: var(--Primary-Main);
-}
-
-.text-color-tertiary {
-  color: var(--Tertiary-White);
-}
-
-/* Button styles */
-.btn {
-  display: flex;
-  height: 32px;
-  padding: 8px 16px;
-  justify-content: center;
-  align-items: center;
-  border: none;
-}
-
-.btn--primary-solid {
-  background: var(--Primary-Main);
-  color: var(--Tertiary-White);
-  text-align: center;
-  font-family: "Fira Sans", sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px;
-}
-
-.btn--link {
-  font-family: "Fira Sans";
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 13px;
-  text-decoration: none;
-  display: flex;
-  align-items: flex-start;
-  gap: 10.24px;
-  border-bottom: 0.64px solid var(--Primary-Main);
-}
-
-.btn--link-primary {
-  color: var(--Primary-Main);
-}
-
-.btn--link img {
-  height: 16px;
 }
 
