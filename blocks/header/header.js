@@ -1,178 +1,127 @@
-import { getMetadata } from '../../scripts/aem.js';
-import { loadFragment } from '../fragment/fragment.js';
+import { getMetadata } from "../../scripts/aem.js";
+import { loadFragment } from "../fragment/fragment.js";
+// import svg from "../../icons/chevron_left.svg";
 
-// media query match that indicates mobile/tablet width
-const isDesktop = window.matchMedia('(min-width: 900px)');
+const list = [];
+const currentURL = window.location.href;
+const isNexa = currentURL.includes("nexa");
 
-function closeOnEscape(e) {
-  if (e.code === 'Escape') {
-    const nav = document.getElementById('nav');
-    const navSections = nav.querySelector('.nav-sections');
-    const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
-    if (navSectionExpanded && isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleAllNavSections(navSections);
-      navSectionExpanded.focus();
-    } else if (!isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleMenu(nav, navSections);
-      nav.querySelector('button').focus();
-    }
-  }
-}
-
-function openOnKeydown(e) {
-  const focused = document.activeElement;
-  const isNavDrop = focused.className === 'nav-drop';
-  if (isNavDrop && (e.code === 'Enter' || e.code === 'Space')) {
-    const dropExpanded = focused.getAttribute('aria-expanded') === 'true';
-    // eslint-disable-next-line no-use-before-define
-    toggleAllNavSections(focused.closest('.nav-sections'));
-    focused.setAttribute('aria-expanded', dropExpanded ? 'false' : 'true');
-  }
-}
-
-function focusNavSection() {
-  document.activeElement.addEventListener('keydown', openOnKeydown);
-}
-
-/**
- * Toggles all nav sections
- * @param {Element} sections The container element
- * @param {Boolean} expanded Whether the element should be expanded or collapsed
- */
-function toggleAllNavSections(sections, expanded = false) {
-  sections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach((section) => {
-    section.setAttribute('aria-expanded', expanded);
-  });
-}
-
-/**
- * Toggles the entire nav
- * @param {Element} nav The container element
- * @param {Element} navSections The nav sections within the container element
- * @param {*} forceExpanded Optional param to force nav expand behavior when not null
- */
-function toggleMenu(nav, navSections, forceExpanded = null) {
-  const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
-  const button = nav.querySelector('.nav-hamburger button');
-  document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
-  nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-  toggleAllNavSections(navSections, expanded || isDesktop.matches ? 'false' : 'true');
-  button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
-  // enable nav dropdown keyboard accessibility
-  const navDrops = navSections.querySelectorAll('.nav-drop');
-  if (isDesktop.matches) {
-    navDrops.forEach((drop) => {
-      if (!drop.hasAttribute('tabindex')) {
-        //drop.setAttribute('role', 'button');
-        drop.setAttribute('tabindex', 0);
-        drop.addEventListener('focus', focusNavSection);
-      }
-    });
+function toggleMenu() {
+  const x = document.getElementById("menu");
+  if (x.style.display === "block") {
+    x.style.display = "none";
   } else {
-    navDrops.forEach((drop) => {
-      drop.removeAttribute('role');
-      drop.removeAttribute('tabindex');
-      drop.removeEventListener('focus', focusNavSection);
-    });
-  }
-  // enable menu collapse on escape keypress
-  if (!expanded || isDesktop.matches) {
-    // collapse menu on escape press
-    window.addEventListener('keydown', closeOnEscape);
-  } else {
-    window.removeEventListener('keydown', closeOnEscape);
+    x.style.display = "block";
   }
 }
 
-/**
- * loads and decorates the header, mainly the nav
- * @param {Element} block The header block element
- */
+function toggleCarMenu() {
+  const x = document.getElementById("carPanel");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+
 export default async function decorate(block) {
   // load nav as fragment
-  const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/common/nav';
+  const navMeta = getMetadata("nav");
+  const navPath = navMeta
+    ? new URL(navMeta, window.location).pathname
+    : "/common/nav";
   const fragment = await loadFragment(navPath);
 
   // decorate nav DOM
-  block.textContent = '';
-  const nav = document.createElement('nav');
-  nav.id = 'nav';
+  block.textContent = "";
+  const nav = document.createElement("nav");
+  nav.id = "nav";
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-  const classes = ['brand', 'sections', 'tools'];
-  classes.forEach((c, i) => {
-    const section = nav.children[i];
-    if (section) section.classList.add(`nav-${c}`);
-  });
+  Array.from(nav.querySelectorAll(".nav-link")).forEach((el) => {
+    const heading = el.querySelector("h2");
+    const icon = el.querySelector(".icon");
+    const iconClicked = el.querySelector(".iconClicked");
+    const content = el.querySelector(".link-grid-wrapper");
+    const teaser = el.querySelector(".teaser-wrapper");
 
-  var section = nav.children
-  for(var i=0; i<section.length; i++){
-    if(section[i].classList.contains('nav-link'))
-      {section[i].classList.add('nav-sections')}
-    else if (section[i].classList.contains('profile-section'))
-      {section[i].classList.add('nav-tools')}
-    else
-      {section[i].classList.add('nav-brand')}
-  }
-  // const navBrand = nav.querySelector('.nav-brand');
-  // const brandLink = navBrand.querySelector('.button');
-  // if (brandLink) {
-  //   brandLink.className = '';
-  //   brandLink.closest('.button-container').className = '';
-  // }
-
-  const profileDiv = nav.querySelector('.section.nav-tools.profile-section .default-content-wrapper');
-  const profilePicture = profileDiv.querySelector('img');
-  profilePicture.removeAttribute('width');
-  profilePicture.removeAttribute('height');
-  profileDiv.append(profilePicture);
-  profileDiv.removeChild(profileDiv.querySelector('p'));
-
-//  nav.querySelectorAll('.section .link-grid').forEach(card=>{
-//    card.remove();
-//  })
-//  nav.querySelectorAll('.section .icontitle-wrapper').forEach(card=>{
-//    card.remove();
-//  })
-  const user__dropdownDiv = nav.querySelector('.section.nav-tools .sign-in-wrapper .user__dropdown');
-  const contact = nav.querySelector('.section.nav-tools .contact-wrapper');
-  user__dropdownDiv.append(contact);
-
-  const navSections = nav.querySelector('.nav-sections');
-  if (navSections) {
-    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-      if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-      navSection.addEventListener('click', () => {
-        if (isDesktop.matches) {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          toggleAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        }
-      });
+    list.push({
+      heading: heading?.textContent,
+      icon: icon?.innerHTML,
+      iconClicked: iconClicked?.innerHTML,
+      content: content?.innerHTML,
+      teaser: teaser?.innerHTML,
     });
-  }
-
+  });
+  const logo = nav.querySelector(".logo-wrapper");
+  const carIcon = nav.querySelector(".nav-cars-container .icon").innerHTML;
+  console.log({ list }, nav, logo);
   // hamburger for mobile
-  const hamburger = `
-    <div class="nav-hamburger" onclick="toggleMenu(nav, navSections)">
+
+  const desktopHeader = `
+    <div class="navbar ${isNexa && "navbar-nexa"}">
+      <div class="nav-hamburger ${isNexa && "nav-hamburger-nexa"}">
       <button type="button" aria-controls="nav" aria-label="Open navigation">
         <span class="nav-hamburger-icon"></span>
       </button>
     </div>
+      ${logo.outerHTML}
+      <div class="links"></div>
+      <div class="right">
+        <div class="location">Gurgaon &#9662;</div>
+        <div class="language">EN &#9662;</div>
+        <img src="https://i.imgur.com/xQFQkcU.jpg" alt="User Profile" />
+      </div>
+      <div class="car">${carIcon}</div>
+      <div class="car-panel" id="carPanel">car</div>
+    </div>
   `;
-  nav.insertAdjacentHTML('afterbegin', hamburger);
-  nav.setAttribute('aria-expanded', 'false');
-  // prevent mobile nav behavior on window resize
-  toggleMenu(nav, navSections, isDesktop.matches);
-  isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
 
-  const navWrapper = document.createElement('div');
-  navWrapper.className = 'nav-wrapper';
-  navWrapper.append(nav);
+  const mobileHeader = `
+    <div id="menu" class="menu ${isNexa && "menu-nexa"}">
+      <div class="menu-header ${isNexa && "menu-header-nexa"}">
+        <div class="back-arrow"><img src="../../icons/chevron_left.svg" /></div>
+        <span class="menu-title">Menu</span>
+        <span class="close-icon"><img src="../../icons/close.svg" /></span>
+      </div>
+      <ul class="menu-list"></ul>
+    </div>
+  `;
+  const navWrapper = document.createElement("div");
+  navWrapper.innerHTML = desktopHeader + mobileHeader;
+
   block.append(navWrapper);
+  const navHamburger = document.querySelector(".nav-hamburger");
+  const backArrow = document.querySelector(".back-arrow");
+  const closeIcon = document.querySelector(".close-icon");
+  const caricon = document.querySelector(".navbar .car");
+  [navHamburger, backArrow, closeIcon].forEach(element => {
+    element.addEventListener("click", toggleMenu);
+  });
+  
+  caricon.addEventListener("click", toggleCarMenu);
+
+  list.forEach((el, i) => {
+    const linkEl = document.querySelector(".links");
+    const menuList = document.querySelector(".menu-list");
+    linkEl.innerHTML += `<div class="link-title"><span>${el.heading}</span></div> ${el.content || el.teaser ? `<div class="desktop-panel panel ${el.heading.toLowerCase()}">${el.content || ''}${el.teaser || ''}</div>` :''}`;
+    if (i === 0) return;
+    menuList.innerHTML += `<li id="menu-item-${i}" class="${el.content ?'accordion nav-link':''} ${el.heading.toLowerCase()}" ><span class="icon">${el.icon}</span> <span class="menu-title">${el.heading}</span></li>
+    ${el.content || el.teaser ? `<div class="panel">${el.content || ''}${el.teaser || ''}</div>` :''}
+    `;
+  });
+
+  const acc = document.getElementsByClassName("accordion");
+
+  for (let i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    });
+  }
 }
-
-

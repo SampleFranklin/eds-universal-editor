@@ -216,6 +216,44 @@
         "name": "author",
         "label": "Author",
         "value": ""
+      },
+      {
+        "component": "container",
+        "label": "Container",
+        "name": "container",
+        "valueType": "string",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "text-input",
+            "name": "primaryText",
+            "label": "CTA Text",
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "valueType": "string",
+            "name": "primaryLink",
+            "label": "CTA Link"
+          },
+          {
+            "component": "select",
+            "name": "primaryTarget",
+            "value": "",
+            "label": "Open Link in New Page ?",
+            "valueType": "string",
+            "options": [
+              {
+                "name": "Yes",
+                "value": "_blank"
+              },
+              {
+                "name": "No",
+                "value": "_self"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -258,10 +296,22 @@
         "valueType": "string"
       },
       {
+        "component": "text-input",
+        "name": "primaryText",
+        "label": "Primary CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "primaryLink",
+        "label": "Primary CTA Link"
+      },
+      {
         "component": "select",
-        "name": "target",
+        "name": "primaryTarget",
         "value": "",
-        "label": "Open Link in New Page ?",
+        "label": "Open Primary Link in New Page ?",
         "valueType": "string",
         "options": [
           {
@@ -275,19 +325,74 @@
         ]
       },
       {
+        "component": "text-input",
+        "name": "secondaryText",
+        "label": "Secondary CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "secondaryLink",
+        "label": "Secondary CTA Link"
+      },
+      {
         "component": "select",
-        "name": "style",
+        "name": "secondaryTarget",
         "value": "",
-        "label": "Style",
+        "label": "Open Secondary Link in New Page ?",
         "valueType": "string",
         "options": [
           {
-            "name": "Default",
-            "value": "default-teaser"
+            "name": "Yes",
+            "value": "_blank"
           },
           {
-            "name": "Black Background",
-            "value": "black-teaser"
+            "name": "No",
+            "value": "_self"
+          }
+        ]
+      },
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "valueType": "string",
+        "maxSize": 2,
+        "options": [
+          {
+            "name": "Theme",
+            "children": [
+              {
+                "name": "Light",
+                "value": "light-teaser"
+              },
+              {
+                "name": "Dark",
+                "value": "dark-teaser"
+              }
+            ]
+          },
+          {
+            "name": "Type",
+            "children": [
+              {
+                "name": "Buyers Guide",
+                "value": "buyers-guide-teaser"
+              },
+              {
+                "name": "Finance Card",
+                "value": "finance-card-teaser"
+              },
+              {
+                "name": "Header Teaser",
+                "value": "header-image-teaser"
+              },
+              {
+                "name": "Text Only Teaser",
+                "value": "text-only-teaser"
+              }
+            ]
           }
         ]
       }
@@ -506,6 +611,41 @@
         "value": "",
         "label": "Title",
         "valueType": "string"
+      },
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "valueType": "string",
+        "maxSize": 2,
+        "options": [
+          {
+            "name": "Theme",
+            "children": [
+              {
+                "name": "Light",
+                "value": "light-teaser-list"
+              },
+              {
+                "name": "Dark",
+                "value": "dark-teaser-list"
+              }
+            ]
+          },
+          {
+            "name": "Type",
+            "children": [
+              {
+                "name": "Finance Card List",
+                "value": "finance-card-list"
+              },
+              {
+                "name": "Arena Card List",
+                "value": "arena-card-list"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -625,7 +765,7 @@
     "id": "nav-cars",
     "fields": [
       {
-        "component": "text-input",
+        "component": "richtext",
         "valueType": "string",
         "name": "cars",
         "label": "Cars"
@@ -706,7 +846,7 @@
         "name": "foreground-mobileImage",
         "label": "Mobile Image1",
         "multi": false
-      }, 
+      },
       {
         "component": "text-input",
         "name": "background-title",
@@ -762,8 +902,20 @@
         "valueType": "string"
       },
       {
+        "component": "text-input",
+        "name": "ctaText",
+        "label": "CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "ctaLink",
+        "label": "CTA Link"
+      },
+      {
         "component": "select",
-        "name": "target",
+        "name": "ctaTarget",
         "value": "",
         "label": "Open Link in New Page ?",
         "valueType": "string",
