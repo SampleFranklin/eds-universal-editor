@@ -357,6 +357,18 @@ main .section.immersive-teaser-container {
     }
 }
 
+.dark-teaser.buyers-guide-teaser .teaser__card .teaser__content .teaser__actions {
+    transition: transform 0.5s ease-in-out;
+}
+
+.dark-teaser.buyers-guide-teaser .teaser__card:hover .teaser__content .teaser__actions {
+    transform: scale(1.5);
+}
+
+.dark-teaser.buyers-guide-teaser .teaser__card .teaser__content .teaser__actions {
+    transition: transform 0.5s ease-in-out;
+}
+
 .dark-teaser.buyers-guide-teaser .teaser__image>picture>img {
     object-fit: cover;
     width: 180px;

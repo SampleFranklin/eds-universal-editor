@@ -69,6 +69,37 @@ export default async function decorate(block) {
       </div>
     `;
   }
+  const collapsSection = function () {
+    const contactUsSection = block.querySelector(".footer__columns-contact");
+    contactUsSection.querySelectorAll("p").forEach((Element) => {
+      console.log(Element);
+      Element.classList.add("hide__section");
+    });
+    block.querySelector(".contact").classList.add("hide__section");
+
+    socialLinks.childNodes[0].classList.add("hide__section");
+
+    block
+      .querySelector(".link-container-section")
+      .querySelectorAll("ul")
+      .forEach((Element) => {
+        Element.classList.add("hide__section");
+      });
+  };
+  const expandSection = function () {
+    const contactUsSection = block.querySelector(".footer__columns-contact");
+    contactUsSection.querySelectorAll("p").forEach((Element) => {
+      Element.classList.remove("hide__section");
+    });
+    block.querySelector(".contact").classList.remove("hide__section");
+    block
+      .querySelector(".link-container-section")
+      .querySelectorAll("ul")
+      .forEach((Element) => {
+        Element.classList.remove("hide__section");
+      });
+  };
+
   block.innerHTML = `
   <div class="footer" >
       <div class="container">
@@ -80,7 +111,7 @@ export default async function decorate(block) {
       </div>
       <div class="col-md-3 footer__columns footer__columns-contact">${contactUsSection.outerHTML}${socialLinks.innerHTML}</div>
       <div class="col-md-12">
-      <div class="footer__separator"></div>
+      <div class="footer__separator element__expand"></div>
       </div>
       </div>
       
@@ -107,4 +138,48 @@ export default async function decorate(block) {
       </div>
     </div>
   `;
+  const footerSeparatorElemet = block.querySelector(".footer__separator");
+  footerSeparatorElemet.addEventListener(
+    "click",
+    () => {
+      console.log(footerSeparatorElemet.classList.contains("element__expand"));
+      if (footerSeparatorElemet.classList.contains("element__expand")) {
+        footerSeparatorElemet.classList.remove("element__expand");
+        expandSection();
+      } else {
+        footerSeparatorElemet.classList.add("element__expand");
+        collapsSection();
+      }
+    },
+    false
+  );
+
+  const accortieanItam = block.querySelectorAll(".accordian-item");
+
+  accortieanItam.forEach((Element) => {
+    Element.addEventListener(
+      "click",
+      () => {
+        console.log(Element.parentElement.querySelector("ul"));
+        if (
+          Element.parentElement
+            .querySelector("ul")
+            .classList.contains("hide__section")
+        ) {
+          Element.classList.add("expand");
+          Element.classList.remove("collaps");
+          Element.parentElement
+            .querySelector("ul")
+            .classList.remove("hide__section");
+        } else {
+          Element.classList.add("collaps");
+          Element.classList.remove("expand");
+          Element.parentElement
+            .querySelector("ul")
+            .classList.add("hide__section");
+        }
+      },
+      false
+    );
+  });
 }
