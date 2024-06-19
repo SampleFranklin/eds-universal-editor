@@ -1,28 +1,20 @@
 import { sanitizeHtml } from '../../scripts/utils.js';
 
 class CTA {
-  constructor(linkEl, textEl, targetEl, className) {
-    this.linkEl = linkEl;
-    this.textEl = textEl;
-    this.targetEl = targetEl;
-    this.className = className;
-    this.getLink();
-  }
-
-  getLink() {
-    const link = this.linkEl?.querySelector('.button-container a');
-    const target = this.targetEl?.textContent?.trim() || '_self';
+  static getLink(linkEl, textEl, targetEl, className) {
+    const link = linkEl?.querySelector('.button-container a');
+    const target = targetEl?.textContent?.trim() || '_self';
     link?.setAttribute('target', target);
-    return this.getLinkText(link);
+    return this.getLinkText(link, textEl, className);
   }
 
-  getLinkText(link) {
-    const text = this.textEl?.textContent?.trim() || '';
+  static getLinkText(link, textEl, className) {
+    const text = textEl?.textContent?.trim() || '';
     if (link) {
       link.innerHTML = '';
       link.insertAdjacentHTML('beforeend', sanitizeHtml(text));
-      if (this.className && link) {
-        link.classList.add(this.className);
+      if (className && link) {
+        link.classList.add(className);
       }
     }
     return link;
