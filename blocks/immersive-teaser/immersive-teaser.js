@@ -22,19 +22,19 @@ class ImmersiveTeaser {
     }
 
     const immersiveTeaserHtml = sanitizeHtml(`
-      ${(this.immersiveData.image)? this.immersiveData.image.outerHTML : ''}
+      ${(this.immersiveData.image) ? this.immersiveData.image.outerHTML : ''}
       <div class="banner-content">
-        ${(this.immersiveData.pretitle)? `<p>${this.immersiveData.pretitle}</p>` : ''}
-        ${(this.immersiveData.title)? `<h2>${this.immersiveData.title}</h2>` : ''}
-        ${(this.immersiveData.description)? `${this.immersiveData.description}` : ''}
-        ${(this.immersiveData.cta)? `<div class="action-btn">${this.immersiveData.cta.outerHTML}</div>` : ''}
+        ${(this.immersiveData.pretitle) ? `<p>${this.immersiveData.pretitle}</p>` : ''}
+        ${(this.immersiveData.title) ? `<h2>${this.immersiveData.title}</h2>` : ''}
+        ${(this.immersiveData.description) ? `${this.immersiveData.description}` : ''}
+        ${(this.immersiveData.cta) ? `<div class="action-btn">${this.immersiveData.cta.outerHTML}</div>` : ''}
       </div>
     `);
 
     this.block.innerHTML = `
       <div class="banner-container">
         ${immersiveTeaserHtml}
-        ${(this.teaser?.block?.innerHTML)? this.teaser.block.outerHTML : ''}
+        ${(this.teaser?.block?.innerHTML) ? this.teaser.block.outerHTML : ''}
       </div>
     `;
   }
@@ -64,7 +64,7 @@ class ImmersiveTeaser {
     const title = titleEl?.textContent?.trim();
     const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.outerHTML).join('');
     const cta = ctaLinkEl?.querySelector('.button-container a');
-    cta ? new CTA(ctaLinkEl, ctaTextEl, ctaTargetEl).getLink() : null;
+    cta ? CTA.getLink(ctaLinkEl, ctaTextEl, ctaTargetEl) : null;
 
     return {
       image,

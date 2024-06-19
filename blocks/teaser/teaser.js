@@ -40,8 +40,8 @@ export class Teaser {
       style = ['light-teaser', 'buyers-guide-teaser'];
     }
 
-    const primaryCta = new CTA(primaryCtaLinkEl,primaryCtaTextEl,primaryCtaTargetEl,'primary__btn').getLink();
-    const secondaryCta = new CTA(secondaryCtaLinkEl,secondaryCtaTextEl,secondaryCtaTargetEl,'secondary__btn').getLink();
+    const primaryCta = CTA.getLink(primaryCtaLinkEl, primaryCtaTextEl, primaryCtaTargetEl, 'primary__btn');
+    const secondaryCta = CTA.getLink(secondaryCtaLinkEl, secondaryCtaTextEl, secondaryCtaTargetEl, 'secondary__btn');
 
     let ctaHtml = '';
     if (primaryCta || secondaryCta) {
@@ -72,17 +72,6 @@ export class Teaser {
     return this.block;
   }
 
-  getBlock() {
-    return this.block.children;
-  }
-
-  getCta(linkEl, targetEl) {
-    const link = linkEl?.querySelector('.button-container a');
-    const target = targetEl?.textContent?.trim() || '_self';
-    link?.setAttribute('target', target);
-    return link;
-  }
-
   initImage(image, altTextEl) {
     const img = image.querySelector('img');
     img.removeAttribute('width');
@@ -93,8 +82,6 @@ export class Teaser {
 }
 
 export default function decorate(block) {
-  const teaser= new Teaser(block);
+  const teaser = new Teaser(block);
   teaser.getTeaser();
 }
-
-
