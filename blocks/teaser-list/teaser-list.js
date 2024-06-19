@@ -1,20 +1,11 @@
 import { sanitizeHtml } from '../../scripts/utils.js';
-import {Teaser} from '../teaser/teaser.js';
+import { Teaser } from '../teaser/teaser.js';
+import Utility from '../utility/utility.js';
 
 class TeaserList {
   constructor(block) {
     this.block = block;
     this.teasers = [];
-  }
-
-  mobileLazyLoading(teaser) {
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    const imgElement = teaser.querySelector('.teaser__image img');
-    if (isMobile && imgElement) {
-      imgElement.setAttribute('loading', 'lazy');
-    } else if (!isMobile && imgElement) {
-      imgElement.setAttribute('loading', 'eager');
-    }
   }
 
   toggleFocusedClass() {
@@ -64,9 +55,9 @@ class TeaserList {
     const commonTitle = titleEl?.textContent?.trim() || '';
 
     cards.forEach((card) => {
-      const teaser = new Teaser(card); // Create instance of Teaser for each card
-      this.teasers.push(teaser); // Store teaser instance in teasers array
-      this.mobileLazyLoading(teaser.getTeaser()); // Call getTeaser and apply mobile lazy loading
+      const teaser = new Teaser(card);
+      this.teasers.push(teaser);
+      Utility.mobileLazyLoading(teaser.getTeaser(), '.teaser__image img');
     });
 
     const teasersHtml = this.teasers.map((teaser) => teaser.block.outerHTML).join('');

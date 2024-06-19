@@ -72,7 +72,6 @@ export default async function decorate(block) {
   const collapsSection = function () {
     const contactUsSection = block.querySelector(".footer__columns-contact");
     contactUsSection.querySelectorAll("p").forEach((Element) => {
-      console.log(Element);
       Element.classList.add("hide__section");
     });
     block.querySelector(".contact").classList.add("hide__section");
@@ -111,7 +110,7 @@ export default async function decorate(block) {
       </div>
       <div class="col-md-3 footer__columns footer__columns-contact">${contactUsSection.outerHTML}${socialLinks.innerHTML}</div>
       <div class="col-md-12">
-      <div class="footer__separator element__expand"></div>
+      <div class="footer__separator"></div>
       </div>
       </div>
       
@@ -142,7 +141,6 @@ export default async function decorate(block) {
   footerSeparatorElemet.addEventListener(
     "click",
     () => {
-      console.log(footerSeparatorElemet.classList.contains("element__expand"));
       if (footerSeparatorElemet.classList.contains("element__expand")) {
         footerSeparatorElemet.classList.remove("element__expand");
         expandSection();
@@ -157,26 +155,28 @@ export default async function decorate(block) {
   const accortieanItam = block.querySelectorAll(".accordian-item");
 
   accortieanItam.forEach((Element) => {
+    Element.parentElement
+      .querySelector("ul")
+      .classList.add("hide__section__mobile");
     Element.addEventListener(
       "click",
       () => {
-        console.log(Element.parentElement.querySelector("ul"));
         if (
           Element.parentElement
             .querySelector("ul")
-            .classList.contains("hide__section")
+            .classList.contains("hide__section__mobile")
         ) {
           Element.classList.add("expand");
           Element.classList.remove("collaps");
           Element.parentElement
             .querySelector("ul")
-            .classList.remove("hide__section");
+            .classList.remove("hide__section__mobile");
         } else {
           Element.classList.add("collaps");
           Element.classList.remove("expand");
           Element.parentElement
             .querySelector("ul")
-            .classList.add("hide__section");
+            .classList.add("hide__section__mobile");
         }
       },
       false

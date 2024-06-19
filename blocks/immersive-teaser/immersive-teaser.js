@@ -1,5 +1,6 @@
 import { sanitizeHtml } from '../../scripts/utils.js';
-import {Teaser} from '../teaser/teaser.js';
+import { Teaser } from '../teaser/teaser.js';
+import CTA from '../utility/cta.js';
 
 class ImmersiveTeaser {
   constructor(block) {
@@ -21,25 +22,35 @@ class ImmersiveTeaser {
     }
 
     const immersiveTeaserHtml = sanitizeHtml(`
-      ${(this.immersiveData.image)? this.immersiveData.image.outerHTML : ''}
+      ${(this.immersiveData.image) ? this.immersiveData.image.outerHTML : ''}
       <div class="banner-content">
-        ${(this.immersiveData.pretitle)? `<p>${this.immersiveData.pretitle}</p>` : ''}
-        ${(this.immersiveData.title)? `<h2>${this.immersiveData.title}</h2>` : ''}
-        ${(this.immersiveData.description)? `${this.immersiveData.description}` : ''}
-        ${(this.immersiveData.cta)? `<div class="action-btn">${this.immersiveData.cta.outerHTML}</div>` : ''}
+        ${(this.immersiveData.pretitle) ? `<p>${this.immersiveData.pretitle}</p>` : ''}
+        ${(this.immersiveData.title) ? `<h2>${this.immersiveData.title}</h2>` : ''}
+        ${(this.immersiveData.description) ? `${this.immersiveData.description}` : ''}
+        ${(this.immersiveData.cta) ? `<div class="action-btn">${this.immersiveData.cta.outerHTML}</div>` : ''}
       </div>
     `);
 
     this.block.innerHTML = `
       <div class="banner-container">
         ${immersiveTeaserHtml}
-        ${(this.teaser?.block?.innerHTML)? this.teaser.block.outerHTML : ''}
+        ${(this.teaser?.block?.innerHTML) ? this.teaser.block.outerHTML : ''}
       </div>
     `;
   }
 
   getImmersiveTeaserData() {
-    const [imageEl, altTextEl, pretitleEl, titleEl, descriptionEl, ctaTextEl, ctaLinkEl, ctaTargetEl] = this.block.children;
+    const [
+      imageEl,
+      altTextEl,
+      pretitleEl,
+      titleEl,
+      descriptionEl,
+      ctaTextEl,
+      ctaLinkEl,
+      ctaTargetEl,
+    ] = this.block.children;
+
     const image = imageEl?.querySelector('picture');
     if (image) {
       const img = image.querySelector('img');
@@ -53,19 +64,14 @@ class ImmersiveTeaser {
     const title = titleEl?.textContent?.trim();
     const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.outerHTML).join('');
     const cta = ctaLinkEl?.querySelector('.button-container a');
-    if (cta) {
-      const ctaText = ctaTextEl?.textContent?.trim() || '';
-      const target = ctaTargetEl?.textContent?.trim() || '_self';
-      cta.setAttribute('target', target);
-      cta.textContent = ctaText;
-    }
+    cta ? CTA.getLink(ctaLinkEl, ctaTextEl, ctaTargetEl) : null;
 
     return {
-      image: image,
-      pretitle: pretitle,
-      title: title,
-      description: description,
-      cta: cta
+      image,
+      pretitle,
+      title,
+      description,
+      cta,
     };
   }
 }
