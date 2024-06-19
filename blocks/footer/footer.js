@@ -98,7 +98,7 @@ export default async function decorate(block) {
         Element.classList.remove("hide__section");
       });
   };
-  block.parentElement.classList.add("footer__nexa");
+  block.parentElement.classList.add("footer__arena");
   block.innerHTML = `
   <div class="footer" >
       <div class="container">
@@ -158,6 +158,7 @@ export default async function decorate(block) {
     Element.parentElement
       .querySelector("ul")
       .classList.add("hide__section__mobile");
+    Element.classList.add("collaps");
     Element.addEventListener(
       "click",
       () => {
