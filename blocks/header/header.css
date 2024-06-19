@@ -432,6 +432,7 @@ body {
 }
 .desktop-panel {
   display: none;
+  visibility: hidden;
   position: absolute;
   top: var(--nav-height);
   right: 0;
@@ -447,14 +448,12 @@ body {
   max-height: max-content;
 }
 
-.navbar .links .link-title:hover + .desktop-panel {
+.navbar .links .link-title:hover + .desktop-panel,
+.navbar-nexa .links .link-title:hover + .desktop-panel,
+.desktop-panel:hover {
   display: flex;
-  opacity: 1; 
-}
-
-.navbar-nexa .links .link-title:hover + .desktop-panel {
-  display: flex;
-  opacity: 1; 
+  opacity: 1;
+  visibility: visible; 
 }
 
 @media (max-width: 900px) {
@@ -501,7 +500,7 @@ body {
   display: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 900px) {
   .buy.panel,
   .owners.panel {
     display: flex;
@@ -605,7 +604,7 @@ body {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 900px) {
   .nexa.panel {
     padding: 32px 64px;
     background-color: var(--nav-background-color);
@@ -638,7 +637,7 @@ body {
   border-bottom: 0;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 900px) {
   .arena .panel {
     background-color: #f4f4f4;
   }
