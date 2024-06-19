@@ -1,6 +1,5 @@
 import { getMetadata } from "../../scripts/aem.js";
 import { loadFragment } from "../fragment/fragment.js";
-// import svg from "../../icons/chevron_left.svg";
 
 const list = [];
 const currentURL = window.location.href;
@@ -17,6 +16,16 @@ function toggleMenu() {
 
 function toggleCarMenu() {
   const x = document.getElementById("carPanel");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+
+function toggleUserDropdown() {
+  const navRight = document.getElementById("nav-right");
+  const x = navRight.querySelector('.sign-in-wrapper')
   if (x.style.display === "block") {
     x.style.display = "none";
   } else {
@@ -55,8 +64,10 @@ export default async function decorate(block) {
   });
   const logo = nav.querySelector(".logo-wrapper");
   const carIcon = nav.querySelector(".nav-cars-container .icon").innerHTML;
-  console.log({ list }, nav, logo);
-  // hamburger for mobile
+  const user__dropdownDiv = nav.querySelector('.sign-in-wrapper .user__dropdown');
+  const contact = nav.querySelector('.contact-wrapper');
+  user__dropdownDiv.append(contact);
+  const userDropdown = nav.querySelector('.sign-in-wrapper')
 
   const desktopHeader = `
     <div class="navbar ${isNexa && "navbar-nexa"}">
@@ -67,10 +78,11 @@ export default async function decorate(block) {
     </div>
       ${logo.outerHTML}
       <div class="links"></div>
-      <div class="right">
+      <div class="right" id="nav-right">
         <div class="location">Gurgaon &#9662;</div>
         ${!isNexa ? `<div class="language">EN &#9662;</div>` : ''}
-        <img src="../../icons/account_circle.svg" alt="user" />
+        <img id="user-img" src="../../icons/account_circle.svg" alt="user" />
+        ${userDropdown.outerHTML}
       </div>
       <div class="car">${carIcon}</div>
       <div class="car-panel" id="carPanel">car</div>
@@ -100,6 +112,8 @@ export default async function decorate(block) {
   });
   
   caricon.addEventListener("click", toggleCarMenu);
+
+  document.querySelector('#user-img').addEventListener("click", ()=>toggleUserDropdown());
 
   list.forEach((el, i) => {
     const linkEl = document.querySelector(".links");
