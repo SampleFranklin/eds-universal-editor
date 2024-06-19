@@ -8,6 +8,12 @@ footer {
 footer .link-container-section {
   display: block;
 }
+footer .link-grid-column .links-container {
+  gap: 12px;
+}
+footer .link-grid-column .links-container li a {
+  min-height: inherit;
+}
 footer .default-content-wrapper {
   display: none;
 }
@@ -43,10 +49,10 @@ footer .link-grid-column h3::after {
   flex-direction: column-reverse;
   padding-top: 32px;
 }
-.footer .default-content-wrapper {
+footer .default-content-wrapper {
   display: none;
 }
-.footer .footer__columns-contact .default-content-wrapper {
+footer .footer__columns-contact .default-content-wrapper {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -54,7 +60,7 @@ footer .link-grid-column h3::after {
   align-self: stretch;
   padding-bottom: 32px;
 }
-.footer .footer__columns.footer__columns-contact p {
+footer .footer__columns.footer__columns-contact p {
   color: var(--tertiary-white);
   font-family: "Fira Sans";
   font-size: 14px;
@@ -64,21 +70,25 @@ footer .link-grid-column h3::after {
   display: inline-block;
   margin: 0;
 }
-.footer .footer__columns.footer__columns-contact p strong {
+footer .footer__columns.footer__columns-contact p strong {
   font-size: 14px;
   font-weight: 400;
 }
 
-.footer #contact-us {
+footer #contact-us {
   display: none;
 }
-.user__contact {
+footer .user__contact {
 }
-.user__contact h4 {
+footer .user__contact h4 {
   display: none;
 }
-.user__contact__icons {
+footer .user__contact__icons {
   padding-bottom: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
 }
 .footer__info-left p,
 .footer__info-right p {
@@ -140,14 +150,14 @@ ul.content.links-container {
   footer .link-container-section {
     display: flex;
   }
-  .footer .link-grid-column h3,
-  .footer #contact-us {
+  footer .link-grid-column h3,
+  footer #contact-us {
     font-size: 18px;
     padding: 20px 0;
     font-style: normal;
     font-weight: 500;
   }
-  .footer .link-grid-column h3::after {
+  footer .link-grid-column h3::after {
     display: none;
   }
   .footer__columns-contact {
@@ -155,10 +165,10 @@ ul.content.links-container {
     flex-direction: column;
     padding-top: 0;
   }
-  .footer #contact-us {
+  footer #contact-us {
     display: block;
   }
-  .footer .link-grid-column {
+  footer .link-grid-column {
     border-bottom: none;
   }
   .footer__separator {
@@ -174,27 +184,32 @@ ul.content.links-container {
     width: 20px;
     background-color: var(--tertiary-white);
     border-radius: 50%;
+    background-image: url("../../icons/footer-expand.svg");
     left: 50%;
     top: -10px;
     margin-left: -10px;
   }
-  .footer .default-content-wrapper {
+  footer .default-content-wrapper {
     display: block;
     border: none;
     padding-bottom: 64px;
   }
-  .footer #contact-us p {
+  footer #contact-us p {
     font-size: 16px;
   }
-  .footer .footer__columns .footer__columns-contact p {
+  footer .footer__columns .footer__columns-contact p {
     font-size: 16px;
+    padding-bottom: 10px;
   }
-  .footer .footer__columns .footer__columns-contact p strong {
+  footer .footer__columns .footer__columns-contact p strong {
     font-size: 16px;
     font-weight: 400;
   }
+  .footer__columns-contact .default-content-wrapper {
+    border-bottom: none;
+  }
 
-  .footer .default-content-wrapper p {
+  footer .default-content-wrapper p {
     color: var(--tertiary-white, #fff);
     font-family: "Kepler Std";
     font-size: 48px;
@@ -204,10 +219,10 @@ ul.content.links-container {
     letter-spacing: 0.96px;
     text-transform: capitalize;
   }
-  .footer .default-content-wrapper p {
+  footer .default-content-wrapper p {
     margin: 0;
   }
-  .footer .user__contact h4 {
+  footer .user__contact h4 {
     display: block;
     color: var(--tertiary-white);
     font-family: "Fira Sans";
@@ -216,6 +231,17 @@ ul.content.links-container {
     font-weight: 400;
     line-height: 24px;
     letter-spacing: -0.16px;
+  }
+  footer .footer__columns-contact .default-content-wrapper {
+    gap: 0;
+  }
+  footer .user__contact--icon {
+    display: flex;
+    padding: 8px 0;
+    flex-direction: row;
+  }
+  footer .user__contact--icon img {
+    height: 20px;
   }
   .footer__info-left,
   .footer__info-right {
