@@ -6,6 +6,3 @@
     justify-content: start;
   }
 }
-.logo > picture > img {
-  aspect-ratio: 102/20;
-}
