@@ -81,7 +81,7 @@ export default async function decorate(block) {
       <div class="right" id="nav-right">
         <div class="location">Gurgaon &#9662;</div>
         ${!isNexa ? `<div class="language">EN &#9662;</div>` : ''}
-        <img id="user-img" src="../../icons/account_circle.svg" alt="user" />
+        <img id="user-img" src="../../icons/${isNexa ? 'account_circle': 'user'}.svg" alt="user" />
         ${userDropdown.outerHTML}
       </div>
       <div class="car">${carIcon}</div>

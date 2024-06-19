@@ -287,7 +287,8 @@ header nav .nav-tools {
   align-items: center;
 }
 .navbar .links .link-title,
-.navbar .right .location {
+.navbar .right .location,
+.navbar .right .language {
   text-decoration: none;
   color: #171d9b;
   font-weight: bold;
