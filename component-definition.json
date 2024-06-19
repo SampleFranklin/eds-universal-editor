@@ -540,7 +540,6 @@
                 "template": {
                   "name": "Highlight Tabs",
                   "filter": "highlight-tabs",
-                  "model": "highlight-tabs",
                   "title": "Highlight Tabs"
                 }
               }

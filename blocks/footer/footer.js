@@ -50,7 +50,6 @@ export default async function decorate(block) {
   let bottomSecondSectionHtml = '<div class="row">';
   bottomSecondSection.querySelectorAll("p").forEach((bottomElement) => {
     const anchor = bottomElement.querySelector("a");
-    console.log(bottomElement);
     if (anchor) {
       bottomSecondSectionHtml += ` <li><a href=${anchor.href}>${anchor.textContent}</a></li>`;
     } else {
