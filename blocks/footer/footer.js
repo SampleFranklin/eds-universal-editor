@@ -37,7 +37,7 @@ export default async function decorate(block) {
   const bottomSecondSection = bottomSection.querySelector(
     ".default-content-wrapper"
   );
-
+  contactUsSection.querySelector("p").classList.add("tollfree__element");
   const bottomSectionHtmlText = [];
   bottomFirstSection.forEach((bottomElement) => {
     const pElement = bottomElement.querySelectorAll("p");
@@ -99,7 +99,7 @@ export default async function decorate(block) {
         Element.classList.remove("hide__section");
       });
   };
-
+  block.parentElement.classList.add("footer__nexa");
   block.innerHTML = `
   <div class="footer" >
       <div class="container">
