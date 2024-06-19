@@ -5,32 +5,36 @@ main .immersive-teaser-container {
     margin: 0;
     width: 100%;
 }
+
 main .immersive-teaser-container > div {
     padding: 0;
     margin: 0;
     width: 100%;
     max-width: inherit;
 }
-.banner-container {
+
+.immersive__wrapper {
     text-align: center;
     color: white;
+    background-color: #18171A;
+    position: relative;
 }
 
-.banner-img {
+.immersive__wrapper .banner-img {
     width: 100%;
     max-width: 100%;
     height: auto;
     display: block;
 }
 
-.banner-content {
+.immersive__wrapper .immersive__content {
     position: absolute;
     top: 110px;
     left: 64px;
     text-align: left;
 }
 
-.banner-content h2 {
+.immersive__wrapper .immersive__content h2 {
     margin: 0;
     margin-bottom: 48px;
     font-size: 64px;
@@ -41,7 +45,7 @@ main .immersive-teaser-container > div {
     letter-spacing: 1.28px;
 }
 
-.banner-content p strong {
+.immersive__wrapper .immersive__content p strong {
     margin: 0;
     font-size: 24px;
     font-style: normal;
@@ -49,7 +53,7 @@ main .immersive-teaser-container > div {
     line-height: 32px;
 }
 
-.banner-content p {
+.immersive__wrapper .immersive__content p {
     margin-top: 12px;
     font-size: 18px;
     font-style: normal;
@@ -59,13 +63,13 @@ main .immersive-teaser-container > div {
     max-width: 280px;
 }
 
-.banner-content .action-btn {
+.immersive__wrapper .immersive__content .immersive__action {
     display: inline-flex;
     align-items: center;
     margin-top: 32px;
 }
 
-.banner-content .action-btn::after {
+.immersive__wrapper .immersive__content .immersive__action::after {
     content: '';
     display: inline-block;
     width: 8px;
@@ -77,7 +81,7 @@ main .immersive-teaser-container > div {
 
 }
 
-.banner-content .action-btn::before {
+.immersive__wrapper .immersive__content .immersive__action::before {
     content: '';
     display: inline-block;
     width: 8px;
@@ -89,7 +93,7 @@ main .immersive-teaser-container > div {
 
 }
 
-.banner-content .action-btn a {
+.immersive__wrapper .immersive__content .immersive__action a {
     display: flex;
     padding: 8px 18px 8px 20px;
     background-color: #ffffff;
@@ -106,7 +110,7 @@ main .immersive-teaser-container > div {
     text-decoration: none;
 }
 
-.banner-content .action-btn a::after {
+.immersive__wrapper .immersive__content .immersive__action a::after {
     content: '';
     display: inline-block;
     width: 16px;
@@ -117,22 +121,58 @@ main .immersive-teaser-container > div {
     background-image: url('../../icons/north_east.svg');
 }
 
-.banner-content .action-btn .left-svg,
-.banner-content .action-btn .right-svg {
+.immersive__wrapper .immersive__content .immersive__action .left-svg,
+.immersive__wrapper .immersive__content .immersive__action .right-svg {
     display: block;
 }
 
-.banner-container img {
+.immersive__wrapper img {
     width: 100%;
 }
 
-@media (max-width: 600px) {
-    .banner-content {
-        top: 48px;
-        left: 20px;
+.immersive__wrapper .teaser-wrapper {
+    position: absolute;
+    right: 65px;
+    bottom: 50px;
+    max-width: 48%;
+}
+
+.immersive__wrapper .teaser-wrapper {
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 65% 90%, 60% 100%, 0 100%);
+}
+
+@media (max-width: 1023px) {
+    .immersive__wrapper {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding-top: 48px;
     }
 
-    .banner-content h2 {
+    .immersive__wrapper picture {
+        order: 2;
+    }
+
+    .immersive__wrapper .immersive__content {
+        order: 1;
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 0 20px;
+    }
+
+    .immersive__wrapper .teaser-wrapper {
+        order: 3;
+        left: 0;
+        bottom: 35px;
+        position: relative;
+        margin: 0 20px;
+        max-width: 100%;
+    }
+
+    .immersive__wrapper .immersive__content h2 {
         font-size: 32px;
         font-weight: 600;
         line-height: 40px;
@@ -141,24 +181,25 @@ main .immersive-teaser-container > div {
         max-width: 300px;
     }
 
-    .banner-content h4 {
+    .immersive__wrapper .immersive__content p strong {
         margin-top: 72px;
         font-size: 16px;
         font-weight: 500;
         line-height: 20px;
+        display: block;
     }
 
-    .banner-content p {
+    .immersive__wrapper .immersive__content p {
         font-size: 12px;
         font-weight: 400;
         line-height: 16px;
     }
 
-    .banner-content .action-btn {
+    .immersive__wrapper .immersive__content .immersive__action {
         margin-top: 24px;
     }
 
-    .banner-content .action-btn a.btn-title {
+    .immersive__wrapper .immersive__content .immersive__action a {
         font-size: 16px;
         font-weight: 400;
         line-height: 24px;
@@ -166,30 +207,8 @@ main .immersive-teaser-container > div {
         margin: 0;
     }
 
-    .banner-content .action-btn::before {
+    .immersive__wrapper .immersive__content .immersive__action::before {
         margin-right: -3px;
         height: 41px;
     }
-
-    .banner-container img {
-        top: 35%;
-        position: absolute;
-        left: 0;
-    }
-
-    .banner-container .teaser-wrapper.buyers-guide-teaser {
-        right: 0;
-        bottom: 35px;
-    }
-}
-
-.banner-container .teaser-wrapper {
-    position: absolute;
-    right: 65px;
-    bottom: 50px;
-}
-
-.banner-container .teaser-wrapper .teaser__card {
-    /* aspect-ratio: 320/204; */
-    clip-path: polygon(0 0, 100% 0, 100% 90%, 65% 90%, 60% 100%, 0 100%);
 }
