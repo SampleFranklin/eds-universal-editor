@@ -69,8 +69,8 @@ export default async function decorate(block) {
       <div class="links"></div>
       <div class="right">
         <div class="location">Gurgaon &#9662;</div>
-        <div class="language">EN &#9662;</div>
-        <img src="https://i.imgur.com/xQFQkcU.jpg" alt="User Profile" />
+        ${!isNexa ? `<div class="language">EN &#9662;</div>` : ''}
+        <img src="../../icons/account_circle.svg" alt="user" />
       </div>
       <div class="car">${carIcon}</div>
       <div class="car-panel" id="carPanel">car</div>
@@ -80,9 +80,9 @@ export default async function decorate(block) {
   const mobileHeader = `
     <div id="menu" class="menu ${isNexa && "menu-nexa"}">
       <div class="menu-header ${isNexa && "menu-header-nexa"}">
-        <div class="back-arrow"><img src="../../icons/chevron_left.svg" /></div>
+        <div class="back-arrow"><img src="../../icons/chevron_left.svg" alt="back" /></div>
         <span class="menu-title">Menu</span>
-        <span class="close-icon"><img src="../../icons/close.svg" /></span>
+        <span class="close-icon"><img src="../../icons/close.svg" alt="close" /></span>
       </div>
       <ul class="menu-list"></ul>
     </div>
