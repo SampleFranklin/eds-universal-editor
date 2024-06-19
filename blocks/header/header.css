@@ -76,6 +76,7 @@ header nav a:any-link {
   overflow: initial;
   text-overflow: initial;
   white-space: initial;
+  cursor: pointer;
 }
 
 .nav-hamburger-nexa button {
@@ -437,13 +438,11 @@ body {
   top: var(--nav-height);
   right: 0;
   width: 100%;
-  background-color: white;
-  border: 1px solid #ccc;
+  background-color: #f4f4f4;
   padding: 10px;
   z-index: 10;
   transition: opacity 0.3s ease;
   opacity: 0;
-  border-radius: 5px;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
   max-height: max-content;
 }
@@ -453,7 +452,20 @@ body {
 .desktop-panel:hover {
   display: flex;
   opacity: 1;
-  visibility: visible; 
+  visibility: visible;
+}
+
+.car-panel {
+  display: none;
+  position: absolute;
+  top: var(--nav-height);
+  right: 0;
+  width: 100%;
+  background-color: #f4f4f4;
+  padding: 10px;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 900px) {
@@ -463,14 +475,11 @@ body {
   }
   .car {
     display: block;
+    cursor: pointer;
   }
 
   .nav-hamburger {
     display: flex;
-  }
-  .menu-btn,
-  .car {
-    display: block;
   }
 }
 

@@ -15,6 +15,15 @@ function toggleMenu() {
   }
 }
 
+function toggleCarMenu() {
+  const x = document.getElementById("carPanel");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+
 export default async function decorate(block) {
   // load nav as fragment
   const navMeta = getMetadata("nav");
@@ -46,9 +55,9 @@ export default async function decorate(block) {
   });
   const logo = nav.querySelector(".logo-wrapper");
   const carIcon = nav.querySelector(".nav-cars-container .icon").innerHTML;
-  console.log({ list },nav,logo);
+  console.log({ list }, nav, logo);
   // hamburger for mobile
-  
+
   const desktopHeader = `
     <div class="navbar ${isNexa && "navbar-nexa"}">
       <div class="nav-hamburger ${isNexa && "nav-hamburger-nexa"}">
@@ -64,6 +73,7 @@ export default async function decorate(block) {
         <img src="https://i.imgur.com/xQFQkcU.jpg" alt="User Profile" />
       </div>
       <div class="car">${carIcon}</div>
+      <div class="car-panel" id="carPanel">car</div>
     </div>
   `;
 
@@ -79,17 +89,18 @@ export default async function decorate(block) {
   `;
   const navWrapper = document.createElement("div");
   navWrapper.innerHTML = desktopHeader + mobileHeader;
-  
+
   block.append(navWrapper);
-  document.querySelector(".nav-hamburger").addEventListener("click", () => {
-    toggleMenu();
-  })
-  document.querySelector(".back-arrow").addEventListener("click", () => {
-    toggleMenu();
-  })
-  document.querySelector(".close-icon").addEventListener("click", () => {
-    toggleMenu();
-  })
+  const navHamburger = document.querySelector(".nav-hamburger");
+  const backArrow = document.querySelector(".back-arrow");
+  const closeIcon = document.querySelector(".close-icon");
+  const caricon = document.querySelector(".navbar .car");
+  [navHamburger, backArrow, closeIcon].forEach(element => {
+    element.addEventListener("click", toggleMenu);
+  });
+  
+  caricon.addEventListener("click", toggleCarMenu);
+
   list.forEach((el, i) => {
     const linkEl = document.querySelector(".links");
     const menuList = document.querySelector(".menu-list");
@@ -102,16 +113,15 @@ export default async function decorate(block) {
 
   const acc = document.getElementsByClassName("accordion");
 
-
-for (let i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
-  });
-}
+  for (let i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    });
+  }
 }
