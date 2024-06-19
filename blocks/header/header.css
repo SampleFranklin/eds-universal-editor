@@ -616,6 +616,7 @@ body {
     content: url("../../icons/arrow.svg");
     position: absolute;
     right: 0;
+    bottom: 0;
   }
 }
 
