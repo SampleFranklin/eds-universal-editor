@@ -1,5 +1,6 @@
 import { sanitizeHtml } from '../../scripts/utils.js';
 import {Teaser} from '../teaser/teaser.js';
+import CTA from '../utility/cta.js'
 
 class ImmersiveTeaser {
   constructor(block) {
@@ -17,23 +18,23 @@ class ImmersiveTeaser {
     }
 
     if (this.immersiveData.cta) {
-      this.immersiveData.cta.classList.add('btn-title');
+      this.immersiveData.cta.classList.add('primary-action__btn');
     }
 
     const immersiveTeaserHtml = sanitizeHtml(`
       ${(this.immersiveData.image)? this.immersiveData.image.outerHTML : ''}
-      <div class="banner-content">
+      <div class="immersive__content">
         ${(this.immersiveData.pretitle)? `<p>${this.immersiveData.pretitle}</p>` : ''}
         ${(this.immersiveData.title)? `<h2>${this.immersiveData.title}</h2>` : ''}
         ${(this.immersiveData.description)? `${this.immersiveData.description}` : ''}
-        ${(this.immersiveData.cta)? `<div class="action-btn">${this.immersiveData.cta.outerHTML}</div>` : ''}
+        ${(this.immersiveData.cta)? `<div class="immersive__action">${this.immersiveData.cta.outerHTML}</div>` : ''}
       </div>
     `);
 
     this.block.innerHTML = `
-      <div class="banner-container">
+      <div class="immersive__wrapper">
         ${immersiveTeaserHtml}
-        ${(this.teaser?.block?.innerHTML)? this.teaser.block.outerHTML : ''}
+        ${(this.teaser?.block?.innerHTML) ? this.teaser.block.outerHTML : ''}
       </div>
     `;
   }
@@ -52,13 +53,7 @@ class ImmersiveTeaser {
     const pretitle = pretitleEl?.textContent?.trim();
     const title = titleEl?.textContent?.trim();
     const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.outerHTML).join('');
-    const cta = ctaLinkEl?.querySelector('.button-container a');
-    if (cta) {
-      const ctaText = ctaTextEl?.textContent?.trim() || '';
-      const target = ctaTargetEl?.textContent?.trim() || '_self';
-      cta.setAttribute('target', target);
-      cta.textContent = ctaText;
-    }
+    const cta = (ctaLinkEl) ? CTA.getLink(ctaLinkEl, ctaTextEl, ctaTargetEl) : null;
 
     return {
       image: image,

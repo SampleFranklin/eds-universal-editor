@@ -1,6 +1,5 @@
 import { getMetadata } from "../../scripts/aem.js";
 import { loadFragment } from "../fragment/fragment.js";
-// import svg from "../../icons/chevron_left.svg";
 
 const list = [];
 const currentURL = window.location.href;
@@ -8,6 +7,25 @@ const isNexa = currentURL.includes("nexa");
 
 function toggleMenu() {
   const x = document.getElementById("menu");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+
+function toggleCarMenu() {
+  const x = document.getElementById("carPanel");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+
+function toggleUserDropdown() {
+  const navRight = document.getElementById("nav-right");
+  const x = navRight.querySelector('.sign-in-wrapper')
   if (x.style.display === "block") {
     x.style.display = "none";
   } else {
@@ -46,9 +64,11 @@ export default async function decorate(block) {
   });
   const logo = nav.querySelector(".logo-wrapper");
   const carIcon = nav.querySelector(".nav-cars-container .icon").innerHTML;
-  console.log({ list },nav,logo);
-  // hamburger for mobile
-  
+  const user__dropdownDiv = nav.querySelector('.sign-in-wrapper .user__dropdown');
+  const contact = nav.querySelector('.contact-wrapper');
+  user__dropdownDiv.append(contact);
+  const userDropdown = nav.querySelector('.sign-in-wrapper')
+
   const desktopHeader = `
     <div class="navbar ${isNexa && "navbar-nexa"}">
       <div class="nav-hamburger ${isNexa && "nav-hamburger-nexa"}">
@@ -58,38 +78,43 @@ export default async function decorate(block) {
     </div>
       ${logo.outerHTML}
       <div class="links"></div>
-      <div class="right">
+      <div class="right" id="nav-right">
         <div class="location">Gurgaon &#9662;</div>
-        <div class="language">EN &#9662;</div>
-        <img src="https://i.imgur.com/xQFQkcU.jpg" alt="User Profile" />
+        ${!isNexa ? `<div class="language">EN &#9662;</div>` : ''}
+        <img id="user-img" src="../../icons/${isNexa ? 'account_circle': 'user'}.svg" alt="user" />
+        ${userDropdown.outerHTML}
       </div>
       <div class="car">${carIcon}</div>
+      <div class="car-panel" id="carPanel">car</div>
     </div>
   `;
 
   const mobileHeader = `
     <div id="menu" class="menu ${isNexa && "menu-nexa"}">
       <div class="menu-header ${isNexa && "menu-header-nexa"}">
-        <div class="back-arrow"><img src="../../icons/chevron_left.svg" /></div>
+        <div class="back-arrow"><img src="../../icons/chevron_left.svg" alt="back" /></div>
         <span class="menu-title">Menu</span>
-        <span class="close-icon"><img src="../../icons/close.svg" /></span>
+        <span class="close-icon"><img src="../../icons/close.svg" alt="close" /></span>
       </div>
       <ul class="menu-list"></ul>
     </div>
   `;
   const navWrapper = document.createElement("div");
   navWrapper.innerHTML = desktopHeader + mobileHeader;
-  
+
   block.append(navWrapper);
-  document.querySelector(".nav-hamburger").addEventListener("click", () => {
-    toggleMenu();
-  })
-  document.querySelector(".back-arrow").addEventListener("click", () => {
-    toggleMenu();
-  })
-  document.querySelector(".close-icon").addEventListener("click", () => {
-    toggleMenu();
-  })
+  const navHamburger = document.querySelector(".nav-hamburger");
+  const backArrow = document.querySelector(".back-arrow");
+  const closeIcon = document.querySelector(".close-icon");
+  const caricon = document.querySelector(".navbar .car");
+  [navHamburger, backArrow, closeIcon].forEach(element => {
+    element.addEventListener("click", toggleMenu);
+  });
+  
+  caricon.addEventListener("click", toggleCarMenu);
+
+  document.querySelector('#user-img').addEventListener("click", ()=>toggleUserDropdown());
+
   list.forEach((el, i) => {
     const linkEl = document.querySelector(".links");
     const menuList = document.querySelector(".menu-list");
@@ -102,16 +127,15 @@ export default async function decorate(block) {
 
   const acc = document.getElementsByClassName("accordion");
 
-
-for (let i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
-  });
-}
+  for (let i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    });
+  }
 }

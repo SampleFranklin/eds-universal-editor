@@ -76,6 +76,7 @@ header nav a:any-link {
   overflow: initial;
   text-overflow: initial;
   white-space: initial;
+  cursor: pointer;
 }
 
 .nav-hamburger-nexa button {
@@ -280,41 +281,41 @@ header nav .nav-tools {
 .navbar-nexa {
   background-color: #18171a;
 }
-.navbar img {
-  height: 30px;
-}
 .navbar .links {
   display: flex;
   height: -webkit-fill-available;
   align-items: center;
-  gap: 10px;
 }
-.navbar .links .link-title {
+.navbar .links .link-title,
+.navbar .right .location,
+.navbar .right .language {
   text-decoration: none;
   color: #171d9b;
   font-weight: bold;
   cursor: pointer;
   font-size: 14px;
-  font-family: "Anek Latin";
-  border-radius: 5px;
+  font-family: "Fira Sans";
   height: -webkit-fill-available;
   display: flex;
   align-items: center;
+  padding: 0px 20px;
 }
 
-.navbar-nexa .links .link-title {
+.navbar-nexa .links .link-title,
+.navbar-nexa .right .location {
   color: #f2f2f2;
+}
+
+.navbar-nexa .links .link-title:hover {
+  background-color: #ffffff;
+  color: #000000;
 }
 .navbar .right {
   display: flex;
   align-items: center;
   gap: 15px;
 }
-.navbar .right .location,
-.navbar .right .language {
-  cursor: pointer;
-  color: gray;
-}
+
 .navbar .right img {
   height: 30px;
   border-radius: 50%;
@@ -435,30 +436,63 @@ body {
 }
 .desktop-panel {
   display: none;
+  visibility: hidden;
   position: absolute;
   top: var(--nav-height);
   right: 0;
   width: 100%;
-  background-color: white;
-  border: 1px solid #ccc;
+  background-color: #f4f4f4;
   padding: 10px;
   z-index: 10;
   transition: opacity 0.3s ease;
   opacity: 0;
-  border-radius: 5px;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
   max-height: max-content;
 }
 
-.navbar .links .link-title:hover + .desktop-panel {
-  display: block;
-  opacity: 1;
-}
-
+.navbar .links .link-title:hover + .desktop-panel,
 .navbar-nexa .links .link-title:hover + .desktop-panel,
 .desktop-panel:hover {
-  display: block;
+  display: flex;
   opacity: 1;
+  visibility: visible;
+}
+
+.car-panel {
+  display: none;
+  position: absolute;
+  top: var(--nav-height);
+  right: 0;
+  width: 100%;
+  background-color: #f4f4f4;
+  padding: 10px;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sign-in-wrapper {
+  z-index: 999;
+  position: absolute;
+  top: var(--nav-height);
+  right: 5px;
+  display: none;
+}
+
+.user__dropdown {
+  width: 100%;
+  background: var(--Tertiary-White, #fff);
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .user__dropdown {
+    width: 283px;
+    padding: 20px;
+  }
 }
 
 @media (max-width: 900px) {
@@ -468,14 +502,11 @@ body {
   }
   .car {
     display: block;
+    cursor: pointer;
   }
 
   .nav-hamburger {
     display: flex;
-  }
-  .menu-btn,
-  .car {
-    display: block;
   }
 }
 
@@ -506,8 +537,8 @@ body {
 }
 
 @media (min-width: 900px) {
-  .buy + .panel,
-  .owners + .panel {
+  .buy.panel,
+  .owners.panel {
     display: flex;
     padding: 32px 64px;
     background-color: var(--nav-background-color);
@@ -516,6 +547,11 @@ body {
 
   .panel .link-container-section {
     flex-direction: row;
+  }
+
+  .panel .link-grid-column .links-container,
+  .panel .link-grid-column .accordian-item {
+    padding: 0;
   }
 
   .panel .link-grid-column .links-container li a {
@@ -584,6 +620,7 @@ body {
     font-size: 16px;
     font-weight: 300;
     line-height: 20px;
+    margin-bottom: 24px;
   }
 
   .panel .teaser__actions a {
@@ -606,19 +643,20 @@ body {
     content: url("../../icons/arrow.svg");
     position: absolute;
     right: 0;
+    bottom: 0;
   }
 }
 
-@media (min-width: 768px) {
-  .nexa + .panel {
+@media (min-width: 900px) {
+  .nexa.panel {
     padding: 32px 64px;
     background-color: var(--nav-background-color);
   }
-  .nexa + .panel .link-grid-column .links-container {
+  .nexa.panel .link-grid-column .links-container {
     flex-direction: row;
     gap: 56px;
   }
-  .nexa + .panel .link-grid-column .links-container a {
+  .nexa.panel .link-grid-column .links-container a {
     color: black;
     min-height: auto;
   }
@@ -642,7 +680,7 @@ body {
   border-bottom: 0;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 900px) {
   .arena .panel {
     background-color: #f4f4f4;
   }

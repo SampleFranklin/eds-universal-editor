@@ -255,18 +255,6 @@ main .teaser-container > div {
     }
 }
 
-main .section.immersive-teaser-container {
-    padding-left: 0;
-    padding-right: 0;
-    background-color: #18171A;
-    height: 1000px;
-    position: relative;
-
-    @media(min-width:768px) {
-        height: auto;
-    }
-}
-
 /* .light-teaser.buyers-guide-teaser {
     max-width: 285px;
 } */
@@ -280,6 +268,10 @@ main .section.immersive-teaser-container {
     @media(min-width:768px) {
         padding: 32px 32px 55px;
     }
+}
+
+.light-teaser.buyers-guide-teaser .teaser__content {
+    position: relative;
 }
 
 .light-teaser.buyers-guide-teaser .teaser__info {
@@ -307,7 +299,7 @@ main .section.immersive-teaser-container {
     font-size: 16px;
     font-weight: 500;
     line-height: 20px;
-    width: 53%;
+    width: 70%;
 
     @media(min-width:768px) {
         font-size: 24px;
@@ -331,13 +323,12 @@ main .section.immersive-teaser-container {
 
 .light-teaser.buyers-guide-teaser .teaser__actions {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 0;
+    right: 0;
     width: 18%;
 
     @media(max-width:768px) {
         width: 25%;
-        right: 32px;
     }
 }
 
@@ -407,6 +398,14 @@ main .section.immersive-teaser-container {
         gap:40px;
         align-items:center;
     }
+}
+
+.dark-teaser.buyers-guide-teaser .teaser__card .teaser__content .teaser__actions {
+    transition: transform 0.5s ease-in-out;
+}
+
+.dark-teaser.buyers-guide-teaser .teaser__card:hover .teaser__content .teaser__actions {
+    transform: scale(1.5);
 }
 
 .dark-teaser.buyers-guide-teaser .teaser__image>picture>img {
