@@ -280,9 +280,6 @@ header nav .nav-tools {
 .navbar-nexa {
   background-color: #18171a;
 }
-.navbar img {
-  height: 30px;
-}
 .navbar .links {
   display: flex;
   height: -webkit-fill-available;
@@ -451,14 +448,13 @@ body {
 }
 
 .navbar .links .link-title:hover + .desktop-panel {
-  display: block;
-  opacity: 1;
+  display: flex;
+  opacity: 1; 
 }
 
-.navbar-nexa .links .link-title:hover + .desktop-panel,
-.desktop-panel:hover {
-  display: block;
-  opacity: 1;
+.navbar-nexa .links .link-title:hover + .desktop-panel {
+  display: flex;
+  opacity: 1; 
 }
 
 @media (max-width: 900px) {
@@ -505,9 +501,9 @@ body {
   display: none;
 }
 
-@media (min-width: 900px) {
-  .buy + .panel,
-  .owners + .panel {
+@media (min-width: 768px) {
+  .buy.panel,
+  .owners.panel {
     display: flex;
     padding: 32px 64px;
     background-color: var(--nav-background-color);
@@ -610,15 +606,15 @@ body {
 }
 
 @media (min-width: 768px) {
-  .nexa + .panel {
+  .nexa.panel {
     padding: 32px 64px;
     background-color: var(--nav-background-color);
   }
-  .nexa + .panel .link-grid-column .links-container {
+  .nexa.panel .link-grid-column .links-container {
     flex-direction: row;
     gap: 56px;
   }
-  .nexa + .panel .link-grid-column .links-container a {
+  .nexa.panel .link-grid-column .links-container a {
     color: black;
     min-height: auto;
   }
