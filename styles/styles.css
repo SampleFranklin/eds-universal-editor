@@ -10,8 +10,6 @@
  * governing permissions and limitations under the License.
  */
 
-@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
 :root {
   /* Nexa colors */
   --primary-main: #18171a;
@@ -34,10 +32,9 @@
   --gradient-1: linear-gradient(60.18deg, #c9d3d7 3.71%, #ebebeb 104.51%);
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback;
+  --body-font-family: "Fira Sans";
   --heading-font-family: var(--body-font-family);
-  --fixed-font-family: "Roboto Mono", menlo, consolas, "Liberation Mono",
-    monospace;
+  --fixed-font-family: "Fira Sans";
 
   /* body sizes */
   --body-font-size-m: 22px;

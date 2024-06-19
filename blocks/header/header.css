@@ -453,7 +453,7 @@ body {
 .desktop-panel:hover {
   display: flex;
   opacity: 1;
-  visibility: visible; 
+  visibility: visible;
 }
 
 @media (max-width: 900px) {
@@ -511,6 +511,11 @@ body {
 
   .panel .link-container-section {
     flex-direction: row;
+  }
+
+  .panel .link-grid-column .links-container,
+  .panel .link-grid-column .accordian-item {
+    padding: 0;
   }
 
   .panel .link-grid-column .links-container li a {
@@ -579,6 +584,7 @@ body {
     font-size: 16px;
     font-weight: 300;
     line-height: 20px;
+    margin-bottom: 24px;
   }
 
   .panel .teaser__actions a {
