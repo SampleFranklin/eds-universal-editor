@@ -531,6 +531,22 @@
           }
         },
         {
+          "title": "Highlight Tabs",
+          "id": "highlight-tabs",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "Highlight Tabs",
+                  "filter": "highlight-tabs",
+                  "model": "highlight-tabs"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Test Teaser",
           "id": "test-teaser",
           "plugins": {

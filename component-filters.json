@@ -125,5 +125,11 @@
     "components": [
       "teaser"
     ]
+  },
+  {
+    "id": "highlight-tabs",
+    "components": [
+      "teaser"
+    ]
   }
 ]
