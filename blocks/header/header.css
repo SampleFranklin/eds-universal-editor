@@ -318,7 +318,7 @@ header nav .nav-tools {
 
 .navbar .right img {
   height: 30px;
-  border-radius: 50%;
+  cursor: pointer;
 }
 body {
   margin: 0;

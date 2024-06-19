@@ -92,9 +92,9 @@ export default async function decorate(block) {
   const mobileHeader = `
     <div id="menu" class="menu ${isNexa && "menu-nexa"}">
       <div class="menu-header ${isNexa && "menu-header-nexa"}">
-        <div class="back-arrow"><img src="../../icons/chevron_left.svg" alt="back" /></div>
+        <div class="back-arrow"><img src="../../icons/${isNexa ? 'chevron_left_white' : 'chevron_left'}.svg" alt="back" /></div>
         <span class="menu-title">Menu</span>
-        <span class="close-icon"><img src="../../icons/close.svg" alt="close" /></span>
+        <span class="close-icon"><img src="../../icons/${isNexa ? 'close_white' : 'close'}.svg" alt="close" /></span>
       </div>
       <ul class="menu-list"></ul>
     </div>
@@ -115,15 +115,18 @@ export default async function decorate(block) {
 
   document.querySelector('#user-img').addEventListener("click", ()=>toggleUserDropdown());
 
+  const linkEl = document.querySelector(".links");
+  const menuList = document.querySelector(".menu-list");
+
   list.forEach((el, i) => {
-    const linkEl = document.querySelector(".links");
-    const menuList = document.querySelector(".menu-list");
     linkEl.innerHTML += `<div class="link-title"><span>${el.heading}</span></div> ${el.content || el.teaser ? `<div class="desktop-panel panel ${el.heading.toLowerCase()}">${el.content || ''}${el.teaser || ''}</div>` :''}`;
     if (i === 0) return;
     menuList.innerHTML += `<li id="menu-item-${i}" class="${el.content ?'accordion nav-link':''} ${el.heading.toLowerCase()}" ><span class="icon">${el.icon}</span> <span class="menu-title">${el.heading}</span></li>
     ${el.content || el.teaser ? `<div class="panel">${el.content || ''}${el.teaser || ''}</div>` :''}
     `;
   });
+
+  menuList.innerHTML += `<li>${contact.outerHTML}</li>`
 
   const acc = document.getElementsByClassName("accordion");
 
