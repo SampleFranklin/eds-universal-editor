@@ -1,5 +1,5 @@
 // teaser.js
-import {CTA} from '../utility/cta.js';
+import CTA from '../utility/cta.js';
 import { sanitizeHtml } from '../../scripts/utils.js';
 
 export class Teaser {

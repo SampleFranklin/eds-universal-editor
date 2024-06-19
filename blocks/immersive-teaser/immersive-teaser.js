@@ -1,5 +1,6 @@
 import { sanitizeHtml } from '../../scripts/utils.js';
-import {Teaser} from '../teaser/teaser.js';
+import { Teaser } from '../teaser/teaser.js';
+import CTA from '../utility/cta.js';
 
 class ImmersiveTeaser {
   constructor(block) {
@@ -39,7 +40,17 @@ class ImmersiveTeaser {
   }
 
   getImmersiveTeaserData() {
-    const [imageEl, altTextEl, pretitleEl, titleEl, descriptionEl, ctaTextEl, ctaLinkEl, ctaTargetEl] = this.block.children;
+    const [
+      imageEl,
+      altTextEl,
+      pretitleEl,
+      titleEl,
+      descriptionEl,
+      ctaTextEl,
+      ctaLinkEl,
+      ctaTargetEl,
+    ] = this.block.children;
+
     const image = imageEl?.querySelector('picture');
     if (image) {
       const img = image.querySelector('img');
@@ -53,19 +64,14 @@ class ImmersiveTeaser {
     const title = titleEl?.textContent?.trim();
     const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.outerHTML).join('');
     const cta = ctaLinkEl?.querySelector('.button-container a');
-    if (cta) {
-      const ctaText = ctaTextEl?.textContent?.trim() || '';
-      const target = ctaTargetEl?.textContent?.trim() || '_self';
-      cta.setAttribute('target', target);
-      cta.textContent = ctaText;
-    }
+    cta ? new CTA(ctaLinkEl, ctaTextEl, ctaTargetEl).getLink() : null;
 
     return {
-      image: image,
-      pretitle: pretitle,
-      title: title,
-      description: description,
-      cta: cta
+      image,
+      pretitle,
+      title,
+      description,
+      cta,
     };
   }
 }
