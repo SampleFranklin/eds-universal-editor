@@ -19,7 +19,6 @@ export default async function decorate(block) {
 
   const topSection = fragment.firstElementChild;
   while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
-
   // Select all columns
   // const columns = footer.querySelectorAll(".link-grid-column");
   const linkGridSection = footer.querySelector(".link-grid-wrapper");
@@ -51,8 +50,9 @@ export default async function decorate(block) {
   let bottomSecondSectionHtml = '<div class="row">';
   bottomSecondSection.querySelectorAll("p").forEach((bottomElement) => {
     const anchor = bottomElement.querySelector("a");
+    console.log(bottomElement);
     if (anchor) {
-      bottomSecondSectionHtml += ` <li><a href=${anchor.href}>Terms of use</a></li>`;
+      bottomSecondSectionHtml += ` <li><a href=${anchor.href}>${anchor.textContent}</a></li>`;
     } else {
       bottomSecondSectionHtml += `<div class="col-md-4 footer__copyright-left"><p>${bottomElement.textContent}</p></div><div class="col-md-8 footer__copyright-right"><ul>`;
     }

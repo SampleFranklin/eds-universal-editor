@@ -73,9 +73,9 @@ main .teaser-container > div {
         }
 
         @media (min-width: 1024px) {
-            .finance-service__cards {
+            /* .finance-service__cards {
                 grid-auto-columns: 650px 650px;
-            }
+            } */
 
             .teaser__card {
                 display: flex;
@@ -98,6 +98,58 @@ main .teaser-container > div {
                 gap: 48px;
                 display: none;
             }
+            
+
+            .teaser__card--unfocused{
+              flex-direction: column;
+              height: 370px;
+              width: -webkit-fill-available;
+              position: relative; 
+              cursor: pointer;
+              &.teaser__left{
+                .teaser__content{
+                    position: absolute;
+                    inset: 0;
+                    justify-content: end;
+                    direction: rtl;
+              }}
+              &.teaser__right{
+                .teaser__content{
+                  position: absolute;
+                  inset: 0;
+                  justify-content: end;
+                  direction: ltr;
+            }
+              }
+             }
+
+              /* .teaser__right{
+                &.teaser__card--unfocused{
+                flex-direction: column;
+                height: 370px;
+                width: -webkit-fill-available;
+                position: relative; 
+                cursor: pointer;
+                  .teaser__content{
+                      position: absolute;
+                      inset: 0;
+                      justify-content: end;
+                      direction: ltr;
+                }}
+            } */
+            /* .teaser__right .teaser__card--unfocused{
+              flex-direction: column;
+              height: 370px;
+              width: -webkit-fill-available;
+              position: relative; 
+              cursor: pointer;
+                .teaser__content{
+                    position: absolute;
+                    inset: 0;
+                    justify-content: end;
+                    direction: ltr;
+              }
+            }             */
         }
 
         .teaser__description {

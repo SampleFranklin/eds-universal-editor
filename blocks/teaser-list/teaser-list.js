@@ -10,14 +10,18 @@ class TeaserList {
 
   toggleFocusedClass() {
     const cards = this.block.querySelectorAll('.teaser__cards .teaser__card');
-    cards[0].classList.add('teaser__card--focused');
+    cards[0].classList.add('teaser__card--focused','teaser__left');
+    cards[1].classList.add('teaser__card--unfocused', 'teaser__right')
 
     cards.forEach((card) => {
       card.addEventListener('click', () => {
         cards.forEach((el) => {
-          el.classList.remove('teaser__card--focused');
+            el.classList.remove('teaser__card--focused');
+            el.classList.add('teaser__card--unfocused'); 
         });
         card.classList.add('teaser__card--focused');
+        card.classList.remove('teaser__card--unfocused');
+
       });
     });
 
@@ -49,7 +53,6 @@ class TeaserList {
 
   decorate() {
     const [titleEl, styleEl, ...cards] = this.block.children;
-
     const style = styleEl?.textContent?.trim().split(',');
     this.block.classList.add(...style);
     const commonTitle = titleEl?.textContent?.trim() || '';
