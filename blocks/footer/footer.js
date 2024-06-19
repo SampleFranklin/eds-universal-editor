@@ -98,7 +98,7 @@ export default async function decorate(block) {
         Element.classList.remove("hide__section");
       });
   };
-  block.parentElement.classList.add("footer__arena");
+  //block.parentElement.classList.add("footer__nexa");
   block.innerHTML = `
   <div class="footer" >
       <div class="container">
