@@ -28,7 +28,7 @@ footer .link-grid-column {
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 footer .link-grid-column h3,
-footer #contact-us {
+footer .contactUs__Heading {
   color: var(--tertiary-white);
   margin: 0;
   padding: 16px 0;
@@ -98,7 +98,7 @@ footer .footer__columns-contact .contactUs__section {
   flex-direction: column-reverse;
 }
 
-footer #contact-us {
+footer .contactUs__Heading {
   display: none;
 }
 footer .user__contact {
@@ -207,7 +207,7 @@ footer.footer__arena .footer__info-left {
     display: flex;
   }
   footer .link-grid-column h3,
-  footer #contact-us {
+  footer .contactUs__Heading {
     font-size: 18px;
     padding: 20px 0;
     font-style: normal;
@@ -221,7 +221,7 @@ footer.footer__arena .footer__info-left {
     flex-direction: column;
     padding-top: 0;
   }
-  footer #contact-us {
+  footer .contactUs__Heading {
     display: block;
   }
   footer .link-grid-column {
@@ -258,7 +258,7 @@ footer.footer__arena .footer__info-left {
   footer .footer__columns-contact .contactUs__section {
     flex-direction: inherit;
   }
-  footer #contact-us p {
+  footer .contactUs__Heading p {
     font-size: 16px;
   }
   footer .footer__columns .footer__columns-contact p {
