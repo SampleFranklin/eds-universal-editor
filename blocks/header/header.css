@@ -334,7 +334,7 @@ header nav .nav-tools {
   gap: 15px;
 }
 
-.navbar .right img {
+.navbar .right > img {
   height: 30px;
   cursor: pointer;
 }
@@ -484,26 +484,8 @@ body {
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
-.sign-in-wrapper {
-  z-index: 999;
-  position: absolute;
-  top: var(--nav-height);
-  right: 5px;
-  display: none;
-}
-
-.user__dropdown {
-  width: 100%;
-  background: var(--Tertiary-White, #fff);
-  display: flex;
-  flex-direction: column;
-  padding: 24px;
-  gap: 24px;
-}
-
 @media (min-width: 1024px) {
   .user__dropdown {
-    width: 283px;
     padding: 20px;
   }
 }
