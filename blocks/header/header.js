@@ -70,7 +70,7 @@ export default async function decorate(block) {
   const userDropdown = nav.querySelector('.sign-in-wrapper')
 
   const desktopHeader = `
-    <div class="navbar ${isNexa && "navbar-nexa"}">
+    <div class="navbar ${isNexa ? "navbar-nexa" : "navbar-arena"}">
       <div class="nav-hamburger ${isNexa && "nav-hamburger-nexa"}">
       <button type="button" aria-controls="nav" aria-label="Open navigation">
         <span class="nav-hamburger-icon"></span>
@@ -90,7 +90,7 @@ export default async function decorate(block) {
   `;
 
   const mobileHeader = `
-    <div id="menu" class="menu ${isNexa && "menu-nexa"}">
+    <div id="menu" class="menu ${isNexa ? "menu-nexa" : "menu-arena"}">
       <div class="menu-header ${isNexa && "menu-header-nexa"}">
         <div class="back-arrow"><img src="../../icons/${isNexa ? 'chevron_left_white' : 'chevron_left'}.svg" alt="back" /></div>
         <span class="menu-title">Menu</span>
