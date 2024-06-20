@@ -325,9 +325,15 @@ header nav .nav-tools {
 .navbar-nexa .links .link-title:hover {
   background-color: #ffffff;
   color: #000000;
-  font-weight: bold;
   border-bottom: 3px solid #ffffff;
+  font-weight: 500;
 }
+.navbar-arena .links .link-title:hover {
+  color: #171D9B;
+  font-weight: 600;
+  border-bottom: 3px solid #171D9B;
+}
+
 .navbar .right {
   display: flex;
   align-items: center;
@@ -661,56 +667,67 @@ body {
 }
 
 @media (min-width: 900px) {
-  .nexa.panel {
+  .nexa.panel,
+  .arena.panel {
     padding: 32px 64px;
     background-color: var(--nav-background-color);
   }
-  .nexa.panel .link-grid-column .links-container {
+  .nexa.panel .link-grid-column .links-container,
+  .arena.panel .link-grid-column .links-container {
     flex-direction: row;
     gap: 56px;
   }
-  .nexa.panel .link-grid-column .links-container a {
+  .nexa.panel .link-grid-column .links-container a,
+  .arena.panel .link-grid-column .links-container a {
     color: black;
     min-height: auto;
   }
 }
 
-.arena .panel {
+.menu-arena .panel {
   background-color: #eff0ff;
+  margin: 0 20px;
 }
 
-.arena .panel .teaser {
+.menu-arena .panel .teaser {
   display: none;
 }
 
-.arena .panel .links-container {
+.menu-arena .panel .links-container {
   padding-bottom: 24px;
   margin-top: 24px;
   border-bottom: 1px solid #dddddd;
 }
 
-.arena .panel .link-grid-column:last-child .links-container {
+.menu-arena .panel .link-grid-column:last-child .links-container {
   border-bottom: 0;
 }
 
+.menu-arena .panel .link-grid-column .links-container li a {
+  padding: 14px 12px;
+  color: #575a5e;
+}
 @media (min-width: 900px) {
-  .arena .panel {
+  .navbar-arena .panel {
     background-color: #f4f4f4;
   }
 
-  .arena .panel .link-grid {
+  .navbar-arena .panel .link-grid {
     flex-basis: 100%;
   }
 
-  .arena .panel .links-container {
+  .navbar-arena .panel .links-container {
     border-bottom: none;
   }
-  .arena .panel .link-container-section {
+  .navbar-arena .panel .link-container-section {
     justify-content: center;
-    gap: 56px;
+    gap: 64px;
   }
-  .arena .panel .link-grid-column {
+  .navbar-arena .panel .link-grid-column {
     width: auto;
     flex: 0 1 auto;
+  }
+  .navbar-arena .panel .link-grid-column .links-container li a {
+    color: black;
   }
 }
