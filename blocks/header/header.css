@@ -519,6 +519,16 @@ body {
   .nav-hamburger {
     display: flex;
   }
+
+  .menu-nexa .sign-in-teaser {
+    display: grid;
+    grid-template-columns: 1.5fr auto;
+    width: 100%;
+  }
+
+  .menu-nexa .sign-in-teaser img {
+    float: right;
+  }
 }
 
 .panel .link-container-section {
