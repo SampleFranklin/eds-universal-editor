@@ -131,12 +131,20 @@ export default async function decorate(block) {
   const acc = document.getElementsByClassName("accordion");
   
   for (let i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function () {
+    acc[i].addEventListener("click", function (e) {
       this.classList.toggle("active");
+      const index = parseInt(e.target.id.split("-")[2]);
+      const menuListIconWrapper = this.querySelector(".icon");
+      const menuListTitle = this.querySelector(".menu-title");
+      const { icon, iconClicked } = list[index];
       var panel = this.nextElementSibling;
       if (panel.style.maxHeight) {
+        menuListIconWrapper.innerHTML = icon;
+        menuListTitle.classList.remove('menu-title-clicked')
         panel.style.maxHeight = null;
       } else {
+        menuListIconWrapper.innerHTML = iconClicked;
+        menuListTitle.classList.add('menu-title-clicked')
         panel.style.maxHeight = panel.scrollHeight + "px";
       }
     });

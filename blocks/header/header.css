@@ -329,9 +329,9 @@ header nav .nav-tools {
   font-weight: 500;
 }
 .navbar-arena .links .link-title:hover {
-  color: #171D9B;
+  color: #171d9b;
   font-weight: 600;
-  border-bottom: 3px solid #171D9B;
+  border-bottom: 3px solid #171d9b;
 }
 
 .navbar .right {
@@ -429,6 +429,11 @@ body {
   font-size: 14px;
 }
 
+.menu-title-clicked {
+  font-weight: bold;
+  color: #171d9b;
+}
+
 .menu-btn {
   display: none;
 }
@@ -488,12 +493,6 @@ body {
   z-index: 10;
   transition: opacity 0.3s ease;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-}
-
-@media (min-width: 1024px) {
-  .user__dropdown {
-    padding: 20px;
-  }
 }
 
 @media (max-width: 900px) {
