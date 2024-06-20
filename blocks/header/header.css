@@ -398,7 +398,16 @@ body {
   cursor: pointer;
 }
 
-.menu-list li .icon {
+.menu-list > li > a {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  gap: 0px;
+  padding-bottom: 0;
+}
+
+.menu-list li .icon,
+.menu-list .user__account__list-icon {
   margin-right: 10px;
   font-size: 20px;
   color: gray;
@@ -427,6 +436,7 @@ body {
 
 .menu .menu-list li .menu-title {
   font-size: 14px;
+  font-family: "Fira Sans";
 }
 
 .menu-title-clicked {

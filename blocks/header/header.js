@@ -68,7 +68,8 @@ export default async function decorate(block) {
   const contact = nav.querySelector('.contact-wrapper');
   user__dropdownDiv.append(contact);
   const userDropdown = nav.querySelector('.sign-in-wrapper')
-
+  const userAccountLinkItems = user__dropdownDiv.querySelectorAll('.user__account>a')
+  console.log(userAccountLinkItems);
   const desktopHeader = `
     <div class="navbar ${isNexa ? "navbar-nexa" : "navbar-arena"}">
       <div class="nav-hamburger ${isNexa && "nav-hamburger-nexa"}">
@@ -125,6 +126,10 @@ export default async function decorate(block) {
     ${el.content || el.teaser ? `<div class="panel">${el.content || ''}${el.teaser || ''}</div>` :''}
     `;
   });
+
+  userAccountLinkItems.forEach((el) => {
+    menuList.innerHTML += `<li>${el.outerHTML}</li>`
+  })
 
   menuList.innerHTML += `<li>${contact.outerHTML}</li>`
 
