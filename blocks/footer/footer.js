@@ -59,7 +59,7 @@ export default async function decorate(block) {
     if (anchor) {
       bottomSecondSectionHtml += ` <li><a href=${anchor.href}>${anchor.textContent}</a></li>`;
     } else {
-      bottomSecondSectionHtml += `<div class="col-md-4 footer__copyright-left"><p>${bottomElement.textContent}</p></div><div class="col-md-8 footer__copyright-right"><ul>`;
+      bottomSecondSectionHtml += `<div class="col-md-3 footer__copyright-left"><p>${bottomElement.textContent}</p></div><div class="col-md-9 footer__copyright-right"><ul>`;
     }
   });
   bottomSecondSectionHtml += "</ul></div>";
