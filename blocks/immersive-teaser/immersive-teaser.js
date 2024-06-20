@@ -56,7 +56,7 @@ export default function decorate(block) {
     `);
 
   block.innerHTML = `
-        <div class="immersive__wrapper">
+        <div class="immersive__wrapper right-seperator">
             ${immersiveTeaserHtml}
             ${(teaserObj?.innerHTML) ? teaserObj.outerHTML : ''}
         </div>
