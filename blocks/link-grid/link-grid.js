@@ -1,4 +1,4 @@
-import utility from "../../utility/utility.js";
+import { utility } from "../../utility/utility.js";
 
 export default function decorate(block) {
   const gridContainer = document.createElement("div");
