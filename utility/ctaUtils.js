@@ -1,4 +1,4 @@
-import { utility } from './utility.js';
+import utility from './utility.js';
 
 const ctaUtils = {
 

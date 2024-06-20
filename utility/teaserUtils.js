@@ -1,7 +1,7 @@
-import { utility } from './utility.js';
-import { ctaUtils } from './ctaUtils.js';
+import utility from './utility.js';
+import ctaUtils from './ctaUtils.js';
 
-export const teaser = {
+const teaser = {
   getTeaser(block) {
     function initImage(image, altTextEl) {
       const img = image.querySelector('img');
@@ -72,5 +72,6 @@ export const teaser = {
     );
     return block;
   },
-
 };
+
+export default teaser;

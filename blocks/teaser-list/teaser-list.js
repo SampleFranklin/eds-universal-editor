@@ -21,7 +21,7 @@ function toggleFocusedClass() {
       });
     });
 
-    const teaserCards = this.block.querySelectorAll('.teaser__card');
+    const teaserCards = block.querySelectorAll('.teaser__card');
 
     teaserCards.forEach((teaserCard) => {
       teaserCard.addEventListener('click', () => {
