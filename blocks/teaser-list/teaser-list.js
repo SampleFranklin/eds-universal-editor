@@ -1,5 +1,5 @@
-import {utility} from '../../utility/utility.js';
-import {teaser} from "../../utility/teaserUtils.js";
+import utility from '../../utility/utility.js';
+import teaser from "../../utility/teaserUtils.js";
 
 export default function decorate(block) {
 

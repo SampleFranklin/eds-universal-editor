@@ -1,8 +1,8 @@
 import { utility } from './utility.js';
 import { ctaUtils } from './ctaUtils.js';
+
 export const teaser = {
   getTeaser(block) {
-
     function initImage(image, altTextEl) {
       const img = image.querySelector('img');
       img.removeAttribute('width');

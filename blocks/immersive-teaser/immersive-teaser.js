@@ -1,6 +1,6 @@
-import { utility } from '../../utility/utility.js';
-import { teaser } from '../../utility/teaserUtils.js';
-import { ctaUtils } from '../../utility/ctaUtils.js';
+import utility from '../../utility/utility.js';
+import teaser from '../../utility/teaserUtils.js';
+import ctaUtils from '../../utility/ctaUtils.js';
 
 export default function decorate(block) {
   function getImmersiveTeaser() {
