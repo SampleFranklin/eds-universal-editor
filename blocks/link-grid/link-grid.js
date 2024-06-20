@@ -1,4 +1,4 @@
-import { isInternalLink } from "../../scripts/utils.js";
+import { utility } from "../../utility/utility.js";
 
 export default function decorate(block) {
   const gridContainer = document.createElement("div");
@@ -20,7 +20,7 @@ export default function decorate(block) {
           // Check if href attribute exists
           if (href) {
             const linkText = link.textContent || "Link";
-            const target = isInternalLink(href) ? "_self" : "_blank";
+            const target = utility.isInternalLink(href) ? "_self" : "_blank";
             return `<li><a href="${href}" target="${target}" aria-label="${linkText}">${linkText}</a></li>`;
           }
           // If href attribute doesn't exist, return an empty string

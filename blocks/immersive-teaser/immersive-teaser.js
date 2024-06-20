@@ -1,46 +1,19 @@
-import { sanitizeHtml } from '../../scripts/utils.js';
-import {Teaser} from '../teaser/teaser.js';
-import CTA from '../utility/cta.js'
+import { utility } from '../../utility/utility.js';
+import { teaser } from '../../utility/teaserUtils.js';
+import { ctaUtils } from '../../utility/ctaUtils.js';
 
-class ImmersiveTeaser {
-  constructor(block) {
-    this.block = block;
-    this.teaser = null;
-    this.teaserEl = block.children[8];
-    this.immersiveData = this.getImmersiveTeaserData();
-  }
-
-  decorate() {
-    if (this.teaserEl?.innerHTML) {
-      this.teaser = new Teaser(this.teaserEl);
-      this.teaser.getTeaser();
-      this.teaser.block.classList.add('teaser-wrapper');
-    }
-
-    if (this.immersiveData.cta) {
-      this.immersiveData.cta.classList.add('primary-action__btn');
-    }
-
-    const immersiveTeaserHtml = sanitizeHtml(`
-      ${(this.immersiveData.image)? this.immersiveData.image.outerHTML : ''}
-      <div class="immersive__content">
-        ${(this.immersiveData.pretitle)? `<p>${this.immersiveData.pretitle}</p>` : ''}
-        ${(this.immersiveData.title)? `<h2>${this.immersiveData.title}</h2>` : ''}
-        ${(this.immersiveData.description)? `${this.immersiveData.description}` : ''}
-        ${(this.immersiveData.cta)? `<div class="immersive__action">${this.immersiveData.cta.outerHTML}</div>` : ''}
-      </div>
-    `);
-
-    this.block.innerHTML = `
-      <div class="immersive__wrapper">
-        ${immersiveTeaserHtml}
-        ${(this.teaser?.block?.innerHTML) ? this.teaser.block.outerHTML : ''}
-      </div>
-    `;
-  }
-
-  getImmersiveTeaserData() {
-    const [imageEl, altTextEl, pretitleEl, titleEl, descriptionEl, ctaTextEl, ctaLinkEl, ctaTargetEl] = this.block.children;
+export default function decorate(block) {
+  function getImmersiveTeaser() {
+    const [
+      imageEl,
+      altTextEl,
+      pretitleEl,
+      titleEl,
+      descriptionEl,
+      ctaTextEl,
+      ctaLinkEl,
+      ctaTargetEl,
+    ] = block.children;
     const image = imageEl?.querySelector('picture');
     if (image) {
       const img = image.querySelector('img');
@@ -53,19 +26,39 @@ class ImmersiveTeaser {
     const pretitle = pretitleEl?.textContent?.trim();
     const title = titleEl?.textContent?.trim();
     const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.outerHTML).join('');
-    const cta = (ctaLinkEl) ? CTA.getLink(ctaLinkEl, ctaTextEl, ctaTargetEl) : null;
+    const cta = (ctaLinkEl) ? ctaUtils.getLink(ctaLinkEl, ctaTextEl, ctaTargetEl) : null;
 
     return {
-      image: image,
-      pretitle: pretitle,
-      title: title,
-      description: description,
-      cta: cta
+      image,
+      pretitle,
+      title,
+      description,
+      cta,
     };
   }
-}
 
-export default function decorate(block) {
-  const immersiveTeaser = new ImmersiveTeaser(block);
-  immersiveTeaser.decorate();
+  const immersiveTeaser = getImmersiveTeaser(block);
+  const teaserEl = block.children[8];
+  let teaserObj;
+  if (teaserEl?.innerHTML) {
+    teaserObj = teaser.getTeaser(teaserEl);
+    teaserObj.classList.add('teaser-wrapper');
+  }
+  immersiveTeaser.cta?.classList.add('btn-title');
+  const immersiveTeaserHtml = utility.sanitizeHtml(`
+        ${(immersiveTeaser.image) ? immersiveTeaser.image.outerHTML : ''}
+         <div class="immersive__content">
+           ${(immersiveTeaser.pretitle) ? `<p>${immersiveTeaser.pretitle}</p>` : ''}
+           ${(immersiveTeaser.title) ? `<h2>${immersiveTeaser.title}</h2>` : ''}
+           ${(immersiveTeaser.description) ? `${immersiveTeaser.description}` : ''}
+           ${(immersiveTeaser.cta) ? `<div class="immersive__action">${immersiveTeaser.cta.outerHTML}</div>` : ''}
+          </div>
+    `);
+
+  block.innerHTML = `
+        <div class="immersive__wrapper">
+            ${immersiveTeaserHtml}
+            ${(teaserObj?.innerHTML) ? teaserObj.outerHTML : ''}
+        </div>
+    `;
 }

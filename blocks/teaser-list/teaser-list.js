@@ -1,15 +1,11 @@
-import { sanitizeHtml } from '../../scripts/utils.js';
-import { Teaser } from '../teaser/teaser.js';
-import Utility from '../utility/utility.js';
+import {utility} from '../../utility/utility.js';
+import {teaser} from "../../utility/teaserUtils.js";
 
-class TeaserList {
-  constructor(block) {
-    this.block = block;
-    this.teasers = [];
-  }
+export default function decorate(block) {
 
-  toggleFocusedClass() {
-    const cards = this.block.querySelectorAll('.teaser__cards .teaser__card');
+//Toggle Focused Class Method
+function toggleFocusedClass() {
+    const cards = block.querySelectorAll('.teaser__cards .teaser__card');
     cards[0].classList.add('teaser__card--focused','teaser__left');
     cards[1].classList.add('teaser__card--unfocused', 'teaser__right')
 
@@ -17,7 +13,7 @@ class TeaserList {
       card.addEventListener('click', () => {
         cards.forEach((el) => {
             el.classList.remove('teaser__card--focused');
-            el.classList.add('teaser__card--unfocused'); 
+            el.classList.add('teaser__card--unfocused');
         });
         card.classList.add('teaser__card--focused');
         card.classList.remove('teaser__card--unfocused');
@@ -50,47 +46,39 @@ class TeaserList {
       });
     });
   }
+//Toggle Focused Class Method End
 
-  decorate() {
-    const [titleEl, styleEl, ...cards] = this.block.children;
-    const style = styleEl?.textContent?.trim().split(',');
-    this.block.classList.add(...style);
-    const commonTitle = titleEl?.textContent?.trim() || '';
+  const [titleEl, styleEl, ...teaserListEl] = block.children;
 
-    cards.forEach((card) => {
-      const teaser = new Teaser(card);
-      this.teasers.push(teaser);
-      Utility.mobileLazyLoading(teaser.getTeaser(), '.teaser__image img');
-    });
+  const style = styleEl?.textContent?.trim().split(',');
+  block.classList.add(...style);
+  const commonTitle = titleEl?.textContent?.trim() || '';
+  const teasers = teaserListEl.map((card) => {
+    const teaserObj = teaser.getTeaser(card);
+    utility.mobileLazyLoading(teaserObj, '.teaser__image img');
+    return teaserObj.outerHTML;
+  });
 
-    const teasersHtml = this.teasers.map((teaser) => teaser.block.outerHTML).join('');
-
-    const newHtml = `
-      <div class="container">
+  const newHtml = `
+    <div class="container">
         <div class="row">
-          <div class="col-lg-6 col-sm-8 col-sm-10">
-            <h2 class="text-color">
-              ${commonTitle}
-            </h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="teaser__cards">
-              ${teasersHtml}
+            <div class="col-lg-6 col-sm-8 col-sm-10">
+                <h2 class="text-color">
+                    ${commonTitle}
+                </h2>
             </div>
-          </div>
         </div>
-      </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="teaser__cards">
+                     ${teasers.join('')}
+                </div>
+            </div>
+        </div>
+    </div>
     `;
 
-    this.block.innerHTML = '';
-    this.block.insertAdjacentHTML('beforeend', sanitizeHtml(newHtml));
-    this.toggleFocusedClass();
-  }
-}
-
-export default function decorate(block) {
-  const teaserList = new TeaserList(block);
-  teaserList.decorate();
+  block.innerHTML = '';
+  block.insertAdjacentHTML('beforeend', utility.sanitizeHtml(newHtml));
+  toggleFocusedClass();
 }

@@ -54,7 +54,8 @@
       "nitesh-test",
       "immersive-teaser",
       "icontitle",
-      "test-teaser"
+      "test-teaser",
+      "highlight-tabs"
     ]
   },
   {
@@ -122,6 +123,12 @@
   },
   {
     "id": "immersive-teaser",
+    "components": [
+      "teaser"
+    ]
+  },
+  {
+    "id": "highlight-tabs",
     "components": [
       "teaser"
     ]
