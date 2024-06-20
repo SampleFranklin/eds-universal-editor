@@ -411,6 +411,7 @@ body {
   margin-right: 10px;
   font-size: 20px;
   color: gray;
+  padding: 0;
 }
 
 .menu-list li .expand-icon {
