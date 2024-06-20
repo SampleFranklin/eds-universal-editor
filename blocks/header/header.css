@@ -286,12 +286,9 @@ header nav .nav-tools {
   height: -webkit-fill-available;
   align-items: center;
 }
-.navbar .links .link-title,
-.navbar .right .location,
-.navbar .right .language {
+.navbar .links .link-title {
   text-decoration: none;
-  color: #171d9b;
-  font-weight: bold;
+  color: #575a5e;
   cursor: pointer;
   font-size: 14px;
   font-family: "Fira Sans";
@@ -299,6 +296,25 @@ header nav .nav-tools {
   display: flex;
   align-items: center;
   padding: 0px 20px;
+  border-bottom: 3px solid transparent;
+}
+
+.navbar .links .link-title:hover {
+  border-bottom: 3px solid #171c8f;
+  color: #171d9b;
+  font-weight: bold;
+}
+
+.navbar .right .location,
+.navbar .right .language {
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: "Fira Sans";
+  height: -webkit-fill-available;
+  display: flex;
+  align-items: center;
+  color: #575a5e;
 }
 
 .navbar-nexa .links .link-title,
@@ -309,6 +325,8 @@ header nav .nav-tools {
 .navbar-nexa .links .link-title:hover {
   background-color: #ffffff;
   color: #000000;
+  font-weight: bold;
+  border-bottom: 3px solid #ffffff;
 }
 .navbar .right {
   display: flex;
@@ -352,11 +370,6 @@ body {
 .menu-header .close-icon {
   cursor: pointer;
   font-size: 24px;
-}
-
-.menu-header .menu-title {
-  font-size: 24px;
-  color: #171d9b;
 }
 
 .menu-header-nexa .back-arrow,

@@ -129,7 +129,7 @@ export default async function decorate(block) {
   menuList.innerHTML += `<li>${contact.outerHTML}</li>`
 
   const acc = document.getElementsByClassName("accordion");
-
+  
   for (let i = 0; i < acc.length; i++) {
     acc[i].addEventListener("click", function () {
       this.classList.toggle("active");
