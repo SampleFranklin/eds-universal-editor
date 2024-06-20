@@ -30,6 +30,20 @@
   .teaser__cards {
     grid-auto-columns: 650px 650px;
   }
+
+  .finance-card-list {
+    &.dark-teaser-list{
+      .text-color{
+        color: var(--Tertiary-White, #FFF);
+        font-family: "Kepler Std";
+        font-size: 64px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 72px; /* 112.5% */
+        letter-spacing: 1.28px;
+      }
+    }}
+
 }
 
 .teaser__cards {

@@ -62,7 +62,7 @@ const teaser = {
                            <div class="teaser__content">
                                <div class="teaser__info">
                                    ${(pretitle) ? `<div class="teaser__pretitle"><p>${pretitle}</p></div>` : ''}
-                                   ${(title) ? `<div class="teaser__title"><h3>${title}</h3></div>` : ''}
+                                   ${(title) ? `<div class="teaser__title"><h3>${title}</h3><span class="horizontal__arrow">&rsaquo;</span></div>` : ''}
                                    ${(description) ? `<div class="teaser__description">${description}</div>` : ''}
                                </div>
                                ${ctaHtml}

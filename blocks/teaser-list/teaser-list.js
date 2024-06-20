@@ -5,6 +5,8 @@ export default function decorate(block) {
 
 //Toggle Focused Class Method
 function toggleFocusedClass() {
+    
+    const cardsContainer = block.querySelector('.teaser__cards')
     const cards = block.querySelectorAll('.teaser__cards .teaser__card');
     cards[0].classList.add('teaser__card--focused','teaser__left');
     cards[1].classList.add('teaser__card--unfocused', 'teaser__right')
@@ -22,13 +24,24 @@ function toggleFocusedClass() {
     });
 
     const teaserCards = block.querySelectorAll('.teaser__card');
+    if(window.matchMedia('(min-width: 1024px)').matches){
+    teaserCards.forEach((teaserCard)=>{
+        cardsContainer.style.gridAutoColumns = '850px 400px';
+        teaserCard.addEventListener('click',()=>{
+            teaserCards.forEach((el) => {
+                el.classList.contains("teaser__card--focused")
+                  ? (cardsContainer.style.gridAutoColumns = "400px 850px")
+                  : (cardsContainer.style.gridAutoColumns = "850px 400px");
+            });
+        })
+    })}
 
     teaserCards.forEach((teaserCard) => {
       teaserCard.addEventListener('click', () => {
         teaserCards.forEach((c) => c.classList.remove('teaser__card--focused'));
         teaserCard.classList.add('teaser__card--focused');
 
-        const focusedTeaserCard = this.block.querySelector('.teaser__card--focused');
+        const focusedTeaserCard = block.querySelector('.teaser__card--focused');
 
         if (focusedTeaserCard) {
           const container = focusedTeaserCard.closest('.teaser__cards');
