@@ -69,7 +69,8 @@ export default async function decorate(block) {
   user__dropdownDiv.append(contact);
   const userDropdown = nav.querySelector('.sign-in-wrapper')
   const userAccountLinkItems = user__dropdownDiv.querySelectorAll('.user__account>a')
-  console.log(userAccountLinkItems);
+  const signInTeaser = nav.querySelector('.sign-in-teaser');
+  console.log(signInTeaser);
   const desktopHeader = `
     <div class="navbar ${isNexa ? "navbar-nexa" : "navbar-arena"}">
       <div class="nav-hamburger ${isNexa && "nav-hamburger-nexa"}">
@@ -119,6 +120,8 @@ export default async function decorate(block) {
   const linkEl = document.querySelector(".links");
   const menuList = document.querySelector(".menu-list");
 
+  if (isNexa) menuList.innerHTML += `<li>${signInTeaser.outerHTML}</li>`
+
   list.forEach((el, i) => {
     linkEl.innerHTML += `<div class="link-title"><span>${el.heading}</span></div> ${el.content || el.teaser ? `<div class="desktop-panel panel ${el.heading.toLowerCase()}">${el.content || ''}${el.teaser || ''}</div>` :''}`;
     if (i === 0) return;
@@ -127,9 +130,12 @@ export default async function decorate(block) {
     `;
   });
 
-  userAccountLinkItems.forEach((el) => {
-    menuList.innerHTML += `<li>${el.outerHTML}</li>`
-  })
+  (isNexa
+    ? Array.from(userAccountLinkItems).slice(1)
+    : userAccountLinkItems
+  ).forEach((el) => {
+    menuList.innerHTML += `<li>${el.outerHTML}</li>`;
+  });
 
   menuList.innerHTML += `<li>${contact.outerHTML}</li>`
 
