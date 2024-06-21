@@ -36,7 +36,7 @@ header nav[aria-expanded="true"] {
   }
 }
 
-@media (width >= 900px) {
+@media (width >= 998px) {
   header nav {
     display: flex;
     justify-content: space-between;
@@ -120,7 +120,7 @@ header nav a:any-link {
   bottom: 3px;
 }
 
-@media (width >= 900px) {
+@media (width >= 998px) {
   header nav .nav-hamburger {
     display: none;
     visibility: hidden;
@@ -175,7 +175,7 @@ header nav .nav-sections ul > li > ul > li {
   font-weight: 500;
 }
 
-@media (width >= 900px) {
+@media (width >= 998px) {
   header nav .nav-sections {
     display: block;
     visibility: visible;
@@ -506,7 +506,7 @@ body {
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 998px) {
   .navbar .links,
   .navbar .right {
     display: none;
@@ -528,7 +528,10 @@ body {
 
   .menu-nexa .sign-in-teaser img {
     float: right;
+    width: 100%;
+    object-fit: cover;
   }
+
 }
 
 .panel .link-container-section {
@@ -557,7 +560,7 @@ body {
   display: none;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 998px) {
   .buy.panel,
   .owners.panel {
     display: flex;
@@ -668,7 +671,7 @@ body {
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 998px) {
   .nexa.panel,
   .arena.panel {
     padding: 32px 64px;
@@ -683,6 +686,10 @@ body {
   .arena.panel .link-grid-column .links-container a {
     color: black;
     min-height: auto;
+  }
+
+  .navbar-nexa .user__account > a {
+    border-bottom: 1px solid #f2f2f2f2;
   }
 }
 
@@ -709,7 +716,7 @@ body {
   padding: 14px 12px;
   color: #575a5e;
 }
-@media (min-width: 900px) {
+@media (min-width: 998px) {
   .navbar-arena .panel {
     background-color: #f4f4f4;
   }
