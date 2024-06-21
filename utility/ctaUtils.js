@@ -1,6 +1,6 @@
-import { utility } from './utility.js';
+import utility from './utility.js';
 
-export const ctaUtils = {
+const ctaUtils = {
 
   getLink(linkEl, textEl, targetEl, className) {
     const link = linkEl?.querySelector('.button-container a');
@@ -18,3 +18,5 @@ export const ctaUtils = {
   },
 
 };
+
+export default ctaUtils;

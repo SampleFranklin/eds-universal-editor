@@ -1,6 +1,6 @@
-import { utility } from '../../utility/utility.js';
-import { teaser } from '../../utility/teaserUtils.js';
-import { ctaUtils } from '../../utility/ctaUtils.js';
+import utility from '../../utility/utility.js';
+import teaser from '../../utility/teaserUtils.js';
+import ctaUtils from '../../utility/ctaUtils.js';
 
 export default function decorate(block) {
   function getImmersiveTeaser() {
@@ -56,7 +56,7 @@ export default function decorate(block) {
     `);
 
   block.innerHTML = `
-        <div class="immersive__wrapper">
+        <div class="immersive__wrapper right-seperator">
             ${immersiveTeaserHtml}
             ${(teaserObj?.innerHTML) ? teaserObj.outerHTML : ''}
         </div>
