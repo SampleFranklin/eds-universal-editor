@@ -929,7 +929,9 @@
             "value": "_self"
           }
         ]
-      },
+      }
+    ]
+  },
       {
         "id": "nexa-world",
         "fields": [
@@ -940,7 +942,7 @@
             "label": "Pretitle",
             "valueType": "string"
           },
-  
+
           {
             "component": "text-input",
             "name": "title",
@@ -984,9 +986,7 @@
               }
             ]
           }
-          
+
         ]
       }
-    ]
-  }
 ]
