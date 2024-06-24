@@ -144,7 +144,7 @@ export default async function decorate(block) {
   for (let i = 0; i < acc.length; i++) {
     acc[i].addEventListener("click", function (e) {
       this.classList.toggle("active");
-      const index = parseInt(e.target.id.split("-")[2]);
+      const index = parseInt(this.getAttribute('id').split("-")[2]);
       const menuListIconWrapper = this.querySelector(".icon");
       const menuListTitle = this.querySelector(".menu-title");
       const { icon, iconClicked } = list[index];
