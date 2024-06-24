@@ -2,21 +2,21 @@ import utility from './utility.js';
 import ctaUtils from './ctaUtils.js';
 
 export default function decorate(block) {
-document.addEventListener('DOMContentLoaded', function() {
-        const listItems = document.querySelectorAll('.list-container li');
-        const images = document.querySelectorAll('.image-container img');
+// document.addEventListener('DOMContentLoaded', function() {
+//         const listItems = document.querySelectorAll('.list-container li');
+//         const images = document.querySelectorAll('.image-container img');
     
-        listItems.forEach((item, index) => {
-            item.addEventListener('mouseenter', () => {
-                images.forEach(img => img.classList.remove('active'));
-                images[index].classList.add('active');
-            });
+//         listItems.forEach((item, index) => {
+//             item.addEventListener('mouseenter', () => {
+//                 images.forEach(img => img.classList.remove('active'));
+//                 images[index].classList.add('active');
+//             });
     
-            item.addEventListener('mouseleave', () => {
-                images[index].classList.remove('active');
-            });
-        });
-    });
+//             item.addEventListener('mouseleave', () => {
+//                 images[index].classList.remove('active');
+//             });
+//         });
+//     });
 
 /*function initImage(image, altTextEl) {
       const img = image.querySelector('img');
@@ -81,20 +81,20 @@ document.addEventListener('DOMContentLoaded', function() {
             ${description ? `<p class="description">${description}</p>` : ''}
             ${ctaHtml}
           </div>
-          <div class="nexa-world__teaser">
-            <div class="nexa-world__links">
-              <ul>
-                <li>NEXA Blue</li>
-                <li>Lifestyle</li>
-                <li>Music</li>
-                <li>Socials</li>
-              </ul>
-            </div>
-            <div class="nexa-world__img">
-              ${image ? image.outerHTML : ''}
-            </div>
-          </div>
-        </div>
+        //   <div class="nexa-world__teaser">
+        //     <div class="nexa-world__links">
+        //       <ul>
+        //         <li>NEXA Blue</li>
+        //         <li>Lifestyle</li>
+        //         <li>Music</li>
+        //         <li>Socials</li>
+        //       </ul>
+        //     </div>
+        //     <div class="nexa-world__img">
+        //       ${image ? image.outerHTML : ''}
+        //     </div>
+        //   </div>
+        // </div>
       `),
     );
     return block;
