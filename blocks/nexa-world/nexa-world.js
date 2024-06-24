@@ -1,5 +1,5 @@
-import utility from './utility.js';
-import ctaUtils from './ctaUtils.js';
+// import utility from './utility.js';
+// import ctaUtils from './ctaUtils.js';
 
 export default function decorate(block) {
   // HTML structure
