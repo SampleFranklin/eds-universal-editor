@@ -2,102 +2,56 @@ import utility from './utility.js';
 import ctaUtils from './ctaUtils.js';
 
 export default function decorate(block) {
-// document.addEventListener('DOMContentLoaded', function() {
-//         const listItems = document.querySelectorAll('.list-container li');
-//         const images = document.querySelectorAll('.image-container img');
-    
-//         listItems.forEach((item, index) => {
-//             item.addEventListener('mouseenter', () => {
-//                 images.forEach(img => img.classList.remove('active'));
-//                 images[index].classList.add('active');
-//             });
-    
-//             item.addEventListener('mouseleave', () => {
-//                 images[index].classList.remove('active');
-//             });
-//         });
-//     });
-
-/*function initImage(image, altTextEl) {
-      const img = image.querySelector('img');
-      if (img) {
-        img.removeAttribute('width');
-        img.removeAttribute('height');
-        const alt = altTextEl?.textContent?.trim() || 'image';
-        img.setAttribute('alt', alt);
-      }
-    }*/
-
-    const [
-      imageEl,
-      altTextEl,
-      pretitleEl,
-      titleEl,
-      descriptionEl,
-      primaryCtaTextEl,
-      primaryCtaLinkEl,
-      primaryCtaTargetEl,
-      styleEl,
-    ] = block.children;
-
-    /*const image = imageEl?.querySelector('picture');
-    if (image) {
-      initImage(image, altTextEl);
-    }*/
-
-    const pretitle = pretitleEl?.textContent?.trim();
-    const title = titleEl?.textContent?.trim();
-    const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.outerHTML).join('');
-    const styleText = styleEl?.textContent?.trim();
-    let style = [];
-    if (styleText) {
-      style = styleText.split(',');
-    } else {
-      style = ['light-teaser', 'buyers-guide-teaser'];
-    }
-
-    const primaryCta = ctaUtils.getLink(primaryCtaLinkEl, primaryCtaTextEl, primaryCtaTargetEl, 'button btn-title');
-
-    let ctaHtml = '';
-    if (primaryCta) {
-      ctaHtml = `
-        <div class="nexa-world__action">
-          ${primaryCta}
+  // HTML structure
+  const html = `
+    <div class="nexa-world__container">
+      <div class="nexa-world__content">
+        <div class="nexa-world__title">
+          <p class="pre-title">Discover the</p>
+          <p class="title">Nexa World</p>
         </div>
-      `;
-    }
+        <p class="description">Navigating the process of buying a car can be overwhelming, but our Buyer's Guide is here to make it a smooth and enjoyable experience.</p>
+        <div class="nexa-world__action">
+          <a href="#" title="#" class="button btn-title" target="_self">
+            <p>Explore Nearby Dealers</p>
+            <span class="location-icon"></span>
+          </a>
+        </div>
+      </div>
+      <div class="nexa-world__teaser">
+        <div class="nexa-world__links">
+          <ul>
+            <li data-image-src="image1.jpg">NEXA Blue</li>
+            <li data-image-src="image2.jpg">Lifestyle</li>
+            <li data-image-src="image3.jpg">Music</li>
+            <li data-image-src="image4.jpg">Socials</li>
+          </ul>
+        </div>
+        <div class="nexa-world__img">
+          <img id="nexa-img" src="/" alt="image" />
+        </div>
+      </div>
+    </div>
+  `;
 
-    block.classList.add(...style);
-    block.innerHTML = '';
-    block.insertAdjacentHTML(
-      'beforeend',
-      utility.sanitizeHtml(`
-        <div class="nexa-world__container">
-          <div class="nexa-world__content">
-            <div class="nexa-world__title">
-              ${pretitle ? `<p class="pre-title">${pretitle}</p>` : ''}
-              ${title ? `<p class="title">${title}</p>` : ''}
-            </div>
-            ${description ? `<p class="description">${description}</p>` : ''}
-            ${ctaHtml}
-          </div>
-        //   <div class="nexa-world__teaser">
-        //     <div class="nexa-world__links">
-        //       <ul>
-        //         <li>NEXA Blue</li>
-        //         <li>Lifestyle</li>
-        //         <li>Music</li>
-        //         <li>Socials</li>
-        //       </ul>
-        //     </div>
-        //     <div class="nexa-world__img">
-        //       ${image ? image.outerHTML : ''}
-        //     </div>
-        //   </div>
-        // </div>
-      `),
-    );
-    return block;
-  }
+  // Sanitize and insert the HTML into the block
+  block.innerHTML = utility.sanitizeHtml(html);
+
+  // JavaScript for handling image hover effects
+  const listItems = block.querySelectorAll('.nexa-world__links li');
+  const image = block.querySelector('#nexa-img');
+
+  listItems.forEach((item) => {
+    item.addEventListener('mouseenter', () => {
+      const imageSrc = item.getAttribute('data-image-src');
+      image.setAttribute('src', imageSrc);
+    });
+
+    item.addEventListener('mouseleave', () => {
+      image.setAttribute('src', '/'); // Reset image
+    });
+  });
+}
+
 
 
