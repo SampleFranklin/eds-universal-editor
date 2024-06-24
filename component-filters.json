@@ -56,7 +56,8 @@
       "icontitle",
       "test-teaser",
       "highlight-tabs",
-      "icontitle-test"
+      "icontitle-test",
+      "widget"
     ]
   },
   {
@@ -118,7 +119,6 @@
   {
     "id": "contact",
     "components": [
-      "title",
       "ctaWithIcon"
     ]
   },
@@ -132,6 +132,12 @@
     "id": "highlight-tabs",
     "components": [
       "teaser"
+    ]
+  },
+  {
+    "id": "widget",
+    "components": [
+      "ctaWithIcon"
     ]
   }
 ]
