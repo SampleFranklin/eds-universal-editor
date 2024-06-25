@@ -1,5 +1,6 @@
 import utility from '../../utility/utility.js';
 import ctaUtils from '../../utility/ctaUtils.js';
+import teaser from '../../utility/teaserUtils.js';
 
 export default function decorate(block) {
   function getNexaWorld() {
@@ -45,17 +46,17 @@ export default function decorate(block) {
   }
   nexaWorld.cta?.classList.add('btn-title');
   const nexaWorldHtml = utility.sanitizeHtml(`
-        ${(nexaWorld.image) ? immersiveTeaser.image.outerHTML : ''}
-         <div class="immersive__content">
+        ${(nexaWorld.image) ? nexaWorld.image.outerHTML : ''}
+         <div class="nexa-world__content">
            ${(nexaWorld.pretitle) ? `<p>${nexaWorld.pretitle}</p>` : ''}
            ${(nexaWorld.title) ? `<h2>${nexaWorld.title}</h2>` : ''}
            ${(nexaWorld.description) ? `${nexaWorld.description}` : ''}
-           ${(nexaWorld.cta) ? `<div class="immersive__action">${nexaWorld.cta.outerHTML}</div>` : ''}
+           ${(nexaWorld.cta) ? `<div class="nexa-world__action">${nexaWorld.cta.outerHTML}</div>` : ''}
           </div>
     `);
 
   block.innerHTML = `
-        <div class="immersive__wrapper right-seperator">
+        <div class="nexa-world__wrapper right-seperator">
             ${nexaWorldHtml}
             ${(teaserObj?.innerHTML) ? teaserObj.outerHTML : ''}
            
