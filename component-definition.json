@@ -572,9 +572,8 @@
                   "name": "Nexa World Component",
                   "filter": "nexa-world",
                   "model": "nexa-world",
-                  "title": "Discover Nexa World",
-                  "titleType": "h2"
-                }
+                  "title": "Nexa World"
+                  }
               }
             }
           }
