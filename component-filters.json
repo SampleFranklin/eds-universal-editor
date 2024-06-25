@@ -139,5 +139,11 @@
     "components": [
       "ctaWithIcon"
     ]
+  },
+  {
+    "id": "highlights",
+    "components": [
+      "highlight"
+    ]
   }
 ]
