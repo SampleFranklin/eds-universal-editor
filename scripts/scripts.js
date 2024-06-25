@@ -10,7 +10,7 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
-  fetchPlaceholders,
+  fetchPlaceholders
 } from './aem.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -152,5 +152,5 @@ async function loadPage() {
   loadDelayed();
 }
 
-loadPage();
 fetchPlaceholders();
+loadPage();
