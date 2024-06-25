@@ -57,7 +57,8 @@
       "test-teaser",
       "highlight-tabs",
       "icontitle-test",
-      "widget"
+      "widget",
+      "nexa-world"
     ]
   },
   {
@@ -136,6 +137,12 @@
   },
   {
     "id": "widget",
+    "components": [
+      "ctaWithIcon"
+    ]
+  },
+  {
+    "id": "nexa-world",
     "components": [
       "ctaWithIcon"
     ]
