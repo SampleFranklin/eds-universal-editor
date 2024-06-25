@@ -1094,5 +1094,73 @@
       }
 
     ]
+  },
+  {
+    "id": "location",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "fylImage",
+        "label": "Find Your Location Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "fylAltText",
+        "label": "Alt text"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "fylPlaceholder",
+        "label": "Find Your Location Placeholder Text"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "dylImage",
+        "label": "Detect Your Location Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "dylAltText",
+        "label": "Alt text"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "dylText",
+        "label": "Detect Your Location Text"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "searchImage",
+        "label": "Search Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "searchAltText",
+        "label": "Alt text"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "searchText",
+        "label": "Search Text"
+      }
+    ]
   }
 ]
