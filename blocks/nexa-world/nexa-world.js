@@ -4,8 +4,8 @@ import ctaUtils from '../../utility/ctaUtils.js';
 export default function decorate(block) {
   function getNexaWorld() {
     const [
-      // imageEl,
-      // altTextEl,
+      imageEl,
+      altTextEl,
       pretitleEl,
       titleEl,
       descriptionEl,
@@ -36,13 +36,13 @@ export default function decorate(block) {
     };
   }
 
-  // const nexaWorld = getNexaWorld(block);
-  // const teaserEl = block.children[8];
-  // let teaserObj;
-  // if (teaserEl?.innerHTML) {
-  //   teaserObj = teaser.getTeaser(teaserEl);
-  //   teaserObj.classList.add('teaser-wrapper');
-  // }
+  const nexaWorld = getNexaWorld(block);
+  const teaserEl = block.children[8];
+  let teaserObj;
+  if (teaserEl?.innerHTML) {
+    teaserObj = teaser.getTeaser(teaserEl);
+    teaserObj.classList.add('teaser-wrapper');
+  }
   nexaWorld.cta?.classList.add('btn-title');
   const nexaWorldHtml = utility.sanitizeHtml(`
         ${(nexaWorld.image) ? immersiveTeaser.image.outerHTML : ''}
@@ -57,6 +57,7 @@ export default function decorate(block) {
   block.innerHTML = `
         <div class="immersive__wrapper right-seperator">
             ${nexaWorldHtml}
+            ${(teaserObj?.innerHTML) ? teaserObj.outerHTML : ''}
            
         </div>
     `;
