@@ -1007,7 +1007,7 @@
     ]
   },
   {
-    "id": "video-test",
+    "id": "video",
     "fields": [
       {
         "component": "text-input",
