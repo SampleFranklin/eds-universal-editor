@@ -18,7 +18,6 @@ export default function decorate(block) {
 
     return `
       <div class="teaser switch-index-${index}">
-        <img class="teaser-img" src="${imageUrl}" alt="${alt}"/>
         <div class="text-section">
           <div class="top-left">
             <h1>${title}</h1>
@@ -27,6 +26,7 @@ export default function decorate(block) {
             <p>${pretitle}</p>
           </div>
         </div>
+        <img class="teaser-img" src="${imageUrl}" alt="${alt}"/>
         <div class="teaser-content">
           <p class="more-content">
             ${description}
@@ -52,7 +52,7 @@ export default function decorate(block) {
 
     return `
       <div class="switch-list-section">
-        <ul class="switch-list">
+        <ul class="switch-list dots">
           ${switchListHTML}
         </ul>
       </div>

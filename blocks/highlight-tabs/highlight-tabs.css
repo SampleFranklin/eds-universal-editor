@@ -184,3 +184,41 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .text-section{
+    display:flex;
+  }
+
+  .top-right{
+    top: 100px;
+    font-size: small;
+    left: 30px;
+  }
+
+  .teaser-img{
+    height: 700px;
+  }
+
+  .switch-list-section{
+    height: 100px;
+    bottom: 400px;
+    overflow: auto;
+  }
+
+  .switch-list{
+      overflow: auto;
+      width: 100% !important;
+    }
+
+  .switch-list-item{
+    font-size:smaller;
+  }
+
+  .teaser-content{
+    left: 0px;
+    bottom: 144px;
+    width: 100%;
+    clip-path:none;
+  }
+}
