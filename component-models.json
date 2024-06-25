@@ -1005,5 +1005,23 @@
         "label": "Alt Text"
       }
     ]
+  },
+  {
+    "id": "video-test",
+    "fields": [
+      {
+        "component": "text-input",
+        "name": "videoTitle",
+        "label": "Video Title",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "name": "videoUrl",
+        "label": "Video Url",
+        "valueType": "string",
+        "multi": false
+      }
+    ]
   }
 ]

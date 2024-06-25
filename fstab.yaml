@@ -1,6 +1,6 @@
 mountpoints:
   /:
-    url: "https://author-p71852-e1137339.adobeaemcloud.com/bin/franklin.delivery/samplefranklin/eds-universal-editor/main"
+    url: "https://author-p71852-e1137339.adobeaemcloud.com/bin/franklin.delivery/samplefranklin/eds-universal-editor/video-poc"
     type: "markup"
     suffix: ".html"
   /develop:
