@@ -4,4 +4,12 @@ export default function decorate(block) {
   // const blockquote = document.createElement('blockquote');
   // blockquote.textContent = quoteWrapper.textContent.trim();
   // quoteWrapper.replaceChildren(blockquote);
+    block.insertAdjacentHTML(
+      'beforeend',
+      `
+        <div>
+          <img src={{publish_domain}} alt="image">
+        </div>
+      `
+    )
 }
