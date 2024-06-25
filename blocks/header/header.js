@@ -68,9 +68,11 @@ export default async function decorate(block) {
   const contact = nav.querySelector('.contact-wrapper');
   user__dropdownDiv.append(contact);
   const userDropdown = nav.querySelector('.sign-in-wrapper')
-
+  const userAccountLinkItems = user__dropdownDiv.querySelectorAll('.user__account>a')
+  const signInTeaser = nav.querySelector('.sign-in-teaser');
+  console.log(signInTeaser);
   const desktopHeader = `
-    <div class="navbar ${isNexa && "navbar-nexa"}">
+    <div class="navbar ${isNexa ? "navbar-nexa" : "navbar-arena"}">
       <div class="nav-hamburger ${isNexa && "nav-hamburger-nexa"}">
       <button type="button" aria-controls="nav" aria-label="Open navigation">
         <span class="nav-hamburger-icon"></span>
@@ -90,7 +92,7 @@ export default async function decorate(block) {
   `;
 
   const mobileHeader = `
-    <div id="menu" class="menu ${isNexa && "menu-nexa"}">
+    <div id="menu" class="menu ${isNexa ? "menu-nexa" : "menu-arena"}">
       <div class="menu-header ${isNexa && "menu-header-nexa"}">
         <div class="back-arrow"><img src="../../icons/${isNexa ? 'chevron_left_white' : 'chevron_left'}.svg" alt="back" /></div>
         <span class="menu-title">Menu</span>
@@ -118,6 +120,8 @@ export default async function decorate(block) {
   const linkEl = document.querySelector(".links");
   const menuList = document.querySelector(".menu-list");
 
+  if (isNexa) menuList.innerHTML += `<li>${signInTeaser.outerHTML}</li>`
+
   list.forEach((el, i) => {
     linkEl.innerHTML += `<div class="link-title"><span>${el.heading}</span></div> ${el.content || el.teaser ? `<div class="desktop-panel panel ${el.heading.toLowerCase()}">${el.content || ''}${el.teaser || ''}</div>` :''}`;
     if (i === 0) return;
@@ -126,17 +130,32 @@ export default async function decorate(block) {
     `;
   });
 
+  (isNexa
+    ? Array.from(userAccountLinkItems).slice(1)
+    : userAccountLinkItems
+  ).forEach((el) => {
+    menuList.innerHTML += `<li>${el.outerHTML}</li>`;
+  });
+
   menuList.innerHTML += `<li>${contact.outerHTML}</li>`
 
   const acc = document.getElementsByClassName("accordion");
-
+  
   for (let i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function () {
+    acc[i].addEventListener("click", function (e) {
       this.classList.toggle("active");
+      const index = parseInt(this.getAttribute('id').split("-")[2]);
+      const menuListIconWrapper = this.querySelector(".icon");
+      const menuListTitle = this.querySelector(".menu-title");
+      const { icon, iconClicked } = list[index];
       var panel = this.nextElementSibling;
       if (panel.style.maxHeight) {
+        menuListIconWrapper.innerHTML = icon;
+        menuListTitle.classList.remove('menu-title-clicked')
         panel.style.maxHeight = null;
       } else {
+        menuListIconWrapper.innerHTML = iconClicked;
+        menuListTitle.classList.add('menu-title-clicked')
         panel.style.maxHeight = panel.scrollHeight + "px";
       }
     });

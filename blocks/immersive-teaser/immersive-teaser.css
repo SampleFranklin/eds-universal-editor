@@ -6,7 +6,7 @@ main .immersive-teaser-container {
     width: 100%;
 }
 
-main .immersive-teaser-container > div {
+main .immersive-teaser-container>div {
     padding: 0;
     margin: 0;
     width: 100%;
@@ -141,6 +141,28 @@ main .immersive-teaser-container > div {
     clip-path: polygon(0 0, 100% 0, 100% 90%, 65% 90%, 60% 100%, 0 100%);
 }
 
+.right-seperator::after {
+    content: "";
+    width: 100%;
+    display: block;
+    height: 25px;
+    background-color: #18171A;
+    clip-path: polygon(0 0, 100% 0, 65% 0%, 75% 0%, 72% 100%, 0 100%);
+    position: relative;
+    margin-top: -12px;
+}
+
+.left-seperator::after {
+    content: "";
+    width: 100%;
+    display: block;
+    height: 25px;
+    background-color: #18171A;
+    clip-path: polygon(0 100%, 30% 100%, 32% 0, 100% 0, 100% 100%, 0 100%);
+    position: relative;
+    margin-top: -12px;
+}
+
 @media (max-width: 1023px) {
     .immersive__wrapper {
         position: relative;
@@ -210,5 +232,17 @@ main .immersive-teaser-container > div {
     .immersive__wrapper .immersive__content .immersive__action::before {
         margin-right: -3px;
         height: 41px;
+    }
+
+    .right-seperator::after {
+        height: 16px;
+        order: 4;
+        clip-path: polygon(0 0, 100% 0, 65% 0%, 68% 0%, 65% 100%, 0 100%);
+
+    }
+
+    .left-seperator::after {
+        height: 16px;
+        order: 0;
     }
 }

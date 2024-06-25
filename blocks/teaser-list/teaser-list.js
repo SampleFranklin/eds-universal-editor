@@ -1,5 +1,5 @@
-import {utility} from '../../utility/utility.js';
-import {teaser} from "../../utility/teaserUtils.js";
+import utility from '../../utility/utility.js';
+import teaser from "../../utility/teaserUtils.js";
 
 export default function decorate(block) {
 
@@ -21,7 +21,7 @@ function toggleFocusedClass() {
       });
     });
 
-    const teaserCards = this.block.querySelectorAll('.teaser__card');
+    const teaserCards = block.querySelectorAll('.teaser__card');
 
     teaserCards.forEach((teaserCard) => {
       teaserCard.addEventListener('click', () => {

@@ -36,7 +36,7 @@ header nav[aria-expanded="true"] {
   }
 }
 
-@media (width >= 900px) {
+@media (width >= 998px) {
   header nav {
     display: flex;
     justify-content: space-between;
@@ -120,7 +120,7 @@ header nav a:any-link {
   bottom: 3px;
 }
 
-@media (width >= 900px) {
+@media (width >= 998px) {
   header nav .nav-hamburger {
     display: none;
     visibility: hidden;
@@ -175,7 +175,7 @@ header nav .nav-sections ul > li > ul > li {
   font-weight: 500;
 }
 
-@media (width >= 900px) {
+@media (width >= 998px) {
   header nav .nav-sections {
     display: block;
     visibility: visible;
@@ -286,12 +286,9 @@ header nav .nav-tools {
   height: -webkit-fill-available;
   align-items: center;
 }
-.navbar .links .link-title,
-.navbar .right .location,
-.navbar .right .language {
+.navbar .links .link-title {
   text-decoration: none;
-  color: #171d9b;
-  font-weight: bold;
+  color: #575a5e;
   cursor: pointer;
   font-size: 14px;
   font-family: "Fira Sans";
@@ -299,6 +296,25 @@ header nav .nav-tools {
   display: flex;
   align-items: center;
   padding: 0px 20px;
+  border-bottom: 3px solid transparent;
+}
+
+.navbar .links .link-title:hover {
+  border-bottom: 3px solid #171c8f;
+  color: #171d9b;
+  font-weight: bold;
+}
+
+.navbar .right .location,
+.navbar .right .language {
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: "Fira Sans";
+  height: -webkit-fill-available;
+  display: flex;
+  align-items: center;
+  color: #575a5e;
 }
 
 .navbar-nexa .links .link-title,
@@ -309,14 +325,22 @@ header nav .nav-tools {
 .navbar-nexa .links .link-title:hover {
   background-color: #ffffff;
   color: #000000;
+  border-bottom: 3px solid #ffffff;
+  font-weight: 500;
 }
+.navbar-arena .links .link-title:hover {
+  color: #171d9b;
+  font-weight: 600;
+  border-bottom: 3px solid #171d9b;
+}
+
 .navbar .right {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-.navbar .right img {
+.navbar .right > img {
   height: 30px;
   cursor: pointer;
 }
@@ -354,11 +378,6 @@ body {
   font-size: 24px;
 }
 
-.menu-header .menu-title {
-  font-size: 24px;
-  color: #171d9b;
-}
-
 .menu-header-nexa .back-arrow,
 .menu-header-nexa .close-icon,
 .menu-header-nexa .menu-title {
@@ -379,10 +398,20 @@ body {
   cursor: pointer;
 }
 
-.menu-list li .icon {
+.menu-list > li > a {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  gap: 0px;
+  padding-bottom: 0;
+}
+
+.menu-list li .icon,
+.menu-list .user__account__list-icon {
   margin-right: 10px;
   font-size: 20px;
   color: gray;
+  padding: 0;
 }
 
 .menu-list li .expand-icon {
@@ -408,6 +437,12 @@ body {
 
 .menu .menu-list li .menu-title {
   font-size: 14px;
+  font-family: "Fira Sans";
+}
+
+.menu-title-clicked {
+  font-weight: bold;
+  color: #171d9b;
 }
 
 .menu-btn {
@@ -471,31 +506,7 @@ body {
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
-.sign-in-wrapper {
-  z-index: 999;
-  position: absolute;
-  top: var(--nav-height);
-  right: 5px;
-  display: none;
-}
-
-.user__dropdown {
-  width: 100%;
-  background: var(--Tertiary-White, #fff);
-  display: flex;
-  flex-direction: column;
-  padding: 24px;
-  gap: 24px;
-}
-
-@media (min-width: 1024px) {
-  .user__dropdown {
-    width: 283px;
-    padding: 20px;
-  }
-}
-
-@media (max-width: 900px) {
+@media (max-width: 998px) {
   .navbar .links,
   .navbar .right {
     display: none;
@@ -508,6 +519,19 @@ body {
   .nav-hamburger {
     display: flex;
   }
+
+  .menu-nexa .sign-in-teaser {
+    display: grid;
+    grid-template-columns: 1.5fr auto;
+    width: 100%;
+  }
+
+  .menu-nexa .sign-in-teaser img {
+    float: right;
+    width: 100%;
+    object-fit: cover;
+  }
+
 }
 
 .panel .link-container-section {
@@ -536,7 +560,7 @@ body {
   display: none;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 998px) {
   .buy.panel,
   .owners.panel {
     display: flex;
@@ -647,57 +671,72 @@ body {
   }
 }
 
-@media (min-width: 900px) {
-  .nexa.panel {
+@media (min-width: 998px) {
+  .nexa.panel,
+  .arena.panel {
     padding: 32px 64px;
     background-color: var(--nav-background-color);
   }
-  .nexa.panel .link-grid-column .links-container {
+  .nexa.panel .link-grid-column .links-container,
+  .arena.panel .link-grid-column .links-container {
     flex-direction: row;
     gap: 56px;
   }
-  .nexa.panel .link-grid-column .links-container a {
+  .nexa.panel .link-grid-column .links-container a,
+  .arena.panel .link-grid-column .links-container a {
     color: black;
     min-height: auto;
   }
+
+  .navbar-nexa .user__account > a {
+    border-bottom: 1px solid #f2f2f2f2;
+  }
 }
 
-.arena .panel {
+.menu-arena .panel {
   background-color: #eff0ff;
+  margin: 0 20px;
 }
 
-.arena .panel .teaser {
+.menu-arena .panel .teaser {
   display: none;
 }
 
-.arena .panel .links-container {
+.menu-arena .panel .links-container {
   padding-bottom: 24px;
   margin-top: 24px;
   border-bottom: 1px solid #dddddd;
 }
 
-.arena .panel .link-grid-column:last-child .links-container {
+.menu-arena .panel .link-grid-column:last-child .links-container {
   border-bottom: 0;
 }
 
-@media (min-width: 900px) {
-  .arena .panel {
+.menu-arena .panel .link-grid-column .links-container li a {
+  padding: 14px 12px;
+  color: #575a5e;
+}
+@media (min-width: 998px) {
+  .navbar-arena .panel {
     background-color: #f4f4f4;
   }
 
-  .arena .panel .link-grid {
+  .navbar-arena .panel .link-grid {
     flex-basis: 100%;
   }
 
-  .arena .panel .links-container {
+  .navbar-arena .panel .links-container {
     border-bottom: none;
   }
-  .arena .panel .link-container-section {
+  .navbar-arena .panel .link-container-section {
     justify-content: center;
-    gap: 56px;
+    gap: 64px;
   }
-  .arena .panel .link-grid-column {
+  .navbar-arena .panel .link-grid-column {
     width: auto;
     flex: 0 1 auto;
+  }
+  .navbar-arena .panel .link-grid-column .links-container li a {
+    color: black;
   }
 }
