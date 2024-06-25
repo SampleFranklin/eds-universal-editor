@@ -137,6 +137,7 @@
   {
     "id": "nexa-world",
     "components": [
+      "title",
       "ctaWithIcon"
     ]
   }
