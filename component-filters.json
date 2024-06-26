@@ -60,7 +60,9 @@
       "widget",
       "nexa-world",
       "location",
-      "nexa-hero-banner"
+      "nexa-hero-banner",
+      "nexa-eshowroom-experience",
+      "banner-carousel"
     ]
   },
   {
@@ -153,6 +155,18 @@
     "id": "nexa-hero-banner",
     "components": [
       "nexa-hero-banner-item"
+    ]
+  },
+  {
+    "id": "banner-carousel",
+    "components": [
+      "banner-carousel-car"
+    ]
+  },
+  {
+    "id": "nexa-eshowroom-experience",
+    "components": [
+      "nexa-eshowroom-experience-item"
     ]
   }
 ]
