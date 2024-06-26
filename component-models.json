@@ -1129,9 +1129,9 @@
     "fields": [
       {
         "component": "boolean",
-        "valueType": "string",
+        "valueType": "boolean",
         "name": "ctaVisibility",
-        "label": "Show CTA"
+        "label": "Enable CTA"
       },
       {
         "component": "text",
