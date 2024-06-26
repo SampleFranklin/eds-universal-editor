@@ -397,10 +397,7 @@ body {
   border-bottom: 1px solid #f1f1f1;
   cursor: pointer;
 }
-.menu-list > li:hover{
- border-bottom: 1px solid #dfdfdf;
- border-top:1px solid #dfdfdf;
-}
+
 .menu-list > li > a {
   display: flex;
   align-items: center;
@@ -438,9 +435,6 @@ body {
   font-size: 24px;
 }
 
-.user__contact__icons a:hover{
-  background-color:#f2f2f2;
-}
 .menu .menu-list li .menu-title {
   font-size: 14px;
   font-family: "Fira Sans";
@@ -564,13 +558,6 @@ body {
 .panel .accordian-item,
 .panel .teaser {
   display: none;
-}
-.panel .link-grid-column .links-container li:hover{
-  background-color:#f2f2f2;
-  border-top: 1px solid rgba(178, 178, 178, 0.60);
-  a{
-    color:black;
-  }
 }
 
 @media (min-width: 998px) {

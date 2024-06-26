@@ -2,6 +2,6 @@
   "mappings": [
     "/content/eds-universal-editor/:/",
     "/content/eds-universal-editor/metadata:/metadata.json",
-    "/content/eds-universal-editor/placeholders:/placeholders.json"
+    "/content/eds-universal-editor/variables:/variables.json"
   ]
 }

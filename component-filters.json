@@ -58,11 +58,7 @@
       "highlight-tabs",
       "icontitle-test",
       "widget",
-      "nexa-world",
-      "location",
-      "nexa-hero-banner",
-      "nexa-eshowroom-experience",
-      "banner-carousel"
+      "nexa-world"
     ]
   },
   {
@@ -149,24 +145,6 @@
     "id": "nexa-world",
     "components": [
       "ctaWithIcon"
-    ]
-  },
-  {
-    "id": "nexa-hero-banner",
-    "components": [
-      "nexa-hero-banner-item"
-    ]
-  },
-  {
-    "id": "banner-carousel",
-    "components": [
-      "banner-carousel-car"
-    ]
-  },
-  {
-    "id": "nexa-eshowroom-experience",
-    "components": [
-      "nexa-eshowroom-experience-item"
     ]
   }
 ]

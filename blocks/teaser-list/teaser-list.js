@@ -1,75 +1,61 @@
-import utility from "../../utility/utility.js";
+import utility from '../../utility/utility.js';
 import teaser from "../../utility/teaserUtils.js";
 
 export default function decorate(block) {
-  //Toggle Focused Class Method
-  function toggleFocusedClass() {
-    const cardsContainer = block.querySelector(".teaser__cards");
-    const cards = block.querySelectorAll(".teaser__cards .teaser__card");
-    cards[0].classList.add("teaser__card--focused", "teaser__left");
-    cards[1].classList.add("teaser__card--unfocused", "teaser__right");
+
+//Toggle Focused Class Method
+function toggleFocusedClass() {
+    const cards = block.querySelectorAll('.teaser__cards .teaser__card');
+    cards[0].classList.add('teaser__card--focused','teaser__left');
+    cards[1].classList.add('teaser__card--unfocused', 'teaser__right')
 
     cards.forEach((card) => {
-      card.addEventListener("click", () => {
+      card.addEventListener('click', () => {
         cards.forEach((el) => {
-          el.classList.remove("teaser__card--focused");
-          el.classList.add("teaser__card--unfocused");
+            el.classList.remove('teaser__card--focused');
+            el.classList.add('teaser__card--unfocused');
         });
-        card.classList.add("teaser__card--focused");
-        card.classList.remove("teaser__card--unfocused");
+        card.classList.add('teaser__card--focused');
+        card.classList.remove('teaser__card--unfocused');
+
       });
     });
 
-    const teaserCards = block.querySelectorAll(".teaser__card");
-    if (window.matchMedia("(min-width: 999px)").matches) {
-      teaserCards.forEach((teaserCard) => {
-        cardsContainer.style.gridAutoColumns = "70% 30%";
-        teaserCard.addEventListener("click", () => {
-          teaserCards.forEach((el) => {
-            el.classList.contains("teaser__card--focused")
-              ? (cardsContainer.style.gridAutoColumns = "30% 70%")
-              : (cardsContainer.style.gridAutoColumns = "70% 30%");
-          });
-        });
-      });
-    }
+    const teaserCards = block.querySelectorAll('.teaser__card');
 
     teaserCards.forEach((teaserCard) => {
-      teaserCard.addEventListener("click", () => {
-        teaserCards.forEach((c) => c.classList.remove("teaser__card--focused"));
-        teaserCard.classList.add("teaser__card--focused");
+      teaserCard.addEventListener('click', () => {
+        teaserCards.forEach((c) => c.classList.remove('teaser__card--focused'));
+        teaserCard.classList.add('teaser__card--focused');
 
-        const focusedTeaserCard = block.querySelector(".teaser__card--focused");
+        const focusedTeaserCard = this.block.querySelector('.teaser__card--focused');
 
         if (focusedTeaserCard) {
-          const container = focusedTeaserCard.closest(".teaser__cards");
+          const container = focusedTeaserCard.closest('.teaser__cards');
           const cardOffsetLeft = focusedTeaserCard.offsetLeft;
           const containerOffsetLeft = container.offsetLeft;
           const scrollLeft = cardOffsetLeft - containerOffsetLeft;
           const containerWidth = container.clientWidth;
-          const maxScrollLeft = Math.min(
-            scrollLeft,
-            container.scrollWidth - containerWidth
-          );
+          const maxScrollLeft = Math.min(scrollLeft, container.scrollWidth - containerWidth);
 
           container.scrollTo({
             left: maxScrollLeft,
-            behavior: "smooth",
+            behavior: 'smooth',
           });
         }
       });
     });
   }
-  //Toggle Focused Class Method End
+//Toggle Focused Class Method End
 
   const [titleEl, styleEl, ...teaserListEl] = block.children;
 
-  const style = styleEl?.textContent?.trim().split(",");
+  const style = styleEl?.textContent?.trim().split(',');
   block.classList.add(...style);
-  const commonTitle = titleEl?.textContent?.trim() || "";
+  const commonTitle = titleEl?.textContent?.trim() || '';
   const teasers = teaserListEl.map((card) => {
     const teaserObj = teaser.getTeaser(card);
-    utility.mobileLazyLoading(teaserObj, ".teaser__image img");
+    utility.mobileLazyLoading(teaserObj, '.teaser__image img');
     return teaserObj.outerHTML;
   });
 
@@ -85,14 +71,14 @@ export default function decorate(block) {
         <div class="row">
             <div class="col-lg-12">
                 <div class="teaser__cards">
-                     ${teasers.join("")}
+                     ${teasers.join('')}
                 </div>
             </div>
         </div>
     </div>
     `;
 
-  block.innerHTML = "";
-  block.insertAdjacentHTML("beforeend", utility.sanitizeHtml(newHtml));
+  block.innerHTML = '';
+  block.insertAdjacentHTML('beforeend', utility.sanitizeHtml(newHtml));
   toggleFocusedClass();
 }

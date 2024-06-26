@@ -72,7 +72,7 @@
 }
 
 body {
-  /* font-size: var(--body-font-size-m); */
+  font-size: var(--body-font-size-m);
   margin: 0;
   font-family: var(--body-font-family);
   line-height: 1.6;
@@ -109,7 +109,7 @@ h1 {
 h2 {
   font-size: var(--heading-font-size-xl);
 }
- h3 {
+h3 {
   font-size: var(--heading-font-size-l);
 }
 h4 {

@@ -56,9 +56,6 @@
   flex-direction: column;
   padding: 24px;
 }
-.user__dropdown a:hover{
-  background-color:#f2f2f2;
-}
 
 @media (min-width: 998px) {
   .user__account__list-icon {
