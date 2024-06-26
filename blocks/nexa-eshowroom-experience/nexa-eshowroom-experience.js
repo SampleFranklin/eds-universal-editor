@@ -1,9 +1,9 @@
 import { fetchPlaceholders } from '../../scripts/aem.js'
 
 export default function decorate(block) {
-  const [ctaTextEl, ...bannerItemsEl] = block.children;
+  const [title, price,subHeadline,secButton,secButtonUrl,...videoUrl] = block.children;
   const videoUrls = [];
-  const bannerItems = bannerItemsEl?.map((itemEl) => {
+  const bannerItems = videoUrl?.map((itemEl) => {
     const [videoEl] = itemEl.children
     videoUrls.push(videoEl?.querySelector('a').innerText);
     itemEl.innerHTML = `

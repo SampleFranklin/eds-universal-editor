@@ -1288,34 +1288,68 @@
     "id": "nexa-eshowroom-experience",
     "fields": [
       {
-        "component": "text",
+        "component": "text-input",
         "valueType": "string",
-        "name": "tagline",
-        "label": "TagLine"
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "select",
+        "name": "titleType",
+        "value": "h2",
+        "label": "Type",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "h1",
+            "value": "h1"
+          },
+          {
+            "name": "h2",
+            "value": "h2"
+          },
+          {
+            "name": "h3",
+            "value": "h3"
+          },
+          {
+            "name": "h4",
+            "value": "h4"
+          },
+          {
+            "name": "h5",
+            "value": "h5"
+          },
+          {
+            "name": "h6",
+            "value": "h6"
+          }
+        ]
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "startingPriceText",
-        "label": "Starting Price Text"
+        "name": "preTitle",
+        "label": "Pretitle"
       },
       {
-        "component": "text",
-        "valueType": "string",
-        "name": "subHeadline",
-        "label": "Sub Headline"
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "buildYourOwnText",
-        "label": "Build Your Own Button Text"
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string"
       },
       {
         "component": "text-input",
-        "name": "buildYourOwnUrl",
+        "name": "secondaryText",
+        "label": "Secondary CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "secondaryLink",
         "valueType": "string",
-        "label": "Build Your Own Button Url"
+        "label": "Secondary CTA Link"
       }
     ]
   },
@@ -1327,19 +1361,19 @@
         "valueType": "string",
         "name": "video",
         "label": "Video",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "exploreCarText",
-        "label": "Explore Car Button Text"
+        "multi": true
       },
       {
         "component": "text-input",
-        "name": "exploreCarUrl",
+        "name": "primaryText",
+        "label": "Primary CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "primaryLink",
         "valueType": "string",
-        "label": "Explore Car Button Url"
+        "label": "Primary CTA Link"
       }
     ]
   }
