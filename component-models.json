@@ -1219,17 +1219,18 @@
         "label": "On Road Price"
       },
       {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "primary",
+        "label": "Primary CTA Link"
+      },
+      {
         "component": "text-input",
         "name": "primaryText",
         "label": "Primary CTA Text",
         "valueType": "string"
       },
-      {
-        "component": "aem-content",
-        "valueType": "string",
-        "name": "primaryLink",
-        "label": "Primary CTA Link"
-      },
+      
       {
         "component": "select",
         "name": "primaryTarget",
@@ -1248,16 +1249,16 @@
         ]
       },
       {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "secondary",
+        "label": "Secondary CTA Link"
+      },
+      {
         "component": "text-input",
         "name": "secondaryText",
         "label": "Secondary CTA Text",
         "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "valueType": "string",
-        "name": "secondaryLink",
-        "label": "Secondary CTA Link"
       },
       {
         "component": "select",
