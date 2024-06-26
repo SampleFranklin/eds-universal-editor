@@ -1130,14 +1130,15 @@
       {
         "component": "boolean",
         "valueType": "string",
-        "name": "ctaText",
-        "label": "CTA Text"
+        "name": "ctaVisibility",
+        "label": "Show CTA"
       },
       {
         "component": "text",
         "valueType": "string",
         "name": "ctaText",
-        "label": "CTA Text"
+        "label": "CTA Text",
+        "condition": { "===": [{"var" : "ctaVisibility"}, true] }
       }
     ]
   },
