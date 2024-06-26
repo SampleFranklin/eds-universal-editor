@@ -648,7 +648,8 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "name": "Nexa Hero Banner Item",
-                  "model": "nexa-hero-banner-item"
+                  "model": "nexa-hero-banner-item",
+                  "titleType": "h2"
                 }
               }
             }
