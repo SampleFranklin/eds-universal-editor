@@ -1,7 +1,7 @@
 import { fetchPlaceholders } from '../../scripts/aem.js'
 
 export default function decorate(block) {
-  const [ctaTextEl, ...bannerItemsEl] = block.children;
+  const [showCtaEl,ctaTextEl, ...bannerItemsEl] = block.children;
   const videoUrls = [];
   const bannerItems = bannerItemsEl?.map((itemEl) => {
     const [videoEl] = itemEl.children
