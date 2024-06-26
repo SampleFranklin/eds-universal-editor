@@ -1322,5 +1322,64 @@
         ]
       }
     ]
+  },
+  {
+    "id": "nexa-eshowroom-experience",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "tagline",
+        "label": "TagLine"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "startingPriceText",
+        "label": "Starting Price Text"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "subHeadline",
+        "label": "Sub Headline"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "buildYourOwnText",
+        "label": "Build Your Own Button Text"
+      },
+      {
+        "component": "text-input",
+        "name": "buildYourOwnUrl",
+        "valueType": "string",
+        "label": "Build Your Own Button Url"
+      }
+    ]
+  },
+  {
+    "id": "nexa-eshowroom-experience-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "video",
+        "label": "Video",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "exploreCarText",
+        "label": "Explore Car Button Text"
+      },
+      {
+        "component": "text-input",
+        "name": "exploreCarUrl",
+        "valueType": "string",
+        "label": "Explore Car Button Url"
+      }
+    ]
   }
 ]
