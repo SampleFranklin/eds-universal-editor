@@ -385,12 +385,15 @@ main .teaser-container > div {
 
 .light-teaser.buyers-guide-teaser .teaser__content {
   position: relative;
+  display: flex;
+  gap: 40px;
 }
 
 .light-teaser.buyers-guide-teaser .teaser__info {
   font-family: "Fira Sans";
   font-style: normal;
   color: #fff;
+  flex-grow: 1;
 }
 
 .light-teaser.buyers-guide-teaser .teaser__pretitle {
@@ -433,10 +436,10 @@ main .teaser-container > div {
 }
 
 .light-teaser.buyers-guide-teaser .teaser__actions {
-  position: absolute;
+  /* position: absolute;
   top: 0;
   right: 0;
-  width: 18%;
+  width: 18%; */
 
   @media (max-width: 999px) {
     width: 25%;
