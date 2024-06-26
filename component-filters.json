@@ -154,5 +154,11 @@
     "components": [
       "nexa-hero-banner-item"
     ]
+  },
+  {
+    "id": "banner-carousel",
+    "components": [
+      "banner-carousel-car"
+    ]
   }
 ]
