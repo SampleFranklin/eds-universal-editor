@@ -35,6 +35,14 @@ export default function decorate(block) {
     nexaWorldContent.cta.classList.add('btn-title');
   }
 
+  // Construct CTA with icon
+    const ctaWithIconHtml = `
+      <div class="nexa-world__action">
+        <span class="location-icon fas fa-map-marker-alt"></span>
+        ${nexaWorldContent.cta.outerHTML}
+      </div>
+    `;
+
   // Construct Nexa World HTML structure
   const nexaWorldHtml = `
     <div class="nexa-world__content">
@@ -42,31 +50,52 @@ export default function decorate(block) {
       ${nexaWorldContent.title ? `<p class="title">${nexaWorldContent.title}</p>` : ''}
       ${nexaWorldContent.description ? `${nexaWorldContent.description}` : ''}
       ${nexaWorldContent.cta ? `<div class="nexa-world__action">${nexaWorldContent.cta.outerHTML}</div>` : ''}
-    </div>
-  `;
 
-  // Create the teaser HTML structure
-  const nexaWorldTeaser = `
-    <div class="nexa-world__teaser">
-      <div class="nexa-world__links">
-        <ul>
-          <li>NEXA Blue</li>
-          <li>Lifestyle</li>
-          <li>Music</li>
-          <li>Socials</li>
-        </ul>
-      </div>
-      <div class="nexa-world__img">
-        <img src="/" alt="image" />
-      </div>
     </div>
   `;
+  // Links data
+    const links = [
+      { text: 'NEXA Blue', href: '#' },
+      { text: 'Lifestyle', href: '#' },
+      { text: 'Music', href: '#' },
+      { text: 'Socials', href: '#' }
+    ];
 
-  // Replace the block's HTML with the constructed Nexa World HTML and teaser if present
-  block.innerHTML = `
-    <div class="nexa-world__container">
-      ${nexaWorldHtml}
-      ${nexaWorldTeaser}
-    </div>
-  `;
-}
+    // Create links with icons
+    const linksHtml = links.map(link => `
+      <li class="cta">
+        <a href="${link.href}" class="cta-link">
+          <span class="icon fas fa-map-marker-alt"></span>
+          <span class="cta-text">${link.text}</span>
+        </a>
+      </li>
+    `).join('');
+
+    // Create the teaser HTML structure
+    const nexaWorldTeaser = `
+      <div class="nexa-world__teaser">
+        <div class="nexa-world__links">
+          <ul>
+            ${linksHtml}
+          </ul>
+        </div>
+        <div class="nexa-world__img">
+          <img src="/" alt="image" />
+        </div>
+      </div>
+    `;
+
+    // Replace the block's HTML with the constructed Nexa World HTML and teaser if present
+    block.innerHTML = `
+      <div class="nexa-world__container">
+        ${nexaWorldHtml}
+        ${nexaWorldTeaser}
+      </div>
+    `;
+  }
+
+  // Call the function to decorate the block
+  document.addEventListener('DOMContentLoaded', () => {
+    const blocks = document.querySelectorAll('.block-class-name'); // Replace with the actual block class name
+    blocks.forEach(decorate);
+    });
