@@ -1240,11 +1240,10 @@
         "label": "Pretitle"
       },
       {
-        "component": "aem-content-fragment",
-        "name": "picker",
-        "label": "Pick Car Content Fragment",
-        "valueType": "string",
-        "variationName": "contentFragmentVariation"
+        "component": "text",
+        "name": "model-id",
+        "label": "Model ID",
+        "valueType": "string"
       },
       {
         "component": "text",
