@@ -1215,12 +1215,6 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "exShowroomPrice",
-        "label": "Ex Showroom Price"
-      },
-      {
-        "component": "text",
-        "valueType": "string",
         "name": "onRoadPrice",
         "label": "On Road Price"
       },
