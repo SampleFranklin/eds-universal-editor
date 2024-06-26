@@ -59,7 +59,8 @@
       "icontitle-test",
       "widget",
       "nexa-world",
-      "location"
+      "location",
+      "nexa-hero-banner"
     ]
   },
   {
@@ -146,6 +147,12 @@
     "id": "nexa-world",
     "components": [
       "ctaWithIcon"
+    ]
+  },
+  {
+    "id": "nexa-hero-banner",
+    "components": [
+      "nexa-hero-banner-item"
     ]
   }
 ]
