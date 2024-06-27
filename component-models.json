@@ -765,10 +765,16 @@
     "id": "nav-cars",
     "fields": [
       {
-        "component": "richtext",
+        "component": "text-input",
         "valueType": "string",
-        "name": "cars",
-        "label": "Cars"
+        "name": "heading",
+        "label": "Heading"
+      },
+      {
+        "component": "text-input",
+        "valueType": "string",
+        "name": "subheading",
+        "label": "Sub Heading"
       }
     ]
   },
