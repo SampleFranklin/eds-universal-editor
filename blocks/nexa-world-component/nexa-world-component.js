@@ -65,9 +65,9 @@ export default function decorate(block) {
     { text: 'Socials', href: '#' }
   ];
 
-  // Create links
-  const linksHtml = links.map(link => `
-    <li>
+   // Create links
+   const linksHtml = links.map(link => `
+    <li data-img="${link.img}">
       <a href="${link.href}">${link.text}</a>
     </li>
   `).join('');
