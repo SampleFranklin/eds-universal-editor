@@ -387,45 +387,42 @@
         ]
       },
       {
-        "component": "multiselect",
-        "name": "style",
-        "label": "Style",
+        "component": "select",
+        "name": "theme",
+        "label": "Theme",
         "valueType": "string",
-        "maxSize": 2,
         "options": [
           {
-            "name": "Theme",
-            "children": [
-              {
-                "name": "Light",
-                "value": "light-teaser"
-              },
-              {
-                "name": "Dark",
-                "value": "dark-teaser"
-              }
-            ]
+            "name": "Light",
+            "value": "light-teaser"
           },
           {
-            "name": "Type",
-            "children": [
-              {
-                "name": "Buyers Guide",
-                "value": "buyers-guide-teaser"
-              },
-              {
-                "name": "Finance Card",
-                "value": "finance-card-teaser"
-              },
-              {
-                "name": "Header Teaser",
-                "value": "header-image-teaser"
-              },
-              {
-                "name": "Text Only Teaser",
-                "value": "text-only-teaser"
-              }
-            ]
+            "name": "Dark",
+            "value": "dark-teaser"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "themeType",
+        "label": "Theme Type",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Buyers Guide",
+            "value": "buyers-guide-teaser"
+          },
+          {
+            "name": "Finance Card",
+            "value": "finance-card-teaser"
+          },
+          {
+            "name": "Header Teaser",
+            "value": "header-image-teaser"
+          },
+          {
+            "name": "Text Only Teaser",
+            "value": "text-only-teaser"
           }
         ]
       }
@@ -646,37 +643,67 @@
         "valueType": "string"
       },
       {
-        "component": "multiselect",
-        "name": "style",
-        "label": "Style",
+        "component": "select",
+        "name": "titleType",
+        "value": "h2",
+        "label": "Type",
         "valueType": "string",
-        "maxSize": 2,
         "options": [
           {
-            "name": "Theme",
-            "children": [
-              {
-                "name": "Light",
-                "value": "light-teaser-list"
-              },
-              {
-                "name": "Dark",
-                "value": "dark-teaser-list"
-              }
-            ]
+            "name": "h1",
+            "value": "h1"
           },
           {
-            "name": "Type",
-            "children": [
-              {
-                "name": "Finance Card List",
-                "value": "finance-card-list"
-              },
-              {
-                "name": "Arena Card List",
-                "value": "arena-card-list"
-              }
-            ]
+            "name": "h2",
+            "value": "h2"
+          },
+          {
+            "name": "h3",
+            "value": "h3"
+          },
+          {
+            "name": "h4",
+            "value": "h4"
+          },
+          {
+            "name": "h5",
+            "value": "h5"
+          },
+          {
+            "name": "h6",
+            "value": "h6"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "theme",
+        "label": "Theme",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Light",
+            "value": "light-teaser-list"
+          },
+          {
+            "name": "Dark",
+            "value": "dark-teaser-list"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "themeType",
+        "label": "Theme Type",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Finance Card List",
+            "value": "finance-card-list"
+          },
+          {
+            "name": "Arena Card List",
+            "value": "arena-card-list"
           }
         ]
       }
@@ -1101,29 +1128,29 @@
         "value": "",
         "label": "Title Type",
         "valueType": "string",
-        "options":[
+        "options": [
           {
-            "name":"h1",
+            "name": "h1",
             "value": "h1"
           },
           {
-            "name":"h2",
+            "name": "h2",
             "value": "h2"
           },
           {
-            "name":"h3",
+            "name": "h3",
             "value": "h3"
           },
           {
-            "name":"h4",
+            "name": "h4",
             "value": "h4"
           },
           {
-            "name":"h5",
+            "name": "h5",
             "value": "h5"
           },
           {
-            "name":"h6",
+            "name": "h6",
             "value": "h6"
           }
         ]
@@ -1164,7 +1191,6 @@
           }
         ]
       }
-
     ]
   },
   {
@@ -1210,7 +1236,14 @@
         "valueType": "string",
         "name": "ctaText",
         "label": "CTA Text",
-        "condition": { "===": [{"var" : "ctaVisibility"}, true] }
+        "condition": {
+          "===": [
+            {
+              "var": "ctaVisibility"
+            },
+            true
+          ]
+        }
       }
     ]
   },
@@ -1339,8 +1372,7 @@
         "label": "Sub Title"
       }
     ]
-  }
-  ,
+  },
   {
     "id": "banner-carousel",
     "fields": [
@@ -1573,6 +1605,59 @@
           {
             "name": "h6",
             "value": "h6"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ctaWithChangingIcon",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "icon",
+        "label": "Icon",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "iconclicked",
+        "label": "Icon Clicked"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "alt",
+        "label": "Alt Text"
+      },
+      {
+        "component": "text-input",
+        "name": "ctaText",
+        "label": "CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "href",
+        "label": "CTA Link"
+      },
+      {
+        "component": "select",
+        "name": "target",
+        "value": "",
+        "label": "Open Link in New Page ?",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Yes",
+            "value": "_blank"
+          },
+          {
+            "name": "No",
+            "value": "_self"
           }
         ]
       }
