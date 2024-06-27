@@ -1876,28 +1876,28 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "fileReference",
+        "name": "logoReference1",
         "label": "Logo",
         "multi": false
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "alt",
+        "name": "logoAlt1",
         "value": "Default alt",
         "label": "Logo Alt Text"
       },
       {
         "component": "reference",
         "valueType": "string",
-        "name": "carReference",
+        "name": "carReference1",
         "label": "Car Image",
         "multi": false
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "carAlt",
+        "name": "carAlt1",
         "value": "Default alt",
         "label": "Car Alt Text"
       },
@@ -1909,28 +1909,28 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "fileReference",
+        "name": "logoReference2",
         "label": "Logo",
         "multi": false
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "alt",
+        "name": "logoAlt2",
         "value": "Default alt",
         "label": "Logo Alt Text"
       },
       {
         "component": "reference",
         "valueType": "string",
-        "name": "fileReference",
+        "name": "carReference2",
         "label": "Car Image",
         "multi": false
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "alt",
+        "name": "carAlt2",
         "value": "Default alt",
         "label": "Car Alt Text"
       },
@@ -1942,14 +1942,28 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "fileReference",
+        "name": "logoReference3",
+        "label": "Logo",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "logoAlt3",
+        "value": "Default alt",
+        "label": "Logo Alt Text"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "carReference3",
         "label": "Car Image",
         "multi": false
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "alt",
+        "name": "carAlt3",
         "value": "Default alt",
         "label": "Car Alt Text"
       }
