@@ -39,7 +39,7 @@ export default function decorate(block) {
   const ctaWithIconHtml = `
     <div class="nexa-world__action">
       <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
-        <p>${nexaWorldContent.cta?.textContent || 'Discover NEXA World'}</p>
+        <p>${nexaWorldContent.cta?.textContent }</p>
         <span class="location-icon"><img src="/content/dam/nexa-world/north_east.svg" alt = "Image arrow"></span>
       </a>
     </div>
@@ -80,10 +80,10 @@ export default function decorate(block) {
           ${linksHtml}
         </ul>
       </div>
-      <div class="nexa-world__img">
-        <img src="/content/dam/nexa-world/Group%201321315474.png" alt="image text" /> 
-      </div>
-    </div>
+    //   <div class="nexa-world__img">
+    //     <img src="/content/dam/nexa-world/Group%201321315474.png" alt="image text" /> 
+    //   </div>
+    // </div>
   `;
 
 
@@ -104,7 +104,7 @@ export default function decorate(block) {
        imgElement.setAttribute('src', imgSrc);
      });
      link.addEventListener('mouseout', () => {
-       imgElement.setAttribute('src', '/content/dam/nexa-world/Group%201321315474.png'); // Set back to the default image
+       imgElement.setAttribute('src', imgSrc); // Set back to the default image
      });
    });
  }
