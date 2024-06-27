@@ -784,6 +784,59 @@
     ]
   },
   {
+    "id": "ctaWithChangingIcon",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "icon",
+        "label": "Icon",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "iconclicked",
+        "label": "Icon Clicked"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "alt",
+        "label": "Alt Text"
+      },
+      {
+        "component": "text-input",
+        "name": "ctaText",
+        "label": "CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "href",
+        "label": "CTA Link"
+      },
+      {
+        "component": "select",
+        "name": "target",
+        "value": "",
+        "label": "Open Link in New Page ?",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Yes",
+            "value": "_blank"
+          },
+          {
+            "name": "No",
+            "value": "_self"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "contact",
     "fields": [
       {
@@ -1101,29 +1154,29 @@
         "value": "",
         "label": "Title Type",
         "valueType": "string",
-        "options":[
+        "options": [
           {
-            "name":"h1",
+            "name": "h1",
             "value": "h1"
           },
           {
-            "name":"h2",
+            "name": "h2",
             "value": "h2"
           },
           {
-            "name":"h3",
+            "name": "h3",
             "value": "h3"
           },
           {
-            "name":"h4",
+            "name": "h4",
             "value": "h4"
           },
           {
-            "name":"h5",
+            "name": "h5",
             "value": "h5"
           },
           {
-            "name":"h6",
+            "name": "h6",
             "value": "h6"
           }
         ]
@@ -1164,7 +1217,6 @@
           }
         ]
       }
-
     ]
   },
   {
@@ -1210,7 +1262,14 @@
         "valueType": "string",
         "name": "ctaText",
         "label": "CTA Text",
-        "condition": { "===": [{"var" : "ctaVisibility"}, true] }
+        "condition": {
+          "===": [
+            {
+              "var": "ctaVisibility"
+            },
+            true
+          ]
+        }
       }
     ]
   },
@@ -1339,8 +1398,7 @@
         "label": "Sub Title"
       }
     ]
-  }
-  ,
+  },
   {
     "id": "banner-carousel",
     "fields": [
