@@ -47,30 +47,30 @@ export default async function decorate(block) {
   nav.id = "nav";
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-  Array.from(nav.querySelectorAll(".nav-link")).forEach((el) => {
-    const heading = el.querySelector("h2");
-    const icon = el.querySelector(".icon");
-    const iconClicked = el.querySelector(".iconClicked");
-    const content = el.querySelector(".link-grid-wrapper");
-    const teaser = el.querySelector(".teaser-wrapper");
 
-    list.push({
-      heading: heading?.textContent,
-      icon: icon?.innerHTML,
-      iconClicked: iconClicked?.innerHTML,
-      content: content?.innerHTML,
-      teaser: teaser?.innerHTML,
+   Array.from(nav.querySelectorAll(".nav-link")).forEach((el) => {
+      const heading = el.querySelector("h2");
+      const icon = el.querySelector(".icon");
+      const iconClicked = el.querySelector(".iconClicked");
+      const [content] = Array.from(el.children).slice(1);
+      const teaser = el.querySelector(".teaser-wrapper");
+      list.push({
+        heading: heading?.textContent,
+        icon: icon?.innerHTML,
+        iconClicked: iconClicked?.innerHTML,
+        content: content?.innerHTML,
+        teaser: teaser?.innerHTML,
+      });
     });
-  });
   const logo = nav.querySelector(".logo-wrapper");
-  const carIcon = nav.querySelector(".nav-cars-container .icon").innerHTML;
+  const carIcon = nav.children[1].querySelector(".icon").innerHTML;
   const user__dropdownDiv = nav.querySelector('.sign-in-wrapper .user__dropdown');
   const contact = nav.querySelector('.contact-wrapper');
   user__dropdownDiv.append(contact);
   const userDropdown = nav.querySelector('.sign-in-wrapper')
   const userAccountLinkItems = user__dropdownDiv.querySelectorAll('.user__account>a')
   const signInTeaser = nav.querySelector('.sign-in-teaser');
-  console.log(signInTeaser);
+  
   const desktopHeader = `
     <div class="navbar ${isNexa ? "navbar-nexa" : "navbar-arena"}">
       <div class="nav-hamburger ${isNexa && "nav-hamburger-nexa"}">
