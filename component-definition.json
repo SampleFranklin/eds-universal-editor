@@ -569,7 +569,8 @@
                 "template": {
                   "name": "Car Filter",
                   "model": "car-filter",
-                  "title": "Car Filter"
+                  "title": "Car Filter",
+                  "titleType": "h2"
                 }
               }
             }

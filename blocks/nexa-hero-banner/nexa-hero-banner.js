@@ -71,6 +71,7 @@ export default function decorate(block) {
       video.autoplay = true;
       video.playsInline = true;
       video.muted = true;
+      video.width = window.screenX;
       item.append(video);
     });
   });
