@@ -169,5 +169,11 @@
     "components": [
       "nexa-eshowroom-experience-item"
     ]
+  },
+  {
+    "id": "slider",
+    "components": [
+      "teaser"
+    ]
   }
 ]
