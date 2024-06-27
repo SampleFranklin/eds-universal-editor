@@ -50,7 +50,9 @@ const teaser = {
                      </div>
                    `;
     }
-    block.classList.add(...style);
+    if(style.length > 0) {
+      block.classList.add(...style);
+    }
     block.innerHTML = '';
     block.insertAdjacentHTML(
       'beforeend',
