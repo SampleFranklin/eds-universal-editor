@@ -198,7 +198,8 @@
                   "filter": "teaser",
                   "title": "Teaser Title",
                   "description": "<p>This is <b>description</b></p>",
-                  "target": "_self"
+                  "target": "_self",
+                  "titleType": "h3"
                 }
               }
             }
@@ -537,7 +538,8 @@
                   "name": "Immersive Teaser",
                   "filter": "immersive-teaser",
                   "model": "immersive-teaser",
-                  "title": "Immersive Teaser"
+                  "title": "Immersive Teaser",
+                  "titleType": "h2"
                 }
               }
             }
