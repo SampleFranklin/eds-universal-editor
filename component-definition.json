@@ -428,7 +428,8 @@
                 "template": {
                   "name": "Teaser List",
                   "filter": "teaser-list",
-                  "model": "teaser-list"
+                  "model": "teaser-list",
+                  "titleType": "h2"
                 }
               }
             }
