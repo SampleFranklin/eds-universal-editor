@@ -144,7 +144,7 @@
   {
     "id": "widget",
     "components": [
-      "ctaWithChangingIcon"
+      "teaser"
     ]
   },
   {
