@@ -36,8 +36,6 @@ const teaser = {
     let style = [];
     if (styleText) {
       style = styleText.split(',');
-    } else {
-      style = ['light-teaser', 'buyers-guide-teaser'];
     }
 
     const primaryCta = ctaUtils.getLink(primaryCtaLinkEl, primaryCtaTextEl, primaryCtaTargetEl, 'primary__btn');
