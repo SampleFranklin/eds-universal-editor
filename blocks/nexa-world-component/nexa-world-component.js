@@ -58,12 +58,13 @@ export default function decorate(block) {
   `;
 
   // Links data
-  const links = [
+  const links = `
+    <div class ="nexa-world__links"
     { text: 'NEXA Blue', href: '#' },
     { text: 'Lifestyle', href: '#' },
     { text: 'Music', href: '#' },
     { text: 'Socials', href: '#' }
-  ];
+  `;
 
   // Create links
   const linksHtml = links.map(link => `
