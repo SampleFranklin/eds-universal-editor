@@ -40,7 +40,7 @@ export default function decorate(block) {
     <div class="nexa-world__action">
       <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
         <p>${nexaWorldContent.cta?.textContent || 'Discover NEXA World'}</p>
-        <span class="location-icon"><img src="/content/dam/nexa-world/north_east.svg" alt = "Image arrow"></span>
+        <span class="location-icon"><img src="/content/dam/nexa-world/north_east.svg" alt = "Image"></span>
       </a>
     </div>
   `;
@@ -58,13 +58,12 @@ export default function decorate(block) {
   `;
 
   // Links data
-  const links = `
-    <div class ="nexa-world__links"
+  const links = [
     { text: 'NEXA Blue', href: '#' },
     { text: 'Lifestyle', href: '#' },
     { text: 'Music', href: '#' },
     { text: 'Socials', href: '#' }
-  `;
+  ];
 
   // Create links
   const linksHtml = links.map(link => `
