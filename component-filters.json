@@ -64,7 +64,8 @@
       "nexa-eshowroom-experience",
       "banner-carousel",
       "car-filter",
-      "slider"
+      "slider",
+      "highlights"
     ]
   },
   {
@@ -175,6 +176,12 @@
     "id": "slider",
     "components": [
       "teaser"
+    ]
+  },
+  {
+    "id": "highlights",
+    "components": [
+      "highlight"
     ]
   }
 ]
