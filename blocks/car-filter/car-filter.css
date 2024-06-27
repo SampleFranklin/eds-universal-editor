@@ -1,0 +1,143 @@
+
+    .card h3 {
+        margin-top: 0;
+    }
+
+
+/* VD */
+
+.car-filter-container{
+    width: 1366px;
+    height: 682px;
+    background: #F2F2F2;
+    backdrop-filter: blur(4px);
+}
+
+.filter-cars{
+    display: flex;
+    height: 658px;
+    padding-top: 10px;
+    flex-direction: column;
+}
+.car-filter-list{
+    display: flex;
+    width: 1366px;
+    padding: 0px 64px;
+    align-items: flex-start;
+    gap: 64px;
+}
+
+.filter {
+    cursor:pointer;
+    color: var(--Tertiary-Deep-Grey, #767879);
+    text-transform: capitalize;
+    /* Desktop/Body/Small/Regular */
+    font-family: "Fira Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+
+}
+.filter.selected {
+     color: var(--Primary-Main, #18171A);
+     font-weight: 500;
+}
+
+.filter-text{
+	margin-left: 64px;
+	padding-top: 24px;
+}
+
+.card-list{
+	padding-top: 36px;
+    height: 416px;
+    padding-left: 64px;
+    display: flex;
+    width: 922px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    row-gap: 48px;
+}
+
+.card{
+    display: flex;
+    width: 186px;
+    height: 184px;
+    flex-shrink: 0;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.04));
+    backdrop-filter: blur(12px);
+    flex-direction: column;
+}
+
+.card img{
+	width: 141.176px;
+    height: 80px;
+	background: url(<path-to-image>) lightgray -6.487px -9.412px / 109.19% 127.61% no-repeat;
+    mix-blend-mode: luminosity;
+    filter: grayscale(100%);
+}
+
+.card img:hover{
+    filter: grayscale(0%);
+}
+
+.card-content{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-self: stretch;
+    width: 100%;
+}
+
+.card-title{
+    width: 161px;
+    color: var(--Primary-Main, #18171A);
+    font-family: "Fira Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.card-description{
+    width: 139px;
+    color: #636363;
+    font-family: "Fira Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.card-price{
+    width: 154px;
+    color: #6A6A6A;
+    font-family: "Fira Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+.title{
+ color: var(--Primary-Main, #18171A);
+
+ /* Desktop/Headings/Heading 4 */
+ font-family: "Kepler Std";
+ font-size: 24px;
+ font-style: normal;
+ font-weight: 600;
+ line-height: 28px; /* 116.667% */
+ letter-spacing: 0.48px;
+}
+
+.subtitle{
+  color: var(--Primary-Main, #18171A);
+  font-family: "Kepler Std";
+  font-size: 32px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 40px;
+  text-transform: capitalize;
+}
