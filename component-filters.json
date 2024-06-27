@@ -57,7 +57,13 @@
       "test-teaser",
       "highlight-tabs",
       "icontitle-test",
-      "widget"
+      "widget",
+      "nexa-world",
+      "location",
+      "nexa-hero-banner",
+      "nexa-eshowroom-experience",
+      "banner-carousel",
+      "car-filter"
     ]
   },
   {
@@ -138,6 +144,36 @@
     "id": "widget",
     "components": [
       "ctaWithIcon"
+    ]
+  },
+  {
+    "id": "nexa-world",
+    "components": [
+      "ctaWithIcon"
+    ]
+  },
+  {
+    "id": "nexa-hero-banner",
+    "components": [
+      "nexa-hero-banner-item"
+    ]
+  },
+  {
+    "id": "banner-carousel",
+    "components": [
+      "banner-carousel-car"
+    ]
+  },
+  {
+    "id": "nexa-eshowroom-experience",
+    "components": [
+      "nexa-eshowroom-experience-item"
+    ]
+  },
+  {
+    "id": "slider",
+    "components": [
+      "teaser"
     ]
   },
   {
