@@ -1093,8 +1093,15 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "image",
-        "label": "Image",
+        "name": "icon",
+        "label": "Icon",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "iconclicked",
+        "label": "Icon Clicked",
         "multi": false
       },
       {
