@@ -59,8 +59,8 @@ export default function decorate(block) {
 
   // Links data
   const links = [
-    { text: 'NEXA Blue', href: '#' },
-    { text: 'Lifestyle', href: '#' },
+    { text: 'NEXA Blue', href: '#',img: '/content/dam/nexa-world/Group%201321315474.png' },
+    { text: 'Lifestyle', href: '#' , img: '/content/dam/nexa-world/Group%201321315474.png'},
     { text: 'Music', href: '#' },
     { text: 'Socials', href: '#' }
   ];
