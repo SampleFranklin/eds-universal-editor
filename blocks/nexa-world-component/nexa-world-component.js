@@ -81,7 +81,7 @@ export default function decorate(block) {
         </ul>
       </div>
       <div class="nexa-world__img">
-        <img src="/path/to/default-image.jpg" alt="image" /> <!-- Replace with the default image path -->
+        <img src="/content/dam/nexa-world/Group%201321315474.png" alt="image text" /> <!-- Replace with the default image path -->
       </div>
     </div>
   `;
