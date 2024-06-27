@@ -1,6 +1,6 @@
 import { fetchPlaceholders } from '../../scripts/aem.js';
 
-export default function decorate(block) {
+export default async function decorate(block) {
   const [showCtaEl, ctaTextEl, ...bannerItemsEl] = block.children;
   const ctaVisibility = showCtaEl?.textContent?.trim();
   const ctaText = ctaTextEl?.textContent?.trim();
@@ -8,8 +8,8 @@ export default function decorate(block) {
   if (ctaVisibility === 'true' && ctaText) {
     ctaHtml = `<p>${ctaText}</p>`;
   }
+  const { publishDomain } = await fetchPlaceholders();
   const carouselDots = [];
-  const videoUrls = [];
   const bannerItems = bannerItemsEl?.map((itemEl, index) => {
     const [videoEl, imageEl, altTextEl, titleEl, subTitleEl, subTextEl] = itemEl.children;
     const videoUrl = videoEl?.querySelector('a')?.textContent?.trim();
@@ -22,9 +22,9 @@ export default function decorate(block) {
     if (videoUrl) {
       assetHtml = `
         <div class="hero-banner__video-container">
+          <video src="${publishDomain + videoUrl}" muted="muted" width="320"></video>
         </div>
       `;
-      videoUrls.push(videoUrl);
     } else if (image) {
       const img = image.querySelector('img');
       img?.removeAttribute('width');
@@ -61,18 +61,4 @@ export default function decorate(block) {
       ${carouselDots.join('')}
     </div>
   `;
-
-  fetchPlaceholders().then((res) => {
-    const { publishDomain } = res;
-    block.querySelectorAll('.hero-banner__video-container').forEach((item, index) => {
-      const video = document.createElement('video');
-      video.classList.add('hero-banner__video');
-      video.src = publishDomain + videoUrls[index];
-      video.autoplay = true;
-      video.playsInline = true;
-      video.muted = true;
-      video.width = window.screenX;
-      item.append(video);
-    });
-  });
 }
