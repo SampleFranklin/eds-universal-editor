@@ -40,7 +40,7 @@ export default function decorate(block) {
     <div class="nexa-world__action">
       <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
         <p>${nexaWorldContent.cta?.textContent || 'Discover NEXA World'}</p>
-        <span class="location-icon"><img src="C:/Users/yadalavineetha/Downloads/north_east.svg" alt = "Image"></span>
+        <span class="location-icon"><img src="/content/dam/nexa-world/north_east.svg" alt = "Image"></span>
       </a>
     </div>
   `;
