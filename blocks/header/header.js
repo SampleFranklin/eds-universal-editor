@@ -62,9 +62,8 @@ export default async function decorate(block) {
         teaser: teaser?.innerHTML,
       });
     });
-
   const logo = nav.querySelector(".logo-wrapper");
-  const carIcon = nav.querySelector(".icontitle-container .icon").innerHTML;
+  const carIcon = nav.children[1].querySelector(".icon").innerHTML;
   const user__dropdownDiv = nav.querySelector('.sign-in-wrapper .user__dropdown');
   const contact = nav.querySelector('.contact-wrapper');
   user__dropdownDiv.append(contact);
