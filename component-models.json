@@ -387,45 +387,42 @@
         ]
       },
       {
-        "component": "multiselect",
-        "name": "style",
-        "label": "Style",
+        "component": "select",
+        "name": "theme",
+        "label": "Theme",
         "valueType": "string",
-        "maxSize": 2,
         "options": [
           {
-            "name": "Theme",
-            "children": [
-              {
-                "name": "Light",
-                "value": "light-teaser"
-              },
-              {
-                "name": "Dark",
-                "value": "dark-teaser"
-              }
-            ]
+            "name": "Light",
+            "value": "light-teaser"
           },
           {
-            "name": "Type",
-            "children": [
-              {
-                "name": "Buyers Guide",
-                "value": "buyers-guide-teaser"
-              },
-              {
-                "name": "Finance Card",
-                "value": "finance-card-teaser"
-              },
-              {
-                "name": "Header Teaser",
-                "value": "header-image-teaser"
-              },
-              {
-                "name": "Text Only Teaser",
-                "value": "text-only-teaser"
-              }
-            ]
+            "name": "Dark",
+            "value": "dark-teaser"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "themeType",
+        "label": "Theme Type",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Buyers Guide",
+            "value": "buyers-guide-teaser"
+          },
+          {
+            "name": "Finance Card",
+            "value": "finance-card-teaser"
+          },
+          {
+            "name": "Header Teaser",
+            "value": "header-image-teaser"
+          },
+          {
+            "name": "Text Only Teaser",
+            "value": "text-only-teaser"
           }
         ]
       }
@@ -679,37 +676,34 @@
         ]
       },
       {
-        "component": "multiselect",
-        "name": "style",
-        "label": "Style",
+        "component": "select",
+        "name": "theme",
+        "label": "Theme",
         "valueType": "string",
-        "maxSize": 2,
         "options": [
           {
-            "name": "Theme",
-            "children": [
-              {
-                "name": "Light",
-                "value": "light-teaser-list"
-              },
-              {
-                "name": "Dark",
-                "value": "dark-teaser-list"
-              }
-            ]
+            "name": "Light",
+            "value": "light-teaser-list"
           },
           {
-            "name": "Type",
-            "children": [
-              {
-                "name": "Finance Card List",
-                "value": "finance-card-list"
-              },
-              {
-                "name": "Arena Card List",
-                "value": "arena-card-list"
-              }
-            ]
+            "name": "Dark",
+            "value": "dark-teaser-list"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "themeType",
+        "label": "Theme Type",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Finance Card List",
+            "value": "finance-card-list"
+          },
+          {
+            "name": "Arena Card List",
+            "value": "arena-card-list"
           }
         ]
       }
