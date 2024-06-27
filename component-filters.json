@@ -63,6 +63,9 @@
       "nexa-hero-banner",
       "nexa-eshowroom-experience",
       "banner-carousel",
+      "car-filter",
+      "slider",
+      "highlights",
       "arena-help-me-select"
     ]
   },
@@ -168,6 +171,18 @@
     "id": "nexa-eshowroom-experience",
     "components": [
       "nexa-eshowroom-experience-item"
+    ]
+  },
+  {
+    "id": "slider",
+    "components": [
+      "teaser"
+    ]
+  },
+  {
+    "id": "highlights",
+    "components": [
+      "highlight"
     ]
   }
 ]
