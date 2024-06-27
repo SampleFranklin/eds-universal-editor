@@ -4,8 +4,8 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
     const [titleEl,...teaserListEl] = block.children;
-    const sliderTitle = titleEl?.textContent?.trim() || "";
-
+    const sliderTitle = titleEl.querySelector(':is(h1,h2,h3,h4,h5,h6)');
+    sliderTitle?.classList?.add("slider-title");
     const teasers = teaserListEl.map((card) => {
         const teaserObj = teaser.getTeaser(card)?.firstElementChild;
         moveInstrumentation(card,teaserObj);
@@ -16,9 +16,7 @@ export default function decorate(block) {
     const newHtml = `
         <div class="container">
             <div class="slider-content">
-                <h2 class="slider-title">
-                    ${sliderTitle}
-                </h2>
+               ${(sliderTitle) ? sliderTitle.outerHTML : ''}
             </div>
             <div class="teaser-content">
                 <div class="teaser__cards">
