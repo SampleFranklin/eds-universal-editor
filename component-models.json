@@ -388,7 +388,7 @@
       },
       {
         "component": "select",
-        "name": "theme",
+        "name": "styleTheme",
         "label": "Theme",
         "valueType": "string",
         "options": [
@@ -677,7 +677,7 @@
       },
       {
         "component": "select",
-        "name": "theme",
+        "name": "styleTheme",
         "label": "Theme",
         "valueType": "string",
         "options": [
