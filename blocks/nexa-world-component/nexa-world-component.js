@@ -86,6 +86,7 @@ export default function decorate(block) {
     </div>
   `;
 
+
   // Replace the block's HTML with the constructed Nexa World HTML and teaser if present
   block.innerHTML = `
     <div class="nexa-world__container">
@@ -93,7 +94,21 @@ export default function decorate(block) {
       ${nexaWorldTeaser}
     </div>
   `;
-}
+   // Add event listeners to links to change the image on hover
+   const linksList = block.querySelectorAll('.nexa-world__links li');
+   const imgElement = block.querySelector('.nexa-world__img img');
+ 
+   linksList.forEach(link => {
+     link.addEventListener('mouseover', () => {
+       const imgSrc = link.getAttribute('data-img');
+       imgElement.setAttribute('src', imgSrc);
+     });
+     link.addEventListener('mouseout', () => {
+       imgElement.setAttribute('src', '/content/dam/nexa-world/Group%201321315474.png'); // Set back to the default image
+     });
+   });
+ }
+
 
 // Call the function to decorate the block
 document.addEventListener('DOMContentLoaded', () => {
