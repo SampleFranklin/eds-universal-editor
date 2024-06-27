@@ -39,8 +39,8 @@ export default function decorate(block) {
   const ctaWithIconHtml = `
     <div class="nexa-world__action">
       <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
-        <p>${nexaWorldContent.cta?.textContent || 'Discover NEXA World'}</p>
-        <span class="location-icon"><img src="/content/dam/nexa-world/north_east.svg" alt = "Image arrow"></span>
+        <p>${nexaWorldContent.cta?.textContent || 'Explore Nearby Dealers'}</p>
+        <span class="location-icon"><svg class="fas fa-map-marker-alt"><"img src ="/content/dam/nexa-world/north_east.svg" alt ="image arrow"></span>
       </a>
     </div>
   `;
@@ -57,18 +57,17 @@ export default function decorate(block) {
     </div>
   `;
 
-  // Links data
-  const links = `
-    <div class ="nexa-world__links"
-    { text: 'NEXA Blue', href: '#' },
-    { text: 'Lifestyle', href: '#' },
-    { text: 'Music', href: '#' },
-    { text: 'Socials', href: '#' }
-  `;
+  // Links data with image paths
+  const links = [
+    { text: 'NEXA Blue', href: '#', img: '/content/dam/nexa-world/Group%201321315474.png' },
+    { text: 'Lifestyle', href: '#', img: '/path/to/lifestyle-image.jpg' },
+    { text: 'Music', href: '#', img: '/path/to/music-image.jpg' },
+    { text: 'Socials', href: '#', img: '/path/to/socials-image.jpg' }
+  ];
 
   // Create links
   const linksHtml = links.map(link => `
-    <li>
+    <li data-img="${link.img}">
       <a href="${link.href}">${link.text}</a>
     </li>
   `).join('');
@@ -82,7 +81,7 @@ export default function decorate(block) {
         </ul>
       </div>
       <div class="nexa-world__img">
-        <img src="/content/dam/nexa-world/Group%201321315474.png" alt="image text" /> 
+        <img src="/path/to/default-image.jpg" alt="image" /> <!-- Replace with the default image path -->
       </div>
     </div>
   `;
@@ -94,6 +93,20 @@ export default function decorate(block) {
       ${nexaWorldTeaser}
     </div>
   `;
+
+  // Add event listeners to links to change the image on hover
+  const linksList = block.querySelectorAll('.nexa-world__links li');
+  const imgElement = block.querySelector('.nexa-world__img img');
+
+  linksList.forEach(link => {
+    link.addEventListener('mouseover', () => {
+      const imgSrc = link.getAttribute('data-img');
+      imgElement.setAttribute('src', imgSrc);
+    });
+    link.addEventListener('mouseout', () => {
+      imgElement.setAttribute('src', '/content/dam/nexa-world/Group%201321315474.png'); // Set back to the default image
+    });
+  });
 }
 
 // Call the function to decorate the block
