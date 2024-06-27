@@ -36,66 +36,67 @@ export default function decorate(block) {
   }
 
   // Construct CTA with icon
-    const ctaWithIconHtml = `
-      <div class="nexa-world__action">
-        <span class="location-icon fas fa-map-marker-alt"></span>
-        ${nexaWorldContent.cta.outerHTML}
-      </div>
-    `;
+  const ctaWithIconHtml = `
+    <div class="nexa-world__action">
+      <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
+        <p>${nexaWorldContent.cta?.textContent || 'Explore Nearby Dealers'}</p>
+        <span class="location-icon"><svg class="fas fa-map-marker-alt"></svg></span>
+      </a>
+    </div>
+  `;
 
   // Construct Nexa World HTML structure
   const nexaWorldHtml = `
     <div class="nexa-world__content">
-      ${nexaWorldContent.pretitle ? `<p class="pre-title">${nexaWorldContent.pretitle}</p>` : ''}
-      ${nexaWorldContent.title ? `<p class="title">${nexaWorldContent.title}</p>` : ''}
-      ${nexaWorldContent.description ? `${nexaWorldContent.description}` : ''}
-      ${nexaWorldContent.cta ? `<div class="nexa-world__action">${nexaWorldContent.cta.outerHTML}</div>` : ''}
-
+      <div class="nexa-world__title">
+        ${nexaWorldContent.pretitle ? `<p class="pre-title">${nexaWorldContent.pretitle}</p>` : ''}
+        ${nexaWorldContent.title ? `<p class="title">${nexaWorldContent.title}</p>` : ''}
+      </div>
+      ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
+      ${ctaWithIconHtml}
     </div>
   `;
+
   // Links data
-    const links = [
-      { text: 'NEXA Blue', href: '#' },
-      { text: 'Lifestyle', href: '#' },
-      { text: 'Music', href: '#' },
-      { text: 'Socials', href: '#' }
-    ];
+  const links = [
+    { text: 'NEXA Blue', href: '#' },
+    { text: 'Lifestyle', href: '#' },
+    { text: 'Music', href: '#' },
+    { text: 'Socials', href: '#' }
+  ];
 
-    // Create links with icons
-    const linksHtml = links.map(link => `
-      <li class="cta">
-        <a href="${link.href}" class="cta-link">
-          <span class="icon fas fa-map-marker-alt"></span>
-          <span class="cta-text">${link.text}</span>
-        </a>
-      </li>
-    `).join('');
+  // Create links
+  const linksHtml = links.map(link => `
+    <li>
+      <a href="${link.href}">${link.text}</a>
+    </li>
+  `).join('');
 
-    // Create the teaser HTML structure
-    const nexaWorldTeaser = `
-      <div class="nexa-world__teaser">
-        <div class="nexa-world__links">
-          <ul>
-            ${linksHtml}
-          </ul>
-        </div>
-        <div class="nexa-world__img">
-          <img src="/" alt="image" />
-        </div>
+  // Create the teaser HTML structure
+  const nexaWorldTeaser = `
+    <div class="nexa-world__teaser">
+      <div class="nexa-world__links">
+        <ul>
+          ${linksHtml}
+        </ul>
       </div>
-    `;
-
-    // Replace the block's HTML with the constructed Nexa World HTML and teaser if present
-    block.innerHTML = `
-      <div class="nexa-world__container">
-        ${nexaWorldHtml}
-        ${nexaWorldTeaser}
+      <div class="nexa-world__img">
+        <img src="/path/to/image.jpg" alt="image" /> <!-- Replace with the actual image path -->
       </div>
-    `;
-  }
+    </div>
+  `;
 
-  // Call the function to decorate the block
-  document.addEventListener('DOMContentLoaded', () => {
-    const blocks = document.querySelectorAll('.nexa-world-component'); // Replace with the actual block class name
-    blocks.forEach(decorate);
-    });
+  // Replace the block's HTML with the constructed Nexa World HTML and teaser if present
+  block.innerHTML = `
+    <div class="nexa-world__container">
+      ${nexaWorldHtml}
+      ${nexaWorldTeaser}
+    </div>
+  `;
+}
+
+// Call the function to decorate the block
+document.addEventListener('DOMContentLoaded', () => {
+  const blocks = document.querySelectorAll('.nexa-world-component'); // Replace with the actual block class name
+  blocks.forEach(decorate);
+});
