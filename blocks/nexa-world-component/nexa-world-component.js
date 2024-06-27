@@ -39,7 +39,7 @@ export default function decorate(block) {
   const ctaWithIconHtml = `
     <div class="nexa-world__action">
       <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
-        <p>${nexaWorldContent.cta?.textContent || 'Explore Nearby Dealers'}</p>
+        <p>${nexaWorldContent.cta?.textContent || 'Discover NEXA World'}</p>
         <span class="location-icon"><svg class="fas fa-map-marker-alt"><"img src ="/content/dam/nexa-world/north_east.svg" alt ="image arrow"></span>
       </a>
     </div>
