@@ -1801,5 +1801,158 @@
         ]
       }
     ]
+  },
+  {
+    "id": "arena-help-me-select",
+    "fields": [
+      {
+        "component": "tab",
+        "label": "Properties",
+        "name": "col1"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "jcr:title",
+        "value": "",
+        "label": "PreTitle"
+      },
+      {
+        "component": "richtext",
+        "name": "rte",
+        "label": "Rich Text",
+        "valueType": "string"
+      },
+      {
+        "component": "container",
+        "label": "Container",
+        "name": "container",
+        "valueType": "string",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "text-input",
+            "name": "primaryText",
+            "label": "CTA Text",
+            "valueType": "string"
+          },
+          {
+            "component": "aem-content",
+            "valueType": "string",
+            "name": "primaryLink",
+            "label": "CTA Link"
+          },
+          {
+            "component": "select",
+            "name": "primaryTarget",
+            "value": "",
+            "label": "Open Link in New Page ?",
+            "valueType": "string",
+            "options": [
+              {
+                "name": "Yes",
+                "value": "_blank"
+              },
+              {
+                "name": "No",
+                "value": "_self"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "number",
+        "name": "interval",
+        "value": "3",
+        "label": "Spotlight Interval"
+      },
+      {
+        "component": "tab",
+        "label": "Asset 1",
+        "name": "col2"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "fileReference",
+        "label": "Logo",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "alt",
+        "value": "Default alt",
+        "label": "Logo Alt Text"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "fileReference",
+        "label": "Car Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "alt",
+        "value": "Default alt",
+        "label": "Car Alt Text"
+      },
+      {
+        "component": "tab",
+        "label": "Asset 2",
+        "name": "col3"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "fileReference",
+        "label": "Logo",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "alt",
+        "value": "Default alt",
+        "label": "Logo Alt Text"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "fileReference",
+        "label": "Car Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "alt",
+        "value": "Default alt",
+        "label": "Car Alt Text"
+      },
+      {
+        "component": "tab",
+        "label": "Asset 3",
+        "name": "col4"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "fileReference",
+        "label": "Car Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "alt",
+        "value": "Default alt",
+        "label": "Car Alt Text"
+      }
+    ]
   }
 ]
