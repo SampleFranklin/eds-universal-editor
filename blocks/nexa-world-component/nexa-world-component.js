@@ -35,15 +35,7 @@ export default function decorate(block) {
     nexaWorldContent.cta.classList.add('btn-title');
 
   }
-   // Construct CTA with icon
-   const ctaWithIconHtml = `
-   <div class="nexa-world__action">
-     <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
-       <p>${nexaWorldContent.cta?.textContent}</p>
-       <span class="location-icon"><img src="/content/dam/nexa-world/north_east.svg" alt="Image arrow"></span>
-     </a>
-   </div>
- `;
+  
 
   // Construct Nexa World HTML structure
   const nexaWorldHtml = `
@@ -51,7 +43,7 @@ export default function decorate(block) {
       ${nexaWorldContent.pretitle ? `<p class="pre-title">${nexaWorldContent.pretitle}</p>` : ''}
       ${nexaWorldContent.title ? `<p class="title">${nexaWorldContent.title}</p>` : ''}
       ${nexaWorldContent.description ? `${nexaWorldContent.description}` : ''}
-      ${ctaWithIconHtml}
+      ${nexaWorldContent.cta ? `<div class="nexa-world__action">${nexaWorldContent.cta.outerHTML}</div>` : ''}
     </div>
   `;
 
