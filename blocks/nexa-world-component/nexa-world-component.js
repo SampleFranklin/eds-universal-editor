@@ -108,7 +108,7 @@ ul.classList.add("list-container");
       });
     });
   });
-}
+
 
 // Call the function to decorate the block
 document.addEventListener('DOMContentLoaded', () => {
