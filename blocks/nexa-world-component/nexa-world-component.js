@@ -90,18 +90,18 @@ export default function decorate(block) {
 
   // Add event listeners to links to change the image on hover
   document.addEventListener('DOMContentLoaded', function() {
-    const listItems = document.querySelectorAll('.nexa-world__links li');
-    const images = document.querySelectorAll('.nexa-world__img img');
-  
-    listItems.forEach(link  => {
-        item.addEventListener('mouseenter', () => {
-            images.forEach(img => img.classList.remove('active'));
-            images[index].classList.add('active');
-        });
-  
-        item.addEventListener('mouseleave', () => {
-            images[index].classList.remove('active');
-        });
+    const linksList = block.querySelectorAll('.nexa-world__links li');
+    const imgElement = block.querySelector('.nexa-world__img img');
+
+    linksList.forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        const imgSrc = link.getAttribute('data-img');
+        imgElement.setAttribute('src', imgSrc);
+      });
+
+      link.addEventListener('mouseleave', () => {
+        imgElement.setAttribute('src', '/content/dam/nexa-world/image1.jpg');
+      });
     });
   });
 }
