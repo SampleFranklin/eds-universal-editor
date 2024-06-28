@@ -1,4 +1,5 @@
 import { fetchPlaceholders } from '../../scripts/aem.js';
+import carouselUtils from '../../utility/carouselUtils.js';
 
 export default async function decorate(block) {
   const [showCtaEl, ctaTextEl, ...bannerItemsEl] = block.children;
@@ -9,7 +10,6 @@ export default async function decorate(block) {
     ctaHtml = `<p>${ctaText}</p>`;
   }
   const { publishDomain } = await fetchPlaceholders();
-  const carouselDots = [];
   const bannerItems = bannerItemsEl?.map((itemEl, index) => {
     const [videoEl, imageEl, altTextEl, titleEl, subTitleEl, subTextEl] = itemEl.children;
     const videoUrl = videoEl?.querySelector('a')?.textContent?.trim();
@@ -50,12 +50,6 @@ export default async function decorate(block) {
       </div>
     </div>
     `;
-    carouselDots.push(`<span class="carousel-dot data-target-index=${index}"></span>`);
-    itemEl.classList.add(`hero-banner__slide`, `hero-banner__slide-${index}`);
-    itemEl.dataset.slideIndex = index;
-    if(index === 0) {
-      itemEl.classList.add('hero-banner__slide--active');
-    }
     return itemEl.outerHTML;
   }).join('');
 
@@ -65,43 +59,9 @@ export default async function decorate(block) {
         <div class="hero-banner__slides">
           ${bannerItems}
         </div>
-        <div class="hero-banner__nav-btn">
-          <button class="hero-banner__prev-btn">Prev</button>
-          <button class="hero-banner__next-btn">Next</button>
-        </div>
-        <div class="hero-banner__indicators">
-          ${carouselDots.join('')}
-        </div>
       </div>
       ${ctaHtml}
     </div>
   `;
-
-  const activateSlide = (position) => {
-    const slides = block.querySelectorAll('.hero-banner__slide');
-    const currentSlide = block.querySelector('.hero-banner__slide--active');
-    const currentIndex = parseInt(currentSlide.dataset.slideIndex, 10);
-    let activeSlide;
-    if(position === 1 && currentIndex + 1 < slides.length) {
-      activeSlide = slides[currentIndex + 1];
-    } else if(position === -1 && currentIndex - 1 >= 0) {
-      activeSlide = slides[currentIndex - 1];
-    }
-    if(activeSlide) {
-      block.querySelector('.hero-banner__slides').scrollTo({
-        top: 0,
-        left: activeSlide.offsetLeft,
-        behaviour: 'smooth'
-      });
-      currentSlide.classList.remove('hero-banner__slide--active');
-      activeSlide.classList.add('hero-banner__slide--active');
-    }
-  };
-
-  block.querySelector('.hero-banner__prev-btn').addEventListener('click', (e) => {
-    activateSlide(-1);
-  });
-  block.querySelector('.hero-banner__next-btn').addEventListener('click', (e) => {
-    activateSlide(1);
-  });
+  carouselUtils.init(block.querySelector('.hero-banner__carousel'), 'hero-banner__slides');
 }

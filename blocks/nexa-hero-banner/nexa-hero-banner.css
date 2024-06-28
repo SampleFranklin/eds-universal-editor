@@ -1,16 +1,1 @@
-.hero-banner__container .hero-banner__slides {
-  display: flex;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  overflow: hidden clip;
-}
-
-.hero-banner__container .hero-banner__slides::-webkit-scrollbar {
-  display: none;
-}
-
-.hero-banner__container .hero-banner__slide {
-  flex: 0 0 100%;
-  scroll-snap-align: start;
-  width: 100%;
-}
+@import url('../carousel/carousel.css');
