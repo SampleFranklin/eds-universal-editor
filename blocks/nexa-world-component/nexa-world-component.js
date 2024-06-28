@@ -61,16 +61,24 @@ export default function decorate(block) {
       ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
       ${ctaWithIconHtml}
     </div>`;
+    const ul =document.createElement('ul');
 
-    
+    links.forEach(link => {
+      const listItem = document.createElement('li');
+      const anchor = document.createElement('a');
+      anchor.href = link.href;
+      anchor.textContent = link.text;
 
+      listItem.appendChild(anchor);
+      ul.appendChild(listItem);
+    });
+  }
+ul.classList.add("list-container");
   // Create the teaser HTML structure
   const nexaWorldTeaser = `
     <div class="nexa-world__teaser">
       <div class="nexa-world__links">
-        <ul class="list-container">
-          ${linksHtml}
-        </ul>
+        ${ul.outerHTML}
       </div>
       <div class="nexa-world__img">
         <img src="/content/dam/nexa-world/Group%201321315474.png" alt="image" />
