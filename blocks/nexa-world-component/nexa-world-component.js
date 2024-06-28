@@ -62,11 +62,10 @@ export default function decorate(block) {
       ${ctaWithIconHtml}
     </div>`;
 
-  // Create links dynamically with hardcoded images
-  const linksHtml = nexaWorldContent.links.map((link, index) => `
-    <li data-img="/content/dam/nexa-world/image${index + 1}.jpg">
-      <a href="${link.href}">${link.text}</a>
-    </li>`).join('');
+    const image = imageEl?.querySelector('picture');
+    if (image) {
+      initImage(image, altTextEl);
+    }
 
   // Create the teaser HTML structure
   const nexaWorldTeaser = `
