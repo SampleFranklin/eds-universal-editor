@@ -1589,10 +1589,17 @@
     "fields": [
       {
         "component": "reference",
-        "valueType": "string[]",
-        "name": "video",
-        "label": "Video",
-        "multi": true
+        "valueType": "string",
+        "name": "forwardVideo",
+        "label": "Forward Video",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "reverseVideo",
+        "label": "Reverse Video",
+        "multi": false
       },
       {
         "component": "text-input",
