@@ -106,8 +106,8 @@ block.innerHTML = `
     const links = [
       { text: 'NEXA Blue', imgSrc: '/content/dam/nexa-world/Group%201321315474.png' },
       { text: 'Lifestyle', imgSrc: '/content/dam/nexa-world/north_east.svg' },
-      { text: 'Music', imgSrc: 'image3.jpg' },
-      { text: 'Socials', imgSrc: 'image4.jpg' },
+      // { text: 'Music', imgSrc: 'image3.jpg' },
+      // { text: 'Socials', imgSrc: 'image4.jpg' },
     ];
   
     // Generate the list items and links
