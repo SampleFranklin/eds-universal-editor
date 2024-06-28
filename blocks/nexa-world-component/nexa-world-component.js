@@ -25,11 +25,11 @@ export default function decorate(block) {
       textContent: ctaTextEl?.textContent?.trim() || ''
     } : null;
 
-    // const links = Array.from(linkEls).map(linkEl => ({
-    //   text: linkEl.textContent.trim(),
-    //   href: linkEl.querySelector('a')?.href || '#',
-    //   img: linkEl.querySelector('img')?.src || '/content/dam/nexa-world/Group%201321315474.png' // Default image path
-    // }));
+    const links = Array.from(linkEls).map(linkEl => ({
+      text: linkEl.textContent.trim(),
+      href: linkEl.querySelector('a')?.href || '#',
+      img: linkEl.querySelector('img')?.src || '/content/dam/nexa-world/Group%201321315474.png' // Default image path
+    }));
 
     return {
       pretitle,
