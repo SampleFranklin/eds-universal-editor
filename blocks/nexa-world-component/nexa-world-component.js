@@ -65,7 +65,7 @@ export default function decorate(block) {
     </div>
   `;
 
-  // Create links
+  // Create links dynamically
   const linksHtml = nexaWorldContent.links.map(link => `
     <li data-img="${link.img}">
       <a href="${link.href}">${link.text}</a>
@@ -80,7 +80,10 @@ export default function decorate(block) {
           ${linksHtml}
         </ul>
       </div>
-      
+      <div class="nexa-world__img">
+        <img src="${nexaWorldContent.links[0]?.img || '/content/dam/nexa-world/default-image.jpg'}" alt="image" />
+      </div>
+    </div>
   `;
 
   // Replace the block's HTML with the constructed Nexa World HTML and teaser if present
@@ -95,7 +98,6 @@ export default function decorate(block) {
   document.addEventListener('DOMContentLoaded', function() {
     const linksList = block.querySelectorAll('.nexa-world__links li');
     const imgElement = block.querySelector('.nexa-world__img img');
-    const defaultImg = imgElement.src;
 
     linksList.forEach(link => {
       link.addEventListener('mouseenter', () => {
@@ -104,7 +106,7 @@ export default function decorate(block) {
       });
 
       link.addEventListener('mouseleave', () => {
-        imgElement.setAttribute('src', defaultImg);
+        imgElement.setAttribute('src', nexaWorldContent.links[0]?.img || '/content/dam/nexa-world/Group%201321315474.png');
       });
     });
   });
@@ -112,6 +114,6 @@ export default function decorate(block) {
 
 // Call the function to decorate the block
 document.addEventListener('DOMContentLoaded', () => {
-  const blocks = document.querySelectorAll('.nexa-world-component'); // Replace with the actual block class name
+  const blocks = document.querySelectorAll('.nexa-world-component'); 
   blocks.forEach(decorate);
 });
