@@ -2,13 +2,15 @@ export default function decorate(block) {
     const [
         titleEl,
         subtitleEl,
-        selectVariantEl
+        selectVariantEl,
+        filterSelectEl
     ] = block.children;
-    
+  
     const location="Mumbai";
     const title = titleEl?.textContent?.trim();
     const subtitle = subtitleEl?.textContent?.trim();
     const componentVariation = selectVariantEl?.textContent?.trim();
+    const filterList = filterSelectEl?.textContent?.trim();
     let endpoint;
     if(componentVariation==='arena-variant'){
         endpoint = 'arena-endpoint';
@@ -159,7 +161,7 @@ export default function decorate(block) {
 
         let selectedFilter = 'All';
         const filters = {};
-        const filterTypes = ['fuelOptions', 'technology', 'additionalSpecifications'];
+        const filterTypes = filterList.split(',');
 
         filterTypes.forEach(type => {
             filters[type] = new Set();
