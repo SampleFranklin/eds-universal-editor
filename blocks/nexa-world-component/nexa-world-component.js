@@ -62,10 +62,7 @@ export default function decorate(block) {
       ${ctaWithIconHtml}
     </div>`;
 
-    const image = imageEl?.querySelector('picture');
-    if (image) {
-      initImage(image, altTextEl);
-    }
+    
 
   // Create the teaser HTML structure
   const nexaWorldTeaser = `
