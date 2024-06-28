@@ -16,18 +16,20 @@ export default async function decorate(block) {
     const image = imageEl?.querySelector('picture');
     const altText = altTextEl?.textContent?.trim() || 'Image';
     const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)');
+    title?.classList?.add('hero-banner__title');
     const subTitle = subTitleEl?.textContent?.trim();
     const subText = subTextEl?.textContent?.trim();
     let assetHtml = '';
     if (videoUrl) {
       assetHtml = `
         <div class="hero-banner__video-container">
-          <video src="${publishDomain + videoUrl}" muted="muted" width="320"></video>
+          <video src="${publishDomain + videoUrl}" muted="muted" width="100%" autoplay loop></video>
+          <button class="hero-banner__mute-btn">Mute</button>
         </div>
       `;
     } else if (image) {
       const img = image.querySelector('img');
-      img?.removeAttribute('width');
+      img?.setAttribute('width', '100%');
       img?.removeAttribute('height');
       img?.setAttribute('alt', altText);
       assetHtml = `
@@ -48,17 +50,58 @@ export default async function decorate(block) {
       </div>
     </div>
     `;
-    carouselDots.push(`<div class="carousel-dot">${index}</div>`);
+    carouselDots.push(`<span class="carousel-dot data-target-index=${index}"></span>`);
+    itemEl.classList.add(`hero-banner__slide`, `hero-banner__slide-${index}`);
+    itemEl.dataset.slideIndex = index;
+    if(index === 0) {
+      itemEl.classList.add('hero-banner__slide--active');
+    }
     return itemEl.outerHTML;
   }).join('');
 
   block.innerHTML = `
     <div class="hero-banner__container">
-      <div class="hero-banner__items">
+      <div class="hero-banner__carousel">
+        <div class="hero-banner__slides">
           ${bannerItems}
+        </div>
+        <div class="hero-banner__nav-btn">
+          <button class="hero-banner__prev-btn">Prev</button>
+          <button class="hero-banner__next-btn">Next</button>
+        </div>
+        <div class="hero-banner__indicators">
+          ${carouselDots.join('')}
+        </div>
       </div>
       ${ctaHtml}
-      ${carouselDots.join('')}
     </div>
   `;
+
+  const activateSlide = (position) => {
+    const slides = block.querySelectorAll('.hero-banner__slide');
+    const currentSlide = block.querySelector('.hero-banner__slide--active');
+    const currentIndex = parseInt(currentSlide.dataset.slideIndex, 10);
+    let activeSlide;
+    if(position === 1 && currentIndex + 1 < slides.length) {
+      activeSlide = slides[currentIndex + 1];
+    } else if(position === -1 && currentIndex - 1 >= 0) {
+      activeSlide = slides[currentIndex - 1];
+    }
+    if(activeSlide) {
+      block.querySelector('.hero-banner__slides').scrollTo({
+        top: 0,
+        left: activeSlide.offsetLeft,
+        behaviour: 'smooth'
+      });
+      currentSlide.classList.remove('hero-banner__slide--active');
+      activeSlide.classList.add('hero-banner__slide--active');
+    }
+  };
+
+  block.querySelector('.hero-banner__prev-btn').addEventListener('click', (e) => {
+    activateSlide(-1);
+  });
+  block.querySelector('.hero-banner__next-btn').addEventListener('click', (e) => {
+    activateSlide(1);
+  });
 }
