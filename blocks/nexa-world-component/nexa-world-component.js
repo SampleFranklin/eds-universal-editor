@@ -23,7 +23,7 @@ export default function decorate(block) {
     const links = Array.from(linkEls).map(linkEl => ({
       text: linkEl.textContent.trim(),
       href: linkEl.querySelector('a')?.href || '#',
-      img: linkEl.querySelector('img')?.src || 'null' // Default image path
+      img: linkEl.querySelector('img')?.src || '/content/dam/nexa-world/default-image.jpg' // Default image path
     }));
 
     return {
@@ -81,7 +81,7 @@ export default function decorate(block) {
         </ul>
       </div>
       <div class="nexa-world__img">
-        <img src="${nexaWorldContent.links[0]?.img || '/content/dam/nexa-world/default-image.jpg'}" alt="image" />
+        <img src="${nexaWorldContent.links[0]?.img || '/content/dam/nexa-world/Group%201321315474.png'}" alt="image" />
       </div>
     </div>
   `;
@@ -106,7 +106,7 @@ export default function decorate(block) {
       });
 
       link.addEventListener('mouseleave', () => {
-        imgElement.setAttribute('src', nexaWorldContent.links[0]?.img || '/content/dam/nexa-world/default-image.jpg');
+        imgElement.setAttribute('src', nexaWorldContent.links[0]?.img || '//content/dam/nexa-world/Group%201321315474.png');
       });
     });
   });
