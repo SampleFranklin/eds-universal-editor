@@ -91,22 +91,65 @@ block.innerHTML = `
     ${nexaWorldTeaser}
   </div>`;
 
-// Add event listeners to links to change the image on hover
-document.addEventListener('DOMContentLoaded', function() {
-  const linksList = block.querySelectorAll('.nexa-world__links li');
-  const imgElement = block.querySelector('.nexa-world__img img');
-
-  linksList.forEach(link => {
-    link.addEventListener('mouseenter', () => {
-      const imgSrc = link.getAttribute('data-img');
-      imgElement.setAttribute('src', imgSrc);
+  document.addEventListener('DOMContentLoaded', function() {
+    // Create the main container
+    const container = document.createElement('div');
+    container.classList.add('nexa-world__container');
+  
+    // Create the links container
+    const linksContainer = document.createElement('div');
+    linksContainer.classList.add('nexa-world__links');
+  
+    const ul = document.createElement('ul');
+  
+    // Array of links with corresponding images
+    const links = [
+      { text: 'NEXA Blue', imgSrc: '/content/dam/nexa-world/Group%201321315474.png' },
+      { text: 'Lifestyle', imgSrc: '/content/dam/nexa-world/north_east.svg' },
+      { text: 'Music', imgSrc: 'image3.jpg' },
+      { text: 'Socials', imgSrc: 'image4.jpg' },
+    ];
+  
+    // Generate the list items and links
+    links.forEach(link => {
+      const li = document.createElement('li');
+      li.textContent = link.text;
+      li.setAttribute('data-img', link.imgSrc);
+  
+      ul.appendChild(li);
     });
-
-    link.addEventListener('mouseleave', () => {
-      imgElement.setAttribute('src', '/content/dam/nexa-world/Group%201321315474.png');
+  
+    linksContainer.appendChild(ul);
+    container.appendChild(linksContainer);
+  
+    // Create the image container
+    const imgContainer = document.createElement('div');
+    imgContainer.classList.add('nexa-world__img');
+  
+    const img = document.createElement('img');
+    img.src = '/content/dam/nexa-world/Group%201321315474.png';
+    img.alt = 'image';
+    img.id = 'hoverImage';
+  
+    imgContainer.appendChild(img);
+    container.appendChild(imgContainer);
+  
+    // Append the container to the body
+    document.body.appendChild(container);
+  
+    // Add event listeners for hover effect
+    const hoverImage = document.getElementById('hoverImage');
+    ul.querySelectorAll('li').forEach(item => {
+      item.addEventListener('mouseenter', function() {
+        const imgSrc = this.getAttribute('data-img');
+        hoverImage.setAttribute('src', imgSrc);
+      });
+  
+      item.addEventListener('mouseleave', function() {
+        hoverImage.setAttribute('src', '/content/dam/nexa-world/Group%201321315474.png');
+      });
     });
   });
-});
 
 
 // Call the function to decorate the block
