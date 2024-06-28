@@ -86,7 +86,10 @@ export default function decorate(block) {
           ${linksHtml}
         </ul>
       </div>
-    
+      <div class="nexa-world__img">
+        <img src="/content/dam/nexa-world/Group%201321315474.png" alt="image text" /> <!-- Replace with the default image path -->
+      </div>
+    </div>
   `;
 
   // Replace the block's HTML with the constructed Nexa World HTML and teaser if present
