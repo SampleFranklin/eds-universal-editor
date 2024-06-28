@@ -63,7 +63,7 @@ export default function decorate(block) {
     </div>`;
     const ul =document.createElement('ul');
     ul.classList.add("list-container");
-    links.forEach(link => {
+    nexaWorldContent.links.forEach(link => {
       const listItem = document.createElement('li');
       const anchor = document.createElement('a');
       anchor.href = link.href;
