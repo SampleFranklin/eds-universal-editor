@@ -867,7 +867,8 @@
         "component": "text-input",
         "valueType": "string",
         "name": "title",
-        "label": "Title"
+        "label": "Title",
+        "required": "true"
       },
       {
         "component": "select",
