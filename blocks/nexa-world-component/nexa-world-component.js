@@ -28,7 +28,6 @@ export default function decorate(block) {
     const links = Array.from(linkEls).map(linkEl => ({
       text: linkEl.textContent.trim(),
       href: linkEl.querySelector('a')?.href || '#',
-      img: linkEl.querySelector('img')?.src || '/content/dam/nexa-world/Group%201321315474.png' // Default image path
     }));
 
     return {
@@ -58,15 +57,14 @@ export default function decorate(block) {
       <div class="nexa-world__title">
         ${nexaWorldContent.pretitle ? `<p class="pre-title">${nexaWorldContent.pretitle}</p>` : ''}
         ${nexaWorldContent.title ? `<p class="title">${nexaWorldContent.title}</p>` : ''}
-      
+      </div>
       ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
       ${ctaWithIconHtml}
-      </div>
     </div>`;
 
-  // Create links dynamically
-  const linksHtml = nexaWorldContent.links.map(link => `
-    <li data-img="${link.img}">
+  // Create links dynamically with hardcoded images
+  const linksHtml = nexaWorldContent.links.map((link, index) => `
+    <li data-img="/content/dam/nexa-world/image${index + 1}.jpg">
       <a href="${link.href}">${link.text}</a>
     </li>`).join('');
 
@@ -79,7 +77,7 @@ export default function decorate(block) {
         </ul>
       </div>
       <div class="nexa-world__img">
-        <img src="${nexaWorldContent.links[0]?.img || '/content/dam/nexa-world/Group%201321315474.png'}" alt="image" />
+        <img src="/content/dam/nexa-world/image1.jpg" alt="image" />
       </div>
     </div>`;
 
@@ -92,18 +90,18 @@ export default function decorate(block) {
 
   // Add event listeners to links to change the image on hover
   document.addEventListener('DOMContentLoaded', function() {
-    const linksList = block.querySelectorAll('.nexa-world__links li');
-    const imgElement = block.querySelector('.nexa-world__img img');
-
-    linksList.forEach(link => {
-      link.addEventListener('mouseenter', () => {
-        const imgSrc = link.getAttribute('data-img');
-        imgElement.setAttribute('src', imgSrc);
-      });
-
-      link.addEventListener('mouseleave', () => {
-        imgElement.setAttribute('src', nexaWorldContent.links[0]?.img || '//content/dam/nexa-world/Group%201321315474.png');
-      });
+    const listItems = document.querySelectorAll('.nexa-world__links li');
+    const images = document.querySelectorAll('.nexa-world__img img');
+  
+    listItems.forEach(link  => {
+        item.addEventListener('mouseenter', () => {
+            images.forEach(img => img.classList.remove('active'));
+            images[index].classList.add('active');
+        });
+  
+        item.addEventListener('mouseleave', () => {
+            images[index].classList.remove('active');
+        });
     });
   });
 }
@@ -113,3 +111,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const blocks = document.querySelectorAll('.nexa-world-component'); // Replace with the actual block class name
   blocks.forEach(decorate);
 });
+
+
