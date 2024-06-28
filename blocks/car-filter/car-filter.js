@@ -1,88 +1,123 @@
 export default function decorate(block) {
     const [
         titleEl,
-        subtitleEl
+        subtitleEl,
+        exshowroomPrefixEl,
+        selectVariantEl,
+        filterSelectEl
     ] = block.children;
-
+  
     const location="Mumbai";
     const title = titleEl?.textContent?.trim();
     const subtitle = subtitleEl?.textContent?.trim();
+    const exShowroomPrefixText = exshowroomPrefixEl?.textContent?.trim();
+    const componentVariation = selectVariantEl?.textContent?.trim();
+    const filterList = filterSelectEl?.textContent?.trim();
+    console.log(filterList);
+    let endpoint;
+    if(componentVariation==='arena-variant'){
+        endpoint = 'arena-endpoint';
+    }
+    else{
+        endpoint = 'nexa-endpoint';
+    }
     const graphQlResponse =
     {
-      "data": {
-        "carModelList": {
-          "items": [
-            {
-              "carImage": {
-                "_authorUrl": "http://localhost:4502/content/dam/nexa/com/in/en/images/cars/grand-vitara/Grand%20Vitara.webp"
+        "data": {
+          "carModelList": {
+            "items": [
+              {
+                "carImage": {
+                  "_authorUrl": "http://localhost:4502/content/dam/nexa/com/in/en/images/cars/grand-vitara/Grand%20Vitara.webp"
+                },
+                 "carLogoImage": {
+                    "_authorUrl": "http://localhost:4502/content/dam/arena/com/in/en/images/S-presso.svg",
+                    "_publishUrl": "http://localhost:4503/content/dam/arena/com/in/en/images/S-presso.svg"
+                  },
+                "logoImageAltText": "gv-logo",  
+                "carName": "Grand Vitara",
+                "bodyType": "SUV",
+                "carDescription": "Create. Inspire",
+                "altText": "Grand Vitara",
+                "exShowroomPrice": 1099000,
+                "fuelOptions": [
+                  "Petrol",
+                  "S-CNG"
+                ],
+                "technology": [
+                  "Smart Hybrid"
+                ],
+                "additionalSpecifications": null,
+                "carTagName": [
+                  "msil:nexa/grand-vitara"
+                ],
+                "defaultVariantId": "GVR4EZ2",
+                "carDetailsPagePath": null,
+                "carOrder": null
               },
-              "carName": "Grand Vitara",
-              "bodyType": "SUV",
-              "carDescription": "Create. Inspire",
-              "altText": "Grand Vitara",
-              "exShowroomPrice": 1099000,
-              "fuelOptions": [
-                "Petrol",
-                "S-CNG"
-              ],
-              "technology": [
-                "Smart Hybrid"
-              ],
-              "additionalSpecifications": null,
-              "carTagName": [
-                "msil:nexa/grand-vitara"
-              ],
-              "defaultVariantId": "GVR4EZ2"
-            },
-            {
-              "carImage": {
-                "_authorUrl": "http://localhost:4502/content/dam/nexa/com/in/en/images/cars/invicto/Invicto.webp"
+              {
+                "carImage": {
+                  "_authorUrl": "http://localhost:4502/content/dam/nexa/com/in/en/images/cars/invicto/Invicto.webp"
+                },
+                 "carLogoImage": {
+                    "_authorUrl": "http://localhost:4502/content/dam/arena/com/in/en/images/S-presso.svg",
+                    "_publishUrl": "http://localhost:4503/content/dam/arena/com/in/en/images/S-presso.svg"
+                  },
+                "logoImageAltText": "inv-logo",   
+                "carName": "Invicto",
+                "bodyType": "SUV",
+                "carDescription": "Created to Inspire the Extraordinary",
+                "altText": "Invicto",
+                "exShowroomPrice": 2521000,
+                "fuelOptions": [
+                  "Petrol",
+                  "S-CNG"
+                ],
+                "technology": [
+                  "Intelligent Electric Hybrid"
+                ],
+                "additionalSpecifications": null,
+                "carTagName": [
+                  "msil:nexa/invicto"
+                ],
+                "defaultVariantId": "INAHAZ200",
+                "carDetailsPagePath": null,
+                "carOrder": null
               },
-              "carName": "Invicto",
-              "bodyType": "SUV",
-              "carDescription": "Created to Inspire the Extraordinary",
-              "altText": "Invicto",
-              "exShowroomPrice": 2521000,
-              "fuelOptions": [
-                "Petrol",
-                "S-CNG"
-              ],
-              "technology": [
-                "Intelligent Electric Hybrid"
-              ],
-              "additionalSpecifications": null,
-              "carTagName": [
-                "msil:nexa/invicto"
-              ],
-              "defaultVariantId": "INAHAZ200"
-            },
-            {
-              "carImage": {
-                "_authorUrl": "http://localhost:4502/content/dam/nexa/com/in/en/images/cars/jimny/Jimny.webp"
-              },
-              "carName": "Jimny",
-              "bodyType": "Hatchback",
-              "carDescription": "Created For Purity of Function",
-              "altText": "Jimny",
-              "exShowroomPrice": 1274000,
-              "fuelOptions": [
-                "Petrol"
-              ],
-              "technology": [
-                "Turbo"
-              ],
-              "additionalSpecifications": [
-                "All Grip"
-              ],
-              "carTagName": [
-                "msil:nexa/jimny"
-              ],
-              "defaultVariantId": "JMR4CZ2"
-            }
-          ]
+              {
+                "carImage": {
+                  "_authorUrl": "http://localhost:4502/content/dam/nexa/com/in/en/images/cars/jimny/Jimny.webp"
+                },
+                 "carLogoImage": {
+                    "_authorUrl": "http://localhost:4502/content/dam/arena/com/in/en/images/S-presso.svg",
+                    "_publishUrl": "http://localhost:4503/content/dam/arena/com/in/en/images/S-presso.svg"
+                  },
+                "logoImageAltText": "jim-logo",  
+                "carName": "Jimny",
+                "bodyType": "Hatchback",
+                "carDescription": "Created For Purity of Function",
+                "altText": "Jimny",
+                "exShowroomPrice": 1274000,
+                "fuelOptions": [
+                  "Petrol"
+                ],
+                "technology": [
+                  "Turbo"
+                ],
+                "additionalSpecifications": [
+                  "All Grip"
+                ],
+                "carTagName": [
+                  "msil:nexa/jimny"
+                ],
+                "defaultVariantId": "JMR4CZ2",
+                "carDetailsPagePath": null,
+                "carOrder": null
+              }
+            ]
+          }
         }
-      }
-    };
+      };
 
 
     const newHTMLContainer = carModelInfo(graphQlResponse);
@@ -126,7 +161,7 @@ export default function decorate(block) {
 
         let selectedFilter = 'All';
         const filters = {};
-        const filterTypes = ['fuelOptions', 'technology', 'additionalSpecifications'];
+        const filterTypes = filterList.split(',');
 
         filterTypes.forEach(type => {
             filters[type] = new Set();
@@ -152,7 +187,14 @@ export default function decorate(block) {
             filters[filterType] = [...filters[filterType]].sort();
         });
 
-        const unifiedFilterOptions = ['All', ...new Set(filterTypes.flatMap(type => filters[type]))];
+        let unifiedFilterOptions;
+
+        if(componentVariation==='arena-variant'){
+            unifiedFilterOptions = [...new Set(filterTypes.flatMap(type => filters[type]))];
+        }
+        else{
+            unifiedFilterOptions = ['All', ...new Set(filterTypes.flatMap(type => filters[type]))];
+        }
 
         function createUnifiedFilter(filterOptions) {
             filterOptions.forEach((option, index) => {
@@ -199,6 +241,15 @@ export default function decorate(block) {
            carsToRender.forEach(car => {
                const card = document.createElement('div');
                card.classList.add('card');
+
+               const cardLogoImage = document.createElement('div');
+               cardLogoImage.classList.add('card-logo-image');
+
+               const logoImg = document.createElement('img');
+               logoImg.src = car.carLogoImage._authorUrl;
+               logoImg.alt = car.logoImageAltText;
+               cardLogoImage.appendChild(logoImg);
+               
                const cardImage = document.createElement('div');
                cardImage.classList.add('card-image');
 
@@ -219,10 +270,9 @@ export default function decorate(block) {
                const price = document.createElement('p');
                price.classList.add('card-price');
                const storedPrices = getLocalStorage('modelPrice') ? JSON.parse(getLocalStorage('modelPrice')) : {};
-
                if (storedPrices[car.defaultVariantId] && storedPrices[car.defaultVariantId].price[location]) {
                    const storedPrice = storedPrices[car.defaultVariantId].price[location];
-                   price.textContent = 'Price: ' + storedPrice;
+                   price.textContent = exShowroomPrefixText + storedPrice;
                } else {
                    fetchPrice(car.defaultVariantId, price, car.exShowroomPrice);
                }
@@ -231,6 +281,7 @@ export default function decorate(block) {
                cardContent.appendChild(description);
                cardContent.appendChild(price);
 
+               card.appendChild(cardLogoImage);
                card.appendChild(cardImage);
                card.appendChild(cardContent);
                carCardsContainer.appendChild(card);
@@ -249,7 +300,7 @@ export default function decorate(block) {
 
             if (storedPrices[variantCode].price[location]) {
                 const storedPrice = storedPrices[variantCode].price[location];
-                priceElement.textContent = 'Price: ' + storedPrice;
+                priceElement.textContent = exShowroomPrefixText + storedPrice;
                 return;
             }
 
@@ -288,16 +339,16 @@ export default function decorate(block) {
 
                     setLocalStorage('modelPrice', JSON.stringify(storedPrices));
 
-                    priceElement.textContent = 'Price: ' + formattedPrice;
+                    priceElement.textContent = exShowroomPrefixText + formattedPrice;
                 } else {
                     const formattedPrice = defaultPrice ? priceFormatting(defaultPrice) : 'Not available';
-                    priceElement.textContent = 'Price: ' + formattedPrice;
+                    priceElement.textContent = exShowroomPrefixText + formattedPrice;
                 }
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
                 const formattedPrice = defaultPrice ? priceFormatting(defaultPrice) : 'Not available';
-                priceElement.textContent = 'Price: ' + formattedPrice;
+                priceElement.textContent = exShowroomPrefixText + formattedPrice;
             });
         }
 
