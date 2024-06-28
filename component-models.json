@@ -870,29 +870,6 @@
         "label": "Title"
       },
       {
-        "component": "reference",
-        "valueType": "string",
-        "name": "icon",
-        "label": "Icon"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "iconclicked",
-        "label": "Icon Clicked"
-      }
-    ]
-  },
-  {
-    "id": "icontitle-test",
-    "fields": [
-      {
-        "component": "text-input",
-        "valueType": "string",
-        "name": "title",
-        "label": "Title"
-      },
-      {
         "component": "select",
         "name": "titleType",
         "value": "h2",
