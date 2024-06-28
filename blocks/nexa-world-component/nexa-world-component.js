@@ -18,12 +18,16 @@ export default function decorate(block) {
     const pretitle = pretitleEl?.textContent?.trim() || '';
     const title = titleEl?.textContent?.trim() || '';
     const description = Array.from(descriptionEl.querySelectorAll('p')).map(p => p.outerHTML).join('');
-    const cta = (ctaLinkEl) ? ctaUtils.getLink(ctaLinkEl, ctaTextEl, ctaTargetEl) : null;
+    const cta = (ctaLinkEl) ? {
+      href: ctaLinkEl.querySelector('a')?.href || '#',
+      title: ctaLinkEl.querySelector('a')?.title || '',
+      target: ctaLinkEl.querySelector('a')?.target || '_self',
+      textContent: ctaTextEl?.textContent?.trim() || ''
+    } : null;
 
     const links = Array.from(linkEls).map(linkEl => ({
       text: linkEl.textContent.trim(),
       href: linkEl.querySelector('a')?.href || '#',
-      img: linkEl.querySelector('img')?.src || '/content/dam/nexa-world/default-image.jpg' // Default image path
     }));
 
     return {
@@ -37,11 +41,6 @@ export default function decorate(block) {
 
   // Get Nexa World content from the block
   const nexaWorldContent = getNexaWorldContent();
-
-  // Add 'btn-title' class to CTA element if it exists
-  if (nexaWorldContent.cta) {
-    nexaWorldContent.cta.classList.add('btn-title');
-  }
 
   // Construct CTA with icon
   const ctaWithIconHtml = `
@@ -63,9 +62,9 @@ export default function decorate(block) {
       ${ctaWithIconHtml}
     </div>`;
 
-  // Create links dynamically
-  const linksHtml = nexaWorldContent.links.map(link => `
-    <li data-img="${link.img}">
+  // Create links dynamically with hardcoded images
+  const linksHtml = nexaWorldContent.links.map((link, index) => `
+    <li data-img="/content/dam/nexa-world/image${index + 1}.jpg">
       <a href="${link.href}">${link.text}</a>
     </li>`).join('');
 
@@ -78,7 +77,7 @@ export default function decorate(block) {
         </ul>
       </div>
       <div class="nexa-world__img">
-        <img src="${nexaWorldContent.links[0]?.img || '/content/dam/nexa-world/Group%201321315474.png'}" alt="image" />
+        <img src="/content/dam/nexa-world/Group%201321315474.png" alt="image" />
       </div>
     </div>`;
 
@@ -101,7 +100,7 @@ export default function decorate(block) {
       });
 
       link.addEventListener('mouseleave', () => {
-        imgElement.setAttribute('src', nexaWorldContent.links[0]?.img || '//content/dam/nexa-world/Group%201321315474.png');
+        imgElement.setAttribute('src', '/content/dam/nexa-world/Group%201321315474.png');
       });
     });
   });
@@ -112,3 +111,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const blocks = document.querySelectorAll('.nexa-world-component'); // Replace with the actual block class name
   blocks.forEach(decorate);
 });
+
+
