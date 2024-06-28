@@ -12,6 +12,7 @@ export default function decorate(block) {
       ctaTextEl,
       ctaLinkEl,
       ctaTargetEl,
+      ...linkEls // Get the rest of the elements as link elements
     ] = block.children;
 
     const pretitle = pretitleEl?.textContent?.trim() || '';
@@ -19,30 +20,23 @@ export default function decorate(block) {
     const description = Array.from(descriptionEl.querySelectorAll('p')).map(p => p.outerHTML).join('');
     const cta = (ctaLinkEl) ? ctaUtils.getLink(ctaLinkEl, ctaTextEl, ctaTargetEl) : null;
 
+    const links = Array.from(linkEls).map(linkEl => ({
+      text: linkEl.textContent.trim(),
+      href: linkEl.querySelector('a')?.href || '#',
+      img: linkEl.querySelector('img')?.src || '/content/dam/nexa-world/default-image.jpg' // Default image path
+    }));
+
     return {
       pretitle,
       title,
       description,
       cta,
+      links
     };
-  }
-
-  // Function to extract links and their respective images
-  function getLinksContent() {
-    const linksEl = block.querySelector('.links');
-    if (!linksEl) return [];
-
-    return Array.from(linksEl.children).map(linkEl => {
-      const text = linkEl.querySelector('.link-text')?.textContent?.trim() || '';
-      const href = linkEl.querySelector('.link-href')?.textContent?.trim() || '#';
-      const img = linkEl.querySelector('.link-img')?.textContent?.trim() || '/path/to/default-image.jpg';
-      return { text, href, img };
-    });
   }
 
   // Get Nexa World content from the block
   const nexaWorldContent = getNexaWorldContent();
-  const linksContent = getLinksContent();
 
   // Add 'btn-title' class to CTA element if it exists
   if (nexaWorldContent.cta) {
@@ -53,7 +47,7 @@ export default function decorate(block) {
   const ctaWithIconHtml = `
     <div class="nexa-world__action">
       <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
-        <p>${nexaWorldContent.cta?.textContent }</p>
+        <p>${nexaWorldContent.cta?.textContent}</p>
         <span class="location-icon"><img src="/content/dam/nexa-world/north_east.svg" alt="Image arrow"></span>
       </a>
     </div>
@@ -72,7 +66,7 @@ export default function decorate(block) {
   `;
 
   // Create links
-  const linksHtml = linksContent.map(link => `
+  const linksHtml = nexaWorldContent.links.map(link => `
     <li data-img="${link.img}">
       <a href="${link.href}">${link.text}</a>
     </li>
@@ -86,10 +80,7 @@ export default function decorate(block) {
           ${linksHtml}
         </ul>
       </div>
-      <div class="nexa-world__img">
-        <img src="/content/dam/nexa-world/Group%201321315474.png" alt="image text" /> <!-- Replace with the default image path -->
-      </div>
-    </div>
+      
   `;
 
   // Replace the block's HTML with the constructed Nexa World HTML and teaser if present
