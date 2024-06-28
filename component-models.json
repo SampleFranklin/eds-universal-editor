@@ -868,7 +868,7 @@
         "valueType": "string",
         "name": "title",
         "label": "Title",
-        "required": "true"
+        "required": true
       },
       {
         "component": "select",
