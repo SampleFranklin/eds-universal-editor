@@ -1,110 +1,119 @@
 import utility from '../../utility/utility.js';
-import ctaUtils from '../../utility/ctaUtils.js';
 import teaser from '../../utility/teaserUtils.js';
+import ctaUtils from '../../utility/ctaUtils.js';
 
 export default function decorate(block) {
-  function getNexaWorld() {
-    const container = document.createElement('div');
-    container.className = 'nexa-world__container';
+  // Function to extract Nexa World content from the block
+  function getNexaWorldContent() {
+    const [
+      pretitleEl,
+      titleEl,
+      descriptionEl,
+      ctaTextEl,
+      ctaLinkEl,
+      ctaTargetEl,
+      ...linkEls // Get the rest of the elements as link elements
+    ] = block.children;
 
-    // Create the content section
-    const content = document.createElement('div');
-    content.className = 'nexa-world__content';
+    const pretitle = pretitleEl?.textContent?.trim() || '';
+    const title = titleEl?.textContent?.trim() || '';
+    const description = Array.from(descriptionEl.querySelectorAll('p')).map(p => p.outerHTML).join('');
+    const cta = (ctaLinkEl) ? ctaUtils.getLink(ctaLinkEl, ctaTextEl, ctaTargetEl) : null;
 
-    // Create the title section
-    const titleSection = document.createElement('div');
-    titleSection.className = 'nexa-world__title';
-    
-    const preTitle = document.createElement('p');
-    preTitle.className = 'pretitle';
-    preTitle.textContent = 'Discover the';
-    
-    const title = document.createElement('p');
-    title.className = 'title';
-    title.textContent = 'Nexa World';
-    
-    titleSection.appendChild(preTitle);
-    titleSection.appendChild(title);
+    const links = Array.from(linkEls).map(linkEl => ({
+      text: linkEl.textContent.trim(),
+      href: linkEl.querySelector('a')?.href || '#',
+      img: linkEl.querySelector('img')?.src || 'null' // Default image path
+    }));
 
-    // Create the description
-    const description = document.createElement('p');
-    description.className = 'description';
-    description.textContent = "Navigating the process of buying a car can be overwhelming, but our Buyer's Guide is here to make it a smooth and enjoyable experience.";
+    return {
+      pretitle,
+      title,
+      description,
+      cta,
+      links
+    };
+  }
 
-    // Create the action section
-    const actionSection = document.createElement('div');
-    actionSection.className = 'nexa-world__action';
+  // Get Nexa World content from the block
+  const nexaWorldContent = getNexaWorldContent();
 
-    const actionLink = document.createElement('a');
-    actionLink.href = '#';
-    actionLink.title = '#';
-    actionLink.className = 'button btn-title';
-    actionLink.target = '_self';
+  // Add 'btn-title' class to CTA element if it exists
+  if (nexaWorldContent.cta) {
+    nexaWorldContent.cta.classList.add('btn-title');
+  }
 
-    const actionText = document.createElement('p');
-    actionText.textContent = 'Discover Nexa World';
-    
-    const locationIcon = document.createElement('span');
-    locationIcon.className = 'location-icon';
+  // Construct CTA with icon
+  const ctaWithIconHtml = `
+    <div class="nexa-world__action">
+      <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
+        <p>${nexaWorldContent.cta?.textContent}</p>
+        <span class="location-icon"><img src="/content/dam/nexa-world/north_east.svg" alt="Image arrow"></span>
+      </a>
+    </div>
+  `;
 
-    actionLink.appendChild(actionText);
-    actionLink.appendChild(locationIcon);
-    actionSection.appendChild(actionLink);
+  // Construct Nexa World HTML structure
+  const nexaWorldHtml = `
+    <div class="nexa-world__content">
+      <div class="nexa-world__title">
+        ${nexaWorldContent.pretitle ? `<p class="pre-title">${nexaWorldContent.pretitle}</p>` : ''}
+        ${nexaWorldContent.title ? `<p class="title">${nexaWorldContent.title}</p>` : ''}
+      </div>
+      ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
+      ${ctaWithIconHtml}
+    </div>
+  `;
 
-    // Append title, description, and action to content
-    content.appendChild(titleSection);
-    content.appendChild(description);
-    content.appendChild(actionSection);
+  // Create links dynamically
+  const linksHtml = nexaWorldContent.links.map(link => `
+    <li data-img="${link.img}">
+      <a href="${link.href}">${link.text}</a>
+    </li>
+  `).join('');
 
-    // Create the teaser section
-    const teaser = document.createElement('div');
-    teaser.className = 'nexa-world__teaser';
+  // Create the teaser HTML structure
+  const nexaWorldTeaser = `
+    <div class="nexa-world__teaser">
+      <div class="nexa-world__links">
+        <ul class="list-container">
+          ${linksHtml}
+        </ul>
+      </div>
+      <div class="nexa-world__img">
+        <img src="${nexaWorldContent.links[0]?.img || '/content/dam/nexa-world/default-image.jpg'}" alt="image" />
+      </div>
+    </div>
+  `;
 
-    // Create the links section
-    const linksSection = document.createElement('div');
-    linksSection.className = 'nexa-world__links';
+  // Replace the block's HTML with the constructed Nexa World HTML and teaser if present
+  block.innerHTML = `
+    <div class="nexa-world__container">
+      ${nexaWorldHtml}
+      ${nexaWorldTeaser}
+    </div>
+  `;
 
-    const ul = document.createElement('ul');
+  // Add event listeners to links to change the image on hover
+  document.addEventListener('DOMContentLoaded', function() {
+    const linksList = block.querySelectorAll('.nexa-world__links li');
+    const imgElement = block.querySelector('.nexa-world__img img');
 
-    const linkItems = ['NEXA Blue', 'Lifestyle', 'Music', 'Socials'];
-    linkItems.forEach(text => {
-      const li = document.createElement('li');
-      li.textContent = text;
-      ul.appendChild(li);
-    });
+    linksList.forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        const imgSrc = link.getAttribute('data-img');
+        imgElement.setAttribute('src', imgSrc);
+      });
 
-    linksSection.appendChild(ul);
-
-    // Create the image section
-    const imgSection = document.createElement('div');
-    imgSection.className = 'nexa-world__img';
-
-    const img = document.createElement('img');
-    img.src = '/';
-    img.alt = 'image';
-
-    imgSection.appendChild(img);
-
-    // Append links and image to teaser
-    teaser.appendChild(linksSection);
-    teaser.appendChild(imgSection);
-
-    // Append content and teaser to container
-    container.appendChild(content);
-    container.appendChild(teaser);
-
-    // Append the container to the body
-    document.body.appendChild(container);
-
-    // Add event listener to list items
-    document.addEventListener('DOMContentLoaded', function() {
-      const links = document.querySelectorAll('.nexa-world__links ul li');
-      links.forEach(link => {
-        link.addEventListener('click', () => {
-          alert(`You clicked on ${link.textContent}`);
-        });
+      link.addEventListener('mouseleave', () => {
+        imgElement.setAttribute('src', nexaWorldContent.links[0]?.img || '/content/dam/nexa-world/default-image.jpg');
       });
     });
-
-  }
+  });
 }
+
+// Call the function to decorate the block
+document.addEventListener('DOMContentLoaded', () => {
+  const blocks = document.querySelectorAll('.nexa-world-component'); // Replace with the actual block class name
+  blocks.forEach(decorate);
+});
