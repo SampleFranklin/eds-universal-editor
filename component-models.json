@@ -1378,6 +1378,23 @@
         "valueType": "string",
         "name": "subtitle",
         "label": "Sub Title"
+      },
+      {
+        "component": "select",
+        "name": "selectVariant",
+        "value": "",
+        "label": "Select Component Variant",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Arena",
+            "value": "arena-variant"
+          },
+          {
+            "name": "Nexa",
+            "value": "nexa-variant"
+          }
+        ]
       }
     ]
   },
