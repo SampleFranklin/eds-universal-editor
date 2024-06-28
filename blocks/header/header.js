@@ -49,7 +49,7 @@ export default async function decorate(block) {
 
 
    Array.from(nav.querySelectorAll('nav > div.section:not(:first-child):not(:last-child)')).forEach((el) => {
-      const heading = el.querySelector("h2");
+      const heading = el.querySelector('.icontitle :is(h1,h2,h3,h4,h5,h6)');
       const icon = el.querySelector(".icon");
       const iconClicked = el.querySelector(".iconClicked");
       const [content] = Array.from(el.children).slice(1);
