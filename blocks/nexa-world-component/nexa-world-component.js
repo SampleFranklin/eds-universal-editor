@@ -100,7 +100,7 @@ export default function decorate(block) {
       });
 
       link.addEventListener('mouseleave', () => {
-        imgElement.setAttribute('src', '/content/dam/nexa-world/image1.jpg');
+        imgElement.setAttribute('src', '/content/dam/nexa-world/Group%201321315474.png');
       });
     });
   });
