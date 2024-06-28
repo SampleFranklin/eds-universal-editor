@@ -1589,7 +1589,7 @@
     "fields": [
       {
         "component": "reference",
-        "valueType": "string",
+        "valueType": "string[]",
         "name": "video",
         "label": "Video",
         "multi": true
