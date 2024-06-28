@@ -14,10 +14,6 @@ export default function decorate(block) {
       ctaTargetEl,
       ...linkEls // Get the rest of the elements as link elements
     ] = block.children;
-    const image = imageEl?.querySelector('picture');
-    if (image) {
-      initImage(image, altTextEl);
-    }
 
     const pretitle = pretitleEl?.textContent?.trim() || '';
     const title = titleEl?.textContent?.trim() || '';
@@ -82,9 +78,9 @@ export default function decorate(block) {
     <div class="nexa-world__links">
       ${ul.outerHTML}
     </div>
-    
-       ${(image) ? `<div class=""nexa-world__img">${image.outerHTML}</div>` : ''}
-    
+    <div class="nexa-world__img">
+      <img src="/content/dam/nexa-world/Group%201321315474.png" alt="image" />
+    </div>
   </div>`;
 
 // Replace the block's HTML with the constructed Nexa World HTML and teaser if present
@@ -101,12 +97,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   linksList.forEach(link => {
     link.addEventListener('mouseenter', () => {
-      const imgSrc = link.getAttribute('image');
-      imgElement.setAttribute('src', imageSrc);
+      const imgSrc = link.getAttribute('data-img');
+      imgElement.setAttribute('src', imgSrc);
     });
 
     link.addEventListener('mouseleave', () => {
-      imgElement.setAttribute('src', imagesrc);
+      imgElement.setAttribute('src', '/content/dam/nexa-world/Group%201321315474.png');
     });
   });
 });
@@ -117,9 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const blocks = document.querySelectorAll('.nexa-world-component'); // Replace with the actual block class name
 blocks.forEach(decorate);
 });
-
-   
-  }
+}
 
  
 
