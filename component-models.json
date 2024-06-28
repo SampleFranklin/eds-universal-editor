@@ -1380,6 +1380,12 @@
         "label": "Sub Title"
       },
       {
+        "component": "text-input",
+        "valueType": "string",
+        "name": "exshowroomPrefix",
+        "label": "Enter Ex-Showroom Prefix Text"
+      },
+      {
         "component": "select",
         "name": "selectVariant",
         "value": "",
