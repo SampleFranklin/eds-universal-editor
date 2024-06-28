@@ -56,11 +56,12 @@ export default function decorate(block) {
   const nexaWorldHtml = `
     <div class="nexa-world__content">
       <div class="nexa-world__title">
-        ${nexaWorldContent.pretitle }
-        ${nexaWorldContent.title }
-      </div>
+        ${nexaWorldContent.pretitle ? `<p class="pre-title">${nexaWorldContent.pretitle}</p>` : ''}
+        ${nexaWorldContent.title ? `<p class="title">${nexaWorldContent.title}</p>` : ''}
+      
       ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
       ${ctaWithIconHtml}
+      </div>
     </div>`;
 
   // Create links dynamically
