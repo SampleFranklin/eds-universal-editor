@@ -72,8 +72,9 @@ export default function decorate(block) {
       listItem.appendChild(anchor);
       ul.appendChild(listItem);
     });
+    ul.classList.add("list-container");
   }
-ul.classList.add("list-container");
+
   // Create the teaser HTML structure
   const nexaWorldTeaser = `
     <div class="nexa-world__teaser">
