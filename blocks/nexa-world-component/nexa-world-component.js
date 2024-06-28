@@ -14,6 +14,10 @@ export default function decorate(block) {
       ctaTargetEl,
       ...linkEls // Get the rest of the elements as link elements
     ] = block.children;
+    const image = imageEl?.querySelector('picture');
+    if (image) {
+      initImage(image, altTextEl);
+    }
 
     const pretitle = pretitleEl?.textContent?.trim() || '';
     const title = titleEl?.textContent?.trim() || '';
@@ -79,7 +83,7 @@ export default function decorate(block) {
       ${ul.outerHTML}
     </div>
     <div class="nexa-world__img">
-      <img src="/content/dam/nexa-world/Group%201321315474.png" alt="image" />
+       ${(image) ? `<div class="teaser__image">${image.outerHTML}</div>` : ''}
     </div>
   </div>`;
 
@@ -97,12 +101,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   linksList.forEach(link => {
     link.addEventListener('mouseenter', () => {
-      const imgSrc = link.getAttribute('data-img');
-      imgElement.setAttribute('src', imgSrc);
+      const imgSrc = link.getAttribute('image');
+      imgElement.setAttribute('src', imageSrc);
     });
 
     link.addEventListener('mouseleave', () => {
-      imgElement.setAttribute('src', '/content/dam/nexa-world/Group%201321315474.png');
+      imgElement.setAttribute('src', imagesrc);
     });
   });
 });
