@@ -50,8 +50,7 @@ export default function decorate(block) {
         <p>${nexaWorldContent.cta?.textContent}</p>
         <span class="location-icon"><img src="/content/dam/nexa-world/north_east.svg" alt="Image arrow"></span>
       </a>
-    </div>
-  `;
+    </div>`;
 
   // Construct Nexa World HTML structure
   const nexaWorldHtml = `
@@ -62,15 +61,13 @@ export default function decorate(block) {
       </div>
       ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
       ${ctaWithIconHtml}
-    </div>
-  `;
+    </div>`;
 
   // Create links dynamically
   const linksHtml = nexaWorldContent.links.map(link => `
     <li data-img="${link.img}">
       <a href="${link.href}">${link.text}</a>
-    </li>
-  `).join('');
+    </li>`).join('');
 
   // Create the teaser HTML structure
   const nexaWorldTeaser = `
@@ -83,16 +80,14 @@ export default function decorate(block) {
       <div class="nexa-world__img">
         <img src="${nexaWorldContent.links[0]?.img || '/content/dam/nexa-world/Group%201321315474.png'}" alt="image" />
       </div>
-    </div>
-  `;
+    </div>`;
 
   // Replace the block's HTML with the constructed Nexa World HTML and teaser if present
   block.innerHTML = `
     <div class="nexa-world__container">
       ${nexaWorldHtml}
       ${nexaWorldTeaser}
-    </div>
-  `;
+    </div>`;
 
   // Add event listeners to links to change the image on hover
   document.addEventListener('DOMContentLoaded', function() {
@@ -106,7 +101,7 @@ export default function decorate(block) {
       });
 
       link.addEventListener('mouseleave', () => {
-        imgElement.setAttribute('src', nexaWorldContent.links[0]?.img || '//content/dam/nexa-world/Group%201321315474.png');
+        imgElement.setAttribute('src', nexaWorldContent.links[0]?.img || '/content/dam/nexa-world/Group%201321315474.png');
       });
     });
   });
