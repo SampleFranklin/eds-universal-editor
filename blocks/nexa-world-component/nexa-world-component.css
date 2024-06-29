@@ -69,31 +69,24 @@
   gap: 40px;
 }
 
-/* Style for nexa-world__links */
 .nexa-world__links {
-  list-style: none; /* Remove default list styles */
-  padding: 0; /* Remove default padding */
-}
-
-/* Style for nexa-world__links li */
-.nexa-world__links li {
-  margin-bottom: 10px; /* Example margin bottom */
-}
-
-/* Style for nexa-world__links a */
-.nexa-world__links a {
-  display: inline-block; /* Ensure links behave as blocks */
-  text-decoration: none; /* Remove underline */
-  color: #007bff; /* Example link color */
-}
-
-.nexa-world__links a:hover {
-  text-decoration: none; /* Underline on hover */
-}
-
-/* Style for nexa-world__action */
-.nexa-world__action {
-  margin-top: 20px; /* Example margin top */
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    li {
+      color: #b2b2b2;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+    }
+    li:hover {
+      font-weight: 500;
+      cursor: pointer;
+      color: #ffffff;
+    }
+  }
 }
 
 .nexa-world__action {
