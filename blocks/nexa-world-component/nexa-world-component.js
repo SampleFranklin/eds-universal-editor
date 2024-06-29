@@ -68,28 +68,40 @@ export default function decorate(block) {
       </div>
     </div>`;
 
-  // Create the links HTML structure
-  const ul = document.createElement('ul');
-  ul.classList.add("list-container");
-  nexaWorldContent.links.forEach(link => {
-    const listItem = document.createElement('li');
-    const anchor = document.createElement('a');
-    anchor.href = link.href;
-    anchor.textContent = link.text;
+  // // Create the links HTML structure
+  // const ul = document.createElement('ul');
+  // ul.classList.add("list-container");
+  // nexaWorldContent.links.forEach(link => {
+  //   const listItem = document.createElement('li');
+  //   const anchor = document.createElement('a');
+  //   anchor.href = link.href;
+  //   anchor.textContent = link.text;
 
-    const imgElement = document.createElement('img');
-    imgElement.src = link.imgSrc;
-    imgElement.alt = link.imgAlt;
+  //   // const imgElement = document.createElement('img');
+  //   // imgElement.src = link.imgSrc;
+  //   // imgElement.alt = link.imgAlt;
 
-    anchor.appendChild(imgElement);
-    listItem.appendChild(anchor);
-    ul.appendChild(listItem);
-  });
+  //   //anchor.appendChild(imgElement);
+  //   listItem.appendChild(anchor);
+  //   ul.appendChild(listItem);
+  // });
+  const linksHtml = links.map(link => `
+    <li class="cta">
+      <a href="${link.href}" class="cta-link">
+        <span class="icon fas fa-map-marker-alt"></span>
+        <span class="cta-text">${link.text}</span>
+      </a>
+    </li>
+  `).join('');
+
+
 
   const nexaWorldTeaser = `
     <div class="nexa-world__teaser">
       <div class="nexa-world__links">
-        ${ul.outerHTML}
+        <ul>
+            ${linksHtml}
+          </ul>
       </div>
     </div>`;
 
