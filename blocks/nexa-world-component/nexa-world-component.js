@@ -53,38 +53,46 @@ export default function decorate(block) {
     </div>`;
 
   // Construct Nexa World HTML structure
-  const nexaWorldHtml = `
-    <div class="nexa-world__content">
-      <div class="nexa-world__title">
-        ${nexaWorldContent.pretitle ? `<p class="pre-title">${nexaWorldContent.pretitle}</p>` : ''}
-        ${nexaWorldContent.title ? `<p class="title">${nexaWorldContent.title}</p>` : ''}
-      </div>
-      ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
-      ${ctaWithIconHtml}
-      <div class="nexa-world__img">
-        <img src="${nexaWorldContent.imgSrc}" alt="${nexaWorldContent.imgAlt}" />
-      </div>
-    </div>`;
+  // Construct Nexa World HTML structure
+const nexaWorldHtml = `
+<div class="nexa-world__content">
+  <div class="nexa-world__title">
+    ${nexaWorldContent.pretitle ? `<p class="pre-title">${nexaWorldContent.pretitle}</p>` : ''}
+    ${nexaWorldContent.title ? `<p class="title">${nexaWorldContent.title}</p>` : ''}
+  </div>
+  ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
+  ${ctaWithIconHtml}
+  <div class="nexa-world__img">
+    <img src="${nexaWorldContent.imgSrc}" alt="${nexaWorldContent.imgAlt}" />
+  </div>
+</div>`;
 
-  // Create the teaser HTML structure
-  const ul = document.createElement('ul');
-  ul.classList.add("list-container");
-  nexaWorldContent.links.forEach(link => {
-    const listItem = document.createElement('li');
-    const anchor = document.createElement('a');
-    anchor.href = link.href;
-    anchor.textContent = link.text;
+// Create the teaser HTML structure
+const ul = document.createElement('ul');
+ul.classList.add("list-container");
+nexaWorldContent.links.forEach(link => {
+const listItem = document.createElement('li');
+const anchor = document.createElement('a');
+anchor.href = link.href;
 
-    listItem.appendChild(anchor);
-    ul.appendChild(listItem);
-  });
+const imgElement = document.createElement('img');
+imgElement.src = link.imgSrc;
+imgElement.alt = link.imgAlt;
 
-  const nexaWorldTeaser = `
-    <div class="nexa-world__teaser">
-      <div class="nexa-world__links">
-        ${ul.outerHTML}
-      </div>
-    </div>`;
+anchor.appendChild(imgElement);
+anchor.appendChild(document.createTextNode(link.text));
+
+listItem.appendChild(anchor);
+ul.appendChild(listItem);
+});
+
+const nexaWorldTeaser = `
+<div class="nexa-world__teaser">
+  <div class="nexa-world__links">
+    ${ul.outerHTML}
+  </div>
+</div>`;
+
 
   // Replace the block's HTML with the constructed Nexa World HTML and teaser if present
   block.innerHTML = `
