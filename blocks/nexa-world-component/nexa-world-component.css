@@ -47,7 +47,7 @@
   justify-content: space-between;
   gap: 40px;
 }
-/* .nexa-world__links {
+ .nexa-world__links {
   ul {
     list-style: none;
     display: flex;
@@ -65,42 +65,7 @@
       color: #ffffff;
     }
   }
-} */
-
-.nexa-world__links ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.cta-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: inherit;
-  transition: color 0.3s ease;
-}
-
-.cta-link:hover {
-  color: #0073e6;
-}
-
-.cta-icon {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
-  transition: transform 0.3s ease;
-}
-
-.cta-link:hover .cta-icon {
-  transform: scale(1.1);
-}
-
-.cta-text {
-  font-size: 18px;
-  font-weight: 500;
-}
+} 
 
 
 .nexa-world__action {
