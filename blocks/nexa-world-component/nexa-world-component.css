@@ -24,6 +24,7 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
+    margin: 10px
   }
 }
 
@@ -38,6 +39,7 @@
     font-size: 24px;
     font-weight: 400;
     line-height: 28px;
+    margin: 10px
   }
   .title {
     font-size: 32px;
@@ -45,22 +47,8 @@
     line-height: 40px;
     letter-spacing: 0.64px;
     margin-bottom: 10px;
+    margin: 10px
   }
-}
-
-/* Style for nexa-world__img */
-.nexa-world__img {
-  margin-top: 20px; 
-  text-align: right; 
-}
-
-.nexa-world__img img {
-  max-width: 100%; 
-  height: auto; 
-  display: block; 
-  border-radius: 8px;
-  
-  
 }
 
 .nexa-world__teaser {
@@ -90,18 +78,8 @@
   }
 }
 
-.nexa-world__links .link-icon {
-  width: 20px; /* Adjust size as needed */
-  height: 20px; /* Adjust size as needed */
-  background-image: url('/content/dam/nexa-world/Group%201321315474.png'); /* Default icon */
-  background-size: contain;
-  background-repeat: no-repeat;
-  transition: background-image 0.3s ease; /* Smooth transition */
-}
-/* Hover effect to change the icon */
-.nexa-world__links a:hover .link-icon {
-  background-image: url('/content/dam/nexa-world/Group%201321315474.png'); /* Hover icon */
-}
+
+
 .nexa-world__action {
   display: inline-flex;
   width: 200px;
