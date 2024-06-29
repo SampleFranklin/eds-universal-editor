@@ -60,7 +60,7 @@
   display: block; 
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-  clip-path: polygon(2% 0, 100% 0, 100% 88%, 98% 100%, 0 100%, 0 12%);
+  
 }
 
 .nexa-world__teaser {
@@ -96,7 +96,7 @@
   height: 40px;
   background-color: #ffffff;
   padding: 8px 12px;
-  
+  clip-path: polygon(2% 0, 100% 0, 100% 88%, 98% 100%, 0 100%, 0 12%);
   .btn-title {
     text-decoration: none;
     color: black;
