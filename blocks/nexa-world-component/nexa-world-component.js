@@ -24,6 +24,7 @@ export default function decorate(block) {
       title: ctaLinkEl.querySelector('a')?.title || '',
       target: ctaLinkEl.querySelector('a')?.target || '_self',
       textContent: ctaTextEl?.textContent?.trim() || ''
+      
     } : null;
 
     const links = Array.from(linkEls).map(linkEl => ({
@@ -32,6 +33,7 @@ export default function decorate(block) {
       target: ctaLinkEl.querySelector('a')?.target || '_self',
       imgSrc: linkEl.getAttribute('data-img-src') || '', 
       imgAlt: linkEl.getAttribute('data-img-alt') || '', 
+      
     }));
 
     return {
@@ -69,7 +71,7 @@ export default function decorate(block) {
     </div>
     </div>`;
 
-  // Create the teaser HTML structure
+  // Create the links HTML structure
   const ul = document.createElement('ul');
   ul.classList.add("list-container");
   nexaWorldContent.links.forEach(link => {
@@ -91,6 +93,7 @@ export default function decorate(block) {
     <div class="nexa-world__teaser">
       <div class="nexa-world__links">
         ${ul.outerHTML}
+         <a href="${nexaWorldContent.cta?.href || '#'}" text="${nexaWorldContent.cta?.text || ''}" class="button btn-text" target="${nexaWorldContent.cta?.target || '_self'}">
       </div>
     </div>`;
 
