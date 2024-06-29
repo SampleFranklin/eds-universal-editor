@@ -5,7 +5,7 @@
   padding-top: 48px;
   padding-left: 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: horizontal;
   gap: 72px;
   @media (min-width: 768px) {
     display: flex;
