@@ -1,3 +1,8 @@
+import utility from '../../utility/utility.js';
+import teaser from '../../utility/teaserUtils.js';
+import ctaUtils from '../../utility/ctaUtils.js';
+
+
 export default function decorate(block) {
   // Function to extract Nexa World content from the block
   function getNexaWorldContent() {
@@ -24,12 +29,9 @@ export default function decorate(block) {
     const links = Array.from(linkEls).map(linkEl => ({
       text: linkEl.textContent.trim(),
       href: linkEl.querySelector('a')?.href || '#',
+      imgSrc: linkEl.getAttribute('data-img-src') || '/default-image.jpg', // Example default image
+      imgAlt: linkEl.getAttribute('data-img-alt') || 'Image', // Example alt text
     }));
-
-    const imgElement = imgElementEl?.querySelector('picture');
-    if (imgElement) {
-      initImgElement(imgElement, altTextEl);
-    }
 
     return {
       pretitle,
@@ -37,8 +39,6 @@ export default function decorate(block) {
       description,
       cta,
       links,
-      imgSrc,
-      imgAlt
     };
   }
 
@@ -55,46 +55,40 @@ export default function decorate(block) {
     </div>`;
 
   // Construct Nexa World HTML structure
-  // Construct Nexa World HTML structure
-const nexaWorldHtml = `
-<div class="nexa-world__content">
-  <div class="nexa-world__title">
-    ${nexaWorldContent.pretitle ? `<p class="pre-title">${nexaWorldContent.pretitle}</p>` : ''}
-    ${nexaWorldContent.title ? `<p class="title">${nexaWorldContent.title}</p>` : ''}
-  </div>
-  ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
-  ${ctaWithIconHtml}
-  <div class="nexa-world__img">
-    <img src="${imgElement.imgSrc}" alt="${imgElement.imgAlt}" />
-  </div>
-</div>`;
+  const nexaWorldHtml = `
+    <div class="nexa-world__content">
+      <div class="nexa-world__title">
+        ${nexaWorldContent.pretitle ? `<p class="pre-title">${nexaWorldContent.pretitle}</p>` : ''}
+        ${nexaWorldContent.title ? `<p class="title">${nexaWorldContent.title}</p>` : ''}
+      </div>
+      ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
+      ${ctaWithIconHtml}
+    </div>`;
 
-// Create the teaser HTML structure
-const ul = document.createElement('ul');
-ul.classList.add("list-container");
-nexaWorldContent.links.forEach(link => {
-const listItem = document.createElement('li');
-const anchor = document.createElement('a');
-anchor.href = link.href;
+  // Create the teaser HTML structure
+  const ul = document.createElement('ul');
+  ul.classList.add("list-container");
+  nexaWorldContent.links.forEach(link => {
+    const listItem = document.createElement('li');
+    const anchor = document.createElement('a');
+    anchor.href = link.href;
+    anchor.textContent = link.text;
 
-const imgElement = document.createElement('img');
-imgElement.src = link.imgSrc;
-imgElement.alt = link.imgAlt;
+    const imgElement = document.createElement('img');
+    imgElement.src = link.imgSrc;
+    imgElement.alt = link.imgAlt;
 
-anchor.appendChild(imgElement);
-anchor.appendChild(document.createTextNode(link.text));
+    anchor.appendChild(imgElement);
+    listItem.appendChild(anchor);
+    ul.appendChild(listItem);
+  });
 
-listItem.appendChild(anchor);
-ul.appendChild(listItem);
-});
-
-const nexaWorldTeaser = `
-<div class="nexa-world__teaser">
-  <div class="nexa-world__links">
-    ${ul.outerHTML}
-  </div>
-</div>`;
-
+  const nexaWorldTeaser = `
+    <div class="nexa-world__teaser">
+      <div class="nexa-world__links">
+        ${ul.outerHTML}
+      </div>
+    </div>`;
 
   // Replace the block's HTML with the constructed Nexa World HTML and teaser if present
   block.innerHTML = `
@@ -109,12 +103,12 @@ const nexaWorldTeaser = `
 
   linksList.forEach(link => {
     link.addEventListener('mouseenter', () => {
-      const imgSrc = link.getAttribute('data-img');
+      const imgSrc = link.querySelector('img').getAttribute('src');
       imgElement.setAttribute('src', imgSrc);
     });
 
     link.addEventListener('mouseleave', () => {
-      imgElement.setAttribute('src', imgElement.imgSrc);
+      imgElement.setAttribute('src', nexaWorldContent.imgSrc);
     });
   });
 }
