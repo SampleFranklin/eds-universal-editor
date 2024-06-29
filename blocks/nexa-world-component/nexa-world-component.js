@@ -94,20 +94,28 @@ block.innerHTML = `
 
 // Add event listeners to links to change the image on hover
 document.addEventListener('DOMContentLoaded', function() {
+  const block = document.querySelector('.nexa-world');
   const linksList = block.querySelectorAll('.nexa-world__links li');
   const imgElement = block.querySelector('.nexa-world__img img');
 
   linksList.forEach(link => {
     link.addEventListener('mouseenter', () => {
       const imgSrc = link.getAttribute('data-img');
-      imgElement.setAttribute('src', imgSrc);
+      if (imgSrc) {
+        imgElement.setAttribute('src', imgSrc);
+      }
     });
 
     link.addEventListener('mouseleave', () => {
-      imgElement.setAttribute('src', 'imgsrc');
+      
+      const imgSrc = link.getAttribute('data-img');
+      if (imgSrc) {
+        imgElement.setAttribute('src', imgSrc);
+      }
     });
   });
 });
+
 
 
 // Call the function to decorate the block
