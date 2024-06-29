@@ -75,7 +75,7 @@ export default function decorate(block) {
         <ul class="list-container">
           ${nexaWorldContent.links.map(link => `
             <li>
-              <a href="${link.cta?.href || '#'}" text="${link.cta?.text || ''}"  target="${link.cta?.target || ''}">">
+              <a href="${link.href || '#'}" text="${link.text || ''}"  target="${link.target || ''}">">
                 <span class="link-text">${link.text}</span>
                 <span class="link-icon"></span>
               </a>
