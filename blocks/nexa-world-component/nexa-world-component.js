@@ -123,8 +123,8 @@ export default function decorate(block) {
 }
 function showImage(imgElement) {
   images.forEach(img => {
-      if (img.element === img) {
-          img.classList.add('active');
+      if (link.imgSrc === imgElement) {
+          imgElement.classList.add('active');
       } else {
           img.classList.remove('active');
       }
