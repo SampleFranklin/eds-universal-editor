@@ -25,13 +25,13 @@ export default function decorate(block) {
       textContent: ctaTextEl?.textContent?.trim() || ''
     } : null;
 
-    const links = Array.from(linkEls).map(linkEl )? {
-      text: linkEl.textContent.trim() || '',
+    const links = Array.from(linkEls).map(linkEl => ({
+      text: linkEl.textContent.trim(),
       href: linkEl.querySelector('a')?.href || '#',
       target: linkEl.querySelector('a')?.target || '_self',
       imgSrc: linkEl.getAttribute('data-img-src') || '', 
       imgAlt: linkEl.getAttribute('data-img-alt') || '', 
-    } : null;
+    }));
 
     return {
       pretitle,
@@ -75,7 +75,7 @@ export default function decorate(block) {
         <ul class="list-container">
           ${nexaWorldContent.links.map(link => `
             <li>
-              <a href="${link.href}" text="${link.text}" target="${link.target}">
+              <a href="${link.href}" text="${link.cta?.text}" target="${link.cta?.target || '_self'}">">
                 <span class="link-text">${link.text}</span>
                 <span class="link-icon"></span>
               </a>
@@ -93,7 +93,7 @@ export default function decorate(block) {
     </div>`;
 
   // Add event listeners to links to change the icon on hover
-  const linksList = block.querySelectorAll('.nexa-world__links li a');
+  const linksList = block.querySelectorAll('.nexa-world__links li');
   const imgElement = block.querySelector('.nexa-world__img img');
 
   linksList.forEach(link => {
