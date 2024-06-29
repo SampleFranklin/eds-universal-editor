@@ -121,6 +121,15 @@ export default function decorate(block) {
     });
   });
 }
+function showImage(imgElement) {
+  images.forEach(img => {
+      if (img.element === img) {
+          img.classList.add('active');
+      } else {
+          img.classList.remove('active');
+      }
+  });
+}
 
 // Call the function to decorate the block
 document.addEventListener('DOMContentLoaded', () => {
