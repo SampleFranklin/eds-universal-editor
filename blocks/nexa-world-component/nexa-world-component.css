@@ -1,38 +1,57 @@
 /* Style for nexa-world__container */
 .nexa-world__container {
-  margin: 20px; /* Example margin */
-  padding: 20px; /* Example padding */
-  border: 1px solid #ccc; /* Example border */
-  border-radius: 8px; /* Example border radius */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Example box shadow */
+  background-color: black;
+  color: white;
+  font-family: "Fira-Sans";
+  padding-top: 48px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
+  @media (min-width: 768px) {
+    display: flex;
+    padding-left: 64px;
+    padding-top: 0px;
+  }
 }
 
-/* Style for nexa-world__content */
 .nexa-world__content {
-  margin-bottom: 20px; /* Example margin bottom */
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-bottom: 20px; 
+  .description {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+  }
 }
 
-/* Style for nexa-world__title */
 .nexa-world__title {
-  margin-bottom: 10px; /* Example margin bottom */
-}
-
-.nexa-world__title .pre-title {
-  font-size: 16px; /* Example font size */
-  font-weight: bold; /* Example font weight */
-  color: #333; /* Example color */
-}
-
-.nexa-world__title .title {
-  font-size: 24px; /* Example font size */
-  font-weight: bold; /* Example font weight */
-  color: #000; /* Example color */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-style: "Kepler Std";
+  
+  .pre-title {
+    font-style: italic;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 28px;
+  }
+  .title {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 40px;
+    letter-spacing: 0.64px;
+    margin-bottom: 10px;
+  }
 }
 
 /* Style for nexa-world__img */
 .nexa-world__img {
-  margin-top: 20px; /* Example margin top */
-  text-align: center; /* Center align the image */
+  margin-top: 20px; 
+  text-align: right; /
 }
 
 .nexa-world__img img {
@@ -43,9 +62,11 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Example box shadow */
 }
 
-/* Style for nexa-world__teaser */
 .nexa-world__teaser {
-  margin-top: 20px; /* Example margin top */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
 }
 
 /* Style for nexa-world__links */
@@ -67,7 +88,7 @@
 }
 
 .nexa-world__links a:hover {
-  text-decoration: underline; /* Underline on hover */
+  text-decoration: none; /* Underline on hover */
 }
 
 /* Style for nexa-world__action */
@@ -75,29 +96,28 @@
   margin-top: 20px; /* Example margin top */
 }
 
-.nexa-world__action .button {
-  background-color: #007bff; /* Example button background color */
-  color: #fff; /* Example button text color */
-  padding: 10px 20px; /* Example padding */
-  border-radius: 5px; /* Example border radius */
-  text-decoration: none; /* Remove underline */
-  display: inline-block; /* Ensure button behaves as block */
-}
-
-.nexa-world__action .button:hover {
-  background-color: #0056b3; /* Darker background color on hover */
-}
-
-.nexa-world__action .btn-title {
-  margin-right: 10px; /* Example margin right */
-}
-
-.nexa-world__action .location-icon {
-  margin-left: 5px; /* Example margin left */
-}
-
-.nexa-world__action .location-icon img {
-  width: 20px; /* Example width */
-  height: auto; /* Maintain aspect ratio */
-  vertical-align: middle; /* Align vertically */
+.nexa-world__action {
+  display: inline-flex;
+  width: 200px;
+  height: 40px;
+  background-color: #ffffff;
+  padding: 8px 12px;
+  clip-path: polygon(2% 0, 100% 0, 100% 88%, 98% 100%, 0 100%, 0 12%);
+  .btn-title {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    p {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+    }
+    .location-icon svg {
+      height: 20px;
+      width: 20px;
+    }
+  }
 }
