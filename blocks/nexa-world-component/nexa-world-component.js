@@ -14,7 +14,6 @@ export default function decorate(block) {
       ctaTargetEl,
       ...linkEls // Get the rest of the elements as link elements
     ] = block.children;
-    
 
     const pretitle = pretitleEl?.textContent?.trim() || '';
     const title = titleEl?.textContent?.trim() || '';
@@ -24,19 +23,15 @@ export default function decorate(block) {
       title: ctaLinkEl.querySelector('a')?.title || '',
       target: ctaLinkEl.querySelector('a')?.target || '_self',
       textContent: ctaTextEl?.textContent?.trim() || ''
-      
     } : null;
-    
 
     const links = Array.from(linkEls).map(linkEl => ({
       text: linkEl.textContent.trim(),
       href: linkEl.querySelector('a')?.href || '#',
-      target: ctaLinkEl.querySelector('a')?.target || '',
+      target: linkEl.querySelector('a')?.target || '_self', // Corrected to use linkEl instead of ctaLinkEl
       imgSrc: linkEl.getAttribute('data-img-src') || '', 
       imgAlt: linkEl.getAttribute('data-img-alt') || '', 
-      
     }));
-   
 
     return {
       pretitle,
@@ -95,7 +90,6 @@ export default function decorate(block) {
     <div class="nexa-world__teaser">
       <div class="nexa-world__links">
         ${ul.outerHTML}
-        
       </div>
     </div>`;
 
@@ -120,9 +114,6 @@ export default function decorate(block) {
       imgElement.setAttribute('src', nexaWorldContent.links[0]?.imgSrc);
     });
   });
-
-  
-  
 }
 
 // Call the function to decorate the block
