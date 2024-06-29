@@ -121,15 +121,8 @@ export default function decorate(block) {
     });
   });
 
-  // Optional chaining to safely access imageEl and altTextEl
-  const imageEl = block.querySelector('.nexa-world__img img');
-  const altTextEl = block.querySelector('.alt-text');
-
-  // Check if imageEl contains a <picture> element and initialize it
-  const image = imageEl?.querySelector('picture');
-  if (image) {
-    initImage(image, altTextEl);
-  }
+  
+  
 }
 
 // Call the function to decorate the block
