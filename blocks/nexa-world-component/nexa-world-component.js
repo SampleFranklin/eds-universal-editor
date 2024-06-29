@@ -12,7 +12,7 @@ export default function decorate(block) {
       ctaTextEl,
       ctaLinkEl,
       ctaTargetEl,
-       ...linkEls // Get the rest of the elements as link elements
+      ...linkEls // Get the rest of the elements as link elements
     ] = block.children;
 
     const pretitle = pretitleEl?.textContent?.trim() || '';
@@ -28,49 +28,7 @@ export default function decorate(block) {
     const links = Array.from(linkEls).map(linkEl => ({
       text: linkEl.textContent.trim(),
       href: linkEl.querySelector('a')?.href || '#',
-      target: inkEl.querySelector('a')?.target || '_self',
     }));
-
-     // Creating the links section
-  const linksContainer = document.createElement('div');
-  linksContainer.classList.add('nexa-world__links');
-
-  const ul = document.createElement('ul');
-
-  // Process each link element to create the CTA links
-  linkEls.slice(0, 4).forEach(linkEl => {
-    const li = document.createElement('li');
-
-    const ctatext = linkEl.querySelector('.ctatext')?.textContent.trim() || '';
-    const ctalink = linkEl.querySelector('.ctalink')?.href || '#';
-    const ctatarget = linkEl.querySelector('.ctalink')?.target || '_self';
-    const iconSrc = linkEl.querySelector('.icon')?.src || 'default-icon.jpg';
-    const hoverIconSrc = linkEl.querySelector('.icon')?.dataset.hoverIcon || 'hover-icon.jpg';
-    const a = document.createElement('a');
-    a.href = ctalink;
-    a.classList.add('cta-link');
-    a.setAttribute('target', ctatarget);
-    a.setAttribute('data-hover-icon', hoverIconSrc);
-    a.setAttribute('data-default-icon', iconSrc);
-
-    const icon = document.createElement('img');
-    icon.src = iconSrc;
-    icon.classList.add('cta-icon');
-
-    const span = document.createElement('span');
-    span.classList.add('cta-text');
-    span.textContent = ctatext;
-
-    a.appendChild(icon);
-    a.appendChild(span);
-    li.appendChild(a);
-    ul.appendChild(li);
-  });
-
-  linksContainer.appendChild(ul);
-
-
-    
 
     return {
       pretitle,
@@ -124,19 +82,6 @@ export default function decorate(block) {
       <img src="/content/dam/nexa-world/Group%201321315474.png" alt="image" />
     </div>
   </div>`;
-
-  //create Html for ctawithicon
-
-  <div class="cta-container">
-        ${ctaData.map(cta => `
-          <div class="cta-wrapper">
-            <a href="${cta.link}" class="cta-link" target="${cta.target}" data-hover-icon="${cta.hoverIcon}" data-default-icon="${cta.icon}">
-              <img src="${cta.icon}" class="cta-icon" alt="icon">
-              <span class="cta-text">${cta.text}</span>
-            </a>
-          </div>
-        `).join('')}
-      </div>
 
 // Replace the block's HTML with the constructed Nexa World HTML and teaser if present
 block.innerHTML = `
