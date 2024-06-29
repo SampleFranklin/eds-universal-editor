@@ -78,9 +78,7 @@ export default function decorate(block) {
     <div class="nexa-world__links">
       ${ul.outerHTML}
     </div>
-    <div class="nexa-world__img">
-      <img src="/content/dam/nexa-world/Group%201321315474.png" alt="image" />
-    </div>
+    
   </div>`;
 
 // Replace the block's HTML with the constructed Nexa World HTML and teaser if present
@@ -102,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     link.addEventListener('mouseleave', () => {
-      imgElement.setAttribute('src', '/content/dam/nexa-world/Group%201321315474.png');
+      imgElement.setAttribute('src', '');
     });
   });
 });
