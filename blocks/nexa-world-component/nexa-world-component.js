@@ -75,7 +75,7 @@ export default function decorate(block) {
         <ul class="list-container">
           ${nexaWorldContent.links.map(link => `
             <li>
-              <a href="${link.href }" text="${link.text}"  target="${link.target}">">
+              <a href="${link.href}" text="${link.text}" target="${link.target}">
                 <span class="link-text">${link.text}</span>
                 <span class="link-icon"></span>
               </a>
@@ -93,20 +93,20 @@ export default function decorate(block) {
     </div>`;
 
   // Add event listeners to links to change the icon on hover
-  const linksList = block.querySelectorAll('.nexa-world__links li');
+  const linksList = block.querySelectorAll('.nexa-world__links li a');
   const imgElement = block.querySelector('.nexa-world__img img');
 
   linksList.forEach(link => {
     const iconElement = link.querySelector('.link-icon');
 
     link.addEventListener('mouseenter', () => {
-      iconElement.style.backgroundImage = 'url("/content/dam/nexa-world/north_east.svg")';
+      iconElement.style.backgroundImage = '/content/dam/nexa-world/north_east.svg';
       const imgSrc = link.querySelector('img').getAttribute('src');
       imgElement.setAttribute('src', imgSrc);
     });
 
     link.addEventListener('mouseleave', () => {
-      iconElement.style.backgroundImage = 'url("/content/dam/nexa-world/north_east.svg")';
+      iconElement.style.backgroundImage = '/content/dam/nexa-world/north_east.svg';
       imgElement.setAttribute('src', nexaWorldContent.imgSrc);
     });
   });
