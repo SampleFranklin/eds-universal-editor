@@ -90,6 +90,18 @@
   }
 }
 
+.nexa-world__links .link-icon {
+  width: 20px; /* Adjust size as needed */
+  height: 20px; /* Adjust size as needed */
+  background-image: url('/content/dam/nexa-world/Group%201321315474.png'); /* Default icon */
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: background-image 0.3s ease; /* Smooth transition */
+}
+/* Hover effect to change the icon */
+.nexa-world__links a:hover .link-icon {
+  background-image: url('/content/dam/nexa-world/Group%201321315474.png'); /* Hover icon */
+}
 .nexa-world__action {
   display: inline-flex;
   width: 200px;

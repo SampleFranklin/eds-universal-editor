@@ -73,31 +73,46 @@ export default function decorate(block) {
     </div>
     </div>`;
 
-  // Create the links HTML structure
-  const ul = document.createElement('ul');
-  ul.classList.add("list-container");
-  nexaWorldContent.links.forEach(link => {
-    const listItem = document.createElement('li');
-    const anchor = document.createElement('a');
-    anchor.href = link.href;
-    anchor.textContent = link.text;
+  // // Create the links HTML structure
+  // const ul = document.createElement('ul');
+  // ul.classList.add("list-container");
+  // nexaWorldContent.links.forEach(link => {
+  //   const listItem = document.createElement('li');
+  //   const anchor = document.createElement('a');
+  //   anchor.href = link.href;
+  //   anchor.textContent = link.text;
 
-    const imgElement = document.createElement('img');
-    imgElement.src = link.imgSrc;
-    imgElement.alt = link.imgAlt;
+  //   const imgElement = document.createElement('img');
+  //   imgElement.src = link.imgSrc;
+  //   imgElement.alt = link.imgAlt;
 
-    anchor.appendChild(imgElement);
-    listItem.appendChild(anchor);
-    ul.appendChild(listItem);
-  });
+  //   anchor.appendChild(imgElement);
+  //   listItem.appendChild(anchor);
+  //   ul.appendChild(listItem);
+  // });
 
-  const nexaWorldTeaser = `
+  <div class="nexa-world__links">
+  <ul class="list-container">
+    ${nexaWorldContent.links.map(link => `
+      <li>
+        <a href="${link.href}" text="${link.text}" target="${link.target}">
+          <span class="link-text">${link.text}</span>
+          <span class="link-icon"></span>
+        </a>
+      </li>
+    `).join('')}
+  </ul>
+</div>
+
+
+  /*const nexaWorldTeaser = `
     <div class="nexa-world__teaser">
-      <div class="nexa-world__links">
-        ${ul.outerHTML}
+       <div class="nexa-world__links">
+
+         ${ul.outerHTML}
         
       </div>
-    </div>`;
+    </div>`;*/
 
   // Replace the block's HTML with the constructed Nexa World HTML and teaser if present
   block.innerHTML = `
@@ -121,15 +136,7 @@ export default function decorate(block) {
     });
   });
 }
-function showImage(imgElement) {
-  images.forEach(img => {
-      if (link.imgSrc === imgElement) {
-          imgElement.classList.add('active');
-      } else {
-          img.classList.remove('active');
-      }
-  });
-}
+
 
 // Call the function to decorate the block
 document.addEventListener('DOMContentLoaded', () => {
