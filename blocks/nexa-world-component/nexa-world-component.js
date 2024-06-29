@@ -30,7 +30,7 @@ export default function decorate(block) {
     const links = Array.from(linkEls).map(linkEl => ({
       text: linkEl.textContent.trim(),
       href: linkEl.querySelector('a')?.href || '#',
-      target: ctaLinkEl.querySelector('a')?.target || '_self',
+      //target: ctaLinkEl.querySelector('a')?.target || '_self',
       imgSrc: linkEl.getAttribute('data-img-src') || '', 
       imgAlt: linkEl.getAttribute('data-img-alt') || '', 
       
@@ -93,7 +93,7 @@ export default function decorate(block) {
     <div class="nexa-world__teaser">
       <div class="nexa-world__links">
         ${ul.outerHTML}
-         <a href="${nexaWorldContent.cta?.href || '#'}" text="${nexaWorldContent.cta?.text || ''}" class="button btn-text" target="${nexaWorldContent.cta?.target || '_self'}">
+        
       </div>
     </div>`;
 
