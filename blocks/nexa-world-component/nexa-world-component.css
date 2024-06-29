@@ -5,7 +5,7 @@
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  background-color: black;
 }
 
 .nexa-world__content {
@@ -35,7 +35,7 @@
 .button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: white;
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
@@ -43,7 +43,7 @@
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: white;
 }
 
 .btn-title {
@@ -88,13 +88,13 @@
 }
 
 .nexa-world__links a {
-  display: inline-block;
+  display: flex;
   text-decoration: none;
-  color: #333;
+  color: white;
 }
 
 .nexa-world__links a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .nexa-world__links img {
