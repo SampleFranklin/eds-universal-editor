@@ -80,7 +80,9 @@ export default function decorate(block) {
     <div class="nexa-world__links">
       ${ul.outerHTML}
     </div>
-    
+    <div class="nexa-world__links">
+    ${(links) ? `<div class="nexa-world__links">${links.outerHTML}</div>` : ''}
+    </div>
   </div>`;
 
 // Replace the block's HTML with the constructed Nexa World HTML and teaser if present
