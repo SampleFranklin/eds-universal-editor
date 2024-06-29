@@ -91,7 +91,7 @@ block.innerHTML = `
 // Add event listeners to links to change the image on hover
 document.addEventListener('DOMContentLoaded', function() {
   const linksList = block.querySelectorAll('.nexa-world__links li');
-  const imgElement = block.querySelector('.nexa-world__img img');
+  const imgElement = block.querySelectorAll('.nexa-world__img img');
 
   linksList.forEach(link => {
     link.addEventListener('mouseenter', () => {
