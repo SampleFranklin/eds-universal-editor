@@ -25,6 +25,11 @@ export default function decorate(block) {
       textContent: ctaTextEl?.textContent?.trim() || ''
     } : null;
 
+    const image = imageEl?.querySelector('picture');
+    if (image) {
+      initImage(image, altTextEl);
+    }
+
     const links = Array.from(linkEls).map(linkEl => ({
       text: linkEl.textContent.trim(),
       href: linkEl.querySelector('a')?.href || '#',
@@ -79,7 +84,7 @@ export default function decorate(block) {
       ${ul.outerHTML}
     </div>
     <div class="nexa-world__img">
-      <img src="/content/dam/nexa-world/Group%201321315474.png" alt="image" />
+    ${(image) ? `<div class="teaser__image">${image.outerHTML}</div>` : ''}
     </div>
   </div>`;
 
