@@ -25,10 +25,7 @@ export default function decorate(block) {
       textContent: ctaTextEl?.textContent?.trim() || ''
     } : null;
 
-    const image = imageEl?.querySelector('picture');
-    if (image) {
-      initImage(image, altTextEl);
-    }
+    
 
     const links = Array.from(linkEls).map(linkEl => ({
       text: linkEl.textContent.trim(),
@@ -83,9 +80,7 @@ export default function decorate(block) {
     <div class="nexa-world__links">
       ${ul.outerHTML}
     </div>
-    <div class="nexa-world__img">
-    ${(image) ? `<div class="teaser__image">${image.outerHTML}</div>` : ''}
-    </div>
+    
   </div>`;
 
 // Replace the block's HTML with the constructed Nexa World HTML and teaser if present
