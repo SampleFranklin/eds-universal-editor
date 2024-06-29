@@ -50,7 +50,9 @@ export default function decorate(block) {
     <div class="nexa-world__action">
       <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
         <p>${nexaWorldContent.cta?.textContent}</p>
-        <span class="location-icon"><img src="/content/dam/nexa-world/north_east.svg" alt="Image arrow"></span>
+        <span class="location-icon">
+          <img src="/content/dam/nexa-world/north_east.svg" alt="Image arrow">
+        </span>
       </a>
     </div>`;
 
@@ -68,40 +70,33 @@ export default function decorate(block) {
       </div>
     </div>`;
 
-  // // Create the links HTML structure
-  // const ul = document.createElement('ul');
-  // ul.classList.add("list-container");
-  // nexaWorldContent.links.forEach(link => {
-  //   const listItem = document.createElement('li');
-  //   const anchor = document.createElement('a');
-  //   anchor.href = link.href;
-  //   anchor.textContent = link.text;
+  // Create the links HTML structure
+  const ul = document.createElement('ul');
+  ul.classList.add("list-container");
+  nexaWorldContent.links.forEach(link => {
+    const listItem = document.createElement('li');
+    const anchor = document.createElement('a');
+    anchor.href = link.href;
+    anchor.textContent = link.text;
 
-  //   // const imgElement = document.createElement('img');
-  //   // imgElement.src = link.imgSrc;
-  //   // imgElement.alt = link.imgAlt;
+    const imgElement = document.createElement('img');
+    imgElement.src = link.imgSrc;
+    imgElement.alt = link.imgAlt;
 
-  //   //anchor.appendChild(imgElement);
-  //   listItem.appendChild(anchor);
-  //   ul.appendChild(listItem);
-  // });
-  const linksHtml = links.map(link => `
-    <li class="cta">
-      <a href="${link.href}" class="cta-link">
-        <span class="icon fas fa-map-marker-alt"></span>
-        <span class="cta-text">${link.text}</span>
-      </a>
-    </li>
-  `).join('');
+    const iconElement = document.createElement('img');
+    iconElement.src = "/content/dam/nexa-world/Group%201321315474.png"; // Replace with the actual path to the icon image
+    iconElement.alt = "Icon";
 
-
+    anchor.appendChild(iconElement); // Add the icon to the link
+    anchor.appendChild(imgElement);
+    listItem.appendChild(anchor);
+    ul.appendChild(listItem);
+  });
 
   const nexaWorldTeaser = `
     <div class="nexa-world__teaser">
       <div class="nexa-world__links">
-        <ul>
-            ${linksHtml}
-          </ul>
+        ${ul.outerHTML}
       </div>
     </div>`;
 
