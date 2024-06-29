@@ -36,7 +36,7 @@ export default function decorate(block) {
       imgAlt: linkEl.getAttribute('data-img-alt') || '', 
       
     }));
-    console.log("vineetha")
+   
 
     return {
       pretitle,
