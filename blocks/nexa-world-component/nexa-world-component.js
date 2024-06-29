@@ -29,8 +29,8 @@ export default function decorate(block) {
     const links = Array.from(linkEls).map(linkEl => ({
       text: linkEl.textContent.trim(),
       href: linkEl.querySelector('a')?.href || '#',
-      imgSrc: linkEl.getAttribute('data-img-src') || '/default-image.jpg', // Example default image
-      imgAlt: linkEl.getAttribute('data-img-alt') || 'Image', // Example alt text
+      imgSrc: linkEl.getAttribute('data-img-src') || '', 
+      imgAlt: linkEl.getAttribute('data-img-alt') || '', 
     }));
 
     return {
@@ -63,6 +63,9 @@ export default function decorate(block) {
       </div>
       ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
       ${ctaWithIconHtml}
+      <div class="nexa-world__img">
+      <img src="${nexaWorldContent.imgSrc}" alt="${nexaWorldContent.imgAlt}" />
+    </div>
     </div>`;
 
   // Create the teaser HTML structure
