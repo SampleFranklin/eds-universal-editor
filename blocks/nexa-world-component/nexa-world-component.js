@@ -75,7 +75,7 @@ export default function decorate(block) {
         <ul class="list-container">
           ${nexaWorldContent.links.map(link => `
             <li>
-              <a href="${link.href || '#'}" text="${link.text || ''}"  target="${link.target || ''}">">
+              <a href="${link.href }" text="${link.text}"  target="${link.target}">">
                 <span class="link-text">${link.text}</span>
                 <span class="link-icon"></span>
               </a>
@@ -100,13 +100,13 @@ export default function decorate(block) {
     const iconElement = link.querySelector('.link-icon');
 
     link.addEventListener('mouseenter', () => {
-      iconElement.style.backgroundImage = 'url("/path/to/hover-icon.svg")';
+      iconElement.style.backgroundImage = 'url("/content/dam/nexa-world/north_east.svg")';
       const imgSrc = link.querySelector('img').getAttribute('src');
       imgElement.setAttribute('src', imgSrc);
     });
 
     link.addEventListener('mouseleave', () => {
-      iconElement.style.backgroundImage = 'url("/path/to/default-icon.svg")';
+      iconElement.style.backgroundImage = 'url("/content/dam/nexa-world/north_east.svg")';
       imgElement.setAttribute('src', nexaWorldContent.imgSrc);
     });
   });
