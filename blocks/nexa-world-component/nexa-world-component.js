@@ -15,10 +15,7 @@ export default function decorate(block) {
       ctaTargetEl,
       ...linkEls // Get the rest of the elements as link elements
     ] = block.children;
-    const image = imageEl?.querySelector('picture');
-    if (image) {
-      initImage(image, altTextEl);
-    }
+    
 
     const pretitle = pretitleEl?.textContent?.trim() || '';
     const title = titleEl?.textContent?.trim() || '';
