@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     link.addEventListener('mouseleave', () => {
-      imgElement.setAttribute('src', '/content/dam/nexa-world/Group%201321315474.png');
+      imgElement.setAttribute('src', 'imgsrc');
     });
   });
 });
