@@ -15,6 +15,10 @@ export default function decorate(block) {
       ctaTargetEl,
       ...linkEls // Get the rest of the elements as link elements
     ] = block.children;
+    const image = imageEl?.querySelector('picture');
+    if (image) {
+      initImage(image, altTextEl);
+    }
 
     const pretitle = pretitleEl?.textContent?.trim() || '';
     const title = titleEl?.textContent?.trim() || '';
@@ -31,7 +35,7 @@ export default function decorate(block) {
     const links = Array.from(linkEls).map(linkEl => ({
       text: linkEl.textContent.trim(),
       href: linkEl.querySelector('a')?.href || '#',
-      target: ctaLinkEl.querySelector('a')?.target || '_self',
+      target: ctaLinkEl.querySelector('a')?.target || '',
       imgSrc: linkEl.getAttribute('data-img-src') || '', 
       imgAlt: linkEl.getAttribute('data-img-alt') || '', 
       
@@ -97,6 +101,8 @@ export default function decorate(block) {
         ${ul.outerHTML}
         
       </div>
+      <div class="nexa-world__img">
+      ${(image) ? `<div class="nexa-world__img">${image.outerHTML}</div>` : ''}
     </div>`;
 
   // Replace the block's HTML with the constructed Nexa World HTML and teaser if present
