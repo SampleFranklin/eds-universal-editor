@@ -65,7 +65,7 @@ const nexaWorldHtml = `
   ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
   ${ctaWithIconHtml}
   <div class="nexa-world__img">
-    <img src="${nexaWorldContent.imgSrc}" alt="${nexaWorldContent.imgAlt}" />
+    <img src="${imgElement.imgSrc}" alt="${imgElement.imgAlt}" />
   </div>
 </div>`;
 
@@ -114,7 +114,7 @@ const nexaWorldTeaser = `
     });
 
     link.addEventListener('mouseleave', () => {
-      imgElement.setAttribute('src', nexaWorldContent.imgSrc);
+      imgElement.setAttribute('src', imgElement.imgSrc);
     });
   });
 }
