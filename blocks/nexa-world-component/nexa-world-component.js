@@ -26,8 +26,10 @@ export default function decorate(block) {
       href: linkEl.querySelector('a')?.href || '#',
     }));
 
-    const imgSrc = '/content/dam/nexa-world/Group%201321315474.png'; // Replace with dynamic image source
-    const imgAlt = 'Image'; // Replace with dynamic image alt text
+    const imgElement = imgElementEl?.querySelector('picture');
+    if (imgElement) {
+      initImgElement(imgElement, altTextEl);
+    }
 
     return {
       pretitle,
