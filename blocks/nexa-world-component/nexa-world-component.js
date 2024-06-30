@@ -82,6 +82,7 @@ export default function decorate(block) {
     const anchor = document.createElement('a');
     anchor.href = link.href;
     anchor.textContent = link.text;
+    anchor.classList.add("nexa-blue");
 
     const imgElement = document.createElement('img');
     imgElement.src = link.imgSrc;
