@@ -28,9 +28,10 @@ export default function decorate(block) {
     const links = Array.from(linkEls).map(linkEl => ({
       text: linkEl.textContent.trim(),
       href: linkEl.querySelector('a')?.href || '#',
-      target: linkEl.querySelector('a')?.target || '_self', // Corrected to use linkEl instead of ctaLinkEl
+      target: linkEl.querySelector('a')?.target || '_self',
       imgSrc: linkEl.getAttribute('data-img-src') || '', 
       imgAlt: linkEl.getAttribute('data-img-alt') || '', 
+      iconSrc: linkEl.getAttribute('data-icon-src') || '', // Get the icon source from the data attribute
     }));
 
     return {
@@ -83,11 +84,13 @@ export default function decorate(block) {
     imgElement.src = link.imgSrc;
     imgElement.alt = link.imgAlt;
 
-    const iconElement = document.createElement('img');
-    iconElement.src = "/content/dam/nexa-world/Group%201321315474.png"; // Replace with the actual path to the icon image
-    iconElement.alt = "Icon";
+    if (link.iconSrc) {
+      const iconElement = document.createElement('img');
+      iconElement.src = link.iconSrc;
+      iconElement.alt = "Icon";
+      anchor.appendChild(iconElement); // Add the icon to the link
+    }
 
-    anchor.appendChild(iconElement); // Add the icon to the link
     anchor.appendChild(imgElement);
     listItem.appendChild(anchor);
     ul.appendChild(listItem);
