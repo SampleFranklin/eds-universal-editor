@@ -31,8 +31,9 @@ export default function decorate(block) {
     const links = Array.from(linkEls).map(linkEl => ({
       text: linkEl.textContent.trim(),
       href: linkEl.querySelector('a')?.href || '#',
-      target: linkEl.querySelector('a')?.target || '_self', // Fixed issue with ctaLinkEl
-      iconSrc: linkEl.querySelector('a')?.getAttribute('data-icon-src') || ''  // Use the extracted icon path
+      target: linkEl.querySelector('a')?.target || '_self',
+      imgSrc: linkEl.querySelector('a')?.getAttribute('data-img-src') || '', // Use the extracted image path
+      imgAlt: linkEl.querySelector('a')?.getAttribute('data-img-alt') || ''  // Alt text for the image
     }));
 
     return {
@@ -48,8 +49,8 @@ export default function decorate(block) {
   // Get Nexa World content from the block
   const nexaWorldContent = getNexaWorldContent();
 
-  // Construct CTA with icon
-  const ctaWithIconHtml = `
+  // Construct CTA with image
+  const ctaWithImageHtml = `
     <div class="nexa-world__action">
       <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
         <p>${nexaWorldContent.cta?.textContent}</p>
@@ -65,7 +66,7 @@ export default function decorate(block) {
         ${nexaWorldContent.title ? `<p class="title">${nexaWorldContent.title}</p>` : ''}
       </div>
       ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
-      ${ctaWithIconHtml}
+      ${ctaWithImageHtml}
       <div class="nexa-world__icon">
         <img src="${nexaWorldContent.iconSrc}" alt="Icon" />
       </div>
@@ -80,10 +81,10 @@ export default function decorate(block) {
     anchor.href = link.href;
     anchor.textContent = link.text;
 
-    const iconElement = document.createElement('img');
-    iconElement.src = link.iconSrc; // Use the dynamically extracted icon path
-    iconElement.alt = "Icon";
-    anchor.appendChild(iconElement); // Add the icon to the link
+    const imgElement = document.createElement('img');
+    imgElement.src = link.imgSrc; // Use the extracted image path
+    imgElement.alt = link.imgAlt; // Set alt text for the image
+    anchor.appendChild(imgElement); // Add the image to the link
 
     listItem.appendChild(anchor);
     ul.appendChild(listItem);
@@ -109,8 +110,8 @@ export default function decorate(block) {
 
   linksList.forEach(link => {
     link.addEventListener('mouseenter', () => {
-      const iconSrc = link.querySelector('img').getAttribute('src');
-      iconElement.setAttribute('src', iconSrc);
+      const imgSrc = link.querySelector('img').getAttribute('src');
+      iconElement.setAttribute('src', imgSrc);
     });
 
     link.addEventListener('mouseleave', () => {
