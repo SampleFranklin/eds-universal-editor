@@ -76,12 +76,15 @@ export default function decorate(block) {
 
   // Create the links HTML structure
   const ul = document.createElement('ul');
-  ul.classList.add("list-container");
-  nexaWorldContent.links.forEach(link => {
+ul.classList.add("list-container");
+
+nexaWorldContent.links.forEach(link => {
     const listItem = document.createElement('li');
+
     const anchor = document.createElement('a');
     anchor.href = link.href;
     anchor.textContent = link.text;
+    anchor.classList.add("nexa-blue"); // Add class dynamically to anchor
 
     const imgElement = document.createElement('img');
     imgElement.src = link.imgSrc;
@@ -90,7 +93,11 @@ export default function decorate(block) {
     anchor.appendChild(imgElement);
     listItem.appendChild(anchor);
     ul.appendChild(listItem);
-  });
+});
+
+// Append the created ul element to an existing element in the DOM
+document.body.appendChild(ul); // Example: append to the body
+
 
   const nexaWorldTeaser = `
     <div class="nexa-world__teaser">
