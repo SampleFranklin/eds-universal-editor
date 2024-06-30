@@ -50,16 +50,14 @@ export default function decorate(block) {
   // Get Nexa World content from the block
   const nexaWorldContent = getNexaWorldContent();
 
-  // Construct CTA with icon
-  const ctaWithIconHtml = `
-    <div class="nexa-world__action">
-      <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
-        <p>${nexaWorldContent.cta?.textContent}</p>
-        <span class="location-icon">
-          <img src="${nexaWorldContent.iconSrc}" alt="Image arrow">
-        </span>
-      </a>
-    </div>`;
+ // Construct CTA with icon
+ const ctaWithIconHtml = `
+ <div class="nexa-world__action">
+   <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
+     <p>${nexaWorldContent.cta?.textContent}</p>
+     <span class="location-icon"><img src="/content/dam/nexa-world/north_east.svg" alt="Image arrow"></span>
+   </a>
+ </div>`;
 
   // Construct Nexa World HTML structure
   const nexaWorldHtml = `
