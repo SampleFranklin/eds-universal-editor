@@ -106,7 +106,7 @@ export default function decorate(block) {
 
   // Add event listeners to links to change the icon on hover
   const linksList = block.querySelectorAll('.nexa-world__links li');
-  const iconElement = block.querySelector('.nexa-world__icon img');
+  const iconElement = block.querySelector('.nexa-world__img img');
 
   linksList.forEach(link => {
     link.addEventListener('mouseenter', () => {
@@ -115,7 +115,7 @@ export default function decorate(block) {
     });
 
     link.addEventListener('mouseleave', () => {
-      iconElement.setAttribute('src', nexaWorldContent.iconSrc);
+      iconElement.setAttribute('src', nexaWorldContent.imgSrc);
     });
   });
 }
