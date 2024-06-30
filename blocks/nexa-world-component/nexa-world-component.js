@@ -94,7 +94,8 @@ export default function decorate(block) {
 
   const nexaWorldTeaser = `
     <div class="nexa-world__teaser">
-      <div class="nexa-world__links">
+      <div class="nexa-world__links"
+      target="${nexaWorldContent.cta?.target || '_self'}">
         ${ul.outerHTML}
         
       </div>
