@@ -12,6 +12,7 @@ export default function decorate(block) {
       ctaTextEl,
       ctaLinkEl,
       ctaTargetEl,
+      iconEl,  // Assuming this element contains the icon path
       ...linkEls // Get the rest of the elements as link elements
     ] = block.children;
 
@@ -24,14 +25,16 @@ export default function decorate(block) {
       target: ctaLinkEl.querySelector('a')?.target || '_self',
       textContent: ctaTextEl?.textContent?.trim() || ''
     } : null;
+    
+    const iconPath = iconEl?.textContent?.trim() || '';  // Extract icon path from authoring
 
     const links = Array.from(linkEls).map(linkEl => ({
       text: linkEl.textContent.trim(),
       href: linkEl.querySelector('a')?.href || '#',
-      target: linkEl.querySelector('a')?.target || '_self',
+      target: ctaLinkEl.querySelector('a')?.target || '_self',
       imgSrc: linkEl.getAttribute('data-img-src') || '', 
       imgAlt: linkEl.getAttribute('data-img-alt') || '', 
-      iconSrc: linkEl.getAttribute('data-icon-src') || '', // Get the icon source from the data attribute
+      iconSrc: iconPath  // Use the extracted icon path
     }));
 
     return {
@@ -40,6 +43,7 @@ export default function decorate(block) {
       description,
       cta,
       links,
+      iconSrc: iconPath  // Include icon path in the return object
     };
   }
 
@@ -52,7 +56,7 @@ export default function decorate(block) {
       <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
         <p>${nexaWorldContent.cta?.textContent}</p>
         <span class="location-icon">
-          <img src="/content/dam/nexa-world/north_east.svg" alt="Image arrow">
+          <img src="${nexaWorldContent.iconSrc}" alt="Image arrow">
         </span>
       </a>
     </div>`;
@@ -84,12 +88,10 @@ export default function decorate(block) {
     imgElement.src = link.imgSrc;
     imgElement.alt = link.imgAlt;
 
-    if (link.iconSrc) {
-      const iconElement = document.createElement('img');
-      iconElement.src = link.iconSrc;
-      iconElement.alt = "Icon";
-      anchor.appendChild(iconElement); // Add the icon to the link
-    }
+    const iconElement = document.createElement('img');
+    iconElement.src = link.iconSrc; // Use the dynamically extracted icon path
+    iconElement.alt = "Icon";
+    anchor.appendChild(iconElement); // Add the icon to the link
 
     anchor.appendChild(imgElement);
     listItem.appendChild(anchor);
