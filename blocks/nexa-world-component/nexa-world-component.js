@@ -32,9 +32,7 @@ export default function decorate(block) {
       text: linkEl.textContent.trim(),
       href: linkEl.querySelector('a')?.href || '#',
       target: ctaLinkEl.querySelector('a')?.target || '_self',
-      imgSrc: linkEl.getAttribute('data-img-src') || '', 
-      imgAlt: linkEl.getAttribute('data-img-alt') || '', 
-      iconSrc: linkEl.querySelector('a')?.getAttribute('data-icon-src') || ''   // Use the extracted icon path
+      iconSrc: linkEl.querySelector('a')?.getAttribute('data-icon-src') || ''  // Use the extracted icon path
     }));
 
     return {
@@ -69,7 +67,7 @@ export default function decorate(block) {
       ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
       ${ctaWithIconHtml}
       <div class="nexa-world__img">
-        <img src="${nexaWorldContent.links[0]?.imgSrc}" alt="${nexaWorldContent.links[0]?.imgAlt}" />
+        <img src="${nexaWorldContent.iconSrc}" alt="Default icon" />
       </div>
     </div>`;
 
@@ -82,16 +80,11 @@ export default function decorate(block) {
     anchor.href = link.href;
     anchor.textContent = link.text;
 
-    const imgElement = document.createElement('img');
-    imgElement.src = link.imgSrc;
-    imgElement.alt = link.imgAlt;
-
     const iconElement = document.createElement('img');
     iconElement.src = link.iconSrc; // Use the dynamically extracted icon path
     iconElement.alt = "Icon";
     anchor.appendChild(iconElement); // Add the icon to the link
 
-    anchor.appendChild(imgElement);
     listItem.appendChild(anchor);
     ul.appendChild(listItem);
   });
@@ -110,18 +103,18 @@ export default function decorate(block) {
       ${nexaWorldTeaser}
     </div>`;
 
-  // Add event listeners to links to change the image on hover
+  // Add event listeners to links to change the icon on hover
   const linksList = block.querySelectorAll('.nexa-world__links li');
-  const imgElement = block.querySelector('.nexa-world__img img');
+  const iconElement = block.querySelector('.nexa-world__img img');
 
   linksList.forEach(link => {
     link.addEventListener('mouseenter', () => {
-      const imgSrc = link.querySelector('img').getAttribute('src');
-      imgElement.setAttribute('src', imgSrc);
+      const iconSrc = link.querySelector('img').getAttribute('src');
+      iconElement.setAttribute('src', iconSrc);
     });
 
     link.addEventListener('mouseleave', () => {
-      imgElement.setAttribute('src', nexaWorldContent.links[0]?.imgSrc);
+      iconElement.setAttribute('src', nexaWorldContent.iconSrc);
     });
   });
 }
