@@ -34,7 +34,7 @@ export default function decorate(block) {
       target: ctaLinkEl.querySelector('a')?.target || '_self',
       imgSrc: linkEl.getAttribute('data-img-src') || '', 
       imgAlt: linkEl.getAttribute('data-img-alt') || '', 
-      iconSrc: iconPath  // Use the extracted icon path
+      iconSrc: linkEl.querySelector('a')?.getAttribute('data-icon-src') || ''   // Use the extracted icon path
     }));
 
     return {
