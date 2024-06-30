@@ -67,7 +67,7 @@ export default function decorate(block) {
       ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
       ${ctaWithIconHtml}
       <div class="nexa-world__img">
-        <img src="${nexaWorldContent.iconSrc}" alt="Default icon" />
+        <img src="${nexaWorldContent.iconSrc}" />
       </div>
     </div>`;
 
