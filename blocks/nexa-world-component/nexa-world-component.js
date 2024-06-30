@@ -66,7 +66,7 @@ export default function decorate(block) {
       </div>
       ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
       ${ctaWithIconHtml}
-      <div class="nexa-world__img">
+      <div class="nexa-world__icon">
         <img src="${nexaWorldContent.iconSrc}" />
       </div>
     </div>`;
@@ -80,7 +80,7 @@ export default function decorate(block) {
     anchor.href = link.href;
     anchor.textContent = link.text;
 
-    const iconElement = document.createElement('img');
+    const iconElement = document.createElement('icon');
     iconElement.src = link.iconSrc; // Use the dynamically extracted icon path
     iconElement.alt = "Icon";
     anchor.appendChild(iconElement); // Add the icon to the link
@@ -105,7 +105,7 @@ export default function decorate(block) {
 
   // Add event listeners to links to change the icon on hover
   const linksList = block.querySelectorAll('.nexa-world__links li');
-  const iconElement = block.querySelector('.nexa-world__img img');
+  const iconElement = block.querySelector('.nexa-world__icon icon');
 
   linksList.forEach(link => {
     link.addEventListener('mouseenter', () => {
