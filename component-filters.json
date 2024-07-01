@@ -183,5 +183,11 @@
     "components": [
       "highlight"
     ]
+  },
+  {
+    "id": "finance-options",
+    "components": [
+      "teaser"
+    ]
   }
 ]
