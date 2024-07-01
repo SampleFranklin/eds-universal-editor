@@ -1499,6 +1499,12 @@
       {
         "component": "text-input",
         "valueType": "string",
+        "name": "component-id",
+        "label": "Component ID"
+      },
+      {
+        "component": "text-input",
+        "valueType": "string",
         "name": "title",
         "label": "Title"
       },
