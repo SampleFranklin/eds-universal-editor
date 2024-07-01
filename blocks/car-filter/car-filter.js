@@ -244,7 +244,7 @@ export default function decorate(block) {
                     cardLogoImage.classList.add('card-logo-image');
 
                     const logoImg = document.createElement('img');
-                    logoImg.src = car.carLogoImage._authorUrl;
+                    logoImg.src = car.carLogoImage._publishUrl;
                     logoImg.alt = car.logoImageAltText;
                     cardLogoImage.appendChild(logoImg);
                     card.appendChild(cardLogoImage);
