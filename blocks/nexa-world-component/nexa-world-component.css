@@ -1,93 +1,93 @@
 .nexa-world__container {
-  background-color: black;
-  color: white;
-  font-family: "Fira-Sans";
-  padding-top: 48px;
-  padding-left: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 72px;
-  @media (min-width: 768px) {
-    display: flex;
-    padding-left: 64px;
-    padding-top: 0px;
-  }
-}
-.nexa-world__content {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  .description {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
-  }
-}
-.nexa-world__title {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-style: "Kepler Std";
-  .pre-title {
-    font-style: italic;
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 28px;
-  }
-  .title {
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 40px;
-    letter-spacing: 0.64px;
-  }
-}
-.nexa-world__teaser {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-}
-.nexa-world__links {
-  ul {
-    list-style: none;
+    background-color: black;
+    color: white;
+    font-family: "Fira-Sans";
+    padding-top: 48px;
+    padding-left: 20px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    li {
-      color: #b2b2b2;
+    gap: 72px;
+    @media (min-width: 768px) {
+      display: flex;
+      padding-left: 64px;
+      padding-top: 0px;
+    }
+  }
+  .nexa-world__content {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    .description {
       font-size: 14px;
       font-weight: 400;
       line-height: 20px;
     }
-    li:hover {
-      font-weight: 500;
-      cursor: pointer;
-      color: #ffffff;
+  }
+  .nexa-world__title {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-style: "Kepler Std";
+    .pre-title {
+      font-style: italic;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 28px;
+    }
+    .title {
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 40px;
+      letter-spacing: 0.64px;
     }
   }
-}
-.nexa-world__action {
-  display: inline-flex;
-  width: 200px;
-  height: 40px;
-  background-color: #ffffff;
-  padding: 8px 12px;
-  clip-path: polygon(2% 0, 100% 0, 100% 88%, 98% 100%, 0 100%, 0 12%);
-  .btn-title {
-    text-decoration: none;
-    color: black;
+  .nexa-world__teaser {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 12px;
-    p {
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 24px;
-    }
-    .location-icon svg {
-      height: 20px;
-      width: 20px;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  .nexa-world__links {
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      li {
+        color: #b2b2b2;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+      }
+      li:hover {
+        font-weight: 500;
+        cursor: pointer;
+        color: #ffffff;
+      }
     }
   }
-}
+  .nexa-world__action {
+    display: inline-flex;
+    width: 200px;
+    height: 40px;
+    background-color: #ffffff;
+    padding: 8px 12px;
+    clip-path: polygon(2% 0, 100% 0, 100% 88%, 98% 100%, 0 100%, 0 12%);
+    .btn-title {
+      text-decoration: none;
+      color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      p {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+      }
+      .location-icon svg {
+        height: 20px;
+        width: 20px;
+      }
+    }
+  }
