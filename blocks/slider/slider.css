@@ -1,0 +1,88 @@
+.container {
+  position: relative;
+  /* max-width: 1000px; */
+  margin: auto;
+  overflow: hidden;
+  width: 100%;
+}
+.slider-title {
+  color: #ffdb68;
+  font-family: Roboto;
+  font-weight: 900;
+  line-height: 36px;
+  text-align: right;
+}
+.teaser-content {
+  overflow: hidden;
+}
+.teaser__description {
+  text-decoration: underline;
+  text-underline-offset: 2rem;
+}
+.teaser__cards {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+.teaser__card {
+  /* flex: 0 0 100%; */
+  flex: 0 0 33.3333%;
+  box-sizing: border-box;
+  padding: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.teaser__card .teaser__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease-in-out;
+}
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.nav-arrow.prev {
+  left: 10px;
+}
+
+.nav-arrow.next {
+  right: 10px;
+}
+
+/* Zoom effect on hover */
+.teaser__card:hover img {
+  transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (min-width: 600px) {
+  .teaser__card {
+    flex: 0 0 50%;
+  }
+}
+
+@media (min-width: 900px) {
+  .teaser__card {
+    flex: 0 0 33.3333%;
+  }
+}
+
+/* Show 1.5 slides on mobile */
+@media (max-width: 600px) {
+  .teaser__card {
+    flex: 0 0 66.6666%;
+  }
+}
+/* .teaser__card h3,
+.teaser__card p {
+  margin: 10px 0 0;
+} */
