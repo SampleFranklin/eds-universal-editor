@@ -23,7 +23,7 @@ export default function decorate(block) {
     const cta = (ctaLinkEl) ? {
       href: ctaLinkEl.querySelector('a')?.href || '#',
       title: ctaLinkEl.querySelector('a')?.title || '',
-      target: ctaLinkEl.querySelector('a')?.target || '_self',
+      target: ctaTargetEl.textContent?.trim() || '_self',
       textContent: ctaTextEl?.textContent?.trim() || ''
       
     } : null;
@@ -32,7 +32,7 @@ export default function decorate(block) {
     const links = Array.from(linkEls).map(linkEl => ({
       text: linkEl.textContent.trim(),
       href: linkEl.querySelector('a')?.href || '#',
-      target: ctaLinkEl.querySelector('a')?.target || '',
+      target: ctaTargetEl.textContent.trim() || '',
       imgSrc: linkEl.getAttribute('data-img-src') || '', 
       imgAlt: linkEl.getAttribute('data-img-alt') || '', 
       
