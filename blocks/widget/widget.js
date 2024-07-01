@@ -17,8 +17,8 @@ export default function decorate(block) {
         <li>
             <a href="${link}" class="user__account--link" target="${target}">
                 <span class="widget__link__icon">
-                    <img src="${iconSrc}" loading="lazy" alt="${altText}"/>
-                    <img src="${iconClickedSrc}" loading="lazy" alt="${altText}"/>
+                    <img src="${iconSrc}" loading="lazy" alt="${altText}" class="icon"/>
+                    <img src="${iconClickedSrc}" loading="lazy" alt="${altText}" class="icon-clicked"/>
                 </span>
                 <p>${ctaText}</p>
             </a>
@@ -31,8 +31,8 @@ export default function decorate(block) {
     block.innerHTML = `
     <div class="widget">
         <div class="widget__icon">
-            <img src="${imageSrc}" alt="${alt}" />
-            <img src="${imageClickedSrc}" alt="${alt}" />
+            <img src="${imageSrc}" alt="${alt}" class="icon"/>
+            <img src="${imageClickedSrc}" alt="${alt}" class="icon-clicked"/>
         </div>
         <div class="widget__links">
             <ul>

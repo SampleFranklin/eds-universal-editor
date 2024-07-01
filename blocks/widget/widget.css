@@ -18,8 +18,22 @@
     width:48px;
     height:48px;
 }
+.widget__icon .icon-clicked{
+    display:none;
+}
+.widget__icon:hover{
+    .icon{
+        display:none;
+    }
+    .icon-clicked{
+        display:block;
+    }
+}
 .widget__links ul{
     list-style: none;
+}
+.widget__link__icon .icon-clicked{
+    display:none;
 }
 .widget__links ul li{
     border-bottom: 1px solid #9DCFDA;
@@ -41,6 +55,12 @@
     background:unset;
     p{
         color:#18171A;
+    }
+    .widget__link__icon .icon{
+        display:none;
+    }
+    .widget__link__icon .icon-clicked{
+        display:block;
     }
 }
 .widget__links ul li a{
