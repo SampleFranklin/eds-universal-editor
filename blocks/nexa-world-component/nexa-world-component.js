@@ -4,17 +4,8 @@ import ctaUtils from '../../utility/ctaUtils.js';
 
 
 export default function decorate(block) {
-  // Function to extract Nexa World content from the block
-  function getNexaWorldContent() {
-    const [
-      pretitleEl,
-      titleEl,
-      descriptionEl,
-      ctaTextEl,
-      ctaLinkEl,
-      ctaTargetEl,
-      ...linkEls // Get the rest of the elements as link elements
-    ] = block.children;
+
+  
     
 
     // Create the main container div
@@ -115,4 +106,3 @@ document.addEventListener('DOMContentLoaded', () => {
   blocks.forEach(decorate);
 });
   }
-}
