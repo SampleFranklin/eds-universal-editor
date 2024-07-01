@@ -35,8 +35,8 @@
 }
 
 .teaser__description p::after {
-  content: '';
-  background: url('../../icons/slanted_arrow.svg') no-repeat;
+  content: "";
+  background: url("../../icons/slanted_arrow.svg") no-repeat;
   height: 24px;
   width: 24px;
   display: inline-block;
@@ -53,8 +53,6 @@
   font-weight: 300;
   line-height: 28px;
   color: #000;
-
-
 }
 
 .teaser__cards {
@@ -79,9 +77,9 @@
   display: block;
   overflow: hidden !important;
 }
-.teaser__card .teaser__image img{
+.teaser__card .teaser__image img {
   transition: transform 1s ease;
-  height:100%;
+  height: 100%;
 }
 .nav-arrow {
   position: absolute;
@@ -98,7 +96,7 @@
 .nav-arrow.prev {
   left: 10px;
   top: calc(50% - 40px);
-  background: var(--blue, #171C8F);
+  background: var(--blue, #171c8f);
   height: 80px;
   width: 80px;
   font-size: 25px;
@@ -107,12 +105,14 @@
 .nav-arrow.next {
   right: 0px;
   top: calc(50% - 40px);
-  background: var(--blue, #171C8F);
+  background: var(--blue, #171c8f);
   height: 80px;
   width: 80px;
   font-size: 25px;
 }
-
+.hide {
+  display: none;
+}
 /* Zoom effect on hover */
 .teaser__card:hover img {
   transform: scale(1.15);
@@ -152,7 +152,7 @@
     font-size: 16px;
   }
   .nav-arrow.next {
-    right:10px;
+    right: 10px;
   }
 }
 
@@ -161,7 +161,6 @@
   .teaser__card {
     flex: 0 0 66.6666%;
   }
-
 }
 
 /* .teaser__card h3,
