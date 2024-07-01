@@ -127,7 +127,7 @@ export default function decorate(block) {
       target: ctaLinkEl.querySelector('a')?.target || '_self',
       textContent: ctaTextEl?.textContent?.trim() || ''
     } : null;
-console.log(iconEl);
+
 
     // Create the main container div
 const container = document.createElement("div");     
@@ -145,7 +145,7 @@ content.appendChild(titleDiv);
 
 // Create the pre-title paragraph
 const preTitle = document.createElement("p");
-preTitle.className = "pre-title";
+preTitle.className = "pretitle";
 preTitle.textContent =pretitle;
 titleDiv.appendChild(preTitle);
 
@@ -199,7 +199,7 @@ const ul = document.createElement("ul");
 linksDiv.appendChild(ul);
 
 // Create list items and append them to the ul
-const items = `${ctaWithIcon}`;
+const items = ["NEXA Blue", "Lifestyle", "Music", "Socials"];
 items.forEach(function(item) {
   var li = document.createElement("li");
   li.textContent = item;
