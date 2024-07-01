@@ -2,6 +2,7 @@ import utility from '../../utility/utility.js';
 import teaser from '../../utility/teaserUtils.js';
 import ctaUtils from '../../utility/ctaUtils.js';
 
+
 export default function decorate(block) {
   // Function to extract Nexa World content from the block
   function getNexaWorldContent() {
@@ -12,48 +13,25 @@ export default function decorate(block) {
       ctaTextEl,
       ctaLinkEl,
       ctaTargetEl,
+      ...linkEls // Get the rest of the elements as link elements
     ] = block.children;
 
     const pretitle = pretitleEl?.textContent?.trim() || '';
     const title = titleEl?.textContent?.trim() || '';
     const description = Array.from(descriptionEl.querySelectorAll('p')).map(p => p.outerHTML).join('');
-    const cta = (ctaLinkEl) ? ctaUtils.getLink(ctaLinkEl, ctaTextEl, ctaTargetEl) : null;
+    const cta = (ctaLinkEl) ? {
+      href: ctaLinkEl.querySelector('a')?.href || '#',
+      title: ctaLinkEl.querySelector('a')?.title || '',
+      target: ctaLinkEl.querySelector('a')?.target || '_self',
+      textContent: ctaTextEl?.textContent?.trim() || ''
+    } : null;
 
-    return {
-      pretitle,
-      title,
-      description,
-      cta,
-    };
-  }
-
-  // Get Nexa World content from the block
-  const nexaWorldContent = getNexaWorldContent();
-
-  // Add 'btn-title' class to CTA element if it exists
-  if (nexaWorldContent.cta) {
-    nexaWorldContent.cta.classList.add('btn-title');
-  }
-
-  // Construct CTA with icon
-    const ctaWithIconHtml = `
-      <div class="nexa-world__action">
-        <span class="location-icon fas fa-map-marker-alt"></span>
-        ${nexaWorldContent.cta.outerHTML}
-      </div>
-    `;
-
-  // Construct Nexa World HTML structure
-  const nexaWorldHtml = `
-    <div class="nexa-world__content">
-      ${nexaWorldContent.pretitle ? `<p class="pre-title">${nexaWorldContent.pretitle}</p>` : ''}
-      ${nexaWorldContent.title ? `<p class="title">${nexaWorldContent.title}</p>` : ''}
-      ${nexaWorldContent.description ? `${nexaWorldContent.description}` : ''}
-      ${nexaWorldContent.cta ? `<div class="nexa-world__action">${nexaWorldContent.cta.outerHTML}</div>` : ''}
-
-    </div>
-  `;
-  
+    const links = Array.from(linkEls).map(linkEl => ({
+      text: linkEl.textContent.trim(),
+      href: linkEl.querySelector('a')?.href || '#',
+      imgSrc: linkEl.getAttribute('data-img-src') || '', 
+      imgAlt: linkEl.getAttribute('data-img-alt') || '', 
+    }));
 
     return {
       pretitle,
@@ -136,7 +114,7 @@ export default function decorate(block) {
       imgElement.setAttribute('src', nexaWorldContent.imgSrc);
     });
   });
-
+}
 
 // Call the function to decorate the block
 document.addEventListener('DOMContentLoaded', () => {
