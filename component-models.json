@@ -867,30 +867,8 @@
         "component": "text-input",
         "valueType": "string",
         "name": "title",
-        "label": "Title"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "icon",
-        "label": "Icon"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "iconclicked",
-        "label": "Icon Clicked"
-      }
-    ]
-  },
-  {
-    "id": "icontitle-test",
-    "fields": [
-      {
-        "component": "text-input",
-        "valueType": "string",
-        "name": "title",
-        "label": "Title"
+        "label": "Title",
+        "required": true
       },
       {
         "component": "select",
@@ -1378,6 +1356,41 @@
         "valueType": "string",
         "name": "subtitle",
         "label": "Sub Title"
+      },
+      {
+        "component": "text-input",
+        "valueType": "string",
+        "name": "exshowroomPrefix",
+        "label": "Enter Ex-Showroom Prefix Text"
+      },
+      {
+        "component": "select",
+        "name": "selectVariant",
+        "value": "",
+        "label": "Select Component Variant",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Arena",
+            "value": "arena-variant"
+          },
+          {
+            "name": "Nexa",
+            "value": "nexa-variant"
+          }
+        ]
+      },
+      {
+        "component": "multiselect",
+        "name": "filterSelect",
+        "label": "Select Required Filters",
+        "valueType": "string",
+        "options": [
+          { "name": "Body Types", "value": "bodyType" },
+          { "name": "Fuel Options", "value": "fuelOptions" },
+          { "name": "Technology", "value": "technology" },
+          { "name": "Additional Specifications", "value": "additionalSpecifications" }
+        ]
       }
     ]
   },
@@ -1555,9 +1568,16 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "video",
-        "label": "Video",
-        "multi": true
+        "name": "forwardVideo",
+        "label": "Forward Video",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "reverseVideo",
+        "label": "Reverse Video",
+        "multi": false
       },
       {
         "component": "text-input",
