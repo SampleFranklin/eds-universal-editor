@@ -7,7 +7,12 @@ export default async function decorate(block) {
   const ctaText = ctaTextEl?.textContent?.trim();
   let ctaHtml = '';
   if (ctaVisibility === 'true' && ctaText) {
-    ctaHtml = `<p>${ctaText}</p>`;
+    ctaHtml = `
+    <div class="hero-banner__cta-container">
+      <p>${ctaText}</p>
+      <span class="hero-banner__primary-btn"></span>
+    </div>
+    `;
   }
   const { publishDomain } = await fetchPlaceholders();
   const bannerItems = bannerItemsEl?.map((itemEl, index) => {
@@ -22,9 +27,8 @@ export default async function decorate(block) {
     let assetHtml = '';
     if (videoUrl) {
       assetHtml = `
-        <div class="hero-banner__video-container">
+        <div class="hero-banner__asset hero-banner__video-container">
           <video src="${publishDomain + videoUrl}" muted="muted" width="100%" autoplay loop></video>
-          <button class="hero-banner__mute-btn">Mute</button>
         </div>
       `;
     } else if (image) {
@@ -33,35 +37,51 @@ export default async function decorate(block) {
       img?.removeAttribute('height');
       img?.setAttribute('alt', altText);
       assetHtml = `
-        <div class="hero-banner__image-container>
+        <div class="hero-banner__asset hero-banner__image-container>
           ${image.outerHTML}
         </div>
       `;
     }
     itemEl.innerHTML = `
-    <div class="hero-banner__asset-container">
-      ${assetHtml}
-      <div>
-        <div>
-          ${(title) ? title.outerHTML : ''}
-          ${(subTitle) ? `<p>${subTitle}</p>` : ''}
+      <div class="hero-banner__content">
+        ${assetHtml}
+        <div class="hero-banner__info">
+          <div class="hero-banner__top-section">
+              ${(title) ? title.outerHTML : ''}
+              ${(subTitle) ? `<p class="hero-banner__subtitle">${subTitle}</p>` : ''}
+          </div>
+          <div class="hero-banner__bottom-section">
+            ${(videoUrl) ? `<div class="hero-banner__mute-btn"></div>` : ''}
+            ${(subText) ? `<p class="hero-banner__subtext">${subText}</p>` : ''}
+          </div>
         </div>
-        ${(subText) ? `<p>${subText}</p>` : ''}
       </div>
-    </div>
     `;
     return itemEl.outerHTML;
-  }).join('');
+  });
 
   block.innerHTML = `
     <div class="hero-banner__container">
       <div class="hero-banner__carousel">
         <div class="hero-banner__slides">
-          ${bannerItems}
+          ${bannerItems.join('')}
         </div>
       </div>
       ${ctaHtml}
     </div>
   `;
-  carouselUtils.init(block.querySelector('.hero-banner__carousel'), 'hero-banner__slides');
+
+  carouselUtils.init(
+    block.querySelector('.hero-banner__carousel'), 'hero-banner__slides', (currentSlide, targetSlide) => {
+      currentSlide.querySelector('video')?.pause();
+      targetSlide.querySelector('video')?.play();
+    }
+  );
+
+  block.querySelectorAll('.hero-banner__mute-btn').forEach((el) => {
+    const video = el.closest('.hero-banner__content')?.querySelector('video');
+    el.addEventListener('click', (e) => {
+      video.muted = !video.muted
+    });
+  });
 }
