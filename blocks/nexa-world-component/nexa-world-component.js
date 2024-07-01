@@ -101,8 +101,8 @@ teaserDiv.appendChild(imgDiv);
 
 // Create the image element and append it to the image div
 const img = document.createElement("img");
-img.src = "/";
-img.alt = "image";
+img.src = "/content/dam/nexa-world/Group%201321315474.png";
+img.alt = "image_1";
 imgDiv.appendChild(img);
 
 // Append the container to the body (or any other element where you want to insert it)
