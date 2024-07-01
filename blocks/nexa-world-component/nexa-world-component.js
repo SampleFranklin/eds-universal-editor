@@ -97,12 +97,9 @@ img.alt = "image_1";
 imgDiv.appendChild(img);
 
 // Append the container to the body (or any other element where you want to insert it)
-document.body.appendChild(container);
+blocks.appendChild(container);
  
 
-// Call the function to decorate the block
-document.addEventListener('DOMContentLoaded', () => {
-  const blocks = document.querySelectorAll('.nexa-world-component'); // Replace with the actual block class name
-  blocks.forEach(decorate);
-});
+
+
   }
