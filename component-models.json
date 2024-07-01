@@ -991,17 +991,18 @@
             "valueType": "string"
           },
           {
-            "component": "text-input",
-            "name": "ctaText",
-            "label": "CTA Text",
-            "valueType": "string"
-          },
-          {
             "component": "aem-content",
             "valueType": "string",
             "name": "href",
             "label": "CTA Link"
           },
+          {
+            "component": "text-input",
+            "name": "ctaText",
+            "label": "CTA Text",
+            "valueType": "string"
+          },
+          
           {
             "component": "select",
             "name": "target",
