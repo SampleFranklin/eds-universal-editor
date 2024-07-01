@@ -5,8 +5,25 @@ import ctaUtils from '../../utility/ctaUtils.js';
 
 export default function decorate(block) {
 
-  
-    
+  const [
+    pretitleEl,
+    titleEl,
+    descriptionEl,
+    ctaTextEl,
+    hrefEl,
+    targetEl,
+    iconEl
+] = block.children; 
+  const pretitle= pretitleEl?.textContent?.trim();
+  const title = titleEl?.textContent?.trim() || '';
+  const description = descriptionEl?.textContent?.trim();
+    const cta = (ctaLinkEl) ? {
+      href: ctaLinkEl.querySelector('a')?.href || '#',
+      title: ctaLinkEl.querySelector('a')?.title || '',
+      target: ctaLinkEl.querySelector('a')?.target || '_self',
+      textContent: ctaTextEl?.textContent?.trim() || ''
+    } : null;
+console.log(iconEl);
 
     // Create the main container div
 const container = document.createElement("div");     //let or const
@@ -25,19 +42,19 @@ content.appendChild(titleDiv);
 // Create the pre-title paragraph
 const preTitle = document.createElement("p");
 preTitle.className = "pre-title";
-preTitle.textContent = "Discover the";
+preTitle.textContent =pretitle;
 titleDiv.appendChild(preTitle);
 
 // Create the title paragraph
-const title = document.createElement("p");
+const title1 = document.createElement("p");
 title.className = "title";
-title.textContent = "Nexa World";
+title.textContent = title;
 titleDiv.appendChild(title);
 
 // Create the description paragraph
-const description = document.createElement("p");
+const description1 = document.createElement("p");
 description.className = "description";
-description.textContent = "Navigating the process of buying a car can be overwhelming, but our Buyer's Guide is here to make it a smooth and enjoyable experience.";
+description.textContent = description;
 content.appendChild(description);
 
 // Create the action div
@@ -55,7 +72,7 @@ actionDiv.appendChild(link);
 
 // Create the paragraph inside the link
 const linkText = document.createElement("p");
-linkText.textContent = "Explore Nearby Dealers";
+linkText.textContent = "ctaText";
 link.appendChild(linkText);
 
 // Create the span inside the link
@@ -78,7 +95,7 @@ const ul = document.createElement("ul");
 linksDiv.appendChild(ul);
 
 // Create list items and append them to the ul
-const items = ["NEXA Blue", "Lifestyle", "Music", "Socials"];
+const items = `${ctaWithIcon}`;
 items.forEach(function(item) {
   var li = document.createElement("li");
   li.textContent = item;
@@ -97,9 +114,6 @@ img.alt = "image_1";
 imgDiv.appendChild(img);
 
 // Append the container to the body (or any other element where you want to insert it)
+block.innerHTML='';
 block.appendChild(container);
- 
-
-
-
   }
