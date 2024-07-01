@@ -65,7 +65,8 @@
       "car-filter",
       "slider",
       "highlights",
-      "arena-help-me-select"
+      "finance-options"
+
     ]
   },
   {
@@ -182,6 +183,12 @@
     "id": "highlights",
     "components": [
       "highlight"
+    ]
+  },
+  {
+    "id": "finance-options",
+    "components": [
+      "teaser"
     ]
   }
 ]
