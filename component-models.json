@@ -1269,7 +1269,7 @@
       {
         "component": "boolean",
         "valueType": "boolean",
-        "name": "addMobileImage",
+        "name": "allowMobileImage",
         "label": "Separate Image for Mobile"
       },
       {
@@ -1279,7 +1279,7 @@
         "label": "Mobile Image",
         "multi": false,
         "condition": {
-          "===": [ { "var": "addMobileImage" }, true ]
+          "===": [ { "var": "allowMobileImage" }, true ]
         }
       },
       {
