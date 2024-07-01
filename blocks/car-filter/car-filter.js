@@ -15,28 +15,112 @@ export default function decorate(block) {
     const filterList = filterSelectEl?.textContent?.trim();
 
     let graphQlEndpoint;
-    if (componentVariation === 'arena-variant') {
-        graphQlEndpoint = 'https://publish-p71852-e1137339.adobeaemcloud.com/graphql/execute.json/msil-platform/ArenaCarList';
-    } else {
-        graphQlEndpoint = 'https://publish-p71852-e1137339.adobeaemcloud.com/graphql/execute.json/msil-platform/NexaCarList';
+    if(componentVariation==='arena-variant'){
+        graphQlEndpoint = 'arena-endpoint';
     }
-
-    let newHTMLContainer;
-
-    const requestOptions = {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
+    else{
+        graphQlEndpoint = 'nexa-endpoint';
+    }
+    const graphQlResponse =
+    {
+        "data": {
+          "carModelList": {
+            "items": [
+              {
+                "carImage": {
+                  "_authorUrl": "http://localhost:4502/content/dam/nexa/com/in/en/images/cars/grand-vitara/Grand%20Vitara.webp"
+                },
+                 "carLogoImage": {
+                    "_authorUrl": "http://localhost:4502/content/dam/arena/com/in/en/images/S-presso.svg",
+                    "_publishUrl": "http://localhost:4503/content/dam/arena/com/in/en/images/S-presso.svg"
+                  },
+                "logoImageAltText": "gv-logo",  
+                "carName": "Grand Vitara",
+                "bodyType": "SUV",
+                "carDescription": "Create. Inspire",
+                "altText": "Grand Vitara",
+                "exShowroomPrice": 1099000,
+                "fuelOptions": [
+                  "Petrol",
+                  "S-CNG"
+                ],
+                "technology": [
+                  "Smart Hybrid"
+                ],
+                "additionalSpecifications": null,
+                "carTagName": [
+                  "msil:nexa/grand-vitara"
+                ],
+                "defaultVariantId": "GVR4EZ2",
+                "carDetailsPagePath": null,
+                "carOrder": null
+              },
+              {
+                "carImage": {
+                  "_authorUrl": "http://localhost:4502/content/dam/nexa/com/in/en/images/cars/invicto/Invicto.webp"
+                },
+                 "carLogoImage": {
+                    "_authorUrl": "http://localhost:4502/content/dam/arena/com/in/en/images/S-presso.svg",
+                    "_publishUrl": "http://localhost:4503/content/dam/arena/com/in/en/images/S-presso.svg"
+                  },
+                "logoImageAltText": "inv-logo",   
+                "carName": "Invicto",
+                "bodyType": "SUV",
+                "carDescription": "Created to Inspire the Extraordinary",
+                "altText": "Invicto",
+                "exShowroomPrice": 2521000,
+                "fuelOptions": [
+                  "Petrol",
+                  "S-CNG"
+                ],
+                "technology": [
+                  "Intelligent Electric Hybrid"
+                ],
+                "additionalSpecifications": null,
+                "carTagName": [
+                  "msil:nexa/invicto"
+                ],
+                "defaultVariantId": "INAHAZ200",
+                "carDetailsPagePath": null,
+                "carOrder": null
+              },
+              {
+                "carImage": {
+                  "_authorUrl": "http://localhost:4502/content/dam/nexa/com/in/en/images/cars/jimny/Jimny.webp"
+                },
+                 "carLogoImage": {
+                    "_authorUrl": "http://localhost:4502/content/dam/arena/com/in/en/images/S-presso.svg",
+                    "_publishUrl": "http://localhost:4503/content/dam/arena/com/in/en/images/S-presso.svg"
+                  },
+                "logoImageAltText": "jim-logo",  
+                "carName": "Jimny",
+                "bodyType": "Hatchback",
+                "carDescription": "Created For Purity of Function",
+                "altText": "Jimny",
+                "exShowroomPrice": 1274000,
+                "fuelOptions": [
+                  "Petrol"
+                ],
+                "technology": [
+                  "Turbo"
+                ],
+                "additionalSpecifications": [
+                  "All Grip"
+                ],
+                "carTagName": [
+                  "msil:nexa/jimny"
+                ],
+                "defaultVariantId": "JMR4CZ2",
+                "carDetailsPagePath": null,
+                "carOrder": null
+              }
+            ]
+          }
         }
-    };
+      };
 
-    fetch(graphQlEndpoint, requestOptions)
-        .then((response) => response.json())
-        .then((result) => {
-            newHTMLContainer = carModelInfo(result);
-            appendNewHTMLContainer();
-        })
-        .catch((error) => console.error(error));
+
+    const newHTMLContainer = carModelInfo(graphQlResponse);
 
     function carModelInfo(result) {
         const cars = result.data.carModelList.items;
