@@ -1244,11 +1244,43 @@
         "multi": false
       },
       {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "allowMobileVideo",
+        "label": "Separate Video for Mobile"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "videoMobile",
+        "label": "Mobile Video",
+        "multi": false,
+        "condition": {
+          "===": [ { "var": "allowMobileVideo" }, true ]
+        }
+      },
+      {
         "component": "reference",
         "valueType": "string",
         "name": "image",
         "label": "Image",
         "multi": false
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "addMobileImage",
+        "label": "Separate Image for Mobile"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "mobileImage",
+        "label": "Mobile Image",
+        "multi": false,
+        "condition": {
+          "===": [ { "var": "addMobileImage" }, true ]
+        }
       },
       {
         "component": "text",
