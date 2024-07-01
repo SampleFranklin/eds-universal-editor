@@ -97,7 +97,7 @@ img.alt = "image_1";
 imgDiv.appendChild(img);
 
 // Append the container to the body (or any other element where you want to insert it)
-blocks.appendChild(container);
+block.appendChild(container);
  
 
 
