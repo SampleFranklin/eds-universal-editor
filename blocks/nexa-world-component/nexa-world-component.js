@@ -2,9 +2,31 @@ import utility from '../../utility/utility.js';
 import teaser from '../../utility/teaserUtils.js';
 import ctaUtils from '../../utility/ctaUtils.js';
 
+
 export default function decorate(block) {
 
-  const container = document.createElement("div");     //let or const
+  const [
+    pretitleEl,
+    titleEl,
+    descriptionEl,
+    ctaTextEl,
+    hrefEl,
+    targetEl,
+    iconEl
+] = block.children; 
+  const pretitle= pretitleEl?.textContent?.trim();
+  const title = titleEl?.textContent?.trim() || '';
+  const description = descriptionEl?.textContent?.trim();
+    const cta = (ctaLinkEl) ? {
+      href: ctaLinkEl.querySelector('a')?.href || '#',
+      title: ctaLinkEl.querySelector('a')?.title || '',
+      target: ctaLinkEl.querySelector('a')?.target || '_self',
+      textContent: ctaTextEl?.textContent?.trim() || ''
+    } : null;
+console.log(iconEl);
+
+    // Create the main container div
+const container = document.createElement("div");     //let or const
 container.className = "nexa-world__container";
 
 // Create the content div
@@ -20,19 +42,19 @@ content.appendChild(titleDiv);
 // Create the pre-title paragraph
 const preTitle = document.createElement("p");
 preTitle.className = "pre-title";
-preTitle.textContent = "Discover the";
+preTitle.textContent =pretitle;
 titleDiv.appendChild(preTitle);
 
 // Create the title paragraph
-const title = document.createElement("p");
+const title1 = document.createElement("p");
 title.className = "title";
-title.textContent = "Nexa World";
+title.textContent = title;
 titleDiv.appendChild(title);
 
 // Create the description paragraph
-const description = document.createElement("p");
+const description1 = document.createElement("p");
 description.className = "description";
-description.textContent = "Navigating the process of buying a car can be overwhelming, but our Buyer's Guide is here to make it a smooth and enjoyable experience.";
+description.textContent = description;
 content.appendChild(description);
 
 // Create the action div
@@ -73,7 +95,7 @@ const ul = document.createElement("ul");
 linksDiv.appendChild(ul);
 
 // Create list items and append them to the ul
-const items = ["NEXA Blue", "Lifestyle", "Music", "Socials"];
+const items = `${ctaWithIcon}`;
 items.forEach(function(item) {
   var li = document.createElement("li");
   li.textContent = item;
@@ -87,10 +109,15 @@ teaserDiv.appendChild(imgDiv);
 
 // Create the image element and append it to the image div
 const img = document.createElement("img");
-img.src = "/";
-img.alt = "image";
+img.src = "/content/dam/nexa-world/Group%201321315474.png";
+img.alt = "image_1";
 imgDiv.appendChild(img);
 
 // Append the container to the body (or any other element where you want to insert it)
-document.body.appendChild(container);
-}
+block.innerHTML='';
+block.appendChild(container);
+ 
+
+
+
+  }
