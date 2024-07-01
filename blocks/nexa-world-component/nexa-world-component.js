@@ -26,6 +26,7 @@ export default function decorate(block) {
       cta,
     };
   }
+  console.log("vineetha");
 
   // Get Nexa World content from the block
   const nexaWorldContent = getNexaWorldContent();
