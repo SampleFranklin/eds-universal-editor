@@ -1246,7 +1246,7 @@
       {
         "component": "boolean",
         "valueType": "boolean",
-        "name": "videoAllowMobile",
+        "name": "allowMobileVideo",
         "label": "Separate Video for Mobile"
       },
       {
@@ -1256,20 +1256,20 @@
         "label": "Mobile Video",
         "multi": false,
         "condition": {
-          "===": [ { "var": "videoAllowMobile" }, true ]
+          "===": [ { "var": "allowMobileVideo" }, true ]
         }
       },
       {
         "component": "reference",
         "valueType": "string",
-        "name": "desktopImage",
+        "name": "image",
         "label": "Image",
         "multi": false
       },
       {
         "component": "boolean",
         "valueType": "boolean",
-        "name": "addMobileImage",
+        "name": "allowMobileImage",
         "label": "Separate Image for Mobile"
       },
       {
@@ -1279,7 +1279,7 @@
         "label": "Mobile Image",
         "multi": false,
         "condition": {
-          "===": [ { "var": "addMobileImage" }, true ]
+          "===": [ { "var": "allowMobileImage" }, true ]
         }
       },
       {

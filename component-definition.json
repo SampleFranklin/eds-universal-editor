@@ -656,7 +656,9 @@
                 "template": {
                   "name": "Nexa Hero Banner Item",
                   "model": "nexa-hero-banner-item",
-                  "titleType": "h2"
+                  "titleType": "h2",
+                  "allowMobileVideo": false,
+                  "allowMobileImage": false
                 }
               }
             }
