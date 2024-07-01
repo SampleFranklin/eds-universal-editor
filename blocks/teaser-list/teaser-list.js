@@ -62,11 +62,17 @@ export default function decorate(block) {
   }
   //Toggle Focused Class Method End
 
-  const [titleEl, styleEl, ...teaserListEl] = block.children;
-
-  const style = styleEl?.textContent?.trim().split(",");
-  block.classList.add(...style);
-  const commonTitle = titleEl?.textContent?.trim() || "";
+  const [titleEl, themeEl, themeTypeEl, ...teaserListEl] = block.children;
+  const theme = themeEl?.textContent?.trim();
+  const themeType = themeTypeEl?.textContent?.trim();
+  if(theme) {
+    block.classList.add(theme);
+  }
+  if(themeType) {
+    block.classList.add(themeType);
+  }
+  const commonTitle = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)');
+  commonTitle?.classList?.add('text-color');
   const teasers = teaserListEl.map((card) => {
     const teaserObj = teaser.getTeaser(card);
     utility.mobileLazyLoading(teaserObj, ".teaser__image img");
@@ -77,9 +83,7 @@ export default function decorate(block) {
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-sm-8 col-sm-10">
-                <h2 class="text-color">
-                    ${commonTitle}
-                </h2>
+                ${(commonTitle) ? commonTitle.outerHTML : ''}
             </div>
         </div>
         <div class="row">
