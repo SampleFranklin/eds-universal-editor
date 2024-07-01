@@ -16,7 +16,7 @@ export default function decorate(block) {
     
         const pretitle = pretitleEl?.textContent?.trim() || '';
         const title = titleEl?.textContent?.trim() || '';
-        const description = Array.from(descriptionEl.querySelectorAll('p')).map(p => p.outerHTML).join('');
+        const description = descriptionEl?.textContent?.trim();
         const cta = (ctaLinkEl) ? {
           href: ctaLinkEl.querySelector('a')?.href || '#',
           title: ctaLinkEl.querySelector('a')?.title || '',
