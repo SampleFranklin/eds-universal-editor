@@ -2,6 +2,7 @@ import utility from '../../utility/utility.js';
 import teaser from '../../utility/teaserUtils.js';
 import ctaUtils from '../../utility/ctaUtils.js';
 
+
 export default function decorate(block) {
   // Function to extract Nexa World content from the block
   function getNexaWorldContent() {
@@ -28,6 +29,8 @@ export default function decorate(block) {
     const links = Array.from(linkEls).map(linkEl => ({
       text: linkEl.textContent.trim(),
       href: linkEl.querySelector('a')?.href || '#',
+      imgSrc: linkEl.getAttribute('data-img-src') || '', 
+      imgAlt: linkEl.getAttribute('data-img-alt') || '', 
     }));
 
     return {
@@ -35,7 +38,7 @@ export default function decorate(block) {
       title,
       description,
       cta,
-      links
+      links,
     };
   }
 
@@ -60,59 +63,61 @@ export default function decorate(block) {
       </div>
       ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
       ${ctaWithIconHtml}
+      <div class="nexa-world__img">
+      <img src="${nexaWorldContent.imgSrc}" alt="${nexaWorldContent.imgAlt}" />
+    </div>
     </div>`;
-    const ul =document.createElement('ul');
-    ul.classList.add("list-container");
-    nexaWorldContent.links.forEach(link => {
-      const listItem = document.createElement('li');
-      const anchor = document.createElement('a');
-      anchor.href = link.href;
-      anchor.textContent = link.text;
 
-      listItem.appendChild(anchor);
-      ul.appendChild(listItem);
-    });
-     // Create the teaser HTML structure
+  // Create the teaser HTML structure
+  const ul = document.createElement('ul');
+  ul.classList.add("list-container");
+  nexaWorldContent.links.forEach(link => {
+    const listItem = document.createElement('li');
+    const anchor = document.createElement('a');
+    anchor.href = link.href;
+    anchor.textContent = link.text;
+
+    const imgElement = document.createElement('img');
+    imgElement.src = link.imgSrc;
+    imgElement.alt = link.imgAlt;
+
+    anchor.appendChild(imgElement);
+    listItem.appendChild(anchor);
+    ul.appendChild(listItem);
+  });
+
   const nexaWorldTeaser = `
-  <div class="nexa-world__teaser">
-    <div class="nexa-world__links">
-      ${ul.outerHTML}
-    </div>
-    <div class="nexa-world__img">
-      <img src="/content/dam/nexa-world/Group%201321315474.png" alt="image" />
-    </div>
-  </div>`;
+    <div class="nexa-world__teaser">
+      <div class="nexa-world__links">
+        ${ul.outerHTML}
+      </div>
+    </div>`;
 
-// Replace the block's HTML with the constructed Nexa World HTML and teaser if present
-block.innerHTML = `
-  <div class="nexa-world__container">
-    ${nexaWorldHtml}
-    ${nexaWorldTeaser}
-  </div>`;
+  // Replace the block's HTML with the constructed Nexa World HTML and teaser if present
+  block.innerHTML = `
+    <div class="nexa-world__container">
+      ${nexaWorldHtml}
+      ${nexaWorldTeaser}
+    </div>`;
 
-// Add event listeners to links to change the image on hover
-document.addEventListener('DOMContentLoaded', function() {
+  // Add event listeners to links to change the image on hover
   const linksList = block.querySelectorAll('.nexa-world__links li');
-  const imgElement = block.querySelector('.nexa-world__img img');
+  const imgElement = block.querySelectorAll('.nexa-world__img img');
 
   linksList.forEach(link => {
     link.addEventListener('mouseenter', () => {
-      const imgSrc = link.getAttribute('data-img');
+      const imgSrc = link.querySelectorAll('img').getAttribute('src');
       imgElement.setAttribute('src', imgSrc);
     });
 
     link.addEventListener('mouseleave', () => {
-      imgElement.setAttribute('src', '/content/dam/nexa-world/Group%201321315474.png');
+      imgElement.setAttribute('src', nexaWorldContent.imgSrc);
     });
   });
-});
-
+}
 
 // Call the function to decorate the block
 document.addEventListener('DOMContentLoaded', () => {
-const blocks = document.querySelectorAll('.nexa-world-component'); // Replace with the actual block class name
-blocks.forEach(decorate);
+  const blocks = document.querySelectorAll('.nexa-world-component'); // Replace with the actual block class name
+  blocks.forEach(decorate);
 });
-
-   
-  }
