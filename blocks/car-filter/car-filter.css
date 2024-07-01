@@ -59,6 +59,8 @@
     align-items: flex-start;
     align-content: flex-start;
     row-gap: 48px;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .card{

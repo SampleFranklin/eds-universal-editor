@@ -867,30 +867,8 @@
         "component": "text-input",
         "valueType": "string",
         "name": "title",
-        "label": "Title"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "icon",
-        "label": "Icon"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "iconclicked",
-        "label": "Icon Clicked"
-      }
-    ]
-  },
-  {
-    "id": "icontitle-test",
-    "fields": [
-      {
-        "component": "text-input",
-        "valueType": "string",
-        "name": "title",
-        "label": "Title"
+        "label": "Title",
+        "required": true
       },
       {
         "component": "select",
@@ -1380,6 +1358,12 @@
         "label": "Sub Title"
       },
       {
+        "component": "text-input",
+        "valueType": "string",
+        "name": "exshowroomPrefix",
+        "label": "Enter Ex-Showroom Prefix Text"
+      },
+      {
         "component": "select",
         "name": "selectVariant",
         "value": "",
@@ -1515,6 +1499,12 @@
       {
         "component": "text-input",
         "valueType": "string",
+        "name": "component-id",
+        "label": "Component ID"
+      },
+      {
+        "component": "text-input",
+        "valueType": "string",
         "name": "title",
         "label": "Title"
       },
@@ -1584,9 +1574,16 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "video",
-        "label": "Video",
-        "multi": true
+        "name": "forwardVideo",
+        "label": "Forward Video",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "reverseVideo",
+        "label": "Reverse Video",
+        "multi": false
       },
       {
         "component": "text-input",
