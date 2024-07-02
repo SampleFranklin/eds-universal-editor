@@ -29,24 +29,7 @@ export default function decorate(block) {
     };
   }
 
-  function getCtaElements(ctasEl) {
-    return ctasEl.map((element) => {
-      const [imageEl, altTextEl, ctaTextEl, linkEl, targetEl] = element.children;
-      const imgSrc = imageEl?.querySelector('img')?.src || '';
-      const altText = altTextEl?.textContent?.trim() || 'icon';
-      const ctaText = ctaTextEl?.textContent?.trim() || '';
-      const link = linkEl?.querySelector('a')?.href || '#';
-      const target = targetEl?.textContent?.trim() || '_self';
-      element.innerHTML = `
-        <a href="${link}" target="${target}" class="nexa-world__link" title="${ctaText}">
-          <img src="${imgSrc}" alt="${altText}" loading="lazy">
-          <p>${ctaText}</p>
-        </a>
-      `;
-      moveInstrumentation(element, element.firstElementChild);
-      return element.innerHTML;
-    }).join('');
-  }
+ 
 
   // Get Nexa World content from the block
   const nexaWorldContent = getNexaWorldContent();
@@ -71,17 +54,13 @@ export default function decorate(block) {
       ${ctaHtml}
     </div>`;
 
-  // Get and format CTA elements
-  const ctasEl = block.querySelectorAll('.cta-element'); // Replace with actual selector
-  const ctaElements = getCtaElements(ctasEl);
+  
 
   // Replace the block's HTML with the constructed Nexa World HTML and CTA elements
   block.innerHTML = `
     <div class="nexa-world__container">
       ${nexaWorldHtml}
-      <div class="nexa-world__links">
-        ${ctaElements}
-      </div>
+      
     </div>`;
 }
 
