@@ -2,13 +2,16 @@ const carouselUtils = {
   init: (
     el,
     className,
+    carouselType = 'fade',
     onChange = (currentSlide, targetSlide) => {},
   ) => {
     if (!el) {
       return
     }
 
-    el.classList.add('carousel__wrapper');
+    if(carouselType === "fade") {
+      el.classList.add('fade-carousel__wrapper');
+    }
     const slidesWrapper = el.querySelector('.' + className);
     const dots = document.createElement('ul');
     slidesWrapper.classList.add('carousel__slides');
