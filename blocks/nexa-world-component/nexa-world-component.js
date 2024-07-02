@@ -29,7 +29,7 @@ export default function decorate(block) {
             const link = linkEl?.querySelector('.button-container a')?.href;
             const target = targetEl?.textContent?.trim() || '_self';
             element.innerHTML = `
-      <a href="${link}" target="${target}" class="user__contact--icon" title=${ctaText}>
+      <a href="${link}" target="${target}" class="nexa-world__links" title=${ctaText}>
           <img src="${imgSrc}" alt="${altText}" loading="lazy">
       </a>
     `;
