@@ -41,22 +41,19 @@
     letter-spacing: 0.64px;
   }
 }
-/* .nexa-world__teaser {
+ .nexa-world__teaser {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 40px;
-} */
+} 
 .nexa-world__img img {
     max-width: 100%; /* Ensure image is responsive */
     height: auto;
     border-radius: 8px; /* Adjust border radius as needed */
   }
   
-  .nexa-world__teaser {
-    display: flex;
-    gap: 20px; /* Adjust gap between teaser sections */
-  }
+  
   
   .nexa-world__links {
     flex: 1; /* Take remaining space */
