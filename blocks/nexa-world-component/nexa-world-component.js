@@ -19,7 +19,7 @@ export default function decorate(block) {
         const cta = (ctaLinkEl) ? {
           href: ctaLinkEl.querySelector('a')?.href || '#',
           title: ctaLinkEl.querySelector('a')?.title || '',
-          target: ctaLinkEl.querySelector('a')?.target || '_self',
+          target: ctaTargetEl.textContent?.trim() || '_self',
           textContent: ctaTextEl?.textContent?.trim() || ''
         } : null;
     return {
