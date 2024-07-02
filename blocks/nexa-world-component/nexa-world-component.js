@@ -117,7 +117,7 @@ links.forEach(link => {
 });
 }
 // Call the function to decorate the block
-document.addEventListener('DOMContentLoaded', nexaWorldContent)
-//   const blocks = document.querySelectorAll('.nexa-world-component'); // Replace with the actual block class name
-//   blocks.forEach(decorate);
-// });
+document.addEventListener('DOMContentLoaded', () => {
+  const blocks = document.querySelectorAll('.nexa-world-component'); // Replace with the actual block class name
+  blocks.forEach(decorate);
+});
