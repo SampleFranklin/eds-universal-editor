@@ -21,7 +21,7 @@ export default function decorate(block) {
     const cta = (ctaLinkEl) ? {
       href: ctaLinkEl.querySelector('a')?.href || '#',
       title: ctaLinkEl.querySelector('a')?.title || '',
-      target: ctaTargetEl.querySelector('a')?.target || '_self',
+      target: ctaLinkEl.querySelector('a')?.target || '_self',
       textContent: ctaTextEl?.textContent?.trim() || ''
     } : null;
     const links = Array.from(linkEls).map(linkEl => ({
@@ -41,7 +41,7 @@ export default function decorate(block) {
 // Get Nexa World content from the block
 const nexaWorldContent = getNexaWorldContent();
 // Construct CTA with icon
-  const ctanHtml = `
+  const ctaWithIconHtml = `
     <div class="nexa-world__action">
       <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
         <p>${nexaWorldContent.cta?.textContent}</p>
@@ -56,7 +56,7 @@ const nexaWorldContent = getNexaWorldContent();
         ${nexaWorldContent.title ? `<p class="title">${nexaWorldContent.title}</p>` : ''}
       </div>
       ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
-      ${ctaHtml}
+      ${ctaWithIconHtml}
       <div class="nexa-world__img">
       <img src="${nexaWorldContent.imgSrc}" alt="${nexaWorldContent.imgAlt}" />
     </div>
