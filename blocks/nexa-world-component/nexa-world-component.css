@@ -60,8 +60,11 @@
   }
   
   ul.list-container {
-    list-style: none;
-    padding: 0;
+    
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
   }
   
   ul.list-container li {
@@ -71,13 +74,13 @@
   ul.list-container li a {
     display: flex;
     align-items: center;
-    color: #333;
+    color: white;
     text-decoration: none;
     transition: color 0.3s ease;
   }
   
   ul.list-container li a:hover {
-    color: #007bff; /* Adjust link hover color */
+    color: white; /* Adjust link hover color */
   }
   
   ul.list-container li a img {

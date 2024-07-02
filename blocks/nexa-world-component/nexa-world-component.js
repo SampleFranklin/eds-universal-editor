@@ -91,33 +91,32 @@ const nexaWorldTeaser = `
       ${nexaWorldTeaser}
     </div>`;
 // Add event listeners to links to change the image on hover
-  // Select all link elements within .nexa-world__links
+ // Select all link elements within .nexa-world__links
 const links = block.querySelectorAll('.nexa-world__links a');
 
 // Select the img element within .nexa-world__img
-const imgElement = block.querySelectorAll('.nexa-world__img img');
+const imgElement = block.querySelector('.nexa-world__img img');
 
-// Store the original src attribute of the img element
-const originalImgSrc = imgElement.getAttribute('src');
+// Store the original src property value of the img element
+const originalImgSrc = imgElement.src;
 
 // Iterate over each link and add event listeners
 links.forEach(link => {
   const linkImg = link.querySelector('img');
 
-  // Store the original src attribute of the link's img element
-  const originalLinkImgSrc = linkImg.getAttribute('src');
+  // Store the original src property value of the link's img element
+  const originalLinkImgSrc = linkImg.src;
 
   link.addEventListener('mouseenter', () => {
-    // Change the src attribute of the img element to the link's img src
+    // Change the src property of the img element to the link's img src property
     imgElement.src = linkImg.src;
   });
 
   link.addEventListener('mouseleave', () => {
-    // Reset the src attribute of the img element to the original src
+    // Reset the src property of the img element to the original src property value
     imgElement.src = originalImgSrc;
   });
 });
-
 }
 // Call the function to decorate the block
 document.addEventListener('DOMContentLoaded', () => {
