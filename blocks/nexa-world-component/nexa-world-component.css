@@ -39,7 +39,7 @@
     align-items: center;
     gap: 12px;
     align-self: stretch;
-    /* clip-path: polygon(2% 0, 100% 0, 100% 88%, 98% 100%, 0 100%, 0 12%); */
+    clip-path: polygon(2% 0, 100% 0, 100% 88%, 98% 100%, 0 100%, 0 12%); 
 }
 
 .btn-title {
