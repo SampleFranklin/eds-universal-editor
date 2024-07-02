@@ -11,7 +11,7 @@ export default function decorate(block) {
       ctaTextEl,
       ctaLinkEl,
       ctaTargetEl,
-      ...linkEls
+      linkEls
     ] = block.children;
     const pretitle = pretitleEl?.textContent?.trim() || '';
     const title = titleEl?.textContent?.trim() || '';
@@ -25,7 +25,7 @@ export default function decorate(block) {
     const links = Array.from(linkEls).map(linkEl => ({
         text: linkEl.textContent.trim(),
         href: linkEl.querySelector('a')?.href || '#',
-        target: linkTargetEl?.textContent?.trim() || '_self',
+        
         imgSrc: linkEl.getAttribute('data-img-src') || '', 
         imgAlt: linkEl.getAttribute('data-img-alt') || '', 
     }));
