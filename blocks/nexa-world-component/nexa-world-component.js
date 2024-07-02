@@ -11,6 +11,7 @@ export default function decorate(block) {
       ctaTextEl,
       ctaLinkEl,
       ctaTargetEl,
+      linkEls
     ] = block.children;
     const pretitle = pretitleEl?.textContent?.trim() || '';
     const title = titleEl?.textContent?.trim() || '';
@@ -21,11 +22,16 @@ export default function decorate(block) {
       target: ctaTargetEl?.textContent?.trim() || '_self',
       textContent: ctaTextEl?.textContent?.trim() || ''
     } : null;
+    const links = Array.from(linkEls).map(linkEl => ({
+        text: linkEl.textContent.trim(),
+        href: linkEl.querySelector('a')?.href || '#',
+    }));
     return {
       pretitle,
       title,
       description,
       cta,
+      links
     };
   }
 // Get Nexa World content from the block
@@ -49,12 +55,24 @@ export default function decorate(block) {
       ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
       ${ctaHtml}
     </div>`;
+    // Create the links HTML structure
+  const ul = document.createElement('ul');
+  ul.classList.add("list-container");
+  nexaWorldContent.links.forEach(link => {
+    const listItem = document.createElement('li');
+    const anchor = document.createElement('a');
+    anchor.href = link.href;
+    anchor.textContent = link.text;
+    listItem.appendChild(anchor);
+    ul.appendChild(listItem);
+  });
  // Replace the block's HTML with the constructed Nexa World HTML and CTA elements
   block.innerHTML = `
     <div class="nexa-world__container">
       ${nexaWorldHtml}
        </div>`;
 }
+
 // Call the function to decorate the block
 document.addEventListener('DOMContentLoaded', () => {
   const blocks = document.querySelectorAll('.nexa-world-component'); // Replace with the actual block class name
