@@ -27,7 +27,7 @@ export default function decorate(block) {
     const links = Array.from(linkEls).map(linkEl => ({
       text: linkEl.textContent.trim(),
       href: linkEl.querySelector('a')?.href || '#',
-      target: TargetEl.textContent?.trim() || '_self',
+      target:linkEl.querySelector('a')?.target || '_self',
       imgSrc: linkEl.getAttribute('data-img-src') || '', 
       imgAlt: linkEl.getAttribute('data-img-alt') || '', 
     }));
