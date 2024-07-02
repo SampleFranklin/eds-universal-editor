@@ -35,11 +35,11 @@ export default function decorate(block) {
     // Construct CTA with icon
           const ctaHtml = `
         <div class="nexa-world__action">
-          <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
-            <p>${nexaWorldContent.cta?.textContent}</p>
-            <span class="location-icon"><img src="/content/dam/nexa-world/north_east.svg" alt="Image arrow"></span>
-          </a>
-        </div>`;
+      <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
+        <p>${nexaWorldContent.cta?.textContent}</p>
+        <span class="location-icon"><img src="/content/dam/nexa-world/north_east.svg" alt="Image arrow"></span>
+      </a>
+    </div>`;
     // Construct Nexa World HTML structure
       const nexaWorldHtml = `
         <div class="nexa-world__content">
