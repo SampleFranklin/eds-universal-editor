@@ -239,12 +239,12 @@ export default function decorate(block) {
                 const card = document.createElement('div');
                 card.classList.add('card');
 
-                if (componentVariation === 'arena-endpoint') {
+                if (componentVariation === 'arena-variant') {
                     const cardLogoImage = document.createElement('div');
                     cardLogoImage.classList.add('card-logo-image');
 
                     const logoImg = document.createElement('img');
-                    logoImg.src = car.carLogoImage._authorUrl;
+                    logoImg.src = car.carLogoImage._publishUrl;
                     logoImg.alt = car.logoImageAltText;
                     cardLogoImage.appendChild(logoImg);
                     card.appendChild(cardLogoImage);
