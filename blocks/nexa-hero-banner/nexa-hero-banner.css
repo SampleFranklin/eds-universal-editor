@@ -161,10 +161,9 @@
     .hero-banner__container .hero-banner__info {
         bottom: 0;
         top:0;
-        right: unset;
         gap: 0;
         padding: 72px 69px 70px 63px;
-        background: linear-gradient(90deg, rgba(24, 23, 26, 0.3) 37%, rgba(24, 23, 26, 0) 74%);
+        background: linear-gradient(90deg, rgba(24, 23, 26, 0.3) 30%, rgba(24, 23, 26, 0) 40%, rgba(24, 23, 26, 0) 80%, rgba(24, 23, 26, 0.3) 100%);
     }
 
     .hero-banner__container .hero-banner__top-section .hero-banner__title {
