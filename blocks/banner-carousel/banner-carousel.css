@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: "Anek Latin";
 }
 input[type="radio"] {
   box-sizing: border-box;
@@ -63,6 +64,7 @@ input[type="radio"]:checked {
   transition: all 0.3s linear;
   background-color: #171c8f;
   position: relative;
+  color: #ffffff
 }
 
 .car-container.highlight .sidebar::after {
@@ -97,11 +99,6 @@ input[type="radio"]:checked {
 
 .car-container.highlight .sidebar.right_sidebar {
   background-color: #c8042f;
-}
-
-.sidebar.mid_sidebar,
-.sidebar.right_sidebar {
-  color: #fff;
 }
 
 .car-container.highlight .sidebar {
@@ -277,7 +274,7 @@ input[type="radio"]:checked {
 
   .buttons {
     width: 100%;
-  flex-direction: row;
+    flex-direction: row;
   }
 
   .pre-btn img,
@@ -300,5 +297,9 @@ input[type="radio"]:checked {
     bottom: 0;
     width: 74px;
     height: 100px;
+  }
+
+  .sidebar.left_sidebar {
+    color: #000;
   }
 }
