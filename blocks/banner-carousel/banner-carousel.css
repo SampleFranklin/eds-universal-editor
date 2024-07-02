@@ -57,6 +57,13 @@ input[type="radio"]:checked {
   background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #fff 100%);
 }
 
+.nxt-btn:disabled,
+.pre-btn:disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.2;
+}
+
 .sidebar {
   padding: 20px;
   height: 0;
@@ -286,6 +293,11 @@ input[type="radio"]:checked {
     opacity: 1;
   }
 
+  .nxt-btn:disabled,
+  .pre-btn:disabled {
+    opacity: inherit;
+  }
+
   .car-container.highlight .sidebar::after {
     top: 0;
     width: 74px;
@@ -305,5 +317,4 @@ input[type="radio"]:checked {
   .car-container.highlight .sidebar-car--image {
     transform: scale(2);
   }
-  
 }
