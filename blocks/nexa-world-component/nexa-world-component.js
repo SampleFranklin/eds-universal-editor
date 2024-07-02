@@ -17,7 +17,7 @@ export default function decorate(block) {
     ] = block.children;
     const pretitle = pretitleEl?.textContent?.trim() || '';
     const title = titleEl?.textContent?.trim() || '';
-    const description = Array.from(descriptionEl.querySelectorAll('p')).map(p => p.outerHTML).join('');
+    const description = descriptionEl?.textContent?.trim();
     const cta = (ctaLinkEl) ? {
       href: ctaLinkEl.querySelector('a')?.href || '#',
       title: ctaLinkEl.querySelector('a')?.title || '',
@@ -27,6 +27,7 @@ export default function decorate(block) {
     const links = Array.from(linkEls).map(linkEl => ({
       text: linkEl.textContent.trim(),
       href: linkEl.querySelector('a')?.href || '#',
+      target: linkEl.querySelector('a')?.target || '_self',
       imgSrc: linkEl.getAttribute('data-img-src') || '', 
       imgAlt: linkEl.getAttribute('data-img-alt') || '', 
     }));
