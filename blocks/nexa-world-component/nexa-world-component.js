@@ -70,6 +70,7 @@ export default function decorate(block) {
       <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
         <p class="cta-text">${nexaWorldContent.cta?.textContent}</p>
         <span class="location-icon"><img src="/content/dam/nexa-world/north_east.svg" alt="Image arrow"></span>
+        <span class="location-icon-nexa"><img src="/content/dam/nexa-world/add_location_alt.png" alt="Image test"></span>
       </a>
     </div>`;
 
@@ -131,7 +132,7 @@ export default function decorate(block) {
     const linkImg = event.currentTarget.querySelector('img');
     if (linkImg) {
       imgElement.src = linkImg.src;
-      linkImg.style.display = "none";
+      
     }
   };
 

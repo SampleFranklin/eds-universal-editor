@@ -1,63 +1,455 @@
- .nexa-world__container {
+.nexa-world__container {
+    background-color: black;
+    display: flex;
+    padding-left: 64px;
+    height: 100vh;
+    width: 1300px;
+    text-align: left;
+    color: white;
+    font-family: "Fira-Sans";
+    padding-top: 16px; 
+    gap: 8px;
+    flex-direction: column;
+}
+
+.nexa-world__teaser {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.nexa-world__img {
+    width: 750px;
+    height: 400px;
+    flex-shrink: 0;
+    position: absolute;
+    right: 0px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.nexa-world__action {
+    display: inline-flex;
+    width: 200px;
+    height: 40px;
+    background-color: #ffffff;
+    padding: 8px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    align-self: stretch;
+    /* clip-path: polygon(2% 0, 100% 0, 100% 88%, 98% 100%, 0 100%, 0 12%); */
+}
+
+.btn-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #18171A;
+    text-align: center;
+    font-family: "Fira Sans";
+    font-size: 18px;
+    font-style: normal;
+    width: 113px;
+}
+
+.p::after {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px; 
+    content: url('/content/dam/nexa-world/north_east.svg');  
+}
+
+.location-icon svg {
+    height: 20px;
+    width: 20px;
+    display: flex; 
+}
+
+.nexa-world__content {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    margin: 2px 0;
+}
+
+.nexa-world__content .description {
+    color: #FFF; 
+    font-family: "Fira Sans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal; 
+    margin: 2px 0;
+    
+
+}
+
+.nexa-world__title .pre-title {
+    color: var(--Tertiary-White, #FFF);
+    font-family: "Kepler Std";
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 28px;
+}
+
+.nexa-world__title .title {
+    color: var(--Tertiary-White, #FFF);
+    font-family: "Kepler Std";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 48px; 
+    letter-spacing: 1.68px;
+    padding-bottom: 22px;
+    margin: 2px 0;
+}
+
+.nexa-world__links ul.list-container {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.nexa-world__links ul.list-container li a {
+    color: #b2b2b2;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.nexa-world__links ul.list-container li a:hover {
+    color: white;  
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.nexa-world__links ul.list-container li a img {
+    max-width: 24px;  
+    height: auto;
+    margin-left: 5px;
+    display: none;
+}
+
+.nexa-world__links ul.list-container li a:hover img {
+    display: inline;
+    display: none;
+}
+
+
+
+/* Mobile View */
+/* Mobile View */
+@media (max-width: 768px) {
+    .nexa-world__container {
+      background-color: black;
+      display: flex;
+      padding: 16px;
+      height: 100vh;
+      width: 100%;
+      text-align: left;
+      color: white;
+      font-family: "Fira-Sans";
+      gap: 8px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .nexa-world__teaser {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      width: 100%;
+    }
+  
+    .nexa-world__img {
+      width: 100%;
+      height: auto;
+      position: relative;
+      border-radius: 8px;
+      object-fit: cover;
+      right: 0;
+    }
+  
+    .nexa-world__action {
+      display: flex;
+      width: 100%;
+      height: 40px;
+      background-color: #ffffff;
+      padding: 8px;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+  
+    .btn-title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #18171A;
+      text-align: center;
+      font-family: "Fira Sans";
+      font-size: 14px;
+      font-style: normal;
+      width: auto;
+    }
+  
+    .p::after {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 24px; 
+      content: url('/content/dam/nexa-world/add_location_alt.png');  
+    }
+  
+    .location-icon svg {
+      height: 20px;
+      width: 20px;
+      display: flex; 
+    }
+  
+    .nexa-world__content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 2px 0;
+      width: 100%;
+    }
+  
+    .nexa-world__content .description {
+      color: #FFF; 
+      font-family: "Fira Sans";
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 18px; 
+      margin: 2px 0;
+    }
+  
+    .nexa-world__title .pre-title {
+      color: var(--Tertiary-White, #FFF);
+      font-family: "Kepler Std";
+      font-size: 18px;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 22px;
+    }
+  
+    .nexa-world__title .title {
+      color: var(--Tertiary-White, #FFF);
+      font-family: "Kepler Std";
+      font-size: 28px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 32px; 
+      letter-spacing: 1.68px;
+      padding-bottom: 16px;
+      margin: 2px 0;
+    }
+  
+    .nexa-world__links ul.list-container {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      justify-content: center;
+      width: 100%;
+      padding: 0;
+    }
+  
+    .nexa-world__links ul.list-container li {
+      margin: 0;
+    }
+  
+    .nexa-world__links ul.list-container li a {
+      color: #b2b2b2;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+    }
+  
+    .nexa-world__links ul.list-container li a:hover {
+      color: white;  
+      font-weight: 500;
+      cursor: pointer;
+    }
+  
+    .nexa-world__links ul.list-container li a img {
+      max-width: 20px;  
+      height: auto;
+      margin-left: 5px;
+      display: none;
+    }
+  
+    .nexa-world__links ul.list-container li a:hover img {
+      display: inline;
+    }
+  }
+  
+  
+
+    /*
+    ---------
   background-color: black;
   color: white;
   font-family: "Fira-Sans";
-  padding-top: 48px;
-  padding-left: 20px;
-  display: flex;
+  /* padding-top: 48px; */
+  /*
+width: 1366px;
+height: 868px;
+padding-left: 64px;
+align-items: center;
+/* text container*//*
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+align-items: flex-start;
+gap: 8px;
+
+display: inline-flex;
+flex-direction: column;
+align-items: flex-start;
+}
+----------------
+*/
+ 
+  /* display: flex;
   flex-direction: column;
-  gap: 72px;
-  @media (min-width: 768px) {
+  gap: 72px; */
+
+  /* width: 1176.7px;
+  padding-left: 20px;
+  align-items: left;
+  flex-shrink: 0; */
+  
+
+  /* @media (min-width: 768px) {
     display: flex;
     padding-left: 64px;
     padding-top: 0px;
-  }
-}
+  } */
+
+  /*
+----------------
 .nexa-world__content {
   display: flex;
   flex-direction: column;
   gap: 32px;
+  
   .description {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
-  }
+color: #FFF; 
+font-family: "Fira Sans";
+font-size: 18px;
+font-style: normal;
+font-weight: 300;
+line-height: 24px; /* 133.333% */
+/*
+-----------
+*/
+
+    /* font-size: 18px;
+    font-weight: 300;
+    line-height: 24px;
+    align-self: stretch;
+    color: #FFF;
+    font-family: "Fira Sans";
+    font-style: normal;
+    width:376px;
+    height:72px;
+    text-align: left;
+    margin: 0px;  */
+
+    /*
+    --------
+    display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: flex-start;
+flex: 1 0 0;
+align-self: stretch;
+    }
 }
 .nexa-world__title {
-  display: flex;
+    .pre-title{
+    color: var(--Tertiary-White, #FFF);
+/* Desktop/Headings/Byline 1 */
+/*
+font-family: "Kepler Std";
+font-size: 24px;
+font-style: italic;
+font-weight: 400;
+line-height: 56px;
+-----------
+*/
+  /* display: flex;
+  padding-left: 64px;
   flex-direction: column;
   gap: 8px;
   font-style: "Kepler Std";
   .pre-title {
+    font-size: 48px;
     font-style: italic;
-    font-size: 24px;
     font-weight: 400;
-    line-height: 28px;
-  }
+    line-height: 56px;
+    text-align: left; */
+
+ /*  }*/
+
+ /*
+ -------------
   .title {
-    font-size: 32px;
+
+color: var(--Tertiary-White, #FFF);
+/* Desktop/Headings/Heading 1 */
+/*
+font-family: "Kepler Std";
+font-size: 40px;
+font-style: normal;
+font-weight: 700;
+line-height: 96px; /* 114.286% */
+/*
+letter-spacing: 1.68px;
+-----------
+*/
+    /* font-size: 32px;
     font-weight: 600;
     line-height: 40px;
     letter-spacing: 0.64px;
+    width:auto;
+    height:auto;
+    margin: 0; */
+    /*
   }
 }
+  */
+
+  /*
+--------------
  .nexa-world__teaser {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 40px;
 } 
-.nexa-world__img img {
-    max-width: 100%;   
-    height: auto;
-    border-radius: 8px;  
-  }
+.nexa-world__img  {
+    position: absolute;
+    border-radius: 8px; 
+    width: 650px;
+    height: 200px;
+    
+    right: 0px;
+    flex-shrink: 0; 
+    
+    }
 .nexa-world__links {
     ul.list-container {
     
         list-style: none;
         display: flex;
-        flex-direction: column;
+        flex-direction: horizontal;
         gap: 16px;
   }
   
@@ -78,31 +470,88 @@
     max-width: 24px;  
     height: auto;
     margin-left: 5px;
+    margin-bottom:100px;
+    margin-left: 20px;
+    display:none;
+    
   } 
 } 
+-------------
+ */
 
+/*
+-------------
 .nexa-world__action {
-  display: inline-flex;
+   display: inline-flex;
   width: 200px;
   height: 40px;
   background-color: #ffffff;
-  padding: 8px 12px;
+  
+  display: flex;
+padding: 8px 20px;
+justify-content: center;
+align-items: center;
+gap: 12px;
+align-self: stretch;
   clip-path: polygon(2% 0, 100% 0, 100% 88%, 98% 100%, 0 100%, 0 12%);
   .btn-title {
-    text-decoration: none;
+  ----------
+  */
+    /* text-decoration: none;
     color: black;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    p {
-      font-size: 16px;
+    
+    font-family: "Fira Sans";
+    gap: 12px;
+    text-align: center;
+    font-style: normal; */
+    
+/*
+---------
+color: var(--Primary-Main, #18171A);
+    text-align: center;
+    /* Buttons/large */
+/*
+    font-family: "Fira Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    
+    
+    p::after {
+       font-size: 18px;
       font-weight: 400;
       line-height: 24px;
-    }
-    .location-icon svg {
-      height: 20px;
+    height: 10px;
+    width: 8px;
+    content: url('/content/dam/nexa-world/north_east.svg'); /* Replace with the path to your SVG file */
+/*
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
       width: 20px;
-    }
+      height: 20px; 
+    
+
+     }
+    .location-icon svg  {
+       height: 4px;
+      width: 5px;
+      display: flex; 
+      
+      
+      }
+
+      display: flex;
+width: 20px;
+height: 20px;
+padding: 3px;
+justify-content: center;
+align-items: center;
+}
   }
-} 
+ -----------
+ */
