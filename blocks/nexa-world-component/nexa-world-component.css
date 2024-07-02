@@ -21,7 +21,7 @@
 
 .nexa-world__img {
     max-width: 1130px;
-    height: 50px;
+    height: auto;
     flex-shrink: 0;
     position: absolute;
     right: 0px;
