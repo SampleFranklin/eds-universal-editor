@@ -18,7 +18,7 @@ export default function decorate(block) {
         const description = descriptionEl?.textContent?.trim();
         const cta = (ctaLinkEl) ? {
           href: ctaLinkEl.querySelector('a')?.href || '#',
-          title: ctaLinkEl.querySelector('a')?.title || '',
+          title: ctaTextEl.querySelector('a')?.title || '',
           target: ctaTargetEl.textContent?.trim() || '_self',
           textContent: ctaTextEl?.textContent?.trim() || ''
         } : null;
