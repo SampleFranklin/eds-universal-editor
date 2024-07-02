@@ -93,8 +93,6 @@ const nexaWorldTeaser = `
 // Add event listeners to links to change the image on hover
  // Select all link elements within .nexa-world__links
 const links = block.querySelectorAll('.nexa-world__links a');
-
-// Select the img element within .nexa-world__img
 const imgElement = block.querySelector('.nexa-world__img img');
 
 // Store the original src property value of the img element
@@ -119,7 +117,7 @@ links.forEach(link => {
 });
 }
 // Call the function to decorate the block
-document.addEventListener('DOMContentLoaded', () => {
-  const blocks = document.querySelectorAll('.nexa-world-component'); // Replace with the actual block class name
-  blocks.forEach(decorate);
-});
+document.addEventListener('DOMContentLoaded', nexaWorldContent)
+//   const blocks = document.querySelectorAll('.nexa-world-component'); // Replace with the actual block class name
+//   blocks.forEach(decorate);
+// });
