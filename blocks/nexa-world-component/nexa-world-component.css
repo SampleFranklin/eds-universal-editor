@@ -1,4 +1,4 @@
-.nexa-world__container {
+ .nexa-world__container {
   background-color: black;
   color: white;
   font-family: "Fira-Sans";
@@ -48,9 +48,9 @@
   gap: 40px;
 } 
 .nexa-world__img img {
-    max-width: 100%; /* Ensure image is responsive */
+    max-width: 100%;   
     height: auto;
-    border-radius: 8px; /* Adjust border radius as needed */
+    border-radius: 8px;  
   }
 .nexa-world__links {
     ul.list-container {
@@ -69,18 +69,20 @@
   }
   
   ul.list-container li a:hover {
-    color: white; /* Adjust link hover color */
+    color: white;  
     font-weight: 500;
     cursor: pointer;
   }
   
   ul.list-container li a img {
-    max-width: 24px; /* Adjust image size */
+    max-width: 24px;  
     height: auto;
     margin-left: 5px;
   } 
 } 
-
+.cta-image {
+    display: none;
+  }
 .nexa-world__action {
   display: inline-flex;
   width: 200px;
@@ -105,4 +107,4 @@
       width: 20px;
     }
   }
-}
+} 
