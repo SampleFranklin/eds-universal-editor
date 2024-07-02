@@ -13,8 +13,13 @@ export default function decorate(block) {
       ctaTextEl,
       ctaLinkEl,
       ctaTargetEl,
+      imageEl,
       ...linkEls // Get the rest of the elements as link elements
     ] = block.children;
+    const image =imageEl?.querySelector('picture');
+    if (image) {
+      initImage(image, altTextEl);
+    }
     const pretitle = pretitleEl?.textContent?.trim() || '';
     const title = titleEl?.textContent?.trim() || '';
     const description = descriptionEl?.textContent?.trim();
@@ -28,6 +33,7 @@ export default function decorate(block) {
       text: linkEl.textContent.trim(),
       href: linkEl.querySelector('a')?.href || '#',
       target: linkEl.textContent?.trim() || '_self',
+      
       imgSrc: linkEl.getAttribute('data-img-src') || '', 
       imgAlt: linkEl.getAttribute('data-img-alt') || '', 
     }));
@@ -59,6 +65,7 @@ const nexaWorldContent = getNexaWorldContent();
       ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
       ${ctaWithIconHtml}
       <div class="nexa-world__img">
+      ${(image) ? `<div class="teaser__image">${image.outerHTML}</div>` : ''}
       <img src="${nexaWorldContent.imgSrc}" alt="${nexaWorldContent.imgAlt}" />
     </div>
     </div>`;
