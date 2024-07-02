@@ -74,7 +74,7 @@
   ul.list-container li a {
     display: flex;
     align-items: center;
-    color: whitesmoke;
+    color: #b2b2b2;
     text-decoration: none;
     transition: color 0.3s ease;
   }
