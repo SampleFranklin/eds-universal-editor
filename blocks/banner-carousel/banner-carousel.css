@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: "Anek Latin";
 }
 input[type="radio"] {
   box-sizing: border-box;
@@ -56,6 +57,13 @@ input[type="radio"]:checked {
   background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #fff 100%);
 }
 
+.nxt-btn:disabled,
+.pre-btn:disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.2;
+}
+
 .sidebar {
   padding: 20px;
   height: 0;
@@ -63,6 +71,7 @@ input[type="radio"]:checked {
   transition: all 0.3s linear;
   background-color: #171c8f;
   position: relative;
+  color: #ffffff;
 }
 
 .car-container.highlight .sidebar::after {
@@ -99,13 +108,7 @@ input[type="radio"]:checked {
   background-color: #c8042f;
 }
 
-.sidebar.mid_sidebar,
-.sidebar.right_sidebar {
-  color: #fff;
-}
-
 .car-container.highlight .sidebar {
-  /* display: block; */
   height: 100%;
 }
 
@@ -144,7 +147,7 @@ input[type="radio"]:checked {
 }
 
 .car-container.highlight .sidebar-car--image {
-  transform: scale(2);
+  transform: scale(1.5);
 }
 
 .sidebar--hr {
@@ -206,13 +209,13 @@ input[type="radio"]:checked {
 }
 
 .buttons {
-  display: flex;
+  display: grid;
   gap: 10px;
   justify-content: center;
   margin: 0.75rem auto;
   justify-content: center;
   width: 80%;
-  flex-direction: column;
+  grid-template-columns: 1fr;
 }
 
 .buttons a {
@@ -277,7 +280,7 @@ input[type="radio"]:checked {
 
   .buttons {
     width: 100%;
-  flex-direction: row;
+    grid-template-columns: 1fr 1.5fr;
   }
 
   .pre-btn img,
@@ -290,6 +293,11 @@ input[type="radio"]:checked {
     opacity: 1;
   }
 
+  .nxt-btn:disabled,
+  .pre-btn:disabled {
+    opacity: inherit;
+  }
+
   .car-container.highlight .sidebar::after {
     top: 0;
     width: 74px;
@@ -300,5 +308,13 @@ input[type="radio"]:checked {
     bottom: 0;
     width: 74px;
     height: 100px;
+  }
+
+  .sidebar.left_sidebar {
+    color: #000;
+  }
+
+  .car-container.highlight .sidebar-car--image {
+    transform: scale(2);
   }
 }

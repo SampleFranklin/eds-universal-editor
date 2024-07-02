@@ -1,9 +1,10 @@
 import ctaUtils from '../../utility/ctaUtils.js';
+import { fetchPlaceholders } from '../../scripts/aem.js';
 // eslint no-underscore-dangle: 0
 
-async function fetchCar() {
+async function fetchCar(domain) {
   const car = await fetch(
-    'https://publish-p71852-e1137339.adobeaemcloud.com/graphql/execute.json/msil-platform/arenaBannerList?q=123',
+    `${domain}/graphql/execute.json/msil-platform/arenaBannerList?q=123`,
   );
   return car.json();
 }
@@ -14,7 +15,8 @@ function convertToLakh(number) {
 }
 
 export default async function decorate(block) {
-  const carResponse = await fetchCar();
+  const { publishDomain } = await fetchPlaceholders();
+  const carResponse = await fetchCar(publishDomain);
   const carsObject = carResponse?.data?.carModelList?.items?.reduce(
     (acc, car) => {
       acc[car.modelId] = car;
@@ -48,8 +50,18 @@ export default async function decorate(block) {
     const [firstLetterTitle, ...rest] = title.textContent.split(' ');
     const restTitle = rest.join(' ');
 
-    const primaryCta = ctaUtils.getLink(primaryCtaLinkEl, primaryCtaTextEl, primaryCtaTargetEl, 'primary__btn');
-    const secondaryCta = ctaUtils.getLink(secondaryCtaLinkEl, secondaryCtaTextEl, secondaryCtaTargetEl, 'secondary__btn');
+    const primaryCta = ctaUtils.getLink(
+      primaryCtaLinkEl,
+      primaryCtaTextEl,
+      primaryCtaTargetEl,
+      'primary__btn',
+    );
+    const secondaryCta = ctaUtils.getLink(
+      secondaryCtaLinkEl,
+      secondaryCtaTextEl,
+      secondaryCtaTargetEl,
+      'secondary__btn',
+    );
     carContainersWrapper.innerHTML += `
       <div class="car-container">
           <img
@@ -67,21 +79,27 @@ export default async function decorate(block) {
                 alt=${carObjectItem?.carName || ''}
                 class="sidebar-car--logo"
               />
-              <span><strong>${carObjectItem?.bodyType}</strong> | ${type?.textContent || ''}</span>
+              <span><strong>${carObjectItem?.bodyType}</strong> | ${
+  type?.textContent || ''
+}</span>
               <div class="sidebar--hr"></div>
               <div class="sidebar--details">
                 <div class="sidebar--details--exshowroom">
                   <span>Ex. showroom:</span>
-                  <span><strong>${convertToLakh(carObjectItem?.exShowroomPrice) || ''} Lakhs</strong></span>
+                  <span><strong>${
+  convertToLakh(carObjectItem?.exShowroomPrice) || ''
+} Lakhs</strong></span>
                 </div>
                 <div class="sidebar--details--onroad">
                   <span>Estd. On-road in Gurgaon:</span>
-                  <span><strong>${onRoadPrice?.textContent || ''}</strong></span>
+                  <span><strong>${
+  onRoadPrice?.textContent || ''
+}</strong></span>
                 </div>
               </div>
               <div class="buttons">
-                ${(primaryCta) ? primaryCta.outerHTML : ''}
-                ${(secondaryCta) ? secondaryCta.outerHTML : ''}
+                ${primaryCta ? primaryCta.outerHTML : ''}
+                ${secondaryCta ? secondaryCta.outerHTML : ''}
               </div>
             </div>
           </div>
@@ -104,6 +122,7 @@ export default async function decorate(block) {
 
   const nxtBtn = document.querySelector('.nxt-btn');
   const preBtn = document.querySelector('.pre-btn');
+  preBtn.disabled = true;
 
   const isDesktop = window.innerWidth > 998;
   const cards = document.querySelectorAll('.car-container');
@@ -111,6 +130,10 @@ export default async function decorate(block) {
   let currentIndex = 0;
   const cardsPerPage = isDesktop ? 3 : 1;
   let highlightedSidebar = null;
+
+  if (cardCount - cardsPerPage === 0) {
+    nxtBtn.disabled = true;
+  }
 
   function addBGToSlider(indexSidebar, sideBarItem) {
     if (indexSidebar === 0) {
@@ -173,6 +196,19 @@ export default async function decorate(block) {
     }
   }
 
+  function toggleDisableNxtPrvBtn(isCurrentIndex, totalCount) {
+    if (isCurrentIndex === 0) {
+      preBtn.disabled = true;
+    } else {
+      preBtn.disabled = false;
+    }
+    if (isCurrentIndex === totalCount - cardsPerPage) {
+      nxtBtn.disabled = true;
+    } else {
+      nxtBtn.disabled = false;
+    }
+  }
+
   function showCards(index) {
     cards.forEach((card, i) => {
       const indexSidebar = i - index;
@@ -216,9 +252,7 @@ export default async function decorate(block) {
     } />`;
   }
 
-  document
-    .querySelector('.hero_banner_container_wrapper')
-    .appendChild(bullets);
+  document.querySelector('.hero_banner_container_wrapper').appendChild(bullets);
 
   nxtBtn.addEventListener('click', () => {
     if (currentIndex + cardsPerPage < cards.length) {
@@ -227,6 +261,7 @@ export default async function decorate(block) {
       const isBullets = document.querySelector('#bullets').children;
       isBullets[pageCount - 1].checked = false;
       isBullets[pageCount].checked = true;
+      toggleDisableNxtPrvBtn(currentIndex, cardCount);
       showCards(currentIndex);
     }
   });
@@ -238,6 +273,7 @@ export default async function decorate(block) {
       const isBullets = document.querySelector('#bullets').children;
       isBullets[pageCount + 1].checked = false;
       isBullets[pageCount].checked = true;
+      toggleDisableNxtPrvBtn(currentIndex, cardCount);
       showCards(currentIndex);
     }
   });
