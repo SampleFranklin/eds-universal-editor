@@ -11,8 +11,7 @@ export default function decorate(block) {
           ctaTextEl,
           ctaLinkEl,
           ctaTargetEl,
-         // ...linkEls // Get the rest of the elements as link elements
-        ] = block.children;
+         ] = block.children;
     const pretitle = pretitleEl?.textContent?.trim() || '';
         const title = titleEl?.textContent?.trim() || '';
         const description = descriptionEl?.textContent?.trim();
@@ -22,6 +21,21 @@ export default function decorate(block) {
           target: ctaTargetEl.textContent?.trim() || '_self',
           textContent: ctaTextEl?.textContent?.trim() || ''
         } : null;
+        const ctaElements = ctasEl.map((element) => {
+            const [imageEl, altTextEl, ctaTextEl, linkEl, targetEl] = element.children;
+            const imgSrc = imageEl?.querySelector('img')?.src;
+            const altText = altTextEl?.textContent?.trim() || 'icon';
+            const ctaText = ctaTextEl?.textContent?.trim() || '';
+            const link = linkEl?.querySelector('.button-container a')?.href;
+            const target = targetEl?.textContent?.trim() || '_self';
+            element.innerHTML = `
+      <a href="${link}" target="${target}" class="user__contact--icon" title=${ctaText}>
+          <img src="${imgSrc}" alt="${altText}" loading="lazy">
+      </a>
+    `;
+    moveInstrumentation(element, element.firstElementChild);
+    return element.innerHTML;
+  }).join('');
     return {
           pretitle,
           title,
@@ -51,11 +65,20 @@ export default function decorate(block) {
           ${ctaHtml}
         
         </div>`;
+        
+    //     element.innerHTML = `
+    //     <a href="${link}" target="${target}" class="user__contact--icon" title=${ctaText}>
+    //         <img src="${imgSrc}" alt="${altText}" loading="lazy">
+    //     </a>
+    //   `;
      
     // Replace the block's HTML with the constructed Nexa World HTML and teaser if present
       block.innerHTML = `
         <div class="nexa-world__container">
           ${nexaWorldHtml}
+          <div class="nexa-world__links">
+                ${ctaElements}
+            </div>
          </div>`;
      }
      // Call the function to decorate the block
