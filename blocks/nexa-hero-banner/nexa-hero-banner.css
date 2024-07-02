@@ -103,6 +103,10 @@
     transform: scale(0.5);
 }
 
+.hero-banner__container .hero-banner__bottom-section .hero-banner__mute-btn--muted::after {
+    background: url('../../icons/volume_off.svg');
+}
+
 .hero-banner__container .hero-banner__cta-container {
     display: none;
 }
@@ -137,20 +141,6 @@
     position: absolute;
     bottom: -2px;
     right: 90px;
-}
-
-.hero-banner__container .carousel__next::after {
-    background: url(../../icons/carousel_arrow_white.svg) no-repeat;
-    height: 48px;
-    width: 48px;
-    transform: rotate(0deg);
-}
-
-.hero-banner__container .carousel__prev::after {
-    background: url(../../icons/carousel_arrow_white.svg) no-repeat;
-    height: 48px;
-    width: 48px;
-    transform: rotate(180deg);
 }
 
 .hero-banner__container .carousel__navigation .carousel__nav--disabled {
@@ -318,27 +308,6 @@
     .hero-banner__container .carousel__next {
         height: 60px;
         width: 60px;
-    }
-
-    .hero-banner__container .carousel__prev {
-        content: '';
-        transform: rotate(270deg);
-    }
-
-    .hero-banner__container .carousel__next {
-        content: '';
-    }
-
-    .hero-banner__container .carousel__prev:hover {
-        background: url('../../icons/carousel_arrow_white_border.svg') no-repeat;
-    }
-
-    .hero-banner__container .carousel__next:hover {
-        background: url('../../icons/carousel_arrow_white_border.svg') no-repeat;
-    }
-
-    .hero-banner__container .carousel__prev::after {
-        transform: rotate(270deg);
     }
 
     .hero-banner__container .carousel__dots {
