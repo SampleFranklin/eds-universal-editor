@@ -47,7 +47,7 @@
   justify-content: space-between;
   gap: 40px;
 }
-/* .nexa-world__links {
+.nexa-world__links {
   ul {
     list-style: none;
     display: flex;
@@ -65,16 +65,8 @@
       color: #ffffff;
     }
   }
-} */
-.nexa-world__icons {
-    display: flex;
-    align-items: flex-start;
-  }
-  .nexa-world--icon {
-    display: flex;
-    padding: 12px;
-    flex-direction: row;
-  }
+}
+
 .nexa-world__action {
   display: inline-flex;
   width: 200px;
