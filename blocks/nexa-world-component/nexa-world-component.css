@@ -72,15 +72,16 @@
   }
   
   ul.list-container li a {
-    display: flex;
-    align-items: center;
     color: #b2b2b2;
-    text-decoration: none;
-    transition: color 0.3s ease;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
   }
   
   ul.list-container li a:hover {
     color: white; /* Adjust link hover color */
+    font-weight: 500;
+    cursor: pointer;
   }
   
   ul.list-container li a img {
