@@ -1223,12 +1223,16 @@
         "name": "ctaText",
         "label": "CTA Text",
         "condition": {
-          "===": [
-            {
-              "var": "ctaVisibility"
-            },
-            true
-          ]
+          "===": [ { "var": "ctaVisibility" }, true ]
+        }
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "ctaLink",
+        "label": "CTA Link",
+        "condition": {
+          "===": [ { "var": "ctaVisibility" }, true ]
         }
       }
     ]
