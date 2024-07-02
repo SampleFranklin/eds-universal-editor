@@ -5,7 +5,6 @@ const slider = {
     let currentIndex = 0;
 
     const updateSlider = () => {
-      console.log(currentIndex);
       const boxWidth = boxes[0].offsetWidth;
       const offset = -currentIndex * boxWidth;
       sliderContainer.style.transform = `translateX(${offset}px)`;
@@ -24,7 +23,7 @@ const slider = {
       prevButton.classList.remove("hide");
       currentIndex =
         currentIndex < totalBoxes - visibleBoxes ? currentIndex + 3 : 0;
-      if (currentIndex > totalBoxes - 3) nextButton.classList.add("hide");
+      if (currentIndex >= totalBoxes - 3) nextButton.classList.add("hide");
 
       updateSlider();
     });
