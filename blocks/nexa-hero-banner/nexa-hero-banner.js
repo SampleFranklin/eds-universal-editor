@@ -122,7 +122,7 @@ export default async function decorate(block) {
   `;
 
   carouselUtils.init(
-    block.querySelector('.hero-banner__carousel'), 'hero-banner__slides', 'fade', (currentSlide, targetSlide) => {
+    block.querySelector('.hero-banner__carousel'), 'hero-banner__slides', 'fade', (currentSlide, targetSlide, direction) => {
       currentSlide.querySelector('video')?.pause();
       targetSlide.querySelector('video')?.play();
     }

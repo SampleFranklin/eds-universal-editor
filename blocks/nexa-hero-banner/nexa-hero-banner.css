@@ -143,10 +143,6 @@
     right: 90px;
 }
 
-.hero-banner__container .carousel__navigation .carousel__nav--disabled {
-    opacity: 0.4;
-}
-
 @media (min-width: 999px) {
     .hero-banner__container {
         clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), 82% calc(100% - 30px), calc(82% - 25px) 100%, 0 100%);

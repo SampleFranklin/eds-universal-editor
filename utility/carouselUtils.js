@@ -3,7 +3,7 @@ const carouselUtils = {
     el,
     className,
     carouselType = 'fade',
-    onChange = (currentSlide, targetSlide) => {},
+    onChange = (currentSlide, targetSlide, direction) => {},
   ) => {
     if (!el) {
       return
@@ -86,7 +86,7 @@ const carouselUtils = {
       if (targetSlide) {
         currentSlide.classList.remove('carousel__slide--active');
         targetSlide.classList.add('carousel__slide--active');
-        onChange(currentSlide, targetSlide);
+        onChange(currentSlide, targetSlide, position);
         updateNavigation(targetIndex, slides.length);
         updateDots(targetIndex, currentIndex);
       }
@@ -105,7 +105,7 @@ const carouselUtils = {
         const targetSlide = el.querySelector(`.carousel__slide[data-slide-index="${targetIndex}"]`)
         currentSlide?.classList?.remove('carousel__slide--active');
         targetSlide?.classList?.add('carousel__slide--active');
-        onChange(currentSlide, targetSlide);
+        onChange(currentSlide, targetSlide, 0);
         const slides = el.querySelectorAll('.carousel__slide');
         updateNavigation(targetIndex, slides.length);
         updateDots(targetIndex, parseInt(currentSlide.dataset.slideIndex, 10));
