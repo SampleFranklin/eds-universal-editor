@@ -16,10 +16,7 @@ export default function decorate(block) {
       imageEl,
       ...linkEls // Get the rest of the elements as link elements
     ] = block.children;
-    const image =imageEl?.querySelector('picture');
-    if (image) {
-      initImage(image, altTextEl);
-    }
+    
     const pretitle = pretitleEl?.textContent?.trim() || '';
     const title = titleEl?.textContent?.trim() || '';
     const description = descriptionEl?.textContent?.trim();
@@ -34,8 +31,8 @@ export default function decorate(block) {
       href: linkEl.querySelector('a')?.href || '#',
       target: linkEl.textContent?.trim() || '_self',
       
-      imgSrc: linkEl.getAttribute('data-img-src') || '', 
-      imgAlt: linkEl.getAttribute('data-img-alt') || '', 
+    //   imgSrc: linkEl.getAttribute('data-img-src') || '', 
+    //   imgAlt: linkEl.getAttribute('data-img-alt') || '', 
     }));
    return {
       pretitle,
@@ -43,6 +40,7 @@ export default function decorate(block) {
       description,
       cta,
       links,
+      image,
     };
   }
 // Get Nexa World content from the block
@@ -64,9 +62,9 @@ const nexaWorldContent = getNexaWorldContent();
       </div>
       ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
       ${ctaWithIconHtml}
-      <div class="nexa-world__img">
-      ${(image) ? `<div class="teaser__image">${image.outerHTML}</div>` : ''}
-      <img src="${nexaWorldContent.imgSrc}" alt="${nexaWorldContent.imgAlt}" />
+      
+      ${(image) ? `<div class="nexa-world__image">${image.outerHTML}</div>` : ''}
+      
     </div>
     </div>`;
 // Create the links HTML structure
@@ -77,10 +75,13 @@ const nexaWorldContent = getNexaWorldContent();
     const anchor = document.createElement('a');
     anchor.href = link.href;
     anchor.textContent = link.text;
-
-    const imgElement = document.createElement('img');
-    imgElement.src = link.imgSrc;
-    imgElement.alt = link.imgAlt;
+    const image =imageEl?.querySelector('picture');
+    if (image) {
+      initImage(image, altTextEl);
+    }
+    // const imgElement = document.createElement('img');
+    // imgElement.src = link.imgSrc;
+    // imgElement.alt = link.imgAlt;
     anchor.appendChild(imgElement);
     listItem.appendChild(anchor);
     ul.appendChild(listItem);
