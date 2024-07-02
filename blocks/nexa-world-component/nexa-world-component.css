@@ -47,7 +47,7 @@
     justify-content: space-between;
     gap: 40px;
   }
-  .nexa-world__links {
+  /* .nexa-world__links {
     ul {
       list-style: none;
       display: flex;
@@ -65,6 +65,28 @@
         color: #ffffff;
       }
     }
+  } */
+  .nexa-world__links {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .nexa-world__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .nexa-world__link:hover p {
+    text-decoration: underline;
+  }
+  
+  .nexa-world__link img {
+    max-width: 50px;
+    margin-bottom: 5px;
   }
   .nexa-world__action {
     display: inline-flex;
