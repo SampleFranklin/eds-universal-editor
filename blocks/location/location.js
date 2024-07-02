@@ -8,26 +8,23 @@ export default function decorate(block) {
 
     block.innerHTML = 
     `
-        <button class="location" id="location">
+        <button class="location-btn" id="location-btn">
             Delhi
-            <span class="dropdown__arrow">
-            </span>
         </button>
         <div class="geo-location">
             <p class="geo-location__text">${title}</p>
             <div class="detect-location">
-                <p class="find-location__text"><span class="location__icon"></span>${fylText}</p>
+                <p class="find-location__text">${fylText}</p>
                 <p class="separator">or</p>
                 <div class="detect-location__cta">
                 <p class="detect-location__text">
-                    <span class="detect-location__icon"></span>
                     ${dylText}
                 </p>
             </div>
         </div>
     `
     // document.addEventListener("DOMContentLoaded", () => {
-        const locationButton = document.querySelector(".location");
+        const locationButton = document.querySelector(".location-btn");
         const geoLocationDiv = document.querySelector(".geo-location");
         const detectLocationCTA = document.querySelector(".detect-location__cta");
         const findLocationText = document.querySelector(".find-location__text");
@@ -132,7 +129,7 @@ export default function decorate(block) {
     console.log("Nearest city:", nearestCity);
     
     // Update the nearest city in the dropdown
-    const location = document.getElementById("location");
+    const location = document.getElementById("location-btn");
     location.innerHTML = nearestCity;
     }
 }
