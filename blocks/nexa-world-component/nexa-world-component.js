@@ -28,10 +28,7 @@ export default function decorate(block) {
       cta,
     };
   }
-
- 
-
-  // Get Nexa World content from the block
+// Get Nexa World content from the block
   const nexaWorldContent = getNexaWorldContent();
 
   // Construct CTA with icon
@@ -42,8 +39,7 @@ export default function decorate(block) {
         <span class="location-icon"><img src="/content/dam/nexa-world/north_east.svg" alt="Image arrow"></span>
       </a>
     </div>`;
-
-  // Construct Nexa World HTML structure
+// Construct Nexa World HTML structure
   const nexaWorldHtml = `
     <div class="nexa-world__content">
       <div class="nexa-world__title">
@@ -53,17 +49,12 @@ export default function decorate(block) {
       ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
       ${ctaHtml}
     </div>`;
-
-  
-
-  // Replace the block's HTML with the constructed Nexa World HTML and CTA elements
+ // Replace the block's HTML with the constructed Nexa World HTML and CTA elements
   block.innerHTML = `
     <div class="nexa-world__container">
       ${nexaWorldHtml}
-      
-    </div>`;
+       </div>`;
 }
-
 // Call the function to decorate the block
 document.addEventListener('DOMContentLoaded', () => {
   const blocks = document.querySelectorAll('.nexa-world-component'); // Replace with the actual block class name
