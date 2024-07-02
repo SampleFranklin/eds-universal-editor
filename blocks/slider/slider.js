@@ -15,7 +15,7 @@ export default function decorate(block) {
   });
 
   const newHtml = `
-        <div class="container">
+        <div class="container container__slider">
             <div class="slider-content">
                ${sliderTitle ? sliderTitle.outerHTML : ""}
             </div>
