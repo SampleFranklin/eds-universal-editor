@@ -73,6 +73,7 @@
         );
         filter: drop-shadow(0px 3.269px 3.269px rgba(0, 0, 0, 0.04));
         backdrop-filter: blur(9.806451797485352px);
+        clip-path: polygon(0 0, 100% 0, 100% 80%, 85% 100%, 0 100%);
         .card-content {
           line-height: 0;
         }
@@ -711,7 +712,7 @@
 
             .teaser__image img {
               max-width: 100%;
-              height: auto;
+              height: 110px;
               clip-path: none;
             }
 
@@ -754,8 +755,13 @@
               rgba(255, 98, 0, 0.1) 111.9%
             );
             backdrop-filter: blur(0);
+            clip-path: none;
+            .teaser__card{
+              background: linear-gradient(228deg, rgba(23, 29, 155, 0.10) 31.52%, rgba(255, 98, 0, 0.10) 111.9%);
+            }
             .teaser__content {
               padding: 16px;
+              background: linear-gradient(228deg, rgba(23, 29, 155, 0.10) 31.52%, rgba(255, 98, 0, 0.10) 111.9%);
             }
             .teaser__title h3 {
               margin: 0 0 8px 0;
