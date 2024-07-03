@@ -73,7 +73,7 @@ export default function decorate(block) {
         ${nexaWorldContent.title ? `${nexaWorldContent.title.outerHTML}` : ''}
       </div>
       ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
-      // Construct CTA with icon
+      
   
       <div class="nexa-world__action">
     <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
