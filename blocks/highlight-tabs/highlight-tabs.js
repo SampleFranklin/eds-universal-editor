@@ -88,5 +88,5 @@ export default function decorate(block) {
   initializeHighlightItems(block.querySelectorAll('.highlightItem'));
   setupTabs(block, highlightItemListElements);
 
-  return { block, cleanup: () => {} };
+  return block;
 }
