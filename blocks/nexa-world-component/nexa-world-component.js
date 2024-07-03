@@ -81,10 +81,11 @@ export default function decorate(block) {
       <span class="location-icon"><img src="/content/dam/nexa-world/north_east.svg" alt="Image arrow"></span>
     </a>
   </div>;
+  <div class="nexa-world__img">
+        <img src="${nexaWorldContent.links.length > 0 ? nexaWorldContent.links[0].imgSrc : ''}" alt="${nexaWorldContent.links.length > 0 ? nexaWorldContent.links[0].imgAlt : ''}" />
+      </div>
   </div>`;
-    //   <div class="nexa-world__img">
-    //     <img src="${nexaWorldContent.links.length > 0 ? nexaWorldContent.links[0].imgSrc : ''}" alt="${nexaWorldContent.links.length > 0 ? nexaWorldContent.links[0].imgAlt : ''}" />
-    //   </div>
+      
     
 
    
