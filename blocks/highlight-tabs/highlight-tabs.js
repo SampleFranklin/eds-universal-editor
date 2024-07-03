@@ -1,4 +1,4 @@
-import { generateSwitchListHTML, setupTabs } from '../../utility/tabsUtils.js';
+import TabUtils from '../../utility/tabsUtils.js';
 import utility from '../../utility/utility.js';
 
 export default function decorate(block) {
@@ -74,11 +74,13 @@ export default function decorate(block) {
   const blockClone = block.cloneNode(true);
   const highlightItemListElements = Array.from(block.children);
   const highlightItemListElementsClone = Array.from(blockClone.children);
-  const highlightItemsHTML = highlightItemListElements.map((highlightItem, index) => generateHighlightItemHTML(highlightItem, index)).join('');
-  const switchListHTML = generateSwitchListHTML(highlightItemListElementsClone, (highlightItem) => {
-    const [, , tabNameEl] = highlightItem.children;
-    return tabNameEl?.textContent?.trim() || '';
-  });
+  const highlightItemsHTML = highlightItemListElements
+    .map((highlightItem, index) => generateHighlightItemHTML(highlightItem, index)).join('');
+  const switchListHTML = TabUtils
+    .generateSwitchListHTML(highlightItemListElementsClone, (highlightItem) => {
+      const [, , tabNameEl] = highlightItem.children;
+      return tabNameEl?.textContent?.trim() || '';
+    });
 
   block.innerHTML = `
     <div class="highlightItems-container">${highlightItemsHTML}</div>
@@ -86,7 +88,7 @@ export default function decorate(block) {
   `;
 
   initializeHighlightItems(block.querySelectorAll('.highlightItem'));
-  setupTabs(block, highlightItemListElements);
+  TabUtils.setupTabs(block, highlightItemListElements);
 
   return block;
 }
