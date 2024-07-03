@@ -77,10 +77,6 @@ export default function decorate(block) {
           <p class="cta-text">${nexaWorldContent.cta?.textContent}</p>
         </a>
       </div>
-      
-      <div class="nexa-world__img">
-        <img src="${nexaWorldContent.links.length > 0 ? nexaWorldContent.links[1].imgSrc : ''}" alt="${nexaWorldContent.links.length > 0 ? nexaWorldContent.links[0].imgAlt : ''}" />
-      </div>
     </div>`;
     
 
