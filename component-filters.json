@@ -69,7 +69,8 @@
       "arena-help-me-select",
       "intro-to-design-car-detail",
       "car-detail-feature",
-      "nexa-car-hero-banner"
+      "nexa-car-hero-banner",
+      "best-deals"
     ]
   },
   {
@@ -178,6 +179,12 @@
   },
   {
     "id": "slider",
+    "components": [
+      "teaser"
+    ]
+  },
+  {
+    "id": "best-deals",
     "components": [
       "teaser"
     ]
