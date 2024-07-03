@@ -17,7 +17,6 @@ export default function decorate(block) {
     const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)');
     title?.classList?.add('title');
     const description = Array.from(descriptionEl.querySelectorAll('p')).map(p => p.textContent.trim()).join('');
-    console.log(description);
     
     const cta = (ctaLinkEl) ? {
       href: ctaLinkEl.querySelector('a')?.href || '#',
@@ -92,7 +91,6 @@ export default function decorate(block) {
     anchor.textContent = link.text;
 
     const imgElement = document.createElement('img');
-    console.log(link.imgSrc);
     imgElement.src = link.imgSrc;
     imgElement.alt = link.imgAlt;     
     
@@ -133,14 +131,13 @@ export default function decorate(block) {
     const teaser = document.querySelector('.nexa-world__teaser');
     const container = document.querySelector('.nexa-world__container');
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const backgroundImage = document.querySelector('.nexa-world__links ul.list-container li:first-child img');
+    console.log(backgroundImage);
 
-   
-    links.forEach(link => {
-      teaser.style.backgroundImage = this.querySelector('img').src;;
-      link.addEventListener('mouseover', function() {
-       
+    teaser.style.backgroundImage = backgroundImage.src;
+    links.forEach(link => {      
+      link.addEventListener('mouseover', function() {       
         const imgSrc = this.querySelector('img').src;
-        console.log('Line 141'+imgSrc);
         if (isMobile) {
           teaser.style.backgroundImage = `url(${imgSrc})`;
         } else {
