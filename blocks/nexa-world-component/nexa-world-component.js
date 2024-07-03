@@ -3,6 +3,7 @@ import ctaUtils from '../../utility/ctaUtils.js';
 
 export default function decorate(block) {
   // Function to extract Nexa World content from the block
+ 
   function getNexaWorldContent() {
     const [
       pretitleEl,
@@ -59,18 +60,10 @@ export default function decorate(block) {
       links
     };
   }
-
-  // Get Nexa World content from the block
+// Get Nexa World content from the block
   const nexaWorldContent = getNexaWorldContent();
 
-  // Construct CTA with icon
-  const ctaWithIconHtml = `
-    <div class="nexa-world__action">
-      <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
-        <span class="cta-text">${nexaWorldContent.cta?.textContent}</span>
-        <span class="location-icon"><img src="/content/dam/nexa-world/north_east.svg" alt="Image arrow"></span>
-      </a>
-    </div>`;
+ 
 
   // Construct Nexa World HTML structure
   const nexaWorldHtml = `
@@ -80,11 +73,21 @@ export default function decorate(block) {
         ${nexaWorldContent.title ? `${nexaWorldContent.title.outerHTML}` : ''}
       </div>
       ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
-      ${ctaWithIconHtml}
-      <div class="nexa-world__img">
-        <img src="${nexaWorldContent.links.length > 0 ? nexaWorldContent.links[0].imgSrc : ''}" alt="${nexaWorldContent.links.length > 0 ? nexaWorldContent.links[0].imgAlt : ''}" />
-      </div>
-    </div>`;
+      // Construct CTA with icon
+  
+      <div class="nexa-world__action">
+    <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
+      <span class="cta-text">${nexaWorldContent.cta?.textContent}</span>
+      <span class="location-icon"><img src="/content/dam/nexa-world/north_east.svg" alt="Image arrow"></span>
+    </a>
+  </div>;
+  </div>`;
+    //   <div class="nexa-world__img">
+    //     <img src="${nexaWorldContent.links.length > 0 ? nexaWorldContent.links[0].imgSrc : ''}" alt="${nexaWorldContent.links.length > 0 ? nexaWorldContent.links[0].imgAlt : ''}" />
+    //   </div>
+    
+
+   
 
   // Create the links HTML structure
   const ul = document.createElement('ul');
@@ -117,39 +120,106 @@ export default function decorate(block) {
       ${nexaWorldTeaser}
     </div>`;
 
-  // Add event listeners to links and CTA text to change the image on hover
-  const links = block.querySelectorAll('.nexa-world__links a');
-  const ctaText = block.querySelector('.cta-text');
-  const imgElement = block.querySelector('.nexa-world__img img');
-
-  // Store the original src property value of the img element
-  const originalImgSrc = imgElement.src;
-
-  // Function to handle mouse enter and leave for changing images
-  const handleMouseEnter = (event) => {
-    const linkImg = event.currentTarget.querySelector('img');
-    if (linkImg) {
-      imgElement.src = linkImg.src;
+    document.addEventListener('DOMContentLoaded', function() {
+        const links = document.querySelectorAll('.nexa-world__links a');
+        const teaser = document.querySelector('.nexa-world__teaser');
+        const container = document.querySelector('.nexa-world__container');
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+      
+        links.forEach(link => {
+          link.addEventListener('mouseover', function() {
+            const imgSrc = this.querySelector('img').src;
+            if (isMobile) {
+              teaser.style.backgroundImage = `url(${imgSrc})`;
+            } else {
+              container.style.backgroundImage = `url(${imgSrc})`;
+            }
+          });
+      
+          link.addEventListener('mouseout', function() {
+            if (isMobile) {
+              teaser.style.backgroundImage = 'none';
+            } else {
+              container.style.backgroundImage = 'none';
+            }
+          });
+        });
+      });
+      
+        document.addEventListener('DOMContentLoaded', function() {
+        const links = document.querySelectorAll('.nexa-world__links a');
+        const teaser = document.querySelector('.nexa-world__teaser');
+        const container = document.querySelector('.nexa-world__container');
+      
+        function updateHoverEffects() {
+          const isMobile = window.matchMedia("(max-width: 768px)").matches;
+      
+          links.forEach(link => {
+            link.addEventListener('mouseover', function() {
+              const imgSrc = this.querySelector('img').src;
+              if (isMobile) {
+                teaser.style.backgroundImage = `url(${imgSrc})`;
+              } else {
+                container.style.backgroundImage = `url(${imgSrc})`;
+              }
+            });
+      
+            link.addEventListener('mouseout', function() {
+              if (isMobile) {
+                teaser.style.backgroundImage = 'none';
+              } else {
+                container.style.backgroundImage = 'none';
+              }
+            });
+          });
+        }
+    
+        updateHoverEffects();
+        window.addEventListener('resize', updateHoverEffects);
+      });
     }
-  };
-
-  const handleMouseLeave = () => {
-    imgElement.src = originalImgSrc;
-  };
-
-  // Add event listeners to each link
-  links.forEach(link => {
-    link.addEventListener('mouseenter', handleMouseEnter);
-    link.addEventListener('mouseleave', handleMouseLeave);
-  });
-
-  // Add event listeners to the CTA text
-  ctaText.addEventListener('mouseenter', handleMouseEnter);
-  ctaText.addEventListener('mouseleave', handleMouseLeave);
-}
-
-// Call the function to decorate the block
+      //Call the function to decorate the block
 document.addEventListener('DOMContentLoaded', () => {
   const blocks = document.querySelectorAll('.nexa-world-component'); // Replace with the actual block class name
   blocks.forEach(decorate);
 });
+
+//   // Add event listeners to links and CTA text to change the image on hover
+//   const links = block.querySelectorAll('.nexa-world__links a');
+//   const ctaText = block.querySelector('.cta-text');
+//   const imgElement = block.querySelector('.nexa-world__img img');
+
+//   // Store the original src property value of the img element
+//   const originalImgSrc = imgElement.src;
+
+//   // Function to handle mouse enter and leave for changing images
+//   const handleMouseEnter = (event) => {
+//     const linkImg = event.currentTarget.querySelector('img');
+//     if (linkImg) {
+//       imgElement.src = linkImg.src;
+//     }
+//   };
+
+//   const handleMouseLeave = () => {
+//     imgElement.src = originalImgSrc;
+//   };
+
+
+
+
+  // Add event listeners to each link
+//   links.forEach(link => {
+//     link.addEventListener('mouseenter', handleMouseEnter);
+//     link.addEventListener('mouseleave', handleMouseLeave);
+//   });
+
+//   // Add event listeners to the CTA text
+//   ctaText.addEventListener('mouseenter', handleMouseEnter);
+//   ctaText.addEventListener('mouseleave', handleMouseLeave);
+// }
+
+// // Call the function to decorate the block
+// document.addEventListener('DOMContentLoaded', () => {
+//   const blocks = document.querySelectorAll('.nexa-world-component'); // Replace with the actual block class name
+//   blocks.forEach(decorate);
+// });
