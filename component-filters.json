@@ -141,7 +141,7 @@
   {
     "id": "highlight-tabs",
     "components": [
-      "teaser"
+      "highlight-item"
     ]
   },
   {
