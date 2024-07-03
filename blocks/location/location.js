@@ -92,6 +92,7 @@ export default function decorate(block) {
       }
     });
     detectLocationCTA.addEventListener('click', () => {
+      geoLocationDiv.style.display="none";
       requestLocationPermission();
     });
   }

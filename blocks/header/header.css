@@ -29,7 +29,9 @@ header nav[aria-expanded="true"] {
   overflow-y: auto;
   min-height: 100vh;
 }
-
+.location-wrapper{
+  margin-right:-50px;
+}
 @media (width >= 600px) {
   header nav {
     padding: 0 2rem;
