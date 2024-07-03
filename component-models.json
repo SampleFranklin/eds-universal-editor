@@ -1943,17 +1943,17 @@
         "valueType": "string"
       },
       {
-        "component": "richtext",
+        "component": "text-input",
         "name": "expandDescription",
         "value": "",
         "label": "Expand Description Label",
         "valueType": "string"
       },
       {
-        "component": "richtext",
+        "component": "text-input",
         "name": "collapseDescription",
         "value": "",
-        "label": "Expand Description Label",
+        "label": "Collapse Description Label",
         "valueType": "string"
       }
     ]
