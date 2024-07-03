@@ -2178,5 +2178,34 @@
         "multi": false
       }
     ]
+  },
+  {
+    "id": "car-detail-feature",
+    "fields": [
+      {
+        "component": "select",
+        "name": "feature",
+        "label": "Select Feature Type",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Interior",
+            "value": "feature-interior"
+          },
+          {
+            "name": "Safety",
+            "value": "feature-safety"
+          },
+          {
+            "name": "Suzuki Connect",
+            "value": "feature-suzuki-connect"
+          },
+          {
+            "name": "Performance",
+            "value": "feature-performance"
+          }
+        ]
+      }
+    ]
   }
 ]

@@ -191,5 +191,11 @@
     "components": [
       "teaser"
     ]
+  },
+  {
+    "id": "car-detail-feature",
+    "components": [
+      "teaser"
+    ]
   }
 ]
