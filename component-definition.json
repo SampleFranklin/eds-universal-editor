@@ -835,7 +835,7 @@
           }
         },
         {
-          "title": "Intro To Design Details Car Details",
+          "title": "Intro To Design Details",
           "id": "intro-to-design-car-detail",
           "plugins": {
             "xwalk": {
@@ -845,7 +845,8 @@
                   "name": "Intro To Design Details Car Details",
                   "model": "intro-to-design-car-detail",
                   "filter": "intro-to-design-car-detail",
-                  "title": "Introduction To Design"
+                  "title": "Introduction To Design",
+                  "description": "Test Desc"
                 }
               }
             }
