@@ -1,4 +1,6 @@
-import ctaUtils from './ctaUtils.js';
+import ctaUtils from '../../utility/ctaUtils.js';
+import utility from '../../utility/utility.js';
+
 
 export default function decorate(block) {
     const [
