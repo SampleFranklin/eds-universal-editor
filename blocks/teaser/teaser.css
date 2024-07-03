@@ -146,6 +146,7 @@ main .teaser-container > div {
       }
 
       .primary__btn {
+        width:auto;
         background: var(--primary-main-color);
         color: var(--secondary-main-color);
         text-align: center;
@@ -427,6 +428,7 @@ main .teaser-container > div {
       }
 
       .teaser__card--focused {
+        height: 463px;
         .teaser__image {
           width: 55%;
           height: auto !important;

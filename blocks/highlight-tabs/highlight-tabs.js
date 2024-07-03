@@ -1,128 +1,92 @@
-export default function decorate(block) {
+import { generateSwitchListHTML, setupTabs } from '../../utility/tabsUtils.js';
+import utility from '../../utility/utility.js';
 
-  function generateTeaserHTML(highlightTeaser, index) {
+export default function decorate(block) {
+  const highlightItemButtons = {};
+  function generateHighlightItemHTML(highlightItem, index) {
     const [
       imageEl,
-      altTextEl,
-      pretitleEl,
+      altTextEl,,
       titleEl,
+      subtitleEl,
       descriptionEl,
-    ] = highlightTeaser.children;
+      expandDescriptionEl,
+      collapseDescriptionEL,
+    ] = highlightItem.children;
 
-    const image = imageEl?.querySelector('picture > img');
-    const imageUrl = image ? image.src : '';
-    const alt = altTextEl?.textContent?.trim() || 'Image Description';
-    const pretitle = pretitleEl?.textContent?.trim() || '';
+    const image = imageEl?.querySelector('picture');
+    if (image) {
+      const img = image.querySelector('img');
+      img.classList.add('highlightItem-img');
+      img.removeAttribute('width');
+      img.removeAttribute('height');
+      const alt = altTextEl?.textContent?.trim() || 'Image Description';
+      img.setAttribute('alt', alt);
+    }
+
     const title = titleEl?.textContent?.trim() || '';
-    const description = Array.from(descriptionEl.querySelectorAll('p')).map(p => p.textContent.trim()).join('');
-
-    return `
-      <div class="teaser switch-index-${index}">
+    const subtitle = subtitleEl?.textContent?.trim() || '';
+    const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.textContent.trim()).join('');
+    const expandDescription = expandDescriptionEl?.textContent?.trim() || '';
+    const collapseDescription = collapseDescriptionEL?.textContent?.trim() || '';
+    highlightItemButtons[index] = {
+      expandBtn: expandDescription,
+      collapseBtn: collapseDescription,
+    };
+    const newHTML = utility.sanitizeHtml(`
         <div class="text-section">
           <div class="top-left">
             <h1>${title}</h1>
           </div>
           <div class="top-right">
-            <p>${pretitle}</p>
+            <p>${subtitle}</p>
           </div>
         </div>
-        <img class="teaser-img" src="${imageUrl}" alt="${alt}"/>
-        <div class="teaser-content">
+        ${(image) ? image.outerHTML : ''}
+        <div class="highlightItem-content">
           <p class="more-content">
             ${description}
           </p>
-          <a href="#" class="read-more">Read more</a>
+          <a href="#" class="read-more">${expandDescription}</a>
         </div>
-      </div>
-    `;
+    `);
+
+    highlightItem.classList.add('highlightItem', `switch-index-${index}`);
+    highlightItem.innerHTML = newHTML;
+    return highlightItem.outerHTML;
   }
 
-  function generateSwitchListItemHTML(altText, index) {
-    return `
-      <li class="switch-list-item switch-index-${index}">${altText}</li>
-    `;
-  }
-
-  function generateSwitchListHTML(teaserListElements) {
-    const switchListHTML = teaserListElements.map((highlightTeaser, index) => {
-      const [, altTextEl] = highlightTeaser.children;
-      const altText = altTextEl?.textContent?.trim() || '';
-      return generateSwitchListItemHTML(altText, index);
-    }).join('');
-
-    return `
-      <div class="switch-list-section">
-        <ul class="switch-list dots">
-          ${switchListHTML}
-        </ul>
-      </div>
-    `;
-  }
-
-  // Main logic
-  const teaserListElements = Array.from(block.children);
-  const teasersHTML = teaserListElements.map((teaser, index) => generateTeaserHTML(teaser, index)).join('');
-  const switchListHTML = generateSwitchListHTML(teaserListElements);
-
-  block.innerHTML = `
-    <div class="teasers-container">${teasersHTML}</div>
-    ${switchListHTML}
-  `;
-
-  // Event handling
-  const switchList = block.querySelector('.switch-list');
-
-  switchList.addEventListener('click', function(event) {
-    const switchItem = event.target.closest('.switch-list-item');
-    if (!switchItem) return;
-
-    const index = Array.from(switchList.children).indexOf(switchItem);
-    const teasers = block.querySelectorAll('.teaser');
-    const switchItems = block.querySelectorAll('.switch-list-item');
-
-    teasers.forEach(teaser => teaser.style.display = 'none');
-    teasers[index].style.display = 'block';
-
-    switchItems.forEach(item => item.classList.remove('active'));
-    switchItem.classList.add('active');
-  });
-
-  block.querySelectorAll('.teaser').forEach(teaser => {
-    const readMoreButton = teaser.querySelector('.read-more');
-    if (readMoreButton) {
-      readMoreButton.addEventListener('click', function(event) {
-        event.preventDefault();
-        const moreContent = teaser.querySelector('.more-content');
-        moreContent.classList.toggle('expanded');
-        readMoreButton.textContent = moreContent.classList.contains('expanded') ? 'Read less' : 'Read more';
-      });
-    }
-  });
-
-  // Cleanup function
-  const eventListeners = [];
-
-  function addEventListener(element, event, handler) {
-    element.addEventListener(event, handler);
-    eventListeners.push({ element, event, handler });
-  }
-
-  function removeAllEventListeners() {
-    eventListeners.forEach(({ element, event, handler }) => {
-      element.removeEventListener(event, handler);
+  function initializeHighlightItems(highlightItems) {
+    highlightItems.forEach((highlightItem, index) => {
+      const readMoreButton = highlightItem.querySelector('.read-more');
+      if (readMoreButton) {
+        readMoreButton.addEventListener('click', (event) => {
+          event.preventDefault();
+          const moreContent = highlightItem.querySelector('.more-content');
+          moreContent.classList.toggle('expanded');
+          const { expandBtn, collapseBtn } = highlightItemButtons[index];
+          readMoreButton.textContent = moreContent.classList.contains('expanded') ? collapseBtn : expandBtn;
+        });
+      }
     });
   }
 
-  // Initial setup
-  const defaultTeaser = block.querySelector('.teaser.switch-index-0');
-  if (defaultTeaser) {
-    defaultTeaser.style.display = 'block';
-  }
+  const blockClone = block.cloneNode(true);
+  const highlightItemListElements = Array.from(block.children);
+  const highlightItemListElementsClone = Array.from(blockClone.children);
+  const highlightItemsHTML = highlightItemListElements.map((highlightItem, index) => generateHighlightItemHTML(highlightItem, index)).join('');
+  const switchListHTML = generateSwitchListHTML(highlightItemListElementsClone, (highlightItem) => {
+    const [, , tabNameEl] = highlightItem.children;
+    return tabNameEl?.textContent?.trim() || '';
+  });
 
-  const firstSwitchItem = block.querySelector('.switch-list-item');
-  if (firstSwitchItem) {
-    firstSwitchItem.classList.add('active');
-  }
+  block.innerHTML = `
+    <div class="highlightItems-container">${highlightItemsHTML}</div>
+    ${switchListHTML}
+  `;
 
-  return { block, cleanup: removeAllEventListeners };
+  initializeHighlightItems(block.querySelectorAll('.highlightItem'));
+  setupTabs(block, highlightItemListElements);
+
+  return block;
 }
