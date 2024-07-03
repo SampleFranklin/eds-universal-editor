@@ -73,17 +73,12 @@ export default function decorate(block) {
         ${nexaWorldContent.title ? `${nexaWorldContent.title.outerHTML}` : ''}
       </div>
       ${nexaWorldContent.description ? `<p class="description">${nexaWorldContent.description}</p>` : ''}
-      
-  
       <div class="nexa-world__action">
     <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
-      <span class="cta-text">${nexaWorldContent.cta?.textContent}</span>
-      <span class="location-icon"><img src="/content/dam/nexa-world/north_east.svg" alt="Image arrow"></span>
-    </a>
-  </div>;
-  <div class="nexa-world__img">
-        <img src="${nexaWorldContent.links.length > 0 ? nexaWorldContent.links[0].imgSrc : ''}" alt="${nexaWorldContent.links.length > 0 ? nexaWorldContent.links[0].imgAlt : ''}" />
-      </div>
+      <p class="cta-text">${nexaWorldContent.cta?.textContent}</p>
+       </a>
+  </div>
+ 
   </div>`;
       
     
