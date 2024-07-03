@@ -1,3 +1,5 @@
+import utility from "../../utility/utility.js";
+
 export default function decorate(block) {
     const [
         titleEl,
@@ -139,6 +141,9 @@ export default function decorate(block) {
         const carCardsContainer = document.createElement('div');
         carCardsContainer.classList.add('card-list');
 
+        const carCardsWithTeaser = document.createElement("div");
+        carCardsWithTeaser.classList.add("card-list-teaser");
+        carCardsWithTeaser.append(carCardsContainer);
         newContainer.appendChild(carFiltersContainer);
 
         const textElement = document.createElement('div');
@@ -155,7 +160,7 @@ export default function decorate(block) {
         subtitleElement.textContent = subtitle;
         textElement.appendChild(subtitleElement);
 
-        newContainer.appendChild(carCardsContainer);
+        newContainer.append(carCardsWithTeaser);
 
         let selectedFilter = 'All';
         const filters = {};
@@ -269,13 +274,16 @@ export default function decorate(block) {
                 const description = document.createElement('p');
                 description.classList.add('card-description');
                 description.textContent = car.carDescription;
+                
                 cardContent.appendChild(description);
-
+                const priceTextElement = document.createElement("p");
+                priceTextElement.classList.add("card-price-text");
+                cardContent.appendChild(priceTextElement);
                 const priceElement = document.createElement('p');
                 priceElement.classList.add('card-price');
                 cardContent.appendChild(priceElement);
 
-                fetchPrice(car.modelId, priceElement, car.exShowroomPrice);
+                fetchPrice(car.modelId, priceElement, priceTextElement, car.exShowroomPrice);
 
                 card.appendChild(cardImage);
                 card.appendChild(cardContent);
@@ -284,7 +292,7 @@ export default function decorate(block) {
             });
         }
 
-        function fetchPrice(variantCode, priceElement, defaultPrice) {
+        function fetchPrice(variantCode, priceElement, priceTextElement, defaultPrice) {
             const storedPrices = getLocalStorage('modelPrice') ? JSON.parse(getLocalStorage('modelPrice')) : {};
             if (storedPrices[variantCode] && storedPrices[variantCode].price[location]) {
                 const storedPrice = storedPrices[variantCode].price[location];
@@ -331,13 +339,15 @@ export default function decorate(block) {
                         priceElement.textContent = priceText + " " + formattedPrice;
                     } else {
                         const formattedPrice = defaultPrice ? priceFormatting(defaultPrice) : 'Not available';
-                        priceElement.textContent = priceText + " " + formattedPrice;
+                        priceElement.textContent = formattedPrice;
+                        priceTextElement.textContent = priceText;
                     }
                 })
                 .catch(error => {
                     console.error('There was a problem with the fetch operation:', error);
                     const formattedPrice = defaultPrice ? priceFormatting(defaultPrice) : 'Not available';
-                    priceElement.textContent = priceText + " " + formattedPrice;
+                        priceElement.textContent = formattedPrice;
+                        priceTextElement.textContent = priceText;
                 });
             }
         }
@@ -351,6 +361,9 @@ export default function decorate(block) {
         }
 
         function priceFormatting(price) {
+          if (componentVariation === "arena-variant") {
+            return utility.formatToLakhs(price);
+          }
             const formatter = new Intl.NumberFormat('en-IN', {
                 style: 'currency',
                 currency: 'INR'
