@@ -2073,7 +2073,6 @@
       {
         "component": "richtext",
         "name": "description",
-        "value": "",
         "label": "Description",
         "valueType": "string"
       },
