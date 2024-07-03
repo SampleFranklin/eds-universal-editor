@@ -238,7 +238,11 @@ padding:24px;
 
         position: absolute;
         right: 0;
-        bottom: 0;
+        bottom: -3px;
+        @media (min-width:999px) {
+          bottom:0;
+          
+        }
       }
     }
   }
@@ -448,6 +452,7 @@ padding:24px;
               &::after {
                 content: url("");
                 right: 0;
+                bottom:4px;
                 background-image: url('../../icons/white-slant-arrow.svg');
                 background-size: 24px;
                 display: inline-block;
@@ -613,13 +618,15 @@ padding:24px;
         margin-top: 10px;
 
         .teaser {
-          position: fixed;
-          bottom: 0;
           border-radius: 4px 4px 4px 0px;
           background: linear-gradient(228deg,
               rgba(23, 29, 155, 0.1) 31.52%,
               rgba(255, 98, 0, 0.1) 111.9%);
           backdrop-filter: blur(0);
+          @media (max-width:999px) {
+            flex:0 0 100%;
+            
+          }
 
           &:first-child {
             display: none;
@@ -816,8 +823,11 @@ padding:24px;
         .teaser-list {
           margin: 0;
           flex-basis: 20%;
+          min-height: 470px;
+          min-width: 300px;
 
           .teaser:first-child {
+            clip-path: none;
             .teaser__card {
               display: flex;
               flex-direction: column;
@@ -826,6 +836,7 @@ padding:24px;
 
             .teaser__image {
               display: flex;
+              width: 100%;
             }
 
             .teaser__image picture {
@@ -835,7 +846,7 @@ padding:24px;
 
             .teaser__image img {
               max-width: 100%;
-            
+            clip-path: none;
             }
 
             .teaser__content {
@@ -874,14 +885,12 @@ padding:24px;
           }
 
           .teaser:not(:first-child) {
-            background: linear-gradient(228deg,
-                rgba(23, 29, 155, 0.1) 31.52%,
-                rgba(255, 98, 0, 0.1) 111.9%);
+            background: none;
             backdrop-filter: blur(0);
             clip-path: none;
 
             .teaser__card {
-              background: linear-gradient(228deg, rgba(23, 29, 155, 0.10) 31.52%, rgba(255, 98, 0, 0.10) 111.9%);
+              background: none;
             }
 
             .teaser__content {
@@ -926,6 +935,7 @@ padding:24px;
 
               &::after {
                 content: "";
+                display: none;
               }
             }
           }
