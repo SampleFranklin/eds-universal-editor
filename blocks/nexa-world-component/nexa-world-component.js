@@ -10,7 +10,6 @@ export default function decorate(block) {
       descriptionEl,
       ctaTextEl,
       ctaLinkEl,
-      ctaTargetEl,
       ...linkEls // Get the rest of the elements as link elements
     ] = block.children;
 
@@ -68,9 +67,8 @@ export default function decorate(block) {
   const ctaWithIconHtml = `
     <div class="nexa-world__action">
       <a href="${nexaWorldContent.cta?.href || '#'}" title="${nexaWorldContent.cta?.title || ''}" class="button btn-title" target="${nexaWorldContent.cta?.target || '_self'}">
-        <p class="cta-text">${nexaWorldContent.cta?.textContent}</p>
+        <span class="cta-text">${nexaWorldContent.cta?.textContent}</span>
         <span class="location-icon"><img src="/content/dam/nexa-world/north_east.svg" alt="Image arrow"></span>
-        
       </a>
     </div>`;
 
@@ -90,7 +88,7 @@ export default function decorate(block) {
 
   // Create the links HTML structure
   const ul = document.createElement('ul');
-  ul.classList.add("list-container");
+  ul.classList.add('list-container');
   nexaWorldContent.links.forEach(link => {
     const listItem = document.createElement('li');
     const anchor = document.createElement('a');
@@ -132,13 +130,11 @@ export default function decorate(block) {
     const linkImg = event.currentTarget.querySelector('img');
     if (linkImg) {
       imgElement.src = linkImg.src;
-      
     }
   };
 
   const handleMouseLeave = () => {
     imgElement.src = originalImgSrc;
-    
   };
 
   // Add event listeners to each link
