@@ -81,7 +81,7 @@ export default function decorate(block) {
         ${nexaWorldContent.pretitle ? `<p class="pre-title">${nexaWorldContent.pretitle}</p>` : ''}
         ${nexaWorldContent.title ? `${nexaWorldContent.title.outerHTML}` : ''}
       </div>
-      ${nexaWorldContent.description ?  `${nexaWorldContent.description.outerHTML}` : ''}
+      ${nexaWorldContent.description ?  `${nexaWorldContent.description}` : ''}
       ${ctaWithIconHtml}
       <div class="nexa-world__img">
         <img src="${nexaWorldContent.links.length > 0 ? nexaWorldContent.links[0].imgSrc : ''}" alt="${nexaWorldContent.links.length > 0 ? nexaWorldContent.links[0].imgAlt : ''}" />
