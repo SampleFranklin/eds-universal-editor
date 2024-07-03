@@ -68,7 +68,8 @@
       "finance-options",
       "arena-help-me-select",
       "intro-to-design-car-detail",
-      "car-detail-feature"
+      "car-detail-feature",
+      "nexa-car-hero-banner"
     ]
   },
   {
@@ -194,9 +195,9 @@
     ]
   },
   {
-    "id": "car-detail-feature",
+    "id": "nexa-car-hero-banner",
     "components": [
-      "teaser"
+      "nexa-car-hero-banner-item"
     ]
   }
 ]

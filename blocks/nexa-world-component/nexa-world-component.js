@@ -42,6 +42,7 @@ export default function decorate(block) {
       const linkAnchor = linkAnchorEl?.querySelector('a')?.href || '#';
       const linkTarget = linkTargetEl?.querySelector('a')?.target || '_self';
      
+     
       return {
         imgSrc: linkImageEl?.querySelector('img')?.src || '',
         imgAlt: linkAltText,
@@ -82,6 +83,7 @@ export default function decorate(block) {
   // Create the links HTML structure
   const ul = document.createElement('ul');
   
+  
   ul.classList.add('list-container');
   nexaWorldContent.links.forEach(link => {
     if(link.imgSrc!=''){
@@ -92,7 +94,12 @@ export default function decorate(block) {
 
     const imgElement = document.createElement('img');
     imgElement.src = link.imgSrc;
-    imgElement.alt = link.imgAlt;     
+    imgElement.alt = link.imgAlt;
+    if(link.imgSrc===''){
+      console.log('i am here');
+      imgElement.src=nexaWorldContent.links[1].imgSrc;
+      imgElement.alt = nexaWorldContent.links[1].imgAlt;
+    }    
     
     anchor.appendChild(imgElement);
     listItem.appendChild(anchor);
