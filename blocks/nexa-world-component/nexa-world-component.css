@@ -2,7 +2,7 @@
     background-color: black;
     display: flex;
     padding-left: 64px;
-    height: 100vh;
+    
     width: 1366px;
     text-align: left;
     color: white;
@@ -20,8 +20,8 @@
 }
 
 .nexa-world__img {
-    width: 650px;
-    height: 868px;
+    width: 100%;
+    height: 100%;
     padding:15px;
     position: absolute;
     right: 0px;
@@ -142,129 +142,7 @@
 
 
 
-/* Mobile View */
-@media (max-width: 768px) {
-    .nexa-world__container {
-        display: inline-flex;
-        padding: 48px 0px 0px 20px;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
 
-
-        background-color: black;
-        color: white;
-        font-family: "Fira-Sans";
-       gap: 42px;
-       padding-left: 64px;
-       padding-top: 0px;
-        }
-      }
-      .nexa-world__content {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        .description {
-          font-size: 8px;
-          font-weight: 400;
-          line-height: 10px;
-        }
-      }
-      .nexa-world__title {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        font-style: "Kepler Std";
-        .pre-title {
-          font-style: italic;
-          font-size: 12px;
-          font-weight: 400;
-          line-height: 16px;
-        }
-        .title {
-          font-size: 26px;
-          font-weight: 600;
-          line-height: 28px;
-          letter-spacing: 0.64px;
-        }
-      }
-      .nexa-world__teaser {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 40px;
-      }
-
-      .nexa-world__img {
-        width: 50px;
-        height: auto;
-        padding:15px;
-        position: absolute;
-        right: 0px;
-        
-        object-fit: contain;
-    }
-    .nexa-world__links ul.list-container {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        justify-content: center;
-        width: 100%;
-        padding: 0;
-    }
-    
-    .nexa-world__links ul.list-container li a {
-        color: #b2b2b2;
-        font-size: 14px;
-        font-weight: 400;
-        
-        line-height: 16px;
-        text-decoration: none;
-    }
-    
-    .nexa-world__links ul.list-container li a:hover {
-        color: white;  
-        font-weight: 500;
-        cursor: pointer;
-    }
-    
-    .nexa-world__links ul.list-container li a img {
-        max-width: 24px;  
-        height: auto;
-        margin-left: 5px;
-        display: none;
-    }
-    
-    .nexa-world__links ul.list-container li a:hover img {
-        display: inline;
-        display: none;
-    }
-      .nexa-world__action {
-        display: inline-flex;
-        width: 50px;
-        height: 40px;
-        background-color: #ffffff;
-        padding: 8px 12px;
-        clip-path: polygon(2% 0, 100% 0, 100% 88%, 98% 100%, 0 100%, 0 12%);
-        .btn-title {
-          text-decoration: none;
-          color: black;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 12px;
-          p {
-            font-size: 12px;
-            font-weight: 400;
-            line-height: 12px;
-          }
-          .location-icon svg {
-            height: 20px;
-            width: 20px;
-          }
-        }
-      }
     
 
 
