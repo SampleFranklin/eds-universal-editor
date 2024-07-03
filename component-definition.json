@@ -559,7 +559,7 @@
                 "template": {
                   "name": "Highlight Item",
                   "model": "highlight-item",
-                  "title": "Highlight Tabs"
+                  "title": "Highlight Item"
                 }
               }
             }
