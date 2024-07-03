@@ -17,7 +17,6 @@ export default function decorate(block) {
     const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)');
     title?.classList?.add('title');
     const description = Array.from(descriptionEl.querySelectorAll('p')).map(p => p.textContent.trim()).join('');
-    console.log(description);
     
     const cta = (ctaLinkEl) ? {
       href: ctaLinkEl.querySelector('a')?.href || '#',
@@ -42,7 +41,7 @@ export default function decorate(block) {
       const linkText = linkTextEl?.textContent?.trim() || '';
       const linkAnchor = linkAnchorEl?.querySelector('a')?.href || '#';
       const linkTarget = linkTargetEl?.querySelector('a')?.target || '_self';
-
+     
       return {
         imgSrc: linkImageEl?.querySelector('img')?.src || '',
         imgAlt: linkAltText,
@@ -77,35 +76,28 @@ export default function decorate(block) {
           <p class="cta-text">${nexaWorldContent.cta?.textContent}</p>
         </a>
       </div>
-      
-      <div class="nexa-world__img">
-        <img src="${nexaWorldContent.links.length > 0 ? nexaWorldContent.links[1].imgSrc : ''}" alt="${nexaWorldContent.links.length > 0 ? nexaWorldContent.links[0].imgAlt : ''}" />
-      </div>
     </div>`;
     
 
   // Create the links HTML structure
   const ul = document.createElement('ul');
+  
   ul.classList.add('list-container');
   nexaWorldContent.links.forEach(link => {
+    if(link.imgSrc!=''){
     const listItem = document.createElement('li');
     const anchor = document.createElement('a');
     anchor.href = link.href;
     anchor.textContent = link.text;
 
     const imgElement = document.createElement('img');
-    console.log(link.imgSrc);
     imgElement.src = link.imgSrc;
-    imgElement.alt = link.imgAlt;
-    if(link.imgSrc===''){
-      console.log('i am here');
-      imgElement.src=nexaWorldContent.links[1].imgSrc;
-      imgElement.alt = nexaWorldContent.links[1].imgAlt;
-    }    
+    imgElement.alt = link.imgAlt;     
     
     anchor.appendChild(imgElement);
     listItem.appendChild(anchor);
     ul.appendChild(listItem);
+  
 
   
 
@@ -114,13 +106,9 @@ export default function decorate(block) {
       document.querySelector('.nexa-world__img img').src = link.imgSrc;
       document.querySelector('.nexa-world__img img').alt = link.imgAlt;
     });
+  }
 
-    //Reset main image on mouseout (optional)
-    // anchor.addEventListener('mouseout', () => {
-    //   const mainImg = document.querySelector('.nexa-world__img img');
-    //   mainImg.src = nexaWorldContent.links.length > 0 ? nexaWorldContent.links[0].imgSrc : '';
-    //   mainImg.alt = nexaWorldContent.links.length > 0 ? nexaWorldContent.links[0].imgAlt : '';
-    // });
+
   });
 
   const nexaWorldTeaser = `
@@ -143,14 +131,23 @@ export default function decorate(block) {
     const teaser = document.querySelector('.nexa-world__teaser');
     const container = document.querySelector('.nexa-world__container');
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const backgroundImage = links[0].querySelector('img');
 
-    links.forEach(link => {
-      link.addEventListener('mouseover', function() {
+    if (isMobile) {
+      container.style.backgroundImage = 'none';
+      teaser.style.backgroundImage = `url(${backgroundImage.src})`;
+    } else {
+      teaser.style.backgroundImage = 'none';
+      container.style.backgroundImage = `url(${backgroundImage.src})`;
+    }
+    links.forEach(link => {      
+      link.addEventListener('mouseover', function() {       
         const imgSrc = this.querySelector('img').src;
-        console.log('Line 141'+imgSrc);
         if (isMobile) {
+          container.style.backgroundImage = 'none';
           teaser.style.backgroundImage = `url(${imgSrc})`;
         } else {
+          teaser.style.backgroundImage = 'none';
           container.style.backgroundImage = `url(${imgSrc})`;
         }
       });
@@ -159,21 +156,20 @@ export default function decorate(block) {
         if (isMobile) {
           teaser.style.backgroundImage = 'none';
         } else {
-          container.style.backgroundImage = 'none';
+          container.style.backgroundImage = `url(${backgroundImage.src})`;
         }
       });
     });
   }
 
   // Initialize hover effects
-  document.addEventListener('DOMContentLoaded', () => {
+
     updateHoverEffects();
     window.addEventListener('resize', updateHoverEffects);
-  });
+
 }
 
-// Call the function to decorate the block
-document.addEventListener('DOMContentLoaded', () => {
-  const blocks = document.querySelectorAll('.nexa-world-component'); // Replace with the actual block class name
-  blocks.forEach(decorate);
-});
+
+
+
+
