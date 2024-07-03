@@ -15,6 +15,61 @@ main .teaser-container > div {
   max-width: inherit;
 }
 
+.teaser-list-container .container {
+  width: 100%;
+  padding-inline: 0;
+  margin: initial;
+
+  .row {
+    margin-inline: initial;
+    padding-inline: 0;
+  }
+
+  .row > div {
+    padding-inline: 0;
+  }
+
+  .row > .teaser__cards-container {
+    position: relative;
+    overflow-x: hidden;
+    height: 420px;
+  }
+
+  .teaser__cards {
+    height: 100%;
+    width: 150%;
+    position: absolute;
+    transition: padding 0.1s ease-out;
+  }
+
+  @media (min-width: 999px) {
+    .row > .teaser__cards-container {
+      height: 463px;
+    }
+
+    .teaser__cards {
+      height: 100%;
+      width: 100%;
+      position: static;
+    }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0.2;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation: fade-in;
+  animation-duration: 1.5s;
+}
+
 .dark-teaser {
   &.finance-card-teaser {
     .teaser__card {
@@ -26,15 +81,16 @@ main .teaser-container > div {
           var(--teaser-background-end) 104.51%
         )
       );
-      height: fit-content;
+      height: 100%;
+      transition: opacity 0.5s ease-out;
     }
 
     .teaser__image {
       clip-path: polygon(
         0 0,
         100% 0,
-        100% calc(100% - 54px),
-        calc(100% - 54px) 100%,
+        100% calc(100% - 44px),
+        calc(100% - 34px) 100%,
         0 100%
       );
       height: 240px;
@@ -42,6 +98,7 @@ main .teaser-container > div {
 
     .teaser__image img {
       width: 100%;
+      height: 100%;
       object-fit: cover;
       object-position: center;
     }
@@ -150,6 +207,19 @@ main .teaser-container > div {
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
+
+      .teaser__title {
+        h3 {
+          font-weight: 500;
+          font-size: 18px;
+        }
+      }
+
+      .teaser__description {
+        p {
+          font-size: 12px;
+        }
+      }
     }
 
     .teaser__image {
@@ -160,14 +230,14 @@ main .teaser-container > div {
 
     .teaser__card--focused {
       img {
-        height: 250px;
+        height: 100%;
         width: 100%;
         object-fit: cover;
       }
 
       .teaser__image {
         filter: none;
-        height: 220px !important;
+        height: 150px;
       }
 
       .teaser__pretitle {
@@ -242,6 +312,12 @@ main .teaser-container > div {
         }
       }
     }
+
+    .teaser__card--unfocused {
+      height: 350px;
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+
     .teaser__title .horizontal__arrow {
       display: none;
     }
@@ -255,6 +331,13 @@ main .teaser-container > div {
       }
 
       .teaser__image {
+        clip-path: polygon(
+          0 0,
+          100% 0,
+          100% calc(100% - 84px),
+          calc(100% - 54px) 100%,
+          0 100%
+        );
         height: 100%;
       }
 
@@ -276,6 +359,7 @@ main .teaser-container > div {
       .teaser__card--unfocused {
         flex-direction: column;
         cursor: pointer;
+        height: 406px;
         img {
           height: 100%;
           width: 100%;
@@ -314,8 +398,6 @@ main .teaser-container > div {
         &.teaser__left {
           position: relative;
           left: 0;
-          /* width: 350px !important; */
-          height: 310px;
           .teaser__content {
             width: 100%;
             position: absolute;
@@ -330,7 +412,6 @@ main .teaser-container > div {
           }
         }
         &.teaser__right {
-          height: 310px;
           position: relative;
           .teaser__content {
             position: absolute;
@@ -346,6 +427,7 @@ main .teaser-container > div {
       }
 
       .teaser__card--focused {
+        height: 463px;
         .teaser__image {
           width: 55%;
           height: auto !important;
@@ -356,6 +438,17 @@ main .teaser-container > div {
         }
         .teaser__title .horizontal__arrow {
           display: block;
+        }
+        .teaser__title {
+          h3 {
+            font-weight: 600;
+            font-size: 32px;
+          }
+        }
+        .teaser__description {
+          p {
+            font-size: 18px;
+          }
         }
       }
     }
@@ -623,10 +716,13 @@ main .teaser-container > div {
   line-height: 40px; /* 125% */
   letter-spacing: 0.64px;
   margin-bottom: 32px;
+  padding-left: 24px;
 }
 @media (min-width: 999px) {
   .teaser-list-container h2 {
+    padding-left: 64px;
     font-size: 64px;
+    line-height: 72px;
     margin-bottom: 60px;
   }
   .dark-teaser .teaser__card--unfocused .teaser__content h3 {

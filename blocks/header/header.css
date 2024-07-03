@@ -463,7 +463,7 @@ body {
 .menu-btn {
   display: none;
 }
-.car {
+.car-icon {
   display: none;
 }
 .menu .accordion:after {
@@ -543,7 +543,7 @@ body {
   .navbar .right {
     display: none;
   }
-  .car {
+  .car-icon {
     display: block;
     cursor: pointer;
   }

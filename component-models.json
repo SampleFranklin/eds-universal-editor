@@ -1223,12 +1223,16 @@
         "name": "ctaText",
         "label": "CTA Text",
         "condition": {
-          "===": [
-            {
-              "var": "ctaVisibility"
-            },
-            true
-          ]
+          "===": [ { "var": "ctaVisibility" }, true ]
+        }
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "ctaLink",
+        "label": "CTA Link",
+        "condition": {
+          "===": [ { "var": "ctaVisibility" }, true ]
         }
       }
     ]
@@ -1244,11 +1248,43 @@
         "multi": false
       },
       {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "allowMobileVideo",
+        "label": "Separate Video for Mobile"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "videoMobile",
+        "label": "Mobile Video",
+        "multi": false,
+        "condition": {
+          "===": [ { "var": "allowMobileVideo" }, true ]
+        }
+      },
+      {
         "component": "reference",
         "valueType": "string",
         "name": "image",
         "label": "Image",
         "multi": false
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "addMobileImage",
+        "label": "Separate Image for Mobile"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "mobileImage",
+        "label": "Mobile Image",
+        "multi": false,
+        "condition": {
+          "===": [ { "var": "addMobileImage" }, true ]
+        }
       },
       {
         "component": "text",
@@ -1496,6 +1532,12 @@
   {
     "id": "nexa-eshowroom-experience",
     "fields": [
+      {
+        "component": "text-input",
+        "valueType": "string",
+        "name": "component-id",
+        "label": "Component ID"
+      },
       {
         "component": "text-input",
         "valueType": "string",
@@ -1839,45 +1881,42 @@
       },
       {
         "component": "richtext",
-        "name": "rte",
-        "label": "Rich Text",
+        "name": "rteLhs",
+        "label": "Rich Text LHS",
         "valueType": "string"
       },
       {
-        "component": "container",
-        "label": "Container",
-        "name": "container",
+        "component": "richtext",
+        "name": "rteRhs",
+        "label": "Rich Text RHS",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "primaryText",
+        "label": "CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
         "valueType": "string",
-        "collapsible": true,
-        "fields": [
+        "name": "primaryLink",
+        "label": "CTA Link"
+      },
+      {
+        "component": "select",
+        "name": "primaryTarget",
+        "value": "",
+        "label": "Open Link in New Page ?",
+        "valueType": "string",
+        "options": [
           {
-            "component": "text-input",
-            "name": "primaryText",
-            "label": "CTA Text",
-            "valueType": "string"
+            "name": "Yes",
+            "value": "_blank"
           },
           {
-            "component": "aem-content",
-            "valueType": "string",
-            "name": "primaryLink",
-            "label": "CTA Link"
-          },
-          {
-            "component": "select",
-            "name": "primaryTarget",
-            "value": "",
-            "label": "Open Link in New Page ?",
-            "valueType": "string",
-            "options": [
-              {
-                "name": "Yes",
-                "value": "_blank"
-              },
-              {
-                "name": "No",
-                "value": "_self"
-              }
-            ]
+            "name": "No",
+            "value": "_self"
           }
         ]
       },

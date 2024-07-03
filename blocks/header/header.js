@@ -42,7 +42,7 @@ export default async function decorate(block) {
     let teaserWrappers,
       combinedTeaserHTML = "",
       teaser;
-    if (content.classList.contains("car-filter-wrapper")) {
+    if (content?.classList.contains("car-filter-wrapper")) {
       teaserWrappers = el.querySelectorAll(".teaser-wrapper");
       teaserWrappers.forEach((teaserWrapper) => {
         combinedTeaserHTML += teaserWrapper.innerHTML;
@@ -61,8 +61,8 @@ export default async function decorate(block) {
       heading: heading?.textContent,
       icon: icon?.innerHTML,
       iconClicked: iconClicked?.innerHTML,
-      content: content?.innerHTML,
-      teaser: teaser?.innerHTML ?? "",
+      content: content?.firstChild,
+      teaser: teaser ?? "",
     });
   });
   const logo = nav.querySelector(".logo-wrapper");
@@ -108,7 +108,6 @@ export default async function decorate(block) {
         isNexa ? "close_white" : "close"
       }.svg" alt="close" /></span>
     </div>
-      ${carFilter.outerHTML}
       </div>
   `;
 
@@ -128,7 +127,6 @@ export default async function decorate(block) {
   `;
   const navWrapper = document.createElement("div");
   navWrapper.innerHTML = desktopHeader + mobileHeader;
-
   block.append(navWrapper);
   const navHamburger = document.querySelector(".nav-hamburger");
   const backArrow = document.querySelector(".back-arrow");
@@ -152,28 +150,39 @@ export default async function decorate(block) {
   if (isNexa) menuList.innerHTML += `<li>${signInTeaser.outerHTML}</li>`;
 
   list.forEach((el, i) => {
-    linkEl.innerHTML += `<div class="link-title"><span>${
-      el.heading
-    }</span></div> ${
-      el.content || el.teaser
-        ? `<div class="desktop-panel panel ${el.heading.toLowerCase()}">${
-            el.content || ""
-          }${el.teaser || ""}</div>`
-        : ""
-    }`;
+    const linkTitle = document.createElement("div");
+    const desktopPanel = document.createElement("div");
+    const heading = document.createElement("span");
+    linkTitle.classList.add("link-title");
+    heading.textContent = el.heading;
+    linkTitle.append(heading);
+    desktopPanel.classList.add(
+      "desktop-panel",
+      "panel",
+      el.heading?.split(" ")[0].toLowerCase()
+    );
+    if (el.content) desktopPanel.append(el.content);
+    if (el.teaser) desktopPanel.append(el.teaser);
+    linkEl.append(linkTitle, desktopPanel);
     if (i === 0) return;
     menuList.innerHTML += `<li id="menu-item-${i}" class="${
-      el.content ? "accordion nav-link" : ""
-    } ${el.heading.toLowerCase()}" ><span class="icon">${
+      el.content?.innerHTML ? "accordion nav-link" : ""
+    } ${el.heading?.toLowerCase()}" ><span class="icon">${
       el.icon
     }</span> <span class="menu-title">${el.heading}</span></li>
     ${
-      el.content || el.teaser
-        ? `<div class="panel">${el.content || ""}${el.teaser || ""}</div>`
+      el.content?.innerHTML || el.teaser?.innerHTML
+        ? `<div class="panel">${el.content?.innerHTML || ""}${
+            el.teaser?.innerHTML || ""
+          }</div>`
         : ""
     }
     `;
   });
+
+  if (!window.matchMedia("(min-width: 999px)").matches) {
+    block.querySelector(".car-filter-menu")?.append(carFilter);
+  }
 
   (isNexa
     ? Array.from(userAccountLinkItems).slice(1)

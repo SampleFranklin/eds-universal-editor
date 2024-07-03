@@ -19,8 +19,7 @@
 
 .teaser__cards {
   display: grid;
-  grid-auto-columns: 75% 75%;
-  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr;
   gap: 16px;
   overflow-x: auto;
   overflow-y: hidden;
@@ -35,7 +34,11 @@
 }
 @media (min-width: 999px) {
   .teaser__cards {
-    grid-auto-columns: 75% 75%;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
   .teaser-container .teaser-wrapper .teaser__title h3 {
     font-size: 40px;

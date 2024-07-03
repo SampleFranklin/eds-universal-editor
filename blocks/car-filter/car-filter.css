@@ -1,5 +1,6 @@
 .car-filter {
   padding: 16px 20px;
+  width: 100%;
   .filter-cars {
     display: flex;
     flex-direction: column;
@@ -123,9 +124,9 @@
     .teaser-list {
       margin-top: 10px;
       display: flex;
-       overflow: auto; 
-       gap:20px;
-      
+      overflow: auto;
+      gap: 20px;
+
       .teaser {
         border-radius: 4px 4px 4px 0px;
         background: linear-gradient(
@@ -135,13 +136,13 @@
         );
 
         backdrop-filter: blur(10px);
-        @media (max-width:999px) {
-          flex:0 0 66.67%;
+        @media (max-width: 999px) {
+          flex: 0 0 66.67%;
         }
       }
-      .teaser__card{
-        display: flex;  
-        height: 100%;   
+      .teaser__card {
+        display: flex;
+        height: 100%;
       }
       .teaser__image {
         display: flex;
@@ -195,8 +196,9 @@
         border: none;
         box-shadow: none;
         border-bottom: 1px solid #18171a;
-        margin-bottom: 0;
-        margin-top: 30px;
+        margin-top: 0;
+        width: auto;
+        height: auto;
       }
 
       .teaser__actions a::after {
@@ -241,7 +243,7 @@
       .card-list {
         padding: 0 20px 0 0;
         margin-right: 28px;
-        flex-basis: 80%;
+        flex-basis: 76%;
         align-content: flex-start;
         max-height: 490px;
         overflow: scroll;
@@ -274,6 +276,9 @@
             font-weight: 500;
             line-height: 20px;
           }
+          .card-price-text {
+            font-weight: 400;
+          }
         }
       }
       .card-list::-webkit-scrollbar {
@@ -289,14 +294,14 @@
         border-radius: 10px;
       }
       .teaser-list {
-        flex-basis: 20%;
+        flex-basis: 24%;
         flex-direction: column;
         overflow: hidden;
-        gap:0;
+        gap: 0;
         .teaser:first-child {
-          height:230px;
+          height: 230px;
           clip-path: polygon(0 0, 100% 0, 100% 88%, 67% 88%, 57% 100%, 0 100%);
-          .teaser__card{
+          .teaser__card {
             background: none;
           }
           .teaser__image {
@@ -325,8 +330,16 @@
         }
         .teaser:not(:first-child) {
           background: none;
-          height:230px;
-          clip-path: polygon(0px 40px, 16% 40px, 61% 40px, 74% 0px, 100% 0px, 100% 100%, 0px 100%);
+          height: 230px;
+          clip-path: polygon(
+            0px 40px,
+            16% 40px,
+            61% 40px,
+            74% 0px,
+            100% 0px,
+            100% 100%,
+            0px 100%
+          );
           &::before {
             content: "";
             width: 100%;
@@ -335,16 +348,16 @@
             position: relative;
             margin-top: -12px;
           }
-          .teaser__image{
-            img{
+          .teaser__image {
+            img {
               clip-path: none;
             }
           }
           .teaser__content {
             position: absolute;
             padding: 12px;
-            bottom:12px;
-            left:12px;
+            bottom: 12px;
+            left: 12px;
             border-radius: 4px;
             background: linear-gradient(
               206deg,
@@ -371,16 +384,16 @@
               font-weight: 400;
               line-height: 20px; /* 125% */
               border-color: white;
+              width: auto;
+              height: auto;
               &::after {
                 content: url("");
                 right: 0;
-                background-image: url('../../icons/white-slant-arrow.svg');
+                background-image: url("../../icons/white-slant-arrow.svg");
                 background-size: 24px;
                 display: inline-block;
-                width: 24px; 
+                width: 24px;
                 height: 24px;
-              
-          
               }
             }
           }
@@ -699,7 +712,6 @@
             .teaser__card {
               display: flex;
               flex-direction: column;
-             
             }
             .teaser__image {
               display: flex;

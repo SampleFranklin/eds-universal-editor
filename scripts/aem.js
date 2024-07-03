@@ -757,17 +757,6 @@ async function waitForLCP(lcpBlocks) {
   });
 }
 
-/**
- * Format Price to Lakhs.
- */
-function formatToLakhs(num) { 
-  if (num >= 100000) {
-    let lakhs = (num / 100000).toFixed(2);
-    return `${lakhs} lakhs`;
-  }
-  return num.toString();
-}
-
 init();
 
 export {
@@ -780,7 +769,6 @@ export {
   decorateSections,
   decorateTemplateAndTheme,
   fetchPlaceholders,
-  formatToLakhs,
   getMetadata,
   loadBlock,
   loadBlocks,
