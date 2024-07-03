@@ -131,59 +131,6 @@
   position: relative;
 }
 
-.switch-list.dots {
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  text-align: right;
-
-  li {
-    display: inline-block;
-    margin-left: 10px;
-    position: relative;
-    font-size: 0;
-    color: transparent;
-    margin-right: 20px;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-      width: 8px;
-      height: 8px;
-      background-color: #8e8e8e;
-      border-radius: 2px;
-    }
-
-    &.active::before {
-      background-color: white;
-      width: 20px;
-      height: 8px;
-      border-radius: 3px;
-      content: '';
-      display: inline-block;
-      margin-top: -3px;
-      margin-left: 5px;
-    }
-
-    &::after {
-      content: attr(data-text);
-      font-size: 16px;
-      display: inline-block;
-      margin-left: 5px;
-      vertical-align: middle;
-      border-bottom: none;
-    }
-    &.active::after {
-      border-bottom: none;
-    }
-  }
-}
 
 @media (max-width: 768px) {
   .text-section {
