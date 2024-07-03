@@ -844,7 +844,8 @@
                 "template": {
                   "name": "Intro To Design Details Car Details",
                   "model": "intro-to-design-car-detail",
-                  "filter": "intro-to-design-car-detail"
+                  "filter": "intro-to-design-car-detail",
+                  "title": "Introduction To Design"
                 }
               }
             }
