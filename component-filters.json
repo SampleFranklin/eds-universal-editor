@@ -66,8 +66,9 @@
       "slider",
       "highlights",
       "finance-options",
-      "arena-help-me-select"
-
+      "arena-help-me-select",
+      "intro-to-design-car-detail",
+      "car-detail-feature"
     ]
   },
   {
@@ -141,7 +142,7 @@
   {
     "id": "highlight-tabs",
     "components": [
-      "teaser"
+      "highlight-item"
     ]
   },
   {
@@ -188,6 +189,12 @@
   },
   {
     "id": "finance-options",
+    "components": [
+      "teaser"
+    ]
+  },
+  {
+    "id": "car-detail-feature",
     "components": [
       "teaser"
     ]
