@@ -45,16 +45,18 @@ input[type="radio"]:checked {
   align-items: center;
   cursor: pointer;
   z-index: 8;
+  width: 40px;
+  height: 40px;
 }
 
 .pre-btn {
   left: 0;
-  background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, #fff 100%);
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, #fff 100%),url('../../icons/arrow_backward.svg');
 }
 
 .nxt-btn {
   right: 0;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #fff 100%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #fff 100%),url('../../icons/arrow_forward.svg');
 }
 
 .nxt-btn:disabled,
@@ -283,13 +285,13 @@ input[type="radio"]:checked {
     grid-template-columns: 1fr 1.5fr;
   }
 
-  .pre-btn img,
-  .nxt-btn img {
-    opacity: 0.2;
+  .pre-btn,
+  .nxt-btn {
+    opacity: 0.5;
   }
 
-  .pre-btn:hover img,
-  .nxt-btn:hover img {
+  .pre-btn:hover,
+  .nxt-btn:hover {
     opacity: 1;
   }
 
@@ -317,4 +319,5 @@ input[type="radio"]:checked {
   .car-container.highlight .sidebar-car--image {
     transform: scale(2);
   }
+
 }
