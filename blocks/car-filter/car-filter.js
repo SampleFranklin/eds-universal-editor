@@ -288,7 +288,8 @@ export default async function decorate(block) {
           }
             const formatter = new Intl.NumberFormat('en-IN', {
                 style: 'currency',
-                currency: 'INR'
+                currency: 'INR',
+                maximumFractionDigits:0
             });
             return formatter.format(price);
         }
