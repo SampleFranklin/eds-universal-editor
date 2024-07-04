@@ -855,6 +855,7 @@
             .teaser__image img {
               max-width: 100%;
               clip-path: none;
+              aspect-ratio: 326 / 110;
             }
 
             .teaser__content {
@@ -888,6 +889,7 @@
               font-weight: 400;
               line-height: 28px; /* 175% */
               text-decoration: none;
+              margin-top: 0;
             }
           }
 
