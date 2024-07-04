@@ -86,8 +86,8 @@ export default function decorate(block) {
   
   ul.classList.add('list-container');
   nexaWorldContent.links.forEach(link => {
-    if(link.imgSrc!=''){
     const listItem = document.createElement('li');
+    if(link.imgSrc!=''){
     const anchor = document.createElement('a');
     anchor.href = link.href;
     anchor.textContent = link.text;
@@ -102,7 +102,6 @@ export default function decorate(block) {
     
     anchor.appendChild(imgElement);
     listItem.appendChild(anchor);
-    moveInstrumentation(link.linkEl,listItem);
     ul.appendChild(listItem);
   
 
@@ -114,6 +113,7 @@ export default function decorate(block) {
       document.querySelector('.nexa-world__img img').alt = link.imgAlt;
     });
   }
+  moveInstrumentation(link.linkEl,listItem);
 
 
   });
