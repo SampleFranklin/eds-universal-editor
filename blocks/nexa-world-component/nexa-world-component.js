@@ -102,7 +102,7 @@ export default function decorate(block) {
     
     anchor.appendChild(imgElement);
     listItem.appendChild(anchor);
-    ul.appendChild(listItem);
+    
   
 
   
@@ -113,8 +113,9 @@ export default function decorate(block) {
       document.querySelector('.nexa-world__img img').alt = link.imgAlt;
     });
   }
+  
   moveInstrumentation(link.linkEl,listItem);
-
+  ul.appendChild(listItem);
 
   });
 
