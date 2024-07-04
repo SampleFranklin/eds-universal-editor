@@ -175,8 +175,3 @@ export default function decorate(block) {
     window.addEventListener('resize', updateHoverEffects);
 
 }
-
-
-
-
-
