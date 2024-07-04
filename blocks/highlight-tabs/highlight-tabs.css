@@ -1,18 +1,114 @@
 :root {
   /* Define CSS Variables (Custom Properties) */
   --primary-color: #fff;
-  --secondary-color: #8e8e8e;
+  --secondary-color: #b2b2b2;
   --background-gradient-start: rgba(0, 0, 0, 0.6);
   --background-gradient-end: rgba(0, 0, 0, 0.6);
   --content-background-gradient-start: rgba(56, 79, 110, 0.60);
   --content-background-gradient-end: rgba(91, 91, 91, 0.60);
 }
 
-.highlight-tabs {
-  height: 700px;
+.highlight-tabs{
+  p{
+    margin:unset;
+    font-size:unset;
+  }
+  h1{
+    margin:unset;
+    font-size:unset;
+    font-weight: unset;
+  }
+  ul{
+    margin:unset;
+  }
+  /* clip-path: polygon(0 3%, 30% 3%, 32% 0, 100% 0, 100% 100%, 0 100%); */
+  background-color: #18171A;
 }
+.highlightItem{
+  display:flex;
+  flex-direction:column;
+  .highlightItem-img {
+    object-fit: cover;
+    width:100%;
+    height:auto;
+    aspect-ratio:360/297;
+  }
+}
+.text-section{
+  display:flex;
+  flex-direction:column;
+  gap:32px;
+  justify-content: left;
+  padding:56.25px 20px 48px 20px;
+  .top-left{
+    font-family:'Kepler Std';
+    color:#fff;
+    font-size:32px;
+    font-weight: 600;
+    line-height:40px;
+    letter-spacing: 0.64px;
+  }
+  .top-right{
+    font-family:'Fira Sans';
+    color:#fff;
+    font-size:14px;
+    font-weight: 400;
+    line-height: 20px;
+    width:70%;
+  }
+}
+.switch-list-section{
+  padding:12px 20px 24px 20px;
+  margin-top:16px;
+  .switch-list{
+    list-style-type:none;
+    display:flex;
+    gap:16px;
+    /* background: linear-gradient(238deg, var(--background-gradient-start) -11.12%, var(--background-gradient-end) 111.5%); */
+  }
+}
+.switch-list-item {
+  cursor: pointer;
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-family:'Fira Sans';
+  font-size:12px;
+  font-weight: 400;
+  line-height: 16px;
 
-.text-section {
+  &::after {
+    content: '';
+    display: block;
+    position: relative;
+    bottom: -12px;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid var(--secondary-color);
+  }
+
+  &.active {
+    color: var(--primary-color);
+    font-weight: 500;
+
+    &::after {
+      border-bottom: 3px solid var(--primary-color);
+    }
+  }
+}
+.highlightItem-content {
+  /* position: relative;
+  bottom: 400px;
+  left: 30px; */
+  margin-left:20px;
+  width: 320px;
+  padding: 16px;
+  background: linear-gradient(238deg, var(--content-background-gradient-start) -11.12%, var(--content-background-gradient-end) 111.5%);
+  backdrop-filter: blur(10px);
+  color: var(--primary-color);
+  font-size: 16px;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 65% 90%, 60% 100%, 0 100%);
+}
+/* .text-section {
   color: var(--primary-color);
   z-index: 1;
 
@@ -40,11 +136,7 @@
   }
 }
 
-.highlightItem-img {
-  width: 100%;
-  height: 800px;
-  object-fit: cover;
-}
+
 
 .highlightItem-content {
   position: relative;
@@ -78,61 +170,16 @@
   color: var(--primary-color);
 }
 
-.switch-list-section {
-  position: relative;
-  bottom: 350px;
-  height: 215px;
-}
-
-.switch-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: space-evenly;
-  height: 100%;
-  background: linear-gradient(238deg, var(--background-gradient-start) -11.12%, var(--background-gradient-end) 111.5%);
-  overflow: visible;
-}
-
-.switch-list-item {
-  padding: 30px 10px;
-  cursor: pointer;
-  color: var(--secondary-color);
-  position: relative;
-  text-decoration: none;
-  font-weight: lighter;
-
-  &::after {
-    content: '';
-    display: block;
-    position: relative;
-    bottom: -5px; /* 5px below the baseline */
-    left: 0;
-    width: 100%;
-    border-bottom: 1px solid var(--secondary-color); /* Underline style */
-  }
-
-  &.active {
-    color: var(--primary-color);
-    font-weight: bolder;
-
-    &::after {
-      border-bottom: 3px solid var(--primary-color); /* Underline style for active */
-    }
-  }
-}
-
-.highlightItem {
+/*.highlightItem {
   display: none;
 }
 
 .highlight-tabs-container {
   position: relative;
-}
+} */
 
 
-@media (max-width: 768px) {
+/* @media (min-width: 999px) {
   .text-section {
     display: flex;
   }
@@ -168,4 +215,4 @@
     width: 100%;
     clip-path: none;
   }
-}
+}*/
