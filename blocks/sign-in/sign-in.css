@@ -47,7 +47,6 @@
   position: absolute;
   top: var(--nav-height);
   right: 5px;
-  display: none;
 }
 
 .user__dropdown {
