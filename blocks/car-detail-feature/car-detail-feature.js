@@ -22,7 +22,7 @@ export default function decorate(block) {
 
     const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)');
     const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.outerHTML).join('');
-    const cta = ctaUtils.getLink(ctaLinkEl, ctaTextEl, ctaTargetEl, '');
+    const cta = ctaUtils.getLink(ctaLinkEl, ctaTextEl, ctaTargetEl, 'button-primary-light');
     const featureType = featureTypeEl?.textContent?.trim();
 
     let ctaHtml = '';
@@ -40,20 +40,22 @@ export default function decorate(block) {
 
     block.innerHTML = '';
     block.insertAdjacentHTML(
-          'beforeend',
-          utility.sanitizeHtml(`
-                           <div class="feature__card">
-                               ${(image) ? `<div class="feature__image">${image.outerHTML}</div>` : ''}
-                               <div class="feature__content">
-                                   <div class="feature__info">
-                                       ${(title) ? `<div class="feature__title">${title.outerHTML}</div>` : ''}
-                                       ${(description) ? `<div class="feature__description">${description}</div>` : ''}
-                                   </div>
-                                   ${ctaHtml}
+      'beforeend',
+      utility.sanitizeHtml(`
+                       <div class="feature__card">
+                           ${(image) ? `<div class="feature__image">${image.outerHTML}</div>` : ''}
+                           <div class="feature__content">
+                               <div class="feature__info">
+                                   ${(title) ? `<div class="feature__title">${title.outerHTML}</div>` : ''}
+                                   ${(description) ? `<div class="feature__description">${description}</div>` : ''}
                                </div>
+                               ${ctaHtml}
                            </div>
-                     `),
-        );
+                       </div>
+                 `),
+    );
+    block.classList.add("container");
+
 
 
 }
