@@ -122,7 +122,7 @@
         }
 
         .card-price-text {
-          margin-right: 2px;
+          margin-right: 4px;
           font-weight: 400;
         }
 
@@ -312,6 +312,10 @@
             }
           }
 
+          .card-image img {
+            aspect-ratio: 140/80;
+          }
+
           .card-title {
             font-size: 16px;
           }
@@ -319,6 +323,11 @@
           .card-description {
             display: block;
             font-weight: 400;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
           }
 
           .card-price,
