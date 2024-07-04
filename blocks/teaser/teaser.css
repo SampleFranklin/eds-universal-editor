@@ -146,6 +146,7 @@ main .teaser-container > div {
       }
 
       .primary__btn {
+        width:auto;
         background: var(--primary-main-color);
         color: var(--secondary-main-color);
         text-align: center;

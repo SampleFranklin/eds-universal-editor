@@ -4,13 +4,16 @@
     font-family: "Fira-Sans";
     padding-top: 48px;
     padding-left: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 72px;
-    @media (min-width: 768px) {
-      display: flex;
-      padding-left: 64px;
-      padding-top: 0px;
+    p{
+      margin:unset;
+      font-size:unset;
+    }
+    h2{
+      margin:unset;
+      font-size:unset;
+    }
+    ul{
+      margin:unset;
     }
   }
   .nexa-world__content {
@@ -21,6 +24,13 @@
       font-size: 14px;
       font-weight: 400;
       line-height: 20px;
+      width:70%;
+      @media (min-width: 999px) {
+        width: 376px;
+        font-size:18px;
+        font-weight: 300;
+        line-height:24px;
+      }
     }
   }
   .nexa-world__title {
@@ -33,19 +43,33 @@
       font-size: 24px;
       font-weight: 400;
       line-height: 28px;
+      @media(min-width:999px) {
+        font-size:48px;
+        line-height: 56px;
+      }
     }
     .title {
       font-size: 32px;
       font-weight: 600;
       line-height: 40px;
       letter-spacing: 0.64px;
+      @media(min-width:999px){
+         font-size:84px;
+         font-weight:700;
+         line-height:96px;
+         letter-spacing: 1.68px;
+      }
     }
   }
+
   .nexa-world__teaser {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
+    margin-top:72px;
+    padding-bottom:45%;
+    @media(min-width:999px){
+    padding-top:30%;
+    margin-top:0px;
+    padding-bottom:85.5px;
+  }
   }
   .nexa-world__links {
     ul {
@@ -53,11 +77,22 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
+      @media(min-width:999px){
+        flex-direction:row;
+        gap:24px;
+      }
+      a {
+        text-decoration: none;
+        color: unset;
+      }
       li {
         color: #b2b2b2;
         font-size: 14px;
         font-weight: 400;
         line-height: 20px;
+        img{
+          display:none;
+        }
       }
       li:hover {
         font-weight: 500;
@@ -68,7 +103,7 @@
   }
   .nexa-world__action {
     display: inline-flex;
-    width: 200px;
+    width:fit-content;
     height: 40px;
     background-color: #ffffff;
     padding: 8px 12px;
@@ -81,33 +116,42 @@
       justify-content: center;
       gap: 12px;
       p {
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 400;
         line-height: 24px;
+        margin-right:12px;
       }
-      .location-icon svg {
-        height: 20px;
-        width: 20px;
-      }
+    } 
+    .btn-title::after{
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background-image:url("../../icons/location__icon.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
     }
   }
-  .cta {
-    display: inline-block;
+  .nexa-world__container, .nexa-world__teaser {
+    background-size: cover;
+    background-position: center;
+    display: block;
+    height:auto;
   }
-
-  .cta-link {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: inherit;
+  .nexa-world__container{
+    height:auto;
   }
-
-  .cta-link .icon {
-    margin-right: 8px; /* Adjust as needed */
-    font-size: 24px; /* Adjust as needed */
-    color: #000; /* Adjust as needed */
+  @media (max-width: 999px) {
+    .nexa-world__container {
+      background-image: none;
+      height:auto;
+    }
+    .nexa-world__teaser{
+      height:auto;
+    }
   }
-
-  .cta-link .cta-text {
-    font-size: 16px; /* Adjust as needed */
+  @media (min-width: 1000px) {
+    .nexa-world__teaser {
+      background-image: none;
+    }
   }

@@ -550,6 +550,22 @@
           }
         },
         {
+          "title": "Highlight Item",
+          "id": "highlight-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Highlight Item",
+                  "model": "highlight-item",
+                  "title": "Highlight Item"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Car Filter",
           "id": "car-filter",
           "plugins": {
@@ -743,6 +759,22 @@
           }
         },
         {
+          "title": "Best Deals",
+          "id": "best-deals",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Best Deals",
+                  "model": "best-deals",
+                  "filter": "best-deals"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "CTA with Changing Icon",
           "id": "ctaWithChangingIcon",
           "plugins": {
@@ -829,6 +861,100 @@
                 "template": {
                   "name": "Arena Help Me Select",
                   "model": "arena-help-me-select"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Intro To Design Details",
+          "id": "intro-to-design-car-detail",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Intro To Design Details Car Details",
+                  "model": "intro-to-design-car-detail",
+                  "filter": "intro-to-design-car-detail"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Car Detail Feature",
+          "id": "car-detail-feature",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Car Detail Feature",
+                  "model": "car-detail-feature"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nexa Car Hero Banner",
+          "id": "nexa-car-hero-banner",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Nexa Car Hero Banner",
+                  "model": "nexa-car-hero-banner",
+                  "filter": "nexa-car-hero-banner"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nexa Car Hero Banner Item",
+          "id": "nexa-car-hero-banner-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Nexa Car Hero Banner Item",
+                  "model": "nexa-car-hero-banner-item"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nexa Brand Film Carousel",
+          "id": "nexa-brand-film-carousel",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Nexa Brand Film Carousel",
+                  "model": "nexa-brand-film-carousel",
+                  "filter": "nexa-brand-film-carousel",
+                  "titleType": "h2"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Item",
+          "id": "nexa-brand-film-carousel-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Nexa Brand Film Carousel",
+                  "model": "nexa-brand-film-carousel-item"
                 }
               }
             }
