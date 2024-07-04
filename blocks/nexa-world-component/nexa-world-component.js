@@ -96,7 +96,6 @@ export default function decorate(block) {
     imgElement.src = link.imgSrc;
     imgElement.alt = link.imgAlt;
     if(link.imgSrc===''){
-      console.log('i am here');
       imgElement.src=nexaWorldContent.links[1].imgSrc;
       imgElement.alt = nexaWorldContent.links[1].imgAlt;
     }    
@@ -137,7 +136,7 @@ export default function decorate(block) {
     const links = document.querySelectorAll('.nexa-world__links a');
     const teaser = document.querySelector('.nexa-world__teaser');
     const container = document.querySelector('.nexa-world__container');
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const isMobile = window.matchMedia("(max-width: 999px)").matches;
     const backgroundImage = links[0].querySelector('img');
 
     if (isMobile) {
@@ -173,5 +172,4 @@ export default function decorate(block) {
 
     updateHoverEffects();
     window.addEventListener('resize', updateHoverEffects);
-
 }
