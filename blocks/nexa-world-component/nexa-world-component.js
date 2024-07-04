@@ -1,5 +1,4 @@
-import utility from '../../utility/utility.js';
-import ctaUtils from '../../utility/ctaUtils.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   // Function to extract Nexa World content from the block
@@ -48,7 +47,8 @@ export default function decorate(block) {
         imgAlt: linkAltText,
         text: linkText,
         href: linkAnchor,
-        target: linkTarget
+        target: linkTarget,
+        linkEl: linkEl
       };
     });
 
@@ -102,6 +102,7 @@ export default function decorate(block) {
     
     anchor.appendChild(imgElement);
     listItem.appendChild(anchor);
+    moveInstrumentation(link.linkEl,listItem);
     ul.appendChild(listItem);
   
 
