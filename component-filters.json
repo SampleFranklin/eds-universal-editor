@@ -71,7 +71,8 @@
       "car-detail-feature",
       "nexa-car-hero-banner",
       "best-deals",
-      "nexa-brand-film-carousel"
+      "nexa-brand-film-carousel",
+      "finance-entry-point"
     ]
   },
   {
@@ -212,6 +213,12 @@
     "id": "nexa-brand-film-carousel",
     "components": [
       "nexa-brand-film-carousel-item"
+    ]
+  },
+  {
+    "id": "finance-entry-point",
+    "components": [
+      "teaser"
     ]
   }
 ]
