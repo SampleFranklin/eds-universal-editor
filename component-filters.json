@@ -70,7 +70,8 @@
       "intro-to-design-car-detail",
       "car-detail-feature",
       "nexa-car-hero-banner",
-      "best-deals"
+      "best-deals",
+      "nexa-brand-film-carousel"
     ]
   },
   {
@@ -205,6 +206,12 @@
     "id": "nexa-car-hero-banner",
     "components": [
       "nexa-car-hero-banner-item"
+    ]
+  },
+  {
+    "id": "nexa-brand-film-carousel",
+    "components": [
+      "nexa-brand-film-carousel-item"
     ]
   }
 ]
