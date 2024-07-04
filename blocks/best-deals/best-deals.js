@@ -15,7 +15,7 @@ export default function decorate(block) {
   ] = block.children;
   const sliderTitle = titleEl.querySelector(":is(h1,h2,h3,h4,h5,h6)");
   const subtitle = subtitleEl?.textContent?.trim();
-  const primaryCta = ctaUtils.getLink(ctaLinkEl, ctaTextEl, ctaTargetEl, 'explore-button');
+  const primaryCta = ctaUtils.getLink(ctaLinkEl, ctaTextEl, ctaTargetEl, 'button-primary-light');
 
     const teasers = teaserListEl.map((card) => {
       const teaserObj = teaser.getTeaser(card)?.firstElementChild;
@@ -49,10 +49,7 @@ export default function decorate(block) {
     teaserCards.forEach(function(card) {
       const actionsDiv = card.querySelector('.teaser__actions');
       const anchorTag = actionsDiv.querySelector('a');
-
-        anchorTag.classList.remove('primary__btn');
-        anchorTag.classList.add('best-deals-btn');
-
+      anchorTag.classList.remove('primary__btn');
       const anchorWrapper = anchorTag.cloneNode();
 
       actionsDiv.remove();
