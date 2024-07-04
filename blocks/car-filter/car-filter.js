@@ -1,4 +1,7 @@
-export default function decorate(block) {
+import { fetchPlaceholders } from "../../scripts/aem.js";
+import utility from "../../utility/utility.js";
+
+export default async function decorate(block) {
     const [
         titleEl,
         subtitleEl,
@@ -6,6 +9,8 @@ export default function decorate(block) {
         selectVariantEl,
         filterSelectEl
     ] = block.children;
+
+    const { publishDomain } = await fetchPlaceholders();
 
     const location = "Mumbai";
     const title = titleEl?.textContent?.trim();
@@ -16,111 +21,27 @@ export default function decorate(block) {
 
     let graphQlEndpoint;
     if(componentVariation==='arena-variant'){
-        graphQlEndpoint = 'arena-endpoint';
+        graphQlEndpoint = publishDomain + "/graphql/execute.json/msil-platform/ArenaCarList";
     }
     else{
-        graphQlEndpoint = 'nexa-endpoint';
+        graphQlEndpoint = publishDomain + "/graphql/execute.json/msil-platform/NexaCarList";
     }
-    const graphQlResponse =
-    {
-        "data": {
-          "carModelList": {
-            "items": [
-              {
-                "carImage": {
-                  "_authorUrl": "http://localhost:4502/content/dam/nexa/com/in/en/images/cars/grand-vitara/Grand%20Vitara.webp"
-                },
-                 "carLogoImage": {
-                    "_authorUrl": "http://localhost:4502/content/dam/arena/com/in/en/images/S-presso.svg",
-                    "_publishUrl": "http://localhost:4503/content/dam/arena/com/in/en/images/S-presso.svg"
-                  },
-                "logoImageAltText": "gv-logo",  
-                "carName": "Grand Vitara",
-                "bodyType": "SUV",
-                "carDescription": "Create. Inspire",
-                "altText": "Grand Vitara",
-                "exShowroomPrice": 1099000,
-                "fuelOptions": [
-                  "Petrol",
-                  "S-CNG"
-                ],
-                "technology": [
-                  "Smart Hybrid"
-                ],
-                "additionalSpecifications": null,
-                "carTagName": [
-                  "msil:nexa/grand-vitara"
-                ],
-                "defaultVariantId": "GVR4EZ2",
-                "carDetailsPagePath": null,
-                "carOrder": null
-              },
-              {
-                "carImage": {
-                  "_authorUrl": "http://localhost:4502/content/dam/nexa/com/in/en/images/cars/invicto/Invicto.webp"
-                },
-                 "carLogoImage": {
-                    "_authorUrl": "http://localhost:4502/content/dam/arena/com/in/en/images/S-presso.svg",
-                    "_publishUrl": "http://localhost:4503/content/dam/arena/com/in/en/images/S-presso.svg"
-                  },
-                "logoImageAltText": "inv-logo",   
-                "carName": "Invicto",
-                "bodyType": "SUV",
-                "carDescription": "Created to Inspire the Extraordinary",
-                "altText": "Invicto",
-                "exShowroomPrice": 2521000,
-                "fuelOptions": [
-                  "Petrol",
-                  "S-CNG"
-                ],
-                "technology": [
-                  "Intelligent Electric Hybrid"
-                ],
-                "additionalSpecifications": null,
-                "carTagName": [
-                  "msil:nexa/invicto"
-                ],
-                "defaultVariantId": "INAHAZ200",
-                "carDetailsPagePath": null,
-                "carOrder": null
-              },
-              {
-                "carImage": {
-                  "_authorUrl": "http://localhost:4502/content/dam/nexa/com/in/en/images/cars/jimny/Jimny.webp"
-                },
-                 "carLogoImage": {
-                    "_authorUrl": "http://localhost:4502/content/dam/arena/com/in/en/images/S-presso.svg",
-                    "_publishUrl": "http://localhost:4503/content/dam/arena/com/in/en/images/S-presso.svg"
-                  },
-                "logoImageAltText": "jim-logo",  
-                "carName": "Jimny",
-                "bodyType": "Hatchback",
-                "carDescription": "Created For Purity of Function",
-                "altText": "Jimny",
-                "exShowroomPrice": 1274000,
-                "fuelOptions": [
-                  "Petrol"
-                ],
-                "technology": [
-                  "Turbo"
-                ],
-                "additionalSpecifications": [
-                  "All Grip"
-                ],
-                "carTagName": [
-                  "msil:nexa/jimny"
-                ],
-                "defaultVariantId": "JMR4CZ2",
-                "carDetailsPagePath": null,
-                "carOrder": null
-              }
-            ]
-          }
+    let newHTMLContainer=document.createElement('div');
+
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
         }
-      };
+    };
 
-
-    const newHTMLContainer = carModelInfo(graphQlResponse);
+    fetch(graphQlEndpoint, requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+            newHTMLContainer = carModelInfo(result);
+            appendNewHTMLContainer();
+        })
+        .catch((error) => console.error(error));
 
     function carModelInfo(result) {
         const cars = result.data.carModelList.items;
@@ -139,6 +60,9 @@ export default function decorate(block) {
         const carCardsContainer = document.createElement('div');
         carCardsContainer.classList.add('card-list');
 
+        const carCardsWithTeaser = document.createElement("div");
+        carCardsWithTeaser.classList.add("card-list-teaser");
+        carCardsWithTeaser.append(carCardsContainer);
         newContainer.appendChild(carFiltersContainer);
 
         const textElement = document.createElement('div');
@@ -155,7 +79,7 @@ export default function decorate(block) {
         subtitleElement.textContent = subtitle;
         textElement.appendChild(subtitleElement);
 
-        newContainer.appendChild(carCardsContainer);
+        newContainer.append(carCardsWithTeaser);
 
         let selectedFilter = 'All';
         const filters = {};
@@ -268,14 +192,17 @@ export default function decorate(block) {
 
                 const description = document.createElement('p');
                 description.classList.add('card-description');
-                description.textContent = car.carDescription;
-                cardContent.appendChild(description);
+                description.textContent = car.fuelOptions.join(" / ");
 
+                cardContent.appendChild(description);
+                const priceTextElement = document.createElement("p");
+                priceTextElement.classList.add("card-price-text");
+                cardContent.appendChild(priceTextElement);
                 const priceElement = document.createElement('p');
                 priceElement.classList.add('card-price');
                 cardContent.appendChild(priceElement);
 
-                fetchPrice(car.modelId, priceElement, car.exShowroomPrice);
+                fetchPrice(car.modelId, priceElement, priceTextElement, car.exShowroomPrice);
 
                 card.appendChild(cardImage);
                 card.appendChild(cardContent);
@@ -284,62 +211,67 @@ export default function decorate(block) {
             });
         }
 
-        function fetchPrice(variantCode, priceElement, defaultPrice) {
-            const storedPrices = getLocalStorage('modelPrice') ? JSON.parse(getLocalStorage('modelPrice')) : {};
-            if (storedPrices[variantCode] && storedPrices[variantCode].price[location]) {
-                const storedPrice = storedPrices[variantCode].price[location];
-                priceElement.textContent = priceText + " " + storedPrice;
-            } else {
-                // Perform fetch only if price not already in localStorage
-                const apiKey = 'your_api_key_here';
-                const apiUrl = 'https://api.example.com/pricing';
-
-                const params = {
-                    variantCode: variantCode,
-                    location: location
-                };
-
-                const headers = {
-                    'x-api-key': apiKey,
-                    'Authorization': 'Bearer your_token_here'
-                };
-
-                const url = new URL(apiUrl);
-                Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
-
-                fetch(url, {
-                    method: 'GET',
-                    headers: headers
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.error === false && data.data) {
-                        const formattedPrice = priceFormatting(data.data);
-
-                        // Store price in localStorage with TTL of 1 day
-                        storedPrices[variantCode] = storedPrices[variantCode] || { price: {}, timestamp: 0 };
-                        storedPrices[variantCode].price[location] = formattedPrice;
-                        storedPrices[variantCode].timestamp = new Date().getTime() + (1 * 24 * 60 * 60 * 1000);
-
-                        setLocalStorage('modelPrice', JSON.stringify(storedPrices));
-
-                        priceElement.textContent = priceText + " " + formattedPrice;
-                    } else {
-                        const formattedPrice = defaultPrice ? priceFormatting(defaultPrice) : 'Not available';
-                        priceElement.textContent = priceText + " " + formattedPrice;
-                    }
-                })
-                .catch(error => {
-                    console.error('There was a problem with the fetch operation:', error);
-                    const formattedPrice = defaultPrice ? priceFormatting(defaultPrice) : 'Not available';
-                    priceElement.textContent = priceText + " " + formattedPrice;
-                });
-            }
+        function fetchPrice(variantCode, priceElement, priceTextElement, defaultPrice) {
+            const formattedPrice = defaultPrice ? priceFormatting(defaultPrice) : 'Not available';
+            priceElement.textContent = formattedPrice;
+            priceTextElement.textContent = priceText;
+//            const storedPrices = getLocalStorage('modelPrice') ? JSON.parse(getLocalStorage('modelPrice')) : {};
+//            if (storedPrices[variantCode] && storedPrices[variantCode].price[location]) {
+//                const storedPrice = storedPrices[variantCode].price[location];
+//                priceElement.textContent = priceText + " " + storedPrice;
+//            } else {
+//                // Perform fetch only if price not already in localStorage
+//                const apiKey = 'your_api_key_here';
+//                const apiUrl = 'https://api.example.com/pricing';
+//
+//                const params = {
+//                    variantCode: variantCode,
+//                    location: location
+//                };
+//
+//                const headers = {
+//                    'x-api-key': apiKey,
+//                    'Authorization': 'Bearer your_token_here'
+//                };
+//
+//                const url = new URL(apiUrl);
+//                Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+//
+//                fetch(url, {
+//                    method: 'GET',
+//                    headers: headers
+//                })
+//                .then(response => {
+//                    if (!response.ok) {
+//                       // throw new Error('Network response was not ok');
+//                    }
+//                    return response.json();
+//                })
+//                .then(data => {
+//                    if (data.error === false && data.data) {
+//                        const formattedPrice = priceFormatting(data.data);
+//
+//                        // Store price in localStorage with TTL of 1 day
+//                        storedPrices[variantCode] = storedPrices[variantCode] || { price: {}, timestamp: 0 };
+//                        storedPrices[variantCode].price[location] = formattedPrice;
+//                        storedPrices[variantCode].timestamp = new Date().getTime() + (1 * 24 * 60 * 60 * 1000);
+//
+//                        setLocalStorage('modelPrice', JSON.stringify(storedPrices));
+//
+//                        priceElement.textContent = priceText + " " + formattedPrice;
+//                    } else {
+//                        const formattedPrice = defaultPrice ? priceFormatting(defaultPrice) : 'Not available';
+//                        priceElement.textContent = formattedPrice;
+//                        priceTextElement.textContent = priceText;
+//                    }
+//                })
+//                .catch(error => {
+//                    //console.error('There was a problem with the fetch operation:', error);
+//                    const formattedPrice = defaultPrice ? priceFormatting(defaultPrice) : 'Not available';
+//                        priceElement.textContent = formattedPrice;
+//                        priceTextElement.textContent = priceText;
+//                });
+//            }
         }
 
         function setLocalStorage(key, value) {
@@ -351,6 +283,9 @@ export default function decorate(block) {
         }
 
         function priceFormatting(price) {
+          if (componentVariation === "arena-variant") {
+            return utility.formatToLakhs(price);
+          }
             const formatter = new Intl.NumberFormat('en-IN', {
                 style: 'currency',
                 currency: 'INR'
