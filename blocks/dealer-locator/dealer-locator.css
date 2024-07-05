@@ -47,12 +47,7 @@
     border-radius: 5px;
   }
   
-.cta-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
-}
+
 
 .cta-text {
     display: inline-block;

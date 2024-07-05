@@ -43,6 +43,7 @@ export default function decorate(block) {
       <div class="description">${dealerLocator.description}</div>
       ${(dealerLocator.cta) ? `<div class="cta-text" id="cta1">${dealerLocator.cta.outerHTML}</div>` : ''}
       ${(dealerLocator.cta) ? `<div class="cta-text" id="cta2">${dealerLocator.cta.outerHTML}</div>` : ''}
+      
     `;
   
     // Set the generated HTML to the block
