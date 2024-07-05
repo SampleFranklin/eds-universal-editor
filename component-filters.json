@@ -222,5 +222,9 @@
     "components": [
       "teaser"
     ]
+  },
+  {
+    "id": "section-navigator",
+    "components": []
   }
 ]
