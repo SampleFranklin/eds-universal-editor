@@ -1,17 +1,17 @@
 .dealer-locator__container {
-    max-width: 600px;
+    width: 100%;
+    height: auto;
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ddd;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
   }
   
   .image {
     width: 100%; /* Adjust width as needed */
     height: auto; /* Maintain aspect ratio */
     position: relative;
-    overflow: hidden;
+    
   }
   
   .image img {
