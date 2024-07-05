@@ -10,12 +10,12 @@
   .image {
     width: 100%; /* Adjust width as needed */
     height: auto; /* Maintain aspect ratio */
-    position: relative;
+    
     
   }
   
   .image img {
-    display: block;
+    
     width: 100%;
     height: auto;
   }
@@ -50,12 +50,12 @@
     margin-right: 10px; /* Adjust spacing between CTAs */
   }
   
-  .cta-text.highlight {
+  /* .cta-text.highlight {
     background-color: #28a745; /* Highlight color */
-  }
+ /* }
   
   /* Optional: Hover effect for CTAs */
-  .cta-text:hover {
+  /* .cta-text:hover {
     background-color: #0056b3;
-  }
-  
+  /*} */
+   
