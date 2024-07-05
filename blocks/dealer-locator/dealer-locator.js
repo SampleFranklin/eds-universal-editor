@@ -3,44 +3,45 @@ import ctaUtils from '../../utility/ctaUtils.js';
 export default function decorate(block) {
     function getDealerLocator() {
       const [
+        
+        imageEl,
+        altTextEl,
         pretitleEl,
         descriptionEl,
-        heroImageEl,
-        imageAltTextEl,
-        ctaLinkEl,
         ctaTextEl,
+        ctaLinkEl,
+       ,
       ] = block.children;
   
-      const pretitle = pretitleEl?.textContent?.trim() || "";
-      const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.outerHTML).join('');
+      
   
-      const heroImage = heroImageEl?.querySelector('picture');
-      if (heroImage) {
-        const img = heroImage.querySelector('img');
-        img.removeAttribute('width');
-        img.removeAttribute('height');
-        const alt = imageAltTextEl?.textContent?.trim() || 'heroImage';
-        img.setAttribute('alt', alt);
-      }
+      const image = imageEl?.querySelector('picture');
+    if (image) {
+      const img = image.querySelector('img');
+      img.removeAttribute('width');
+      img.removeAttribute('height');
+      const alt = altTextEl?.textContent?.trim() || 'image';
+      img.setAttribute('alt', alt);
+    }
+
+    const pretitle = pretitleEl?.textContent?.trim() || "";
+      const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.outerHTML).join('');
     console.log("vineetha");
       const cta = (ctaLinkEl) ? ctaUtils.getLink(ctaLinkEl, ctaTextEl,) : null;
   
       return {
-        pretitle,
-        description,
-        heroImage,
-        imageAltText,
-        ctaLink,
-        ctaText,
-        cta, // Ensure the CTA object is returned
+      image,
+      pretitle,
+      description,
+      cta, // Ensure the CTA object is returned
       };
     }
   
-    const dealerLocator = getDealerLocator();
+    const dealerLocator = getDealerLocator(block);
   
     // Create the HTML structure using template literals
     const dealerLocatorHtml = `
-      <div class="hero-image" style="hero-image: url('${dealerLocator.heroImage}');">
+      <div class="image" style="image: url('${dealerLocator.Image}');">
       <div class="pretitle">${dealerLocator.pretitle}</div>
       <div class="description">${dealerLocator.description}</div>
       ${(dealerLocator.cta) ? `<div class="cta-text" id="cta1">${dealerLocator.cta.outerHTML}</div>` : ''}
