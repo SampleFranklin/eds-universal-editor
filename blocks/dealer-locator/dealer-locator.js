@@ -21,7 +21,7 @@ export default function decorate(block) {
     const image = imgElement?.getAttribute("src")?.trim() || "";
     const altText = altTextEl?.textContent?.trim() || "";
     const pretitle = pretitleEl?.textContent?.trim() || "";
-    const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.outerHTML).join('');
+    const description = descriptionEl?.textContent?.trim() || "";
     console.log("vineetha");
     const cta = ctaLinkEl? { 
           href: ctaLinkEl.querySelector("a")?.href || "#",
