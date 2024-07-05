@@ -33,7 +33,7 @@ export default function decorate(block) {
         const findLocationText = document.querySelector(".find-location__text");
         const separatorText = document.querySelector(".separator");
         const searchLocationDiv = document.querySelector(".search-location");
-        locationButton.addEventListener("click", () => {
+        locationButton?.addEventListener("click", () => {
             if (
             geoLocationDiv.style.display === "none" ||
             geoLocationDiv.style.display === ""
@@ -44,8 +44,7 @@ export default function decorate(block) {
             }
         });
     // });
-    document.querySelector(".detect-location__cta")
-    .addEventListener("click", function () {
+    document.querySelector(".detect-location__cta")?.addEventListener("click", function () {
         requestLocationPermission();
     });
           

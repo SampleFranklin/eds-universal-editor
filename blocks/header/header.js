@@ -48,7 +48,7 @@ export default async function decorate(block) {
         combinedTeaserHTML += teaserWrapper.innerHTML;
       });
 
-      el.querySelector(".card-list-teaser").insertAdjacentHTML(
+      el.querySelector(".card-list-teaser")?.insertAdjacentHTML(
         "beforeend",
         utility.sanitizeHtml(
           `<div class="teaser-list">${combinedTeaserHTML}</div>`
