@@ -5,8 +5,8 @@ export default function decorate(block) {
         imageEl,
         pretitleEl,
         descriptionEl,
-        ctaTextEl,
-        ctaLinkEl,
+        // ctaTextEl,
+        // ctaLinkEl,
        ] = block.children;
     // const image = imageEl?.querySelector('picture');
     // if (image) {
@@ -22,18 +22,17 @@ export default function decorate(block) {
     const pretitle = pretitleEl?.textContent?.trim() || "";
     const description = descriptionEl?.textContent?.trim() || "";
     console.log("vineetha");
-    const cta = ctaLinkEl? { 
-          href: ctaLinkEl.querySelector("a")?.href || "#",
-          textContent: ctaTextEl?.textContent?.trim() || "",
-        }
-      : null;
+    // const cta = ctaLinkEl? { 
+    //       href: ctaLinkEl.querySelector("a")?.href || "#",
+    //       textContent: ctaTextEl?.textContent?.trim() || "",
+    //     }
+    //   : null;
   
       return {
       image,
-      altText,
       pretitle,
       description,
-      cta, // Ensure the CTA object is returned
+      //cta, // Ensure the CTA object is returned
       };
     }
   
@@ -44,7 +43,7 @@ export default function decorate(block) {
       <div class="dealer-locator__container" style="background-image: url('${dealerLocator.image}');">
         <p class="pre-title">${dealerLocator.pretitle}</p>
         <p class="description">${dealerLocator.description}</p>
-        <a href="${dealerLocator.cta?.href || "#"}" class="cta-text"><p>${dealerLocator.cta?.textContent}</p></a>
+        
     </div>
   `;
       
