@@ -2520,8 +2520,38 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "exshowroomPriceLabel",
+        "name": "exShowroomPriceLabel",
         "label": "Ex-Showroom Price Label"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "tagline",
+        "label": "Tagline"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "engineLabel",
+        "label": "Engine Label"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "powerLabel",
+        "label": "Power Label"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "mileageLabel",
+        "label": "Mileage Label"
+      },
+      {
+        "component": "aem-content-fragment",
+        "name": "model-id",
+        "label": "Model ID",
+        "valueType": "string"
       }
     ]
   },
@@ -2550,18 +2580,6 @@
         "condition": {
           "===": [ { "var": "allowMobileVideo" }, true ]
         }
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "tagline",
-        "label": "Tagline"
-      },
-      {
-        "component": "text",
-        "name": "model-id",
-        "label": "Model ID",
-        "valueType": "string"
       },
       {
         "component": "text-input",
