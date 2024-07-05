@@ -1,25 +1,14 @@
 export default function decorate(block) {
+    const sectionsCount = document.querySelectorAll('main > .section').length;
 
-//    const newHtml = `
-//            <nav>
-//                <span class="dot" data-section="1"></span>
-//                <span class="dot" data-section="2"></span>
-//                <span class="dot" data-section="3"></span>
-//                <span class="dot" data-section="4"></span>
-//            </nav>
-//    `;
+    var nav = document.createElement('nav');
+    for (var i = 1; i <= sectionsCount; i++) {
+        var span = document.createElement('span');
+        span.className = 'dot';
+        span.setAttribute('data-section', i);
+        nav.appendChild(span);
+    }
 
-//    block.innerHTML = newHtml;
-//    var navElement = document.querySelector('main .section-navigator-container nav');
-//    var containerDiv = document.querySelector('.section-navigator-container');
-//    var mainElement = document.querySelector('main');
-//    if (navElement && containerDiv && mainElement) {
-//        mainElement.insertBefore(navElement, mainElement.firstChild);
-//        containerDiv.remove();
-//    }
-
-    const sections = document.querySelectorAll('.section');
-    console.log(sections);
-
-
+    block.innerHTML = '';
+    block.appendChild(nav);
 }
