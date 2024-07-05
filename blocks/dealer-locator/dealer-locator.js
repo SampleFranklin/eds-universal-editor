@@ -10,15 +10,18 @@ export default function decorate(block) {
       ] = block.children;
   
       const pretitle = pretitleEl?.textContent?.trim() || "";
-      const description = descriptionEl?.textContent?.trim() || "";
+      const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.outerHTML).join('');
   
-      const imgElement = heroImageEl.querySelector("img");
-      const heroImage = imgElement?.getAttribute("src")?.trim() || "";
+      const heroImage = heroImageEl?.querySelector('picture');
+      if (heroImage) {
+        const img = heroImage.querySelector('img');
+        img.removeAttribute('width');
+        img.removeAttribute('height');
+        const alt = imageAltTextEl?.textContent?.trim() || 'heroImage';
+        img.setAttribute('alt', alt);
+      }
   
-      const imageAltText = imageAltTextEl?.textContent?.trim() || "";
-  
-      const ctaLink = ctaLinkEl?.textContent?.trim() || "";
-      const ctaText = ctaTextEl?.textContent?.trim() || "";
+      const cta = (ctaLinkEl) ? ctaUtils.getLink(ctaLinkEl, ctaTextEl,) : null;
   
       return {
         pretitle,
@@ -27,6 +30,7 @@ export default function decorate(block) {
         imageAltText,
         ctaLink,
         ctaText,
+        cta, // Ensure the CTA object is returned
       };
     }
   
@@ -35,14 +39,10 @@ export default function decorate(block) {
     // Create the HTML structure using template literals
     const dealerLocatorHtml = `
       <div class="hero-image" style="background-image: url('${dealerLocator.heroImage}');">
-        <div class="pretitle">${dealerLocator.pretitle}</div>
-        <div class="description">${dealerLocator.description}</div>
-        <img src="${dealerLocator.heroImage}" alt="${dealerLocator.imageAltText}" class="hero-image"/>
-        <div class="cta-container">
-          <a href="${dealerLocator.ctaLink}" class="cta-text" id="cta1">${dealerLocator.ctaText}</a>
-          <a href="${dealerLocator.ctaLink}" class="cta-text" id="cta2">${dealerLocator.ctaText}</a>
-        </div>
-      </div>
+      <div class="pretitle">${dealerLocator.pretitle}</div>
+      <div class="description">${dealerLocator.description}</div>
+      ${(dealerLocator.cta) ? `<div class="cta-text" id="cta1">${dealerLocator.cta.outerHTML}</div>` : ''}
+      ${(dealerLocator.cta) ? `<div class="cta-text" id="cta2">${dealerLocator.cta.outerHTML}</div>` : ''}
     `;
   
     // Set the generated HTML to the block

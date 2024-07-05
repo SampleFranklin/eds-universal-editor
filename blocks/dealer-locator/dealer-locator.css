@@ -6,9 +6,9 @@
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: relative;
-}
-
-.hero-image {
+  }
+  
+  .hero-image {
     width: 100%;
     height: auto;
     background-size: cover;
@@ -16,34 +16,36 @@
     position: relative;
     padding: 20px;
     box-sizing: border-box;
-}
-
-.pretitle {
-    font-style: Bold;
-      font-size: 24px;
-      font-weight: 400;
-      line-height: 28px;
-}
-
-.description {
-    position: relative;
-    bottom: 10px;
-    right: 10px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end; /* Align content to the end (bottom right corner) */
+    position: relative; /* Ensure relative positioning */
+  }
+  
+  .pretitle {
+    font-size: 1.2em;
+    color: #888;
+    margin-right: 10px;
+  }
+  
+  .description {
+    position: absolute; /* Position absolute relative to .hero-image */
+    bottom: 10px; /* Distance from bottom */
+    right: 10px; /* Distance from right */
     background-color: rgba(255, 255, 255, 0.8);
     padding: 10px;
     border-radius: 5px;
-    max-width: 90%;
-}
-
-img.hero-image {
-    width: 100%;
+    max-width: 50%; /* Adjust as needed */
+  }
+  
+  img.hero-image {
+    width: auto;
+    max-width: 100%;
     height: auto;
     display: block;
-    margin-top: 10px; /* Add spacing if needed */
-}
-
-
-
+    border-radius: 5px;
+  }
+  
 .cta-container {
     display: flex;
     flex-direction: column;
