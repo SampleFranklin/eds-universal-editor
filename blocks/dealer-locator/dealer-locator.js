@@ -9,15 +9,17 @@ export default function decorate(block) {
         ctaTextEl,
         ctaLinkEl,
        ] = block.children;
-    const image = imageEl?.querySelector('picture');
-    if (image) {
-      const img = image.querySelector('img');
-      img.removeAttribute('width');
-      img.removeAttribute('height');
-      const alt = altTextEl?.textContent?.trim() || 'image';
-      img.setAttribute('alt', alt);
-    }
-
+    // const image = imageEl?.querySelector('picture');
+    // if (image) {
+    //   const img = image.querySelector('img');
+    //   img.removeAttribute('width');
+    //   img.removeAttribute('height');
+    //   const alt = altTextEl?.textContent?.trim() || 'image';
+    //   img.setAttribute('alt', alt);
+    // }
+    const imgElement = imageEl.querySelector("img");
+    const image = imgElement?.getAttribute("src")?.trim() || "";
+    const altText = altTextEl?.textContent?.trim() || "";
     const pretitle = pretitleEl?.textContent?.trim() || "";
     const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.outerHTML).join('');
     console.log("vineetha");
@@ -29,6 +31,7 @@ export default function decorate(block) {
   
       return {
       image,
+      altText,
       pretitle,
       description,
       cta, // Ensure the CTA object is returned
