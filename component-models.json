@@ -2642,8 +2642,8 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "altHeroImage",
-        "label": "Alt Hero Image"
+        "name": "imageAltText",
+        "label": "Image Alt Text"
       },
       {
         "component": "richtext",
