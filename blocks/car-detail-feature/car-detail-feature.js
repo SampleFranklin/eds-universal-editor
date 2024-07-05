@@ -1,8 +1,29 @@
 import ctaUtils from '../../utility/ctaUtils.js';
 import utility from '../../utility/utility.js';
+import { fetchPlaceholders } from '../../scripts/aem.js';
 
+async function fetchCar(domain) {
+  const car = await fetch(
+    `${domain}/graphql/execute.json/msil-platform/arenaBannerList?q=123`,
+  );
+  return car.json();
+}
 
-export default function decorate(block) {
+function generateVariantList(carData) {
+  if (!carData || !carData.data) {
+    return '';
+  }
+  const variantItems = carData.data.carModelList.items.map(car => `
+      <li>
+        <p>${car.carName}</p>
+        <p>${car.bodyType}</p>
+      </li>
+    `).join('');
+
+    return `<ul>${variantItems}</ul>`;
+  }
+
+export default async function decorate(block) {
     const [
           imageEl,
           titleEl,
@@ -33,9 +54,18 @@ export default function decorate(block) {
                      </div>
                    `;
     }
+    let variantData = '';
 
     if(featureType) {
       block.classList.add(featureType);
+      console.log(featureType);
+           // Fetch Car Variant for 'feature-performance'
+            if (featureType === 'feature-performance') {
+             const { publishDomain } = await fetchPlaceholders();
+             const carData = await fetchCar(publishDomain);
+             variantData = generateVariantList(carData);
+             console.log(carData);
+            }
     }
 
     block.innerHTML = '';
@@ -45,6 +75,7 @@ export default function decorate(block) {
                        <div class="feature__card">
                            ${(image) ? `<div class="feature__image">${image.outerHTML}</div>` : ''}
                            <div class="feature__content">
+                           ${(variantData) ? `<div class="feature__variant">${variantData}</div>` : ''}
                                <div class="feature__info">
                                    ${(title) ? `<div class="feature__title">${title.outerHTML}</div>` : ''}
                                    ${(description) ? `<div class="feature__description">${description}</div>` : ''}
@@ -55,7 +86,7 @@ export default function decorate(block) {
                  `),
     );
     block.classList.add("container");
-
+    console.log(block);
 
 
 }
