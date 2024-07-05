@@ -3,7 +3,6 @@ export default function decorate(block) {
     function getDealerLocator() {
       const [
         imageEl,
-        altTextEl,
         pretitleEl,
         descriptionEl,
         ctaTextEl,
@@ -19,7 +18,7 @@ export default function decorate(block) {
     // }
     const imgElement = imageEl.querySelector("img");
     const image = imgElement?.getAttribute("src")?.trim() || "";
-    const altText = altTextEl?.textContent?.trim() || "";
+    
     const pretitle = pretitleEl?.textContent?.trim() || "";
     const description = descriptionEl?.textContent?.trim() || "";
     console.log("vineetha");
