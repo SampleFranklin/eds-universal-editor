@@ -78,6 +78,7 @@ export default async function decorate(block) {
   const userAccountLinkItems =
     user__dropdownDiv.querySelectorAll(".user__account>a");
   const signInTeaser = nav.querySelector(".sign-in-teaser");
+  const locationHtml=nav.querySelector('.location-wrapper');
 
   const desktopHeader = `
     <div class="navbar ${isNexa ? "navbar-nexa" : "navbar-arena"}">
@@ -89,7 +90,6 @@ export default async function decorate(block) {
       ${logo.outerHTML}
       <div class="links"></div>
       <div class="right" id="nav-right">
-        <div class="location">Gurgaon &#9662;</div>
         ${!isNexa ? `<div class="language">EN &#9662;</div>` : ""}
         <img id="user-img" src="../../icons/${
           isNexa ? "account_circle" : "user"
@@ -127,6 +127,7 @@ export default async function decorate(block) {
   `;
   const navWrapper = document.createElement("div");
   navWrapper.innerHTML = desktopHeader + mobileHeader;
+  navWrapper.querySelector('.right').insertAdjacentElement("afterbegin",locationHtml);
   block.append(navWrapper);
   const navHamburger = document.querySelector(".nav-hamburger");
   const backArrow = document.querySelector(".back-arrow");
