@@ -3,19 +3,14 @@ import ctaUtils from '../../utility/ctaUtils.js';
 export default function decorate(block) {
     function getDealerLocator() {
       const [
-        
         imageEl,
         altTextEl,
         pretitleEl,
         descriptionEl,
         ctaTextEl,
         ctaLinkEl,
-       ,
-      ] = block.children;
-  
-      
-  
-      const image = imageEl?.querySelector('picture');
+       ] = block.children;
+    const image = imageEl?.querySelector('picture');
     if (image) {
       const img = image.querySelector('img');
       img.removeAttribute('width');
@@ -25,9 +20,9 @@ export default function decorate(block) {
     }
 
     const pretitle = pretitleEl?.textContent?.trim() || "";
-      const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.outerHTML).join('');
+    const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.outerHTML).join('');
     console.log("vineetha");
-      const cta = (ctaLinkEl) ? ctaUtils.getLink(ctaLinkEl, ctaTextEl,) : null;
+    const cta = (ctaLinkEl) ? ctaUtils.getLink(ctaLinkEl, ctaTextEl,) : null;
   
       return {
       image,
@@ -37,11 +32,11 @@ export default function decorate(block) {
       };
     }
   
-    const dealerLocator = getDealerLocator(block);
+    const dealerLocator = getDealerLocator();
   
     // Create the HTML structure using template literals
     const dealerLocatorHtml = `
-      <div class="image" style="image: url('${dealerLocator.Image}');">
+      <div class="image" style="image: url('${dealerLocator.image}');">
       <div class="pretitle">${dealerLocator.pretitle}</div>
       <div class="description">${dealerLocator.description}</div>
       ${(dealerLocator.cta) ? `<div class="cta-text" id="cta1">${dealerLocator.cta.outerHTML}</div>` : ''}
@@ -54,7 +49,7 @@ export default function decorate(block) {
       <div class="dealer-locator__container">
         ${dealerLocatorHtml}
       </div>`;
-  
+  console.log("sri");
     // Add scroll event listener for highlighting CTAs
     // document.addEventListener('scroll', () => {
     //   const cta1 = document.getElementById('cta1');
