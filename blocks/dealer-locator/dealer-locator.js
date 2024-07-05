@@ -1,3 +1,5 @@
+import ctaUtils from '../../utility/ctaUtils.js';
+
 export default function decorate(block) {
     function getDealerLocator() {
       const [
@@ -20,7 +22,7 @@ export default function decorate(block) {
         const alt = imageAltTextEl?.textContent?.trim() || 'heroImage';
         img.setAttribute('alt', alt);
       }
-  
+    console.log("vineetha");
       const cta = (ctaLinkEl) ? ctaUtils.getLink(ctaLinkEl, ctaTextEl,) : null;
   
       return {
