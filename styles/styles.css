@@ -17,8 +17,8 @@
 @import url("fonts.css");
 :root {
   /* ----------------------
-COLOURS BASE PALETTE
--------------------------- */
+  COLOURS BASE PALETTE
+  -------------------------- */
   --secondary-black: #1d1d1d;
   --secondary-white: #fdfdfd;
 
@@ -46,15 +46,16 @@ COLOURS BASE PALETTE
   --secondary-gray-900: #434649;
 
   /* ----------------------
-COLOURS BASE PALETTE
--------------------------- */
+  COLOURS BASE PALETTE
+  -------------------------- */
 }
 
 h1,
 h2,
 h3,
 h4,
-h5 {
+h5,
+h6 {
   font-family: "Anek Latin";
   font-style: normal;
   font-weight: 500;
@@ -87,13 +88,243 @@ h4,
   font-size: 18px;
   line-height: 22px; /* 122.222% */
 }
+
+/* ----------------------
+  BUTTONS STYLE
+  -------------------------- */
+/* input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  background: inherit;
+  border: inherit;
+} */
+.button,
+a.button,
+button.button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  display: inline-flex;
+  padding: 7px 36px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px; /* 128.571% */
+  letter-spacing: 1.12px;
+  text-transform: uppercase;
+  transition: all 0.3s linear;
+  position: relative !important;
+}
+/* button primary light style */
+.button-primary-light {
+  background-color: var(--primary-blue-700);
+  color: var(--secondary-white);
+  border: 1px solid var(--primary-blue-700);
+}
+.button-primary-light:hover {
+  border: 1px solid var(--primary-blue-700);
+  color: var(--primary-blue-700);
+  background-color: var(--secondary-white);
+}
+.button-primary-light:active {
+  background-color: var(--primary-blue-900);
+  color: var(--secondary-white);
+}
+.button-primary-light:disabled,
+.button-primary-light.disabled {
+  background-color: var(--secondary-gray-300);
+  color: var(--secondary-gray-700);
+  border: 1px solid var(--secondary-gray-300);
+}
+/* button primary light icon button style */
+.button.button-primary-light.button-icon {
+  padding-left: 62px;
+}
+.button-primary-light.button-icon::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 36px;
+  z-index: 1;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7.5 8.49999H3.66667V7.49999H7.5V3.66666H8.5V7.49999H12.3333V8.49999H8.5V12.3333H7.5V8.49999Z" fill="%23FDFDFD"/></svg>');
+}
+.button-primary-light.button-icon:hover::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7.5 8.49999H3.66667V7.49999H7.5V3.66666H8.5V7.49999H12.3333V8.49999H8.5V12.3333H7.5V8.49999Z" fill="%23171D9B"/></svg>');
+}
+.button-primary-light.button-icon:active::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7.5 8.49999H3.66667V7.49999H7.5V3.66666H8.5V7.49999H12.3333V8.49999H8.5V12.3333H7.5V8.49999Z" fill="white"/></svg>');
+}
+.button-primary-light.button-icon:disabled::before,
+.button-primary-light.button-icon.disabled::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7.5 8.49999H3.66667V7.49999H7.5V3.66666H8.5V7.49999H12.3333V8.49999H8.5V12.3333H7.5V8.49999Z" fill="%236C6F72"/></svg>');
+}
+
+/* button primary dark style */
+.button-primary-dark {
+  background-color: var(--secondary-white);
+  color: var(--primary-blue-700);
+  border: 1px solid var(--secondary-white);
+}
+.button-primary-dark:hover {
+  background-color: var(--secondary-white);
+  color: var(--primary-blue-700);
+  border: 1px solid var(--secondary-white);
+}
+.button-primary-dark:active {
+  background-color: var(--primary-blue-100);
+  color: var(--primary-blue-900);
+  border: 1px solid var(--primary-blue-100);
+}
+.button-primary-dark:disabled,
+.button-primary-dark.disabled {
+  background-color: var(--secondary-gray-300);
+  color: var(--secondary-gray-700);
+  border: 1px solid var(--secondary-gray-300);
+}
+
+/* button primary dark icon button style */
+.button.button-primary-dark.button-icon {
+  padding-left: 62px;
+}
+.button-primary-dark.button-icon::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 36px;
+  z-index: 1;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7.5 8.49999H3.66667V7.49999H7.5V3.66666H8.5V7.49999H12.3333V8.49999H8.5V12.3333H7.5V8.49999Z" fill="%23171D9B"/></svg>');
+}
+.button-primary-dark.button-icon:hover::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7.5 8.49999H3.66667V7.49999H7.5V3.66666H8.5V7.49999H12.3333V8.49999H8.5V12.3333H7.5V8.49999Z" fill="%23171D9B"/></svg>');
+}
+.button-primary-dark.button-icon:active::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7.5 8.49999H3.66667V7.49999H7.5V3.66666H8.5V7.49999H12.3333V8.49999H8.5V12.3333H7.5V8.49999Z" fill="%23171D9B"/></svg>');
+}
+.button-primary-dark.button-icon:disabled::before,
+.button-primary-dark.button-icon.disabled::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7.5 8.49999H3.66667V7.49999H7.5V3.66666H8.5V7.49999H12.3333V8.49999H8.5V12.3333H7.5V8.49999Z" fill="%236C6F72"/></svg>');
+}
+
+/* button secondary light style */
+.button-secondary-light {
+  background-color: var(--secondary-white);
+  color: var(--primary-blue-700);
+  border: 1px solid var(--primary-blue-700);
+}
+.button-secondary-light:hover {
+  color: var(--primary-blue-700);
+  background-color: var(--primary-blue-100);
+  border: 1px solid var(--primary-blue-700);
+}
+.button-secondary-light:active {
+  background-color: var(--primary-blue-400);
+  color: var(--secondary-white);
+  border: 1px solid var(--primary-blue-400);
+}
+.button-secondary-light:disabled,
+.button-secondary-light.disabled {
+  background-color: var(--secondary-gray-300);
+  color: var(--secondary-gray-700);
+  border: 1px solid var(--secondary-gray-300);
+}
+/* button secondary light icon button style */
+.button.button-secondary-light.button-icon {
+  padding-left: 62px;
+}
+.button-secondary-light.button-icon::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 36px;
+  z-index: 1;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7.5 8.49999H3.66667V7.49999H7.5V3.66666H8.5V7.49999H12.3333V8.49999H8.5V12.3333H7.5V8.49999Z" fill="%23171D9B"/></svg>');
+}
+.button-secondary-light.button-icon:hover::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7.5 8.49999H3.66667V7.49999H7.5V3.66666H8.5V7.49999H12.3333V8.49999H8.5V12.3333H7.5V8.49999Z" fill="%23171D9B"/></svg>');
+}
+.button-secondary-light.button-icon:active::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7.5 8.49999H3.66667V7.49999H7.5V3.66666H8.5V7.49999H12.3333V8.49999H8.5V12.3333H7.5V8.49999Z" fill="white"/></svg>');
+}
+.button-secondary-light.button-icon:disabled::before,
+.button-secondary-light.button-icon.disabled::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7.5 8.49999H3.66667V7.49999H7.5V3.66666H8.5V7.49999H12.3333V8.49999H8.5V12.3333H7.5V8.49999Z" fill="%236C6F72"/></svg>');
+}
+
+/* button secondary dark style */
+.button-secondary-dark {
+  background-color: var(--secondary-white);
+  color: var(--primary-blue-700);
+  border: 1px solid var(--secondary-white);
+}
+.button-secondary-dark:hover {
+  color: var(--primary-blue-700);
+  background-color: var(--secondary-white);
+  border: 1px solid var(--secondary-white);
+}
+.button-secondary-dark:active {
+  background-color: var(--primary-blue-100);
+  color: var(--primary-blue-700);
+  border: 1px solid var(--primary-blue-100);
+}
+.button-secondary-dark:disabled,
+.button-secondary-dark.disabled {
+  background-color: var(--secondary-gray-300);
+  color: var(--secondary-gray-700);
+  border: 1px solid var(--secondary-gray-300);
+}
+/* button secondary light icon button style */
+.button.button-secondary-dark.button-icon {
+  padding-left: 62px;
+}
+.button-secondary-dark.button-icon::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 36px;
+  z-index: 1;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7.5 8.49999H3.66667V7.49999H7.5V3.66666H8.5V7.49999H12.3333V8.49999H8.5V12.3333H7.5V8.49999Z" fill="%23171D9B"/></svg>');
+}
+.button-secondary-dark.button-icon:hover::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7.5 8.49999H3.66667V7.49999H7.5V3.66666H8.5V7.49999H12.3333V8.49999H8.5V12.3333H7.5V8.49999Z" fill="%23171D9B"/></svg>');
+}
+.button-secondary-dark.button-icon:active::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7.5 8.49999H3.66667V7.49999H7.5V3.66666H8.5V7.49999H12.3333V8.49999H8.5V12.3333H7.5V8.49999Z" fill="%23171D9B"/></svg>');
+}
+.button-secondary-dark.button-icon:disabled::before,
+.button-secondary-dark.button-icon.disabled::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7.5 8.49999H3.66667V7.49999H7.5V3.66666H8.5V7.49999H12.3333V8.49999H8.5V12.3333H7.5V8.49999Z" fill="%236C6F72"/></svg>');
+}
+
+/* button link style */
 .button.primary__btn {
   display: inline-block;
-  height: 48px;
-  width: 48px;
+  height: 64px;
+  width: 64px;
   padding: inherit;
-  background-color: var(--secondary-gray-50);
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" fill="black" fill-opacity="0.05"/><path d="M11.1075 39L9 36.8925L31.8925 14H18V11H37V30H34V16.1075L11.1075 39Z" fill="%231C1D1F"/></svg>');
+  background-color: var(--secondary-gray-300);
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none"><rect width="64" height="64" fill="white" fill-opacity="0.2"/><path d="M14.81 52.0001L12 49.1901L42.5233 18.6667H24V14.6667H49.3333V40.0001H45.3333V21.4767L14.81 52.0001Z" fill="black"/></svg>');
 }
 
 @media (min-width: 999px) {
