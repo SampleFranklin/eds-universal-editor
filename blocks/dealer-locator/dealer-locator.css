@@ -42,7 +42,7 @@ body {
 }
 
 img.hero-image {
-    display: none; /* Hide the actual image element since the background image is used */
+    display: flex;
 }
 
 .cta-container {
