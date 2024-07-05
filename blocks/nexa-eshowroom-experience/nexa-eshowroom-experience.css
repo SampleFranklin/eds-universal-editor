@@ -1,10 +1,5 @@
 @import url('../carousel/fadecarousel.css');
 
-:root {
-    --primary-main-color: #18171a;
-    --secondary-main-color: #fff;
-}
-
 .e-showroom {
     background: linear-gradient(192deg, #EDEEEE 40.54%, rgba(217, 217, 217, 0.00) 178.01%);
 }
@@ -105,8 +100,8 @@
 }
 
 .e-showroom__primary__btn {
-    background: var(--primary-main-color);
-    color: var(--secondary-main-color);
+    background: var( --primary-main);
+    color: var(--tertiary-white);
     text-align: center;
     align-items: center;
     font-family: "Fira Sans", sans-serif;
@@ -117,19 +112,8 @@
     padding: 8px 12px;
     border-radius: inherit;
     margin: inherit;
+    clip-path: polygon(2% 0, 100% 0, 100% 88%, 98% 100%, 0 100%, 0 12%);
 }
-
-/* .e-showroom__primary__btn::before {
-    content: '';
-    display: inline-block;
-    width: 8px;
-    height: 30px;
-    margin-right: -3px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url(../../icons/left.svg); */
-    /* filter: invert(1); */
-/* } */
 
 .e-showroom__secondary__btn {
     font-family: "Fira Sans";
@@ -142,7 +126,7 @@
     text-decoration: none;
     display: flex;
     gap: 10.24px;
-    color: var(--primary-main-color);
+    color: var( --primary-main);
     border-radius: inherit;
     background: inherit;
     /*extra*/
@@ -159,63 +143,6 @@
 .e-showroom__action a {
     box-sizing: border-box;
 }
-
-/* .immersive__action::after {
-    content: '';
-    display: inline-block;
-    width: 8px;
-    height: 41px;
-    margin-left: -1px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url("../../icons/right.svg");
-  
-  } */
-
-/* .immersive__content .immersive__action::before {
-    content: '';
-    display: inline-block;
-    width: 8px;
-    height: 40px;
-    margin-right: -3px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url("../../icons/left.svg");
-  
-  } */
-
-/* .immersive__action a {
-    display: flex;
-    padding: 8px 18px 8px 20px;
-    background-color: #ffffff;
-    justify-content: center;
-    align-items: center;
-    align-self: stretch;
-    border: none;
-    font-size: 18px;
-    color: #18171A;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-    border-radius: unset;
-    text-decoration: none;
-  } */
-
-/* .immersive__action a::after {
-    content: '';
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    margin-left: 8px;
-    background-image: url('../../icons/north_east.svg');
-  } */
-
-/* .immersive__action .left-svg,
-  .immersive__action .right-svg {
-    display: block;
-  } */
 
 .e-showroom__carousel__dot {
     content: '';
