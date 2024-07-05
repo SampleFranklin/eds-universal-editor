@@ -1562,7 +1562,7 @@
     "id": "nexa-eshowroom-experience-item",
     "fields": [
       {
-        "component": "reference",
+        "component": "aem-content-fragment",
         "valueType": "string",
         "name": "carModelPath",
         "label": "Enter Car Model",
