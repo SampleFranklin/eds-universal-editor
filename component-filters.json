@@ -73,7 +73,9 @@
       "best-deals",
       "video-teaser",
       "nexa-brand-film-carousel",
-      "finance-entry-point"
+      "finance-entry-point",
+      "dealer-locator"
+      
     ]
   },
   {
@@ -220,6 +222,12 @@
     "id": "finance-entry-point",
     "components": [
       "teaser"
+    ]
+  },
+  {
+    "id": "dealer-locator",
+    "components": [
+      "cta"
     ]
   }
 ]

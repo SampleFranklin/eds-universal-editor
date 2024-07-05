@@ -2622,5 +2622,31 @@
         ]
       }
     ]
+  },
+  {
+    "id": "dealer-locator",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "pretitle",
+        "label": "Pretitle"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "heroImage",
+        "label": "Hero Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "description",
+        "label": "Description",
+        "value":""
+      }
+    ]
   }
+  
 ]
