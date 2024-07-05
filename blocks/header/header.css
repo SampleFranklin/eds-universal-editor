@@ -288,6 +288,7 @@ header nav .nav-tools {
 }
 .navbar-nexa {
   background-color: #18171a;
+  padding: 0px 64px;
 }
 .navbar .links {
   display: flex;
@@ -323,6 +324,17 @@ header nav .nav-tools {
   display: flex;
   align-items: center;
   color: #575a5e;
+  margin-right: 24px;
+}
+
+.navbar-nexa .right .location {
+  color: #f2f2f2;
+  font-size: 16px;
+  margin-right: 24px;
+}
+
+.navbar-nexa .links .link-title{
+  font-size: 16px;
 }
 
 .navbar-nexa .links .link-title,
@@ -541,6 +553,20 @@ body {
   .navbar {
     height: 64px;
   }
+
+  .navbar-nexa {
+    padding: 0px 20px;
+  }
+
+  .navbar-nexa .right .location {
+    font-size: 14px;
+    margin-right: 0;
+  }
+
+  .navbar-nexa .links .link-title{
+    font-size: 14px;
+  }
+  
   .navbar .links,
   .navbar .right {
     display: none;
