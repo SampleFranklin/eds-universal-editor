@@ -62,7 +62,7 @@ export default async function decorate(block) {
       icon: icon?.innerHTML,
       iconClicked: iconClicked?.innerHTML,
       content: content?.firstChild,
-      teaser: teaser ?? "",
+      teaser: teaser?.firstChild ?? "",
     });
   });
   const logo = nav.querySelector(".logo-wrapper");
