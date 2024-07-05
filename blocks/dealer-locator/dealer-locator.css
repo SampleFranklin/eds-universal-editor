@@ -5,6 +5,8 @@
     border-radius: 8px;
     color: white; /* Assuming a dark background */
     position: relative;
+    height: 1000px;
+    width:100%;
   
   }
   
