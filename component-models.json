@@ -1541,54 +1541,8 @@
       {
         "component": "text-input",
         "valueType": "string",
-        "name": "title",
-        "label": "Title"
-      },
-      {
-        "component": "select",
-        "name": "titleType",
-        "value": "h2",
-        "label": "Type",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "h1",
-            "value": "h1"
-          },
-          {
-            "name": "h2",
-            "value": "h2"
-          },
-          {
-            "name": "h3",
-            "value": "h3"
-          },
-          {
-            "name": "h4",
-            "value": "h4"
-          },
-          {
-            "name": "h5",
-            "value": "h5"
-          },
-          {
-            "name": "h6",
-            "value": "h6"
-          }
-        ]
-      },
-      {
-        "component": "text",
-        "valueType": "string",
         "name": "preTitle",
-        "label": "Pretitle"
-      },
-      {
-        "component": "richtext",
-        "name": "description",
-        "value": "",
-        "label": "Description",
-        "valueType": "string"
+        "label": "Price Text"
       },
       {
         "component": "text-input",
@@ -1610,28 +1564,9 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "forwardVideo",
-        "label": "Forward Video",
+        "name": "carModelPath",
+        "label": "Enter Car Model",
         "multi": false
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "reverseVideo",
-        "label": "Reverse Video",
-        "multi": false
-      },
-      {
-        "component": "text-input",
-        "name": "primaryText",
-        "label": "Primary CTA Text",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "name": "primaryLink",
-        "valueType": "string",
-        "label": "Primary CTA Link"
       }
     ]
   },
