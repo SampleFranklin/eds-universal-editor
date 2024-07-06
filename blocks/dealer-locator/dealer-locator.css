@@ -20,10 +20,18 @@
 
 .image {
   border-style: none;
+  position: absolute;
+  top: 0;
+  left: 50%;
   width: 1372px;
   height: 300px;
-  
-  
+  transform: translateX(-50%);
+  z-index: 0;
+  display: flex;
+  background-size: cover;
+  box-sizing: border-box;
+  overflow-clip-margin: content-box;
+  overflow: clip;
 }
 
 .pre-title {
