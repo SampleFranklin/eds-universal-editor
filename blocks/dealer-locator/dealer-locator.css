@@ -6,9 +6,17 @@
     border-radius: 8px;
     color: white; /* Assuming a dark background */
     position: relative;
-    height: 600px;
-    width:100%;
+    width: 353px;
+    height: 1372px;
+    flex-shrink: 0;
   
+  }
+
+  .image {
+    width: 205px;
+   height: 1366px;
+   transform: rotate(90deg);
+   flex-shrink: 0;
   }
   
   .pre-title {
