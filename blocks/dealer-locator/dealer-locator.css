@@ -22,8 +22,8 @@
   border-style: none;
   position: absolute;
   top: 0;
-  left: 100%;
-  right: 100%;
+  left: 50%;
+  
   width: 1372px;
   height: 300px;
   transform: translateX(-50%);
