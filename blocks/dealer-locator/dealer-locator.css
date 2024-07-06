@@ -20,8 +20,8 @@
 
 .image {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  padding-top: 48px;
+  padding-left: 20px;
   width: 1372px;
   height: 250px;
   transform: translate(-50%, -50%);
