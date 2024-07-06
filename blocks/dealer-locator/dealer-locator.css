@@ -1,48 +1,54 @@
 .dealer-locator__container {
-    background-color: black;
-    background-size: cover;
-    background-position: center;
-    padding: 20px;
-    border-radius: 8px;
-    color: white; /* Assuming a dark background */
-    position: relative;
-    width: 1372px;
-    height: 600px;
-    flex-shrink: 0;
-  
+  background-color: black;
+  color: white;
+  font-family: "Fira-Sans";
+  padding-top: 48px;
+  padding-left: 20px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  position: relative;
+  width: 1372px;
+  height: 600px;
+  flex-shrink: 0;
+  overflow: hidden;
+  p {
+    margin: unset;
+    font-size: unset;
   }
+}
 
-  .image {
-    width: 205px;
-   height: 1366px;
-   transform: rotate(90deg);
-   flex-shrink: 0;
-  }
-  
-  .pre-title {
-    position: absolute;
-    top: 10px; /* Adjust top position */
-    left: 10px; /* Adjust left position */
-    font-size: 1.2em;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-    padding: 5px 10px;
-    border-radius: 5px;
-    z-index: 10; /* Ensure it is above the image */
-  }
-  
-  .description {
-    position: absolute;
-    bottom: 10px; /* Adjust bottom position */
-    right: 10px; /* Adjust right position */
-    font-size: 1em;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-    padding: 5px 10px;
-    border-radius: 5px;
-    z-index: 10; /* Ensure it is above the image */
-  }
-  
- 
-  
-  
+.image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1366px;
+  height: 205px;
+  transform: translate(-50%, -50%) rotate(90deg);
+  z-index: 0;
+}
+
+.pre-title {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 5px 10px;
+  border-radius: 5px;
+  z-index: 10;
+}
+
+.description {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 1em;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 5px 10px;
+  border-radius: 5px;
+  z-index: 10;
+}
