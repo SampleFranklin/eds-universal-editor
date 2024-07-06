@@ -41,7 +41,7 @@ export default function decorate(block) {
     // Create the HTML structure using template literals
     const dealerLocatorHtml = `
       <div class="dealer-locator__container">
-      class= "image"> style="background-image: url('${dealerLocator.image}');">
+      class= "image"> style="image: url('${dealerLocator.image}');">
         <p class="pre-title">${dealerLocator.pretitle}</p>
         <p class="description">${dealerLocator.description}</p>
         
