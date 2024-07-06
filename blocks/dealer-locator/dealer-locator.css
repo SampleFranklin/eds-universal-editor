@@ -22,7 +22,6 @@
   border-style: none;
   position: absolute;
   top: 0;
-  left: 50%;
   width: 1372px;
   height: 300px;
   transform: translateX(-50%);
@@ -50,11 +49,15 @@
 .description {
   position: absolute;
   bottom: 10px;
-  right: 10px;
   font-size: 1em;
   color: #fff;
   background-color: rgba(0, 0, 0, 0.7);
   padding: 5px 10px;
   border-radius: 5px;
   z-index: 10;
+  width:600px; 
+  height: 300px;  
+  border: 5px solid black;  
+  display: flex;  
+  flex-direction: row-reverse;
 }
