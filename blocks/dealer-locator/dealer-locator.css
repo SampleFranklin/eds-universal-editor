@@ -6,8 +6,8 @@
     border-radius: 8px;
     color: white; /* Assuming a dark background */
     position: relative;
-    width: 353px;
-    height: 1372px;
+    width: 1372px;
+    height: 353px;
     flex-shrink: 0;
   
   }
