@@ -22,8 +22,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 100%;
-  height: auto;
+  width: 1372px;
+  height: 250px;
   transform: translate(-50%, -50%);
   z-index: 0;
 }
@@ -51,4 +51,8 @@
   padding: 5px 10px;
   border-radius: 5px;
   z-index: 10;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  width:70%;
 }
