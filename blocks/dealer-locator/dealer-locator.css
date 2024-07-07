@@ -7,8 +7,8 @@
 }
 
 .dealer-locator__container .image {
-  height: 205px;
-  width: 1366px;
+  height: 100%;
+  width: 100%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -57,17 +57,17 @@
 }
 
 .dealer-locator__action ul {
-  list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   gap: 20px;
+  flex-direction: column;
 }
 
 .dealer-locator__action ul a {
   display: inline;
   color: #ffffff;
-  flex-direction: column;
+  
 }
 
 .dealer-locator__action .cta-text {
