@@ -1,80 +1,83 @@
-
 export default function decorate(block) {
-    function getDealerLocator() {
+  function getDealerLocator() {
       const [
-        imageEl,
-        pretitleEl,
-        descriptionEl,
-        // ctaTextEl,
-        // ctaLinkEl,
-       ] = block.children;
-    // const image = imageEl?.querySelector('picture');
-    // if (image) {
-    //   const img = image.querySelector('img');
-    //   img.removeAttribute('width');
-    //   img.removeAttribute('height');
-    //   const alt = altTextEl?.textContent?.trim() || 'image';
-    //   img.setAttribute('alt', alt);
-    // }
-    const imgElement = imageEl.querySelector("img");
-    const image = imgElement?.getAttribute("src")?.trim() || "";
-    
-    const pretitle = pretitleEl?.textContent?.trim() || "";
-    const description = descriptionEl?.textContent?.trim() || "";
-    console.log("vineetha");
-    // const cta = ctaLinkEl? { 
-    //       href: ctaLinkEl.querySelector("a")?.href || "#",
-    //       textContent: ctaTextEl?.textContent?.trim() || "",
-    //     }
-    //   : null;
-  
+          imageEl,
+          pretitleEl,
+          descriptionEl,
+          ...ctaEls
+      ] = block.children;
+
+      const imgElement = imageEl.querySelector("img");
+      const image = imgElement?.getAttribute("src")?.trim() || "";
+
+      const pretitle = pretitleEl?.textContent?.trim() || "";
+      const description = descriptionEl?.textContent?.trim() || "";
+
+      const ctas = ctaEls.map(ctaEl => {
+          const link = ctaEl.querySelector('a');
+          const text = link?.querySelector('li')?.textContent?.trim() || "";
+          const href = link?.getAttribute('href') || "#";
+          return { text, href };
+      });
+
       return {
-      image,
-      pretitle,
-      description,
-      //cta, // Ensure the CTA object is returned
+          image,
+          pretitle,
+          description,
+          ctas
       };
-    }
-  
-    const dealerLocator = getDealerLocator();
-  
-    // Create the HTML structure using template literals
-    const dealerLocatorHtml = `
-      <div class="dealer-locator__container">
-      <div class= "image"> <img src="${dealerLocator.image}"/>
-      </div>
-        <p class="pre-title">${dealerLocator.pretitle}</p>
-        <p class="description">${dealerLocator.description}</p>
-        
+  }
+
+  const dealerLocator = getDealerLocator();
+
+  // Create the HTML structure using template literals
+  const dealerLocatorHtml = `
+    <div class="dealer-locator__container">
+        <div class="image">
+            <img src="${dealerLocator.image}" alt="${dealerLocator.pretitle}">
+        </div>
+        <div class="dealer-locator__content">
+            <p class="pre-title">${dealerLocator.pretitle}</p>
+            <p class="description">${dealerLocator.description}</p>
+        </div>
+        <div class="dealer-locator__action">
+            <ul>
+                ${dealerLocator.ctas.map(cta => `
+                    <a href="${cta.href}">
+                        <li class="cta-text">${cta.text}</li>
+                    </a>
+                `).join('')}
+            </ul>
+        </div>
     </div>
   `;
-      
-    
-  
-    // Set the generated HTML to the block
-    block.innerHTML = dealerLocatorHtml;
-      
-  console.log("sri");
-    // Add scroll event listener for highlighting CTAs
-    // document.addEventListener('scroll', () => {
-    //   const cta1 = document.getElementById('cta1');
-    //   const cta2 = document.getElementById('cta2');
-    //   const cta1Rect = cta1.getBoundingClientRect();
-    //   const cta2Rect = cta2.getBoundingClientRect();
-  
-    //   const viewportHeight = window.innerHeight;
-    //  console.log(description);
-    //   if (cta1Rect.top >= 0 && cta1Rect.bottom <= viewportHeight) {
-    //     cta1.classList.add('highlight');
-    //   } else {
-    //     cta1.classList.remove('highlight');
-    //   }
-  
-    //   if (cta2Rect.top >= 0 && cta2Rect.bottom <= viewportHeight) {
-    //     cta2.classList.add('highlight');
-    //   } else {
-    //     cta2.classList.remove('highlight');
-    //   }
-    // });
+
+  // Set the generated HTML to the block
+  block.innerHTML = dealerLocatorHtml;
+
+  // Add scroll event listener for highlighting CTAs
+  const ctaElements = document.querySelectorAll('.dealer-locator__container .dealer-locator__action .cta-text');
+  if (ctaElements.length > 0) {
+      window.addEventListener('scroll', function() {
+          const scrollPosition = window.scrollY + window.innerHeight;
+
+          ctaElements.forEach(function(cta) {
+              const ctaPosition = cta.getBoundingClientRect().top + window.scrollY;
+
+              if (scrollPosition >= ctaPosition) {
+                  cta.classList.add('highlight');
+              } else {
+                  cta.classList.remove('highlight');
+              }
+          });
+      });
   }
-  
+
+  // Example of adding a click event to CTAs
+  ctaElements.forEach(function(cta) {
+      cta.addEventListener('click', function(event) {
+          event.preventDefault();
+          alert('CTA clicked: ' + event.target.textContent);
+      });
+  });
+}
