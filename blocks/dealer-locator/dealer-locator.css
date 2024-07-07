@@ -10,12 +10,6 @@
 .dealer-locator__container .image {
   height: 500px;
   width: 1366px;
-  background-size: cover;
-  background-position: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0.5; /* Adjust this value to change the overlay transparency */
   background: linear-gradient(101deg, #18171A 3.08% rgba(24, 23, 26,0.75)22.25% rgba(24, 23, 26, 0.00)44.22%);
 }
 
