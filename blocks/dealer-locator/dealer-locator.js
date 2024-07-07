@@ -6,9 +6,18 @@ export default function decorate(block) {
           descriptionEl,
           ...ctaEls
       ] = block.children;
+      const image = imageEl?.querySelector('picture');
+    if (image) {
+      const img = image.querySelector('img');
+      img.removeAttribute('width');
+      img.removeAttribute('height');
+      const alt = altTextEl?.textContent?.trim() || 'image';
+      img.setAttribute('alt', alt);
+    }
+  
 
-      const imgElement = imageEl?.querySelector('img');
-      const imageUrl = imgElement?.getAttribute('src')?.trim() || "";
+      // const imgElement = imageEl?.querySelector('img');
+      // const imageUrl = imgElement?.getAttribute('src')?.trim() || "";
 
       const pretitle = pretitleEl?.textContent?.trim() || "";
       const description = descriptionEl?.textContent?.trim() || "";
@@ -42,7 +51,7 @@ export default function decorate(block) {
             <div class="dealer-locator__action">
                 <ul>
                     ${dealerLocator.ctas.map(cta => `
-                        <a href="${cta.href}">
+                        <a href="${cta.ctaLink}">
                             <li class="cta-text">${cta.ctaText}</li>
                         </a>
                     `).join('')}
