@@ -73,7 +73,7 @@
   
 }
 
-.dealer-locator__action .cta-text {
+.dealer-locator__action .ctaText {
   padding: 10px 20px;
   background-color: #18171A;
   color: white;
@@ -81,7 +81,7 @@
   transition: background-color 0.3s;
 }
 
-.dealer-locator__action .cta-text:hover,
-.dealer-locator__action .cta-text.highlight {
+.dealer-locator__action .ctaText:hover,
+.dealer-locator__action .ctaText.highlight {
   background-color: #ffffff;
 }
