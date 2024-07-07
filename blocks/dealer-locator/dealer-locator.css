@@ -4,6 +4,7 @@
   position: relative;
   background-color: black;
   overflow: hidden;
+
 }
 
 .dealer-locator__container .image {
@@ -15,6 +16,7 @@
   top: 0;
   left: 0;
   opacity: 0.5; /* Adjust this value to change the overlay transparency */
+  background: linear-gradient(101deg, #18171A 3.08% rgba(24, 23, 26,0.75)22.25% rgba(24, 23, 26, 0.00)44.22%);
 }
 
 /* .dealer-locator__container .overlay {
