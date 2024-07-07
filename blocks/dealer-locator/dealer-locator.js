@@ -6,16 +6,23 @@ export default function decorate(block) {
           descriptionEl,
           ...ctaEls
       ] = block.children;
-
-      const imgElement = imageEl.querySelector("img");
-      const image = imgElement?.getAttribute("src")?.trim() || "";
+      const image = imageEl?.querySelector('picture');
+      if (image) {
+        const img = image.querySelector('img');
+        img.removeAttribute('width');
+        img.removeAttribute('height');
+        const alt = altTextEl?.textContent?.trim() || 'image';
+        img.setAttribute('alt', alt);
+      }
+      // const imgElement = imageEl.querySelector("img");
+      // const image = imgElement?.getAttribute("src")?.trim() || "";
 
       const pretitle = pretitleEl?.textContent?.trim() || "";
       const description = descriptionEl?.textContent?.trim() || "";
 
       const ctas = ctaEls.map(ctaEl => {
           const link = ctaEl.querySelector('a');
-          const text = link?.querySelector('li')?.textContent?.trim() || "";
+          const text = text?.querySelector('li')?.textContent?.trim() || "";
           const href = link?.getAttribute('href') || "#";
           return { text, href };
       });
@@ -42,8 +49,8 @@ export default function decorate(block) {
             <div class="dealer-locator__action">
                 <ul>
                     ${dealerLocator.ctas.map(cta => `
-                        <a href="${cta.href}">
-                            <li class="cta-text">${cta.text}</li>
+                        <a href="${cta.cta-href}">
+                            <li class="cta-text">${cta.cta-text}</li>
                         </a>
                     `).join('')}
                 </ul>
