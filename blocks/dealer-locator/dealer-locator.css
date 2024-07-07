@@ -1,8 +1,8 @@
 .dealer-locator__container {
   width: 1366px;
-  height: 100vh;
+  height: 470px;
   position: relative;
-  background-color: black; /* Set background color to black */
+  background-color: black;
   overflow: hidden;
 }
 
@@ -11,77 +11,70 @@
   width: 100%;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
+  opacity: 0.5; /* Adjust this value to change the overlay transparency */
 }
 
 .dealer-locator__container .overlay {
-  position: relative;
-  z-index: 2;
-  height: 700px;
-  width: 1366px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  
+  color: white;
   padding: 20px;
-  
 }
 
 .dealer-locator__content {
-  display: flex;
-  text-align: left;
+  text-align: center;
   margin-bottom: 20px;
-  justify-content: flex-end;
-  align-items: flex-start;
-  gap: 24px;
 }
 
 .dealer-locator__content .pre-title {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
-  font-family: "Fira Sans";
-  color: #f2f2f2;
 }
 
 .dealer-locator__content .description {
-  font-size: 16px;
-  color: #ddd;
-  flex-direction: column;
-  justify-content: left;
-  align-self: stretch;
-  align-items: flex-start;
+  font-size: 18px;
 }
 
 .dealer-locator__action ul {
+  list-style: none;
   padding: 0;
-  margin: 0;
   display: flex;
-  gap: 20px;
   flex-direction: column;
+  align-items: center;
 }
 
-.dealer-locator__action ul a {
-  display: inline;
-  color: #ffffff;
-  
+.dealer-locator__action a {
+  text-decoration: none;
 }
 
 .dealer-locator__action .cta-text {
+  background-color: white;
+  color: black;
   padding: 10px 20px;
-  background-color: #18171A;
-  color: white;
+  margin: 5px 0;
+  font-size: 16px;
+  text-align: center;
   border-radius: 5px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.dealer-locator__action .ctaText:hover,
-.dealer-locator__action .ctaText.highlight {
-  background-color: #ffffff;
+.dealer-locator__action .cta-text:hover {
+  background-color: black;
+  color: white;
+}
+
+.dealer-locator__action .cta-text.highlight {
+  background-color: yellow;
+  color: black;
 }

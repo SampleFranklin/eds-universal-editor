@@ -24,9 +24,9 @@ export default function decorate(block) {
 
       const ctas = ctaEls.map(ctaEl => {
           const link = ctaEl.querySelector('a');
-          const text = link?.querySelector('li')?.textContent?.trim() || "";
+          const text = ctaText?.querySelector('li')?.textContent?.trim() || "";
           const href = link?.getAttribute('href') || "#";
-          return { text, href };
+          return { ctaText, ctaLink };
       });
 
       return {
