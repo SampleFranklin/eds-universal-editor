@@ -7,8 +7,8 @@
 }
 
 .dealer-locator__container .image {
-  height: 100%;
-  width: 100%;
+  height: 500px;
+  width: 1366px;
   background-size: cover;
   background-position: center;
   position: absolute;
