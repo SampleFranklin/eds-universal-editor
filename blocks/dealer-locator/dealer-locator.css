@@ -21,7 +21,7 @@
 .dealer-locator__container .overlay {
   position: relative;
   z-index: 2;
-  height: 400px;
+  height: 700px;
   width: 1366px;
   display: flex;
   flex-direction: column;
@@ -30,7 +30,7 @@
 
   
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.5); /* Optional: add a semi-transparent background for better readability */
+  
 }
 
 .dealer-locator__content {
