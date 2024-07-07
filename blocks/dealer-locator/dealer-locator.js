@@ -32,26 +32,32 @@ export default function decorate(block) {
 
   // Create the HTML structure using template literals
   const dealerLocatorHtml = `
-    <div class="dealer-locator__container">style="image: url('${dealer-locator.image}');">
-        
-        <div class="dealer-locator__content">
-            <p class="pre-title">${dealerLocator.pretitle}</p>
-            <p class="description">${dealerLocator.description}</p>
-        </div>
-        <div class="dealer-locator__action">
-            <ul>
-                ${dealerLocator.ctas.map(cta => `
-                    <a href="${cta.href}">
-                        <li class="cta-text">${cta.text}</li>
-                    </a>
-                `).join('')}
-            </ul>
+    <div class="dealer-locator__container">
+        <div class="image"></div>
+        <div class="overlay">
+            <div class="dealer-locator__content">
+                <p class="pre-title">${dealerLocator.pretitle}</p>
+                <p class="description">${dealerLocator.description}</p>
+            </div>
+            <div class="dealer-locator__action">
+                <ul>
+                    ${dealerLocator.ctas.map(cta => `
+                        <a href="${cta.href}">
+                            <li class="cta-text">${cta.text}</li>
+                        </a>
+                    `).join('')}
+                </ul>
+            </div>
         </div>
     </div>
   `;
 
   // Set the generated HTML to the block
   block.innerHTML = dealerLocatorHtml;
+
+  // Set the background image
+  const imageElement = document.querySelector('.dealer-locator__container .image');
+  imageElement.style.backgroundImage = `url(${dealerLocator.image})`;
 
   // Add scroll event listener for highlighting CTAs
   const ctaElements = document.querySelectorAll('.dealer-locator__container .dealer-locator__action .cta-text');
