@@ -6,29 +6,22 @@ export default function decorate(block) {
           descriptionEl,
           ...ctaEls
       ] = block.children;
-      const image = imageEl?.querySelector('picture');
-      if (image) {
-        const img = image.querySelector('img');
-        img.removeAttribute('width');
-        img.removeAttribute('height');
-        const alt = altTextEl?.textContent?.trim() || 'image';
-        img.setAttribute('alt', alt);
-      }
-      // const imgElement = imageEl.querySelector("img");
-      // const image = imgElement?.getAttribute("src")?.trim() || "";
+
+      const imgElement = imageEl?.querySelector('img');
+      const imageUrl = imgElement?.getAttribute('src')?.trim() || "";
 
       const pretitle = pretitleEl?.textContent?.trim() || "";
       const description = descriptionEl?.textContent?.trim() || "";
 
       const ctas = ctaEls.map(ctaEl => {
           const link = ctaEl.querySelector('a');
-          const text = text?.querySelector('li')?.textContent?.trim() || "";
+          const text = link?.querySelector('li')?.textContent?.trim() || "";
           const href = link?.getAttribute('href') || "#";
           return { text, href };
       });
 
       return {
-          image,
+          imageUrl,
           pretitle,
           description,
           ctas
@@ -49,8 +42,8 @@ export default function decorate(block) {
             <div class="dealer-locator__action">
                 <ul>
                     ${dealerLocator.ctas.map(cta => `
-                        <a href="${cta.cta-href}">
-                            <li class="cta-text">${cta.cta-text}</li>
+                        <a href="${cta.href}">
+                            <li class="cta-text">${cta.ctaText}</li>
                         </a>
                     `).join('')}
                 </ul>
@@ -64,7 +57,7 @@ export default function decorate(block) {
 
   // Set the background image
   const imageElement = document.querySelector('.dealer-locator__container .image');
-  imageElement.style.backgroundImage = `url(${dealerLocator.image})`;
+  imageElement.style.backgroundImage = `url(${dealerLocator.imageUrl})`;
 
   // Add scroll event listener for highlighting CTAs
   const ctaElements = document.querySelectorAll('.dealer-locator__container .dealer-locator__action .cta-text');
