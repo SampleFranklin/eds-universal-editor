@@ -7,8 +7,8 @@
 }
 
 .dealer-locator__container .image {
-  height: 100%;
-  width: 100%;
+  height: 205px;
+  width: 1366px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -21,8 +21,8 @@
 .dealer-locator__container .overlay {
   position: relative;
   z-index: 2;
-  height: 100%;
-  width: 100%;
+  height: 1366px;
+  width: 205px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,32 +33,47 @@
 }
 
 .dealer-locator__content {
-  text-align: center;
+  display: flex;
+  text-align: left;
   margin-bottom: 20px;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 24px;
 }
 
 .dealer-locator__content .pre-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
+  color: #f2f2f2;
+  font-family: "Fira Sans";
+  line-height:24px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  border-left: 18px;
+  border-right: 24px;
 }
 
 .dealer-locator__content .description {
-  font-size: 16px;
-  color: #ddd;
+  display: flex;
+  color: #ffffff;
+  padding-bottom: 8px;
+  align-items: flex-end;
+  gap: 4px;
+  border-left: 109px;
 }
 
 .dealer-locator__action ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 20px;
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+align-items: flex-start;
+gap: 12px;
+align-self: stretch;
 }
 
 .dealer-locator__action ul a {
-  text-decoration: none;
-  color: inherit;
+  display: inline;
+  color: #ffffff;
+  flex-direction: column;
 }
 
 .dealer-locator__action .cta-text {
