@@ -372,3 +372,37 @@ main .section.highlight {
 html {
   scroll-behavior: smooth;
 }
+
+.cta__primary {
+  a {
+    padding: 0 24px;
+    height: 40px;
+    display: flex;
+    color: #18171a;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: white;
+    clip-path: polygon(4% 0, 100% 0, 100% 84%, 96% 100%, 0 100%, 0 20%);
+  }
+
+  a::after {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 8px;
+    background-image: url("/icons/north_east.svg");
+  }
+}
+
+@media (min-width: 999px) {
+  .cta__primary {
+    a {
+      height: 50px;
+      clip-path: polygon(6% 0, 100% 0, 100% 84%, 94% 100%, 0 100%, 0 20%);
+    }
+  }
+}
