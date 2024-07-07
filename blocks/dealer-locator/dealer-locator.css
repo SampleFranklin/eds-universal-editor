@@ -1,6 +1,6 @@
 .dealer-locator__container {
   width: 1366px;
-  height: 470px;
+  height: 100vh;
   position: relative;
   background-color: black; /* Set background color to black */
   overflow: hidden;
@@ -27,7 +27,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
+  
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.5); /* Optional: add a semi-transparent background for better readability */
 }
