@@ -21,8 +21,8 @@
 .dealer-locator__container .overlay {
   position: relative;
   z-index: 2;
-  height: 1366px;
-  width: 205px;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,32 +42,26 @@
 }
 
 .dealer-locator__content .pre-title {
-  color: #f2f2f2;
-  font-family: "Fira Sans";
-  line-height:24px;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  border-left: 18px;
-  border-right: 24px;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .dealer-locator__content .description {
-  display: flex;
-  color: #ffffff;
-  padding-bottom: 8px;
-  align-items: flex-end;
-  gap: 4px;
-  border-left: 109px;
+  font-size: 16px;
+  color: #ddd;
+  flex-direction: column;
+  justify-content: left;
+  align-self: stretch;
+  align-items: flex-start;
 }
 
 .dealer-locator__action ul {
-display: flex;
-flex-direction: column;
-justify-content: flex-end;
-align-items: flex-start;
-gap: 12px;
-align-self: stretch;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
 }
 
 .dealer-locator__action ul a {
