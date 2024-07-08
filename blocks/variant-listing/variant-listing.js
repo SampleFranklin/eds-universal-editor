@@ -2,7 +2,7 @@ import { fetchPlaceholders } from "../../scripts/aem.js";
 
 export default async function decorate(block) {
     const { publishDomain } = await fetchPlaceholders();
-    graphQlEndpoint = `${publishDomain}/graphql/execute.json/msil-platform/arenaVariantList;modelId=BZ`;
+    const graphQlEndpoint = `${publishDomain}/graphql/execute.json/msil-platform/arenaVariantList;modelId=BZ`;
     const [
         modelIdEl,
         primaryCtaTextEl,
