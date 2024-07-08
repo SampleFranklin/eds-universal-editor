@@ -79,11 +79,7 @@ export default function decorate(block) {
         });
     }
 
-    // Example of adding a click event to CTAs
-    ctaElements.forEach(function(cta) {
-        cta.addEventListener('click', function(event) {
-            event.preventDefault();
-            alert('CTA clicked: ' + event.target.textContent);
-        });
-    });
+    
+    
+    
 }
