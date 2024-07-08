@@ -2526,6 +2526,12 @@
       {
         "component": "text",
         "valueType": "string",
+        "name": "exShowroomPriceText",
+        "label": "Ex-Showroom Price Text"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
         "name": "tagline",
         "label": "Tagline"
       },
@@ -2549,37 +2555,9 @@
       },
       {
         "component": "aem-content-fragment",
-        "name": "model-id",
-        "label": "Model ID",
+        "name": "carModelPath",
+        "label": "Car Model Path",
         "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "nexa-car-hero-banner-item",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "video",
-        "label": "Video",
-        "multi": false
-      },
-      {
-        "component": "boolean",
-        "valueType": "boolean",
-        "name": "allowMobileVideo",
-        "label": "Separate Video for Mobile"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "videoMobile",
-        "label": "Mobile Video",
-        "multi": false,
-        "condition": {
-          "===": [ { "var": "allowMobileVideo" }, true ]
-        }
       },
       {
         "component": "text-input",
@@ -2638,6 +2616,40 @@
             "value": "_self"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "nexa-car-hero-banner-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "video",
+        "label": "Video",
+        "multi": false
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "allowMobileVideo",
+        "label": "Separate Video for Mobile"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "videoMobile",
+        "label": "Mobile Video",
+        "multi": false,
+        "condition": {
+          "===": [ { "var": "allowMobileVideo" }, true ]
+        }
+      },
+      {
+        "component": "text-input",
+        "name": "variantT&C",
+        "label": "Variant Name and T&C",
+        "valueType": "string"
       }
     ]
   }
