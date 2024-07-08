@@ -508,6 +508,13 @@ a:any-link {
   text-decoration: none;
 }
 
+.hidden {
+  display: none;
+}
+
+.flex {
+  display: flex;
+}
 /*
 a:hover {
   text-decoration: underline;
