@@ -81,7 +81,7 @@ ul {
 }
 
 li {
-  background-color: black;
+  
   color: white;
   padding: 10px 20px;
   margin: 5px 0;
@@ -91,7 +91,7 @@ li {
   transition: background-color 0.3s, color 0.3s;
 }
 
-.dealer-locator__action .cta-text:hover {
+/* .dealer-locator__action .cta-text:hover {
   background-color: black;
   color: white;
 }
@@ -99,5 +99,5 @@ li {
 .dealer-locator__action .cta-text.highlight {
   background-color: white;
   color: black;
-}
+} */
 }
