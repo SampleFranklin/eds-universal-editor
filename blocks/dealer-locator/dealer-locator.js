@@ -35,6 +35,7 @@ export default function decorate(block) {
   // Create the HTML structure using template literals
   const dealerLocatorHtml = `
     <div class="dealer-locator__container">
+    <div class="section">
         <div class="image"></div>
         <div class="overlay">
             <div class="dealer-locator__content">
@@ -50,6 +51,7 @@ export default function decorate(block) {
                     `).join('')}
                 </ul>
             </div>
+        </div>
         </div>
     </div>
   `;
