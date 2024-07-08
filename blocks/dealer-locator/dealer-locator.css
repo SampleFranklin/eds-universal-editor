@@ -1,8 +1,9 @@
 .dealer-locator__container {
-	width:1366px;
-	height:470px;
-	}
-	.dealer-locator__container .section {
+  width: 1366px;
+  height: 470px;
+  
+}
+.dealer-locator__container .section {
 	width: 1366px;
     height: 436px;
     flex-shrink: 0;
@@ -21,52 +22,72 @@
     flex-shrink: 0;
 	background: linear-gradient(88deg, #18171A 49.21%, rgba(24, 23, 26, 0.00) 95.09%);
 	}
-	.dealer-locator__content {
-	display: flex;
-    width: 1238px;
-    justify-content: space-between;
-    align-items: flex-end;
-	}
-	.dealer-locator__content .pre-title {
-	color: var(--Tertiary-Light-grey, #F2F2F2);
-    font-family: "Fira Sans";
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-    text-align: left	
-	}
-	.dealer-locator__content .description {
-	display: flex;
-    padding-bottom: 8px;
-    align-items: flex-end;
-    gap: 4px;
-	text-align: right;
-	}
-	.dealer-locator__action {
-	display: flex;
+
+
+.dealer-locator__content {
+  text-align: center;
+  margin-bottom: 20px;
+  display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-start;
-    align-self: stretch;
-	
-    ul {
-	width: 4px;
-    height: 72px;
-	background: #F2F2F2;
-	}
-	a {
-        text-decoration: none;
-        color: unset;
-      }
-	li {
-	font-size: 64px;
-    font-weight: 600;
-    line-height: 72px;
-    color: var(--Tertiary-White, #FFF);
-    font-family: "Kepler Std";
-    font-style: normal;
-    letter-spacing: 1.28px;
-	text-align:left;
-	}
-	}
+    gap: 32px;
+    
+      
+}
+
+.dealer-locator__content .pre-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: auto;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.dealer-locator__content .description {
+  
+  text-align: right;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  width:70%;
+  margin-top: auto; /* Pushes the description to the bottom */
+  align-self: flex-end;
+
+}
+
+.dealer-locator__action {
+  max-height: 200px; /* Set a max height for the CTA container */
+  overflow-y: auto; /* Enable vertical scrolling */
+  width: 25%; /* Ensure it takes the full width */
+  text-align: left; /* Center-align the CTAs */
+}
+
+.dealer-locator__action ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dealer-locator__action a {
+  text-decoration: none;
+}
+
+.dealer-locator__action .cta-text {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  margin: 5px 0;
+  font-size: 5px;
+  text-align: left;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dealer-locator__action .cta-text:hover {
+  background-color: black;
+  color: white;
+}
+
+.dealer-locator__action .cta-text.highlight {
+  background-color: white;
+  color: black;
+}
