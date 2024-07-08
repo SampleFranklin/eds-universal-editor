@@ -1,5 +1,3 @@
-
-
 export default function decorate(block) {
   function getDealerLocator() {
       const [
@@ -9,11 +7,17 @@ export default function decorate(block) {
           ...ctaEls
       ] = block.children;
 
-      const imgElement = imageEl?.querySelector('img');
-      const imageUrl = imgElement?.getAttribute('src')?.trim() || "";
+      const image = imageEl?.querySelector('picture');
+    if (image) {
+      const img = image.querySelector('img');
+      img.removeAttribute('width');
+      img.removeAttribute('height');
+      const alt = altTextEl?.textContent?.trim() || 'image';
+      img.setAttribute('alt', alt);
+    }
 
       const pretitle = pretitleEl?.textContent?.trim() || "";
-      const description = descriptionEl?.textContent?.trim() || "";
+      const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.outerHTML).join('');
 
       const ctas = ctaEls.map(ctaEls => {
         const [ctaTextEl, ctaLinkEl]= ctaEls.children;
@@ -25,7 +29,7 @@ export default function decorate(block) {
       
 
       return {
-          imageUrl,
+          image,
           pretitle,
           description,
           ctas
@@ -38,7 +42,7 @@ export default function decorate(block) {
   // Create the HTML structure using template literals
   const dealerLocatorHtml = `
     <div class="dealer-locator__container">
-    
+    <div class="section">
         <div class="image"></div>
         <div class="overlay">
             <div class="dealer-locator__content">
@@ -56,7 +60,7 @@ export default function decorate(block) {
                 </ul>
             </div>
         </div>
-        
+        </div>
     </div>
   `;
 
