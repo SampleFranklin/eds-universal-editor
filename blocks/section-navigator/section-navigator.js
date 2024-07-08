@@ -1,5 +1,5 @@
 export default function decorate(block) {
-    const sectionsCount = document.querySelectorAll('main > .section').length;
+    const sectionsCount = document.querySelectorAll('.overview-section').length;
 
     var nav = document.createElement('nav');
     for (var i = 1; i <= sectionsCount; i++) {
