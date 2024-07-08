@@ -1,4 +1,5 @@
 import { fetchPlaceholders } from "../../scripts/aem.js";
+import ctaUtils from '../../utility/ctaUtils.js';
 
 export default async function decorate(block) {
     const { publishDomain } = await fetchPlaceholders();
