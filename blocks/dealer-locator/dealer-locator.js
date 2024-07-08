@@ -35,7 +35,7 @@ export default function decorate(block) {
   // Create the HTML structure using template literals
   const dealerLocatorHtml = `
     <div class="dealer-locator__container">
-    <div class="section">
+    
         <div class="image"></div>
         <div class="overlay">
             <div class="dealer-locator__content">
@@ -46,13 +46,14 @@ export default function decorate(block) {
                 <ul>
                     ${dealerLocator.ctas.map(cta => `
                         <li class="cta-text">
-                            <a href="${cta.ctaLink}">${cta.ctaText}</a>
+                            <a href="${cta.ctaLink}"></a>
+                            <p text="${cta.ctaText}"></p>
                         </li>
                     `).join('')}
                 </ul>
             </div>
         </div>
-        </div>
+        
     </div>
   `;
 
