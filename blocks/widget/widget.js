@@ -42,32 +42,5 @@ export default function decorate(block) {
         </div>
     </div>
     `;
-
-    // Add hover logic with JavaScript
-    const widgetIconElement = block.querySelector('.widget__icon');
-    const widgetLinksElement = block.querySelector('.widget__links');
-
-    widgetIconElement.addEventListener('mouseenter', () => {
-        widgetLinksElement.style.display = 'block';
-    });
-
-    widgetIconElement.addEventListener('mouseleave', () => {
-        setTimeout(() => {
-            if (!widgetLinksElement.matches(':hover')) {
-                widgetLinksElement.style.display = 'none';
-            }
-        }, 100);
-    });
-
-    widgetLinksElement.addEventListener('mouseleave', () => {
-        widgetLinksElement.style.display = 'none';
-    });
-
-    widgetLinksElement.addEventListener('mouseenter', () => {
-        widgetLinksElement.style.display = 'block';
-    });
-
-    // Initially hide the widget links
-    widgetLinksElement.style.display = 'none';
 }
 

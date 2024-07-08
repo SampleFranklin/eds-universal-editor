@@ -32,7 +32,8 @@
 }
 
 .widget__icon {
-    width: 40px;
+    width: 48px;
+    height:48px;
 }
 
 .widget__icon img {
@@ -44,16 +45,18 @@
     display: none;
 }
 
-.widget__icon:hover .icon {
+/* .widget__icon:hover .icon {
     display: none;
 }
 
 .widget__icon:hover .icon-clicked {
     display: block;
-}
+} */
 
 .widget__links ul {
     list-style: none;
+    margin:0;
+    padding-top:5px;
 }
 
 .widget__link__icon .icon-clicked {
@@ -111,4 +114,13 @@
 .widget__link__icon img {
     width: 32px;
     height: 32px;
+}
+
+.widget__icon:hover{
+    + .widget__links{
+        display:block;
+    }
+}
+.widget__links:hover{
+    display:block;
 }
