@@ -82,11 +82,22 @@ export default function decorate(block) {
       return tabNameEl?.textContent?.trim() || '';
     });
 
-  block.innerHTML = `
-    <div class="highlightItems-container">${highlightItemsHTML}</div>
-    ${switchListHTML}
-  `;
-
+    const highlightItemsContainer = document.createElement('div');
+    highlightItemsContainer.classList.add('highlightItems-container');
+    highlightItemsContainer.innerHTML = highlightItemsHTML;
+  
+    // Highlighted lines
+    const isMobile = window.matchMedia("(max-width: 999px)").matches;
+    if (isMobile) {
+      highlightItemsContainer.innerHTML += switchListHTML;
+      block.innerHTML = '';
+      block.appendChild(highlightItemsContainer);
+    } else {
+      block.innerHTML = `
+        <div class="highlightItems-container">${highlightItemsHTML}</div>
+        ${switchListHTML}
+      `;
+    }
   initializeHighlightItems(block.querySelectorAll('.highlightItem'));
   TabUtils.setupTabs(block, highlightItemListElements);
 

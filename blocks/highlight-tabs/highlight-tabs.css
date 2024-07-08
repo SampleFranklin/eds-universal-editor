@@ -29,6 +29,13 @@
     padding-bottom: 65px;
   }
 }
+.highlightItems-container{
+  position:relative;
+  height:760px;
+  @media(min-width:999px){
+    height:auto;
+  }
+}
 .highlightItem {
   display: flex;
   flex-direction: column;
@@ -48,7 +55,7 @@
       position: absolute;
       left: 0;
       right: 0;
-      height: 200px; 
+      height: 250px; 
       z-index: 1;
     }
     &::before {
@@ -129,8 +136,6 @@
 .switch-list-section {
   padding: 12px 20px 24px 20px;
   margin-top: 16px;
-  position: absolute;
-  bottom: -35%;
   .switch-list {
     height: 28px;
     list-style-type: none;
@@ -186,8 +191,9 @@
   }
 }
 .highlightItem-content {
-  margin-left: 20px;
-  margin-top: 80px;
+  position:absolute;
+  left: 20px;
+  bottom:24px;
   width: 85%;
   padding: 16px;
   background: linear-gradient(
