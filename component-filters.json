@@ -75,7 +75,8 @@
       "nexa-brand-film-carousel",
       "finance-entry-point",
       "section-navigator",
-      "variant-listing"
+      "variant-listing",
+      "mfe-poc"
     ]
   },
   {
@@ -226,6 +227,10 @@
   },
   {
     "id": "section-navigator",
+    "components": []
+  },
+  {
+    "id": "mfe-poc",
     "components": []
   }
 ]
