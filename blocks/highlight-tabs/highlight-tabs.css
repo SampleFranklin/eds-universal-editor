@@ -37,6 +37,7 @@
     aspect-ratio: 360/297;
   }
   @media (min-width: 999px) {
+    position:relative;
     .highlightItem-img {
       height: 767px;
     }
@@ -68,7 +69,7 @@
     display: inherit;
     .top-left {
       position: absolute;
-      top: 25%;
+      top: 120px;
       left: 5%;
       font-size: 64px;
       font-weight: 600;
@@ -78,7 +79,7 @@
     }
     .top-right {
       position: absolute;
-      top: 28%;
+      top: 155px;
       right: 5%;
       font-size: 18px;
       font-weight: 300;
@@ -162,7 +163,7 @@
   @media (min-width: 999px) {
     position: absolute;
     left: 5%;
-    bottom: 4%;
+    bottom: 48px;
     width: 30%;
     margin-left: 0;
     padding: 32px;
