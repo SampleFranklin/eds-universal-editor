@@ -5,22 +5,19 @@
 }
 
 .dealer-locator__container .image {
-  height: 100%;
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0.5; /* Adjust this value to change the overlay transparency */
-  background: url("/content/dam/nexa-world/9d418b71f127370578eab06187d46a05.jpg") lightgray -7.404px -459.299px / 100.512% 209.771% no-repeat;
+  width: 205px;
+height: 1366px;
+transform: rotate(90deg);
+flex-shrink: 0;
+background: linear-gradient(88deg, #18171A 49.21%, rgba(24, 23, 26, 0.00) 95.09%);
+ /* background: url("/content/dam/nexa-world/9d418b71f127370578eab06187d46a05.jpg") lightgray -7.404px -459.299px / 100.512% 209.771% no-repeat;*/
 }
 
 .dealer-locator__container .overlay {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 25%;
+  width: 100%;
   padding: 20px;
   
   color: white;
@@ -29,7 +26,7 @@
   justify-content: flex-end;
   align-items: flex-start;
 
-  background: linear-gradient(88deg, #18171A 49.21%, rgba(24, 23, 26, 0.00) 95.09%);
+  
 }
 
 .dealer-locator__content {
