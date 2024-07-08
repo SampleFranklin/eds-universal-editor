@@ -33,24 +33,7 @@ export default function decorate(block) {
   }
 
   const dealerLocator = getDealerLocator();
-  const ul = document.createElement('ul');
-  ul.classList.add('list-container');
-  ctas.forEach(cta => {
-    // Create a new <li> element for each CTA
-    const listItem = document.createElement('li');
-
-    // Create a new <a> element for the CTA
-    const anchor = document.createElement('a');
-    anchor.href = cta.href;
-    anchor.textContent = cta.text;
-
-    // Append the <a> element to the <li> element
-    listItem.appendChild(anchor);
-
-    // Append the <li> element to the <ul> element
-    ul.appendChild(listItem);
-});
-
+  
 
   // Create the HTML structure using template literals
   const dealerLocatorHtml = `
@@ -63,8 +46,14 @@ export default function decorate(block) {
                 <p class="description">${dealerLocator.description}</p>
             </div>
             <div class="dealer-locator__action">
-            ${ul.outerHTML}
-                    
+                <ul>
+                    ${dealerLocator.ctas.map(cta => `
+                        <li class="cta-text">
+                            <a href="${cta.ctaLink}"></a>
+                            <p text="${cta.ctaText}"></p>
+                        </li>
+                    `).join('')}
+                </ul>
             </div>
         </div>
         
