@@ -2616,6 +2616,12 @@
             "value": "_self"
           }
         ]
+      },
+      {
+        "component": "text-input",
+        "name": "termsConditionsText",
+        "label": "Terms & Conditions Text",
+        "valueType": "string"
       }
     ]
   },
