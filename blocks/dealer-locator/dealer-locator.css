@@ -2,7 +2,7 @@
   width: 1366px;
   height: 470px;
   position: relative;
-  background: linear-gradient(88deg, #18171A 49.21%, rgba(24, 23, 26, 0.00) 95.09%);
+  
   overflow: hidden;
 }
 
@@ -29,6 +29,7 @@
   align-items: center;
   color: white;
   padding: 20px;
+  background: linear-gradient(88deg, #18171A 49.21%, rgba(24, 23, 26, 0.00) 95.09%);
 }
 
 .dealer-locator__content {
@@ -44,8 +45,9 @@
 .dealer-locator__content .pre-title {
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: auto;
   text-align: left;
+  padding-left: 10px;
 }
 
 .dealer-locator__content .description {
@@ -55,13 +57,16 @@
   font-weight: 400;
   line-height: 20px;
   width:70%;
+  margin-top: auto; /* Pushes the description to the bottom */
+  align-self: flex-end;
+
 }
 
 .dealer-locator__action {
   max-height: 200px; /* Set a max height for the CTA container */
   overflow-y: auto; /* Enable vertical scrolling */
-  width: 100%; /* Ensure it takes the full width */
-  text-align: center; /* Center-align the CTAs */
+  width: 25%; /* Ensure it takes the full width */
+  text-align: left; /* Center-align the CTAs */
 }
 
 .dealer-locator__action ul {
