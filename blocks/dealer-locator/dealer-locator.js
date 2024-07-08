@@ -22,6 +22,8 @@ export default function decorate(block) {
           return { ctaText, ctaLink };
       });
 
+      
+
       return {
           imageUrl,
           pretitle,
@@ -31,6 +33,17 @@ export default function decorate(block) {
   }
 
   const dealerLocator = getDealerLocator();
+  ctas.forEach(cta => {
+    const link = document.createElement('a');
+    link.href = cta.ctaLink;
+    link.textContent = cta.ctaText;
+    link.className = 'cta-link';
+    container.appendChild(link);
+});
+
+
+// Select the CTA elements
+const ctaEls = document.querySelectorAll('.cta-elements');
 
   // Create the HTML structure using template literals
   const dealerLocatorHtml = `
