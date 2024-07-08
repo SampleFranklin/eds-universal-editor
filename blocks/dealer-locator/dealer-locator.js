@@ -1,3 +1,4 @@
+import { moveInstrumentation } from '../../scripts/scripts.js';
 export default function decorate(block) {
   function getDealerLocator() {
       const [
@@ -24,8 +25,8 @@ export default function decorate(block) {
 
       const ctas = ctaEls.map(ctaEl => {
           const link = ctaEl.querySelector('a');
-          const text = ctaText?.querySelector('li')?.textContent?.trim() || "";
-          const href = link?.getAttribute('href') || "#";
+          const ctaText = ctaText?.querySelector('li')?.textContent?.trim() || "";
+          const ctaLink = ctaLink?.getAttribute('href') || "#";
           return { ctaText, ctaLink };
       });
 
@@ -51,7 +52,7 @@ export default function decorate(block) {
             <div class="dealer-locator__action">
                 <ul>
                     ${dealerLocator.ctas.map(cta => `
-                        <a href="${cta.ctaLink}">
+                        <a href="${cta.link}">
                             <li class="cta-text">${cta.ctaText}</li>
                         </a>
                     `).join('')}
@@ -60,7 +61,18 @@ export default function decorate(block) {
         </div>
     </div>
   `;
-
+  const ul = document.createElement('ul');
+  ul.classList.add('list-container');
+  nexaWorldContent.ctas.forEach(link => {
+    console.log(cta);
+    const listItem = document.createElement('li');
+    const anchor = document.createElement('a');
+    anchor.href = link.href;
+    anchor.textContent = link.text;
+    listItem.appendChild(anchor);
+    moveInstrumentation(link.linkEl,listItem);
+    ul.appendChild(listItem);
+  });
   // Set the generated HTML to the block
   block.innerHTML = dealerLocatorHtml;
 
