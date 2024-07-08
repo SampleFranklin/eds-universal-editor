@@ -2665,6 +2665,13 @@
       },
       {
         "component": "text-input",
+        "name": "startingPriceText",
+        "value": "",
+        "label": "Starting Price Text",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
         "name": "primaryText",
         "label": "Primary CTA Text",
         "valueType": "string"

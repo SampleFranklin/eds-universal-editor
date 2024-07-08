@@ -6,6 +6,7 @@ export default async function decorate(block) {
     const graphQlEndpoint = `${publishDomain}/graphql/execute.json/msil-platform/arenaVariantList;modelId=BZ`;
     const [
         modelIdEl,
+        startingPriceTextEl,
         primaryCtaTextEl,
         primaryCtaLinkEl,
         primaryCtaTargetEl,
@@ -26,6 +27,7 @@ export default async function decorate(block) {
         .then((result) => { })
         .catch();
     const modelId = modelIdEl?.textContent?.trim();
+    const startingPriceText = startingPriceTextEl?.textContent?.trim();
     const primaryCta = ctaUtils.getLink(primaryCtaLinkEl, primaryCtaTextEl, primaryCtaTargetEl, 'button-primary-light');
     const secondaryCta = ctaUtils.getLink(secondaryCtaLinkEl, secondaryCtaTextEl, secondaryCtaTargetEl, 'button-secondary-light');
 }
