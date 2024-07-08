@@ -45,14 +45,6 @@
     display: none;
 }
 
-/* .widget__icon:hover .icon {
-    display: none;
-}
-
-.widget__icon:hover .icon-clicked {
-    display: block;
-} */
-
 .widget__links ul {
     list-style: none;
     margin:0;
