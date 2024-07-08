@@ -1,6 +1,6 @@
 .dealer-locator__container {
   width: 1366px;
-  height: 600px;
+  height: 470px;
   
 }
 
@@ -20,7 +20,7 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 50%;
+  width: 25%;
   padding: 20px;
   
   color: white;
