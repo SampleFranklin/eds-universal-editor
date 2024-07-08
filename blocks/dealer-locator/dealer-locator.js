@@ -15,10 +15,10 @@ export default function decorate(block) {
       const pretitle = pretitleEl?.textContent?.trim() || "";
       const description = descriptionEl?.textContent?.trim() || "";
 
-      const ctas = ctaEls.map(ctaEl => {
-          const link = ctaEl.querySelector('a');
-          const ctaText = link?.textContent?.trim() || "";
-          const ctaLink = link?.getAttribute('href') || "#";
+      const ctas = ctaEls.map(ctaEls => {
+        const [ctaTextEl, ctaLinkEl]= ctaEls.children;
+          const ctaText = ctaTextEl?.textContent?.trim() || '';
+          const ctaLink = ctaLinkEl?.querySelector('a')?.href || '#';
           return { ctaText, ctaLink };
       });
 
