@@ -30,14 +30,14 @@ main .immersive-teaser-container > div {
   flex-direction: column;
   position: relative;
 
-  img {
-    width: 100%;
-    display: block;
-  }
-
-  picture {
+  .immersive__image {
     order: 2;
     position: relative;
+
+    img {
+      width: 100%;
+      display: block;
+    }
 
     &::before {
       content: "";
@@ -117,61 +117,6 @@ main .immersive-teaser-container > div {
   margin-top: 32px;
 }
 
-.immersive__wrapper .immersive__content .immersive__action::after {
-  content: "";
-  display: inline-block;
-  width: 8px;
-  height: 41px;
-  margin-left: -1px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-image: url("../../icons/right.svg");
-}
-
-.immersive__wrapper .immersive__content .immersive__action::before {
-  content: "";
-  display: inline-block;
-  width: 8px;
-  height: 40px;
-  margin-right: -3px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-image: url("../../icons/left.svg");
-}
-
-.immersive__wrapper .immersive__content .immersive__action a {
-  display: flex;
-  padding: 8px 18px 8px 20px;
-  background-color: #ffffff;
-  justify-content: center;
-  align-items: center;
-  align-self: stretch;
-  border: none;
-  font-size: 18px;
-  color: #18171a;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 24px;
-  border-radius: unset;
-  text-decoration: none;
-}
-
-.immersive__wrapper .immersive__content .immersive__action a::after {
-  content: "";
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  margin-left: 8px;
-  background-image: url("../../icons/north_east.svg");
-}
-
-.immersive__wrapper .immersive__content .immersive__action .left-svg,
-.immersive__wrapper .immersive__content .immersive__action .right-svg {
-  display: block;
-}
-
 .immersive__wrapper .light-teaser.teaser-wrapper {
   padding: 24px;
   background: #18171a;
@@ -223,21 +168,6 @@ main .immersive-teaser-container > div {
   }
 }
 
-.right-seperator::afterr {
-  content: "";
-  display: block;
-  height: 20px;
-  background-color: #18171a;
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% - 16px),
-    calc(100% - 96px) calc(100% - 16px),
-    calc(100% - 108px) 100%,
-    0 100%
-  );
-}
-
 .left-seperator::after {
   content: "";
   width: 100%;
@@ -266,12 +196,16 @@ main .immersive-teaser-container > div {
     position: relative;
     display: block;
     background: #18171a;
+  }
+
+  .immersive__wrapper .immersive__image {
+    width: 85%;
+    height: 100vh;
+    margin-left: auto;
 
     img {
-      width: 85%;
-      height: 100vh;
+      height: 100%;
       object-fit: cover;
-      margin-left: auto;
     }
   }
 
