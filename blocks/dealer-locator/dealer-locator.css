@@ -18,7 +18,7 @@ main .dealer-locator-container>div {
     color: white;
     background-color: #18171A;
     position: relative;
-    background: linear-gradient(88deg, #18171A 49.21%, rgba(24, 23, 26, 0.00) 95.09%);
+    
 }
 
 .dealer-locator__wrapper .banner-img {
@@ -28,7 +28,7 @@ main .dealer-locator-container>div {
     height: 50%;
     transform: rotate(90deg);
     flex-shrink: 0;
-    background: linear-gradient(101deg, #18171A 3.08%, rgba(24, 23, 26, 0.75) 22.25%, rgba(24, 23, 26, 0.00) 44.22%);
+    
 }
 
 .dealer-locator__wrapper .dealer-locator__content {
