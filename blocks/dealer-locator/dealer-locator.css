@@ -43,6 +43,9 @@
   display: flex;
     flex-direction: column;
     gap: 32px;
+    position: relative;
+    left:0;
+    bottom:0;
     
       
 }
