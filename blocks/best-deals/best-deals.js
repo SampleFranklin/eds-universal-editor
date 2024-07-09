@@ -21,25 +21,26 @@ export default function decorate(block) {
       const teaserObj = teaser.getTeaser(card)?.firstElementChild;
       moveInstrumentation(card, teaserObj);
       utility.mobileLazyLoading(teaserObj, ".teaser__image img");
+      console.log(teaserObj.outerHTML);
       return teaserObj.outerHTML;
     });
 
     const bestDealsHtml = `
         <div class="container container__slider">
-            <div class="slider-header">
-              ${sliderTitle ? sliderTitle.outerHTML : ""}
-              <p>${subtitle}</p>
-              ${(primaryCta) ? primaryCta.outerHTML : ''}
-            </div>	
-        <div class="teaser-content">
-            <div class="button__content">
-              <button class="nav-arrow prev hide">←</button>
-              <button class="nav-arrow next">→</button>
+          <div class="slider-header">
+            ${sliderTitle ? sliderTitle.outerHTML : ""}
+            <p>${subtitle}</p>
+            <div>${primaryCta ? primaryCta.outerHTML : ""}</div>
+          </div>	
+          <div class="teaser-content">
+            <div class="btn-content">
+              <button class="nav-arrow prev">←</button>
+              <button class="nav-arrow next hide">→</button>
             </div>
             <div class="teaser__cards">
                 ${teasers.join("")}
             </div>
-        </div>
+          </div>
       </div>
     `
     const parser = new DOMParser();
@@ -49,7 +50,7 @@ export default function decorate(block) {
     teaserCards.forEach(function(card) {
       const actionsDiv = card.querySelector('.teaser__actions');
       const anchorTag = actionsDiv.querySelector('a');
-      anchorTag.classList.remove('primary__btn');
+      anchorTag.classList.remove('primary__btn', 'button');
       const anchorWrapper = anchorTag.cloneNode();
 
       actionsDiv.remove();
@@ -64,9 +65,9 @@ export default function decorate(block) {
     block.insertAdjacentHTML("beforeend", utility.sanitizeHtml(updatedHtmlString));
     
     const sliderContainer = document.querySelector(".teaser__cards");
-    const prevButton = document.querySelector(".prev");
-    const nextButton = document.querySelector(".next");
-    const boxes = document.querySelectorAll(".best-deals-btn");
+    const nextButton = document.querySelector(".prev");
+    const prevButton = document.querySelector(".next");
+    const boxes = document.querySelectorAll(".teaser__card");
     slider.initSlider(sliderContainer, prevButton, nextButton, boxes);  
 
 }
