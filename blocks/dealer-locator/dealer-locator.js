@@ -1,4 +1,4 @@
-import utility from '../../utility/utility.js';
+
 import { moveInstrumentation } from '../../scripts/scripts.js';
 export default function decorate(block) {
   function getDealerLocator() {
@@ -62,9 +62,7 @@ export default function decorate(block) {
            ${(dealerLocator.pretitle) ? `<p>${dealerLocator.pretitle}</p>` : ''}
            
            ${(dealerLocator.description) ? `${dealerLocator.description}` : ''}
-           <div class="buttons-container">
-            ${ctaElements}
-        </div>
+           
           </div>
           </div>
     `;
@@ -77,7 +75,12 @@ export default function decorate(block) {
 
   <div class="dealerLocator__wrapper right-seperator">
             ${dealerLocatorHtml}
+            <div class="buttons-container">
+            ${ctaElements}
+        </div>
             </div>
+            const dealerLocatorbuttons = block.querySelectorAll('.dealer-button');
+            setupDealerButtons(dealerLocatorbuttons);
 }
 
 
