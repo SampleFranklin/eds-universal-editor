@@ -87,14 +87,6 @@ h4,
   font-size: 18px;
   line-height: 22px; /* 122.222% */
 }
-.button.primary__btn {
-  display: inline-block;
-  height: 48px;
-  width: 48px;
-  padding: inherit;
-  background-color: var(--secondary-gray-50);
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" fill="black" fill-opacity="0.05"/><path d="M11.1075 39L9 36.8925L31.8925 14H18V11H37V30H34V16.1075L11.1075 39Z" fill="%231C1D1F"/></svg>');
-}
 
 @media (min-width: 999px) {
   h1,
@@ -379,4 +371,42 @@ main .section.highlight {
 
 html {
   scroll-behavior: smooth;
+}
+
+.cta__primary {
+  a {
+    padding: 0 24px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    height: 40px;
+    display: flex;
+    color: #18171a;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: white;
+    clip-path: polygon(4% 0, 100% 0, 100% 84%, 96% 100%, 0 100%, 0 20%);
+  }
+
+  a::after {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 8px;
+    background-image: url("/icons/north_east.svg");
+  }
+}
+
+@media (min-width: 999px) {
+  .cta__primary {
+    a {
+      height: 50px;
+      font-size: 18px;
+      clip-path: polygon(5% 0, 100% 0, 100% 75%, 95% 100%, 0 100%, 0 25%);
+    }
+  }
 }

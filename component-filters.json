@@ -67,14 +67,16 @@
       "highlights",
       "finance-options",
       "arena-help-me-select",
-      "intro-to-design-car-detail",
+      "intro-to-design-details",
       "car-detail-feature",
       "nexa-car-hero-banner",
       "best-deals",
       "video-teaser",
       "nexa-brand-film-carousel",
       "finance-entry-point",
-      "section-navigator"
+      "section-navigator",
+      "variant-listing",
+      "mfe-poc"
     ]
   },
   {
@@ -225,6 +227,10 @@
   },
   {
     "id": "section-navigator",
+    "components": []
+  },
+  {
+    "id": "mfe-poc",
     "components": []
   }
 ]

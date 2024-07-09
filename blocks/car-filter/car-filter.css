@@ -364,7 +364,7 @@
 
         .teaser:first-child {
           height: 230px;
-          clip-path: polygon(0 0, 100% 0, 100% 88%, 62% 88%, 57% 100%, 0 100%);
+          clip-path: polygon(0 0, 100% 0, 100% 86%, 62% 86%, 56% 100%, 0 100%);
           flex-basis: 31%;
 
           .teaser__card {
