@@ -99,7 +99,12 @@ export default function decorate(block) {
         const content = item.querySelector('.highlightItem-content');
         if (content) {
           switchListSection.appendChild(content);
+          if(index==0){
+            content.style.display='block';
+          }
+          else{
           content.style.display = 'none';
+          }
         }
     });
   }
