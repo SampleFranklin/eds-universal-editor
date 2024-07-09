@@ -252,6 +252,10 @@ h6 {
     display: none;
 }
 
+.best-deals-wrapper .teaser__info {
+    padding-top: 10px;
+}
+
 
 
 @media (min-width: 600px) {
@@ -433,6 +437,10 @@ h6 {
 
     .best-deals-wrapper a .teaser__card:hover .teaser__description p::after {
         transform: scale(1.15);
+    }
+
+    .best-deals-wrapper .teaser__info {
+        padding-top: 15px;
     }
 }
 
