@@ -20,6 +20,7 @@ export default async function decorate(block) {
   let currentIndex = 0;
   const cardsPerPage = isDesktop ? 3 : 1;
   let highlightedSidebar = null;
+  let timer;
 
   const carsObject = carResponse?.data?.carModelList?.items?.reduce(
     (acc, car) => {
@@ -116,8 +117,8 @@ export default async function decorate(block) {
     <div class="hero_banner_container_wrapper">
       ${bgImg.outerHTML}
       <div class="hero_banner_container">
-        <button class="pre-btn"><img src="../../icons/arrow_backward.svg" alt="previous" /></button>
-        <button class="nxt-btn"><img src="../../icons/arrow_forward.svg" alt="next" /></button>
+        <button class="pre-btn"></button>
+        <button class="nxt-btn"></button>
         ${carContainersWrapper.innerHTML}
       </div>
     </div>
@@ -198,6 +199,14 @@ export default async function decorate(block) {
     }
   }
 
+  function resetTimer() {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      nxtBtn.click();
+    }, 3000);
+  }
+  
+
   function showCards(index) {
     cards.forEach((card, i) => {
       const indexSidebar = i - index;
@@ -235,12 +244,10 @@ export default async function decorate(block) {
   bullets.id = 'bullets';
 
   for (let i = 0; i < cardCount; i += cardsPerPage) {
-    bullets.innerHTML += `<input id="bullet" type="radio" ${
-      i === 0 ? 'checked' : ''
-    } />`;
+    bullets.innerHTML += `<input id="bullet" type="radio" ${i === 0 ? 'checked' : ''} />`;
   }
 
-  document.querySelector('.hero_banner_container_wrapper').appendChild(bullets);
+  document.querySelector(".hero_banner_container_wrapper").appendChild(bullets);
 
   nxtBtn.addEventListener('click', () => {
     if (currentIndex + cardsPerPage < cards.length) {
@@ -252,6 +259,7 @@ export default async function decorate(block) {
       toggleDisableNxtPrvBtn(currentIndex, cardCount);
       showCards(currentIndex);
     }
+    resetTimer();
   });
 
   preBtn.addEventListener('click', () => {
@@ -264,7 +272,9 @@ export default async function decorate(block) {
       toggleDisableNxtPrvBtn(currentIndex, cardCount);
       showCards(currentIndex);
     }
+    resetTimer();
   });
 
   showCards(currentIndex);
+  resetTimer();
 }

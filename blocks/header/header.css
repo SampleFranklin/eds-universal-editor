@@ -1,4 +1,8 @@
 /* header and nav layout */
+header {
+  height: 64px;
+}
+
 header .nav-wrapper {
   background-color: var(--background-color);
   width: 100%;
@@ -176,6 +180,10 @@ header nav .nav-sections ul > li > ul > li {
 }
 
 @media (width >= 998px) {
+  header {
+    height: var(--nav-height);
+  }
+
   header nav .nav-sections {
     display: block;
     visibility: visible;
@@ -349,18 +357,21 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.menu {
-  display: none;
+.menu,
+.car-filter-menu {
   width: 100%;
   max-width: 100%;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: absolute;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
   top: 0;
   z-index: 999;
 }
 
-.menu-header {
+.menu-header,
+.car-panel-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -397,9 +408,9 @@ body {
   border-bottom: 1px solid #f1f1f1;
   cursor: pointer;
 }
-.menu-list > li:hover{
- border-bottom: 1px solid #dfdfdf;
- border-top:1px solid #dfdfdf;
+.menu-list > li:hover {
+  border-bottom: 1px solid #dfdfdf;
+  border-top: 1px solid #dfdfdf;
 }
 .menu-list > li > a {
   display: flex;
@@ -438,8 +449,8 @@ body {
   font-size: 24px;
 }
 
-.user__contact__icons a:hover{
-  background-color:#f2f2f2;
+.user__contact__icons a:hover {
+  background-color: #f2f2f2;
 }
 .menu .menu-list li .menu-title {
   font-size: 14px;
@@ -454,7 +465,7 @@ body {
 .menu-btn {
   display: none;
 }
-.car {
+.car-icon {
   display: none;
 }
 .menu .accordion:after {
@@ -499,25 +510,42 @@ body {
   visibility: visible;
 }
 
-.car-panel {
-  display: none;
-  position: absolute;
-  top: var(--nav-height);
-  right: 0;
-  width: 100%;
-  background-color: #f4f4f4;
-  padding: 10px;
-  z-index: 10;
-  transition: opacity 0.3s ease;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+.car-panel-header {
+  background-color: #18171a;
+  .car-text {
+    color: #fff;
+    font-family: "Fira Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 125% */
+  }
+  .car-filter-close img {
+    vertical-align: middle;
+  }
+}
+
+.car-filter-arena .car-panel-header {
+  background-color: white;
+  .car-text {
+    color: #171d9b;
+    font-family: "Anek Latin";
+    font-feature-settings: "clig" off, "liga" off;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px; /* 133.333% */
+  }
 }
 
 @media (max-width: 998px) {
+  .navbar {
+    height: 64px;
+  }
   .navbar .links,
   .navbar .right {
     display: none;
   }
-  .car {
+  .car-icon {
     display: block;
     cursor: pointer;
   }
@@ -537,7 +565,6 @@ body {
     width: 100%;
     object-fit: cover;
   }
-
 }
 
 .panel .link-container-section {
@@ -565,11 +592,11 @@ body {
 .panel .teaser {
   display: none;
 }
-.panel .link-grid-column .links-container li:hover{
-  background-color:#f2f2f2;
-  border-top: 1px solid rgba(178, 178, 178, 0.60);
-  a{
-    color:black;
+.panel .link-grid-column .links-container li:hover {
+  background-color: #f2f2f2;
+  border-top: 1px solid rgba(178, 178, 178, 0.6);
+  a {
+    color: black;
   }
 }
 
@@ -732,6 +759,10 @@ body {
 @media (min-width: 998px) {
   .navbar-arena .panel {
     background-color: #f4f4f4;
+    &.cars {
+      background-color: white;
+      padding: 0;
+    }
   }
 
   .navbar-arena .panel .link-grid {
