@@ -1,3 +1,4 @@
+// load the Script
 function loadScript(url){
     return new Promise((resolve, reject) => {
         const script = document.createElement("script");
@@ -9,6 +10,7 @@ function loadScript(url){
     });
 }
 
+// load the Stylesheet
 function loadStylesheet(url){
     return new Promise((resolve, reject) => {
         const link = document.createElement("link");
@@ -21,6 +23,7 @@ function loadStylesheet(url){
     });
 }
 
+// function to fetch refreshed access token
 async function fetchData() {
     const endpoint = 'https://api.preprod.developersatmarutisuzuki.in/auth/consumers/gettoken';
     const body = {
@@ -39,10 +42,10 @@ async function fetchData() {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
+        // Store the access token to localstorage
         const data = await response.json();
         localStorage.setItem("apimToken",data);
         console.log('Data from API:', data);
-
     } catch (error) {
         console.error('Error fetching data:', error);
     }
@@ -65,6 +68,7 @@ export default function decorate(block) {
         mayMyIndiaAuthKey: "b8287d26a87b590b66877b85e7cf7075"
     };
 
+    // add the required configs
     component.inpAuthConfig = JSON.stringify(component.inpAuthConfig);
     component.inpMapConfig = '{"mapType":"M2","listPosition":"left", "hideRadiusOptions": true, "hideContinuebutton": true, "hideSearchOption": true}';
     component.inpNearestDealersParams = '{"longitude":77.2194,"latitude":28.633,"radius":5000}';
@@ -73,9 +77,10 @@ export default function decorate(block) {
 
     const myElement = document.querySelector("common-dealer-locator");
         myElement?.addEventListener("common-dealer-locator", (event) => {
-        console.log("abcvdfgdfgdfgdfg")
+        console.log("")
     });
 
+    // replace block html with component
     block.innerHTML = '';
     block.appendChild(component)
 }
