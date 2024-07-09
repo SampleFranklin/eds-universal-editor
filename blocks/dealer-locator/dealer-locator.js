@@ -69,38 +69,33 @@ export default function decorate(block) {
   // Set the generated HTML to the block
   block.innerHTML = dealerLocatorHtml;
 
-  const ctaActionContainer = block.querySelector('.dealer-locator__action');
-  if (ctaActionContainer) {
-    ctaActionContainer.style.maxHeight = '200px'; // Set the maximum height for the scrollable area
-    ctaActionContainer.style.overflowY = 'auto'; // Enable vertical scrolling
-    ctaActionContainer.style.paddingRight = '15px'; // Add padding for scrollbar
-  }
+  
 }
 
 
 
 
-  // Set the background image
-  // const imageElement = document.querySelector('.dealer-locator__container .image');
-  // imageElement.style.backgroundImage = `url(${dealerLocator.imageUrl})`;
+  
+  const imageElement = document.querySelector('.dealer-locator__container .image');
+  imageElement.style.backgroundImage = `url(${dealerLocator.imageUrl})`;
 
-  // // Add scroll event listener for highlighting CTAs
-  // const ctaElements = document.querySelectorAll('.dealer-locator__container .dealer-locator__action .cta-text');
-  // if (ctaElements.length > 0) {
-  //     window.addEventListener('scroll', function() {
-  //         const scrollPosition = window.scrollY + window.innerHeight;
+  // Add scroll event listener for highlighting CTAs
+  const ctaElements = document.querySelectorAll('.dealer-locator__container .dealer-locator__action .cta-text');
+  if (ctaElements.length > 0) {
+      window.addEventListener('scroll', function() {
+          const scrollPosition = window.scrollY + window.innerHeight;
 
-  //         ctaElements.forEach(function(cta) {
-  //             const ctaPosition = cta.getBoundingClientRect().top + window.scrollY;
+          ctaElements.forEach(function(cta) {
+              const ctaPosition = cta.getBoundingClientRect().top + window.scrollY;
 
-  //             if (scrollPosition >= ctaPosition) {
-  //                 cta.classList.add('highlight');
-  //             } else {
-  //                 cta.classList.remove('highlight');
-  //             }
-  //         });
-  //     });
-  // }
+              if (scrollPosition >= ctaPosition) {
+                  cta.classList.add('highlight');
+              } else {
+                  cta.classList.remove('highlight');
+              }
+          });
+      });
+  }
 
   
 
