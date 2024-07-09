@@ -13,7 +13,7 @@ function generateVariantList(carData) {
   if (!carData || !carData.data) {
     return '';
   }
-  const variantItems = carData.data.carModelList.items.map(car => `
+  const variantItems = carData.data.carModelList.items.slice(0, 4).map(car => `
       <li>
         <p>${car.carName}</p>
         <p>${car.bodyType}</p>
@@ -41,7 +41,7 @@ export default async function decorate(block) {
         img.removeAttribute('height');
     }
 
-    const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)');
+    const title = `<h2>A powerful engine under the hood.</h2>`;
     const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.outerHTML).join('');
     const cta = ctaUtils.getLink(ctaLinkEl, ctaTextEl, ctaTargetEl, 'button-primary-light');
     const featureType = featureTypeEl?.textContent?.trim();
@@ -74,10 +74,11 @@ export default async function decorate(block) {
       utility.sanitizeHtml(`
                        <div class="feature__card">
                            ${(image) ? `<div class="feature__image">${image.outerHTML}</div>` : ''}
+                           ${(variantData) ? `<div class="bottom__image"></div>` : ''}
                            <div class="feature__content">
                            ${(variantData) ? `<div class="feature__variant">${variantData}</div>` : ''}
                                <div class="feature__info">
-                                   ${(title) ? `<div class="feature__title">${title.outerHTML}</div>` : ''}
+                                   ${(title) ? `<div class="feature__title"><h2>A powerful engine under the hood.</h2></div>` : ''}
                                    ${(description) ? `<div class="feature__description">${description}</div>` : ''}
                                </div>
                                ${ctaHtml}
