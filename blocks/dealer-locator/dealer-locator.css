@@ -1,9 +1,9 @@
-main .dealer-locator-container {
+ .dealer-locator__container {
   padding: 0;
   margin: 0;
   width: 100%;
 }
-main .dealer-locator-container>div {
+.dealer-locator__container>div {
   padding: 0;
   margin: 0;
   width: 100%;
@@ -16,7 +16,7 @@ main .dealer-locator-container>div {
   position: relative;
 }
 
-.dealer-locator__wrapper .banner-img {
+.dealer-locator__wrapper .image {
   width: 100%;
   max-width: 100%;
   height: auto;

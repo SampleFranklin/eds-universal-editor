@@ -31,9 +31,9 @@ export default function decorate(block) {
         newButton.innerHTML = `<p>${ctaText}</p>`;
 
         if (index === 0) {
-            newButton.classList.add('nav-button', 'active');
+            newButton.classList.add('dealer-button', 'active');
         } else {
-            newButton.classList.add('nav-button');
+            newButton.classList.add('dealer-button');
         }
 
         element.innerHTML = '';
@@ -53,10 +53,10 @@ export default function decorate(block) {
   }
   
 
-  
-
   const dealerLocator = getDealerLocator();
-       const dealerLocatorHtml = utility.sanitizeHtml(`
+
+  const dealerLocatorHtml = `
+  <div class="dealer-locator__container">
         ${(dealerLocator.image) ? dealerLocator.image.outerHTML : ''}
          <div class="dealerLocator__content">
            ${(dealerLocator.pretitle) ? `<p>${dealerLocator.pretitle}</p>` : ''}
@@ -66,7 +66,8 @@ export default function decorate(block) {
             ${ctaElements}
         </div>
           </div>
-    `);
+          </div>
+    `;
           
      
   
