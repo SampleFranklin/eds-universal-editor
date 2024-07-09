@@ -28,12 +28,17 @@ const TabsUtils = {
 
       const index = Array.from(switchList.children).indexOf(switchItem);
       const highlightItems = container.querySelectorAll('.highlightItem');
+      const highlightContentItems = container.querySelectorAll('.highlightItem-content');
       const switchItems = container.querySelectorAll('.switch-list-item');
 
       highlightItems.forEach((highlightItem) => {
         highlightItem.style.display = 'none';
       });
+      highlightContentItems.forEach((highlightContentItem) => {
+        highlightContentItem.style.display = 'none';
+      });
       highlightItems[index].style.display = 'block';
+      highlightContentItems[index].style.display = 'block';
 
       switchItems.forEach((item) => item.classList.remove('active'));
       switchItem.classList.add('active');
