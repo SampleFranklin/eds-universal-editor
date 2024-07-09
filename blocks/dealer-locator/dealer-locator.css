@@ -18,43 +18,56 @@ main .dealer-locator-container>div {
     color: white;
     background-color: #18171A;
     position: relative;
+    background: linear-gradient(88deg, #18171A 49.21%, rgba(24, 23, 26, 0.00) 95.09%);
 }
 
 .dealer-locator__wrapper .banner-img {
-    width: 100%;
     max-width: 100%;
-    height: auto;
     display: block;
+    width: 205px;
+    height: 1366px;
+    transform: rotate(90deg);
+    flex-shrink: 0;
+    background: linear-gradient(101deg, #18171A 3.08%, rgba(24, 23, 26, 0.75) 22.25%, rgba(24, 23, 26, 0.00) 44.22%);
 }
 
 .dealer-locator__wrapper .dealer-locator__content {
     position: absolute;
-    top: 110px;
+    top: 300px;
     left: 64px;
     text-align: left;
+    font-family: "Fira Sans";
+    color: var(--Tertiary-Light-grey, #F2F2F2);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+
 }
-
-
 
 .dealer-locator__wrapper .dealer-locator__content p strong {
     margin: 0;
-    font-size: 24px;
+    font-size: 18px;
     font-style: normal;
-    font-weight: 500;
-    line-height: 32px;
+    font-weight: 300;
+    line-height: 24px;
+    color: var(--Tertiary-White, #FFF);
+    font-family: "Fira Sans";
 }
 
 .dealer-locator__wrapper .dealer-locator__content p {
-    margin-top: 12px;
     font-size: 18px;
     font-style: normal;
     font-weight: 300;
     line-height: 24px;
     margin-bottom: 0;
     max-width: 280px;
+    text-align: right;
+    margin-top: auto; /* Pushes the description to the bottom */
+    align-self: flex-end;
 }
 
-.immersive__wrapper .immersive__content .immersive__action {
+/* .immersive__wrapper .immersive__content .immersive__action {
     display: inline-flex;
     align-items: center;
     margin-top: 32px;
@@ -99,7 +112,7 @@ main .dealer-locator-container>div {
     line-height: 24px;
     border-radius: unset;
     text-decoration: none;
-}
+} */
 
 /* .immersive__wrapper .immersive__content .immersive__action a::after {
     content: '';

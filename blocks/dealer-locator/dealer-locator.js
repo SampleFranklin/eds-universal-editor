@@ -44,13 +44,13 @@ export default function decorate(block) {
         ${(dealerLocator.image) ? dealerLocator.image.outerHTML : ''}
          <div class="dealerLocator__content">
            ${(dealerLocator.pretitle) ? `<p>${dealerLocator.pretitle}</p>` : ''}
-            ${(dealerLocator.description) ? `${dealerLocator.description}` : ''}
+            ${(dealerLocator.description) ? `<p>${dealerLocator.description}</p>` : ''}
            
           </div>
     `);
 
   block.innerHTML = `
-        <div class="immersive__wrapper right-seperator">
+        <div class="dealerLocator__wrapper right-seperator">
             ${dealerLocatorHtml}
             ${(teaserObj?.innerHTML) ? teaserObj.outerHTML : ''}
         </div>
