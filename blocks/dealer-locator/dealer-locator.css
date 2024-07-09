@@ -24,10 +24,10 @@
 
 /* Image container */
 .dealer-locator__container .image {
-  width: 100%;
-  height: auto;
+  width: 1366px;
+  height: 205px;
   overflow: hidden;
-  border-bottom: 1px solid #ddd; /* Separator line */
+  
 }
 
 /* Image */
