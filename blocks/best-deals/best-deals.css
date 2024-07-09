@@ -70,6 +70,7 @@ h6 {
     border: inherit;
     color: var(--secondary-black);
     padding: 10px 0px 10px 20px;
+    font-size: 0.75rem;
 }
 
 .best-deals-wrapper .button-primary-light:hover {
@@ -280,6 +281,7 @@ h6 {
         color: var(--secondary-white);
         border: 1px solid var(--primary-blue-700);
         padding: 7px 36px;
+        font-size: 0.875rem;
     }
 
     .best-deals-wrapper .button-primary-light:hover {
