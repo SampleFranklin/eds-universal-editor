@@ -12,15 +12,15 @@
 }
 
 .dealer-locator__container .image {
-  height: 205px;
-  width: 1366px;
+  height: 100%;
+  width: 100%;
   background-size: cover;
   background-position: center;
   position: absolute;
   top: 0;
   left: 0;
   opacity: 0.5; /* Adjust this value to change the overlay transparency */
-  border-radius: 8px 8px 0 0;
+  
   
 }
 
@@ -52,10 +52,11 @@
 
 .dealer-locator__content .pre-title {
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 400;
   margin-bottom: auto;
   text-align: left;
   padding-left: 10px;
+  font-family: "Fira Sans";
 }
 
 .dealer-locator__content .description {
