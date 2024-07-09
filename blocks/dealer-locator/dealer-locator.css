@@ -1,108 +1,131 @@
+/* Main container */
 .dealer-locator__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Change to column to stack image and overlay vertically */
+  position: relative;
   width: 1366px;
   height: 470px;
   
+  overflow: hidden;
 }
+
+/* Section */
 .dealer-locator__container .section {
-  width: 1366px;
-  height:436px;
-
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  background: #ffffff; /* White background */
+  border-radius: 8px; /* Rounded corners */
 }
 
+/* Image container */
 .dealer-locator__container .image {
-  height: 205px;
-  width: 1366px;
-  background-size: cover;
-  background-position: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0.5; /* Adjust this value to change the overlay transparency */
-  background: url("/content/dam/nexa-world/9d418b71f127370578eab06187d46a05.jpg") lightgray -7.404px -459.299px / 100.512% 209.771% no-repeat;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  border-bottom: 1px solid #ddd; /* Separator line */
 }
 
+/* Image */
+.dealer-locator__container .image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px 8px 0 0; /* Rounded top corners */
+  background: linear-gradient(101deg, #18171A 3.08%, rgba(24, 23, 26, 0.75) 22.25%, rgba(24, 23, 26, 0.00) 44.22%);
+}
+
+/* Overlay */
 .dealer-locator__container .overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   width: 100%;
   padding: 20px;
-  
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
-
+  background: #ffffff; /* White background for overlay */
+  border-radius: 0 0 8px 8px; /* Rounded bottom corners */
   background: linear-gradient(88deg, #18171A 49.21%, rgba(24, 23, 26, 0.00) 95.09%);
+
 }
 
-.dealer-locator__content {
-  text-align: center;
-  margin-bottom: 20px;
+/* Content */
+.dealer-locator__container .dealer-locator__content {
   display: flex;
-    flex-direction: column;
-    gap: 32px;
-    
-      
+  justify-content: space-between;
+  align-items: flex-start; /* Align items to the start */
+  width: 100%;
 }
 
-.dealer-locator__content .pre-title {
-  font-size: 24px;
+/* Pre-title */
+.dealer-locator__container .pre-title {
+  font-size: 1.5em;
   font-weight: bold;
-  margin-bottom: auto;
+  color: #fff; /* Dark grey color */
+  margin: 0;
   text-align: left;
-  padding-left: 10px;
+  
 }
 
-.dealer-locator__content .description {
-  
+/* Description */
+.dealer-locator__container .description {
+  font-size: 1em;
+  color: #f2f2f2; /* Medium grey color */
+  margin: 0;
+  line-height: 1.5;
   text-align: right;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  width:70%;
-  margin-top: auto; /* Pushes the description to the bottom */
-  align-self: flex-end;
-  
-
 }
 
-.dealer-locator__action {
-  max-height: 200px; /* Set a max height for the CTA container */
-  overflow-y: auto; /* Enable vertical scrolling */
-  width: 25%; /* Ensure it takes the full width */
-  text-align: left; /* Center-align the CTAs */
+/* Action container */
+.dealer-locator__container .dealer-locator__action {
+  margin-top: 20px;
+}
 
-
-ul {
+/* CTA List */
+.dealer-locator__container .dealer-locator__action ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
- a {
+/* CTA List Item */
+.dealer-locator__container .dealer-locator__action ul li {
+  margin-bottom: 10px;
+}
+
+/* CTA Link */
+.dealer-locator__container .dealer-locator__action ul li a {
+  display: block;
+  padding: 10px 15px;
+  text-align: center;
   text-decoration: none;
+  font-size: 1em;
+  color: #fff; /* White text color */
+  background-color: white; /* Primary blue color */
+  border-radius: 4px; /* Rounded corners */
+  transition: background-color 0.3s ease;
 }
 
-li {
-  
-  color: white;
-  padding: 10px 20px;
-  margin: 5px 0;
-  font-size: 20px;
-  text-align: left;
-  border-radius: 5px;
-  
+/* CTA Link Hover */
+.dealer-locator__container .dealer-locator__action ul li a:hover {
+  background-color: white; /* Darker blue on hover */
 }
 
-/* .dealer-locator__action .cta-text:hover {
-  background-color: black;
-  color: white;
-}
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+  .dealer-locator__container .section {
+      padding: 15px;
+  }
 
-.dealer-locator__action .cta-text.highlight {
-  background-color: white;
-  color: black;
-} */
+  .dealer-locator__container .pre-title {
+      font-size: 1.2em;
+  }
+
+  .dealer-locator__container .description {
+      font-size: 0.9em;
+  }
+
+  .dealer-locator__container .dealer-locator__action ul li a {
+      font-size: 0.9em;
+  }
 }
