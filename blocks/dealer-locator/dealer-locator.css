@@ -24,8 +24,8 @@ main .dealer-locator-container>div {
 .dealer-locator__wrapper .banner-img {
     max-width: 100%;
     display: block;
-    width: 205px;
-    height: 1366px;
+    width: 100%;
+    height: 50%;
     transform: rotate(90deg);
     flex-shrink: 0;
     background: linear-gradient(101deg, #18171A 3.08%, rgba(24, 23, 26, 0.75) 22.25%, rgba(24, 23, 26, 0.00) 44.22%);
@@ -33,7 +33,7 @@ main .dealer-locator-container>div {
 
 .dealer-locator__wrapper .dealer-locator__content {
     position: absolute;
-    top: 300px;
+    top: 50%;
     left: 64px;
     text-align: left;
     font-family: "Fira Sans";
@@ -42,17 +42,6 @@ main .dealer-locator-container>div {
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
-
-}
-
-.dealer-locator__wrapper .dealer-locator__content p strong {
-    margin: 0;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: 24px;
-    color: var(--Tertiary-White, #FFF);
-    font-family: "Fira Sans";
 }
 
 .dealer-locator__wrapper .dealer-locator__content p {
@@ -66,6 +55,17 @@ main .dealer-locator-container>div {
     margin-top: auto; /* Pushes the description to the bottom */
     align-self: flex-end;
 }
+
+.dealer-locator__wrapper .dealer-locator__content p strong {
+    margin: 0;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 24px;
+    color: var(--Tertiary-White, #FFF);
+    font-family: "Fira Sans";
+}
+
 
 /* .immersive__wrapper .immersive__content .immersive__action {
     display: inline-flex;
