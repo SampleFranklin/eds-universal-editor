@@ -68,7 +68,15 @@ export default function decorate(block) {
 
   // Set the generated HTML to the block
   block.innerHTML = dealerLocatorHtml;
+
+  const ctaActionContainer = block.querySelector('.dealer-locator__action');
+  if (ctaActionContainer) {
+    ctaActionContainer.style.maxHeight = '200px'; // Set the maximum height for the scrollable area
+    ctaActionContainer.style.overflowY = 'auto'; // Enable vertical scrolling
+    ctaActionContainer.style.paddingRight = '15px'; // Add padding for scrollbar
+  }
 }
+
 
 
 
