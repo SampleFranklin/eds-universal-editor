@@ -32,7 +32,7 @@ let videoUrl;
 
 
 const html = `
-<div class="video-teaser-container">
+<div class="video-teaser-container container">
 		<video src="${videoUrl}" class="video-teaser-bg" autoplay loop muted></video>
         <div class="video-teaser-overlay">
             ${title ? title.outerHTML : ""}
