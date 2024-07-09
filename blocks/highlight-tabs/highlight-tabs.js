@@ -85,20 +85,30 @@ export default function decorate(block) {
     const highlightItemsContainer = document.createElement('div');
     highlightItemsContainer.classList.add('highlightItems-container');
     highlightItemsContainer.innerHTML = highlightItemsHTML;
-  
-    // Highlighted lines
+    block.innerHTML = `
+    <div class="highlightItems-container">${highlightItemsHTML}</div>
+    ${switchListHTML}`;
+
+    const restructureDescriptionHtml = (block) => {
+      const highlightItemsContainer = block.querySelector('.highlightItems-container');
+      const switchListSection = block.querySelector('.switch-list-section');
+      const highlightItems = highlightItemsContainer.querySelectorAll('.highlightItem');
+    
+      // Move highlightItem-content elements to be siblings of the switch list
+      highlightItems.forEach((item, index) => {
+        const content = item.querySelector('.highlightItem-content');
+        if (content) {
+          switchListSection.appendChild(content);
+          content.style.display = 'none';
+        }
+    });
+  }
+
     const isMobile = window.matchMedia("(max-width: 999px)").matches;
     if (isMobile) {
-      highlightItemsContainer.innerHTML += switchListHTML;
-      block.innerHTML = '';
-      block.appendChild(highlightItemsContainer);
-    } else {
-      block.innerHTML = `
-        <div class="highlightItems-container">${highlightItemsHTML}</div>
-        ${switchListHTML}
-      `;
+      restructureDescriptionHtml(block);
     }
-  initializeHighlightItems(block.querySelectorAll('.highlightItem'));
+  initializeHighlightItems(block.querySelectorAll('.highlightItem-content'));
   TabUtils.setupTabs(block, highlightItemListElements);
 
   return block;
