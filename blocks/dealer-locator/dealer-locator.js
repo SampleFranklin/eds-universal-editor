@@ -22,9 +22,9 @@ export default function decorate(block) {
       const pretitle = pretitleEl?.textContent?.trim() || "";
       const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.outerHTML).join('');
       const ctaElements = ctasEl.map((element, index) => {
-        const [ctaTextEl, linkEl] = element.children;
+        const [ctaTextEl, ctaLinkEl] = element.children;
         const ctaText = ctaTextEl?.textContent?.trim() || '';
-        const link = linkEl?.querySelector('.button-container a')?.href;
+        const link = ctaLinkEl?.querySelector('.button-container a')?.href;
 
         const newButton = document.createElement('a');
         newButton.href = link;
