@@ -6,6 +6,7 @@
 .dealer-locator__container .section {
   width: 1366px;
   height:436px;
+  background: linear-gradient(88deg, #18171A 49.21%, rgba(24, 23, 26, 0.00) 95.09%);
 
 }
 
@@ -34,7 +35,7 @@
   justify-content: flex-end;
   align-items: flex-start;
 
-  background: linear-gradient(88deg, #18171A 49.21%, rgba(24, 23, 26, 0.00) 95.09%);
+  
 }
 
 .dealer-locator__content {
