@@ -76,7 +76,8 @@
       "finance-entry-point",
       "section-navigator",
       "variant-listing",
-      "mfe-poc"
+      "mfe-poc",
+      "dealer-locator"
     ]
   },
   {
@@ -232,5 +233,11 @@
   {
     "id": "mfe-poc",
     "components": []
+  },
+  {
+    "id": "dealer-locator",
+    "components": [
+      "cta"
+    ]
   }
 ]
