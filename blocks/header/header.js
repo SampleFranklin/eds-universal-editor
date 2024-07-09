@@ -127,7 +127,9 @@ export default async function decorate(block) {
     </div>
   `;
   const navWrapper = document.createElement("div");;
-  navWrapper.querySelector('.right').insertAdjacentElement("afterbegin",locationHtml)
+  if(locationHtml) {
+    navWrapper.querySelector('.right').insertAdjacentElement("afterbegin",locationHtml)
+  }
   navWrapper.innerHTML = desktopHeader + mobileHeader;
   block.append(navWrapper);
   const navHamburger = document.querySelector(".nav-hamburger");
