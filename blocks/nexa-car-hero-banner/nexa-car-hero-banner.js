@@ -41,7 +41,7 @@ export default async function decorate(block) {
   const secondaryTarget = secondaryTargetEl?.textContent?.trim() || '_self';
 
   const getVideoHtml = (videoUrl) => `
-          <div class="hero__image-container fadeIn">
+          <div class="hero__video-container">
             <video src="${videoUrl}" muted="muted" width="100%" autoplay></video>
           </div>
         `;
@@ -64,26 +64,59 @@ export default async function decorate(block) {
     const assetHtml = window.matchMedia('(min-width: 999px)').matches ? getAssetHtml(variant.variantVideo._publishUrl) : getAssetHtml(variant.variantMobileVideo._publishUrl);
     return `
         ${assetHtml}
-        <div class="hero__legends-container">
-            <div class="hero__legends">
-                <div class="legend-item">
-                    <p class="legend-title">${variant.engine}</p>
-                    <p class="legend-desc">${engineLabel}</p>
-                </div>
-                <div role="separator"></div>
-                <div class="legend-item">
-                    <p class="legend-title">${variant.power}</p>
-                    <p class="legend-desc">${powerLabel}</p>
-                </div>
-                <div role="separator"></div>
-                <div class="legend-item">
-                    <p class="legend-title">${variant.mileage}</p>
-                    <p class="legend-desc">${mileageLabel}</p>
-                </div>
+        <div class="hero__information-overlay">
+          <div class="hero__top-container">
+            <div class="hero__top-left">
+              ${(title) ? `${title.outerHTML}` : ''}
+              <h3 class="vehicle-tagline">${tagline}</h3>
             </div>
-        </div>
-        <div class="hero__disclaimer-container">
-            <p>${variant.variantName} ${termsAndConditionsText}</p>
+            <div class="hero__top-right">
+              <div class="price-details">
+                  <p class="ex-showroom-label">${exShowroomLabel}</p>
+                  <div role="separator"></div>
+                  <p class="ex-showroom-price"></p>
+              </div>
+              <div class="hero__ctas">
+                  <div class="cta cta__primary">
+                      <a href="${primaryLink}" target="${primaryTarget}">${primaryCtaText}</a>
+                  </div>
+                  <div class="cta cta__secondary">
+                      <a href="${secondaryLink}" target="${secondaryTarget}">${secondaryCtaText}</a>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="hero__bottom-container">
+            <div class="hero__legends-container">
+                <div class="hero__legends">
+                    <div class="legend-item">
+                        <p class="legend-title">${variant.engine}</p>
+                        <p class="legend-desc">${engineLabel}</p>
+                    </div>
+                    <div role="separator"></div>
+                    <div class="legend-item">
+                        <p class="legend-title">${variant.power}</p>
+                        <p class="legend-desc">${powerLabel}</p>
+                    </div>
+                    <div role="separator"></div>
+                    <div class="legend-item">
+                        <p class="legend-title">${variant.mileage}</p>
+                        <p class="legend-desc">${mileageLabel}</p>
+                    </div>
+                </div>
+                <div class="hero__ctas">
+                  <div class="cta cta__primary">
+                      <a href="${primaryLink}" target="${primaryTarget}">${primaryCtaText}</a>
+                  </div>
+                  <div class="cta cta__secondary">
+                      <a href="${secondaryLink}" target="${secondaryTarget}">${secondaryCtaText}</a>
+                  </div>
+              </div>
+            </div>
+            <div class="hero__disclaimer-container">
+              <p>${variant.variantName} ${termsAndConditionsText}</p>
+            </div>
+          </div>
         </div>
         `;
   };
@@ -129,7 +162,7 @@ export default async function decorate(block) {
     return null;
   }
   let newHtml = '';
-  cars.forEach((variant) => {
+  cars.forEach((variant, index) => {
     // console.log("Variant Name", variant.variantName);
     // console.log("index-----------",index);
     // console.log(getVariantHtml(variant));
@@ -139,28 +172,7 @@ export default async function decorate(block) {
     // console.log("variantHtml",variantHtml)
     newHtml
         += `
-        <div class="hero-banner__slides">
-            <div class="hero__top-container">
-                <div class="hero__top-left">
-                    ${(title) ? `${title.outerHTML}` : ''}
-                    <h3 class="vehicle-tagline">${tagline}</h3>
-                </div>
-                <div class="hero__top-right">
-                    <div class="price-details">
-                        <p class="ex-showroom-label">${exShowroomLabel}</p>
-                        <div role="separator"></div>
-                        <p class="ex-showroom-price"></p>
-                    </div>
-                    <div class="hero__ctas">
-                        <div class="cta__primary">
-                            <a href="${primaryLink}" target="${primaryTarget}">${primaryCtaText}</a>
-                        </div>
-                        <div class="cta__secondary">
-                            <a href="${secondaryLink}" target="${secondaryTarget}">${secondaryCtaText}</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="hero-banner__slides ${index === 0 ? "active" : ""}">
             ${getVariantHtml(variant)}
         </div>
     `;
