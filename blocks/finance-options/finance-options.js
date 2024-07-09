@@ -1,19 +1,20 @@
 import utility from "../../utility/utility.js";
 import teaser from "../../utility/teaserUtils.js";
-import { moveInstrumentation } from '../../scripts/scripts.js';
+import { moveInstrumentation } from "../../scripts/scripts.js";
 
 export default function decorate(block) {
-    const [...teaserListEl] = block.children;
+  const [...teaserListEl] = block.children;
 
-    const teasers = teaserListEl.map((card) => {
-        const teaserObj = teaser.getTeaser(card)?.firstElementChild;
-        moveInstrumentation(card,teaserObj);
-        utility.mobileLazyLoading(teaserObj, ".teaser__image img");
-        return teaserObj.outerHTML;
-      });
+  const teasers = teaserListEl.map((card) => {
+    const teaserObj = teaser.getTeaser(card)?.firstElementChild;
+    moveInstrumentation(card, teaserObj);
+    utility.mobileLazyLoading(teaserObj, ".teaser__image img");
+    return teaserObj.outerHTML;
+  });
 
-    const newHtml = `
+  const newHtml = `
         <div class="container">
+        <h2>Maruti Suzuki Finance Options</h2>
             <div class="teaser-content">
                 <div class="teaser__cards">
                      ${teasers.join("")}
@@ -22,8 +23,6 @@ export default function decorate(block) {
         </div>
         `;
 
-    block.innerHTML = "";
-    block.insertAdjacentHTML("beforeend", utility.sanitizeHtml(newHtml));
-
-    console.log(block);
+  block.innerHTML = "";
+  block.insertAdjacentHTML("beforeend", utility.sanitizeHtml(newHtml));
 }
