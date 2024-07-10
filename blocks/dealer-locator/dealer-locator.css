@@ -1,15 +1,16 @@
 @import '../teaser/teaser.css';
 
 main .dealer-locator-container {
-    padding: 0;
-    margin: 0;
-    width: 100%;
+    
+   
+    width: 1366px;
+    height:470px;
 }
 
 main .dealer-locator-container>div {
     padding: 0;
     margin: 0;
-    width: 100%;
+    width: 1366px;
     max-width: inherit;
 }
 
@@ -24,15 +25,15 @@ main .dealer-locator-container>div {
 .dealer-locator__wrapper .banner-img {
     max-width: 100%;
     display: block;
-    width: 100%;
-    height: 50%;
+    width: 1366px;
+    height: 205px;
     transform: rotate(90deg);
     flex-shrink: 0;
     
 }
 
 .dealer-locator__wrapper .dealer-locator__content {
-    position: absolute;
+    position: relative;
     top: 50%;
     left: 64px;
     text-align: left;
@@ -64,6 +65,22 @@ main .dealer-locator-container>div {
     line-height: 24px;
     color: var(--Tertiary-White, #FFF);
     font-family: "Fira Sans";
+}
+.cta-container {
+  display: flex;
+  flex-direction: row-reverse; /* This positions the scroll bar to the left */
+  overflow-y: auto; /* Enables the vertical scroll bar */
+  max-height: 100px; /* Adjust the height as needed */
+  margin: 10px 0;
+}
+
+.cta {
+  flex-grow: 1;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: left;
 }
 
 
@@ -131,12 +148,12 @@ main .dealer-locator-container>div {
 } */
 
 .dealer-locator__wrapper img {
-    width: 100%;
+    width: 1366px;
 }
 
 .dealer-locator__wrapper .teaser-wrapper {
     position: absolute;
-    right: 65px;
+    right: px;
     bottom: 50px;
     max-width: 52%;
 }
