@@ -74,7 +74,7 @@ export default function decorate(block) {
       const computedStyle = getComputedStyle(moreContent);
       const contentHeight = moreContent.scrollHeight;
       const lineHeight = parseFloat(computedStyle.lineHeight);
-      console.log(contentHeight, lineHeight, index, "cjlh");
+      // console.log(contentHeight, lineHeight, index, "cjlh");
   
       // Determine whether to show the read more link based on content height
       if (contentHeight > lineHeight * 3) {
