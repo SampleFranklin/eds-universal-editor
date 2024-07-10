@@ -40,7 +40,7 @@ export default async function decorate(block) {
     const carImage = publishDomain+car.carImage._dynamicUrl;
     const carLogoImage = publishDomain+car.carLogoImage._dynamicUrl;
     const startingPriceText = startingPriceTextEl?.textContent?.trim();
-    const testDriveText = testDriveTextEl?.textContent?.trim();
+    const testDriveText = Array.from(testDriveTextEl.querySelectorAll('p')).map((p) => p.outerHTML).join('');
     const scrollMoreText = scrollMoreTextEl?.textContent?.trim();
     const primaryCta = ctaUtils.getLink(primaryCtaLinkEl, primaryCtaTextEl, primaryCtaTargetEl, 'button-primary-light');
     const secondaryCta = ctaUtils.getLink(secondaryCtaLinkEl, secondaryCtaTextEl, secondaryCtaTargetEl, 'button-secondary-light');
