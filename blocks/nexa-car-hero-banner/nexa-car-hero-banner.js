@@ -2,15 +2,12 @@ import { fetchPlaceholders } from '../../scripts/aem.js';
 import utility from '../../utility/utility.js';
 
 export default async function decorate(block) {
-  console.log(block);
   const [
     titleEl,
     exShowroomLabelEl,
-    exShowroomTextEl,
+    lakhLabelEl,
     taglineEl,
-    engineLabelEl,
-    powerLabelEl,
-    mileageLabelEl,
+    filterSelectEl,
     carModelPathEl,
     primaryTextEl,
     primaryLinkEl,
@@ -24,7 +21,7 @@ export default async function decorate(block) {
   title.removeAttribute('id');
   title.classList.add('vehicle-name');
   const exShowroomLabel = exShowroomLabelEl?.textContent?.trim();
-  const exShowroomText = exShowroomTextEl?.textContent?.trim();
+  const lakhLabel = lakhLabelEl?.textContent?.trim();
   const engineLabel = engineLabelEl?.textContent?.trim();
   const powerLabel = powerLabelEl?.textContent?.trim();
   const mileageLabel = mileageLabelEl?.textContent?.trim();
@@ -40,26 +37,40 @@ export default async function decorate(block) {
   const secondaryLink = secondaryLinkEl?.querySelector('.button-container a')?.href;
   const secondaryTarget = secondaryTargetEl?.textContent?.trim() || '_self';
 
+  function fetchPrice(variantCode, defaultPrice) {
+    return defaultPrice ? utility.formatToLakhs(defaultPrice) : 'Not available';
+  }
+  const filterTypes = 'engine,power,mileage'.split(',');
+
   const getVideoHtml = (videoUrl) => `
           <div class="hero__video-container">
             <video src="${videoUrl}" muted="muted" width="100%" autoplay></video>
           </div>
         `;
 
-  // const getVideoUrl = (el) => {
-  //     const url = el?.querySelector('a')?.textContent?.trim();
-  //     if (url) {
-  //         return publishDomain + url;
-  //     } else {
-  //         return '';
-  //     }
-  // }
   const getAssetHtml = (videoUrl) => {
     if (videoUrl) {
       return getVideoHtml(videoUrl);
     }
     return '';
   };
+
+  const getTypesHtml = (variant) => {
+    let typeHtml = '';
+    filterTypes.forEach((type,index)=>{
+    const typeLabel = type + 'Label';
+    const typeValue = type;
+    typeHtml +=
+    `<div class="legend-item">
+        <p class="legend-title">${variant[`${typeValue}`]}</p>
+        <p class="legend-desc">${variant[`${typeLabel}`]}</p>
+      </div>
+    ${index === filterTypes.length -1 ? ``: `<div role="separator"></div>`}`
+  })
+  console.log(typeHtml)
+  return typeHtml;
+}
+
   const getVariantHtml = (variant) => {
     const assetHtml = window.matchMedia('(min-width: 999px)').matches ? getAssetHtml(variant.variantVideo._publishUrl) : getAssetHtml(variant.variantMobileVideo._publishUrl);
     return `
@@ -74,7 +85,7 @@ export default async function decorate(block) {
               <div class="price-details">
                   <p class="ex-showroom-label">${exShowroomLabel}</p>
                   <div role="separator"></div>
-                  <p class="ex-showroom-price"></p>
+                  <p class="ex-showroom-price">${fetchPrice(variant.variantId, variant.exShowroomPrice)}</p>
               </div>
               <div class="hero__ctas">
                   <div class="cta cta__primary">
@@ -89,20 +100,7 @@ export default async function decorate(block) {
           <div class="hero__bottom-container">
             <div class="hero__legends-container">
                 <div class="hero__legends">
-                    <div class="legend-item">
-                        <p class="legend-title">${variant.engine}</p>
-                        <p class="legend-desc">${engineLabel}</p>
-                    </div>
-                    <div role="separator"></div>
-                    <div class="legend-item">
-                        <p class="legend-title">${variant.power}</p>
-                        <p class="legend-desc">${powerLabel}</p>
-                    </div>
-                    <div role="separator"></div>
-                    <div class="legend-item">
-                        <p class="legend-title">${variant.mileage}</p>
-                        <p class="legend-desc">${mileageLabel}</p>
-                    </div>
+                  ${getTypesHtml(variant)}
                 </div>
                 <div class="hero__ctas">
                   <div class="cta cta__primary">
@@ -121,32 +119,9 @@ export default async function decorate(block) {
         `;
   };
 
-  // const bannerItems = bannerItemsEl.map((element) => {
-  //     const [videoEl, allowMobileVideoEl, mobileVideoEl, variantNameTCEl] = element.children;
-  //     const desktopVideoUrl = getVideoUrl(videoEl);
-  //     const isAllowMobileVideo = allowMobileVideoEl?.textContent?.trim() || "false";
-  //     const mobileVideoUrl = (isAllowMobileVideo === "true") ? (getVideoUrl(mobileVideoEl) || desktopVideoUrl) : desktopVideoUrl;
-  //     const variantNameTC = variantNameTCEl?.textContent?.trim();
-  //     let assetHtml = '';
-  //     if (window.matchMedia('(min-width: 999px)').matches) {
-  //         assetHtml = getAssetHtml(desktopVideoUrl);
-  //     } else {
-  //         assetHtml = getAssetHtml(mobileVideoUrl);
-  //     }
-
-  //     element.innerHTML = `
-  //         ${assetHtml}
-  //         <div class="hero__disclaimer-container">
-  //             <p>${variantNameTC}</p>
-  //         </div>
-  //     `;
-  //     moveInstrumentation(element, element.firstElementChild);
-  //     return element.innerHTML;
-  // }).join('');
-
   const { publishDomain } = await fetchPlaceholders();
 
-  const graphQlEndpoint = `${publishDomain}/graphql/execute.json/msil-platform/VariantList;modelId=${carModelPath}?w`;
+  const graphQlEndpoint = `${publishDomain}/graphql/execute.json/msil-platform/VariantList;modelId=${carModelPath}?s`;
 
   const requestOptions = {
     method: 'GET',
@@ -156,20 +131,9 @@ export default async function decorate(block) {
   };
   const response = await fetch(graphQlEndpoint, requestOptions);
   const { data } = await response.json();
-  const cars = data.variantList.items;
-  if (!Array.isArray(cars) || cars.length === 0) {
-    console.error('No car varaint data found in the GraphQL response.');
-    return null;
-  }
+  const cars = data?.variantList?.items;
   let newHtml = '';
   cars.forEach((variant, index) => {
-    // console.log("Variant Name", variant.variantName);
-    // console.log("index-----------",index);
-    // console.log(getVariantHtml(variant));
-    // let variantHtml = '';
-    // variantHtml += getVariantHtml(variant);
-    // console.log(getVariantHtml(variant));
-    // console.log("variantHtml",variantHtml)
     newHtml
         += `
         <div class="hero-banner__slides ${index === 0 ? "active" : ""}">
@@ -181,7 +145,6 @@ export default async function decorate(block) {
             ${newHtml}
         </div>
     `;
-    // console.log("index --------",index, newHtml)
   });
 
   // function setLocalStorage(key, value) {
@@ -191,23 +154,4 @@ export default async function decorate(block) {
   // function getLocalStorage(key) {
   //     return localStorage.getItem(key);
   // }
-
-  // console.log("bannerItemsEl",bannerItemsEl)
-
-  // console.log("carModelPath",carModelPath)
-
-  // let newHTMLContainer = '';
-
-  // const appendNewHTMLContainer = (newHTMLContainer) => {
-  //     // console.log(newHtml)
-  //     if (newHTMLContainer) {
-  //         block.appendChild(newHTMLContainer);
-  //     } else {
-  //         console.error('Failed to fetch car data or build HTML container.');
-  //     }
-  // }
-
-  // const variantItem = "variant"+index+";"
-
-  // block.innerHTML = newHtml
 }
