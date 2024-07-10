@@ -1,5 +1,5 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
-
+import { createOptimizedPicture } from '../../scripts/aem.js'
 export default function decorate(block) {
   // Function to extract Nexa World content from the block
   function getNexaWorldContent() {
@@ -9,6 +9,7 @@ export default function decorate(block) {
       descriptionEl,
       ctaTextEl,
       ctaLinkEl,
+      ctaTargetEl,
       ...linkEls // Get the rest of the elements as link elements
     ] = block.children;
 
@@ -20,7 +21,7 @@ export default function decorate(block) {
     const cta = (ctaLinkEl) ? {
       href: ctaLinkEl.querySelector('a')?.href || '#',
       title: ctaLinkEl.querySelector('a')?.title || '',
-      target: ctaLinkEl.querySelector('a')?.target || '_self',
+      target: ctaTargetEl.textContent?.trim() || '_self',
       textContent: ctaTextEl?.textContent?.trim() || ''
     } : null;
 
@@ -82,31 +83,18 @@ export default function decorate(block) {
 
   // Create the links HTML structure
   const ul = document.createElement('ul');
-  
-  
   ul.classList.add('list-container');
   nexaWorldContent.links.forEach(link => {
+    console.log(link);
     const listItem = document.createElement('li');
     if(link.imgSrc!=''){
     const anchor = document.createElement('a');
     anchor.href = link.href;
     anchor.textContent = link.text;
-
-    const imgElement = document.createElement('img');
-    imgElement.src = link.imgSrc;
-    imgElement.alt = link.imgAlt;
-    if(link.imgSrc===''){
-      imgElement.src=nexaWorldContent.links[1].imgSrc;
-      imgElement.alt = nexaWorldContent.links[1].imgAlt;
-    }    
-    
-    anchor.appendChild(imgElement);
+    const optimizedPic = createOptimizedPicture(link.imgSrc, link.imgAlt, false, [{ width: '999' }]);
+    anchor.appendChild(optimizedPic);
     listItem.appendChild(anchor);
     
-  
-
-  
-
     // Add event listener to change main image on hover
     anchor.addEventListener('mouseover', () => {
       document.querySelector('.nexa-world__img img').src = link.imgSrc;

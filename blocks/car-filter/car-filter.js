@@ -26,7 +26,7 @@ export default async function decorate(block) {
     else{
         graphQlEndpoint = publishDomain + "/graphql/execute.json/msil-platform/NexaCarList";
     }
-    let newHTMLContainer;
+    let newHTMLContainer=document.createElement('div');
 
     const requestOptions = {
         method: "GET",
@@ -192,8 +192,8 @@ export default async function decorate(block) {
 
                 const description = document.createElement('p');
                 description.classList.add('card-description');
-                description.textContent = car.carDescription;
-                
+                description.textContent = car.fuelOptions.join(" / ");
+
                 cardContent.appendChild(description);
                 const priceTextElement = document.createElement("p");
                 priceTextElement.classList.add("card-price-text");
@@ -212,72 +212,75 @@ export default async function decorate(block) {
         }
 
         function fetchPrice(variantCode, priceElement, priceTextElement, defaultPrice) {
-            const storedPrices = getLocalStorage('modelPrice') ? JSON.parse(getLocalStorage('modelPrice')) : {};
-            if (storedPrices[variantCode] && storedPrices[variantCode].price[location]) {
-                const storedPrice = storedPrices[variantCode].price[location];
-                priceElement.textContent = priceText + " " + storedPrice;
-            } else {
-                // Perform fetch only if price not already in localStorage
-                const apiKey = 'your_api_key_here';
-                const apiUrl = 'https://api.example.com/pricing';
-
-                const params = {
-                    variantCode: variantCode,
-                    location: location
-                };
-
-                const headers = {
-                    'x-api-key': apiKey,
-                    'Authorization': 'Bearer your_token_here'
-                };
-
-                const url = new URL(apiUrl);
-                Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
-
-                fetch(url, {
-                    method: 'GET',
-                    headers: headers
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.error === false && data.data) {
-                        const formattedPrice = priceFormatting(data.data);
-
-                        // Store price in localStorage with TTL of 1 day
-                        storedPrices[variantCode] = storedPrices[variantCode] || { price: {}, timestamp: 0 };
-                        storedPrices[variantCode].price[location] = formattedPrice;
-                        storedPrices[variantCode].timestamp = new Date().getTime() + (1 * 24 * 60 * 60 * 1000);
-
-                        setLocalStorage('modelPrice', JSON.stringify(storedPrices));
-
-                        priceElement.textContent = priceText + " " + formattedPrice;
-                    } else {
-                        const formattedPrice = defaultPrice ? priceFormatting(defaultPrice) : 'Not available';
-                        priceElement.textContent = formattedPrice;
-                        priceTextElement.textContent = priceText;
-                    }
-                })
-                .catch(error => {
-                    console.error('There was a problem with the fetch operation:', error);
-                    const formattedPrice = defaultPrice ? priceFormatting(defaultPrice) : 'Not available';
-                        priceElement.textContent = formattedPrice;
-                        priceTextElement.textContent = priceText;
-                });
-            }
+            const formattedPrice = defaultPrice ? priceFormatting(defaultPrice) : 'Not available';
+            priceElement.textContent = formattedPrice;
+            priceTextElement.textContent = priceText;
+//            const storedPrices = getLocalStorage('modelPrice') ? JSON.parse(getLocalStorage('modelPrice')) : {};
+//            if (storedPrices[variantCode] && storedPrices[variantCode].price[location]) {
+//                const storedPrice = storedPrices[variantCode].price[location];
+//                priceElement.textContent = priceText + " " + storedPrice;
+//            } else {
+//                // Perform fetch only if price not already in localStorage
+//                const apiKey = 'your_api_key_here';
+//                const apiUrl = 'https://api.example.com/pricing';
+//
+//                const params = {
+//                    variantCode: variantCode,
+//                    location: location
+//                };
+//
+//                const headers = {
+//                    'x-api-key': apiKey,
+//                    'Authorization': 'Bearer your_token_here'
+//                };
+//
+//                const url = new URL(apiUrl);
+//                Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+//
+//                fetch(url, {
+//                    method: 'GET',
+//                    headers: headers
+//                })
+//                .then(response => {
+//                    if (!response.ok) {
+//                       // throw new Error('Network response was not ok');
+//                    }
+//                    return response.json();
+//                })
+//                .then(data => {
+//                    if (data.error === false && data.data) {
+//                        const formattedPrice = priceFormatting(data.data);
+//
+//                        // Store price in localStorage with TTL of 1 day
+//                        storedPrices[variantCode] = storedPrices[variantCode] || { price: {}, timestamp: 0 };
+//                        storedPrices[variantCode].price[location] = formattedPrice;
+//                        storedPrices[variantCode].timestamp = new Date().getTime() + (1 * 24 * 60 * 60 * 1000);
+//
+//                        setLocalStorage('modelPrice', JSON.stringify(storedPrices));
+//
+//                        priceElement.textContent = priceText + " " + formattedPrice;
+//                    } else {
+//                        const formattedPrice = defaultPrice ? priceFormatting(defaultPrice) : 'Not available';
+//                        priceElement.textContent = formattedPrice;
+//                        priceTextElement.textContent = priceText;
+//                    }
+//                })
+//                .catch(error => {
+//                    //console.error('There was a problem with the fetch operation:', error);
+//                    const formattedPrice = defaultPrice ? priceFormatting(defaultPrice) : 'Not available';
+//                        priceElement.textContent = formattedPrice;
+//                        priceTextElement.textContent = priceText;
+//                });
+//            }
         }
 
-        function setLocalStorage(key, value) {
-            localStorage.setItem(key, value);
-        }
+        // function setLocalStorage(key, value) {
+        //     localStorage.setItem(key, value);
+        // }
 
-        function getLocalStorage(key) {
-            return localStorage.getItem(key);
-        }
+        // function getLocalStorage(key) {
+        //     return localStorage.getItem(key);
+        // }
 
         function priceFormatting(price) {
           if (componentVariation === "arena-variant") {
@@ -285,7 +288,8 @@ export default async function decorate(block) {
           }
             const formatter = new Intl.NumberFormat('en-IN', {
                 style: 'currency',
-                currency: 'INR'
+                currency: 'INR',
+                maximumFractionDigits:0
             });
             return formatter.format(price);
         }
