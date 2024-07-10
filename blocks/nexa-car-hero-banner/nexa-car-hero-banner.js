@@ -22,9 +22,7 @@ export default async function decorate(block) {
   title.classList.add('vehicle-name');
   const exShowroomLabel = exShowroomLabelEl?.textContent?.trim();
   const lakhLabel = lakhLabelEl?.textContent?.trim();
-  const engineLabel = engineLabelEl?.textContent?.trim();
-  const powerLabel = powerLabelEl?.textContent?.trim();
-  const mileageLabel = mileageLabelEl?.textContent?.trim();
+  const filterList = filterSelectEl?.textContent?.trim();
   const tagline = taglineEl?.textContent?.trim();
   const carModelPath = carModelPathEl.querySelector('a')?.textContent?.trim();
   const termsAndConditionsText = termsAndConditionsTextEl?.textContent?.trim() || '';
@@ -38,13 +36,13 @@ export default async function decorate(block) {
   const secondaryTarget = secondaryTargetEl?.textContent?.trim() || '_self';
 
   function fetchPrice(variantCode, defaultPrice) {
-    return defaultPrice ? utility.formatToLakhs(defaultPrice) : 'Not available';
+    return defaultPrice ? `${utility.formatToLakhs(defaultPrice)} ${lakhLabel}` : 'Not available';
   }
-  const filterTypes = 'engine,power,mileage'.split(',');
+  const filterTypes = filterList.split(',');
 
   const getVideoHtml = (videoUrl) => `
           <div class="hero__video-container">
-            <video src="${videoUrl}" muted="muted" width="100%" autoplay></video>
+            <video src="${videoUrl}" muted="muted" width="100%" autoplay loop></video>
           </div>
         `;
 
@@ -59,7 +57,7 @@ export default async function decorate(block) {
     let typeHtml = '';
     filterTypes.forEach((type,index)=>{
     const typeLabel = type + 'Label';
-    const typeValue = type;
+    const typeValue = type +'Value';
     typeHtml +=
     `<div class="legend-item">
         <p class="legend-title">${variant[`${typeValue}`]}</p>
@@ -140,13 +138,12 @@ export default async function decorate(block) {
             ${getVariantHtml(variant)}
         </div>
     `;
-    block.innerHTML = `
+  });
+  block.innerHTML = `
         <div class="hero-banner__carousel">
             ${newHtml}
         </div>
     `;
-  });
-
   // function setLocalStorage(key, value) {
   //     localStorage.setItem(key, value);
   // }
