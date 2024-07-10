@@ -112,6 +112,14 @@
   margin-top: auto;
   display: flex;
   align-items: center;
+
+  @media (orientation: landscape) {
+    flex-direction: column;
+  }
+
+  @media (orientation: portrait) {
+    flex-direction: row;
+  }
 }
 
 .brand-film__container .brand-film__wrapper--fullscreen .brand-film__asset {
