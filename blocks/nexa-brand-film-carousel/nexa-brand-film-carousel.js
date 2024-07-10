@@ -6,6 +6,7 @@ export default async function decorate(block) {
   const { publishDomain } = await fetchPlaceholders();
 
   const title = titleEl.querySelector(':is(h1,h2,h3,h4,h5,h6');
+  title?.classList?.add("brand-film__title");
   const subTitle = subTitleEl.textContent?.trim();
   const description = Array.from(descriptionEl.querySelectorAll('p')).map((el) => {
     el.classList.add('brand-film__description-text');
