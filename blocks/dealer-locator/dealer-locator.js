@@ -46,7 +46,7 @@ export default function decorate(block) {
       <div class="section">
         <div class="image-container">
           <img src="${dealerLocator.imgSrc}" alt="${dealerLocator.altText}">
-          
+          <div class ="overlay">
             <div class="dealer-locator__content">
               <p class="pre-title">${dealerLocator.pretitle}</p>
             </div>
@@ -62,7 +62,7 @@ export default function decorate(block) {
               </ul>
             </div>
           </div>
-        
+        </div>
       </div>
     </div>
   `;
