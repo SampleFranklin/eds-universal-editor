@@ -7,7 +7,10 @@ export default async function decorate(block) {
 
   const title = titleEl.querySelector(':is(h1,h2,h3,h4,h5,h6');
   const subTitle = subTitleEl.textContent?.trim();
-  const description = Array.from(descriptionEl.querySelectorAll('p')).map((el) => el.outerHTML).join('');
+  const description = Array.from(descriptionEl.querySelectorAll('p')).map((el) => {
+    el.classList.add('brand-film__description-text');
+    return el.outerHTML;
+  }).join('');
   const thumbnail = thumbnailEl.querySelector('img')?.src;
   const videos = videosEl.map((videoEl) => {
     const path = videoEl?.querySelector('a')?.textContent?.trim();
