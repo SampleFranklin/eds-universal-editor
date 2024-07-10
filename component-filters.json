@@ -179,7 +179,8 @@
   {
     "id": "nexa-eshowroom-experience",
     "components": [
-      "nexa-eshowroom-experience-item"
+      "nexa-eshowroom-experience-item",
+      "cta"
     ]
   },
   {
