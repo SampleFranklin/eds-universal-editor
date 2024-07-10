@@ -55,19 +55,18 @@ export default async function decorate(block) {
 
   const getTypesHtml = (variant) => {
     let typeHtml = '';
-    filterTypes.forEach((type,index)=>{
-    const typeLabel = type + 'Label';
-    const typeValue = type +'Value';
-    typeHtml +=
-    `<div class="legend-item">
+    filterTypes.forEach((type, index) => {
+      const typeLabel = `${type}Label`;
+      const typeValue = `${type}Value`;
+      typeHtml
+    += `<div class="legend-item">
         <p class="legend-title">${variant[`${typeValue}`]}</p>
         <p class="legend-desc">${variant[`${typeLabel}`]}</p>
       </div>
-    ${index === filterTypes.length -1 ? ``: `<div role="separator"></div>`}`
-  })
-  console.log(typeHtml)
-  return typeHtml;
-}
+    ${index === filterTypes.length - 1 ? '' : '<div role="separator"></div>'}`;
+    });
+    return typeHtml;
+  };
 
   const getVariantHtml = (variant) => {
     const assetHtml = window.matchMedia('(min-width: 999px)').matches ? getAssetHtml(variant.variantVideo._publishUrl) : getAssetHtml(variant.variantMobileVideo._publishUrl);
@@ -134,7 +133,7 @@ export default async function decorate(block) {
   cars.forEach((variant, index) => {
     newHtml
         += `
-        <div class="hero-banner__slides ${index === 0 ? "active" : ""}">
+        <div class="hero-banner__slides ${index === 0 ? 'active' : ''}">
             ${getVariantHtml(variant)}
         </div>
     `;
