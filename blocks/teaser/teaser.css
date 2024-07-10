@@ -211,7 +211,7 @@ main .teaser-container > div {
       justify-content: flex-end;
 
       .teaser__title {
-        h3 {
+        .teaser__title-text {
           font-weight: 500;
           font-size: 18px;
         }
@@ -364,9 +364,20 @@ main .teaser-container > div {
           height: 100%;
           width: 100%;
         }
+
+        .teaser__content {
+          flex-direction: row;
+          align-items: flex-end;
+          gap: 24px;
+ 
+          .teaser__info {
+            width: 100%;
+          }
+        }
+ 
         .teaser__title {
           position: relative;
-          h3 {
+          .teaser__title-text {
             color: var(--Tertiary-Light-grey, #f2f2f2);
             font-family: "Kepler Std";
             font-size: 24px;
@@ -390,6 +401,10 @@ main .teaser-container > div {
             line-height: 20px; /* 142.857% */
             text-transform: uppercase;
           }
+        }
+        .teaser__pretitle, .teaser__title {
+          width: 100%;
+          text-align: left;
         }
         .teaser__image {
           clip-path: none;
@@ -416,7 +431,6 @@ main .teaser-container > div {
           .teaser__content {
             position: absolute;
             inset: 0;
-            justify-content: end;
             direction: ltr;
             width: 100%;
           }
@@ -464,7 +478,7 @@ main .teaser-container > div {
         }
 
         .teaser__title {
-          h3 {
+          .teaser__title-text {
             font-weight: 600;
             font-size: 32px;
           }
@@ -526,15 +540,15 @@ main .teaser-container > div {
   }
 }
 
-.light-teaser.buyers-guide-teaser .teaser__title h3 {
+.light-teaser.buyers-guide-teaser .teaser__title .teaser__title-text {
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
   line-height: 20px;
 
   @media (min-width: 999px) {
-    font-size: 32px;
-    line-height: 40px;
+    font-size: 24px;
+    line-height: 32px;
   }
 }
 
@@ -673,7 +687,7 @@ main .teaser-container > div {
   width: 75%;
 }
 
-.dark-teaser.buyers-guide-teaser .teaser__title h3 {
+.dark-teaser.buyers-guide-teaser .teaser__title .teaser__title-text {
   font-size: 18px;
   font-weight: 500;
   line-height: 20px;
@@ -734,7 +748,7 @@ main .teaser-container > div {
   width: 50px;
   height: 50px;
 }
-.teaser-list-container h2 {
+.teaser-list-container .teaser-list__title {
   font-family: "Kepler Std";
   font-size: 32px;
   font-style: normal;
@@ -745,37 +759,34 @@ main .teaser-container > div {
   padding-left: 24px;
 }
 @media (min-width: 999px) {
-  .teaser-list-container h2 {
+  .teaser-list-container .teaser-list__title {
     padding-left: 64px;
     font-size: 64px;
     line-height: 72px;
     margin-bottom: 60px;
   }
-  .dark-teaser .teaser__card--unfocused .teaser__content h3 {
+  .dark-teaser .teaser__card--unfocused .teaser__content .teaser__title-text {
     position: relative;
   }
   .dark-teaser
     .teaser__right.teaser__card--unfocused
-    .teaser__content
-    h3::after {
+    .teaser__content::after {
     content: "";
-    position: absolute;
+    display: inline-block;
     height: 48px;
     width: 48px;
-    top: -6px;
-    background-image: url("../../icons/chevron_right_teaser_h.svg");
+    background: url("../../icons/chevron_right_white.svg") no-repeat;
     cursor: pointer;
   }
   .dark-teaser
     .teaser__left.teaser__card--unfocused
-    .teaser__content
-    h3::after {
+    .teaser__content::after {
     content: "";
-    position: absolute;
+    display: inline-block;
     height: 48px;
     width: 48px;
-    top: -6px;
-    background-image: url("../../icons/chevron_left_teaser_h.svg");
+    background: url("../../icons/chevron_right_white.svg") no-repeat;
     cursor: pointer;
+    transform: scale(-1, 1);
   }
 }

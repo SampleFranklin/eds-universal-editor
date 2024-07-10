@@ -77,7 +77,7 @@
     line-height: 20px;
     text-align: left;
     margin-top: auto;
-    max-width: 50%;
+    max-width: 60%;
 }
 
 .hero-banner__container .hero-banner__bottom-section .hero-banner__subtext p {
@@ -188,6 +188,10 @@
         flex-direction: column-reverse;
         gap: 76px;
         flex-basis: content;
+    }
+
+    .hero-banner__container .hero-banner__bottom-section--no-action {
+        padding-bottom: 124px;
     }
 
     .hero-banner__container .hero-banner__bottom-section .hero-banner__subtext {

@@ -76,7 +76,11 @@
       "finance-entry-point",
       "section-navigator",
       "variant-listing",
-      "mfe-poc"
+      "mfe-poc",
+      "dealer-locator",
+      "offer-list",
+      "secondary-navigation",
+      "car-detail-banner"
     ]
   },
   {
@@ -232,5 +236,24 @@
   {
     "id": "mfe-poc",
     "components": []
+  },
+  {
+    "id": "dealer-locator",
+    "components": [
+      "cta"
+    ]
+  },
+  {
+    "id": "offer-list",
+    "components": [
+      "offer-item"
+    ]
+  },
+  {
+    "id": "secondary-navigation",
+    "components": [
+      "cta"
+      
+    ]
   }
 ]
