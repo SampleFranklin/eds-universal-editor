@@ -1,254 +1,109 @@
-@import '../teaser/teaser.css';
+.dealer-locator__container {
+  width: 1366px;
+  height: 470px;
+  
+}
+.dealer-locator__container .section {
+  width: 1366px;
+  height:436px;
 
-main .dealer-locator-container {
+}
+
+.dealer-locator__container .image style {
+  height: 700px;
+  width: 1366px;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.5; /* Adjust this value to change the overlay transparency */
+  background: url("/content/dam/nexa-world/9d418b71f127370578eab06187d46a05.jpg") lightgray -7.404px -459.299px / 100.512% 209.771% no-repeat;
+}
+
+.dealer-locator__container .overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+
+  background: linear-gradient(88deg, #18171A 49.21%, rgba(24, 23, 26, 0.00) 90.09%);
+}
+
+.dealer-locator__content {
+  text-align: center;
+  margin-bottom: 20px;
+  display: flex;
+    flex-direction: column;
+    gap: 32px;
+    position: relative;
+    left:0;
+    bottom:0;
     
-   
-    width: 1366px;
-    height:470px;
+      
 }
 
-main .dealer-locator-container>div {
-    padding: 0;
-    margin: 0;
-    width: 1366px;
-    max-width: inherit;
+.dealer-locator__content .pre-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: auto;
+  text-align: left;
+  padding-left: 10px;
 }
 
-.dealer-locator__wrapper {
-    text-align: center;
-    color: white;
-    background-color: #18171A;
-    position: relative;
-    
+.dealer-locator__content .description {
+  
+  text-align: right;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  width:70%;
+  margin-top: auto; /* Pushes the description to the bottom */
+  align-self: flex-end;
+  
+
 }
 
-.dealer-locator__wrapper .banner-img {
-    max-width: 100%;
-    display: block;
-    width: 1366px;
-    height: 205px;
-    transform: rotate(90deg);
-    flex-shrink: 0;
-    
+.dealer-locator__action {
+  max-height: 200px; /* Set a max height for the CTA container */
+  overflow-y: auto; /* Enable vertical scrolling */
+  width: 25%; /* Ensure it takes the full width */
+  text-align: left; /* Center-align the CTAs */
+
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.dealer-locator__wrapper .dealer-locator__content {
-    position: relative;
-    top: 50%;
-    left: 64px;
-    text-align: left;
-    font-family: "Fira Sans";
-    color: var(--Tertiary-Light-grey, #F2F2F2);
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
+ a {
+  text-decoration: none;
+  color: #fff;
 }
 
-.dealer-locator__wrapper .dealer-locator__content p {
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: 24px;
-    margin-bottom: 0;
-    max-width: 280px;
-    text-align: right;
-    margin-top: auto; /* Pushes the description to the bottom */
-    align-self: flex-end;
-}
-
-.dealer-locator__wrapper .dealer-locator__content p strong {
-    margin: 0;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: 24px;
-    color: var(--Tertiary-White, #FFF);
-    font-family: "Fira Sans";
+li {
+  
+  color: white;
+  padding: 10px 20px;
+  margin: 5px 0;
+  font-size: 20px;
+  text-align: left;
+  border-radius: 5px;
+  
 }
 
 
 
-/* .immersive__wrapper .immersive__content .immersive__action {
-    display: inline-flex;
-    align-items: center;
-    margin-top: 32px;
+.dealer-locator__action .cta-text.highlight {
+  background-color: white;
+  color: black;
+} 
 }
-
-.immersive__wrapper .immersive__content .immersive__action::after {
-    content: '';
-    display: inline-block;
-    width: 8px;
-    height: 41px;
-    margin-left: -1px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url("../../icons/right.svg");
-
-}
-
-.immersive__wrapper .immersive__content .immersive__action::before {
-    content: '';
-    display: inline-block;
-    width: 8px;
-    height: 40px;
-    margin-right: -3px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url("../../icons/left.svg");
-
-}
-
-.immersive__wrapper .immersive__content .immersive__action a {
-    display: flex;
-    padding: 8px 18px 8px 20px;
-    background-color: #ffffff;
-    justify-content: center;
-    align-items: center;
-    align-self: stretch;
-    border: none;
-    font-size: 18px;
-    color: #18171A;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-    border-radius: unset;
-    text-decoration: none;
-} */
-
-/* .immersive__wrapper .immersive__content .immersive__action a::after {
-    content: '';
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    margin-left: 8px;
-    background-image: url('../../icons/north_east.svg');
-}
-
-.immersive__wrapper .immersive__content .immersive__action .left-svg,
-.immersive__wrapper .immersive__content .immersive__action .right-svg {
-    display: block;
-} */
-
-.dealer-locator__wrapper img {
-    width: 1366px;
-}
-
-.dealer-locator__wrapper .teaser-wrapper {
-    position: absolute;
-    right: px;
-    bottom: 50px;
-    max-width: 52%;
-}
-
-.dealer-locator__wrapper .teaser-wrapper {
-    clip-path: polygon(0 0, 100% 0, 100% 90%, 65% 90%, 60% 100%, 0 100%);
-}
-
-.right-seperator::after {
-    content: "";
-    width: 100%;
-    display: block;
-    height: 25px;
-    background-color: #18171A;
-    clip-path: polygon(0 0, 100% 0, 65% 0%, 75% 0%, 72% 100%, 0 100%);
-    position: relative;
-    margin-top: -12px;
-}
-
-.left-seperator::after {
-    content: "";
-    width: 100%;
-    display: block;
-    height: 25px;
-    background-color: #18171A;
-    clip-path: polygon(0 100%, 30% 100%, 32% 0, 100% 0, 100% 100%, 0 100%);
-    position: relative;
-    margin-top: -12px;
-}
-
-/* @media (max-width: 1023px) {
-    .immersive__wrapper {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        padding-top: 48px;
-    }
-
-    .immersive__wrapper picture {
-        order: 2;
-    }
-
-    .immersive__wrapper .immersive__content {
-        order: 1;
-        position: relative;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding: 0 20px;
-    }
-
-    .immersive__wrapper .teaser-wrapper {
-        order: 3;
-        left: 0;
-        bottom: 35px;
-        position: relative;
-        margin: 0 20px;
-        max-width: 100%;
-    }
-
-    .immersive__wrapper .immersive__content h2 {
-        font-size: 32px;
-        font-weight: 600;
-        line-height: 40px;
-        letter-spacing: 0.64px;
-        margin: 0;
-        max-width: 300px;
-    }
-
-    .immersive__wrapper .immersive__content p strong {
-        margin-top: 72px;
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 20px;
-        display: block;
-    }
-
-    .immersive__wrapper .immersive__content p {
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 16px;
-    }
-
-    .immersive__wrapper .immersive__content .immersive__action {
-        margin-top: 24px;
-    }
-
-    .immersive__wrapper .immersive__content .immersive__action a {
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 24px;
-        padding: 8px 12px;
-        margin: 0;
-    }
-
-    .immersive__wrapper .immersive__content .immersive__action::before {
-        margin-right: -3px;
-        height: 41px;
-    }
-
-    .right-seperator::after {
-        height: 16px;
-        order: 4;
-        clip-path: polygon(0 0, 100% 0, 65% 0%, 68% 0%, 65% 100%, 0 100%);
-
-    }
-
-    .left-seperator::after {
-        height: 16px;
-        order: 0;
-    }
-} */
