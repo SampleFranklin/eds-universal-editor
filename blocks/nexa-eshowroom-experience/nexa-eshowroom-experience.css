@@ -1,9 +1,5 @@
 @import url('../carousel/fadecarousel.css');
 
-.e-showroom {
-    background: linear-gradient(192deg, #EDEEEE 40.54%, rgba(217, 217, 217, 0.00) 178.01%);
-}
-
 .e-showroom__container {
     display: flex;
     flex-direction: row;
@@ -13,6 +9,7 @@
     margin-left: auto;
     padding-right: 20px;
     padding-left: 20px;
+    background: linear-gradient(192deg, #EDEEEE 40.54%, rgba(217, 217, 217, 0.00) 178.01%);
 }
 
 .carousel__slide {
@@ -230,6 +227,7 @@
     width: 100%;
     height: 100%;
     display: none;
+    object-fit: cover;
 }
 
 .e-showroom__container .active-video{
@@ -238,6 +236,7 @@
 }
 
 @media (min-width:999px) {
+    
     .e-showroom__container {
         padding-right: 0;
         padding-left: 0;
@@ -268,6 +267,10 @@
         font-style: italic;
         font-weight: 400;
         line-height: 56px;
+    }
+
+    .e-showroom__video-container {
+        margin-top: 0;
     }
 
     .e-showroom__carousel__navigation .carousel__prev,
@@ -314,10 +317,6 @@
         position: absolute;
         bottom: 1px;
         left: 2rem
-    }
-
-    .e-showroom__video-container {
-        margin-top: 0;
     }
 
     .e-showroom__primary__btn {
