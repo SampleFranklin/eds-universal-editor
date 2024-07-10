@@ -33,7 +33,7 @@ export default async function decorate(block) {
   nav.id = "nav";
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
   Array.from(
-    nav.querySelectorAll("nav > div.section:not(:first-child):not(:last-child)")
+    nav.querySelectorAll("nav > div.section:not(:first-child):not(:last-child):not(:nth-last-child(2))")
   ).forEach((el) => {
     const heading = el.querySelector(".icontitle :is(h1,h2,h3,h4,h5,h6)");
     const icon = el.querySelector(".icon");
@@ -48,7 +48,7 @@ export default async function decorate(block) {
         combinedTeaserHTML += teaserWrapper.innerHTML;
       });
 
-      el.querySelector(".card-list-teaser").insertAdjacentHTML(
+      el.querySelector(".card-list-teaser")?.insertAdjacentHTML(
         "beforeend",
         utility.sanitizeHtml(
           `<div class="teaser-list">${combinedTeaserHTML}</div>`
@@ -62,7 +62,7 @@ export default async function decorate(block) {
       icon: icon?.innerHTML,
       iconClicked: iconClicked?.innerHTML,
       content: content?.firstChild,
-      teaser: teaser ?? "",
+      teaser: teaser?.firstChild ?? "",
     });
   });
   const logo = nav.querySelector(".logo-wrapper");
@@ -78,6 +78,7 @@ export default async function decorate(block) {
   const userAccountLinkItems =
     user__dropdownDiv.querySelectorAll(".user__account>a");
   const signInTeaser = nav.querySelector(".sign-in-teaser");
+  const locationHtml=nav.querySelector('.location-wrapper');
 
   const desktopHeader = `
     <div class="navbar ${isNexa ? "navbar-nexa" : "navbar-arena"}">
@@ -89,7 +90,6 @@ export default async function decorate(block) {
       ${logo.outerHTML}
       <div class="links"></div>
       <div class="right" id="nav-right">
-        <div class="location">Gurgaon &#9662;</div>
         ${!isNexa ? `<div class="language">EN &#9662;</div>` : ""}
         <img id="user-img" src="../../icons/${
           isNexa ? "account_circle" : "user"
@@ -127,6 +127,7 @@ export default async function decorate(block) {
   `;
   const navWrapper = document.createElement("div");
   navWrapper.innerHTML = desktopHeader + mobileHeader;
+  navWrapper.querySelector('.right').insertAdjacentElement("afterbegin",locationHtml);
   block.append(navWrapper);
   const navHamburger = document.querySelector(".nav-hamburger");
   const backArrow = document.querySelector(".back-arrow");

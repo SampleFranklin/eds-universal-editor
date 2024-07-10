@@ -40,7 +40,7 @@ header nav[aria-expanded="true"] {
   }
 }
 
-@media (width >= 998px) {
+@media (width > 998px) {
   header nav {
     display: flex;
     justify-content: space-between;
@@ -124,7 +124,7 @@ header nav a:any-link {
   bottom: 3px;
 }
 
-@media (width >= 998px) {
+@media (width > 998px) {
   header nav .nav-hamburger {
     display: none;
     visibility: hidden;
@@ -179,7 +179,7 @@ header nav .nav-sections ul > li > ul > li {
   font-weight: 500;
 }
 
-@media (width >= 998px) {
+@media (width > 998px) {
   header {
     height: var(--nav-height);
   }
@@ -288,6 +288,7 @@ header nav .nav-tools {
 }
 .navbar-nexa {
   background-color: #18171a;
+  padding: 0px 64px;
 }
 .navbar .links {
   display: flex;
@@ -323,6 +324,17 @@ header nav .nav-tools {
   display: flex;
   align-items: center;
   color: #575a5e;
+  margin-right: 24px;
+}
+
+.navbar-nexa .right .location {
+  color: #f2f2f2;
+  font-size: 16px;
+  margin-right: 24px;
+}
+
+.navbar-nexa .links .link-title{
+  font-size: 16px;
 }
 
 .navbar-nexa .links .link-title,
@@ -495,7 +507,7 @@ body {
   width: 100%;
   background-color: #f4f4f4;
   padding: 10px;
-  z-index: 10;
+  z-index: 11;
   transition: opacity 0.3s ease;
   opacity: 0;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
@@ -541,6 +553,20 @@ body {
   .navbar {
     height: 64px;
   }
+
+  .navbar-nexa {
+    padding: 0px 20px;
+  }
+
+  .navbar-nexa .right .location {
+    font-size: 14px;
+    margin-right: 0;
+  }
+
+  .navbar-nexa .links .link-title{
+    font-size: 14px;
+  }
+  
   .navbar .links,
   .navbar .right {
     display: none;
@@ -600,7 +626,7 @@ body {
   }
 }
 
-@media (min-width: 998px) {
+@media (min-width: 999px) {
   .buy.panel,
   .owners.panel {
     display: flex;
@@ -618,13 +644,17 @@ body {
     padding: 0;
   }
 
-  .panel .link-grid-column .links-container li a {
-    padding: 0;
-    min-height: 40px;
-    font-size: 14px;
-    line-height: 20px;
+  .panel .link-grid-column .links-container li {
+    a {
+      padding: 0;
+      min-height: 40px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+    &:hover {
+      border: 0;
+    }
   }
-
   .panel .accordian-item,
   .panel .teaser {
     display: block;
@@ -667,27 +697,29 @@ body {
     padding: 24px;
   }
 
-  .panel .teaser__pretitle p,
-  .panel .teaser__title h3,
-  .panel .teaser__actions a {
-    font-family: "Fira Sans";
+  .panel .teaser__description,
+  .panel .teaser__title,
+  .panel .teaser__actions {
+    & :first-child{
+      font-family: "Fira Sans";
+    }
   }
 
-  .panel .teaser__pretitle p {
+  .panel .teaser__title :first-child {
     margin: 0 0 8px 0;
     font-size: 18px;
     font-weight: 500;
     line-height: 22px;
   }
 
-  .panel .teaser__title h3 {
+  .panel .teaser__description :first-child {
     font-size: 16px;
     font-weight: 300;
     line-height: 20px;
     margin-bottom: 24px;
   }
 
-  .panel .teaser__actions a {
+  .panel .teaser__actions :first-child {
     position: relative;
     font-size: 16px;
     font-weight: 400;
@@ -711,7 +743,7 @@ body {
   }
 }
 
-@media (min-width: 998px) {
+@media (min-width: 999px) {
   .nexa.panel,
   .arena.panel {
     padding: 32px 64px;
@@ -756,7 +788,7 @@ body {
   padding: 14px 12px;
   color: #575a5e;
 }
-@media (min-width: 998px) {
+@media (min-width: 999px) {
   .navbar-arena .panel {
     background-color: #f4f4f4;
     &.cars {

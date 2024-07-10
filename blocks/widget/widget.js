@@ -1,4 +1,5 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
+
 export default function decorate(block) {
     const [imageEl, imageClickedEl, imageAltTextEl, ...ctasEl] = block.children;
     const imageSrc = imageEl?.querySelector('img')?.src;
@@ -40,19 +41,6 @@ export default function decorate(block) {
             </ul>
         </div>
     </div>
-        `;
-    // Add hover logic with JavaScript
-    const widgetElement = block.querySelector('.widget');
-    const widgetLinksElement = block.querySelector('.widget__links');
-
-    widgetElement.addEventListener('mouseenter', () => {
-        widgetLinksElement.style.display = 'block';
-    });
-
-    widgetElement.addEventListener('mouseleave', () => {
-        widgetLinksElement.style.display = 'none';
-    });
-
-    // Initially hide the widget links
-    widgetLinksElement.style.display = 'none';
+    `;
 }
+

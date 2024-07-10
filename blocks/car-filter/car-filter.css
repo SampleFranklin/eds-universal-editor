@@ -188,7 +188,7 @@
       .teaser__content {
         padding: 24px 12px;
         @media (min-width: 999px) {
-          padding: 24px;
+          padding: 16px 24px;
         }
       }
 
@@ -290,7 +290,7 @@
         margin-right: 28px;
         flex-basis: 76%;
         align-content: flex-start;
-        max-height: 490px;
+        max-height: 412px;
         overflow: scroll;
         overflow-x: hidden;
 
@@ -360,13 +360,18 @@
         flex-direction: column;
         overflow: hidden;
         gap: 0;
+        margin-top: 0;
 
         .teaser:first-child {
           height: 230px;
-          clip-path: polygon(0 0, 100% 0, 100% 88%, 67% 88%, 57% 100%, 0 100%);
+          clip-path: polygon(0 0, 100% 0, 100% 86%, 62% 86%, 56% 100%, 0 100%);
+          flex-basis: 31%;
 
           .teaser__card {
             background: none;
+            .teaser-content {
+              padding: ;
+            }
           }
 
           .teaser__image {
@@ -385,6 +390,7 @@
 
           .teaser__actions a {
             font-size: 16px;
+            margin-top: 0;
           }
 
           .teaser__description p {
@@ -410,24 +416,7 @@
         .teaser:not(:first-child) {
           background: none;
           height: 230px;
-          clip-path: polygon(
-            0px 40px,
-            16% 40px,
-            61% 40px,
-            74% 0px,
-            100% 0px,
-            100% 100%,
-            0px 100%
-          );
-
-          &::before {
-            content: "";
-            width: 100%;
-            display: block;
-            height: 25px;
-            position: relative;
-            margin-top: -12px;
-          }
+          clip-path: polygon(0px 25px, 16% 25px, 60% 25px, 66% 0px, 100% 0px, 100% 100%, 0px 100%);
 
           .teaser__image {
             width: 100%;
@@ -441,6 +430,7 @@
             padding: 12px;
             bottom: 12px;
             left: 12px;
+            right: 12px;
             border-radius: 4px;
             background: linear-gradient(
               206deg,
@@ -460,26 +450,29 @@
               line-height: 24px; /* 133.333% */
             }
 
-            .teaser__actions a {
-              margin-top: 0;
-              color: var(--Tertiary-White, #fff);
-              font-family: "Fira Sans";
-              font-size: 16px;
-              font-style: normal;
-              font-weight: 400;
-              line-height: 20px; /* 125% */
-              border-color: white;
-              width: auto;
-              height: auto;
-              &::after {
-                content: url("");
-                right: 0;
-                bottom: 4px;
-                background-image: url("../../icons/white-slant-arrow.svg");
-                background-size: 24px;
-                display: inline-block;
-                width: 24px;
-                height: 24px;
+            .teaser__actions {
+              line-height: 0;
+              a {
+                margin-top: 0;
+                color: var(--Tertiary-White, #fff);
+                font-family: "Fira Sans";
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 20px; /* 125% */
+                border-color: white;
+                width: auto;
+                height: auto;
+                &::after {
+                  content: url("");
+                  right: 0;
+                  bottom: 4px;
+                  background-image: url("../../icons/white-slant-arrow.svg");
+                  background-size: 24px;
+                  display: inline-block;
+                  width: 24px;
+                  height: 24px;
+                }
               }
             }
           }
@@ -610,6 +603,7 @@
             line-height: 17px;
             margin: 0;
             text-transform: capitalize;
+            display: block;
           }
 
           .card-price {

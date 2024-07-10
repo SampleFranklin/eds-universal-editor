@@ -67,13 +67,19 @@
       "highlights",
       "finance-options",
       "arena-help-me-select",
-      "intro-to-design-car-detail",
+      "intro-to-design-details",
       "car-detail-feature",
       "nexa-car-hero-banner",
       "best-deals",
       "video-teaser",
       "nexa-brand-film-carousel",
-      "finance-entry-point"
+      "finance-entry-point",
+      "section-navigator",
+      "variant-listing",
+      "mfe-poc",
+      "dealer-locator",
+      "offer-list",
+      "secondary-navigation"
     ]
   },
   {
@@ -220,6 +226,33 @@
     "id": "finance-entry-point",
     "components": [
       "teaser"
+    ]
+  },
+  {
+    "id": "section-navigator",
+    "components": []
+  },
+  {
+    "id": "mfe-poc",
+    "components": []
+  },
+  {
+    "id": "dealer-locator",
+    "components": [
+      "cta"
+    ]
+  },
+  {
+    "id": "offer-list",
+    "components": [
+      "offer-item"
+    ]
+  },
+  {
+    "id": "secondary-navigation",
+    "components": [
+      "cta"
+      
     ]
   }
 ]

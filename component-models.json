@@ -1541,54 +1541,8 @@
       {
         "component": "text-input",
         "valueType": "string",
-        "name": "title",
-        "label": "Title"
-      },
-      {
-        "component": "select",
-        "name": "titleType",
-        "value": "h2",
-        "label": "Type",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "h1",
-            "value": "h1"
-          },
-          {
-            "name": "h2",
-            "value": "h2"
-          },
-          {
-            "name": "h3",
-            "value": "h3"
-          },
-          {
-            "name": "h4",
-            "value": "h4"
-          },
-          {
-            "name": "h5",
-            "value": "h5"
-          },
-          {
-            "name": "h6",
-            "value": "h6"
-          }
-        ]
-      },
-      {
-        "component": "text",
-        "valueType": "string",
         "name": "preTitle",
-        "label": "Pretitle"
-      },
-      {
-        "component": "richtext",
-        "name": "description",
-        "value": "",
-        "label": "Description",
-        "valueType": "string"
+        "label": "Price Text"
       },
       {
         "component": "text-input",
@@ -1608,30 +1562,11 @@
     "id": "nexa-eshowroom-experience-item",
     "fields": [
       {
-        "component": "reference",
+        "component": "aem-content-fragment",
         "valueType": "string",
-        "name": "forwardVideo",
-        "label": "Forward Video",
+        "name": "carModelPath",
+        "label": "Enter Car Model",
         "multi": false
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "reverseVideo",
-        "label": "Reverse Video",
-        "multi": false
-      },
-      {
-        "component": "text-input",
-        "name": "primaryText",
-        "label": "Primary CTA Text",
-        "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "name": "primaryLink",
-        "valueType": "string",
-        "label": "Primary CTA Link"
       }
     ]
   },
@@ -2271,7 +2206,7 @@
     ]
   },
   {
-    "id": "intro-to-design-car-detail",
+    "id": "intro-to-design-details",
     "fields": [
       {
         "component": "text-input",
@@ -2585,8 +2520,108 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "exshowroomPriceLabel",
+        "name": "exShowroomPriceLabel",
         "label": "Ex-Showroom Price Label"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "exShowroomPriceText",
+        "label": "Ex-Showroom Price Text"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "tagline",
+        "label": "Tagline"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "engineLabel",
+        "label": "Engine Label"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "powerLabel",
+        "label": "Power Label"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "mileageLabel",
+        "label": "Mileage Label"
+      },
+      {
+        "component": "aem-content-fragment",
+        "name": "carModelPath",
+        "label": "Car Model Path",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "primaryText",
+        "label": "Primary CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "primaryLink",
+        "label": "Primary CTA Link"
+      },
+      {
+        "component": "select",
+        "name": "primaryTarget",
+        "value": "",
+        "label": "Open Primary Link in New Page ?",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Yes",
+            "value": "_blank"
+          },
+          {
+            "name": "No",
+            "value": "_self"
+          }
+        ]
+      },
+      {
+        "component": "text-input",
+        "name": "secondaryText",
+        "label": "Secondary CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "secondaryLink",
+        "label": "Secondary CTA Link"
+      },
+      {
+        "component": "select",
+        "name": "secondaryTarget",
+        "value": "",
+        "label": "Open Secondary Link in New Page ?",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Yes",
+            "value": "_blank"
+          },
+          {
+            "name": "No",
+            "value": "_self"
+          }
+        ]
+      },
+      {
+        "component": "text-input",
+        "name": "termsConditionsText",
+        "label": "Terms & Conditions Text",
+        "valueType": "string"
       }
     ]
   },
@@ -2617,15 +2652,28 @@
         }
       },
       {
-        "component": "text",
-        "valueType": "string",
-        "name": "tagline",
-        "label": "Tagline"
+        "component": "text-input",
+        "name": "variantT&C",
+        "label": "Variant Name and T&C",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "variant-listing",
+    "fields": [
+      {
+        "component": "text-input",
+        "name": "modelId",
+        "value": "",
+        "label": "Car Model ID",
+        "valueType": "string"
       },
       {
-        "component": "text",
-        "name": "model-id",
-        "label": "Model ID",
+        "component": "text-input",
+        "name": "startingPriceText",
+        "value": "",
+        "label": "Starting Price Text",
         "valueType": "string"
       },
       {
@@ -2686,6 +2734,222 @@
           }
         ]
       }
+    ]
+  },
+  {
+    "id": "dealer-locator",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Alt",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "pretitle",
+        "label": "Pretitle"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "description",
+        "label": "Description",
+        "value":""
+      }
+    ]
+  },
+  {
+    "id": "offer-list",
+    "fields": [
+      {
+        "component": "text-input",
+        "name": "title",
+        "valueType": "string",
+        "label": "Title",
+        "description": "Heading for the offers component",
+        "required": true
+      },
+      {
+        "component": "select",
+        "name": "type",
+        "value": "h2",
+        "label": "Type",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "h1",
+            "value": "h1"
+          },
+          {
+            "name": "h2",
+            "value": "h2"
+          },
+          {
+            "name": "h3",
+            "value": "h3"
+          },
+          {
+            "name": "h4",
+            "value": "h4"
+          },
+          {
+            "name": "h5",
+            "value": "h5"
+          },
+          {
+            "name": "h6",
+            "value": "h6"
+          }
+        ]
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string",
+        "description": "Description for the offers",
+        "required": true
+
+      },
+      {
+        "component": "text-input",
+        "name": "primaryLinkText",
+        "label": "Primary CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "primaryLink",
+        "label": "Primary CTA Link"
+      },
+      {
+        "component": "select",
+        "name": "primaryLinkTarget",
+        "value": "",
+        "label": "Open Primary Link in New Page ?",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Yes",
+            "value": "_blank"
+          },
+          {
+            "name": "No",
+            "value": "_self"
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "label": "Icon for Button",
+        "name": "primaryLinkIcon",
+        "valueType": "string",
+        "description": "Icon for the button.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "offer-item",
+    "fields": [
+      {
+        "component": "reference",
+        "label": "Desktop Image(Default Img)",
+        "name": "desktopImage",
+        "valueType": "string",
+        "required": true
+      },
+      {
+        "component": "text",
+        "label": "Desktop Image Alt",
+        "name": "desktopImageAlt",
+        "valueType": "string",
+        "required": true,
+        "condition": { "!==": [{"var" : "desktopImage"}, ""] }
+      },
+      {
+        "component": "reference",
+        "label": "Mobile Image",
+        "name": "mobileImage",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "description": "Title for the offer teaser.",
+        "required": true
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string",
+        "description": "Description for the offer.",
+        "required": true
+      },
+      {
+        "component": "text-input",
+        "name": "primaryLinkText",
+        "label": "Primary CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "primaryLink",
+        "label": "Primary CTA Link"
+      },
+      {
+        "component": "select",
+        "name": "primaryLinkTarget",
+        "value": "",
+        "label": "Open Primary Link in New Page ?",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Yes",
+            "value": "_blank"
+          },
+          {
+            "name": "No",
+            "value": "_self"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "secondary-navigation",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "logo",
+        "label": "Logo Text",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "logolink",
+        "label": "Logo Link"
+      }
+     
     ]
   }
 ]

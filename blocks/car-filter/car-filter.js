@@ -274,13 +274,13 @@ export default async function decorate(block) {
 //            }
         }
 
-        function setLocalStorage(key, value) {
-            localStorage.setItem(key, value);
-        }
+        // function setLocalStorage(key, value) {
+        //     localStorage.setItem(key, value);
+        // }
 
-        function getLocalStorage(key) {
-            return localStorage.getItem(key);
-        }
+        // function getLocalStorage(key) {
+        //     return localStorage.getItem(key);
+        // }
 
         function priceFormatting(price) {
           if (componentVariation === "arena-variant") {
@@ -288,7 +288,8 @@ export default async function decorate(block) {
           }
             const formatter = new Intl.NumberFormat('en-IN', {
                 style: 'currency',
-                currency: 'INR'
+                currency: 'INR',
+                maximumFractionDigits:0
             });
             return formatter.format(price);
         }
