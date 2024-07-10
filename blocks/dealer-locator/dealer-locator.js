@@ -1,5 +1,3 @@
-import teaser from '../../utility/teaserUtils.js';
-import utility from '../../utility/utility.js';
 export default function decorate(block) {
   function getDealerLocator() {
     const [
@@ -9,13 +7,15 @@ export default function decorate(block) {
       ...ctaEls
     ] = block.children;
 
-    const image = imageEl?.querySelector('picture');
+    const image = imageEl?.querySelector('picture img');
+    let imgSrc = '';
+    let altText = 'image';
     if (image) {
-      const img = image.querySelector('img');
-      img.removeAttribute('width');
-      img.removeAttribute('height');
-      const alt = altTextEl?.textContent?.trim() || 'image';
-      img.setAttribute('alt', alt);
+      imgSrc = image.getAttribute('src');
+      image.removeAttribute('width');
+      image.removeAttribute('height');
+      const altTextEl = imageEl?.querySelector('figcaption');
+      altText = altTextEl?.textContent?.trim() || 'image';
     }
 
     const pretitle = pretitleEl?.textContent?.trim() || "";
@@ -39,20 +39,19 @@ export default function decorate(block) {
   }
 
   const dealerLocator = getDealerLocator();
-  const teaserEl = block.children;
-  let teaserObj;
-  if (teaserEl?.innerHTML) {
-    teaserObj = teaser.getTeaser(teaserEl);
-    teaserObj.classList.add('teaser-wrapper');
-  }
-  const dealerLocatorHtml = utility.sanitizeHtml(`
-<div class="dealer-locator__container">
-   <div class ="image-container"> ${(dealerLocator.image) ? dealerLocator.image.outerHTML : ''}</div>
-   <div class="dealer-locator__content">
-          <p class="pre-title"> ${dealerLocator.pretitle} </p>
-          <p class="description">${dealerLocator.description}</p>
-          </div>
-           <div class="dealer-locator__action">
+
+  // Create the HTML structure using template literals
+  const dealerLocatorHtml = `
+    <div class="dealer-locator__container">
+      <div class="section">
+        <div class="image-container">
+          <img src="${dealerLocator.imgSrc}" alt="${dealerLocator.altText}">
+          <div class="overlay">
+            <div class="dealer-locator__content">
+              <p class="pre-title">${dealerLocator.pretitle}</p>
+            </div>
+            <div class="dealer-locator__description">${dealerLocator.description}</div>
+            <div class="dealer-locator__action">
               <div class="scroll-bar"></div>
               <ul>
                 ${dealerLocator.ctas.map((cta, index) => `
@@ -62,20 +61,18 @@ export default function decorate(block) {
                 `).join('')}
               </ul>
             </div>
-           
-  </div>`);
-
-  
-  
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
 
   // Set the generated HTML to the block
- 
   block.innerHTML = `
-        <div class="dealerLocator__wrapper right-seperator">
-            ${dealerLocatorHtml}
-            ${(teaserObj?.innerHTML) ? teaserObj.outerHTML : ''}
-        </div>
-    `;
+  <div class ="dealer-locator__container right-seperator">
+  ${dealerLocatorHtml}
+  </div>
+  `;
 
   // Add scroll event listener for highlighting CTAs
   const ctaElements = document.querySelectorAll('.dealer-locator__container .dealer-locator__action .cta-text');
