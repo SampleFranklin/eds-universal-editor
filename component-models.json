@@ -1559,18 +1559,6 @@
     ]
   },
   {
-    "id": "nexa-eshowroom-experience-item",
-    "fields": [
-      {
-        "component": "aem-content-fragment",
-        "valueType": "string",
-        "name": "carModelPath",
-        "label": "Enter Car Model",
-        "multi": false
-      }
-    ]
-  },
-  {
     "id": "slider",
     "fields": [
       {

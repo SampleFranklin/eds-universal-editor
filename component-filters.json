@@ -182,12 +182,6 @@
     ]
   },
   {
-    "id": "nexa-eshowroom-experience",
-    "components": [
-      "nexa-eshowroom-experience-item"
-    ]
-  },
-  {
     "id": "slider",
     "components": [
       "teaser"
