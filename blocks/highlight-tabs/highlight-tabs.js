@@ -47,7 +47,7 @@ export default function decorate(block) {
           <p class="more-content">
             ${description}
           </p>
-          ${description.length > 130 ? `<a href="#" class="read-more">${expandDescription}</a>` : ''}
+          <a href="#" class="read-more">${expandDescription}</a>
         </div>
     `);
     highlightItem.classList.add('highlightItem', `switch-index-${index}`);
@@ -55,33 +55,52 @@ export default function decorate(block) {
     return highlightItem.outerHTML;
   }
 
+  function initializeHighlightItem(highlightItem, index) {
+    const moreContent = highlightItem.querySelector('.more-content');
+    const readMoreButton = highlightItem.querySelector('.read-more');
+  
+    if (moreContent && readMoreButton) {
+      // Store the original display style
+      const originalDisplay = highlightItem.style.display;
+      
+      // Temporarily make the element visible for measurement
+      highlightItem.style.display = 'block';
+      highlightItem.style.visibility = 'hidden';
+      highlightItem.style.position = 'absolute';
+  
+      // Force a reflow to ensure correct measurements
+      void moreContent.offsetHeight;
+  
+      const computedStyle = getComputedStyle(moreContent);
+      const contentHeight = moreContent.scrollHeight;
+      const lineHeight = parseFloat(computedStyle.lineHeight);
+      console.log(contentHeight, lineHeight, index, "cjlh");
+  
+      // Determine whether to show the read more link based on content height
+      if (contentHeight > lineHeight * 3) {
+        readMoreButton.style.display = 'block';
+      } else {
+        readMoreButton.style.display = 'none';
+      }
+  
+      // Restore the original display style
+      highlightItem.style.display = originalDisplay;
+      highlightItem.style.visibility = '';
+      highlightItem.style.position = '';
+  
+      readMoreButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        moreContent.classList.toggle('expanded');
+        const { expandBtn, collapseBtn } = highlightItemButtons[index];
+        readMoreButton.textContent = moreContent.classList.contains('expanded') ? collapseBtn : expandBtn;
+      });
+    }
+  }
+  
   function initializeHighlightItems(highlightItems) {
     highlightItems.forEach((highlightItem, index) => {
-      const moreContent = highlightItem.querySelector('.more-content');
-      const readMoreButton = highlightItem.querySelector('.read-more');
-
-      if (moreContent && readMoreButton) {
-        // Make sure to call the height measurement after the content has been rendered
-        setTimeout(() => {
-          // const contentHeight = moreContent.offsetHeight;
-          const computedStyle = getComputedStyle(moreContent);
-          const contentHeight= parseFloat(computedStyle.height)
-          const lineHeight = parseFloat(computedStyle.lineHeight);
-          console.log(contentHeight,lineHeight,"cjlh")
-
-          // Determine whether to show the read more link based on content height
-          if (contentHeight > lineHeight*3) {  // Set your desired height threshold here
-            readMoreButton.style.display = 'block';
-          }
-
-          readMoreButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            moreContent.classList.toggle('expanded');
-            const { expandBtn, collapseBtn } = highlightItemButtons[index];
-            readMoreButton.textContent = moreContent.classList.contains('expanded') ? collapseBtn : expandBtn;
-          });
-        }, 0); // A delay of 0 ms allows the DOM to update before measuring
-      }
+      // Delay initialization to ensure content is rendered
+      setTimeout(() => initializeHighlightItem(highlightItem, index), 0);
     });
   }
 
