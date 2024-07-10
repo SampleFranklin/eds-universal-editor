@@ -66,22 +66,7 @@ main .dealer-locator-container>div {
     color: var(--Tertiary-White, #FFF);
     font-family: "Fira Sans";
 }
-.cta-container {
-  display: flex;
-  flex-direction: row-reverse; /* This positions the scroll bar to the left */
-  overflow-y: auto; /* Enables the vertical scroll bar */
-  max-height: 100px; /* Adjust the height as needed */
-  margin: 10px 0;
-}
 
-.cta {
-  flex-grow: 1;
-  padding: 10px;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  text-align: left;
-}
 
 
 /* .immersive__wrapper .immersive__content .immersive__action {
