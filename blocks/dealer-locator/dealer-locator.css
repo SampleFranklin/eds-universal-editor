@@ -1,58 +1,138 @@
+@import '../immersive-teaser/immersive-teaser.css';
+
+/* Dealer locator container */
 .dealer-locator__container {
   position: relative;
 }
 
-.image {
-  position: relative;
+/* Image container */
+.image-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align children to the start (left) */
-  height: 100%;
+  align-items: flex-start;
+  width: 100%; /* Adjust width as needed */
 }
 
-.image img {
-  display: block;
-  width: 1366px;
-  height: 400px;
+.image-container img {
+  width: 100%; /* Ensure image fills its container */
+  height: auto;
 }
 
-.pre-title {
+/* Pre-title styling */
+.dealer-locator__content .pre-title {
   position: absolute;
-  top: 50%; /* Middle vertically */
-  left: 0; /* Left side */
+  top: 75%; /* Adjust position relative to its container */
+  left: 10px; /* Adjust left positioning */
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.8); /* Optional background for readability */
-  padding: 5px;
+  font-family: "Fira Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #F2f2f2;
 }
 
-.description {
+/* Description styling */
+.dealer-locator__content .dealer-locator__description {
   position: absolute;
-  bottom: 0; /* Bottom side */
-  right: 0; /* Right side */
-  background: rgba(255, 255, 255, 0.8); /* Optional background for readability */
+  bottom: 10px; /* Adjust position relative to its container */
+  right: 10px; /* Adjust right positioning */
+  max-width: 300px;
   padding: 5px;
+  line-height: 24px;
+  font-size: 18px;
+  font-weight: 300;
+  font-family: "Fira Sans", sans-serif;
+  color: #fff;
 }
 
+/* Action container */
 .dealer-locator__action {
   position: absolute;
-  bottom: 0; /* Bottom side */
-  left: 0; /* Left side */
-  background: black; /* Optional background for readability */
-  padding: 5px;
-  max-height: 300px; /* Set a max height if needed */
-  overflow-y: scroll; /* Add scrollbar */
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
 }
 
+/* Scroll bar container */
+.scroll-bar {
+  position: relative;
+  margin-right: 10px; /* Space between scrollbar and CTAs */
+}
+
+/* Vertical line for scrollbar */
+.scroll-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%; /* Adjust position of the line */
+  transform: translateX(-50%);
+  width: 2px; /* Width of the scrollbar */
+  height: 100%; /* Height of the scrollbar */
+  background-color: gray; /* Color of the scrollbar */
+}
+
+/* List of CTAs */
 .dealer-locator__action ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.dealer-locator__action .cta-text a {
-  text-decoration: none;
+/* Individual CTA styling */
+.dealer-locator__action .cta-text {
+  padding-left: 20px; /* Padding to separate CTAs from scrollbar */
 }
 
-.dealer-locator__action .highlight {
-  background: white; /* Highlight effect */
+/* Highlight effect for CTAs */
+.dealer-locator__action .cta-text.highlight {
+  font-size: 35px; /* Adjust size or add specific highlight styles */
 }
+
+/* CTA link styling */
+.dealer-locator__action .cta-text a {
+  text-decoration: none;
+  color: white; /* Link text color */
+}
+
+/* Hover effect for CTA links */
+.dealer-locator__action .cta-text a:hover {
+  text-decoration: none; /* Underline on hover */
+}
+.dealerLocator__wrapper img {
+  width: 100%;
+}
+
+.dealerLocator__wrapper .teaser-wrapper {
+  position: absolute;
+  right: 65px;
+  bottom: 50px;
+  max-width: 52%;
+}
+
+.dealerLocator__wrapper .teaser-wrapper {
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 65% 90%, 60% 100%, 0 100%);
+}
+
+.right-seperator::after {
+  content: "";
+  width: 100%;
+  display: block;
+  height: 25px;
+  background-color: #18171A;
+  clip-path: polygon(0 0, 100% 0, 65% 0%, 75% 0%, 72% 100%, 0 100%);
+  position: relative;
+  margin-top: -12px;
+}
+
+.left-seperator::after {
+  content: "";
+  width: 100%;
+  display: block;
+  height: 25px;
+  background-color: #18171A;
+  clip-path: polygon(0 100%, 30% 100%, 32% 0, 100% 0, 100% 100%, 0 100%);
+  position: relative;
+  margin-top: -12px;
+}
+
