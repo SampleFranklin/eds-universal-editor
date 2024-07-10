@@ -1,5 +1,6 @@
 import { fetchPlaceholders } from "../../scripts/aem.js";
 import ctaUtils from '../../utility/ctaUtils.js';
+import utility from '../../utility/utility.js';
 
 export default async function decorate(block) {
     const { publishDomain } = await fetchPlaceholders();
@@ -35,5 +36,22 @@ export default async function decorate(block) {
     const scrollMoreText = scrollMoreTextEl?.textContent?.trim();
     const primaryCta = ctaUtils.getLink(primaryCtaLinkEl, primaryCtaTextEl, primaryCtaTargetEl, 'button-primary-light');
     const secondaryCta = ctaUtils.getLink(secondaryCtaLinkEl, secondaryCtaTextEl, secondaryCtaTargetEl, 'button-secondary-light');
+
+block.innerHTML = '';
+block.insertAdjacentHTML(
+  'beforeend',
+  utility.sanitizeHtml(`
+                   <div class="Banner">
+                       ${(image) ? `<div class="teaser__image">${image.outerHTML}</div>` : ''}
+                       <div class="teaser__content">
+                           <div class="teaser__info">
+                               ${(pretitle) ? `<div class="teaser__pretitle"><p>${pretitle}</p></div>` : ''}
+                               ${(title) ? `<div class="teaser__title">${title.outerHTML}</div>` : ''}
+                               ${(description) ? `<div class="teaser__description">${description}</div>` : ''}
+                           </div>
+                           ${ctaHtml}
+                       </div>
+                   </div>
+             `),
+);
 }
-    
