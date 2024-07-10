@@ -2932,5 +2932,24 @@
         ]
       }
     ]
+  },
+  {
+    "id": "secondary-navigation",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "logo",
+        "label": "Logo Text",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "logolink",
+        "label": "Logo Link"
+      }
+     
+    ]
   }
 ]

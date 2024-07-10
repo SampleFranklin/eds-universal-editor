@@ -78,7 +78,8 @@
       "variant-listing",
       "mfe-poc",
       "dealer-locator",
-      "offer-list"
+      "offer-list",
+      "secondary-navigation"
     ]
   },
   {
@@ -245,6 +246,13 @@
     "id": "offer-list",
     "components": [
       "offer-item"
+    ]
+  },
+  {
+    "id": "secondary-navigation",
+    "components": [
+      "cta"
+      
     ]
   }
 ]
