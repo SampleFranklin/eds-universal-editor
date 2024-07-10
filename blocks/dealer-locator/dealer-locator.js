@@ -98,10 +98,8 @@ export default function decorate(block) {
     ctaElements.forEach((cta, index) => {
       if (index === highlightedIndex) {
         cta.classList.add('highlight');
-        moveInstrumentation(cta);
       } else {
         cta.classList.remove('highlight');
-        moveInstrumentation(cta);
       }
     });
 
