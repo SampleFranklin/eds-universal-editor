@@ -121,12 +121,27 @@ export default async function decorate(block) {
     </div>
   `;
 
-  carouselUtils.init(
-    block.querySelector('.hero-banner__carousel'), 'hero-banner__slides', 'fade', (currentSlide, targetSlide, direction) => {
-      currentSlide.querySelector('video')?.pause();
-      targetSlide.querySelector('video')?.play();
+  const controller = carouselUtils.init(
+    block.querySelector('.hero-banner__carousel'),
+    'hero-banner__slides',
+    'fade',
+    {
+      onChange: (currentSlide, targetSlide, direction) => {
+        if(direction > 0) {
+          return false;
+        } else if(direction < 0) {
+        }
+
+        currentSlide.querySelector('video')?.pause();
+        targetSlide.querySelector('video')?.play();
+      }
     }
   );
+  currentSlide.querySelectorAll('video').forEach(video => {
+    video.addEventListener('ended', () => {
+      controller.next();
+    });
+  });
 
   block.querySelectorAll('.hero-banner__mute-btn').forEach((el) => {
     const video = el.closest('.hero-banner__content')?.querySelector('video');

@@ -11,6 +11,7 @@ const carouselUtils = {
    * - Previous: -1
    * - Next: 1
    * - Dots: 0
+   * @returns {boolean}
    */
   /**
   * Intialises the carousel
@@ -27,6 +28,8 @@ const carouselUtils = {
     {
       onChange = () => {},
       onReset = () => {},
+      onNext = () => {},
+      onPrev = () => {},
       showArrows = true,
       showDots = true,
       dotsInteractive = true,
@@ -68,19 +71,29 @@ const carouselUtils = {
       }
     }
 
-    const navigateSlide = (direction = 0, position = null, isReset = false) => {
+    const getSlideInfo = (direction = 0, position = null) => {
       const currentSlide = el.querySelector('.carousel__slide--active');
       const currentIndex = parseInt(currentSlide.dataset.slideIndex, 10);
       const targetIndex = position ?? (currentIndex + (direction ?? 0));
-      let targetSlide = el.querySelector(`.carousel__slide[data-slide-index="${targetIndex}"]`);
+      const targetSlide = el.querySelector(`.carousel__slide[data-slide-index="${targetIndex}"]`);
+      return {
+        currentSlide: currentSlide,
+        currentIndex: currentIndex,
+        targetSlide: targetSlide,
+        targetIndex: targetIndex
+      }
+    }
+
+    const navigateSlide = (slideInfo, direction = 0, isReset = false) => {
+      const { currentSlide, targetSlide, currentIndex, targetIndex } = slideInfo;
       if (targetSlide) {
+        currentSlide.classList.remove('carousel__slide--active');
+        targetSlide.classList.add('carousel__slide--active');
         if(isReset) {
           onReset(currentSlide, targetSlide);
         } else if (typeof onChange === 'function') {
           onChange(currentSlide, targetSlide, direction);
         }
-        currentSlide.classList.remove('carousel__slide--active');
-        targetSlide.classList.add('carousel__slide--active');
         updateNavigation(targetIndex, el.querySelectorAll('.carousel__slide').length);
         updateDots(targetIndex, currentIndex);
         return true;
@@ -122,7 +135,8 @@ const carouselUtils = {
         el.querySelectorAll('.carousel__dot')?.forEach((dot) => {
           dot.addEventListener('click', (e) => {
             const targetIndex = parseInt(e.target.dataset.targetIndex, 10);
-            navigateSlide(0, targetIndex);
+            const slideInfo = getSlideInfo(0, targetIndex);
+            navigateSlide(slideInfo);
           });
         });
       }
@@ -141,21 +155,29 @@ const carouselUtils = {
         el.insertAdjacentElement('beforeend', arrowsContainer);
       }
       el.querySelector('.carousel__prev')?.addEventListener('click', () => {
-        navigateSlide(-1);
+        const slideInfo = getSlideInfo(-1);
+        const status = onPrev(slideInfo.currentSlide, slideInfo.targetSlide) ?? true;
+        if(status) {
+          navigateSlide(slideInfo, -1);
+        }
       });
       el.querySelector('.carousel__next')?.addEventListener('click', () => {
-        navigateSlide(1);
+        const slideInfo = getSlideInfo(1);
+        const status = onNext(slideInfo.currentSlide, slideInfo.targetSlide) ?? true;
+        if(status) {
+          navigateSlide(slideInfo, 1);
+        }
       });
     }
 
     const prev = () => {
-      return navigateSlide(-1);
+      return navigateSlide(getSlideInfo(-1), -1);
     }
     const next = () => {
-      return navigateSlide(1);
+      return navigateSlide(getSlideInfo(1), 1);
     }
     const reset = () => {
-      return navigateSlide(0, 0, true);
+      return navigateSlide(getSlideInfo(0, 0), 0, true);
     }
 
     return {
