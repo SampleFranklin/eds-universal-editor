@@ -24,11 +24,12 @@ const carouselUtils = {
     el,
     className,
     carouselType,
-    onChange,
-    config = {
-      arrows: true,
-      dots: true,
-      dotsInteractive: true
+    {
+      onChange = () => {},
+      onReset = () => {},
+      showArrows = true,
+      showDots = true,
+      dotsInteractive = true
     }
   ) => {
     if (!el) {
@@ -66,34 +67,27 @@ const carouselUtils = {
       }
     }
 
-    const navigateSlide = (direction) => {
-      const slides = el.querySelectorAll('.carousel__slide');
+    const navigateSlide = (direction = 0, position = null, isReset = false) => {
       const currentSlide = el.querySelector('.carousel__slide--active');
       const currentIndex = parseInt(currentSlide.dataset.slideIndex, 10);
-      let targetIndex = 0;
-      let targetSlide;
-      if (direction === 1 && currentIndex + 1 < slides.length) {
-        targetIndex = currentIndex + 1;
-        targetSlide = slides[targetIndex];
-      } else if (direction === -1 && currentIndex - 1 >= 0) {
-        targetIndex = currentIndex - 1;
-        targetSlide = slides[targetIndex];
-      }
-
+      const targetIndex = position ?? (currentIndex + (direction ?? 0));
+      let targetSlide = el.querySelector(`.carousel__slide[data-slide-index="${targetIndex}"]`);
       if (targetSlide) {
-        currentSlide.classList.remove('carousel__slide--active');
-        targetSlide.classList.add('carousel__slide--active');
-        if (typeof onChange === 'function') {
+        if(isReset) {
+          onReset(currentSlide, targetSlide);
+        } else if (typeof onChange === 'function') {
           onChange(currentSlide, targetSlide, direction);
         }
-        updateNavigation(targetIndex, slides.length);
+        currentSlide.classList.remove('carousel__slide--active');
+        targetSlide.classList.add('carousel__slide--active');
+        updateNavigation(targetIndex, el.querySelectorAll('.carousel__slide').length);
         updateDots(targetIndex, currentIndex);
         return true;
       }
       return false;
     }
 
-    if (carouselType === 'fade') {
+    if (carouselType === 'fade' || !carouselType) {
       el.classList.add('fade-carousel__wrapper');
     }
     const slidesWrapper = el.querySelector(`.${className}`);
@@ -113,29 +107,22 @@ const carouselUtils = {
     });
 
     el.querySelector(`.${className}`).replaceWith(slidesWrapper);
-    if (config.dots) {
+    if (showDots) {
       const dotsContainer = document.createElement('div');
       dotsContainer.className = 'carousel__dots';
       dotsContainer.append(dots);
       el.insertAdjacentElement('beforeend', dotsContainer);
-      if (config.dotsInteractive) {
+      if (dotsInteractive) {
         el.querySelectorAll('.carousel__dot')?.forEach((dot) => {
           dot.addEventListener('click', (e) => {
             const targetIndex = parseInt(e.target.dataset.targetIndex, 10);
-            const currentSlide = el.querySelector('.carousel__slide--active');
-            const targetSlide = el.querySelector(`.carousel__slide[data-slide-index="${targetIndex}"]`);
-            currentSlide?.classList?.remove('carousel__slide--active');
-            targetSlide?.classList?.add('carousel__slide--active');
-            onChange(currentSlide, targetSlide, 0);
-            const slides = el.querySelectorAll('.carousel__slide');
-            carouselUtils.updateNavigation(el, targetIndex, slides.length);
-            carouselUtils.updateDots(el, targetIndex, parseInt(currentSlide.dataset.slideIndex, 10));
+            navigateSlide(0, targetIndex);
           });
         });
       }
     }
 
-    if (config.arrows) {
+    if (showArrows) {
       const navigationContainer = document.createElement('div');
       navigationContainer.className = 'carousel__navigation';
       navigationContainer.innerHTML = `
@@ -157,10 +144,14 @@ const carouselUtils = {
     const next = () => {
       return navigateSlide(1);
     }
+    const reset = () => {
+      return navigateSlide(0, 0, true);
+    }
 
     return {
       prev: prev,
-      next: next
+      next: next,
+      reset: reset
     }
   },
 };

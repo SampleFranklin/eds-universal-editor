@@ -11,7 +11,7 @@ export default async function decorate(block) {
   const thumbnail = thumbnailEl.querySelector('img')?.src;
   const videos = videosEl.map((videoEl) => {
     const path = videoEl?.querySelector('a')?.textContent?.trim();
-    videoEl.classList?.add('brand-film__video-container');
+    videoEl.classList?.add('brand-film__video-container', 'brand-film__video--paused');
     videoEl.innerHTML = `
       <video class="brand-film__video" src="${publishDomain + path}" poster=${thumbnail} width="80%">
       </video>
@@ -23,13 +23,15 @@ export default async function decorate(block) {
     <div class="brand-film__container">
       ${(description) ? `<div class="brand-film__description">${description}</div>` : ''}
       <div class="brand-film__wrapper">
-        <div class="brand-film__actions">
-          <button class="brand-film__fullscreen-btn">Full Screen</button>
-          <button class="brand-film__pip-btn">Pip</button>
-        </div>
-        <button class="brand-film__close-btn">Close</button>
-        <div class="brand-film__slides">
-          ${videos.join('')}
+        <div class="brand-film__asset">
+          <div class="brand-film__actions">
+            <button class="brand-film__fullscreen-btn">Full Screen</button>
+            <button class="brand-film__pip-btn">Pip</button>
+          </div>
+          <button class="brand-film__close-btn">Close</button>
+          <div class="brand-film__slides">
+            ${videos.join('')}
+          </div>
         </div>
       </div>
       <div class="brand-film__content">
@@ -43,48 +45,71 @@ export default async function decorate(block) {
     block.querySelector('.brand-film__container'),
     'brand-film__slides',
     'fade',
-    (currentSlide, targetSlide) => {
-      currentSlide.querySelector('video').pause();
-      const targetVideo = targetSlide.querySelector('video');
-      targetVideo?.play();
-      targetVideo?.addEventListener('ended', () => {
-        carouselUtils.next(block.querySelector('.brand-film__container'));
-      });
-    },
     {
-      arrows: false,
-      dots: true,
+      onChange: (currentSlide, targetSlide) => {
+        currentSlide.querySelector('video')?.pause();
+        const video = targetSlide.querySelector('video');
+        if(document.pictureInPictureElement) {
+          video?.requestPictureInPicture();
+        }
+        video?.play();
+      },
+      onReset: (currentSlide, targetSlide) => {
+        currentSlide.querySelector('video')?.pause();
+        const video = targetSlide.querySelector('video');
+        if(document.pictureInPictureElement) {
+          video?.requestPictureInPicture();
+        }
+        video?.load();
+      },
+      showArrows: false,
       dotsInteractive: false
-    },
+    }
   );
 
-  block.querySelector('video')?.addEventListener('ended', () => {
-    controller.next();
-  });
-
-  block.querySelectorAll('video').forEach((video) => {
-    video.addEventListener('click', () => {
-      if(video.paused) {
-        video.play();
-      } else {
-        video.pause();
-      }
-    });
-  });
+  block.querySelectorAll('.brand-film__video-container')?.forEach((el) => {
+    const video = el.querySelector('video');
+    if(video) {
+      el.addEventListener('click', () => {
+        if(video.paused) {
+          video.play();
+        } else {
+          video?.pause();
+        }
+      });
+      video.addEventListener('ended', () => {
+        if(!controller.next()) {
+          controller.reset();
+        }
+      });
+      video.addEventListener('playing', () => {
+        el.classList.remove('brand-film__video--paused');
+      });
+      video.addEventListener('pause', () => {
+        el.classList.add('brand-film__video--paused');
+      });
+    }
+  })
 
   block.querySelector('.brand-film__fullscreen-btn')?.addEventListener('click', () => {
     const el = block.querySelector('.brand-film__wrapper');
-    el?.classList?.add('brand-film__wrapper--fullscreen');
-    el?.requestFullscreen({
-      navigationUI: "hide"
-    });
+    if(el) {
+      el.classList.add('brand-film__wrapper--fullscreen');
+      const options = { navigationUI: "hide" }
+      if(el.requestFullscreen) {
+        screen.orientation.lock('landscape-primary');
+        el.requestFullscreen(options);
+      }
+    }
   });
 
-  document.addEventListener('fullscreenchange', () => {
-    if(!document.fullscreenElement) {
-      const el = block.querySelector('.brand-film__wrapper--fullscreen');
-      el?.classList?.remove('brand-film__wrapper--fullscreen');
-    }
+  ['', 'moz', 'webkit', 'o', 'ms'].forEach((vendor) => {
+    document.addEventListener(`${vendor}fullscreenchange`, () => {
+      if(!document.fullscreenElement) {
+        block.querySelector('.brand-film__wrapper--fullscreen')?.classList?.remove('brand-film__wrapper--fullscreen');
+        screen.orientation.unlock();
+      }
+    });
   });
 
   block.querySelector('.brand-film__close-btn')?.addEventListener('click', () => {
@@ -95,7 +120,11 @@ export default async function decorate(block) {
     }
   });
 
-  block.querySelector('.brand-film__pip-btn')?.addEventListener('click', () => {
-    block.querySelector('.brand-film__wrapper')?.classList?.add('brand-film__wrapper--pip');
+  block.querySelector('.brand-film__pip-btn')?.addEventListener('click', async () => {
+    if(document.pictureInPictureEnabled) {
+      block.querySelector('.brand-film__slides .carousel__slide--active video').requestPictureInPicture();
+    } else {
+      block.querySelector('.brand-film__wrapper')?.classList?.add('brand-film__wrapper--pip');
+    }
   });
 }
