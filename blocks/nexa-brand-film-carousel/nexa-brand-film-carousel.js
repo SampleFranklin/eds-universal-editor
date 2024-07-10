@@ -17,7 +17,7 @@ export default async function decorate(block) {
     const path = videoEl?.querySelector('a')?.textContent?.trim();
     videoEl.classList?.add('brand-film__video-container', 'brand-film__video--paused');
     videoEl.innerHTML = `
-      <video class="brand-film__video" src="${publishDomain + path}" poster=${thumbnail} width="80%">
+      <video class="brand-film__video" src="${publishDomain + path}" poster=${thumbnail} width="100%">
       </video>
     `;
     return videoEl.outerHTML;
@@ -49,29 +49,23 @@ export default async function decorate(block) {
     </div>
   `;
 
+  const onChange = (currentSlide, targetSlide) => {
+    currentSlide.querySelector('video')?.pause();
+    const video = targetSlide.querySelector('video');
+    if(document.pictureInPictureElement) {
+      video?.requestPictureInPicture();
+    }
+    video?.play();
+  }
+
   const controller = carouselUtils.init(
     block.querySelector('.brand-film__container'),
     'brand-film__slides',
     'fade',
     {
-      onChange: (currentSlide, targetSlide) => {
-        currentSlide.querySelector('video')?.pause();
-        const video = targetSlide.querySelector('video');
-        if(document.pictureInPictureElement) {
-          video?.requestPictureInPicture();
-        }
-        video?.play();
-      },
-      onReset: (currentSlide, targetSlide) => {
-        currentSlide.querySelector('video')?.pause();
-        const video = targetSlide.querySelector('video');
-        if(document.pictureInPictureElement) {
-          video?.requestPictureInPicture();
-        }
-        video?.load();
-      },
+      onChange: onChange,
+      onReset: onChange,
       showArrows: false,
-      dotsInteractive: false,
       navigationContainerClassName: 'brand-film__navigation-wrapper'
     }
   );
@@ -98,15 +92,17 @@ export default async function decorate(block) {
         el.classList.add('brand-film__video--paused');
       });
     }
-  })
+  });
 
   block.querySelector('.brand-film__fullscreen-btn')?.addEventListener('click', () => {
     const el = block.querySelector('.brand-film__wrapper');
     if(el) {
       el.classList.add('brand-film__wrapper--fullscreen');
       const options = { navigationUI: "hide" }
-      if(el.requestFullscreen) {
-        screen.orientation.lock('landscape-primary');
+      if(el.fullscreenElement) {
+        document.exitFullscreen();
+      } else if(el.requestFullscreen) {
+        screen.orientation.lock('landscape');
         el.requestFullscreen(options);
       }
     }
