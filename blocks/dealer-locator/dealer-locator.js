@@ -46,7 +46,7 @@ export default function decorate(block) {
       <div class="section">
         <div class="image-container">
           <img src="${dealerLocator.imgSrc}" alt="${dealerLocator.altText}">
-          <div class="overlay">
+          
             <div class="dealer-locator__content">
               <p class="pre-title">${dealerLocator.pretitle}</p>
             </div>
@@ -62,7 +62,7 @@ export default function decorate(block) {
               </ul>
             </div>
           </div>
-        </div>
+        
       </div>
     </div>
   `;
@@ -73,28 +73,51 @@ export default function decorate(block) {
   ${dealerLocatorHtml}
   </div>
   `;
-
-  // Add scroll event listener for highlighting CTAs
   const ctaElements = document.querySelectorAll('.dealer-locator__container .dealer-locator__action .cta-text');
-  const scrollBar = document.querySelector('.dealer-locator__container .scroll-bar');
 
   if (ctaElements.length > 0) {
     window.addEventListener('scroll', highlightCTAs);
   }
 
   function highlightCTAs() {
-    const scrollPosition = window.scrollY + window.innerHeight;
+    const scrollPosition = window.scrollY + window.innerHeight * 0.5; // Adjust for mid-view
 
-    ctaElements.forEach(function(cta) {
+    let highlighted = false;
+
+    ctaElements.forEach(cta => {
       const ctaPosition = cta.getBoundingClientRect().top + window.scrollY;
-      const index = cta.dataset.index;
-      const isHighlighted = scrollPosition >= ctaPosition;
 
-      if (isHighlighted) {
+      if (!highlighted && scrollPosition >= ctaPosition) {
         cta.classList.add('highlight');
+        highlighted = true;
       } else {
         cta.classList.remove('highlight');
       }
     });
   }
 }
+
+  // Add scroll event listener for highlighting CTAs
+  // const ctaElements = document.querySelectorAll('.dealer-locator__container .dealer-locator__action .cta-text');
+  // const scrollBar = document.querySelector('.dealer-locator__container .scroll-bar');
+
+  // if (ctaElements.length > 0) {
+  //   window.addEventListener('scroll', highlightCTAs);
+  // }
+
+  // function highlightCTAs() {
+  //   const scrollPosition = window.scrollY + window.innerHeight;
+
+  //   ctaElements.forEach(function(cta) {
+  //     const ctaPosition = cta.getBoundingClientRect().top + window.scrollY;
+  //     const index = cta.dataset.index;
+  //     const isHighlighted = scrollPosition >= ctaPosition;
+
+  //     if (isHighlighted) {
+  //       cta.classList.add('highlight');
+  //     } else {
+  //       cta.classList.remove('highlight');
+  //     }
+  //   });
+  // }
+
