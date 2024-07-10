@@ -74,50 +74,41 @@ export default function decorate(block) {
   </div>
   `;
   const ctaElements = document.querySelectorAll('.dealer-locator__container .dealer-locator__action .cta-text');
+  const scrollBar = document.querySelector('.dealer-locator__container .scroll-bar');
 
   if (ctaElements.length > 0) {
     window.addEventListener('scroll', highlightCTAs);
   }
 
   function highlightCTAs() {
-    const scrollPosition = window.scrollY + window.innerHeight * 0.5; // Adjust for mid-view
+    const scrollPosition = window.scrollY + window.innerHeight * 0.5;
 
-    let highlighted = false;
+    let highlightedIndex = -1;
 
-    ctaElements.forEach(cta => {
+    ctaElements.forEach((cta, index) => {
       const ctaPosition = cta.getBoundingClientRect().top + window.scrollY;
 
-      if (!highlighted && scrollPosition >= ctaPosition) {
+      if (scrollPosition >= ctaPosition) {
+        highlightedIndex = index;
+      }
+    });
+
+    ctaElements.forEach((cta, index) => {
+      if (index === highlightedIndex) {
         cta.classList.add('highlight');
-        highlighted = true;
       } else {
         cta.classList.remove('highlight');
       }
     });
+
+    if (highlightedIndex !== -1) {
+      scrollBar.style.height = `${(highlightedIndex + 1) * 30}px`; // Adjust height based on index
+      scrollBar.classList.add('highlight');
+    } else {
+      scrollBar.classList.remove('highlight');
+    }
   }
 }
 
-  // Add scroll event listener for highlighting CTAs
-  // const ctaElements = document.querySelectorAll('.dealer-locator__container .dealer-locator__action .cta-text');
-  // const scrollBar = document.querySelector('.dealer-locator__container .scroll-bar');
-
-  // if (ctaElements.length > 0) {
-  //   window.addEventListener('scroll', highlightCTAs);
-  // }
-
-  // function highlightCTAs() {
-  //   const scrollPosition = window.scrollY + window.innerHeight;
-
-  //   ctaElements.forEach(function(cta) {
-  //     const ctaPosition = cta.getBoundingClientRect().top + window.scrollY;
-  //     const index = cta.dataset.index;
-  //     const isHighlighted = scrollPosition >= ctaPosition;
-
-  //     if (isHighlighted) {
-  //       cta.classList.add('highlight');
-  //     } else {
-  //       cta.classList.remove('highlight');
-  //     }
-  //   });
-  // }
+  
 
