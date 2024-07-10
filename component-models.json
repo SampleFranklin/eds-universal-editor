@@ -2922,6 +2922,20 @@
         "valueType": "string"
       },
       {
+        "component": "reference",
+        "label": "Background Image",
+        "name": "bgImage",
+        "valueType": "string",
+        "required": true
+      },
+      {
+        "component": "text-input",
+        "valueType": "string",
+        "name": "bgImageAlt",
+        "label": "Background Image Alt Text",
+        "multi": false
+      },
+      {
         "component": "text-input",
         "name": "startingPriceText",
         "value": "",
