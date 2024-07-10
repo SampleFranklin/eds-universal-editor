@@ -24,7 +24,7 @@ export default function decorate(block) {
 
     // Modify link element if it exists
     if (a) {
-      a.classList.add('button', 'primary__btn');
+      //a.classList.add('button', 'primary__btn');
       if (target) {
         a.setAttribute('target', target);
       }
@@ -83,7 +83,7 @@ export default function decorate(block) {
 
     // Modify link element if it exists
     if (a) {
-      a.classList.add('button', 'primary__btn');
+      //a.classList.add('button', 'primary__btn');
       if (target) {
         a.setAttribute('target', target);
       }
