@@ -29,7 +29,8 @@ const carouselUtils = {
       onReset = () => {},
       showArrows = true,
       showDots = true,
-      dotsInteractive = true
+      dotsInteractive = true,
+      navigationContainerClassName = ''
     }
   ) => {
     if (!el) {
@@ -107,11 +108,16 @@ const carouselUtils = {
     });
 
     el.querySelector(`.${className}`).replaceWith(slidesWrapper);
+    const navigationContainerEl = (navigationContainerClassName) ? el.querySelector(`.${navigationContainerClassName}`) : null;
     if (showDots) {
       const dotsContainer = document.createElement('div');
       dotsContainer.className = 'carousel__dots';
       dotsContainer.append(dots);
-      el.insertAdjacentElement('beforeend', dotsContainer);
+      if(navigationContainerEl) {
+        navigationContainerEl.insertAdjacentElement('beforeend', dotsContainer);
+      } else {
+        el.insertAdjacentElement('beforeend', dotsContainer);
+      }
       if (dotsInteractive) {
         el.querySelectorAll('.carousel__dot')?.forEach((dot) => {
           dot.addEventListener('click', (e) => {
@@ -123,13 +129,17 @@ const carouselUtils = {
     }
 
     if (showArrows) {
-      const navigationContainer = document.createElement('div');
-      navigationContainer.className = 'carousel__navigation';
-      navigationContainer.innerHTML = `
+      const arrowsContainer = document.createElement('div');
+      arrowsContainer.className = 'carousel__navigation';
+      arrowsContainer.innerHTML = `
           <span class="carousel__prev carousel__nav--disabled"></span>
           <span class="carousel__next"></span>
       `;
-      el.insertAdjacentElement('beforeend', navigationContainer);
+      if(navigationContainerEl) {
+        navigationContainerEl.insertAdjacentElement('beforeend', arrowsContainer);
+      } else {
+        el.insertAdjacentElement('beforeend', arrowsContainer);
+      }
       el.querySelector('.carousel__prev')?.addEventListener('click', () => {
         navigateSlide(-1);
       });
