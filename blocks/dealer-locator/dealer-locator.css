@@ -12,8 +12,8 @@
 
 .image img {
   display: block;
-  width: 100%;
-  height: auto;
+  width: 1366px;
+  height: 400px;
 }
 
 .pre-title {
@@ -37,9 +37,9 @@
   position: absolute;
   bottom: 0; /* Bottom side */
   left: 0; /* Left side */
-  background: rgba(255, 255, 255, 0.8); /* Optional background for readability */
+  background: black; /* Optional background for readability */
   padding: 5px;
-  max-height: 100px; /* Set a max height if needed */
+  max-height: 300px; /* Set a max height if needed */
   overflow-y: scroll; /* Add scrollbar */
 }
 
