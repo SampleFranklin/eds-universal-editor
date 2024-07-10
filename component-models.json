@@ -2526,8 +2526,8 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "exShowroomPriceText",
-        "label": "Ex-Showroom Price Text"
+        "name": "lakhLabel",
+        "label": "Ex-Showroom Lakh Label"
       },
       {
         "component": "text",
@@ -2536,22 +2536,15 @@
         "label": "Tagline"
       },
       {
-        "component": "text",
+        "component": "multiselect",
+        "name": "filterSelect",
+        "label": "Select Required Specifications",
         "valueType": "string",
-        "name": "engineLabel",
-        "label": "Engine Label"
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "powerLabel",
-        "label": "Power Label"
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "mileageLabel",
-        "label": "Mileage Label"
+        "options": [
+          { "name": "Engine", "value": "engine" },
+          { "name": "Power", "value": "power" },
+          { "name": "Mileage", "value": "mileage" }
+        ]
       },
       {
         "component": "aem-content-fragment",
@@ -2621,40 +2614,6 @@
         "component": "text-input",
         "name": "termsConditionsText",
         "label": "Terms & Conditions Text",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "nexa-car-hero-banner-item",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "video",
-        "label": "Video",
-        "multi": false
-      },
-      {
-        "component": "boolean",
-        "valueType": "boolean",
-        "name": "allowMobileVideo",
-        "label": "Separate Video for Mobile"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "videoMobile",
-        "label": "Mobile Video",
-        "multi": false,
-        "condition": {
-          "===": [ { "var": "allowMobileVideo" }, true ]
-        }
-      },
-      {
-        "component": "text-input",
-        "name": "variantT&C",
-        "label": "Variant Name and T&C",
         "valueType": "string"
       }
     ]
@@ -2961,6 +2920,20 @@
         "value": "",
         "label": "Car Model ID",
         "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "label": "Background Image",
+        "name": "bgImage",
+        "valueType": "string",
+        "required": true
+      },
+      {
+        "component": "text-input",
+        "valueType": "string",
+        "name": "bgImageAlt",
+        "label": "Background Image Alt Text",
+        "multi": false
       },
       {
         "component": "text-input",
