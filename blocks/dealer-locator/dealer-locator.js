@@ -1,3 +1,4 @@
+import { moveInstrumentation } from '../../scripts/scripts.js';
 export default function decorate(block) {
   function getDealerLocator() {
     const [
@@ -37,7 +38,7 @@ export default function decorate(block) {
       ctas
     };
   }
-
+  
   const dealerLocator = getDealerLocator();
 
   // Create the HTML structure using template literals
@@ -57,6 +58,7 @@ export default function decorate(block) {
                 ${dealerLocator.ctas.map((cta, index) => `
                   <li class="cta-text" data-index="${index}">
                     <a href="${cta.ctaLink}">${cta.ctaText}</a>
+                    
                   </li>
                 `).join('')}
               </ul>
@@ -96,8 +98,10 @@ export default function decorate(block) {
     ctaElements.forEach((cta, index) => {
       if (index === highlightedIndex) {
         cta.classList.add('highlight');
+        moveInstrumentation(cta);
       } else {
         cta.classList.remove('highlight');
+        moveInstrumentation(cta);
       }
     });
 
