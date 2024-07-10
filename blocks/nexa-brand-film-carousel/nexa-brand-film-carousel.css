@@ -15,6 +15,25 @@
   margin: auto;
 }
 
+.brand-film__container .brand-film__asset {
+  position: relative;
+}
+
+.brand-film__container .brand-film__video--paused::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: calc(50% - 24px);
+  left: calc(50% - 24px);
+  height: 48px;
+  width: 48px;
+  background: url('../../icons/play-icon.svg') no-repeat;
+}
+
+.brand-film__container video:picture-in-picture {
+  border: 5px solid blue;
+}
+
 .brand-film__container .brand-film__wrapper .brand-film__actions,
 .brand-film__container .brand-film__wrapper .brand-film__close-btn {
   position: absolute;
@@ -30,10 +49,13 @@
 
 .brand-film__container .brand-film__wrapper--fullscreen {
   width: 100%;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
 }
 
-.brand-film__container .brand-film__wrapper--pip {
-  width: 20%;
+.brand-film__container .brand-film__wrapper--pip .brand-film__asset {
+  width: 250px;
   position: fixed;
   top: 100px;
   right: 0;
