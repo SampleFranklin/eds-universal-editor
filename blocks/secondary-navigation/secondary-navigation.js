@@ -1,7 +1,4 @@
-
-
 import { moveInstrumentation } from '../../scripts/scripts.js';
-
 
 export default function decorate(block) {
     const [logoEl, logolinkEl, ...ctasEl] = block.children;
@@ -55,9 +52,15 @@ export default function decorate(block) {
     setupNavButtons(navbarbuttons);
 
     let lastScrollTop = 0;
+    const section = document.querySelector('.secondary-navigation-container');
+
     window.addEventListener('scroll', function() {
         const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
         const navbar = block.querySelector('.navbar');
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionBottom = sectionTop + sectionHeight;
+
         if (currentScroll > lastScrollTop) {
             // Scroll down
             navbar.style.top = '0'; // Adjust this value based on your navbar height
@@ -65,6 +68,15 @@ export default function decorate(block) {
             // Scroll up
             navbar.style.top = '-200px'; // Adjust this value based on your navbar height
         }
+
+        if (currentScroll >= sectionTop && currentScroll < sectionBottom) {
+            // Within the section
+            navbar.style.visibility = 'visible';
+        } else {
+            // Outside the section
+            navbar.style.visibility = 'hidden';
+        }
+
         lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
     });
 }
