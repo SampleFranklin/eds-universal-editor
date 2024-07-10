@@ -38,8 +38,12 @@ export default async function decorate(block) {
         </div>
       </div>
       <div class="brand-film__content">
-        ${(title) ? title.outerHTML : ''}
-        ${(subTitle) ? `<p class="brand-film__subtitle">${subTitle}</p>` : ''}
+        <div class="brand-film__info">
+          ${(title) ? title.outerHTML : ''}
+          ${(subTitle) ? `<p class="brand-film__subtitle">${subTitle}</p>` : ''}
+        </div>
+        <div class="brand-film__navigation-wrapper">
+        </div>
       </div>
     </div>
   `;
@@ -66,7 +70,8 @@ export default async function decorate(block) {
         video?.load();
       },
       showArrows: false,
-      dotsInteractive: false
+      dotsInteractive: false,
+      navigationContainerClassName: 'brand-film__navigation-wrapper'
     }
   );
 
