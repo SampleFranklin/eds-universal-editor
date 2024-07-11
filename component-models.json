@@ -2951,5 +2951,83 @@
       }
      
     ]
+  },
+  
+  {
+    "id": "safety-image-component",
+    "fields": [
+      {
+        "component": "reference",
+        "label": "Image",
+        "name": "image",
+        "valueType": "string",
+        "required": true
+      },
+      {
+        "component": "text",
+        "label": "Image Alt",
+        "name": "imageAlt",
+        "valueType": "string",
+        "required": true,
+        "condition": { "!==": [{"var" : "desktopImage"}, ""] }
+      }
+      
+    ]
+  },
+
+  {
+    "id": "image-hotspot-component",
+    "fields": [
+      {
+        "component": "number",
+        "name": "xPos",
+        "label": "X-axis Position",
+        "valueType": "number",
+        "value": 0
+      },
+      {
+        "component": "number",
+        "name": "yPos",
+        "label": "Y-Axis Postion",
+        "valueType": "number",
+        "value": 0
+      },
+      {
+      "component": "multiselect",
+      "name": "Opening Direction",
+      "value": "",
+      "label": "openingDirection",
+      "valueType": "string",
+      "options": [
+        {
+          "name": "Top",
+          "value": "Top Circle"
+        },
+        {
+          "name": "Bottom",
+          "value": "Bottom Circle"
+        },
+        {
+          "name": "Left",
+          "value": "Left Circle"
+        },
+        {
+          "name": "Right",
+          "value": "Bottom Circle"
+        }
+      ]
+    },
+    {
+      "component": "richtext",
+      "name": "description",
+      "value": "",
+      "label": "Hotspot Description",
+      "valueType": "string",
+      "required": true
+    }
+      
+    ]
   }
+
+
 ]

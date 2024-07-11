@@ -79,7 +79,8 @@
       "mfe-poc",
       "dealer-locator",
       "offer-list",
-      "secondary-navigation"
+      "secondary-navigation",
+      "safety-image"
     ]
   },
   {
@@ -252,6 +253,13 @@
     "id": "secondary-navigation",
     "components": [
       "cta"
+      
+    ]
+  },
+  {
+    "id": "safety-image-container",
+    "components": [
+      "image-hotspot"
       
     ]
   }
