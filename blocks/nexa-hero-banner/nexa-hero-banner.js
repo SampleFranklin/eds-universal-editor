@@ -22,10 +22,9 @@ export default async function decorate(block) {
     const url = el?.querySelector('a')?.textContent?.trim();
     if (url) {
       return publishDomain + url;
-    } else {
-      return '';
     }
-  }
+    return '';
+  };
 
   const getImage = (el, altText) => {
     const image = el?.querySelector('picture');
@@ -34,33 +33,28 @@ export default async function decorate(block) {
     img?.removeAttribute('height');
     img?.setAttribute('alt', altText);
     return image;
-  }
+  };
 
-  const getVideoHtml = (videoUrl) => {
-    return `
+  const getVideoHtml = (videoUrl) => `
       <div class="hero-banner__asset hero-banner__video-container">
         <video src="${videoUrl}" muted="muted" width="100%" autoplay loop></video>
       </div>
     `;
-  }
 
-  const getImageHtml = (image) => {
-    return `
+  const getImageHtml = (image) => `
       <div class="hero-banner__asset hero-banner__image-container">
         ${image.outerHTML}
       </div>
     `;
-  }
 
   const getAssetHtml = (videoUrl, image) => {
-    if(videoUrl) {
+    if (videoUrl) {
       return getVideoHtml(videoUrl);
-    } else if(image) {
+    } if (image) {
       return getImageHtml(image);
-    } else {
-      return '';
     }
-  }
+    return '';
+  };
 
   const bannerItems = bannerItemsEl?.map((itemEl, index) => {
     const [
@@ -73,15 +67,15 @@ export default async function decorate(block) {
       altTextEl,
       titleEl,
       subTitleEl,
-      subTextEl
+      subTextEl,
     ] = itemEl.children;
     const altText = altTextEl?.textContent?.trim() || 'Image';
     const desktopVideoUrl = getVideoUrl(videoEl);
     const desktopImage = getImage(imageEl, altText);
-    const isAllowMobileVideo = allowMobileVideoEl?.textContent?.trim() || "false";
-    const isAllowMobileImage = allowMobileImageEl?.textContent?.trim() || "false";
-    const mobileVideoUrl = (isAllowMobileVideo === "true") ? (getVideoUrl(mobileVideoEl) || desktopVideoUrl) : desktopVideoUrl;
-    const mobileImage = (isAllowMobileImage === "true") ? (getImage(mobileImageEl, altText) || desktopImage) : desktopImage;
+    const isAllowMobileVideo = allowMobileVideoEl?.textContent?.trim() || 'false';
+    const isAllowMobileImage = allowMobileImageEl?.textContent?.trim() || 'false';
+    const mobileVideoUrl = (isAllowMobileVideo === 'true') ? (getVideoUrl(mobileVideoEl) || desktopVideoUrl) : desktopVideoUrl;
+    const mobileImage = (isAllowMobileImage === 'true') ? (getImage(mobileImageEl, altText) || desktopImage) : desktopImage;
     const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)');
     title?.classList?.add('hero-banner__title');
     const subTitle = subTitleEl?.textContent?.trim();
@@ -101,7 +95,7 @@ export default async function decorate(block) {
               ${(subTitle) ? `<p class="hero-banner__subtitle">${subTitle}</p>` : ''}
           </div>
           <div class="hero-banner__bottom-section">
-            ${(desktopVideoUrl || mobileVideoUrl) ? `<div class="hero-banner__mute-btn hero-banner__mute-btn--muted"></div>` : ''}
+            ${(desktopVideoUrl || mobileVideoUrl) ? '<div class="hero-banner__mute-btn hero-banner__mute-btn--muted"></div>' : ''}
             ${(subText) ? `<div class="hero-banner__subtext">${subText}</div>` : ''}
           </div>
         </div>
@@ -121,34 +115,24 @@ export default async function decorate(block) {
     </div>
   `;
 
-  const controller = carouselUtils.init(
+  carouselUtils.init(
     block.querySelector('.hero-banner__carousel'),
     'hero-banner__slides',
     'fade',
     {
-      onChange: (currentSlide, targetSlide, direction) => {
-        if(direction > 0) {
-          return false;
-        } else if(direction < 0) {
-        }
-
+      onChange: (currentSlide, targetSlide) => {
         currentSlide.querySelector('video')?.pause();
         targetSlide.querySelector('video')?.play();
-      }
-    }
+      },
+    },
   );
-  currentSlide.querySelectorAll('video').forEach(video => {
-    video.addEventListener('ended', () => {
-      controller.next();
-    });
-  });
 
   block.querySelectorAll('.hero-banner__mute-btn').forEach((el) => {
     const video = el.closest('.hero-banner__content')?.querySelector('video');
     el.addEventListener('click', (e) => {
-      const targetStatus = !video.muted
-      video.muted = targetStatus
-      if(targetStatus) {
+      const targetStatus = !video.muted;
+      video.muted = targetStatus;
+      if (targetStatus) {
         e.target?.classList?.add('hero-banner__mute-btn--muted');
       } else {
         e.target?.classList?.remove('hero-banner__mute-btn--muted');

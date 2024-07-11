@@ -49,18 +49,13 @@
   transition: visibility 0s, opacity 0s linear;
 }
 
-.brand-film__container .brand-film__wrapper {
-  position: relative;
-}
-
 .brand-film__container .brand-film__asset {
   position: relative;
 }
 
-.brand-film__container .brand-film__video-container.carousel__slide--active {
+.brand-film__container .brand-film__video-container {
   width: 100%;
   height: 377px;
-  position: relative;
 
   &::before {
     content: "";
@@ -79,7 +74,7 @@
   }
 }
 
-.brand-film__container .brand-film__video--paused::after {
+.brand-film__container .brand-film__video--paused .brand-film__play-btn {
   content: '';
   display: inline-block;
   position: absolute;
@@ -103,23 +98,15 @@
   visibility: hidden;
 }
 
-.brand-film__container .brand-film__wrapper:hover .brand-film__actions {
+.brand-film__container .brand-film__wrapper .brand-film__actions {
   visibility: visible;
 }
 
 .brand-film__container .brand-film__wrapper--fullscreen {
   width: 100%;
-  margin-top: auto;
   display: flex;
+  justify-content: center;
   align-items: center;
-
-  @media (orientation: landscape) {
-    flex-direction: column;
-  }
-
-  @media (orientation: portrait) {
-    flex-direction: row;
-  }
 }
 
 .brand-film__container .brand-film__wrapper--fullscreen .brand-film__asset {
@@ -137,35 +124,44 @@
   }
 }
 
-.brand-film__container .brand-film__wrapper--fullscreen .brand-film__video-container.carousel__slide--active {
+.brand-film__container .brand-film__wrapper--fullscreen .brand-film__video-container {
   width: 100%;
   height: 100%;
 
-  &&::before {
-    background: transparent;
+  &::before {
+    visibility: hidden;
   }
 }
 
+.brand-film__container .brand-film__wrapper--pip {
+  height: 377px;
+  border: 1px solid white;
+  border-radius: 12px;
+}
+
 .brand-film__container .brand-film__wrapper--pip .brand-film__asset {
-  width: 250px;
   position: fixed;
+  width: 250px;
   top: 100px;
   right: 0;
   z-index: 20;
+}
+
+.brand-film__container .brand-film__wrapper--pip .brand-film__video-container {
+  height: auto;
+}
+
+.brand-film__container .brand-film__wrapper--pip .brand-film__slides,
+.brand-film__container .brand-film__wrapper--pip .brand-film__slides {
+  cursor: pointer;
 }
 
 .brand-film__container .brand-film__wrapper--pip video {
   border-radius: 8px;
 }
 
-.brand-film__container .brand-film__wrapper--fullscreen:hover .brand-film__actions,
-.brand-film__container .brand-film__wrapper--pip:hover .brand-film__actions {
-  visibility: hidden;
-}
-
 .brand-film__container .brand-film__wrapper--fullscreen .brand-film__close-btn,
 .brand-film__container .brand-film__wrapper--pip .brand-film__close-btn {
-  visibility: visible;
   top: 20px;
   left: unset;
   right: 0;
@@ -187,7 +183,7 @@
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), 82% calc(100% - 30px), calc(82% - 25px) 100%, 0 100%);
   }
 
-  .brand-film__container .brand-film__video-container.carousel__slide--active {
+  .brand-film__container .brand-film__video-container {
     height: 663px;
   }
 
@@ -225,4 +221,50 @@
     right: initial;
     bottom: initial;
   }
+
+  .brand-film__container .brand-film__wrapper--pip {
+    height: 663px;
+  }
+
+  .brand-film__container .brand-film__wrapper--fullscreen .brand-film__asset {
+    width: 100%;
+    height: 100%;
+
+    @media (orientation: landscape) {
+      height: auto; 
+      width: 100%;
+    }
+
+    @media (orientation: portrait) {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .brand-film__container .brand-film__wrapper .brand-film__actions {
+    visibility: hidden;
+  }
+
+  .brand-film__container .brand-film__wrapper:hover .brand-film__actions {
+    visibility: visible;
+  }
+
+  .brand-film__container .brand-film__wrapper--fullscreen:hover .brand-film__actions,
+  .brand-film__container .brand-film__wrapper--pip:hover .brand-film__actions {
+    visibility: hidden;
+  }
+
+  .brand-film__container .brand-film__wrapper--pip .brand-film__asset:hover .brand-film__close-btn {
+    visibility: visible;
+  }
+
+  .brand-film__container .brand-film__wrapper--fullscreen:has(.carousel__slide--active.brand-film__video--paused) .brand-film__close-btn,
+  .brand-film__container .brand-film__wrapper--fullscreen:has(.carousel__slide--active.brand-film__video--paused) .brand-film__video-container::before {
+    visibility: visible;
+  }
+
+  .brand-film__container .brand-film__wrapper--fullscreen-controls .brand-film__close-btn,
+  .brand-film__container .brand-film__wrapper--fullscreen-controls .brand-film__video-container::before {
+      visibility: visible;
+  }
+
 }

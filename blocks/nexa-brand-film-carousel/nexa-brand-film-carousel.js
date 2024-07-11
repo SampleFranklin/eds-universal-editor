@@ -1,12 +1,12 @@
-import { fetchPlaceholders } from '../../scripts/aem.js'
-import carouselUtils from '../../utility/carouselUtils.js'
+import { fetchPlaceholders } from '../../scripts/aem.js';
+import carouselUtils from '../../utility/carouselUtils.js';
 
 export default async function decorate(block) {
-  const [titleEl, subTitleEl, descriptionEl, thumbnailEl, ...videosEl] = block.children
+  const [titleEl, subTitleEl, descriptionEl, thumbnailEl, ...videosEl] = block.children;
   const { publishDomain } = await fetchPlaceholders();
 
   const title = titleEl.querySelector(':is(h1,h2,h3,h4,h5,h6');
-  title?.classList?.add("brand-film__title");
+  title?.classList?.add('brand-film__title');
   const subTitle = subTitleEl.textContent?.trim();
   const description = Array.from(descriptionEl.querySelectorAll('p')).map((el) => {
     el.classList.add('brand-film__description-text');
@@ -14,11 +14,20 @@ export default async function decorate(block) {
   }).join('');
   const thumbnail = thumbnailEl.querySelector('img')?.src;
   const videos = videosEl.map((videoEl) => {
-    const path = videoEl?.querySelector('a')?.textContent?.trim();
+    const [desktopPathEl, allowMobileVideoEl, mobilePathEl] = videoEl.children;
+    const allowMobile = allowMobileVideoEl?.textContent?.trim() || 'false';
+    const desktopPath = desktopPathEl?.querySelector('a')?.textContent?.trim();
+    const mobilePath = (allowMobile === 'true')
+      ? (mobilePathEl?.querySelector('a')?.textContent?.trim() || desktopPath) : desktopPath;
+    let path = desktopPath;
+    if (!(window.matchMedia('min-width: 999px').matches)) {
+      path = mobilePath;
+    }
     videoEl.classList?.add('brand-film__video-container', 'brand-film__video--paused');
     videoEl.innerHTML = `
       <video class="brand-film__video" src="${publishDomain + path}" poster=${thumbnail} width="100%">
       </video>
+      <span class="brand-film__play-btn"></span>
     `;
     return videoEl.outerHTML;
   });
@@ -52,36 +61,36 @@ export default async function decorate(block) {
   const onChange = (currentSlide, targetSlide) => {
     currentSlide.querySelector('video')?.pause();
     const video = targetSlide.querySelector('video');
-    if(document.pictureInPictureElement) {
+    if (document.pictureInPictureElement) {
       video?.requestPictureInPicture();
     }
     video?.play();
-  }
+  };
 
   const controller = carouselUtils.init(
     block.querySelector('.brand-film__container'),
     'brand-film__slides',
     'fade',
     {
-      onChange: onChange,
+      onChange,
       onReset: onChange,
       showArrows: false,
-      navigationContainerClassName: 'brand-film__navigation-wrapper'
-    }
+      navigationContainerClassName: 'brand-film__navigation-wrapper',
+    },
   );
 
   block.querySelectorAll('.brand-film__video-container')?.forEach((el) => {
     const video = el.querySelector('video');
-    if(video) {
+    if (video) {
       el.addEventListener('click', () => {
-        if(video.paused) {
+        if (video.paused) {
           video.play();
         } else {
           video?.pause();
         }
       });
       video.addEventListener('ended', () => {
-        if(!controller.next()) {
+        if (!controller.next()) {
           controller.reset();
         }
       });
@@ -94,42 +103,145 @@ export default async function decorate(block) {
     }
   });
 
-  block.querySelector('.brand-film__fullscreen-btn')?.addEventListener('click', () => {
+  let hideCloseBtn;
+  const controlHandler = () => {
+    clearTimeout(hideCloseBtn);
+    block.querySelector('.brand-film__wrapper--fullscreen')?.classList?.add('brand-film__wrapper--fullscreen-controls');
+    hideCloseBtn = setTimeout(() => {
+      block.querySelector('.brand-film__wrapper--fullscreen')?.classList?.remove('brand-film__wrapper--fullscreen-controls');
+    }, 3000);
+  };
+
+  block.querySelector('.brand-film__fullscreen-btn')?.addEventListener('click', async () => {
     const el = block.querySelector('.brand-film__wrapper');
-    if(el) {
-      el.classList.add('brand-film__wrapper--fullscreen');
-      const options = { navigationUI: "hide" }
-      if(el.fullscreenElement) {
+    if (el) {
+      if (document.fullscreenElement) {
         document.exitFullscreen();
-      } else if(el.requestFullscreen) {
-        screen.orientation.lock('landscape');
-        el.requestFullscreen(options);
+      } else if (el.requestFullscreen) {
+        try {
+          el.classList.add('brand-film__wrapper--fullscreen', 'brand-film__wrapper--fullscreen-controls');
+          const options = { navigationUI: 'hide' };
+          await el.requestFullscreen(options);
+          try {
+            await window.screen.orientation.lock('landscape');
+          } catch (e) {
+          }
+          hideCloseBtn = setTimeout(() => {
+            block.querySelector('.brand-film__wrapper--fullscreen')?.classList?.remove('brand-film__wrapper--fullscreen-controls');
+          }, 3000);
+          el.addEventListener('mousemove', controlHandler);
+        } catch (e) {
+        }
       }
     }
   });
 
-  ['', 'moz', 'webkit', 'o', 'ms'].forEach((vendor) => {
-    document.addEventListener(`${vendor}fullscreenchange`, () => {
-      if(!document.fullscreenElement) {
-        block.querySelector('.brand-film__wrapper--fullscreen')?.classList?.remove('brand-film__wrapper--fullscreen');
-        screen.orientation.unlock();
-      }
-    });
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+      const wrapper = block.querySelector('.brand-film__wrapper--fullscreen');
+      wrapper?.classList?.remove('brand-film__wrapper--fullscreen');
+      wrapper?.classList?.remove('brand-film__wrapper--fullscreen-controls');
+      wrapper?.removeEventListener('mousemove', controlHandler);
+      window.screen.orientation.unlock();
+      clearTimeout(hideCloseBtn);
+    }
   });
 
+  const mouseDrag = {
+    handleDrag: (e) => {
+      const assetContainer = block.querySelector('.brand-film__asset');
+      const size = assetContainer.getBoundingClientRect();
+      assetContainer.style.left = `${e.clientX - size.width / 2}px`;
+      assetContainer.style.top = `${e.clientY - size.height / 2}px`;
+    },
+    removeListeners: () => {
+      document.removeEventListener('mousemove', mouseDrag.handleDrag);
+      document.removeEventListener('mouseup', mouseDrag.removeListeners);
+    },
+    initDrag: () => {
+      document.addEventListener('mouseup', mouseDrag.removeListeners);
+      document.addEventListener('mousemove', mouseDrag.handleDrag);
+    },
+    reset: () => {
+      block.querySelector('.brand-film__slides').removeEventListener('mousedown', mouseDrag.initDrag);
+    },
+    apply: () => {
+      mouseDrag.reset();
+      block.querySelector('.brand-film__slides').addEventListener('mousedown', mouseDrag.initDrag);
+    },
+  };
+
+  const touchDrag = {
+    handleDrag: (e) => {
+      e.preventDefault();
+      const assetContainer = block.querySelector('.brand-film__asset');
+      const size = assetContainer.getBoundingClientRect();
+      assetContainer.style.left = `${e.touches[0].clientX - size.width / 2}px`;
+      assetContainer.style.top = `${e.touches[0].clientY - size.height / 2}px`;
+    },
+    removeListeners: () => {
+      document.removeEventListener('touchmove', touchDrag.handleDrag);
+      document.removeEventListener('touchend', touchDrag.removeListeners);
+    },
+    initDrag: () => {
+      document.addEventListener('touchend', touchDrag.removeListeners);
+      document.addEventListener('touchmove', touchDrag.handleDrag, { passive: false });
+    },
+    reset: () => {
+      block.querySelector('.brand-film__slides').removeEventListener('touchstart', touchDrag.initDrag);
+    },
+    apply: () => {
+      touchDrag.reset();
+      block.querySelector('.brand-film__slides').addEventListener('touchstart', touchDrag.initDrag);
+    },
+  };
+
+  const resetPip = (wrapper, assetContainer) => {
+    wrapper.classList.remove('brand-film__wrapper--pip');
+    assetContainer.style.left = null;
+    assetContainer.style.top = null;
+    mouseDrag.reset();
+    touchDrag.reset();
+  };
+
   block.querySelector('.brand-film__close-btn')?.addEventListener('click', () => {
-    if(document.fullscreenElement) {
+    if (document.fullscreenElement) {
       document.exitFullscreen();
     } else {
-      block.querySelector('.brand-film__wrapper--pip')?.classList?.remove('brand-film__wrapper--pip');
+      const wrapper = block.querySelector('.brand-film__wrapper');
+      wrapper.classList.remove('brand-film__wrapper--pip');
+      resetPip(wrapper, wrapper.querySelector('.brand-film__asset'));
     }
   });
 
   block.querySelector('.brand-film__pip-btn')?.addEventListener('click', async () => {
-    if(document.pictureInPictureEnabled) {
+    if (document.pictureInPictureElement) {
+      document.exitPictureInPicture();
+    } else if (document.pictureInPictureEnabled) {
       block.querySelector('.brand-film__slides .carousel__slide--active video').requestPictureInPicture();
     } else {
-      block.querySelector('.brand-film__wrapper')?.classList?.add('brand-film__wrapper--pip');
+      const wrapper = block.querySelector('.brand-film__wrapper');
+      if (wrapper.classList.contains('brand-film__wrapper--pip')) {
+        resetPip(wrapper, wrapper.querySelector('.brand-film__asset'));
+      } else {
+        wrapper.classList.add('brand-film__wrapper--pip');
+        mouseDrag.apply();
+        touchDrag.apply();
+        // const handleResize = (e) => {
+        //   const size = assetContainer.getBoundingClientRect();
+        //   assetContainer.style.width = (size.width + 10) + 'px';
+        // }
+        // const removeResizeListeners = () => {
+        //   document.removeEventListener('mousemove', handleResize);
+        //   document.removeEventListener('mouseup', removeResizeListeners);
+        // }
+        // const initResize = () => {
+        //   document.addEventListener('mouseup', removeResizeListeners);
+        //   document.addEventListener('mousemove', handleResize);
+        // }
+        // assetContainer.removeEventListener('mousedown', initResize);
+        // assetContainer.addEventListener('mousedown', initResize);
+      }
     }
   });
 }
