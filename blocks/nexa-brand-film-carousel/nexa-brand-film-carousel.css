@@ -85,10 +85,6 @@
   background: url('../../icons/play-icon.svg') no-repeat;
 }
 
-.brand-film__container video:picture-in-picture {
-  border: 5px solid blue;
-}
-
 .brand-film__container .brand-film__wrapper .brand-film__actions,
 .brand-film__container .brand-film__wrapper .brand-film__close-btn {
   position: absolute;
