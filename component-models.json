@@ -3006,7 +3006,7 @@
   },
 
   {
-    "id": "safety-component",
+    "id": "safety-item",
     "fields": [
       {
         "component": "text-input",
@@ -3054,14 +3054,7 @@
         "value": "",
         "label": "SubTitle",
         "valueType": "string"
-      }
-     
-    ]
-  },
-
-  {
-    "id": "image-hotspot-component",
-    "fields": [
+      },
       {
         "component": "text-input",
         "name": "tabname",
@@ -3083,7 +3076,14 @@
         "valueType": "string",
         "required": true,
         "condition": { "!==": [{ "var": "desktopImage" }, ""] }
-      },
+      }
+     
+    ]
+  },
+
+  {
+    "id": "image-hotspot-component",
+    "fields": [
       {
         "component": "number",
         "name": "xPos",
