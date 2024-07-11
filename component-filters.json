@@ -253,7 +253,7 @@
   },
  
   {
-    "id": " safety-tabs",
+    "id": "safety-tabs",
     "components": [
       "safety-item"
       
