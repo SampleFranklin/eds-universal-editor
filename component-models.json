@@ -3065,9 +3065,8 @@
       {
         "component": "reference",
         "label": "Image",
-        "name": "image",
-        "valueType": "string",
-        "required": true
+        "name": "carImage",
+        "valueType": "string"
       },
       {
         "component": "text",
@@ -3075,7 +3074,7 @@
         "name": "imageAlt",
         "valueType": "string",
         "required": true,
-        "condition": { "!==": [{ "var": "desktopImage" }, ""] }
+        "condition": { "!==": [{ "var": "carImage" }, ""] }
       }
      
     ]
