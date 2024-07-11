@@ -1,0 +1,197 @@
+.section.slider-container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.container__slider {
+  position: relative;
+  /* max-width: 1000px; */
+  margin: auto;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 50px;
+}
+.container__slider .variant__content {
+  display: flex;
+  flex-direction: column;
+}
+.container__slider .slider__tabContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.container__slider .slider__tabContent .tab__Iteam {
+  cursor: pointer;
+  font-family: "Anek Latin";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22.4px;
+  color: #000000;
+}
+
+.container__slider .slider__tabContent .tab__active {
+  font-weight: 600;
+  color: #171c8f;
+}
+
+.container__slider .slider__tabContent .tab__Iteam__saperator {
+  cursor: pointer;
+  font-family: "Anek Latin";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22.4px;
+  color: #000000;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.container__slider .variant__card .variant__title p {
+  font-family: "Anek Latin";
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 33.6px;
+}
+
+.container__slider .variant__card .variant__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container__slider .variant__card .variant__discription p {
+  font-family: Roboto;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19.6px;
+}
+.container__slider .variant__card .variant__price p {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19.6px;
+}
+.container__slider .variant__card .variant__price p span {
+  font-family: "Anek Latin";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.container__slider .variant-content {
+  position: relative;
+}
+
+.container__slider .variant__cards {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  position: relative;
+}
+.container__slider .variant__card {
+  /* flex: 0 0 100%; */
+  flex: 0 0 33.3333%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.container__slider .variant__card .variant__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: hidden !important;
+}
+.container__slider .variant__card .variant__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.container__slider .button__content {
+  position: absolute;
+  inset: 0;
+}
+.container__slider .nav-arrow {
+  display: none;
+}
+
+/* Zoom effect on hover */
+.container__slider .variant__card:hover img {
+  transform: scale(1.15);
+  /* transform-origin: 50% 50%; */
+}
+.container__slider .variant__card:hover .variant__description p::after {
+  transform: scale(1.15);
+  /* transform-origin: 50% 50%; */
+}
+
+/* Responsive adjustments */
+@media (min-width: 600px) {
+  .container__slider .variant__card {
+    flex: 0 0 50%;
+  }
+}
+
+@media (min-width: 999px) {
+  .container__slider {
+    padding-top: 112px;
+  }
+  .container__slider .variant__card {
+    flex: 0 0 33.3333%;
+    overflow: hidden;
+  }
+
+  .container__slider .slider-title {
+    font-size: 160px;
+    line-height: 160px;
+  }
+
+  .container__slider .variant-content {
+    padding-top: 10px;
+  }
+
+  .hide {
+    display: none !important;
+  }
+  .container__slider .nav-arrow {
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+  }
+  .container__slider .nav-arrow.prev {
+    left: 10px;
+    top: calc(50% - 40px);
+    background: var(--blue, #171c8f);
+    height: 60px;
+    width: 60px;
+    font-size: 25px;
+  }
+
+  .container__slider .nav-arrow.next {
+    right: 0px;
+    top: calc(50% - 40px);
+    background: var(--blue, #171c8f);
+    height: 60px;
+    width: 60px;
+    font-size: 25px;
+  }
+  .container__slider .nav-arrow.next {
+    right: 10px;
+  }
+}
+
+/* Show 1.5 slides on mobile */
+@media (max-width: 600px) {
+  .container__slider .variant__card {
+    flex: 0 0 66.6666%;
+  }
+}
