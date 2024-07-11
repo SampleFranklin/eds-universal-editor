@@ -1176,7 +1176,6 @@
           }
         ]
       }
-
     ]
   },
   {
@@ -1223,7 +1222,7 @@
         "name": "ctaText",
         "label": "CTA Text",
         "condition": {
-          "===": [ { "var": "ctaVisibility" }, true ]
+          "===": [{ "var": "ctaVisibility" }, true]
         }
       },
       {
@@ -1232,7 +1231,7 @@
         "name": "ctaLink",
         "label": "CTA Link",
         "condition": {
-          "===": [ { "var": "ctaVisibility" }, true ]
+          "===": [{ "var": "ctaVisibility" }, true]
         }
       }
     ]
@@ -1260,7 +1259,7 @@
         "label": "Mobile Video",
         "multi": false,
         "condition": {
-          "===": [ { "var": "allowMobileVideo" }, true ]
+          "===": [{ "var": "allowMobileVideo" }, true]
         }
       },
       {
@@ -1283,7 +1282,7 @@
         "label": "Mobile Image",
         "multi": false,
         "condition": {
-          "===": [ { "var": "addMobileImage" }, true ]
+          "===": [{ "var": "addMobileImage" }, true]
         }
       },
       {
@@ -1425,7 +1424,10 @@
           { "name": "Body Types", "value": "bodyType" },
           { "name": "Fuel Options", "value": "fuelOptions" },
           { "name": "Technology", "value": "technology" },
-          { "name": "Additional Specifications", "value": "additionalSpecifications" }
+          {
+            "name": "Additional Specifications",
+            "value": "additionalSpecifications"
+          }
         ]
       }
     ]
@@ -1707,7 +1709,7 @@
         "label": "Mobile Video",
         "multi": false,
         "condition": {
-          "===": [ { "var": "allowMobileVideo" }, true ]
+          "===": [{ "var": "allowMobileVideo" }, true]
         }
       },
       {
@@ -2458,7 +2460,7 @@
         "label": "Mobile Video",
         "multi": false,
         "condition": {
-          "===": [ { "var": "allowMobileVideo" }, true ]
+          "===": [{ "var": "allowMobileVideo" }, true]
         }
       }
     ]
@@ -2711,7 +2713,7 @@
         "valueType": "string",
         "name": "description",
         "label": "Description",
-        "value":""
+        "value": ""
       }
     ]
   },
@@ -2767,7 +2769,6 @@
         "valueType": "string",
         "description": "Description for the offers",
         "required": true
-
       },
       {
         "component": "text-input",
@@ -2824,7 +2825,7 @@
         "name": "desktopImageAlt",
         "valueType": "string",
         "required": true,
-        "condition": { "!==": [{"var" : "desktopImage"}, ""] }
+        "condition": { "!==": [{ "var": "desktopImage" }, ""] }
       },
       {
         "component": "reference",
@@ -2896,7 +2897,6 @@
         "name": "logolink",
         "label": "Logo Link"
       }
-     
     ]
   },
   {
@@ -3004,7 +3004,7 @@
       }
     ]
   },
-  
+
   {
     "id": "safety-image-component",
     "fields": [
@@ -3021,9 +3021,8 @@
         "name": "imageAlt",
         "valueType": "string",
         "required": true,
-        "condition": { "!==": [{"var" : "desktopImage"}, ""] }
+        "condition": { "!==": [{ "var": "desktopImage" }, ""] }
       }
-      
     ]
   },
 
@@ -3045,41 +3044,25 @@
         "value": 0
       },
       {
-      "component": "multiselect",
-      "name": "Opening Direction",
-      "value": "",
-      "label": "openingDirection",
-      "valueType": "string",
-      "options": [
-        {
-          "name": "Top",
-          "value": "Top Circle"
-        },
-        {
-          "name": "Bottom",
-          "value": "Bottom Circle"
-        },
-        {
-          "name": "Left",
-          "value": "Left Circle"
-        },
-        {
-          "name": "Right",
-          "value": "Bottom Circle"
-        }
-      ]
-    },
-    {
-      "component": "richtext",
-      "name": "description",
-      "value": "",
-      "label": "Hotspot Description",
-      "valueType": "string",
-      "required": true
-    }
-      
+        "component": "radio-group",
+        "label": "Opening Direction",
+        "name": "direction",
+        "valueType": "string",
+        "options": [
+          { "name": "Top", "value": "Top" },
+          { "name": "Bottom", "value": "Bottom" },
+          { "name": "Left", "value": "Left" },
+          { "name": "Right", "value": "Right" }
+        ]
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Hotspot Description",
+        "valueType": "string",
+        "required": true
+      }
     ]
   }
-
-
 ]
