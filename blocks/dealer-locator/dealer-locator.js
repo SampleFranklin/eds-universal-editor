@@ -97,13 +97,16 @@ export default function decorate(block) {
     ctaElements.forEach((cta, index) => {
       if (index === highlightedIndex) {
         cta.classList.add('highlight');
+        cta.style.fontSize = '35px'; // Increase font size for highlighted CTA
       } else {
         cta.classList.remove('highlight');
+        cta.style.fontSize = '24px'; // Reset font size for normal CTAs
       }
     });
 
     if (highlightedIndex !== -1) {
-      scrollBar.style.height = `${(highlightedIndex + 1) * 30}px`; // Adjust height based on index
+      const ctaHeight = ctaElements[0].offsetHeight;
+      scrollBar.style.height = `${(highlightedIndex + 1) * ctaHeight}px`;
       scrollBar.classList.add('highlight');
     } else {
       scrollBar.classList.remove('highlight');
