@@ -79,6 +79,8 @@ export default function decorate(block) {
 
   if (ctaElements.length > 0) {
     window.addEventListener('scroll', highlightCTAs);
+    window.addEventListener('resize', highlightCTAs); // Update scroll position on resize
+    highlightCTAs(); // Initial call to highlightCTAs to set initial state
   }
 
   function highlightCTAs() {

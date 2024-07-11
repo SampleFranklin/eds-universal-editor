@@ -147,6 +147,18 @@
 
 }
 
+.scroll-bar {
+  position: absolute;
+  left: -10px;
+  width: 2px;
+  background-color: gray;
+  transition: height 0.3s, top 0.3s, background-color 0.3s;
+}
+
+.scroll-bar.highlight {
+  background-color: #f2f2f2;
+}
+
 @media (min-width:999px) {
   .dealer-locator__action .cta-text:first-child a {
     font-size: 64px;
@@ -186,5 +198,12 @@
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 35px), 30% calc(100% - 31px), calc(29% - 25px) 100%, 0 100%);
     background:black;
     position: relative;
+  }
+  .scroll-bar {
+    display: block; /* Ensure scroll bar is visible on mobile */
+    position: absolute;
+  }
+  .scroll-bar.highlight {
+    background-color: #f2f2f2;
   }
 }
