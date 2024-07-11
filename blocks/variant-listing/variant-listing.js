@@ -33,7 +33,6 @@ export default async function decorate(block) {
   };
   await fetchCar(graphQlEndpoint, requestOptions)
     .then((response) => {
-      console.log(response);
       itemArray = [...response.data.variantList.items];
       filterArray = [...itemArray];
     })
