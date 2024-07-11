@@ -105,14 +105,13 @@ export default function decorate(block) {
     });
 
     if (highlightedIndex !== -1) {
-      const ctaHeight = ctaElements[0].offsetHeight;
-      scrollBar.style.height = `${(highlightedIndex + 1) * ctaHeight}px`;
+      const ctaHeight = ctaElements[highlightedIndex].offsetHeight;
+      const ctaOffsetTop = ctaElements[highlightedIndex].offsetTop;
+      scrollBar.style.height = `${ctaHeight}px`;
+      scrollBar.style.top = `${ctaOffsetTop}px`;
       scrollBar.classList.add('highlight');
     } else {
       scrollBar.classList.remove('highlight');
     }
   }
 }
-
-  
-
