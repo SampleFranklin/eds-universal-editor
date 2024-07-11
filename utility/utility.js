@@ -56,6 +56,32 @@ const utility = {
     const doc = parser.parseFromString(html, "text/html");
     return doc.body.innerHTML;
   },
+  formatINR(number) {
+    let numStr = number.toString();
+    let length = numStr.length;
+
+    if (length <= 3) {
+      return numStr;
+    }
+
+    let lastThree = numStr.substring(length - 3);
+    let rest = numStr.substring(0, length - 3);
+    let parts = [];
+
+    while (rest.length > 2) {
+      parts.push(rest.substring(rest.length - 2));
+      rest = rest.substring(0, rest.length - 2);
+    }
+
+    if (rest.length > 0) {
+      parts.push(rest);
+    }
+
+    let formattedRest = parts.reverse().join(",");
+    let formattedNumber = formattedRest + "," + lastThree;
+
+    return formattedNumber;
+  },
 };
 
 export default utility;

@@ -4,47 +4,6 @@ import ctaUtils from "../../utility/ctaUtils.js";
 import slider from "../../utility/sliderUtil.js";
 
 export default async function decorate(block) {
-  function formatINR(number) {
-    // Convert the number to a string
-    let numStr = number.toString();
-
-    // Find the length of the number string
-    let length = numStr.length;
-
-    // If the length is less than or equal to 3, return the number as is
-    if (length <= 3) {
-      return numStr;
-    }
-
-    // Otherwise, split the number into two parts:
-    // First part contains the last three digits
-    // Second part contains the remaining digits
-    let lastThree = numStr.substring(length - 3);
-    let rest = numStr.substring(0, length - 3);
-
-    // Initialize an array to store parts of the final string
-    let parts = [];
-
-    // Append commas every two digits in the rest part
-    while (rest.length > 2) {
-      parts.push(rest.substring(rest.length - 2));
-      rest = rest.substring(0, rest.length - 2);
-    }
-
-    // If there's any remaining part, add it to the array
-    if (rest.length > 0) {
-      parts.push(rest);
-    }
-
-    // Reverse the array to get the correct order and join the parts with commas
-    let formattedRest = parts.reverse().join(",");
-
-    // Combine the formatted rest part with the last three digits
-    let formattedNumber = formattedRest + "," + lastThree;
-
-    return formattedNumber;
-  }
-
   async function fetchCar(endPoint, option) {
     const car = await fetch(endPoint, option);
     return car.json();
@@ -74,9 +33,8 @@ export default async function decorate(block) {
   };
   await fetchCar(graphQlEndpoint, requestOptions)
     .then((response) => {
-      console.log(response.data.variantList);
       itemArray = [...response.data?.variantList?.items];
-      filterArray = [...itemArray];
+      filterArray = [...itemArray, ...itemArray, ...itemArray];
     })
     .catch((e) => {
       console.warn(e.errorCode);
@@ -86,8 +44,6 @@ export default async function decorate(block) {
     if (!tabList.includes(items.fuelType)) return items.fuelType;
   });
   tabList.unshift("ALL");
-  console.log(tabList);
-  const modelId = modelIdEl?.textContent?.trim();
   const startingPriceText = startingPriceTextEl?.textContent?.trim();
   const primaryCta = ctaUtils.getLink(
     primaryCtaLinkEl,
@@ -96,13 +52,13 @@ export default async function decorate(block) {
     "button-primary-light"
   );
   primaryCta.classList.add("button");
-  console.log(primaryCta);
   const secondaryCta = ctaUtils.getLink(
     secondaryCtaLinkEl,
     secondaryCtaTextEl,
     secondaryCtaTargetEl,
     "button-secondary-light"
   );
+  secondaryCta.classList.add("button");
   function createItemList() {
     let itemHtml = "";
     filterArray.forEach((item, index) => {
@@ -122,16 +78,15 @@ export default async function decorate(block) {
       )}</p>
             </div>
             <div class="variant__price">
-                <p>Starting Price <span>Rs. ${formatINR(
-                  item.exShowroomPrice
-                )}</span></p>
+                <p>${startingPriceText} <span>Rs. ${utility.formatINR(
+        item.exShowroomPrice
+      )}</span></p>
             </div>
         </div>
     </div>`;
     });
     return itemHtml;
   }
-
   const newHtml = `
   <div class="container container__slider">
       <div class="slider__tabContent">
@@ -171,7 +126,7 @@ export default async function decorate(block) {
   const prevButton = block.querySelector(".prev");
   const nextButton = block.querySelector(".next");
   const boxes = block.querySelectorAll(".variant__card");
-  slider.initSlider(sliderContainer, prevButton, nextButton, boxes);
+  slider.initSlider(sliderContainer, prevButton, nextButton, boxes, 1, 1);
   block.querySelectorAll(".tab__Iteam").forEach(function (element, index) {
     if (index == 0) {
       element.classList.add("tab__active");
@@ -194,6 +149,5 @@ export default async function decorate(block) {
     block
       .querySelector(".variant__cards")
       .insertAdjacentHTML("beforeend", utility.sanitizeHtml(createItemList()));
-    console.log(filterArray);
   }
 }
