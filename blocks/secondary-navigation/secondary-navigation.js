@@ -56,32 +56,47 @@ export default function decorate(block) {
     let lastScrollTop = 0;
     const section = document.querySelector('.secondary-navigation').closest('.section');
 
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
         const navbar = block.querySelector('.secondary-navbar-container');
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
         const sectionBottom = sectionTop + sectionHeight;
+        console.log(currentScroll, " ", sectionTop, " ", navbar.offsetHeight);
+      
+        if (currentScroll < sectionTop) {
 
-        if (currentScroll > lastScrollTop) {
-            // Scroll down
-            navbar.style.top = '0'; // Adjust this value based on your navbar height
-        } else {
-            // Scroll up
-            navbar.style.top =  `${navbar.offsetHeight*-1}px`; // Adjust this value based on your navbar height
-        }
-
-        if (currentScroll >= sectionTop && currentScroll < sectionBottom) {
-            // Within the section
-           
             navbar.style.visibility = 'visible';
-            
-        } else {
-          
-            // Outside the section
-            navbar.style.visibility = 'hidden';
+            navbar.style.position = 'relative';
+
         }
 
+
+        else if (currentScroll >= sectionTop && currentScroll < sectionBottom) { //inside the section
+
+            navbar.style.visibility = 'visible';
+            navbar.style.position = 'fixed';
+
+            if (lastScrollTop <= currentScroll)//scroll down
+            {
+
+                navbar.style.top = '0';
+             }
+
+            else {
+
+                navbar.style.visibility = 'hidden';
+            }
+
+    }
+        
+        
+        else {
+
+            navbar.style.visibility = 'hidden';
+
+        }
         lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-    });
+});
+
 }
