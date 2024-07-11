@@ -47,6 +47,7 @@ export default function decorate(block) {
         <div class="image-container">
           <img src="${dealerLocator.imgSrc}" alt="${dealerLocator.altText}">
           <div class ="overlay">
+          
             <div class="dealer-locator__content">
               <p class="pre-title">${dealerLocator.pretitle}</p>
             </div>
@@ -62,6 +63,7 @@ export default function decorate(block) {
                 `).join('')}
               </ul>
             </div>
+            
           </div>
         </div>
       </div>
@@ -74,46 +76,50 @@ export default function decorate(block) {
   ${dealerLocatorHtml}
   </div>
   `;
-  const ctaElements = document.querySelectorAll('.dealer-locator__container .dealer-locator__action .cta-text');
-  const scrollBar = document.querySelector('.dealer-locator__container .scroll-bar');
-
-  if (ctaElements.length > 0) {
-    window.addEventListener('scroll', highlightCTAs);
-    window.addEventListener('resize', highlightCTAs); // Update scroll position on resize
-    highlightCTAs(); // Initial call to highlightCTAs to set initial state
-  }
-
-  function highlightCTAs() {
-    const scrollPosition = window.scrollY + window.innerHeight * 0.5;
-
-    let highlightedIndex = -1;
-
-    ctaElements.forEach((cta, index) => {
-      const ctaPosition = cta.getBoundingClientRect().top + window.scrollY;
-
-      if (scrollPosition >= ctaPosition) {
-        highlightedIndex = index;
-      }
-    });
-
-    ctaElements.forEach((cta, index) => {
-      if (index === highlightedIndex) {
-        cta.classList.add('highlight');
-        cta.style.fontSize = '35px'; // Increase font size for highlighted CTA
+  function setupScrollHighlight() {
+    const ctaElements = document.querySelectorAll('.dealer-locator__action .cta-text');
+    const scrollBar = document.querySelector('.dealer-locator__action .scroll-bar');
+  
+    if (ctaElements.length > 0) {
+      window.addEventListener('scroll', highlightCTAs);
+      window.addEventListener('resize', highlightCTAs); // Update scroll position on resize
+      highlightCTAs(); // Initial call to highlightCTAs to set initial state
+    }
+  
+    function highlightCTAs() {
+      const scrollPosition = window.scrollY + window.innerHeight * 0.5;
+  
+      let highlightedIndex = -1;
+  
+      ctaElements.forEach((cta, index) => {
+        const ctaPosition = cta.getBoundingClientRect().top + window.scrollY;
+  
+        if (scrollPosition >= ctaPosition) {
+          highlightedIndex = index;
+        }
+      });
+  
+      ctaElements.forEach((cta, index) => {
+        
+        if (index === highlightedIndex) {
+          cta.classList.add('highlight'); 
+        } else {
+          cta.classList.remove('highlight');
+        }
+      });
+  
+      if (highlightedIndex !== -1) {
+        const ctaHeight = ctaElements[highlightedIndex].offsetHeight;
+        const ctaOffsetTop = ctaElements[highlightedIndex].offsetTop;
+        scrollBar.style.height = `${ctaHeight}px`;
+        scrollBar.style.top = `${ctaOffsetTop}px`;
+        scrollBar.classList.add('highlight');
       } else {
-        cta.classList.remove('highlight');
-        cta.style.fontSize = '24px'; // Reset font size for normal CTAs
+        scrollBar.classList.remove('highlight');
       }
-    });
-
-    if (highlightedIndex !== -1) {
-      const ctaHeight = ctaElements[highlightedIndex].offsetHeight;
-      const ctaOffsetTop = ctaElements[highlightedIndex].offsetTop;
-      scrollBar.style.height = `${ctaHeight}px`;
-      scrollBar.style.top = `${ctaOffsetTop}px`;
-      scrollBar.classList.add('highlight');
-    } else {
-      scrollBar.classList.remove('highlight');
     }
   }
-}
+  
+  // Call the function to set up scroll highlighting
+  setupScrollHighlight();
+}  

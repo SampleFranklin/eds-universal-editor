@@ -29,25 +29,116 @@
   padding: 10px;
 }
 
-/* Pre-title styling */
+/* Action container styling */
+/* .dealer-locator__action {
+  position: absolute;
+  bottom: 100px;
+  left: 0;
+  display: flex;
+  align-items: center;
+} */
+
+/* List of CTAs styling */
+/* .dealer-locator__action ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+} */
+.dealer-locator__action ul::before{
+  position: absolute;
+  content: "";
+  width: 2px;
+  top:0;
+  bottom: 0;
+  left: 1px;
+  background-color: #767879;;
+}
+
+.dealer-locator__action ul li {
+  margin-right: 10px;
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  bottom: unset;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(360deg, #000, rgba(24, 23, 26, 0.00));
+}
+
+.dealer-locator__action .scroll-bar {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  background-color: gray;
+  transition: height 0.3s ease; /* Add smooth transition for height changes */
+}
+
+
+
+.dealer-locator__action .cta-text a {
+  font-family: "Kepler Std";
+  font-style: normal;
+  font-weight: 600;
+  text-decoration: none;
+  padding-left: 20px;
+  font-size: 18px;
+  color: var(--Tertiary-Medium-grey, #B2B2B2);
+  line-height: 22px; 
+  letter-spacing: 0.36px;
+}
+
+.dealer-locator__action .cta-text.highlight a {
+color: var(--Tertiary-White, #FFF);
+font-size: 24px;
+font-weight: 600;
+line-height: 28px; 
+letter-spacing: 0.48px;
+} 
+
+.dealer-locator__action ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.dealer-locator__action {
+  position: absolute;
+  bottom: 100px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .pre-title {
   position: absolute;
   left: 0;
   padding: 20px;
   transform: translateY(-50%);
   font-family: "Fira Sans";
-  font-size: 18px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
   color: #F2f2f2;
-  bottom: 35%;
+  bottom: 32%;
   padding: 5px;
   padding-left: 20px;
   text-align: left;
 }
 
-/* Description styling */
+.scroll-bar.highlight {
+  background-color: #f2f2f2;
+  width:4px;
+}
+
+
+
 .dealer-locator__description {
   position: absolute;
   bottom: 30px;
@@ -62,123 +153,35 @@
   color: #fff;
 }
 
-.dealer-locator__action .cta-text.highlight {
-  font-size: 35px;
-}
 
-/* Action container styling */
-.dealer-locator__action {
-  position: absolute;
-  bottom: 100px;
-  left: 0;
-  display: flex;
-  align-items: center;
-}
-
-/* List of CTAs styling */
-.dealer-locator__action ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.dealer-locator__action ul li {
-  margin-right: 10px;
-}
-
-/* Individual CTA styling */
-.dealer-locator__action .cta-text {
-  padding-left: 20px;
-}
-
-/* Highlight effect for CTAs */
-.dealer-locator__action .cta-text.highlight {
-  font-size: 35px;
-  margin-top: 35pxl;
-}
-
-/* CTA link styling */
-.dealer-locator__action .cta-text a {
-  text-decoration: none;
-  color: white;
-  padding-left: 20px;
-}
-
-.dealer-locator__action .cta-text:first-child a {
-  font-family: Kepler Std;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 28px;
-  letter-spacing: 0.02em;
-}
-
-.dealer-locator__action .cta-text:not(:first-child) a {
-  font-family: Kepler Std;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 22px;
-  letter-spacing: 0.02em;
-  text-align: left;
-  color: #767879;
-}
-
-/* Hover effect for CTA links */
-.dealer-locator__action .cta-text a:hover {
-  text-decoration: none;
-}
-
-.overlay {
-  position: absolute;
-  left: 0;
-  bottom: unset;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(360deg, #000, rgba(24, 23, 26, 0.00));
-}
-
-.scroll-bar::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
-  height: 100%;
-
-}
-
-.scroll-bar {
-  position: absolute;
-  left: -10px;
-  width: 2px;
-  background-color: gray;
-  transition: height 0.3s, top 0.3s, background-color 0.3s;
-}
-
-.scroll-bar.highlight {
-  background-color: #f2f2f2;
-}
 
 @media (min-width:999px) {
-  .dealer-locator__action .cta-text:first-child a {
-    font-size: 64px;
-    line-height: 72px;
-  }
+ 
+.dealer-locator__action .cta-text a {
+  font-family: "Kepler Std";
+  font-style: normal;
+  font-weight: 600;
+  text-decoration: none;
+  color:grey;
+  padding-left: 20px;
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: 1px;
+}
 
-  .dealer-locator__action .cta-text:not(:first-child) a {
-    font-size: 48px;
-    line-height: 56px;
-  }
+.dealer-locator__action .cta-text.highlight a {
+  color: var(--Tertiary-White, #FFF);
+  font-size: 64px;
+  line-height: 72px; 
+  letter-spacing: 1.28px
+  } 
 
-  .dealer-locator__description {
-    font-size: 18px;
-    line-height: 24px;
-    max-width: 20%;
-    right: 60px;
-    bottom:65px;
-    padding: 5px;
+  .dealer-locator__action {
+    padding-left: 0;
+    padding-right: 0;
+    
   }
-
+   
   .overlay {
     bottom: 0;
     height: 353px;
@@ -202,8 +205,30 @@
   .scroll-bar {
     display: block; /* Ensure scroll bar is visible on mobile */
     position: absolute;
+    background-color: gray;
   }
-  .scroll-bar.highlight {
-    background-color: #f2f2f2;
+
+  .pre-title {
+    position: absolute;
+    padding: 20px;
+   font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    color: #F2f2f2;
+    bottom: 50%;
+    padding: 5px;
+    padding-left: 20px;
+    text-align: left;
+  } 
+  .dealer-locator__description {
+    font-size: 18px;
+    line-height: 24px;
+    max-width: 20%;
+    right: 60px;
+    bottom:65px;
+    padding: 5px;
   }
+  
+  
 }
