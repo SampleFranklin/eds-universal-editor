@@ -3049,10 +3049,10 @@
         "name": "direction",
         "valueType": "string",
         "options": [
-          { "name": "Top", "value": "Top" },
-          { "name": "Bottom", "value": "Bottom" },
-          { "name": "Left", "value": "Left" },
-          { "name": "Right", "value": "Right" }
+          { "name": "Top", "value": "open-top" },
+          { "name": "Bottom", "value": "open-bottom" },
+          { "name": "Left", "value": "open-left" },
+          { "name": "Right", "value": "open-right" }
         ]
       },
       {
