@@ -256,14 +256,6 @@
     "id": "safety-tabs",
     "components": [
       "safety-item"
-      
-    ]
-  },
-  {
-    "id": "safety-item",
-    "components": [
-      "image-hotspot"
-      
     ]
   }
 ]
