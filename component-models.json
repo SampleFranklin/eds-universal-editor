@@ -3064,10 +3064,10 @@
       },
       {
         "component": "reference",
-        "label": "Image",
-        "name": "image",
         "valueType": "string",
-        "required": true
+        "name": "image",
+        "label": "Image",
+        "multi": false
       },
       {
         "component": "text",
@@ -3075,7 +3075,7 @@
         "name": "imageAlt",
         "valueType": "string",
         "required": true,
-        "condition": { "!==": [{ "var": "desktopImage" }, ""] }
+        "condition": { "!==": [{ "var": "image" }, ""] }
       }
      
     ]

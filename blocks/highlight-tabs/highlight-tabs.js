@@ -2,6 +2,7 @@ import TabUtils from '../../utility/tabsUtils.js';
 import utility from '../../utility/utility.js';
 
 export default function decorate(block) {
+  
   const highlightItemButtons = {};
   function generateHighlightItemHTML(highlightItem, index) {
     const [
