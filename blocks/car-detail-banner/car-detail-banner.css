@@ -1,0 +1,105 @@
+.car-detail-banner-container {
+  position: relative;
+}
+.car-detail-banner-wrapper,
+.car-detail-banner {
+  width: 100%;
+}
+.hero__banner {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+.hero__banner--image {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.hero__banner--image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.banner__content {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+.banner__content .banner__info {
+  width: 100%;
+  position: absolute;
+  inset: 0;
+  text-align: center;
+  padding-top: 112px;
+  color: #fff;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: "Anek Latin";
+}
+.banner__carDescription {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.banner__carLogoImage {
+  max-width: 320px;
+  margin: 0 auto;
+  position: relative;
+}
+.banner__carLogoImage::after {
+  content: "";
+  height: 1px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    #fff 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+.banner__carLogoImage img {
+  width: 100%;
+}
+.banner__startingPriceText {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+.banner__exShowroomPrice {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 12px;
+}
+.banner__testDriveText {
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 20px;
+}
+.banner__testDriveText p {
+  margin: 0;
+}
+.banner__testDriveText .button-container a.button {
+  color: #fff;
+  font-family: "Anek Latin";
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20.015px; /* 200.146% */
+  text-decoration-line: underline;
+}
+.banner__carImage {
+  max-width: 320px;
+  margin: 0 auto;
+}
+.banner__carImage img {
+  width: 100%;
+}
