@@ -1,3 +1,6 @@
+import TabUtils from '../../utility/tabsUtils.js';
+import utility from '../../utility/utility.js';
+
 function generateHighlightItemHTML(highlightItem, index) {
     
     const [
@@ -29,6 +32,9 @@ function generateHighlightItemHTML(highlightItem, index) {
           </div>
         </div>
         ${(image) ? image.outerHTML : ''}
+        <div class="highlightItem-content">
+    
+        </div>
     `);
 
     highlightItem.classList.add('highlightItem', `switch-index-${index}`);
