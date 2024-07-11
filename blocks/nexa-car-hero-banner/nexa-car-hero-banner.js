@@ -38,13 +38,91 @@ export default async function decorate(block) {
   function fetchPrice(variantCode, defaultPrice) {
     return defaultPrice ? `${utility.formatToLakhs(defaultPrice)} ${lakhLabel}` : 'Not available';
   }
+
+  function initCarousel(block) {
+    const slides = block.querySelectorAll('.hero-banner__slides');
+    let currentSlide = 0;
+  
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+        const video = slide.querySelector('video');
+        if (video) {
+          if (i === index) {
+            video.play();
+          } else {
+            video.pause();
+            video.currentTime = 0;
+          }
+        }
+      });
+    }
+  
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+  
+    function handleOverlayBehavior(slide) {
+      const video = slide.querySelector('video');
+      const overlay = slide.querySelector('.hero__information-overlay');
+      
+      if (video && overlay) {
+        let overlayShown = false;
+  
+        video.addEventListener('timeupdate', () => {
+          const progress = (video.currentTime / video.duration) * 100;
+          
+          if (progress >= 50 && !overlayShown) {
+            overlayShown = true;
+            video.pause();
+            overlay.style.opacity = '1';
+            
+            setTimeout(() => {
+              overlay.style.opacity = '0';
+              setTimeout(() => {
+                video.play();
+              }, 1000); // Wait for overlay fade-out before resuming video
+            }, 3000);
+          }
+        });
+  
+        video.addEventListener('ended', () => {
+          overlayShown = false; // Reset for next play
+        });
+      }
+    }
+  
+    function setupVideo(video, slide) {
+      video.addEventListener('loadedmetadata', () => {
+        console.log(`Video duration:`, video.duration);
+      });
+  
+      video.addEventListener('ended', () => {
+        nextSlide();
+      });
+  
+      handleOverlayBehavior(slide);
+    }
+  
+    slides.forEach((slide) => {
+      const video = slide.querySelector('video');
+      if (video) {
+        setupVideo(video, slide);
+      }
+    });
+  
+    // Initialize the first slide
+    showSlide(currentSlide);
+  }
+
   const filterTypes = filterList.split(',');
 
   const getVideoHtml = (videoUrl) => `
-          <div class="hero__video-container">
-            <video src="${videoUrl}" muted="muted" width="100%" autoplay loop></video>
-          </div>
-        `;
+  <div class="hero__video-container">
+    <video src="${videoUrl}" muted="muted" width="100%" autoplay></video>
+  </div>
+`;
 
   const getAssetHtml = (videoUrl) => {
     if (videoUrl) {
@@ -72,7 +150,7 @@ export default async function decorate(block) {
     const assetHtml = window.matchMedia('(min-width: 999px)').matches ? getAssetHtml(variant.variantVideo._publishUrl) : getAssetHtml(variant.variantMobileVideo._publishUrl);
     return `
         ${assetHtml}
-        <div class="hero__information-overlay">
+        <div class="hero__information-overlay" style="opacity: 0; transition: opacity 0.5s;">
           <div class="hero__top-container">
             <div class="hero__top-left">
               ${(title) ? `${title.outerHTML}` : ''}
@@ -118,7 +196,7 @@ export default async function decorate(block) {
 
   const { publishDomain } = await fetchPlaceholders();
 
-  const graphQlEndpoint = `${publishDomain}/graphql/execute.json/msil-platform/VariantList;modelId=${carModelPath}?s`;
+  const graphQlEndpoint = `${publishDomain}/graphql/execute.json/msil-platform/VariantList;modelId=${carModelPath}?k`;
 
   const requestOptions = {
     method: 'GET',
@@ -129,6 +207,7 @@ export default async function decorate(block) {
   const response = await fetch(graphQlEndpoint, requestOptions);
   const { data } = await response.json();
   const cars = data?.variantList?.items;
+  console.log(cars, "cccc");
   let newHtml = '';
   cars.forEach((variant, index) => {
     newHtml
@@ -143,6 +222,11 @@ export default async function decorate(block) {
             ${newHtml}
         </div>
     `;
+
+    
+    setTimeout(() => {
+      initCarousel(block);
+    }, 0);
   // function setLocalStorage(key, value) {
   //     localStorage.setItem(key, value);
   // }
