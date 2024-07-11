@@ -80,7 +80,8 @@
       "dealer-locator",
       "offer-list",
       "secondary-navigation",
-      "car-detail-banner"
+      "car-detail-banner",
+      "safety-tabs"
     ]
   },
   {
@@ -182,12 +183,6 @@
     ]
   },
   {
-    "id": "nexa-eshowroom-experience",
-    "components": [
-      "nexa-eshowroom-experience-item"
-    ]
-  },
-  {
     "id": "slider",
     "components": [
       "teaser"
@@ -253,6 +248,21 @@
     "id": "secondary-navigation",
     "components": [
       "cta"
+      
+    ]
+  },
+ 
+  {
+    "id": "safety-tabs",
+    "components": [
+      "safety-item"
+      
+    ]
+  },
+  {
+    "id": "safety-item",
+    "components": [
+      "image-hotspot"
       
     ]
   }
