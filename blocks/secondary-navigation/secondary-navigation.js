@@ -30,7 +30,8 @@ export default function decorate(block) {
 
     function setupNavButtons(navButtons) {
         navButtons.forEach(button => {
-            button.addEventListener('click', function () {
+            button.addEventListener('click', function (event) {
+                event.preventDefault(); // Prevent the default scrolling behavior
                 navButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
             });
@@ -38,25 +39,26 @@ export default function decorate(block) {
     }
 
     block.innerHTML = `
-    <nav class="navbar">
-        <a href="${logoLink}" class="logo-container">
-            <p>${logoText}</p>
-        </a>
-        <div class="buttons-container">
-            ${ctaElements}
-        </div>
-    </nav>
+    <div class="secondary-navbar-container">
+        <nav class="secondary-navbar">
+            <a href="${logoLink}" class="logo-container">
+                <p>${logoText}</p>
+            </a>
+            <div class="buttons-container">
+                ${ctaElements}
+            </div>
+        </nav>
+    </div>
     `;
-
     const navbarbuttons = block.querySelectorAll('.nav-button');
     setupNavButtons(navbarbuttons);
 
     let lastScrollTop = 0;
-    const section = document.querySelector('.secondary-navigation-container');
+    const section = document.querySelector('.secondary-navigation').closest('.section');
 
     window.addEventListener('scroll', function() {
         const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-        const navbar = block.querySelector('.navbar');
+        const navbar = block.querySelector('.secondary-navbar-container');
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
         const sectionBottom = sectionTop + sectionHeight;
@@ -66,13 +68,16 @@ export default function decorate(block) {
             navbar.style.top = '0'; // Adjust this value based on your navbar height
         } else {
             // Scroll up
-            navbar.style.top = '-200px'; // Adjust this value based on your navbar height
+            navbar.style.top =  `${navbar.offsetHeight*-1}px`; // Adjust this value based on your navbar height
         }
 
         if (currentScroll >= sectionTop && currentScroll < sectionBottom) {
             // Within the section
+           
             navbar.style.visibility = 'visible';
+            
         } else {
+          
             // Outside the section
             navbar.style.visibility = 'hidden';
         }
