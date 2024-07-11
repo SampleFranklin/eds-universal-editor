@@ -1,22 +1,21 @@
 .dealer-locator__container {
   position: relative;
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 35px), 30% calc(100% - 31px), calc(29% - 25px) 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 35px), 74% calc(100% - 31px), calc(74% - 25px) 100%, 0 100%);
   background: black;
 }
 
 .image-container {
-  /* display: flex; */
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height:500px;
-    
+  height: 500px;
 }
 
 .image-container img {
-  width:100%;
+  width: 100%;
   max-width: 100%;
-  max-height: 100%; 
-  margin-bottom:78px;
+  max-height: 100%;
+  margin-bottom: 78px;
   object-fit: cover;
   object-position: bottom;
   opacity: 0.7;
@@ -25,122 +24,165 @@
 /* Content styling */
 .dealer-locator__content {
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
   padding: 10px;
 }
 
 /* Pre-title styling */
- .pre-title {
-    position: absolute;
-    left: 64px;
-    transform: translateY(-50%);
-    font-family: "Fira Sans";
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-    color: #F2f2f2;
-    bottom: 130px;
-    padding: 5px;
-    padding-left: 20px;
-    text-align: left;
-	}
-	 
+.pre-title {
+  position: absolute;
+  left: 0;
+  padding: 20px;
+  transform: translateY(-50%);
+  font-family: "Fira Sans";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  color: #F2f2f2;
+  bottom: 160px;
+  padding: 5px;
+  padding-left: 20px;
+  text-align: left;
+}
+
 /* Description styling */
- .dealer-locator__description {
-    position: absolute;
-    bottom: 60px;
-    right: 70px;
-    max-width: 28%;
-    padding: 5px;
-    line-height: 24px;
-    font-size: 18px;
-    font-weight: 300;
-    font-family: "Fira Sans";
-    font-style: normal;
-    color: #fff;
-} 
+.dealer-locator__description {
+  position: absolute;
+  bottom: 30px;
+  right: unset;
+  max-width: 100%;
+  padding: 0 20px;
+  line-height: 16px;
+  font-size: 12px;
+  font-weight: 300;
+  font-family: "Fira Sans";
+  font-style: normal;
+  color: #fff;
+}
 
 .dealer-locator__action .cta-text.highlight {
   font-size: 35px;
-} 
+}
 
 /* Action container styling */
- .dealer-locator__action {
+.dealer-locator__action {
   position: absolute;
-  bottom: 55px; 
-  left: 64px; 
+  bottom: 100px;
+  left: 0;
   display: flex;
   align-items: center;
 }
 
 /* List of CTAs styling */
- .dealer-locator__action ul {
+.dealer-locator__action ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
+
 .dealer-locator__action ul li {
   margin-right: 10px;
-} 
+}
 
 /* Individual CTA styling */
 .dealer-locator__action .cta-text {
-  padding-left: 20px; 
-} 
+  padding-left: 20px;
+}
 
 /* Highlight effect for CTAs */
 .dealer-locator__action .cta-text.highlight {
   font-size: 35px;
   margin-top: 35pxl;
-} 
+}
 
 /* CTA link styling */
 .dealer-locator__action .cta-text a {
   text-decoration: none;
-  color: white; 
+  color: white;
   padding-left: 20px;
 }
-.dealer-locator__action .cta-text:first-child a{
-font-family: Kepler Std;
-font-size:32px;
-font-weight: 600;
-line-height: 72px;
-letter-spacing: 0.02em;
-border-left: 4px solid #F2F2F2;
 
-
+.dealer-locator__action .cta-text:first-child a {
+  font-family: Kepler Std;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  border-left: 4px solid #F2F2F2;
 }
-.dealer-locator__action .cta-text:not(:first-child)  a{
-font-family: Kepler Std;
-font-size: 24px;
-font-weight: 600;
-line-height: 56px;
-letter-spacing: 0.02em;
-text-align: left;
-color: #767879;
-border-left: 2px solid #767879
 
-} 
+.dealer-locator__action .cta-text:not(:first-child) a {
+  font-family: Kepler Std;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0.02em;
+  text-align: left;
+  color: #767879;
+  border-left: 2px solid #767879
+}
 
 /* Hover effect for CTA links */
 .dealer-locator__action .cta-text a:hover {
-  text-decoration: none; 
+  text-decoration: none;
 }
-.overlay{
+
+.overlay {
   position: absolute;
-  left:0;
-  bottom: 0;
+  left: 0;
+  bottom: unset;
   width: 100%;
-  height: 353px;
+  height: 100%;
   background: linear-gradient(360deg, #000, rgba(24, 23, 26, 0.00));
 }
 
+.scroll-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
 
+}
 
- 
+@media (min-width:999px) {
+  .dealer-locator__action .cta-text:first-child a {
+    font-size: 64px;
+    line-height: 72px;
+  }
 
+  .dealer-locator__action .cta-text:not(:first-child) a {
+    font-size: 48px;
+    line-height: 56px;
+  }
 
+  .dealer-locator__description {
+    font-size: 18px;
+    line-height: 24px;
+    max-width: 28%;
+    right: 60px;
+    padding: 5px;
+  }
 
+  .overlay {
+    bottom: 103px;
+    height: 353px;
+  }
 
+  .dealer-locator__action {
+    bottom: 55px;
+    left: 64px;
+  }
+
+  .pre-title {
+    left: 64px;
+  }
+
+  .dealer-locator__container {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 35px), 30% calc(100% - 31px), calc(29% - 25px) 100%, 0 100%);
+  }
+}
