@@ -126,7 +126,10 @@
   transform: scale(1.15);
   /* transform-origin: 50% 50%; */
 }
-
+.container__slider .cta__container {
+  display: flex;
+  justify-content: center;
+}
 /* Responsive adjustments */
 @media (min-width: 600px) {
   .container__slider .variant__card {

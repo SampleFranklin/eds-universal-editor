@@ -95,6 +95,7 @@ export default async function decorate(block) {
     primaryCtaTargetEl,
     "button-primary-light"
   );
+  primaryCta.classList.add("button");
   console.log(primaryCta);
   const secondaryCta = ctaUtils.getLink(
     secondaryCtaLinkEl,
@@ -158,8 +159,8 @@ export default async function decorate(block) {
       </div>
       </div>
       <div class="cta__container">
-        ${primaryCta}
-        ${secondaryCta}
+      ${primaryCta ? primaryCta.outerHTML : ""}
+      ${secondaryCta ? secondaryCta.outerHTML : ""}
       </div>
   </div>
   `;
