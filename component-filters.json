@@ -252,7 +252,7 @@
     ]
   },
   {
-    "id": "safety-image-container",
+    "id": "safety-block",
     "components": [
       "image-hotspot"
       
