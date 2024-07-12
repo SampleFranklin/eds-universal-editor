@@ -7,7 +7,8 @@
     /* left: 0;  */
     transition: top 0.3s; 
     z-index: 1000; 
-    padding-top: 32px;
+    padding-top: 48px;
+    margin-bottom: 10px;
 }
 
 .secondary-navbar-container .secondary-navbar {
@@ -15,6 +16,7 @@
     flex-direction: column;
     align-items: flex-start;
     border-bottom: 1px solid #C9D3D7;
+    gap: 8px;
 
 }
 
@@ -57,6 +59,7 @@
     line-height: 16px;
     color: var(--Tertiary-Deep-Grey, #767879);
     position: relative;
+    padding: 12px 0;
 }
 
 .secondary-navbar-container .buttons-container .nav-button.active {
@@ -98,6 +101,6 @@
     .secondary-navbar-container .buttons-container .nav-button {
         font-size: 14px;
         line-height: 20px;
-        padding: 12px 0;
+        padding: 24px 0;
     }
 }
