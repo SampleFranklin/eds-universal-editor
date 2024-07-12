@@ -51,10 +51,10 @@ export default async function decorate(block) {
       const eshowroomDescription = cars[index].eshowroomDescription;
       const eshowroomPrimaryCtaText = cars[index].eshowroomPrimaryCtaText;
       const carDetailsPagePath = cars[index].carDetailsPagePath == null? "#": cars[index].carDetailsPagePath._path;
-      const eshowroomDesktopFwdVideo = cars[index].eshowroomDesktopFwdVideo == null? "#": cars[index].eshowroomDesktopFwdVideo._publishUrl;
-      const eshowroomDesktopReverseVideo = cars[index].eshowroomDesktopReverseVideo == null? "#": cars[index].eshowroomDesktopReverseVideo._publishUrl;
-      const eshowroomMobileFwdVideo = cars[index].eshowroomMobileFwdVideo == null? "#" : cars[index].eshowroomMobileFwdVideo._publishUrl;
-      const eshowroomMobileReverseVideo = cars[index].eshowroomMobileReverseVideo == null? "#" : cars[index].eshowroomMobileReverseVideo._publishUrl;
+      const eshowroomDesktopFwdVideo = cars[index].eshowroomDesktopFwdVideo == null? "": cars[index].eshowroomDesktopFwdVideo._publishUrl;
+      const eshowroomDesktopReverseVideo = cars[index].eshowroomDesktopReverseVideo == null? "": cars[index].eshowroomDesktopReverseVideo._publishUrl;
+      const eshowroomMobileFwdVideo = cars[index].eshowroomMobileFwdVideo == null? "" : cars[index].eshowroomMobileFwdVideo._publishUrl;
+      const eshowroomMobileReverseVideo = cars[index].eshowroomMobileReverseVideo == null? "" : cars[index].eshowroomMobileReverseVideo._publishUrl;
       let assetFwdHtml = "";
       let assetReverseHtml = "";
       if (window.matchMedia("(min-width: 999px)").matches) {
@@ -132,7 +132,12 @@ export default async function decorate(block) {
                       });
               }*/
       }
-  
+
+      if(!(assetFwdHtml && assetReverseHtml)){
+        return ""
+      }
+      
+
       itemEl.innerHTML = `
                 <div>
                   <div class="e-showroom__info-container">
@@ -149,8 +154,8 @@ export default async function decorate(block) {
                         ${eshowroomDescription}
                       </div>
                       <div class="e-showroom__action">
-                        <a target="_blank" href= "${carDetailsPagePath}" title=${eshowroomPrimaryCtaText} class="button e-showroom__primary__btn" target="_self">${eshowroomPrimaryCtaText}</a>
-                        <a target="_blank" href= "${secondaryBtnCta}?${modelId}" title=${secondaryBtnText} class="button btn-title e-showroom__secondary__btn" target="_self">${secondaryBtnText}</a>
+                        <div class="cta cta__primary"><a target="_blank" href= "${carDetailsPagePath}" title=${eshowroomPrimaryCtaText} target="_self">${eshowroomPrimaryCtaText}</a></div>
+                        <div class="cta cta__secondary"><a target="_blank" href= "${secondaryBtnCta}?${modelId}" title=${secondaryBtnText} target="_self">${secondaryBtnText}</a></div>
                       </div>
                     </div>
                     
@@ -223,6 +228,10 @@ export default async function decorate(block) {
   }
 
   const getFwdVideoHtml = (videoUrl) => {
+    console.log("video check", videoUrl);
+    if(!videoUrl){
+        return ''
+    }
     return `
         <video id="video1" class="e-showroom__video active-video" muted>
           <source
@@ -233,6 +242,9 @@ export default async function decorate(block) {
   };
 
   const getReverseVideoHtml = (videoUrl) => {
+    if(!videoUrl){
+        return ''
+    }
     return `
           <video id="video1-rev" class="e-showroom__video-rev" muted>
             <source
