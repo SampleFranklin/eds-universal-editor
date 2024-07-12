@@ -1,13 +1,11 @@
 .secondary-navbar-container{
-    /* position: fixed;
-    top: 0; */
     width: 100%;
     padding: 0 20px;
     background: var(--Tertiary-Light-grey, #F2F2F2);
-    /* left: 0;  */
     transition: top 0.3s; 
     z-index: 1000; 
-    padding-top: 32px;
+    padding-top: 48px;
+    margin-bottom: 10px;
 }
 
 .secondary-navbar-container .secondary-navbar {
@@ -15,6 +13,7 @@
     flex-direction: column;
     align-items: flex-start;
     border-bottom: 1px solid #C9D3D7;
+    gap: 8px;
 
 }
 
@@ -39,24 +38,24 @@
     white-space: nowrap;
     padding-right: 20px;
     overflow-x: auto;
-    -ms-overflow-style: none;  /* Hide scrollbar in IE and Edge */
-    scrollbar-width: none;  /* Hide scrollbar in Firefox */
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
 }
 
 .secondary-navbar-container .buttons-container::-webkit-scrollbar {
-    display: none; /* Hide scrollbar in Chrome, Safari, and Opera */
+    display: none; 
 }
 
 .secondary-navbar-container .buttons-container .nav-button {
     font-family: "Fira Sans";
     text-align: center;
     font-size: 12px;
-    /* padding: 12px 0; */
     text-decoration: none;
     font-weight: 400;
     line-height: 16px;
     color: var(--Tertiary-Deep-Grey, #767879);
     position: relative;
+    padding: 12px 0;
 }
 
 .secondary-navbar-container .buttons-container .nav-button.active {
@@ -91,13 +90,13 @@
     .secondary-navbar-container .buttons-container {
         gap: 40px;
         justify-content: flex-end;
-        overflow-x: hidden; /* Prevent horizontal scroll */
+        overflow-x: hidden; 
         padding: 0;
     }
 
     .secondary-navbar-container .buttons-container .nav-button {
         font-size: 14px;
         line-height: 20px;
-        padding: 12px 0;
+        padding: 24px 0;
     }
 }

@@ -2,25 +2,6 @@
 * Utility for Carousel
 */
 const carouselUtils = {
-  /**
-   * Callback for carousel slide changes
-   * @callback onChange
-   * @param {Element} [currentSlide] Current slide of the carousel
-   * @param {Element} [targetSlide] Slide which going to be active
-   * @param {number} [direction] Direction of the slides based on interaction
-   * - Previous: -1
-   * - Next: 1
-   * - Dots: 0
-   * @returns {boolean}
-   */
-  /**
-  * Intialises the carousel
-  * @param {Element} [el] Parent element which will be replaced with carousel elements
-  * @param {string} [className] Class name of the element which contains all the slides
-  * @param {string} [carouselType] Type of the carousel - Supported types: `fade`
-  * @param {onChange} [onChange] Callback for carousel slide changes
-  * @returns {void}
-  */
   init: (
     el,
     className,
@@ -33,11 +14,11 @@ const carouselUtils = {
       showArrows = true,
       showDots = true,
       dotsInteractive = true,
-      navigationContainerClassName = ''
-    }
+      navigationContainerClassName = '',
+    },
   ) => {
     if (!el) {
-      return;
+      return {};
     }
 
     const updateDots = (targetIndex, currentIndex) => {
@@ -71,24 +52,27 @@ const carouselUtils = {
       }
     }
 
-    const getSlides = (direction = 0, position = null) => {
+    const getSlideInfo = (direction = 0, position = null) => {
       const currentSlide = el.querySelector('.carousel__slide--active');
       const currentIndex = parseInt(currentSlide.dataset.slideIndex, 10);
       const targetIndex = position ?? (currentIndex + (direction ?? 0));
       const targetSlide = el.querySelector(`.carousel__slide[data-slide-index="${targetIndex}"]`);
       return {
-        currentSlide: currentSlide,
-        currentIndex: currentIndex,
-        targetSlide: targetSlide,
-        targetIndex: targetIndex
-      }
-    }
+        currentSlide,
+        currentIndex,
+        targetSlide,
+        targetIndex,
+      };
+    };
 
-    const navigateSlide = (currentSlide, targetSlide, currentIndex, targetIndex, direction, isReset = false) => {
+    const navigateSlide = (slideInfo, direction = 0, isReset = false) => {
+      const {
+        currentSlide, targetSlide, currentIndex, targetIndex,
+      } = slideInfo;
       if (targetSlide) {
         currentSlide.classList.remove('carousel__slide--active');
         targetSlide.classList.add('carousel__slide--active');
-        if(isReset) {
+        if (isReset) {
           onReset(currentSlide, targetSlide);
         } else if (typeof onChange === 'function') {
           onChange(currentSlide, targetSlide, direction);
@@ -98,7 +82,7 @@ const carouselUtils = {
         return true;
       }
       return false;
-    }
+    };
 
     if (carouselType === 'fade' || !carouselType) {
       el.classList.add('fade-carousel__wrapper');
@@ -125,7 +109,7 @@ const carouselUtils = {
       const dotsContainer = document.createElement('div');
       dotsContainer.className = 'carousel__dots';
       dotsContainer.append(dots);
-      if(navigationContainerEl) {
+      if (navigationContainerEl) {
         navigationContainerEl.insertAdjacentElement('beforeend', dotsContainer);
       } else {
         el.insertAdjacentElement('beforeend', dotsContainer);
@@ -134,7 +118,8 @@ const carouselUtils = {
         el.querySelectorAll('.carousel__dot')?.forEach((dot) => {
           dot.addEventListener('click', (e) => {
             const targetIndex = parseInt(e.target.dataset.targetIndex, 10);
-            navigateSlide(0, targetIndex);
+            const slideInfo = getSlideInfo(0, targetIndex);
+            navigateSlide(slideInfo);
           });
         });
       }
@@ -147,45 +132,36 @@ const carouselUtils = {
           <span class="carousel__prev carousel__nav--disabled"></span>
           <span class="carousel__next"></span>
       `;
-      if(navigationContainerEl) {
+      if (navigationContainerEl) {
         navigationContainerEl.insertAdjacentElement('beforeend', arrowsContainer);
       } else {
         el.insertAdjacentElement('beforeend', arrowsContainer);
       }
       el.querySelector('.carousel__prev')?.addEventListener('click', () => {
-        const { currentSlide, targetSlide, currentIndex, targetIndex } = getSlides(-1);
-        const status = onPrev(currentSlide, targetSlide) ?? true;
-        if(status) {
-          navigateSlide(currentSlide, targetSlide, currentIndex, targetIndex, -1);
+        const slideInfo = getSlideInfo(-1);
+        const status = onPrev(slideInfo.currentSlide, slideInfo.targetSlide) ?? true;
+        if (status) {
+          navigateSlide(slideInfo, -1);
         }
       });
       el.querySelector('.carousel__next')?.addEventListener('click', () => {
-        const { currentSlide, targetSlide, currentIndex, targetIndex } = getSlides(1);
-        const status = onNext(currentSlide, targetSlide) ?? true;
-        if(status) {   
-          navigateSlide(currentSlide, targetSlide, currentIndex, targetIndex, 1);
+        const slideInfo = getSlideInfo(1);
+        const status = onNext(slideInfo.currentSlide, slideInfo.targetSlide) ?? true;
+        if (status) {
+          navigateSlide(slideInfo, 1);
         }
       });
     }
 
-    const prev = () => {
-      const { currentSlide, targetSlide, currentIndex, targetIndex } = getSlides(-1);
-      return navigateSlide(currentSlide, targetSlide, currentIndex, targetIndex, -1);
-    }
-    const next = () => {
-      const { currentSlide, targetSlide, currentIndex, targetIndex } = getSlides(1);
-      return navigateSlide(currentSlide, targetSlide, currentIndex, targetIndex, 1);
-    }
-    const reset = () => {
-      const { currentSlide, targetSlide, currentIndex, targetIndex } = getSlides(0);
-      return navigateSlide(currentSlide, targetSlide, currentIndex, targetIndex, 0, true);
-    }
+    const prev = () => navigateSlide(getSlideInfo(-1), -1);
+    const next = () => navigateSlide(getSlideInfo(1), 1);
+    const reset = () => navigateSlide(getSlideInfo(0, 0), 0, true);
 
     return {
-      prev: prev,
-      next: next,
-      reset: reset
-    }
+      prev,
+      next,
+      reset,
+    };
   },
 };
 

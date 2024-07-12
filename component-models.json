@@ -2371,7 +2371,7 @@
     ]
   },
   {
-    "id": "nexa-brand-film-carousel",
+    "id": "brand-film-carousel",
     "fields": [
       {
         "component": "text-input",
@@ -2437,7 +2437,7 @@
     ]
   },
   {
-    "id": "nexa-brand-film-carousel-item",
+    "id": "brand-film-carousel-item",
     "fields": [
       {
         "component": "reference",
@@ -2446,22 +2446,6 @@
         "label": "Video",
         "required": true,
         "multi": false
-      },
-      {
-        "component": "boolean",
-        "valueType": "boolean",
-        "name": "allowMobileVideo",
-        "label": "Separate Video for Mobile"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "videoMobile",
-        "label": "Mobile Video",
-        "multi": false,
-        "condition": {
-          "===": [{ "var": "allowMobileVideo" }, true]
-        }
       }
     ]
   },
@@ -2881,24 +2865,7 @@
       }
     ]
   },
-  {
-    "id": "secondary-navigation",
-    "fields": [
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "logo",
-        "label": "Logo Text",
-        "value": ""
-      },
-      {
-        "component": "aem-content",
-        "valueType": "string",
-        "name": "logolink",
-        "label": "Logo Link"
-      }
-    ]
-  },
+ 
   {
     "id": "car-detail-banner",
     "fields": [
@@ -3117,6 +3084,132 @@
         "label": "Hotspot Description",
         "valueType": "string",
         "required": true
+      }
+    ]
+  },
+  {
+    "id": "brand-header",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "logoImage",
+        "label": "Logo Image"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "logoImageAlt",
+        "label": "Logo Alt Text"
+      },
+      {
+        "component": "text-input",
+        "name": "primaryText",
+        "label": "CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "primaryLink",
+        "label": "CTA Link"
+      },
+      {
+        "component": "select",
+        "name": "primaryTarget",
+        "value": "",
+        "label": "Open Link in New Page ?",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Yes",
+            "value": "_blank"
+          },
+          {
+            "name": "No",
+            "value": "_self"
+          }
+        ]
+      },
+      {
+        "component": "text-input",
+        "name": "secondaryText",
+        "label": "Secondary CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "secondaryLink",
+        "label": "Secondary CTA Link"
+      },
+      {
+        "component": "select",
+        "name": "secondaryTarget",
+        "value": "",
+        "label": "Open Secondary Link in New Page ?",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Yes",
+            "value": "_blank"
+          },
+          {
+            "name": "No",
+            "value": "_self"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "brand-header-item",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "required": true
+      },
+      {
+        "component": "select",
+        "name": "titleType",
+        "value": "h3",
+        "label": "Type",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "h1",
+            "value": "h1"
+          },
+          {
+            "name": "h2",
+            "value": "h2"
+          },
+          {
+            "name": "h3",
+            "value": "h3"
+          },
+          {
+            "name": "h4",
+            "value": "h4"
+          },
+          {
+            "name": "h5",
+            "value": "h5"
+          },
+          {
+            "name": "h6",
+            "value": "h6"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "scrollToClass",
+        "label": "Scroll To Section Class"
       }
     ]
   }
