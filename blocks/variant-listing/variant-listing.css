@@ -66,11 +66,11 @@
   justify-content: center;
 }
 
-.container__slider .variant__card .variant__discription {
+.container__slider .variant__card .variant__description {
   margin-top: 24px;
 }
 
-.container__slider .variant__card .variant__discription p {
+.container__slider .variant__card .variant__description p {
   font-family: Roboto;
   font-weight: 600;
   margin: 0;
@@ -238,7 +238,7 @@
     line-height: 33.6px;
   }
 
-  .container__slider .variant__card .variant__discription p {
+  .container__slider .variant__card .variant__description p {
     font-size: 14px;
     line-height: 19.6px;
     border-bottom: 1px solid;
