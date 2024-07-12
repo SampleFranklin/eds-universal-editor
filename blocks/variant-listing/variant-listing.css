@@ -359,3 +359,28 @@
     border-color: #b8b8b8;
   }
 }
+
+@media (max-width: 999px) {
+  .container__slider .cta__container a {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16.8px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    text-transform: uppercase;
+  }
+
+  .container__slider .nav-arrow.next,
+  .container__slider .nav-arrow.prev {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .container__slider .nav-arrow.next.disabled,
+  .container__slider .nav-arrow.prev.disabled {
+    background-color: #b8b8b8;
+    color: #fff;
+    border-color: #b8b8b8;
+  }
+}
