@@ -34,10 +34,10 @@ export default async function decorate(block) {
             <button class="brand-film__pip-btn">Pip</button>
           </div>
           <button class="brand-film__close-btn">Close</button>
-          <span class="brand-film__play-btn"></span>
           <div class="brand-film__slides">
             ${videos.join('')}
           </div>
+          <span class="brand-film__play-btn"></span>
         </div>
       </div>
       <div class="brand-film__content">
