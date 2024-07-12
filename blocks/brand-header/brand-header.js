@@ -23,7 +23,7 @@ export default async function decorate(block) {
         const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)');
         const scrollCLass = scrollClassEl?.textContent?.trim();
         let headerItemHtml = `  <div class="brand-header__header-item">
-                                ${(title) ? `<div class="brand-header__title"><p>${title}</p></div>`  : ''}
+                                ${(title) ? `<div class="brand-header__title">${title.outerHTML}</div>`  : ''}
                                 ${(scrollCLass) ? `<div class="brand-header__scrollClass"><p>${scrollCLass}</p></div>`  : ''}
                             </div>
                             `;
