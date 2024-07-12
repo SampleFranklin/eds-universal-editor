@@ -56,7 +56,7 @@ export default async function decorate(block) {
     return '';
   };
 
-  const bannerItems = bannerItemsEl?.map((itemEl, index) => {
+  const bannerItems = bannerItemsEl?.map((itemEl) => {
     const [
       videoEl,
       allowMobileVideoEl,

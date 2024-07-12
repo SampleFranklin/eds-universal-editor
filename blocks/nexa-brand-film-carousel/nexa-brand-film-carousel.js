@@ -169,34 +169,31 @@ export default async function decorate(block) {
     wrapper?.removeEventListener('mousemove', controlHandler);
     window.screen.orientation.unlock();
     clearTimeout(hideCloseBtn);
-  }
+  };
 
   block.querySelector('.brand-film__fullscreen-btn')?.addEventListener('click', async () => {
     const el = block.querySelector('.brand-film__wrapper');
     if (el) {
-      if(document.pictureInPictureEnabled && document.pictureInPictureElement) {
+      if (document.pictureInPictureEnabled && document.pictureInPictureElement) {
         await document.exitPictureInPicture();
-      } else if(el.classList.contains('brand-film__wrapper--pip')) {
+      } else if (el.classList.contains('brand-film__wrapper--pip')) {
         resetPip(el, el.querySelector('.brand-film__asset'));
       }
       if (document.fullscreenElement) {
         document.exitFullscreen();
         resetFullScreen();
       } else if (el.requestFullscreen) {
-        try {
-          el.classList.add('brand-film__wrapper--fullscreen', 'brand-film__wrapper--fullscreen-controls');
-          const options = { navigationUI: 'hide' };
-          await el.requestFullscreen(options);
-          try {
-            await window.screen.orientation.lock('landscape');
-          } catch (e) {
+        el.classList.add('brand-film__wrapper--fullscreen', 'brand-film__wrapper--fullscreen-controls');
+        const options = { navigationUI: 'hide' };
+        el.requestFullscreen(options).then(() => {
+          if (window.matchMedia('min-width: 999px')) {
+            window.screen.orientation.lock('landscape');
           }
           hideCloseBtn = setTimeout(() => {
             block.querySelector('.brand-film__wrapper--fullscreen')?.classList?.remove('brand-film__wrapper--fullscreen-controls');
           }, 3000);
           el.addEventListener('mousemove', controlHandler);
-        } catch (e) {
-        }
+        });
       }
     }
   });
@@ -219,7 +216,7 @@ export default async function decorate(block) {
   });
 
   block.querySelector('.brand-film__pip-btn')?.addEventListener('click', async () => {
-    if(document.fullscreenElement) {
+    if (document.fullscreenElement) {
       document.exitFullscreen();
       resetFullScreen();
     }

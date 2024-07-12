@@ -19,7 +19,6 @@ const carouselUtils = {
   * @param {string} [className] Class name of the element which contains all the slides
   * @param {string} [carouselType] Type of the carousel - Supported types: `fade`
   * @param {onChange} [onChange] Callback for carousel slide changes
-  * @returns {void}
   */
   init: (
     el,
@@ -33,11 +32,11 @@ const carouselUtils = {
       showArrows = true,
       showDots = true,
       dotsInteractive = true,
-      navigationContainerClassName = ''
-    }
+      navigationContainerClassName = '',
+    },
   ) => {
     if (!el) {
-      return;
+      return {};
     }
 
     const updateDots = (targetIndex, currentIndex) => {
@@ -54,7 +53,7 @@ const carouselUtils = {
           el.querySelector(`.carousel__dot[data-target-index="${i}"]`)?.classList?.remove('carousel__dot--visited');
         }
       }
-    }
+    };
 
     const updateNavigation = (targetIndex, size) => {
       const prev = el.querySelector('.carousel__navigation .carousel__prev');
@@ -69,7 +68,7 @@ const carouselUtils = {
       } else {
         next?.classList?.remove('carousel__nav--disabled');
       }
-    }
+    };
 
     const getSlideInfo = (direction = 0, position = null) => {
       const currentSlide = el.querySelector('.carousel__slide--active');
@@ -77,19 +76,21 @@ const carouselUtils = {
       const targetIndex = position ?? (currentIndex + (direction ?? 0));
       const targetSlide = el.querySelector(`.carousel__slide[data-slide-index="${targetIndex}"]`);
       return {
-        currentSlide: currentSlide,
-        currentIndex: currentIndex,
-        targetSlide: targetSlide,
-        targetIndex: targetIndex
-      }
-    }
+        currentSlide,
+        currentIndex,
+        targetSlide,
+        targetIndex,
+      };
+    };
 
     const navigateSlide = (slideInfo, direction = 0, isReset = false) => {
-      const { currentSlide, targetSlide, currentIndex, targetIndex } = slideInfo;
+      const {
+        currentSlide, targetSlide, currentIndex, targetIndex,
+      } = slideInfo;
       if (targetSlide) {
         currentSlide.classList.remove('carousel__slide--active');
         targetSlide.classList.add('carousel__slide--active');
-        if(isReset) {
+        if (isReset) {
           onReset(currentSlide, targetSlide);
         } else if (typeof onChange === 'function') {
           onChange(currentSlide, targetSlide, direction);
@@ -99,7 +100,7 @@ const carouselUtils = {
         return true;
       }
       return false;
-    }
+    };
 
     if (carouselType === 'fade' || !carouselType) {
       el.classList.add('fade-carousel__wrapper');
@@ -126,7 +127,7 @@ const carouselUtils = {
       const dotsContainer = document.createElement('div');
       dotsContainer.className = 'carousel__dots';
       dotsContainer.append(dots);
-      if(navigationContainerEl) {
+      if (navigationContainerEl) {
         navigationContainerEl.insertAdjacentElement('beforeend', dotsContainer);
       } else {
         el.insertAdjacentElement('beforeend', dotsContainer);
@@ -149,7 +150,7 @@ const carouselUtils = {
           <span class="carousel__prev carousel__nav--disabled"></span>
           <span class="carousel__next"></span>
       `;
-      if(navigationContainerEl) {
+      if (navigationContainerEl) {
         navigationContainerEl.insertAdjacentElement('beforeend', arrowsContainer);
       } else {
         el.insertAdjacentElement('beforeend', arrowsContainer);
@@ -157,34 +158,28 @@ const carouselUtils = {
       el.querySelector('.carousel__prev')?.addEventListener('click', () => {
         const slideInfo = getSlideInfo(-1);
         const status = onPrev(slideInfo.currentSlide, slideInfo.targetSlide) ?? true;
-        if(status) {
+        if (status) {
           navigateSlide(slideInfo, -1);
         }
       });
       el.querySelector('.carousel__next')?.addEventListener('click', () => {
         const slideInfo = getSlideInfo(1);
         const status = onNext(slideInfo.currentSlide, slideInfo.targetSlide) ?? true;
-        if(status) {
+        if (status) {
           navigateSlide(slideInfo, 1);
         }
       });
     }
 
-    const prev = () => {
-      return navigateSlide(getSlideInfo(-1), -1);
-    }
-    const next = () => {
-      return navigateSlide(getSlideInfo(1), 1);
-    }
-    const reset = () => {
-      return navigateSlide(getSlideInfo(0, 0), 0, true);
-    }
+    const prev = () => navigateSlide(getSlideInfo(-1), -1);
+    const next = () => navigateSlide(getSlideInfo(1), 1);
+    const reset = () => navigateSlide(getSlideInfo(0, 0), 0, true);
 
     return {
-      prev: prev,
-      next: next,
-      reset: reset
-    }
+      prev,
+      next,
+      reset,
+    };
   },
 };
 
