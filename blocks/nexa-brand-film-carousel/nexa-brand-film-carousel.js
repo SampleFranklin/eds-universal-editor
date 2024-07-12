@@ -25,7 +25,7 @@ export default async function decorate(block) {
     }
     videoEl.classList?.add('brand-film__video-container', 'brand-film__video--paused');
     videoEl.innerHTML = `
-      <video class="brand-film__video" src="${publishDomain + path}" poster=${thumbnail} width="100%">
+      <video class="brand-film__video" src="${publishDomain + path}" poster=${thumbnail} width="100%" playsinline>
       </video>
       <span class="brand-film__play-btn"></span>
     `;
@@ -112,41 +112,6 @@ export default async function decorate(block) {
     }, 3000);
   };
 
-  block.querySelector('.brand-film__fullscreen-btn')?.addEventListener('click', async () => {
-    const el = block.querySelector('.brand-film__wrapper');
-    if (el) {
-      if (document.fullscreenElement) {
-        document.exitFullscreen();
-      } else if (el.requestFullscreen) {
-        try {
-          el.classList.add('brand-film__wrapper--fullscreen', 'brand-film__wrapper--fullscreen-controls');
-          const options = { navigationUI: 'hide' };
-          await el.requestFullscreen(options);
-          try {
-            await window.screen.orientation.lock('landscape');
-          } catch (e) {
-          }
-          hideCloseBtn = setTimeout(() => {
-            block.querySelector('.brand-film__wrapper--fullscreen')?.classList?.remove('brand-film__wrapper--fullscreen-controls');
-          }, 3000);
-          el.addEventListener('mousemove', controlHandler);
-        } catch (e) {
-        }
-      }
-    }
-  });
-
-  document.addEventListener('fullscreenchange', () => {
-    if (!document.fullscreenElement) {
-      const wrapper = block.querySelector('.brand-film__wrapper--fullscreen');
-      wrapper?.classList?.remove('brand-film__wrapper--fullscreen');
-      wrapper?.classList?.remove('brand-film__wrapper--fullscreen-controls');
-      wrapper?.removeEventListener('mousemove', controlHandler);
-      window.screen.orientation.unlock();
-      clearTimeout(hideCloseBtn);
-    }
-  });
-
   const mouseDrag = {
     handleDrag: (e) => {
       const assetContainer = block.querySelector('.brand-film__asset');
@@ -204,9 +169,55 @@ export default async function decorate(block) {
     touchDrag.reset();
   };
 
+  const resetFullScreen = () => {
+    const wrapper = block.querySelector('.brand-film__wrapper--fullscreen');
+    wrapper?.classList?.remove('brand-film__wrapper--fullscreen');
+    wrapper?.classList?.remove('brand-film__wrapper--fullscreen-controls');
+    wrapper?.removeEventListener('mousemove', controlHandler);
+    window.screen.orientation.unlock();
+    clearTimeout(hideCloseBtn);
+  }
+
+  block.querySelector('.brand-film__fullscreen-btn')?.addEventListener('click', async () => {
+    const el = block.querySelector('.brand-film__wrapper');
+    if (el) {
+      if(document.pictureInPictureEnabled && document.pictureInPictureElement) {
+        await document.exitPictureInPicture();
+      } else if(el.classList.contains('brand-film__wrapper--pip')) {
+        resetPip(el, el.querySelector('.brand-film__asset'));
+      }
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+        resetFullScreen();
+      } else if (el.requestFullscreen) {
+        try {
+          el.classList.add('brand-film__wrapper--fullscreen', 'brand-film__wrapper--fullscreen-controls');
+          const options = { navigationUI: 'hide' };
+          await el.requestFullscreen(options);
+          try {
+            await window.screen.orientation.lock('landscape');
+          } catch (e) {
+          }
+          hideCloseBtn = setTimeout(() => {
+            block.querySelector('.brand-film__wrapper--fullscreen')?.classList?.remove('brand-film__wrapper--fullscreen-controls');
+          }, 3000);
+          el.addEventListener('mousemove', controlHandler);
+        } catch (e) {
+        }
+      }
+    }
+  });
+
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+      resetFullScreen();
+    }
+  });
+
   block.querySelector('.brand-film__close-btn')?.addEventListener('click', () => {
     if (document.fullscreenElement) {
       document.exitFullscreen();
+      resetFullScreen();
     } else {
       const wrapper = block.querySelector('.brand-film__wrapper');
       wrapper.classList.remove('brand-film__wrapper--pip');
@@ -215,6 +226,10 @@ export default async function decorate(block) {
   });
 
   block.querySelector('.brand-film__pip-btn')?.addEventListener('click', async () => {
+    if(document.fullscreenElement) {
+      document.exitFullscreen();
+      resetFullScreen();
+    }
     if (document.pictureInPictureElement) {
       document.exitPictureInPicture();
     } else if (document.pictureInPictureEnabled) {
@@ -227,20 +242,6 @@ export default async function decorate(block) {
         wrapper.classList.add('brand-film__wrapper--pip');
         mouseDrag.apply();
         touchDrag.apply();
-        // const handleResize = (e) => {
-        //   const size = assetContainer.getBoundingClientRect();
-        //   assetContainer.style.width = (size.width + 10) + 'px';
-        // }
-        // const removeResizeListeners = () => {
-        //   document.removeEventListener('mousemove', handleResize);
-        //   document.removeEventListener('mouseup', removeResizeListeners);
-        // }
-        // const initResize = () => {
-        //   document.addEventListener('mouseup', removeResizeListeners);
-        //   document.addEventListener('mousemove', handleResize);
-        // }
-        // assetContainer.removeEventListener('mousedown', initResize);
-        // assetContainer.addEventListener('mousedown', initResize);
       }
     }
   });
