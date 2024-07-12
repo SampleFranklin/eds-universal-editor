@@ -1,8 +1,15 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import utility from '../../utility/utility.js';
 export default function decorate(block) {
-  const [logoEl, logoLinkEl, ...ctasEl] = block.children;
-  const logoText = logoEl?.textContent?.trim() || '';
+  const [imageEl, altTextEl, logoLinkEl, ...ctasEl] = block.children;
+  const picture = imageEl?.querySelector('picture');
+  if (picture) {
+      const img = picture.querySelector('img');
+      img.removeAttribute('width');
+      img.removeAttribute('height');
+      const alt = altTextEl?.textContent?.trim() || 'image';
+      img.setAttribute('alt', alt);
+  }
   const logoLink = logoLinkEl?.querySelector('a')?.href || '';
 
   const ctaElements = ctasEl.map((element, index) => {
@@ -42,7 +49,7 @@ export default function decorate(block) {
     <div class="secondary-navbar-container">
         <nav class="secondary-navbar">
             <a href="${logoLink}" class="logo-container">
-                <p>${logoText}</p>
+            ${imageEl.innerHTML} 
             </a>
             <div class="buttons-container">
                 ${ctaElements}
