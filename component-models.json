@@ -2371,7 +2371,7 @@
     ]
   },
   {
-    "id": "nexa-brand-film-carousel",
+    "id": "brand-film-carousel",
     "fields": [
       {
         "component": "text-input",
@@ -2437,7 +2437,7 @@
     ]
   },
   {
-    "id": "nexa-brand-film-carousel-item",
+    "id": "brand-film-carousel-item",
     "fields": [
       {
         "component": "reference",
@@ -2446,22 +2446,6 @@
         "label": "Video",
         "required": true,
         "multi": false
-      },
-      {
-        "component": "boolean",
-        "valueType": "boolean",
-        "name": "allowMobileVideo",
-        "label": "Separate Video for Mobile"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "videoMobile",
-        "label": "Mobile Video",
-        "multi": false,
-        "condition": {
-          "===": [{ "var": "allowMobileVideo" }, true]
-        }
       }
     ]
   },
@@ -2881,24 +2865,7 @@
       }
     ]
   },
-  {
-    "id": "secondary-navigation",
-    "fields": [
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "logo",
-        "label": "Logo Text",
-        "value": ""
-      },
-      {
-        "component": "aem-content",
-        "valueType": "string",
-        "name": "logolink",
-        "label": "Logo Link"
-      }
-    ]
-  },
+ 
   {
     "id": "car-detail-banner",
     "fields": [
@@ -3202,12 +3169,13 @@
         "component": "text",
         "valueType": "string",
         "name": "title",
-        "label": "Title"
+        "label": "Title",
+        "required": true
       },
       {
         "component": "select",
         "name": "titleType",
-        "value": "h2",
+        "value": "h3",
         "label": "Type",
         "valueType": "string",
         "options": [
