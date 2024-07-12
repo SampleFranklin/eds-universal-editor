@@ -2445,7 +2445,7 @@
         "name": "video",
         "label": "Video",
         "required": true,
-        "multi": true
+        "multi": false
       }
     ]
   },

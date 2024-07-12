@@ -167,7 +167,6 @@ export default async function decorate(block) {
     wrapper?.classList?.remove('brand-film__wrapper--fullscreen');
     wrapper?.classList?.remove('brand-film__wrapper--fullscreen-controls');
     wrapper?.removeEventListener('mousemove', controlHandler);
-    window.screen.orientation.unlock();
     clearTimeout(hideCloseBtn);
   };
 
@@ -186,9 +185,6 @@ export default async function decorate(block) {
         el.classList.add('brand-film__wrapper--fullscreen', 'brand-film__wrapper--fullscreen-controls');
         const options = { navigationUI: 'hide' };
         el.requestFullscreen(options).then(() => {
-          if (window.matchMedia('min-width: 999px')) {
-            window.screen.orientation.lock('landscape');
-          }
           hideCloseBtn = setTimeout(() => {
             block.querySelector('.brand-film__wrapper--fullscreen')?.classList?.remove('brand-film__wrapper--fullscreen-controls');
           }, 3000);
