@@ -14,15 +14,8 @@ export default async function decorate(block) {
   }).join('');
   const thumbnail = thumbnailEl.querySelector('img')?.src;
   const videos = videosEl.map((videoEl) => {
-    const [desktopPathEl, allowMobileVideoEl, mobilePathEl] = videoEl.children;
-    const allowMobile = allowMobileVideoEl?.textContent?.trim() || 'false';
-    const desktopPath = desktopPathEl?.querySelector('a')?.textContent?.trim();
-    const mobilePath = (allowMobile === 'true')
-      ? (mobilePathEl?.querySelector('a')?.textContent?.trim() || desktopPath) : desktopPath;
-    let path = desktopPath;
-    if (!(window.matchMedia('min-width: 999px').matches)) {
-      path = mobilePath;
-    }
+    const [videoPathEl] = videoEl.children;
+    const path = videoPathEl?.querySelector('a')?.textContent?.trim();
     videoEl.classList?.add('brand-film__video-container', 'brand-film__video--paused');
     videoEl.innerHTML = `
       <video class="brand-film__video" src="${publishDomain + path}" poster=${thumbnail} width="100%" playsinline>
