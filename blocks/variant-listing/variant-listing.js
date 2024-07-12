@@ -36,12 +36,14 @@ export default async function decorate(block) {
       itemArray = [...response.data.variantList.items];
       filterArray = [...itemArray];
     })
-    .catch(() => {
-    });
+    .catch(() => {});
 
-  tabList = itemArray.map(items => {
-    if (!tabList.includes(items.fuelType)) return items.fuelType;
-  });
+  tabList = itemArray.reduce((acc, item) => {
+    if (!acc.includes(item.fuelType)) {
+      acc.push(item.fuelType);
+    }
+    return acc;
+  }, []);
   tabList.unshift('ALL');
   const startingPriceText = startingPriceTextEl?.textContent?.trim();
   const primaryCta = ctaUtils.getLink(
@@ -61,7 +63,7 @@ export default async function decorate(block) {
   function createItemList() {
     let itemHtml = '';
     /* eslint no-underscore-dangle: 0 */
-    filterArray.forEach((item, index) => {
+    filterArray.forEach((item) => {
       itemHtml += `<div class="variant__card">
         <div class="variant__image">
             <img alt="${item.variantName}" src="${publishDomain}${
@@ -93,11 +95,7 @@ export default async function decorate(block) {
         ${tabList
     .map((item, i) => {
       if (i < tabList.length - 1) {
-        return (
-          `<div class='tab__Iteam'>${
-            item
-          }</div><span class='tab__Iteam__saperator'> / </span>`
-        );
+        return `<div class='tab__Iteam'>${item}</div><span class='tab__Iteam__saperator'> / </span>`;
       }
       return `<div class='tab__Iteam'>${item}</div>`;
     })
