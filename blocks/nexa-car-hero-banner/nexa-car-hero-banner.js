@@ -35,14 +35,70 @@ export default async function decorate(block) {
   const secondaryLink = secondaryLinkEl?.querySelector('.button-container a')?.href;
   const secondaryTarget = secondaryTargetEl?.textContent?.trim() || '_self';
 
-  function fetchPrice(variantCode, defaultPrice) {
-    return defaultPrice ? `${utility.formatToLakhs(defaultPrice)} ${lakhLabel}` : 'Not available';
+  const { publishDomain, apiKey } = await fetchPlaceholders();
+
+  const tokenUrl = 'https://publish-p135331-e1341966.adobeaemcloud.com/content/nexa/services/token';
+  const auth = await fetch(tokenUrl);
+  const authorization = await auth.text();
+  const storedVariantPrices = {};
+  function getLocalStorage(key) {
+    return localStorage.getItem(key);
+  }
+  async function fetchPrice(variantCode, defaultPrice) {
+    const forCode = '48';
+    const storedPrices = getLocalStorage('variantPrice') ? JSON.parse(getLocalStorage('variantPrice')) : {};
+    if (storedPrices[variantCode] && storedPrices[variantCode].price[forCode]) {
+      const storedPrice = storedPrices[variantCode].price[forCode];
+      return storedPrice;
+    }
+    // Perform fetch only if price not already in localStorage
+    const apiUrl = `https://api.preprod.developersatmarutisuzuki.in/pricing/v2/common/pricing/ex-showroom-detail?forCode=${forCode}&variantCodes=${variantCode}&variantInfoRequired=true`;
+
+    const defaultHeaders = {
+      'x-api-key': apiKey,
+      Authorization: authorization,
+    };
+    const url = new URL(apiUrl);
+
+    const response = await fetch(url, { method: 'GET', headers: defaultHeaders });
+    const priceData = await response.json();
+    if (priceData?.error === false && priceData?.data) {
+      let formattedPrice = null;
+      const timestamp = new Date().getTime() + (1 * 24 * 60 * 60 * 1000); // 1 day from now
+      priceData.data?.models.forEach((variantList) => {
+        const objWithNM = variantList?.exShowroomDetailResponseDTOList.find((obj) => obj.colorType === 'NM');
+        if (objWithNM) {
+          formattedPrice = utility.formatToLakhs(objWithNM.exShowroomPrice);
+          storedVariantPrices[objWithNM.variantCd] = {
+            price: {
+              [forCode]: formattedPrice,
+            },
+            timestamp,
+          };
+        } else {
+          const objWithM = variantList.exShowroomDetailResponseDTOList.find((obj) => obj.colorType === 'M');
+          formattedPrice = utility.formatToLakhs(objWithM.exShowroomPrice);
+          storedVariantPrices[objWithM.variantCd] = {
+            price: {
+              [forCode]: formattedPrice,
+            },
+            timestamp,
+          };
+        }
+      });
+
+      // Convert to JSON and store in localStorage
+      localStorage.setItem('variantPrice', JSON.stringify(storedVariantPrices));
+      return storedVariantPrices[variantCode].price[forCode];
+    }
+    const formattedPrice = defaultPrice ? utility.formatToLakhs(defaultPrice) : 'Not available';
+    return formattedPrice;
   }
 
-  function initCarousel(block) {
+  function initCarousel() {
     const slides = block.querySelectorAll('.hero-banner__slides');
     let currentSlide = 0;
-  
+
     function showSlide(index) {
       slides.forEach((slide, i) => {
         slide.classList.toggle('active', i === index);
@@ -57,27 +113,27 @@ export default async function decorate(block) {
         }
       });
     }
-  
+
     function nextSlide() {
       currentSlide = (currentSlide + 1) % slides.length;
       showSlide(currentSlide);
     }
-  
+
     function handleOverlayBehavior(slide) {
       const video = slide.querySelector('video');
       const overlay = slide.querySelector('.hero__information-overlay');
-      
+
       if (video && overlay) {
         let overlayShown = false;
-  
+
         video.addEventListener('timeupdate', () => {
           const progress = (video.currentTime / video.duration) * 100;
-          
+
           if (progress >= 50 && !overlayShown) {
             overlayShown = true;
             video.pause();
             overlay.style.opacity = '1';
-            
+
             setTimeout(() => {
               overlay.style.opacity = '0';
               setTimeout(() => {
@@ -86,32 +142,31 @@ export default async function decorate(block) {
             }, 3000);
           }
         });
-  
+
         video.addEventListener('ended', () => {
           overlayShown = false; // Reset for next play
         });
       }
     }
-  
+
     function setupVideo(video, slide) {
       video.addEventListener('loadedmetadata', () => {
-        console.log(`Video duration:`, video.duration);
       });
-  
+
       video.addEventListener('ended', () => {
         nextSlide();
       });
-  
+
       handleOverlayBehavior(slide);
     }
-  
+
     slides.forEach((slide) => {
       const video = slide.querySelector('video');
       if (video) {
         setupVideo(video, slide);
       }
     });
-  
+
     // Initialize the first slide
     showSlide(currentSlide);
   }
@@ -137,7 +192,7 @@ export default async function decorate(block) {
       const typeLabel = `${type}Label`;
       const typeValue = `${type}Value`;
       typeHtml
-    += `<div class="legend-item">
+        += `<div class="legend-item">
         <p class="legend-title">${variant[`${typeValue}`]}</p>
         <p class="legend-desc">${variant[`${typeLabel}`]}</p>
       </div>
@@ -146,7 +201,7 @@ export default async function decorate(block) {
     return typeHtml;
   };
 
-  const getVariantHtml = (variant) => {
+  const getVariantHtml = async (variant) => {
     const assetHtml = window.matchMedia('(min-width: 999px)').matches ? getAssetHtml(variant.variantVideo._publishUrl) : getAssetHtml(variant.variantMobileVideo._publishUrl);
     return `
         ${assetHtml}
@@ -160,7 +215,7 @@ export default async function decorate(block) {
               <div class="price-details">
                   <p class="ex-showroom-label">${exShowroomLabel}</p>
                   <div role="separator"></div>
-                  <p class="ex-showroom-price">${fetchPrice(variant.variantId, variant.exShowroomPrice)}</p>
+                  <p class="ex-showroom-price">${await fetchPrice(variant.variantId, variant.exShowroomPrice)}</p>
               </div>
               <div class="hero__ctas">
                   <div class="cta cta__primary">
@@ -194,8 +249,6 @@ export default async function decorate(block) {
         `;
   };
 
-  const { publishDomain } = await fetchPlaceholders();
-
   const graphQlEndpoint = `${publishDomain}/graphql/execute.json/msil-platform/VariantList;modelId=${carModelPath}?k`;
 
   const requestOptions = {
@@ -207,31 +260,21 @@ export default async function decorate(block) {
   const response = await fetch(graphQlEndpoint, requestOptions);
   const { data } = await response.json();
   const cars = data?.variantList?.items;
-  console.log(cars, "cccc");
-  let newHtml = '';
-  cars.forEach((variant, index) => {
-    newHtml
-        += `
-        <div class="hero-banner__slides ${index === 0 ? 'active' : ''}">
-            ${getVariantHtml(variant)}
-        </div>
-    `;
-  });
-  block.innerHTML = `
-        <div class="hero-banner__carousel">
-            ${newHtml}
-        </div>
-    `;
-
-    
-    setTimeout(() => {
-      initCarousel(block);
-    }, 0);
-  // function setLocalStorage(key, value) {
-  //     localStorage.setItem(key, value);
-  // }
-
-  // function getLocalStorage(key) {
-  //     return localStorage.getItem(key);
-  // }
+  const div = document.createElement('div');
+  div.className = 'hero-banner__carousel';
+  async function finalBlock() {
+    for (let i = 0; i < cars.length; i += 1) {
+      const item = document.createElement('div');
+      item.classList.add('hero-banner__slides');
+      if (i === 0) {
+        item.classList.add('active');
+      }
+      item.innerHTML = await getVariantHtml(cars[i]);
+      div.append(item);
+    }
+    initCarousel(div);
+  }
+  finalBlock();
+  block.innerHTML = '';
+  block.append(div);
 }
