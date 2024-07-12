@@ -131,10 +131,10 @@
   transform: scale(0.67);
   background: url('../../icons/play-icon.svg') no-repeat;
   cursor: pointer;
-  z-index: 1;
 }
 
 .brand-film__container .brand-film__wrapper--fullscreen .brand-film__video-container {
+  position: relative;
   width: 100%;
   height: 100%;
 

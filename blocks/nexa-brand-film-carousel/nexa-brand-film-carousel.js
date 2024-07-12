@@ -20,6 +20,7 @@ export default async function decorate(block) {
     videoEl.innerHTML = `
       <video class="brand-film__video" src="${publishDomain + path}" poster=${thumbnail} width="100%" playsinline>
       </video>
+      <span class="brand-film__play-btn"></span>
     `;
     return videoEl.outerHTML;
   });
@@ -37,7 +38,6 @@ export default async function decorate(block) {
           <div class="brand-film__slides">
             ${videos.join('')}
           </div>
-          <span class="brand-film__play-btn"></span>
         </div>
       </div>
       <div class="brand-film__content">
