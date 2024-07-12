@@ -2445,23 +2445,7 @@
         "name": "video",
         "label": "Video",
         "required": true,
-        "multi": false
-      },
-      {
-        "component": "boolean",
-        "valueType": "boolean",
-        "name": "allowMobileVideo",
-        "label": "Separate Video for Mobile"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "videoMobile",
-        "label": "Mobile Video",
-        "multi": false,
-        "condition": {
-          "===": [{ "var": "allowMobileVideo" }, true]
-        }
+        "multi": true
       }
     ]
   },
