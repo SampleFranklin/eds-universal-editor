@@ -929,16 +929,16 @@
           }
         },
         {
-          "title": "Nexa Brand Film Carousel",
-          "id": "nexa-brand-film-carousel",
+          "title": "Brand Film Carousel",
+          "id": "brand-film-carousel",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "Nexa Brand Film Carousel",
-                  "model": "nexa-brand-film-carousel",
-                  "filter": "nexa-brand-film-carousel",
+                  "name": "Brand Film Carousel",
+                  "model": "brand-film-carousel",
+                  "filter": "brand-film-carousel",
                   "titleType": "h2"
                 }
               }
@@ -946,15 +946,15 @@
           }
         },
         {
-          "title": "Item",
-          "id": "nexa-brand-film-carousel-item",
+          "title": "Brand Film Carousel Item",
+          "id": "brand-film-carousel-item",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Nexa Brand Film Carousel",
-                  "model": "nexa-brand-film-carousel-item"
+                  "name": "Brand Film Carousel Item",
+                  "model": "brand-film-carousel-item"
                 }
               }
             }
