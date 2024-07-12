@@ -2,24 +2,6 @@
 * Utility for Carousel
 */
 const carouselUtils = {
-  /**
-   * Callback for carousel slide changes
-   * @callback onChange
-   * @param {Element} [currentSlide] Current slide of the carousel
-   * @param {Element} [targetSlide] Slide which going to be active
-   * @param {number} [direction] Direction of the slides based on interaction
-   * - Previous: -1
-   * - Next: 1
-   * - Dots: 0
-   * @returns {boolean}
-   */
-  /**
-  * Intialises the carousel
-  * @param {Element} [el] Parent element which will be replaced with carousel elements
-  * @param {string} [className] Class name of the element which contains all the slides
-  * @param {string} [carouselType] Type of the carousel - Supported types: `fade`
-  * @param {onChange} [onChange] Callback for carousel slide changes
-  */
   init: (
     el,
     className,
