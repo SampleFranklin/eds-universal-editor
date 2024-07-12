@@ -50,24 +50,57 @@ export default function decorate(block) {
           <a href="#" class="read-more">${expandDescription}</a>
         </div>
     `);
-
     highlightItem.classList.add('highlightItem', `switch-index-${index}`);
     highlightItem.innerHTML = newHTML;
     return highlightItem.outerHTML;
   }
 
+  function initializeHighlightItem(highlightItem, index) {
+    const moreContent = highlightItem.querySelector('.more-content');
+    const readMoreButton = highlightItem.querySelector('.read-more');
+
+    if (moreContent && readMoreButton) {
+      // Store the original display style
+      const originalDisplay = highlightItem.style.display;
+
+      // Temporarily make the element visible for measurement
+      highlightItem.style.display = 'block';
+      highlightItem.style.visibility = 'hidden';
+      highlightItem.style.position = 'absolute';
+
+      // Force a reflow to ensure correct measurements
+      void moreContent.offsetHeight;
+
+      const computedStyle = getComputedStyle(moreContent);
+      const contentHeight = moreContent.scrollHeight;
+      const lineHeight = parseFloat(computedStyle.lineHeight);
+      // console.log(contentHeight, lineHeight, index, "cjlh");
+
+      // Determine whether to show the read more link based on content height
+      if (contentHeight > lineHeight * 3) {
+        readMoreButton.style.display = 'block';
+      } else {
+        readMoreButton.style.display = 'none';
+      }
+
+      // Restore the original display style
+      highlightItem.style.display = originalDisplay;
+      highlightItem.style.visibility = '';
+      highlightItem.style.position = '';
+
+      readMoreButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        moreContent.classList.toggle('expanded');
+        const { expandBtn, collapseBtn } = highlightItemButtons[index];
+        readMoreButton.textContent = moreContent.classList.contains('expanded') ? collapseBtn : expandBtn;
+      });
+    }
+  }
+
   function initializeHighlightItems(highlightItems) {
     highlightItems.forEach((highlightItem, index) => {
-      const readMoreButton = highlightItem.querySelector('.read-more');
-      if (readMoreButton) {
-        readMoreButton.addEventListener('click', (event) => {
-          event.preventDefault();
-          const moreContent = highlightItem.querySelector('.more-content');
-          moreContent.classList.toggle('expanded');
-          const { expandBtn, collapseBtn } = highlightItemButtons[index];
-          readMoreButton.textContent = moreContent.classList.contains('expanded') ? collapseBtn : expandBtn;
-        });
-      }
+      // Delay initialization to ensure content is rendered
+      setTimeout(() => initializeHighlightItem(highlightItem, index), 0);
     });
   }
 
@@ -93,7 +126,7 @@ export default function decorate(block) {
       const highlightItemsContainer = block.querySelector('.highlightItems-container');
       const switchListSection = block.querySelector('.switch-list-section');
       const highlightItems = highlightItemsContainer.querySelectorAll('.highlightItem');
-    
+
       // Move highlightItem-content elements to be siblings of the switch list
       highlightItems.forEach((item, index) => {
         const content = item.querySelector('.highlightItem-content');

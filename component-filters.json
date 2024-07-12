@@ -79,7 +79,9 @@
       "mfe-poc",
       "dealer-locator",
       "offer-list",
-      "secondary-navigation"
+      "secondary-navigation",
+      "car-detail-banner",
+      "safety-tabs"
     ]
   },
   {
@@ -181,12 +183,6 @@
     ]
   },
   {
-    "id": "nexa-eshowroom-experience",
-    "components": [
-      "nexa-eshowroom-experience-item"
-    ]
-  },
-  {
     "id": "slider",
     "components": [
       "teaser"
@@ -253,6 +249,13 @@
     "components": [
       "cta"
       
+    ]
+  },
+ 
+  {
+    "id": "safety-tabs",
+    "components": [
+      "safety-item"
     ]
   }
 ]
