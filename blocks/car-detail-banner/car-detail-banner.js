@@ -88,7 +88,7 @@ export default async function decorate(block) {
     : ''
 }
                                ${car.exShowroomPrice
-    ? `<div class="banner__exShowroomPrice">${car.exShowroomPrice}</div>`
+    ? `<div class="banner__exShowroomPrice">${utility.formatINR(car.exShowroomPrice)}</div>`
     : ''
 }
                                ${testDriveText
