@@ -103,8 +103,8 @@ export default async function decorate(block) {
       </div>
       <div class="variant-content">
         <div class="button__content">
-            <button class="nav-arrow prev hide">←</button>
-            <button class="nav-arrow next">→</button>
+            <button class="nav-arrow prev hide"></button>
+            <button class="nav-arrow next"></button>
         </div>
       <div class="variant__cards">
           ${createItemList()}
