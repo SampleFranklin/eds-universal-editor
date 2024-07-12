@@ -78,7 +78,11 @@
       "variant-listing",
       "mfe-poc",
       "dealer-locator",
-      "offer-list"
+      "offer-list",
+      "secondary-navigation",
+      "car-detail-banner",
+      "safety-tabs",
+      "brand-header"
     ]
   },
   {
@@ -180,12 +184,6 @@
     ]
   },
   {
-    "id": "nexa-eshowroom-experience",
-    "components": [
-      "nexa-eshowroom-experience-item"
-    ]
-  },
-  {
     "id": "slider",
     "components": [
       "teaser"
@@ -245,6 +243,26 @@
     "id": "offer-list",
     "components": [
       "offer-item"
+    ]
+  },
+  {
+    "id": "secondary-navigation",
+    "components": [
+      "cta"
+      
+    ]
+  },
+ 
+  {
+    "id": "safety-tabs",
+    "components": [
+      "safety-item"
+    ]
+  },
+  {
+    "id": "brand-header",
+    "components": [
+      "brand-header-item"
     ]
   }
 ]
