@@ -34,7 +34,7 @@ export default async function decorate(block) {
   await fetchCar(graphQlEndpoint, requestOptions)
     .then((response) => {
       itemArray = [...response.data.variantList.items];
-      filterArray = [...itemArray];
+      filterArray = [...itemArray, ...itemArray, ...itemArray];
     })
     .catch(() => {});
 
