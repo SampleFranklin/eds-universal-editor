@@ -102,6 +102,7 @@
 
 .container__slider .variant-content {
   position: relative;
+  overflow: hidden;
 }
 
 .container__slider .variant__cards {
