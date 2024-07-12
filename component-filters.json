@@ -81,7 +81,8 @@
       "offer-list",
       "secondary-navigation",
       "car-detail-banner",
-      "safety-tabs"
+      "safety-tabs",
+      "brand-header"
     ]
   },
   {
@@ -256,6 +257,12 @@
     "id": "safety-tabs",
     "components": [
       "safety-item"
+    ]
+  },
+  {
+    "id": "brand-header",
+    "components": [
+      "brand-header-item"
     ]
   }
 ]
