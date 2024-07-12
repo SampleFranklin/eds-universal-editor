@@ -1082,7 +1082,7 @@
                 "template": {
                   "name": "Secondary Navigation",
                   "filter": "secondary-navigation",
-                  "model": "secondary-navigation"
+                  "model": "logo"
                 
                 }
               }
