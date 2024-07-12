@@ -2371,7 +2371,7 @@
     ]
   },
   {
-    "id": "nexa-brand-film-carousel",
+    "id": "brand-film-carousel",
     "fields": [
       {
         "component": "text-input",
@@ -2437,7 +2437,7 @@
     ]
   },
   {
-    "id": "nexa-brand-film-carousel-item",
+    "id": "brand-film-carousel-item",
     "fields": [
       {
         "component": "reference",
