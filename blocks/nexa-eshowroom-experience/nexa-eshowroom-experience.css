@@ -17,7 +17,6 @@
 }
 
 .e-showroom__container {
-    /* display: flex; */
     flex-direction: row;
     flex-wrap: wrap;
     position: relative;
@@ -53,7 +52,6 @@
     font-style: italic;
     font-weight: 400;
     line-height: 48px;
-    /* 150% */
 }
 
 .e-showroom__container .e-showroom__price {
@@ -150,44 +148,6 @@
     position: relative;
 }
 
-/* .e-showroom__container .e-showroom__secondary__btn::before,
-.e-showroom__container .e-showroom__secondary__btn::after {
-    content: '';
-    display: block;
-    background: url('../../icons/border-cut-up.svg') no-repeat;
-    width: 8px;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    background-size: contain;
-} */
-
-/* .e-showroom__container .e-showroom__secondary__btn::before {
-    left: -8px;
-}
-
-.e-showroom__container .e-showroom__secondary__btn::after {
-    right: -8px;
-    transform: rotate(180deg);
-} */
-
-/* .e-showroom__container .e-showroom__secondary__btn::before{
-    content: '';
-    display: inline-block;
-    background: url('../../icons/border-cut-up.svg') no-repeat;
-    height: 32px;
-    width: 8px;
-}
-
-.e-showroom__container .e-showroom__secondary__btn::after{
-    content: '';
-    display: inline-block;
-    background: url('../../icons/border-cut-up.svg') no-repeat;
-    height: 32px;
-    width: 8px;
-    transform: rotate(180deg);
-} */
-
 .e-showroom__container .e-showroom__action {
     display: flex;
     flex-direction: row;
@@ -246,14 +206,7 @@
     background-size: contain;
 }
 
-/* .e-showroom__container .e-    a {
-    box-sizing: border-box;
-} */
-
 .e-showroom__container .carousel__dots {
-    /* position: absolute;
-    bottom: 2%;
-    left: 2%; */
     display: flex;
 }
 
@@ -285,12 +238,10 @@
     bottom: 5%;
     justify-content: start;
     align-items: center;
-    /* gap: 24px; */
 }
 
 .e-showroom__container .carousel__navigation .carousel__prev {
     transform: scale(-1, 1);
-    /* padding: 14.216px 14.06px 14.584px 14.584px; */
 }
 
 .e-showroom__container .carousel__navigation .carousel__next::after {
@@ -347,7 +298,6 @@
     height: 100%;
     display: none;
     object-fit: cover;
-    /* height: 768px */
 }
 
 .e-showroom__container .active-video {
@@ -378,9 +328,9 @@
         /* transition: all 0.3s linear; */
     }
 
-    /* .e-showroom__container .e-showroom__info-container>div {
+    .e-showroom__container .e-showroom__info-container>div {
         max-width: 50%;
-    } */
+    }
 
     .e-showroom__container .e-showroom__subtitle {
         font-size: 12px;
@@ -459,10 +409,6 @@
     .e-showroom__container .carousel__navigation {
         position: absolute;
         gap: 24px;
-        /* right: 64px;
-                bottom: 50px;
-                padding: 0; */
-
     }
 
     .e-showroom__container .carousel__dots ul {
