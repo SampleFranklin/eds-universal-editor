@@ -203,7 +203,6 @@ export default async function decorate(block) {
             .classList.add("active-video");
           return true;
         },
-        dotsInteractive: false,
       }
     );
 
