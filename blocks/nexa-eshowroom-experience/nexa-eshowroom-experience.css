@@ -1,5 +1,21 @@
 @import url('../carousel/fadecarousel.css');
 
+.nexa-eshowroom-experience.block {
+    position: relative; /* Ensure the container is positioned */
+}
+
+.nexa-eshowroom-experience.block::after{
+    position: absolute;
+    content: '';
+    height: 16px;
+    background-color: #18171A;
+    display: block;
+    bottom: -1px;
+    right: 0;
+    left: 0;
+    clip-path: polygon(108px 0, 100% 0, 100% 100%, 96px 100%);
+}
+
 .e-showroom__container {
     display: flex;
     flex-direction: row;
@@ -121,7 +137,7 @@
     align-items: center;
     font-weight: 400;
     line-height: 20px;
-    padding: 8px 12px;
+    /* padding: 8px 12px; */
     text-decoration: none;
     display: flex;
     gap: 10.24px;
@@ -129,8 +145,48 @@
     border-radius: inherit;
     background: inherit;
     /*extra*/
-    border: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    position: relative;
 }
+
+.e-showroom__container .e-showroom__secondary__btn::before,
+.e-showroom__container .e-showroom__secondary__btn::after {
+    content: '';
+    display: block;
+    background: url('../../icons/border-cut-up.svg') no-repeat;
+    width: 8px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-size: contain; 
+}
+
+.e-showroom__container .e-showroom__secondary__btn::before {
+    left: -8px;
+}
+
+.e-showroom__container .e-showroom__secondary__btn::after {
+    right: -8px; 
+    transform: rotate(180deg);
+}
+
+/* .e-showroom__container .e-showroom__secondary__btn::before{
+    content: '';
+    display: inline-block;
+    background: url('../../icons/border-cut-up.svg') no-repeat;
+    height: 32px;
+    width: 8px;
+}
+
+.e-showroom__container .e-showroom__secondary__btn::after{
+    content: '';
+    display: inline-block;
+    background: url('../../icons/border-cut-up.svg') no-repeat;
+    height: 32px;
+    width: 8px;
+    transform: rotate(180deg);
+} */
 
 .e-showroom__container .e-showroom__action {
     display: flex;
@@ -251,6 +307,11 @@
 
 @media (min-width:999px) {
 
+    .nexa-eshowroom-experience.block::after{
+        height: 30px;
+        clip-path: polygon(calc(18% + 30px) 0, 100% 0, 100% 100%, 18% 100%);
+    }
+
     .e-showroom__container {
         padding-right: 0;
         padding-left: 0;
@@ -360,7 +421,7 @@
 
     .e-showroom__container .carousel__dots {
         position: absolute;
-        bottom: 1px;
+        bottom: 10px;
         left: 2rem
     }
 
@@ -379,8 +440,8 @@
         background-image: url(../../icons/north_east.svg);
         filter: invert(1);
     }
-
+/* 
     .e-showroom__container .e-showroom__secondary__btn {
         padding: 8px 30px;
-    }
+    } */
 }

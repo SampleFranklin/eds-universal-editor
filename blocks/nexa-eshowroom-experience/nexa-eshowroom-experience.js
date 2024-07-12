@@ -132,7 +132,7 @@ export default async function decorate(block) {
                       });
               }*/
       }
-
+  
       itemEl.innerHTML = `
                 <div>
                   <div class="e-showroom__info-container">
