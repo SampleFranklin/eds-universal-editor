@@ -18,7 +18,6 @@ const slider = {
       return 1.5; // 1.5 slides on small screens
     }
     let visibleBoxes = calculateVisibleBoxes();
-    console.log(visibleBoxes);
     const totalBoxes = boxes.length;
     let currentIndex = 0;
     // Calculate the number of visible boxes based on the window width
@@ -35,8 +34,7 @@ const slider = {
         currentIndex > 0
           ? currentIndex - noOfSlideDesktop
           : totalBoxes - visibleBoxes;
-      console.log(currentIndex);
-      if (currentIndex < 3) prevButton.classList.add("hide");
+      if (currentIndex < visibleBoxes) prevButton.classList.add("hide");
 
       updateSlider();
     });
@@ -47,7 +45,7 @@ const slider = {
         currentIndex < totalBoxes - visibleBoxes
           ? currentIndex + noOfSlideDesktop
           : 0;
-      if (currentIndex >= totalBoxes - noOfSlideDesktop)
+      if (currentIndex >= totalBoxes - visibleBoxes)
         nextButton.classList.add("hide");
 
       updateSlider();
