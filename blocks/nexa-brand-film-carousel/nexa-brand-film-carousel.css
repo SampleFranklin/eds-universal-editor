@@ -104,6 +104,7 @@
   align-items: center;
 }
 
+.brand-film__container .brand-film__wrapper--fullscreen,
 .brand-film__container .brand-film__wrapper--fullscreen .brand-film__asset,
 .brand-film__container .brand-film__wrapper--fullscreen .brand-film__video-container {
   width: 100%;
@@ -240,6 +241,7 @@
     height: 663px;
   }
 
+  .brand-film__container .brand-film__wrapper--fullscreen,
   .brand-film__container .brand-film__wrapper--fullscreen .brand-film__asset,
   .brand-film__container .brand-film__wrapper--fullscreen .brand-film__video-container {
     width: 100%;
