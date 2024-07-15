@@ -40,19 +40,7 @@ export default function decorate(block) {
 
   const dealerLocator = getDealerLocator();
 
-  // Create the links HTML structure
-  // const ul = document.createElement('ul');
-  // ul.classList.add('list-container');
-  // dealerLocator.ctas.forEach(cta => {
-  //   const listItem = document.createElement('li');
-  //   const anchor = document.createElement('a');
-  //   anchor.href = cta.href;
-  //   anchor.textContent = cta.text;
-  //   anchor.classList.add('cta-text'); // Added class for CTA text
-  //   listItem.appendChild(anchor);
-  //   moveInstrumentation(cta.ctaEl, listItem);
-  //   ul.appendChild(listItem);
-  // });
+ 
 
   block.innerHTML = utility.sanitizeHtml(`
   
