@@ -40,30 +40,27 @@ export default function decorate(block) {
 
   const dealerLocator = getDealerLocator();
 
- 
-
   block.innerHTML = utility.sanitizeHtml(`
-  
     <div class="dealer-locator__container right-seperator">
-       <div class="dealer-locator__container">
-      <div class="section">
-        <div class="image-container">
-          ${(dealerLocator.image) ? dealerLocator.image.outerHTML : ''}
-          <div class="overlay">
-            <div class="dealer-locator__content">
-              <p class="pre-title">${dealerLocator.pretitle}</p>
-            </div>
-            <div class="dealer-locator__description">${dealerLocator.description}</div>
-            <div class="dealer-locator__action">
-              <div class="scroll-bar"></div>
-              <ul class="list-container">
-                ${dealerLocator.ctas.join('')}
-              </ul>
+      <div class="dealer-locator__container">
+        <div class="section">
+          <div class="image-container">
+            ${(dealerLocator.image) ? dealerLocator.image.outerHTML : ''}
+            <div class="overlay">
+              <div class="dealer-locator__content">
+                <p class="pre-title">${dealerLocator.pretitle}</p>
+              </div>
+              <div class="dealer-locator__description">${dealerLocator.description}</div>
+              <div class="dealer-locator__action">
+                <div class="scroll-bar"></div>
+                <ul class="list-container">
+                  ${dealerLocator.ctas.join('')}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </div>
   `);
 
@@ -73,24 +70,27 @@ export default function decorate(block) {
 
     // Initial highlight setup
     function highlightFirstCTA() {
-      ctaElements[0].classList.add('highlight');
-      // ctaElements[0].style.fontSize = '35px'; // Increase font size for highlighted CTA
+      if (ctaElements.length > 0) {
+        ctaElements[0].classList.add('highlight');
+        // ctaElements[0].style.fontSize = '35px'; // Increase font size for highlighted CTA
 
-      const ctaHeight = ctaElements[0].offsetHeight;
-      const ctaOffsetTop = ctaElements[0].offsetTop;
-      scrollBar.style.height = `${ctaHeight}px`;
-      scrollBar.style.top = `${ctaOffsetTop}px`;
-      scrollBar.classList.add('highlight');
+        const ctaHeight = ctaElements[0].offsetHeight;
+        const ctaOffsetTop = ctaElements[0].offsetTop;
+        scrollBar.style.height = `${ctaHeight}px`;
+        scrollBar.style.top = `${ctaOffsetTop}px`;
+        scrollBar.classList.add('highlight');
+      }
     }
 
-    highlightFirstCTA(); // Highlight the first CTA initially
+    // Call highlightFirstCTA after DOM update
+    requestAnimationFrame(highlightFirstCTA);
 
     // Add hover effects
     ctaElements.forEach((cta) => {
       cta.addEventListener('mouseover', () => {
         ctaElements.forEach((ctaElement) => {
           ctaElement.classList.remove('highlight');
-          // cta.style.fontSize = '24px'; // Reset font size for normal CTAs
+          // ctaElement.style.fontSize = '24px'; // Reset font size for normal CTAs
         });
         cta.classList.add('highlight');
         // cta.style.fontSize = '35px'; // Increase font size for highlighted CTA
