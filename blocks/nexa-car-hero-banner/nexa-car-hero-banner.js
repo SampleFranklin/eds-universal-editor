@@ -38,8 +38,14 @@ export default async function decorate(block) {
   const { publishDomain, apiKey } = await fetchPlaceholders();
 
   const tokenUrl = 'https://publish-p135331-e1341966.adobeaemcloud.com/content/nexa/services/token';
-  const auth = await fetch(tokenUrl);
-  const authorization = await auth.text();
+  let authorization;
+  try{
+    const auth = await fetch(tokenUrl);
+    authorization = await auth.text();
+  }
+  catch(e){
+    authorization=''
+  }
   const storedVariantPrices = {};
   function getLocalStorage(key) {
     return localStorage.getItem(key);
@@ -59,9 +65,14 @@ export default async function decorate(block) {
       Authorization: authorization,
     };
     const url = new URL(apiUrl);
-
-    const response = await fetch(url, { method: 'GET', headers: defaultHeaders });
-    const priceData = await response.json();
+    let priceData;
+    try{
+      const response = await fetch(url, { method: 'GET', headers: defaultHeaders });
+      priceData = await response.json();
+    }
+    catch(error){
+      priceData = {};
+    }
     if (priceData?.error === false && priceData?.data) {
       let formattedPrice = null;
       const timestamp = new Date().getTime() + (1 * 24 * 60 * 60 * 1000); // 1 day from now
