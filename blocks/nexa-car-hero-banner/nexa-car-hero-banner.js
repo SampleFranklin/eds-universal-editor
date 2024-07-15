@@ -215,7 +215,7 @@ export default async function decorate(block) {
               <div class="price-details">
                   <p class="ex-showroom-label">${exShowroomLabel}</p>
                   <div role="separator"></div>
-                  <p class="ex-showroom-price">${await fetchPrice(variant.variantId, variant.exShowroomPrice)}</p>
+                  <p class="ex-showroom-price">${await fetchPrice(variant.variantId, variant.exShowroomPrice)} ${lakhLabel}</p>
               </div>
               <div class="hero__ctas">
                   <div class="cta cta__primary">
@@ -232,14 +232,6 @@ export default async function decorate(block) {
                 <div class="hero__legends">
                   ${getTypesHtml(variant)}
                 </div>
-                <div class="hero__ctas">
-                  <div class="cta cta__primary">
-                      <a href="${primaryLink}" target="${primaryTarget}">${primaryCtaText}</a>
-                  </div>
-                  <div class="cta cta__secondary">
-                      <a href="${secondaryLink}" target="${secondaryTarget}">${secondaryCtaText}</a>
-                  </div>
-              </div>
             </div>
             <div class="hero__disclaimer-container">
               <p>${variant.variantName} ${termsAndConditionsText}</p>
@@ -264,17 +256,21 @@ export default async function decorate(block) {
   div.className = 'hero-banner__carousel';
   async function finalBlock() {
     for (let i = 0; i < cars.length; i += 1) {
+      const html = await getVariantHtml(cars[i]);
       const item = document.createElement('div');
       item.classList.add('hero-banner__slides');
       if (i === 0) {
         item.classList.add('active');
       }
-      item.innerHTML = await getVariantHtml(cars[i]);
-      div.append(item);
+      item.innerHTML = html;
+      div.insertAdjacentElement('beforeend', item);
+      // if (i === cars.length - 1) {
+      //   console.log(div.cloneNode(true), '[[[[[[');
+      // }
     }
     initCarousel(div);
   }
-  finalBlock();
   block.innerHTML = '';
   block.append(div);
+  finalBlock();
 }
