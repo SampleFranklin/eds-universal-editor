@@ -18,7 +18,9 @@ export default function decorate(block) {
       const alt = altTextEl?.textContent?.trim() || 'image';
       img.setAttribute('alt', alt);
       img.classList.add('image-container');
+      
     }
+    
     const pretitle = pretitleEl?.textContent?.trim() || "";
     const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.outerHTML).join('');
     const ctas = Array.from(ctaEls).map(ctaEl => {
@@ -46,6 +48,7 @@ export default function decorate(block) {
     anchor.href = cta.href;
     anchor.textContent = cta.text;
     anchor.classList.add('cta-text'); // Added class for CTA text
+   
     listItem.appendChild(anchor);
     moveInstrumentation(cta.ctaEl, listItem);
     ul.appendChild(listItem);
@@ -84,7 +87,7 @@ export default function decorate(block) {
     // Initial highlight setup
     function highlightFirstCTA() {
       ctaElements[0].classList.add('highlight');
-      ctaElements[0].style.fontSize = '35px'; // Increase font size for highlighted CTA
+      //ctaElements[0].style.fontSize = '35px'; // Increase font size for highlighted CTA
 
       const ctaHeight = ctaElements[0].offsetHeight;
       const ctaOffsetTop = ctaElements[0].offsetTop;
@@ -100,10 +103,10 @@ export default function decorate(block) {
       cta.addEventListener('mouseover', () => {
         ctaElements.forEach(cta => {
           cta.classList.remove('highlight');
-          cta.style.fontSize = '24px'; // Reset font size for normal CTAs
+          // cta.style.fontSize = '24px'; // Reset font size for normal CTAs
         });
         cta.classList.add('highlight');
-        cta.style.fontSize = '35px'; // Increase font size for highlighted CTA
+        //cta.style.fontSize = '35px'; // Increase font size for highlighted CTA
 
         const ctaHeight = cta.offsetHeight;
         const ctaOffsetTop = cta.offsetTop;
