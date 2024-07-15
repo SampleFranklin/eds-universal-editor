@@ -281,7 +281,7 @@ export default async function decorate(block) {
     }
     initCarousel(div);
   }
-  await finalBlock();
   block.innerHTML = '';
   block.append(div);
+  finalBlock();
 }

@@ -19,6 +19,8 @@
 
 .hero-banner__carousel {
   position: relative;
+  background-color: #18171A;
+  height: 712px;
 }
 
 .hero__video-container {
@@ -246,6 +248,10 @@
 
   .hero__information-overlay {
     padding: 64px;
+  }
+  
+  .hero-banner__carousel{
+    height: 768px;
   }
 
   .hero__video-container {
