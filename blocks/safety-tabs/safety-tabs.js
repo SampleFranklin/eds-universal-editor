@@ -18,7 +18,7 @@ function generateHighlightItemHTML(highlightItem, index) {
     if (image) {
       const img = image.querySelector('img');
       const alt=image.querySelector('img').alt || 'Image Description';
-      img.classList.add('highlightItem-img');
+      img.classList.add('hotspot-img');
       img.removeAttribute('width');
       img.removeAttribute('height');
       img.setAttribute('alt', alt);
@@ -29,20 +29,19 @@ function generateHighlightItemHTML(highlightItem, index) {
     
     const newHTML = utility.sanitizeHtml(`
         <div class="text-section">
-          <div class="top-left">
+          <div class="title">
             <h1>${title}</h1>
           </div>
-          <div class="top-right">
+          <div class="description">
             <p>${subtitle}</p>
           </div>
         </div>
-        ${(image) ? image.outerHTML : ''}
-        <div class="highlightItem-content">
-    
+        <div class="hotspots">
+            ${(image) ? image.outerHTML : ''}
         </div>
     `);
 
-    highlightItem.classList.add('highlightItem', `switch-index-${index}`);
+    highlightItem.classList.add('safetyTabItem', `switch-index-${index}`);
     highlightItem.innerHTML = newHTML;
     return highlightItem.outerHTML;
   }
@@ -69,10 +68,10 @@ const highlightItemsHTML = highlightItemListElements
 
     
     block.innerHTML = `
-    <div class="highlightItems-container">${highlightItemsHTML}</div>
+    <div class="safetyTabItems-container">${highlightItemsHTML}</div>
     ${switchListHTML}`;    
 
-    TabUtils.setupTabs(block, highlightItemListElements);
+    TabUtils.setupTabs(block, 'safetyTabItem');
   
     return block;
 

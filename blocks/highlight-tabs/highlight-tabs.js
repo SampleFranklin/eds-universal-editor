@@ -147,7 +147,7 @@ export default function decorate(block) {
       restructureDescriptionHtml(block);
     }
   initializeHighlightItems(block.querySelectorAll('.highlightItem-content'));
-  TabUtils.setupTabs(block, highlightItemListElements);
+  TabUtils.setupTabs(block, 'highlightItem');
 
   return block;
 }
