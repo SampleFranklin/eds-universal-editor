@@ -13,38 +13,37 @@ function generateHighlightItemHTML(highlightItem, index) {
     console.log(hotspot.outerHTML);
   });
 
-  const image = imageEl?.querySelector('picture');
-  if (image) {
-    const img = image.querySelector('img');
-    const alt = image.querySelector('img').alt || 'Image Description';
-    img.classList.add('highlightItem-img');
-    img.removeAttribute('width');
-    img.removeAttribute('height');
-    img.setAttribute('alt', alt);
-  }
+    const image = imageEl?.querySelector('picture');
+    if (image) {
+      const img = image.querySelector('img');
+      const alt=image.querySelector('img').alt || 'Image Description';
+      img.classList.add('hotspot-img');
+      img.removeAttribute('width');
+      img.removeAttribute('height');
+      img.setAttribute('alt', alt);
+    }
 
   const title = titleEl?.textContent?.trim() || '';
   const subtitle = subtitleEl?.textContent?.trim() || '';
 
   const newHTML = utility.sanitizeHtml(`
         <div class="text-section">
-          <div class="top-left">
+          <div class="title">
             <h1>${title}</h1>
           </div>
-          <div class="top-right">
+          <div class="description">
             <p>${subtitle}</p>
           </div>
         </div>
-        ${(image) ? image.outerHTML : ''}
-        <div class="highlightItem-content">
-    
+        <div class="hotspots">
+            ${(image) ? image.outerHTML : ''}
         </div>
     `);
 
-  highlightItem.classList.add('highlightItem', `switch-index-${index}`);
-  highlightItem.innerHTML = newHTML;
-  return highlightItem.outerHTML;
-}
+    highlightItem.classList.add('safetyTabItem', `switch-index-${index}`);
+    highlightItem.innerHTML = newHTML;
+    return highlightItem.outerHTML;
+  }
 
 export default function decorate(block) {
   // console.log(block);
@@ -63,11 +62,13 @@ export default function decorate(block) {
       return tabNameEl?.textContent?.trim() || '';
     });
 
-  block.innerHTML = `
-    <div class="highlightItems-container">${highlightItemsHTML}</div>
-    ${switchListHTML}`;
+    
+    block.innerHTML = `
+    <div class="safetyTabItems-container">${highlightItemsHTML}</div>
+    ${switchListHTML}`;    
 
-  TabUtils.setupTabs(block, highlightItemListElements);
+    TabUtils.setupTabs(block, highlightItemListElements);
+  
+    return block;
 
-  return block;
 }
