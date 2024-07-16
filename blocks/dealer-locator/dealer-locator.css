@@ -54,7 +54,7 @@
   margin-right: 10px;
 }
 
-.overlay {
+.dealer-locator__overlay {
   position: absolute;
   left: 0;
   bottom: unset;
@@ -188,7 +188,7 @@
       height: 100%;
     }
    
-  .overlay {
+  .dealer-locator__overlay {
     bottom: 0;
     height: 353px;
   }

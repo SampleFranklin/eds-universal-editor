@@ -43,10 +43,10 @@ export default function decorate(block) {
   block.innerHTML = utility.sanitizeHtml(`
     <div class="dealer-locator__container right-seperator">
       <div class="dealer-locator__container">
-        <div class="section">
+        <div class="dealer-locator__section">
           <div class="dealer-locator__image-container">
             ${(dealerLocator.image) ? dealerLocator.image.outerHTML : ''}
-            <div class="overlay">
+            <div class="dealer-locator__overlay">
               <div class="dealer-locator__content">
                 <p class="pre-title">${dealerLocator.pretitle}</p>
               </div>
