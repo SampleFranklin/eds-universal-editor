@@ -18,7 +18,7 @@ export default function decorate(block) {
       const altTextEl = imageEl.querySelector('figcaption');
       const alt = altTextEl?.textContent?.trim() || 'image';
       img.setAttribute('alt', alt);
-      img.classList.add('image-container');
+      img.classList.add('dealer-locator__image-container');
     }
 
     const pretitle = pretitleEl?.textContent?.trim() || '';
@@ -44,7 +44,7 @@ export default function decorate(block) {
     <div class="dealer-locator__container right-seperator">
       <div class="dealer-locator__container">
         <div class="section">
-          <div class="image-container">
+          <div class="dealer-locator__image-container">
             ${(dealerLocator.image) ? dealerLocator.image.outerHTML : ''}
             <div class="overlay">
               <div class="dealer-locator__content">

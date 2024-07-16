@@ -4,19 +4,19 @@
   background: black;
 }
 
-.image-container {
+.dealer-locator__image-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   height: 500px;
 }
 
-.image-container picture {
+.dealer-locator__image-container picture {
   width: 100%;
   height: 100%;
 }
 
-.image-container img {
+.dealer-locator__image-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -184,7 +184,7 @@
   }
 
   
-    .image-container img {
+    .dealer-locator__image-container img {
       height: 100%;
     }
    
