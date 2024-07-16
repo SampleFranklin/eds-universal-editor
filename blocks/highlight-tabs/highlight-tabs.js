@@ -69,12 +69,12 @@ export default function decorate(block) {
       highlightItem.style.position = 'absolute';
 
       // Force a reflow to ensure correct measurements
-      const tempHeight = moreContent.offsetHeight;
+      // const tempHeight = moreContent.offsetHeight;
 
       const computedStyle = getComputedStyle(moreContent);
       const contentHeight = moreContent.scrollHeight;
       const lineHeight = parseFloat(computedStyle.lineHeight);
-      // console.log(contentHeight, lineHeight, index, "cjlh");
+      // console.log(contentHeight, lineHeight, index, 'cjlh');
 
       // Determine whether to show the read more link based on content height
       if (contentHeight > lineHeight * 3) {
@@ -123,7 +123,7 @@ export default function decorate(block) {
     ${switchListHTML}`;
 
   const restructureDescriptionHtml = (block) => {
-    // const highlightItemsContainer = block.querySelector('.highlightItems-container');
+    const highlightItemsContainer = block.querySelector('.highlightItems-container');
     const switchListSection = block.querySelector('.switch-list-section');
     const highlightItems = highlightItemsContainer.querySelectorAll('.highlightItem');
 
