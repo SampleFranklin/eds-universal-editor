@@ -4,6 +4,7 @@
     position: relative;
     overflow: hidden;
     background-color: #ffffff;
+    padding: 0;
 }
 
 .brand-header__logo {
@@ -25,10 +26,14 @@
     overflow-x: auto;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
-    padding: 20px 0;
+    padding: 20px;
     border-bottom: 1px solid #000000;
     border-top: 1px solid #000000;
     justify-content: space-evenly;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 .brand-header-wrapper .brand-header .brand-header-container .brand-header__logo {
@@ -73,7 +78,15 @@
     z-index: 1000;
 }
 
+.brand-header-wrapper .brand-header .brand-header-container .brand-header__content::-webkit-scrollbar {
+    display: none;
+}
+
 @media (min-width: 999px) {
+
+    .brand-header-wrapper .brand-header .brand-header-container {
+        padding: 0 64px;
+    }
 
     .brand-header-wrapper .brand-header .brand-header-container .brand-header__logo {
         max-width: 120px;

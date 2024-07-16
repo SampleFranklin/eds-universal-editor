@@ -1,5 +1,5 @@
-import ctaUtils from "../../utility/ctaUtils.js";
-import utility from "../../utility/utility.js";
+import ctaUtils from '../../utility/ctaUtils.js';
+import utility from '../../utility/utility.js';
 
 export default async function decorate(block) {
   const [
@@ -13,25 +13,22 @@ export default async function decorate(block) {
     ...headerItems
   ] = block.children;
 
-  console.log(block);
-
-  let headerItemsHtml = "";
+  let headerItemsHtml = '';
 
   headerItems.forEach((element) => {
     const [titleEl, scrollClassEl] = element.children;
-    const title = titleEl?.querySelector(":is(h1,h2,h3,h4,h5,h6)");
+    const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)');
     const scrollCLass = scrollClassEl?.textContent?.trim();
-    console.log(scrollCLass);
-    let headerItemHtml = `  <div class="brand-header__header-item">
+    const headerItemHtml = `  <div class="brand-header__header-item">
                                 ${
-                                  title
-                                    ? `<div ${
-                                        scrollCLass ? "name=" + scrollCLass : ""
-                                      } class="brand-header__title">${
-                                        title.outerHTML
-                                      }</div>`
-                                    : ""
-                                }
+  title
+    ? `<div ${
+      scrollCLass ? `name=${scrollCLass}` : ''
+    } class="brand-header__title">${
+      title.outerHTML
+    }</div>`
+    : ''
+}
                             </div>
                             `;
     headerItemsHtml += headerItemHtml;
@@ -40,40 +37,40 @@ export default async function decorate(block) {
     primaryCtaLinkEl,
     primaryCtaTextEl,
     primaryCtaTargetEl,
-    "button-primary-light"
+    'button-primary-light',
   );
   const secondaryCta = ctaUtils.getLink(
     secondaryCtaLinkEl,
     secondaryCtaTextEl,
     secondaryCtaTargetEl,
-    "button-secondary-light"
+    'button-secondary-light',
   );
 
-  const image = logoImageEl?.querySelector("picture");
-  const img = image.querySelector("img");
-  img.removeAttribute("width");
-  img.removeAttribute("height");
+  const image = logoImageEl?.querySelector('picture');
+  const img = image.querySelector('img');
+  img.removeAttribute('width');
+  img.removeAttribute('height');
 
-  let ctaHtml = "";
+  let ctaHtml = '';
   if (primaryCta || secondaryCta) {
     ctaHtml = `
                      <div class="brand-header__actions">
-                       ${primaryCta ? primaryCta.outerHTML : ""}
-                       ${secondaryCta ? secondaryCta.outerHTML : ""}
+                       ${primaryCta ? primaryCta.outerHTML : ''}
+                       ${secondaryCta ? secondaryCta.outerHTML : ''}
                      </div>
                    `;
   }
 
-  block.innerHTML = "";
+  block.innerHTML = '';
   block.insertAdjacentHTML(
-    "beforeend",
+    'beforeend',
     utility.sanitizeHtml(`
                    <div class="brand-header-container container">
                        ${
-                         image
-                           ? `<div class="brand-header__logo">${image.outerHTML}</div>`
-                           : ""
-                       }
+  image
+    ? `<div class="brand-header__logo">${image.outerHTML}</div>`
+    : ''
+}
                        <div class="brand-header__content">
                             <div class="brand-header__items">
                                 ${headerItemsHtml}
@@ -81,40 +78,46 @@ export default async function decorate(block) {
                        ${ctaHtml}
                        </div>
                    </div>
-             `)
+             `),
   );
 
-  const links = document.querySelectorAll(".brand-header__title");
+  const links = document.querySelectorAll('.brand-header__title');
+
+  function activeHandler() {
+    links.forEach((l) => l.classList.remove('active'));
+    this.classList.add('active');
+    const targetClass = this.getAttribute('name');
+    const targetElement = targetClass
+      ? document.querySelector(`.${targetClass}`)
+      : null;
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+  }
 
   links.forEach((link) => {
-    link.addEventListener("click", function () {
-      links.forEach((l) => l.classList.remove("active"));
-      this.classList.add("active");
-      const targetClass = this.getAttribute("name");
-      const targetElement = targetClass
-        ? document.querySelector("." + targetClass)
-        : null;
-      if (targetElement) {
-        targetElement.scrollIntoView({
-          behavior: "smooth",
-        });
-      }
-    });
+    link.addEventListener('click', activeHandler);
   });
-  let sticky, navbar;
+
+  let sticky; let
+    navbar;
 
   // sticky brand header
-  window.onscroll = function () {
-    console.log(window.scrollY, sticky);
-    if (window.pageYOffset >= sticky) {
-      navbar?.classList?.add("sticky");
-    } else {
-      navbar?.classList?.remove("sticky");
-    }
-  };
 
-  setTimeout(function () {
-    navbar = block?.querySelector(".brand-header-container");
-    sticky = navbar?.offsetTop;
+  function stickyHandler() {
+    if (window.pageYOffset >= sticky) {
+      navbar?.classList?.add('sticky');
+    } else {
+      navbar?.classList?.remove('sticky');
+    }
+  }
+
+  window.onscroll = stickyHandler;
+
+  setTimeout(() => {
+    navbar = block?.querySelector('.brand-header-container');
+    sticky = navbar?.getBoundingClientRect().top;
   }, 3000);
 }
