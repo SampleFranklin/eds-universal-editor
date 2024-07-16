@@ -2,17 +2,16 @@ import TabUtils from '../../utility/tabsUtils.js';
 import utility from '../../utility/utility.js';
 
 function generateHighlightItemHTML(highlightItem, index) {
-    
-    const [
-      titleEl,
-      subtitleEl,,
-      imageEl,
-      ...hotspotsEl
-    ] = highlightItem.children;
+  const [
+    titleEl,
+    subtitleEl,,
+    imageEl,
+    ...hotspotsEl
+  ] = highlightItem.children;
 
-    hotspotsEl.map(hotspot => {
-      console.log(hotspot.outerHTML)
-    })
+  hotspotsEl.map((hotspot) => {
+    console.log(hotspot.outerHTML);
+  });
 
     const image = imageEl?.querySelector('picture');
     if (image) {
@@ -24,10 +23,10 @@ function generateHighlightItemHTML(highlightItem, index) {
       img.setAttribute('alt', alt);
     }
 
-    const title = titleEl?.textContent?.trim() || '';
-    const subtitle = subtitleEl?.textContent?.trim() || '';
-    
-    const newHTML = utility.sanitizeHtml(`
+  const title = titleEl?.textContent?.trim() || '';
+  const subtitle = subtitleEl?.textContent?.trim() || '';
+
+  const newHTML = utility.sanitizeHtml(`
         <div class="text-section">
           <div class="title">
             <h1>${title}</h1>
@@ -46,19 +45,16 @@ function generateHighlightItemHTML(highlightItem, index) {
     return highlightItem.outerHTML;
   }
 
-
 export default function decorate(block) {
+  // console.log(block);
 
-//console.log(block);
+  const highlightItemButtons = {};
 
-const highlightItemButtons = {};
+  const blockClone = block.cloneNode(true);
+  const highlightItemListElements = Array.from(block.children);
+  const highlightItemListElementsClone = Array.from(blockClone.children);
 
-
-const blockClone = block.cloneNode(true);
-const highlightItemListElements = Array.from(block.children);
-const highlightItemListElementsClone = Array.from(blockClone.children);
-
-const highlightItemsHTML = highlightItemListElements
+  const highlightItemsHTML = highlightItemListElements
     .map((highlightItem, index) => generateHighlightItemHTML(highlightItem, index)).join('');
   const switchListHTML = TabUtils
     .generateSwitchListHTML(highlightItemListElementsClone, (highlightItem) => {
@@ -71,7 +67,7 @@ const highlightItemsHTML = highlightItemListElements
     <div class="safetyTabItems-container">${highlightItemsHTML}</div>
     ${switchListHTML}`;    
 
-    TabUtils.setupTabs(block, 'safetyTabItem');
+    TabUtils.setupTabs(block, highlightItemListElements);
   
     return block;
 

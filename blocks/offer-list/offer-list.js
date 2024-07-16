@@ -82,7 +82,6 @@ export default function decorate(block) {
 
     // Modify link element if it exists
     if (a) {
-
       if (target) {
         a.setAttribute('target', target);
       }

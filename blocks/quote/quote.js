@@ -5,5 +5,5 @@ export default function decorate(block) {
   // blockquote.textContent = quoteWrapper.textContent.trim();
   // quoteWrapper.replaceChildren(blockquote);
 
-  block.innerHTML = `<a href="whatsapp://send?text=The text to share!" data-action="share/whatsapp/share">Share via Whatsapp</a>`;
+  block.innerHTML = '<a href="whatsapp://send?text=The text to share!" data-action="share/whatsapp/share">Share via Whatsapp</a>';
 }
