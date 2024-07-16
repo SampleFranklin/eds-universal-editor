@@ -148,8 +148,8 @@ export default function decorate(block) {
   if (isMobile) {
     restructureDescriptionHtml(block);
   }
-  // initializeHighlightItems(block.querySelectorAll('.highlightItem-content'));
-  TabUtils.setupTabs(block, highlightItemListElements);
+  initializeHighlightItems(block.querySelectorAll('.highlightItem-content'));
+  TabUtils.setupTabs(block, 'highlightItem');
 
   return block;
 }
