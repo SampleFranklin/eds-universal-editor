@@ -10,6 +10,7 @@ export default function decorate(block) {
       titleEl,
       subtitleEl,
       descriptionEl,
+      descriptionExEl,
       expandDescriptionEl,
       collapseDescriptionEL,
     ] = highlightItem.children;
@@ -27,6 +28,7 @@ export default function decorate(block) {
     const title = titleEl?.textContent?.trim() || '';
     const subtitle = subtitleEl?.textContent?.trim() || '';
     const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.textContent.trim()).join('');
+    const descriptionEx = Array.from(descriptionExEl.querySelectorAll('p')).map((p) => p.textContent.trim()).join('');
     const expandDescription = expandDescriptionEl?.textContent?.trim() || '';
     const collapseDescription = collapseDescriptionEL?.textContent?.trim() || '';
     highlightItemButtons[index] = {
@@ -47,6 +49,9 @@ export default function decorate(block) {
           <p class="more-content">
             ${description}
           </p>
+          <p class="more-content-expanded">
+            ${description} ${descriptionEx}
+          </p>
           <a href="#" class="read-more">${expandDescription}</a>
         </div>
     `);
@@ -58,39 +63,38 @@ export default function decorate(block) {
   function initializeHighlightItem(highlightItem, index) {
     const moreContent = highlightItem.querySelector('.more-content');
     const readMoreButton = highlightItem.querySelector('.read-more');
-
+  
     if (moreContent && readMoreButton) {
-      // Store the original display style
-      const originalDisplay = highlightItem.style.display;
-
-      // Temporarily make the element visible for measurement
-      highlightItem.style.display = 'block';
-      highlightItem.style.visibility = 'hidden';
-      highlightItem.style.position = 'absolute';
-
-      // Force a reflow to ensure correct measurements
-      // const tempHeight = moreContent.offsetHeight;
-
-      const computedStyle = getComputedStyle(moreContent);
-      const contentHeight = moreContent.scrollHeight;
+      // Create a clone of the content for measurement
+      const clone = moreContent.cloneNode(true);
+      clone.style.display = 'block';
+      clone.style.position = 'absolute';
+      clone.style.visibility = 'hidden';
+      clone.style.height = 'auto';
+      document.body.appendChild(clone);
+  
+      // Measure the clone
+      const contentHeight = clone.scrollHeight;
+      const computedStyle = getComputedStyle(clone);
       const lineHeight = parseFloat(computedStyle.lineHeight);
-      // console.log(contentHeight, lineHeight, index, 'cjlh');
-
-      // Determine whether to show the read more link based on content height
+  
+      // Remove the clone
+      document.body.removeChild(clone);
+  
+      console.log(contentHeight, lineHeight, index, 'cjlh');
+  
+      // Determine whether to show the read more link
       if (contentHeight > lineHeight * 3) {
         readMoreButton.style.display = 'block';
       } else {
         readMoreButton.style.display = 'none';
       }
-
-      // Restore the original display style
-      highlightItem.style.display = originalDisplay;
-      highlightItem.style.visibility = '';
-      highlightItem.style.position = '';
-
+  
+      // Add click event listener
       readMoreButton.addEventListener('click', (event) => {
         event.preventDefault();
         moreContent.classList.toggle('expanded');
+        
         const { expandBtn, collapseBtn } = highlightItemButtons[index];
         readMoreButton.textContent = moreContent.classList.contains('expanded') ? collapseBtn : expandBtn;
       });
@@ -99,8 +103,7 @@ export default function decorate(block) {
 
   function initializeHighlightItems(highlightItems) {
     highlightItems.forEach((highlightItem, index) => {
-      // Delay initialization to ensure content is rendered
-      setTimeout(() => initializeHighlightItem(highlightItem, index), 0);
+      initializeHighlightItem(highlightItem, index);
     });
   }
 
@@ -145,7 +148,7 @@ export default function decorate(block) {
   if (isMobile) {
     restructureDescriptionHtml(block);
   }
-  initializeHighlightItems(block.querySelectorAll('.highlightItem-content'));
+  // initializeHighlightItems(block.querySelectorAll('.highlightItem-content'));
   TabUtils.setupTabs(block, highlightItemListElements);
 
   return block;
