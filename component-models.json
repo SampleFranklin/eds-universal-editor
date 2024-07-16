@@ -3043,8 +3043,95 @@
         "valueType": "string",
         "required": true,
         "condition": { "!==": [{ "var": "image" }, ""] }
+      },
+      {
+        "component": "number",
+        "name": "hotspot1_xPos",
+        "label": "Hotspot 1 X-axis Position",
+        "valueType": "number",
+        "value": 0
+      },
+      {
+        "component": "number",
+        "name": "hotspot1_yPos",
+        "label": "Hotspot 1 Y-Axis Postion",
+        "valueType": "number",
+        "value": 0
+      },
+      {
+        "component": "richtext",
+        "name": "hotspot1_description",
+        "value": "",
+        "label": "Hotspot 1 Description",
+        "valueType": "string",
+        "required": true
+      },
+      {
+        "component": "number",
+        "name": "hotspot2_xPos",
+        "label": "Hotspot 2 X-axis Position",
+        "valueType": "number",
+        "value": 0
+      },
+      {
+        "component": "number",
+        "name": "hotspot2_yPos",
+        "label": "Hotspot 2 Y-Axis Postion",
+        "valueType": "number",
+        "value": 0
+      },
+      {
+        "component": "richtext",
+        "name": "hotspot2_description",
+        "value": "",
+        "label": "Hotspot 2 Description",
+        "valueType": "string",
+        "required": true
+      },
+      {
+        "component": "number",
+        "name": "hotspot3_xPos",
+        "label": "Hotspot 3 X-axis Position",
+        "valueType": "number",
+        "value": 0
+      },
+      {
+        "component": "number",
+        "name": "hotspot3_yPos",
+        "label": "Hotspot 3 Y-Axis Postion",
+        "valueType": "number",
+        "value": 0
+      },
+      {
+        "component": "richtext",
+        "name": "hotspot3_description",
+        "value": "",
+        "label": "Hotspot 3 Description",
+        "valueType": "string",
+        "required": true
+      },
+      {
+        "component": "number",
+        "name": "hotspot4_xPos",
+        "label": "Hotspot 4 X-axis Position",
+        "valueType": "number",
+        "value": 0
+      },
+      {
+        "component": "number",
+        "name": "hotspot4_yPos",
+        "label": "Hotspot 4 Y-Axis Postion",
+        "valueType": "number",
+        "value": 0
+      },
+      {
+        "component": "richtext",
+        "name": "hotspot4_description",
+        "value": "",
+        "label": "Hotspot 4 Description",
+        "valueType": "string",
+        "required": true
       }
-     
     ]
   },
 
