@@ -81,7 +81,7 @@
   padding-right: 20px;
 }
 
-.pre-title {
+.dealer-locator__content .pre-title {
   position: absolute;
   left: 0;
   padding: 20px;
@@ -218,7 +218,7 @@
     background-color: gray;
   }
 
-  .pre-title {
+  .dealer-locator__content .pre-title {
     position: absolute;
     padding: 20px;
    font-size: 18px;

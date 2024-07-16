@@ -64,6 +64,14 @@ export default function decorate(block) {
     </div>
   `);
 
+  function getCTAHeight() {
+    if (window.matchMedia("(min-width: 999px)").matches) {
+      return 64; // Height for desktop
+    } else {
+      return 35; // Height for mobile
+    }
+  }
+
   function setupScrollHighlight() {
     const ctaElements = document.querySelectorAll('.dealer-locator__action .cta-text');
     const scrollBar = document.querySelector('.dealer-locator__action .scroll-bar');
@@ -72,12 +80,9 @@ export default function decorate(block) {
     function highlightFirstCTA() {
       if (ctaElements.length > 0) {
         ctaElements[0].classList.add('highlight');
-        // ctaElements[0].style.fontSize = '35px'; // Increase font size for highlighted CTA
-
-        const ctaHeight = ctaElements[0].offsetHeight;
-        const ctaOffsetTop = ctaElements[0].offsetTop;
+        const ctaHeight = getCTAHeight();
         scrollBar.style.height = `${ctaHeight}px`;
-        scrollBar.style.top = `${ctaOffsetTop}px`;
+        scrollBar.style.top = '0';
         scrollBar.classList.add('highlight');
       }
     }
@@ -90,13 +95,12 @@ export default function decorate(block) {
       cta.addEventListener('mouseover', () => {
         ctaElements.forEach((ctaElement) => {
           ctaElement.classList.remove('highlight');
-          // ctaElement.style.fontSize = '24px'; // Reset font size for normal CTAs
         });
         cta.classList.add('highlight');
-        // cta.style.fontSize = '35px'; // Increase font size for highlighted CTA
 
-        const ctaHeight = cta.offsetHeight;
-        const ctaOffsetTop = cta.offsetTop;
+        const ctaIndex = Array.from(ctaElements).indexOf(cta);
+        const ctaHeight = getCTAHeight();
+        const ctaOffsetTop = ctaIndex * ctaHeight;
         scrollBar.style.height = `${ctaHeight}px`;
         scrollBar.style.top = `${ctaOffsetTop}px`;
       });
@@ -105,4 +109,7 @@ export default function decorate(block) {
 
   // Call the function to set up scroll highlighting
   setupScrollHighlight();
+
+  // Re-run the highlight setup on resize to adjust heights dynamically
+  window.addEventListener('resize', setupScrollHighlight);
 }
