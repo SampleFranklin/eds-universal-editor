@@ -2,32 +2,31 @@ import TabUtils from '../../utility/tabsUtils.js';
 import utility from '../../utility/utility.js';
 
 function generateHighlightItemHTML(highlightItem, index) {
-    
-    const [
-      titleEl,
-      subtitleEl,,
-      imageEl,
-      ...hotspotsEl
-    ] = highlightItem.children;
+  const [
+    titleEl,
+    subtitleEl,,
+    imageEl,
+    ...hotspotsEl
+  ] = highlightItem.children;
 
-    hotspotsEl.map(hotspot => {
-      console.log(hotspot.outerHTML)
-    })
+  hotspotsEl.map((hotspot) => {
+    console.log(hotspot.outerHTML);
+  });
 
-    const image = imageEl?.querySelector('picture');
-    if (image) {
-      const img = image.querySelector('img');
-      const alt=image.querySelector('img').alt || 'Image Description';
-      img.classList.add('highlightItem-img');
-      img.removeAttribute('width');
-      img.removeAttribute('height');
-      img.setAttribute('alt', alt);
-    }
+  const image = imageEl?.querySelector('picture');
+  if (image) {
+    const img = image.querySelector('img');
+    const alt = image.querySelector('img').alt || 'Image Description';
+    img.classList.add('highlightItem-img');
+    img.removeAttribute('width');
+    img.removeAttribute('height');
+    img.setAttribute('alt', alt);
+  }
 
-    const title = titleEl?.textContent?.trim() || '';
-    const subtitle = subtitleEl?.textContent?.trim() || '';
-    
-    const newHTML = utility.sanitizeHtml(`
+  const title = titleEl?.textContent?.trim() || '';
+  const subtitle = subtitleEl?.textContent?.trim() || '';
+
+  const newHTML = utility.sanitizeHtml(`
         <div class="text-section">
           <div class="top-left">
             <h1>${title}</h1>
@@ -42,24 +41,21 @@ function generateHighlightItemHTML(highlightItem, index) {
         </div>
     `);
 
-    highlightItem.classList.add('highlightItem', `switch-index-${index}`);
-    highlightItem.innerHTML = newHTML;
-    return highlightItem.outerHTML;
-  }
-
+  highlightItem.classList.add('highlightItem', `switch-index-${index}`);
+  highlightItem.innerHTML = newHTML;
+  return highlightItem.outerHTML;
+}
 
 export default function decorate(block) {
+  // console.log(block);
 
-//console.log(block);
+  const highlightItemButtons = {};
 
-const highlightItemButtons = {};
+  const blockClone = block.cloneNode(true);
+  const highlightItemListElements = Array.from(block.children);
+  const highlightItemListElementsClone = Array.from(blockClone.children);
 
-
-const blockClone = block.cloneNode(true);
-const highlightItemListElements = Array.from(block.children);
-const highlightItemListElementsClone = Array.from(blockClone.children);
-
-const highlightItemsHTML = highlightItemListElements
+  const highlightItemsHTML = highlightItemListElements
     .map((highlightItem, index) => generateHighlightItemHTML(highlightItem, index)).join('');
   const switchListHTML = TabUtils
     .generateSwitchListHTML(highlightItemListElementsClone, (highlightItem) => {
@@ -67,13 +63,11 @@ const highlightItemsHTML = highlightItemListElements
       return tabNameEl?.textContent?.trim() || '';
     });
 
-    
-    block.innerHTML = `
+  block.innerHTML = `
     <div class="highlightItems-container">${highlightItemsHTML}</div>
-    ${switchListHTML}`;    
+    ${switchListHTML}`;
 
-    TabUtils.setupTabs(block, highlightItemListElements);
-  
-    return block;
+  TabUtils.setupTabs(block, highlightItemListElements);
 
+  return block;
 }

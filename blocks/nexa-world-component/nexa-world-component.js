@@ -1,5 +1,6 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import { createOptimizedPicture } from '../../scripts/aem.js'
+import { createOptimizedPicture } from '../../scripts/aem.js';
+
 export default function decorate(block) {
   // Function to extract Nexa World content from the block
   function getNexaWorldContent() {
@@ -16,16 +17,16 @@ export default function decorate(block) {
     const pretitle = pretitleEl?.textContent?.trim() || '';
     const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)');
     title?.classList?.add('title');
-    const description = Array.from(descriptionEl.querySelectorAll('p')).map(p => p.textContent.trim()).join('');
-    
+    const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.textContent.trim()).join('');
+
     const cta = (ctaLinkEl) ? {
       href: ctaLinkEl.querySelector('a')?.href || '#',
       title: ctaLinkEl.querySelector('a')?.title || '',
       target: ctaTargetEl.textContent?.trim() || '_self',
-      textContent: ctaTextEl?.textContent?.trim() || ''
+      textContent: ctaTextEl?.textContent?.trim() || '',
     } : null;
 
-    const links = Array.from(linkEls).map(linkEl => {
+    const links = Array.from(linkEls).map((linkEl) => {
       const [linkImageEl, linkAltTextEl, linkTextEl, linkAnchorEl, linkTargetEl] = linkEl.children;
 
       const image = linkImageEl?.querySelector('picture');
@@ -41,15 +42,14 @@ export default function decorate(block) {
       const linkText = linkTextEl?.textContent?.trim() || '';
       const linkAnchor = linkAnchorEl?.querySelector('a')?.href || '#';
       const linkTarget = linkTargetEl?.querySelector('a')?.target || '_self';
-     
-     
+
       return {
         imgSrc: linkImageEl?.querySelector('img')?.src || '',
         imgAlt: linkAltText,
         text: linkText,
         href: linkAnchor,
         target: linkTarget,
-        linkEl: linkEl
+        linkEl,
       };
     });
 
@@ -58,7 +58,7 @@ export default function decorate(block) {
       title,
       description,
       cta,
-      links
+      links,
     };
   }
 
@@ -79,32 +79,30 @@ export default function decorate(block) {
         </a>
       </div>
     </div>`;
-    
 
   // Create the links HTML structure
   const ul = document.createElement('ul');
   ul.classList.add('list-container');
-  nexaWorldContent.links.forEach(link => {
+  nexaWorldContent.links.forEach((link) => {
     console.log(link);
     const listItem = document.createElement('li');
-    if(link.imgSrc!=''){
-    const anchor = document.createElement('a');
-    anchor.href = link.href;
-    anchor.textContent = link.text;
-    const optimizedPic = createOptimizedPicture(link.imgSrc, link.imgAlt, false, [{ width: '999' }]);
-    anchor.appendChild(optimizedPic);
-    listItem.appendChild(anchor);
-    
-    // Add event listener to change main image on hover
-    anchor.addEventListener('mouseover', () => {
-      document.querySelector('.nexa-world__img img').src = link.imgSrc;
-      document.querySelector('.nexa-world__img img').alt = link.imgAlt;
-    });
-  }
-  
-  moveInstrumentation(link.linkEl,listItem);
-  ul.appendChild(listItem);
+    if (link.imgSrc != '') {
+      const anchor = document.createElement('a');
+      anchor.href = link.href;
+      anchor.textContent = link.text;
+      const optimizedPic = createOptimizedPicture(link.imgSrc, link.imgAlt, false, [{ width: '999' }]);
+      anchor.appendChild(optimizedPic);
+      listItem.appendChild(anchor);
 
+      // Add event listener to change main image on hover
+      anchor.addEventListener('mouseover', () => {
+        document.querySelector('.nexa-world__img img').src = link.imgSrc;
+        document.querySelector('.nexa-world__img img').alt = link.imgAlt;
+      });
+    }
+
+    moveInstrumentation(link.linkEl, listItem);
+    ul.appendChild(listItem);
   });
 
   const nexaWorldTeaser = `
@@ -126,7 +124,7 @@ export default function decorate(block) {
     const links = document.querySelectorAll('.nexa-world__links a');
     const teaser = document.querySelector('.nexa-world__teaser');
     const container = document.querySelector('.nexa-world__container');
-    const isMobile = window.matchMedia("(max-width: 999px)").matches;
+    const isMobile = window.matchMedia('(max-width: 999px)').matches;
     const backgroundImage = links[0].querySelector('img');
 
     if (isMobile) {
@@ -136,8 +134,8 @@ export default function decorate(block) {
       teaser.style.backgroundImage = 'none';
       container.style.backgroundImage = `url(${backgroundImage.src})`;
     }
-    links.forEach(link => {      
-      link.addEventListener('mouseover', function() {       
+    links.forEach((link) => {
+      link.addEventListener('mouseover', function () {
         const imgSrc = this.querySelector('img').src;
         if (isMobile) {
           container.style.backgroundImage = 'none';
@@ -148,7 +146,7 @@ export default function decorate(block) {
         }
       });
 
-      link.addEventListener('mouseout', function() {
+      link.addEventListener('mouseout', () => {
         if (isMobile) {
           teaser.style.backgroundImage = 'none';
         } else {
@@ -160,6 +158,6 @@ export default function decorate(block) {
 
   // Initialize hover effects
 
-    updateHoverEffects();
-    window.addEventListener('resize', updateHoverEffects);
+  updateHoverEffects();
+  window.addEventListener('resize', updateHoverEffects);
 }

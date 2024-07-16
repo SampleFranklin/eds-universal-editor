@@ -205,7 +205,6 @@ export default async function decorate(block) {
       nxtBtn.click();
     }, 3000);
   }
-  
 
   function showCards(index) {
     cards.forEach((card, i) => {
@@ -247,7 +246,7 @@ export default async function decorate(block) {
     bullets.innerHTML += `<input id="bullet" type="radio" ${i === 0 ? 'checked' : ''} />`;
   }
 
-  document.querySelector(".hero_banner_container_wrapper").appendChild(bullets);
+  document.querySelector('.hero_banner_container_wrapper').appendChild(bullets);
 
   nxtBtn.addEventListener('click', () => {
     if (currentIndex + cardsPerPage < cards.length) {

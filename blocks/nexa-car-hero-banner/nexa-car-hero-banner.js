@@ -39,12 +39,11 @@ export default async function decorate(block) {
 
   const tokenUrl = 'https://publish-p135331-e1341966.adobeaemcloud.com/content/nexa/services/token';
   let authorization;
-  try{
+  try {
     const auth = await fetch(tokenUrl);
     authorization = await auth.text();
-  }
-  catch(e){
-    authorization=''
+  } catch (e) {
+    authorization = '';
   }
   const storedVariantPrices = {};
   function getLocalStorage(key) {
@@ -66,11 +65,10 @@ export default async function decorate(block) {
     };
     const url = new URL(apiUrl);
     let priceData;
-    try{
+    try {
       const response = await fetch(url, { method: 'GET', headers: defaultHeaders });
       priceData = await response.json();
-    }
-    catch(error){
+    } catch (error) {
       priceData = {};
     }
     if (priceData?.error === false && priceData?.data) {

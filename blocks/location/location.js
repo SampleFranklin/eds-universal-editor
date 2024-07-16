@@ -1,4 +1,5 @@
 import { fetchPlaceholders } from '../../scripts/aem.js';
+
 export default async function decorate(block) {
   const [titleEl, fylTextEl, dylTextEl] = block.children;
   const title = titleEl?.textContent?.trim();
@@ -37,7 +38,7 @@ export default async function decorate(block) {
   const { apiKey, authorization } = await fetchPlaceholders();
   const defaultHeaders = {
     'x-api-key': apiKey,
-    'Authorization': authorization,
+    Authorization: authorization,
   };
 
   const urlWithParams = 'https://api.preprod.developersatmarutisuzuki.in/dms/v1/api/common/msil/dms/dealer-only-cities?channel=EXC';

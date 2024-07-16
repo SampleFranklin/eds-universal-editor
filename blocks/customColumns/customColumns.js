@@ -1,3 +1,3 @@
 export default function decorate(block) {
-    block.classList.add('customColumnContainer');
+  block.classList.add('customColumnContainer');
 }

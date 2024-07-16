@@ -1,5 +1,5 @@
-import { getMetadata } from "../../scripts/aem.js";
-import { loadFragment } from "../fragment/fragment.js";
+import { getMetadata } from '../../scripts/aem.js';
+import { loadFragment } from '../fragment/fragment.js';
 
 /**
  * Loads and decorates the footer
@@ -7,46 +7,46 @@ import { loadFragment } from "../fragment/fragment.js";
  */
 export default async function decorate(block) {
   // Load footer as fragment
-  const footerMeta = getMetadata("footer");
+  const footerMeta = getMetadata('footer');
   const footerPath = footerMeta
     ? new URL(footerMeta, window.location).pathname
-    : "/common/footer";
+    : '/common/footer';
   const fragment = await loadFragment(footerPath);
 
   // Decorate footer DOM
-  block.textContent = "";
-  const footer = document.createElement("div");
+  block.textContent = '';
+  const footer = document.createElement('div');
 
   const topSection = fragment.firstElementChild;
   while (fragment.firstElementChild) {
     footer.append(fragment.firstElementChild);
   }
 
-  const linkGridSection = footer.querySelector(".link-grid-wrapper");
+  const linkGridSection = footer.querySelector('.link-grid-wrapper');
   const contactUsSection = footer.querySelector(
-    ".footer-center-section .default-content-wrapper"
+    '.footer-center-section .default-content-wrapper',
   );
   const socialLinks = footer.querySelector(
-    ".footer-center-section .contact-wrapper"
+    '.footer-center-section .contact-wrapper',
   );
-  const bottomSection = footer.querySelector(".footer-bottom-section");
+  const bottomSection = footer.querySelector('.footer-bottom-section');
   const bottomFirstSection = bottomSection.querySelectorAll(
-    ".columns-wrapper > div > div > div"
+    '.columns-wrapper > div > div > div',
   );
   const bottomSecondSection = bottomSection.querySelector(
-    ".default-content-wrapper"
+    '.default-content-wrapper',
   );
   const contactUsHeadingSection = contactUsSection.removeChild(
-    contactUsSection.querySelector("h3")
+    contactUsSection.querySelector('h3'),
   );
 
-  contactUsHeadingSection.classList.add("contactUs__Heading");
-  contactUsSection.querySelector("p").classList.add("tollfree__element");
+  contactUsHeadingSection.classList.add('contactUs__Heading');
+  contactUsSection.querySelector('p').classList.add('tollfree__element');
 
   const bottomSectionHtmlText = [];
   bottomFirstSection.forEach((bottomElement) => {
-    const pElement = bottomElement.querySelectorAll("p");
-    let pElementString = "";
+    const pElement = bottomElement.querySelectorAll('p');
+    let pElementString = '';
     pElement.forEach((pStr) => {
       pElementString += `<p>${pStr.innerText}</p>`;
     });
@@ -54,17 +54,17 @@ export default async function decorate(block) {
   });
 
   let bottomSecondSectionHtml = '<div class="row">';
-  bottomSecondSection.querySelectorAll("p").forEach((bottomElement) => {
-    const anchor = bottomElement.querySelector("a");
+  bottomSecondSection.querySelectorAll('p').forEach((bottomElement) => {
+    const anchor = bottomElement.querySelector('a');
     if (anchor) {
       bottomSecondSectionHtml += ` <li><a href=${anchor.href}>${anchor.textContent}</a></li>`;
     } else {
       bottomSecondSectionHtml += `<div class="col-md-3 footer__copyright-left"><p>${bottomElement.textContent}</p></div><div class="col-md-9 footer__copyright-right"><ul>`;
     }
   });
-  bottomSecondSectionHtml += "</ul></div>";
+  bottomSecondSectionHtml += '</ul></div>';
 
-  let topSectionHtml = "";
+  let topSectionHtml = '';
   if (topSection?.innerHTML) {
     topSectionHtml = `
       <div class="row">
@@ -75,7 +75,7 @@ export default async function decorate(block) {
     `;
   }
 
-  block.parentElement.classList.add("footer__arena");
+  block.parentElement.classList.add('footer__arena');
   block.innerHTML = `
     <div class="footer">
       <div class="container">
@@ -116,62 +116,62 @@ export default async function decorate(block) {
     </div>
   `;
 
-  const footerSeparatorElement = block.querySelector(".footer__separator");
+  const footerSeparatorElement = block.querySelector('.footer__separator');
   footerSeparatorElement.addEventListener(
-    "click",
+    'click',
     () => {
-      if (footerSeparatorElement.classList.contains("element__expand")) {
-        footerSeparatorElement.classList.remove("element__expand");
+      if (footerSeparatorElement.classList.contains('element__expand')) {
+        footerSeparatorElement.classList.remove('element__expand');
         expandSection();
       } else {
-        footerSeparatorElement.classList.add("element__expand");
+        footerSeparatorElement.classList.add('element__expand');
         collapseSection();
       }
     },
-    false
+    false,
   );
 
-  const accordionItems = block.querySelectorAll(".accordian-item");
-  accordionItems.forEach(function (element) {
+  const accordionItems = block.querySelectorAll('.accordian-item');
+  accordionItems.forEach((element) => {
     element.parentElement
-      .querySelector("ul")
-      .classList.add("hide__section__mobile");
-    element.classList.add("collapse");
-    element.addEventListener("click", accordionClick, false);
+      .querySelector('ul')
+      .classList.add('hide__section__mobile');
+    element.classList.add('collapse');
+    element.addEventListener('click', accordionClick, false);
   });
   // Define the external function for the click event
   function accordionClick() {
-    const ulElement = this.parentElement.querySelector("ul");
-    if (ulElement.classList.contains("hide__section__mobile")) {
-      this.classList.add("expand");
-      this.classList.remove("collapse");
-      ulElement.classList.remove("hide__section__mobile");
+    const ulElement = this.parentElement.querySelector('ul');
+    if (ulElement.classList.contains('hide__section__mobile')) {
+      this.classList.add('expand');
+      this.classList.remove('collapse');
+      ulElement.classList.remove('hide__section__mobile');
     } else {
-      this.classList.add("collapse");
-      this.classList.remove("expand");
-      ulElement.classList.add("hide__section__mobile");
+      this.classList.add('collapse');
+      this.classList.remove('expand');
+      ulElement.classList.add('hide__section__mobile');
     }
   }
 
   const collapseSection = function () {
-    block.querySelector(".contactUs__section").classList.add("hide__section");
+    block.querySelector('.contactUs__section').classList.add('hide__section');
     block
-      .querySelector(".link-container-section")
-      .querySelectorAll("ul")
+      .querySelector('.link-container-section')
+      .querySelectorAll('ul')
       .forEach((element) => {
-        element.classList.add("hide__section");
+        element.classList.add('hide__section');
       });
   };
 
   const expandSection = function () {
     block
-      .querySelector(".contactUs__section")
-      .classList.remove("hide__section");
+      .querySelector('.contactUs__section')
+      .classList.remove('hide__section');
     block
-      .querySelector(".link-container-section")
-      .querySelectorAll("ul")
+      .querySelector('.link-container-section')
+      .querySelectorAll('ul')
       .forEach((element) => {
-        element.classList.remove("hide__section");
+        element.classList.remove('hide__section');
       });
   };
 }

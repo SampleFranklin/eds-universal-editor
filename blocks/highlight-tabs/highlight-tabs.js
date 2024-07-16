@@ -69,7 +69,7 @@ export default function decorate(block) {
       highlightItem.style.position = 'absolute';
 
       // Force a reflow to ensure correct measurements
-      void moreContent.offsetHeight;
+      const tempHeight = moreContent.offsetHeight;
 
       const computedStyle = getComputedStyle(moreContent);
       const contentHeight = moreContent.scrollHeight;
@@ -115,37 +115,36 @@ export default function decorate(block) {
       return tabNameEl?.textContent?.trim() || '';
     });
 
-    const highlightItemsContainer = document.createElement('div');
-    highlightItemsContainer.classList.add('highlightItems-container');
-    highlightItemsContainer.innerHTML = highlightItemsHTML;
-    block.innerHTML = `
+  const highlightItemsContainer = document.createElement('div');
+  highlightItemsContainer.classList.add('highlightItems-container');
+  highlightItemsContainer.innerHTML = highlightItemsHTML;
+  block.innerHTML = `
     <div class="highlightItems-container">${highlightItemsHTML}</div>
     ${switchListHTML}`;
 
-    const restructureDescriptionHtml = (block) => {
-      const highlightItemsContainer = block.querySelector('.highlightItems-container');
-      const switchListSection = block.querySelector('.switch-list-section');
-      const highlightItems = highlightItemsContainer.querySelectorAll('.highlightItem');
+  const restructureDescriptionHtml = (block) => {
+    // const highlightItemsContainer = block.querySelector('.highlightItems-container');
+    const switchListSection = block.querySelector('.switch-list-section');
+    const highlightItems = highlightItemsContainer.querySelectorAll('.highlightItem');
 
-      // Move highlightItem-content elements to be siblings of the switch list
-      highlightItems.forEach((item, index) => {
-        const content = item.querySelector('.highlightItem-content');
-        if (content) {
-          switchListSection.appendChild(content);
-          if(index==0){
-            content.style.display='block';
-          }
-          else{
+    // Move highlightItem-content elements to be siblings of the switch list
+    highlightItems.forEach((item, index) => {
+      const content = item.querySelector('.highlightItem-content');
+      if (content) {
+        switchListSection.appendChild(content);
+        if (index === 0) {
+          content.style.display = 'block';
+        } else {
           content.style.display = 'none';
-          }
         }
+      }
     });
-  }
+  };
 
-    const isMobile = window.matchMedia("(max-width: 999px)").matches;
-    if (isMobile) {
-      restructureDescriptionHtml(block);
-    }
+  const isMobile = window.matchMedia('(max-width: 999px)').matches;
+  if (isMobile) {
+    restructureDescriptionHtml(block);
+  }
   initializeHighlightItems(block.querySelectorAll('.highlightItem-content'));
   TabUtils.setupTabs(block, highlightItemListElements);
 
