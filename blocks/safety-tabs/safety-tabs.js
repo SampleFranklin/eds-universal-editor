@@ -6,8 +6,13 @@ function generateHighlightItemHTML(highlightItem, index) {
     const [
       titleEl,
       subtitleEl,,
-      imageEl
+      imageEl,
+      ...hotspotsEl
     ] = highlightItem.children;
+
+    hotspotsEl.map(hotspot => {
+      console.log(hotspot.outerHTML)
+    })
 
     const image = imageEl?.querySelector('picture');
     if (image) {
@@ -45,7 +50,7 @@ function generateHighlightItemHTML(highlightItem, index) {
 
 export default function decorate(block) {
 
-console.log(block);
+//console.log(block);
 
 const highlightItemButtons = {};
 
