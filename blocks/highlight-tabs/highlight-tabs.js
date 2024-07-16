@@ -49,7 +49,7 @@ export default function decorate(block) {
           <p class="more-content">
             ${description}
           </p>
-          <p class="more-content-expanded">
+          <p class="more-content-expanded" style="display:none">
             ${description} ${descriptionEx}
           </p>
           <a href="#" class="read-more">${expandDescription}</a>
@@ -62,41 +62,29 @@ export default function decorate(block) {
 
   function initializeHighlightItem(highlightItem, index) {
     const moreContent = highlightItem.querySelector('.more-content');
+    const moreContentExpanded = highlightItem.querySelector('.more-content-expanded');
     const readMoreButton = highlightItem.querySelector('.read-more');
   
-    if (moreContent && readMoreButton) {
-      // Create a clone of the content for measurement
-      const clone = moreContent.cloneNode(true);
-      clone.style.display = 'block';
-      clone.style.position = 'absolute';
-      clone.style.visibility = 'hidden';
-      clone.style.height = 'auto';
-      document.body.appendChild(clone);
-  
-      // Measure the clone
-      const contentHeight = clone.scrollHeight;
-      const computedStyle = getComputedStyle(clone);
-      const lineHeight = parseFloat(computedStyle.lineHeight);
-  
-      // Remove the clone
-      document.body.removeChild(clone);
-  
-      console.log(contentHeight, lineHeight, index, 'cjlh');
-  
-      // Determine whether to show the read more link
-      if (contentHeight > lineHeight * 3) {
-        readMoreButton.style.display = 'block';
-      } else {
-        readMoreButton.style.display = 'none';
-      }
+    if (moreContent && moreContentExpanded && readMoreButton) {
+      // Initially hide the expanded content
+      moreContentExpanded.style.display = 'none';
   
       // Add click event listener
       readMoreButton.addEventListener('click', (event) => {
         event.preventDefault();
-        moreContent.classList.toggle('expanded');
         
+        // Toggle visibility of content
+        if (moreContent.style.display !== 'none') {
+          moreContent.style.display = 'none';
+          moreContentExpanded.style.display = 'block';
+        } else {
+          moreContent.style.display = 'block';
+          moreContentExpanded.style.display = 'none';
+        }
+  
+        // Toggle button text
         const { expandBtn, collapseBtn } = highlightItemButtons[index];
-        readMoreButton.textContent = moreContent.classList.contains('expanded') ? collapseBtn : expandBtn;
+        readMoreButton.textContent = (moreContent.style.display === 'none') ? collapseBtn : expandBtn;
       });
     }
   }
@@ -148,7 +136,7 @@ export default function decorate(block) {
   if (isMobile) {
     restructureDescriptionHtml(block);
   }
-  // initializeHighlightItems(block.querySelectorAll('.highlightItem-content'));
+  initializeHighlightItems(block.querySelectorAll('.highlightItem-content'));
   TabUtils.setupTabs(block, highlightItemListElements);
 
   return block;
