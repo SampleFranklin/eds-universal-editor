@@ -1030,8 +1030,7 @@
                 "template": {
                   "name": "Hero Banner Dealer",
                   "filter": "hero-banner-dealer",
-                  "model": "hero-banner-dealer",
-                  "title": "hero-banner-dealer"
+                  "model": "hero-banner-dealer"
                 }
               }
             }
