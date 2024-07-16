@@ -3046,21 +3046,21 @@
       },
       {
         "component": "number",
-        "name": "xPos1",
+        "name": "hotspot1_xPos",
         "label": "Hotspot 1 X-axis Position",
         "valueType": "number",
         "value": 0
       },
       {
         "component": "number",
-        "name": "yPos1",
+        "name": "hotspot1_yPos",
         "label": "Hotspot 1 Y-Axis Postion",
         "valueType": "number",
         "value": 0
       },
       {
         "component": "richtext",
-        "name": "description1",
+        "name": "hotspot1_description",
         "value": "",
         "label": "Hotspot 1 Description",
         "valueType": "string",
@@ -3068,21 +3068,21 @@
       },
       {
         "component": "number",
-        "name": "xPos2",
+        "name": "hotspot2_xPos",
         "label": "Hotspot 2 X-axis Position",
         "valueType": "number",
         "value": 0
       },
       {
         "component": "number",
-        "name": "yPos2",
+        "name": "hotspot2_yPos",
         "label": "Hotspot 2 Y-Axis Postion",
         "valueType": "number",
         "value": 0
       },
       {
         "component": "richtext",
-        "name": "description2",
+        "name": "hotspot2_description",
         "value": "",
         "label": "Hotspot 2 Description",
         "valueType": "string",
@@ -3090,21 +3090,21 @@
       },
       {
         "component": "number",
-        "name": "xPos3",
+        "name": "hotspot3_xPos",
         "label": "Hotspot 3 X-axis Position",
         "valueType": "number",
         "value": 0
       },
       {
         "component": "number",
-        "name": "yPos3",
+        "name": "hotspot3_yPos",
         "label": "Hotspot 3 Y-Axis Postion",
         "valueType": "number",
         "value": 0
       },
       {
         "component": "richtext",
-        "name": "description3",
+        "name": "hotspot3_description",
         "value": "",
         "label": "Hotspot 3 Description",
         "valueType": "string",
@@ -3112,21 +3112,21 @@
       },
       {
         "component": "number",
-        "name": "xPos4",
+        "name": "hotspot4_xPos",
         "label": "Hotspot 4 X-axis Position",
         "valueType": "number",
         "value": 0
       },
       {
         "component": "number",
-        "name": "yPos4",
+        "name": "hotspot4_yPos",
         "label": "Hotspot 4 Y-Axis Postion",
         "valueType": "number",
         "value": 0
       },
       {
         "component": "richtext",
-        "name": "description4",
+        "name": "hotspot4_description",
         "value": "",
         "label": "Hotspot 4 Description",
         "valueType": "string",
