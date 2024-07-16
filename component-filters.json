@@ -77,7 +77,7 @@
       "section-navigator",
       "variant-listing",
       "mfe-poc",
-      "dealer-locator",
+      "hero-banner-dealer",
       "offer-list",
       "secondary-navigation",
       "car-detail-banner",
@@ -234,7 +234,7 @@
     "components": []
   },
   {
-    "id": "dealer-locator",
+    "id": "hero-banner-dealer",
     "components": [
       "cta"
     ]
