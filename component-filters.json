@@ -74,7 +74,7 @@
       "video-teaser",
       "nexa-brand-film-carousel",
       "finance-entry-point",
-      "dealer-locator"
+      "hero-banner-dealer"
       
     ]
   },
@@ -226,7 +226,7 @@
     ]
   },
   {
-    "id": "dealer-locator",
+    "id": "hero-banner-dealer",
     "components": [
       "cta"
     ]

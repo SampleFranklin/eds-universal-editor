@@ -2624,7 +2624,7 @@
     ]
   },
   {
-    "id": "dealer-locator",
+    "id": "hero-banner-dealer",
     "fields": [
       {
         "component": "reference",
