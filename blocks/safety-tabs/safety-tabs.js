@@ -67,7 +67,7 @@ export default function decorate(block) {
     <div class="safetyTabItems-container">${highlightItemsHTML}</div>
     ${switchListHTML}`;    
 
-    TabUtils.setupTabs(block, highlightItemListElements);
+    TabUtils.setupTabs(block, 'safetyTabItem');
   
     return block;
 
