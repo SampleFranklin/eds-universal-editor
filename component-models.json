@@ -3043,6 +3043,14 @@
           }
       },
       {
+        "component": "text-input",
+        "name": "hotspot1_title",
+        "value": "Hotspot 1 Title",
+        "label": "Hotspot 1 Title",
+        "valueType": "string",
+        "required": true
+      },
+      {
         "component": "richtext",
         "name": "hotspot1_description",
         "value": "",
@@ -3073,6 +3081,14 @@
           "numberMax": 100,
           "customErrorMsg": "Value should be between 0-100"
         }
+      },
+      {
+        "component": "text-input",
+        "name": "hotspot2_title",
+        "value": "Hotspot_2 Title",
+        "label": "Hotspot_2 Title",
+        "valueType": "string",
+        "required": true
       },
       {
         "component": "richtext",
@@ -3107,6 +3123,14 @@
           }
       },
       {
+        "component": "text-input",
+        "name": "hotspot3_title",
+        "value": "Hotspot 3 Title",
+        "label": "Hotspot 3 Title",
+        "valueType": "string",
+        "required": true
+      },
+      {
         "component": "richtext",
         "name": "hotspot3_description",
         "value": "",
@@ -3137,6 +3161,14 @@
           "numberMax": 100,
           "customErrorMsg": "Value should be between 0-100"
           }
+      },
+      {
+        "component": "text-input",
+        "name": "hotspot4_title",
+        "value": "Hotspot 4 Title",
+        "label": "Hotspot 4 Title",
+        "valueType": "string",
+        "required": true
       },
       {
         "component": "richtext",
