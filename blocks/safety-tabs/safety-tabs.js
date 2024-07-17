@@ -10,7 +10,7 @@ function generateHighlightItemHTML(highlightItem, index) {
   ] = highlightItem.children;
 
   hotspotsEl.map((hotspot) => {
-    console.log(hotspot.outerHTML);
+    //console.log(hotspot.outerHTML);
   });
 
     const image = imageEl?.querySelector('picture');
@@ -23,15 +23,16 @@ function generateHighlightItemHTML(highlightItem, index) {
       img.setAttribute('alt', alt);
     }
 
-  const title = titleEl?.textContent?.trim() || '';
+  
   const subtitle = subtitleEl?.textContent?.trim() || '';
+  if(titleEl){
+    titleEl.classList.add('title');
+  }
 
   const newHTML = utility.sanitizeHtml(`
         <div class="text-section">
-          <div class="title">
-            <h1>${title}</h1>
-          </div>
-          <div class="description">
+            ${titleEl? titleEl.outerHTML : ''}
+        <div class="description">
             <p>${subtitle}</p>
           </div>
         </div>
