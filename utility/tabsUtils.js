@@ -45,7 +45,7 @@ if (highlightContentItems.length > 0) {
 }
 
 if (highlightItems.length > index){
-  highlightItems[index].style.display = 'block';
+  highlightItems[index].style.display = 'flex';
 } 
 
 if(highlightContentItems.length >  index) {
@@ -59,7 +59,7 @@ if(highlightContentItems.length >  index) {
     // Initial setup
     const defaultHighlightItem = container.querySelector(`.${className}.switch-index-0`);
     if (defaultHighlightItem) {
-      defaultHighlightItem.style.display = 'block';
+      defaultHighlightItem.style.display = 'flex';
     }
 
     const firstSwitchItem = container.querySelector('.switch-list-item');
