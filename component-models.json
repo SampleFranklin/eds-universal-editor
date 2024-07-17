@@ -3053,7 +3053,7 @@
       {
         "component": "number",
         "name": "hotspot2_yPos",
-        "label": "Hotspot_2 Y-axis Position",
+        "label": "Hotspot_2 Y-axis Position in %",
         "valueType": "number",
         "value": 0,
         "validation": {
@@ -3065,7 +3065,7 @@
       {
         "component": "number",
         "name": "hotspot2_xPos",
-        "label": "Hotspot_2 X-Axis Postion",
+        "label": "Hotspot_2 X-Axis Postion in %",
         "valueType": "number",
         "value": 0,
         "validation": {
@@ -3085,7 +3085,7 @@
       {
         "component": "number",
         "name": "hotspot3_yPos",
-        "label": "Hotspot_3 Y-axis Position",
+        "label": "Hotspot_3 Y-axis Position in %",
         "valueType": "number",
         "value": 0,
         "validation": {
@@ -3097,7 +3097,7 @@
       {
         "component": "number",
         "name": "hotspot3_xPos",
-        "label": "Hotspot_3 X-Axis Postion",
+        "label": "Hotspot_3 X-Axis Postion in %",
         "valueType": "number",
         "value": 0,
         "validation": {
@@ -3117,7 +3117,7 @@
       {
         "component": "number",
         "name": "hotspot4_yPos",
-        "label": "Hotspot_4 Y-axis Position",
+        "label": "Hotspot_4 Y-axis Position in %",
         "valueType": "number",
         "value": 0,
         "validation": {
@@ -3129,7 +3129,7 @@
       {
         "component": "number",
         "name": "hotspot4_xPos",
-        "label": "Hotspot_4 X-Axis Postion",
+        "label": "Hotspot_4 X-Axis Postion in %",
         "valueType": "number",
         "value": 0,
         "validation": {
