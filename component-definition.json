@@ -1166,15 +1166,15 @@
           }
         },
         {
-          "title": "Cities",
-          "id": "cities",
+          "title": "City",
+          "id": "city",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Cities",
-                  "model": "cities"
+                  "name": "City",
+                  "model": "city"
                 }
               }
             }
