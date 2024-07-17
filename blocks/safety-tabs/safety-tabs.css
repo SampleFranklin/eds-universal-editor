@@ -156,27 +156,64 @@
 
 .circle {
   position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: rgba(4, 242, 8, 0.7);
-  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  background-image:url('../../icons//circle_hotspot.svg');
+  background-size: cover;
+  background-repeat:no-repeat;
   cursor: pointer;
+  @media (min-width:999px) {
+    height:34px;
+    width:34px;
+  }
+}
+.moved{
+  background-image:url('../../icons/small-circle_hotspot.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height:10px;
+  width:10px;
 }
 
 .line {
   position: absolute;
-  width: 1.5px;
-  background-color: rgba(3, 255, 83, 0.7);
+  width: 1px;
+  background-color: #f2f2f2;
 }
 
 .text-container {
   display: none; /* Hidden by default */
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 12px;
-  pointer-events: none;
-  min-width: 190px;
+  color:#f2f2f2;
+  font-family:'Fira Sans';
+  width: 219px;
+  margin-bottom:24px;
+  margin-left:13px;
+  .hotspot__title{
+    font-size:14px;
+    font-weight:500;
+    line-height: 20px;
+    @media (min-width:999px){
+    font-size:16px;
+    }
+  }
+  .hotspot__description{
+    margin-top:4px;
+    font-size:12px;
+    font-weight: 400;
+    line-height: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    @media (min-width:999px){
+      font-size:16px;
+      font-weight: 300;
+      line-height:20px;
+    }
+  }
+  @media (min-width:999px){
+    width: 187px;
+    margin-bottom:11px;
+    margin-left: 20px;
+  }
 }

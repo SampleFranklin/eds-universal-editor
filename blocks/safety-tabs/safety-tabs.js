@@ -32,7 +32,6 @@ function generateHighlightItemHTML(highlightItem, index) {
         <div class="hotspots">
             ${image ? image.outerHTML : ""}
             ${hotspotsHTML ? hotspotsHTML : ""}
-           
           </div>
     `);
 
@@ -86,7 +85,6 @@ function initializeHotspotExpansion(block){
           // Close any other expanded hotspots
           closeAllHotspots(this);
           
-
           if (this.classList.contains("moved")) {
               // Move back to original position and remove line
               this.style.top = this.dataset.originalTop;
