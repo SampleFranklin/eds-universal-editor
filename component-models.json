@@ -3043,6 +3043,14 @@
           }
       },
       {
+        "component": "text-input",
+        "name": "hotspot1_title",
+        "value": "Hotspot 1 Title",
+        "label": "Hotspot 1 Title",
+        "valueType": "string",
+        "required": true
+      },
+      {
         "component": "richtext",
         "name": "hotspot1_description",
         "value": "",
@@ -3073,6 +3081,14 @@
           "numberMax": 100,
           "customErrorMsg": "Value should be between 0-100"
         }
+      },
+      {
+        "component": "text-input",
+        "name": "hotspot2_title",
+        "value": "Hotspot_2 Title",
+        "label": "Hotspot_2 Title",
+        "valueType": "string",
+        "required": true
       },
       {
         "component": "richtext",
@@ -3107,6 +3123,14 @@
           }
       },
       {
+        "component": "text-input",
+        "name": "hotspot3_title",
+        "value": "Hotspot 3 Title",
+        "label": "Hotspot 3 Title",
+        "valueType": "string",
+        "required": true
+      },
+      {
         "component": "richtext",
         "name": "hotspot3_description",
         "value": "",
@@ -3137,6 +3161,14 @@
           "numberMax": 100,
           "customErrorMsg": "Value should be between 0-100"
           }
+      },
+      {
+        "component": "text-input",
+        "name": "hotspot4_title",
+        "value": "Hotspot 4 Title",
+        "label": "Hotspot 4 Title",
+        "valueType": "string",
+        "required": true
       },
       {
         "component": "richtext",
@@ -3430,6 +3462,100 @@
         "value": "",
         "label": "Interior",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "dealer-locator-filter",
+    "fields": [
+      {
+        "component": "text-input",
+        "name": "pincodeText",
+        "value": "",
+        "label": "PinCode Text",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "pincodeTextValue",
+        "value": "",
+        "label": "PinCode Text Value",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "cityText",
+        "value": "",
+        "label": "City Text",
+        "valueType": "string"
+      },
+      {
+        "component": "multiselect",
+        "name": "citySelectValue",
+        "label": "Select City",
+        "valueType": "string",
+        "options": [
+          { "name": "Gurgaon", "value": "gurgaon" },
+          { "name": "Delhi", "value": "delhi" },
+          { "name": "Noida", "value": "noida" },
+          { "name": "Faridabad", "value": "faridabad" },
+          { "name": "Agra", "value": "agra" },
+          { "name": "Mathura", "value": "mathura" }
+        ]
+      },
+      {
+        "component": "text-input",
+        "name": "visitingText",
+        "value": "",
+        "label": "Visiting Text",
+        "valueType": "string"
+      },
+      {
+        "component": "multiselect",
+        "name": "visitingTextValue",
+        "label": "Select Visiting Text",
+        "valueType": "string",
+        "options": [
+          { "name": "Dealer Showroom", "value": "dealer-showroom" },
+          { "name": "Service Centers", "value": "service-centers" }
+        ]
+      },
+      {
+        "component": "text-input",
+        "name": "showcasingText",
+        "value": "",
+        "label": "Showcasing Text",
+        "valueType": "string"
+      },
+      {
+        "component": "multiselect",
+        "name": "showcasingTextValue",
+        "label": "Select Showcasing Text",
+        "valueType": "string",
+        "options": [
+          { "name": "All cars", "value": "all-cars" },
+          { "name": "Suv cars", "value": "suv-cars" }
+        ]
+      },
+      {
+        "component": "text-input",
+        "name": "radiusText",
+        "value": "",
+        "label": "Radius Text",
+        "valueType": "string"
+      },
+      {
+        "component": "multiselect",
+        "name": "radiusTextValue",
+        "label": "Select Radius Text",
+        "valueType": "string",
+        "options": [
+          { "name": "10 Km", "value": "10" },
+          { "name": "20 Km", "value": "20" },
+          { "name": "30 Km", "value": "30" },
+          { "name": "40 Km", "value": "40" },
+          { "name": "50 Km", "value": "50" }
+        ]
       }
     ]
   }
