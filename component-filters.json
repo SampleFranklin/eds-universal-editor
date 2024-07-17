@@ -83,7 +83,8 @@
       "car-detail-banner",
       "safety-tabs",
       "brand-header",
-      "logolist"
+      "logolist",
+      "360view"
     ]
   },
   {
@@ -250,7 +251,6 @@
     "id": "secondary-navigation",
     "components": [
       "cta"
-      
     ]
   },
  

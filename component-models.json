@@ -3020,17 +3020,27 @@
       },
       {
         "component": "number",
-        "name": "hotspot1_xPos",
-        "label": "Hotspot 1 X-axis Position",
+        "name": "hotspot1_yPos",
+        "label": "Hotspot_1 Y-axis Position in %",
         "valueType": "number",
-        "value": 0
+        "value": 0,
+       "validation": {
+        "numberMin": 0,
+        "numberMax": 100,
+        "customErrorMsg": "Value should be between 0-100"
+        }
       },
       {
         "component": "number",
-        "name": "hotspot1_yPos",
-        "label": "Hotspot 1 Y-Axis Postion",
+        "name": "hotspot1_xPos",
+        "label": "Hotspot_1 X-Axis Postion in %",
         "valueType": "number",
-        "value": 0
+        "value": 0,
+        "validation": {
+          "numberMin": 0,
+          "numberMax": 100,
+          "customErrorMsg": "Value should be between 0-100"
+          }
       },
       {
         "component": "richtext",
@@ -3042,67 +3052,97 @@
       },
       {
         "component": "number",
-        "name": "hotspot2_xPos",
-        "label": "Hotspot 2 X-axis Position",
+        "name": "hotspot2_yPos",
+        "label": "Hotspot_2 Y-axis Position",
         "valueType": "number",
-        "value": 0
+        "value": 0,
+        "validation": {
+          "numberMin": 0,
+          "numberMax": 100,
+          "customErrorMsg": "Value should be between 0-100"
+          }
       },
       {
         "component": "number",
-        "name": "hotspot2_yPos",
-        "label": "Hotspot 2 Y-Axis Postion",
+        "name": "hotspot2_xPos",
+        "label": "Hotspot_2 X-Axis Postion",
         "valueType": "number",
-        "value": 0
+        "value": 0,
+        "validation": {
+          "numberMin": 0,
+          "numberMax": 100,
+          "customErrorMsg": "Value should be between 0-100"
+        }
       },
       {
         "component": "richtext",
         "name": "hotspot2_description",
         "value": "",
-        "label": "Hotspot 2 Description",
+        "label": "Hotspot_2 Description",
         "valueType": "string",
         "required": true
       },
       {
         "component": "number",
-        "name": "hotspot3_xPos",
-        "label": "Hotspot 3 X-axis Position",
+        "name": "hotspot3_yPos",
+        "label": "Hotspot_3 Y-axis Position",
         "valueType": "number",
-        "value": 0
+        "value": 0,
+        "validation": {
+          "numberMin": 0,
+          "numberMax": 100,
+          "customErrorMsg": "Value should be between 0-100"
+          }
       },
       {
         "component": "number",
-        "name": "hotspot3_yPos",
-        "label": "Hotspot 3 Y-Axis Postion",
+        "name": "hotspot3_xPos",
+        "label": "Hotspot_3 X-Axis Postion",
         "valueType": "number",
-        "value": 0
+        "value": 0,
+        "validation": {
+          "numberMin": 0,
+          "numberMax": 100,
+          "customErrorMsg": "Value should be between 0-100"
+          }
       },
       {
         "component": "richtext",
         "name": "hotspot3_description",
         "value": "",
-        "label": "Hotspot 3 Description",
+        "label": "Hotspot_3 Description",
         "valueType": "string",
         "required": true
       },
       {
         "component": "number",
-        "name": "hotspot4_xPos",
-        "label": "Hotspot 4 X-axis Position",
+        "name": "hotspot4_yPos",
+        "label": "Hotspot_4 Y-axis Position",
         "valueType": "number",
-        "value": 0
+        "value": 0,
+        "validation": {
+          "numberMin": 0,
+          "numberMax": 100,
+          "customErrorMsg": "Value should be between 0-100"
+          }
       },
       {
         "component": "number",
-        "name": "hotspot4_yPos",
-        "label": "Hotspot 4 Y-Axis Postion",
+        "name": "hotspot4_xPos",
+        "label": "Hotspot_4 X-Axis Postion",
         "valueType": "number",
-        "value": 0
+        "value": 0,
+        "validation": {
+          "numberMin": 0,
+          "numberMax": 100,
+          "customErrorMsg": "Value should be between 0-100"
+          }
       },
       {
         "component": "richtext",
         "name": "hotspot4_description",
         "value": "",
-        "label": "Hotspot 4 Description",
+        "label": "Hotspot_4 Description",
         "valueType": "string",
         "required": true
       }
@@ -3294,6 +3334,101 @@
         "component": "text-input",
         "name": "cityName",
         "label": "City Name",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "360view",
+    "fields": [
+      {
+        "component": "text-input",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "titleType",
+        "value": "h2",
+        "label": "Type",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "h1",
+            "value": "h1"
+          },
+          {
+            "name": "h2",
+            "value": "h2"
+          },
+          {
+            "name": "h3",
+            "value": "h3"
+          },
+          {
+            "name": "h4",
+            "value": "h4"
+          },
+          {
+            "name": "h5",
+            "value": "h5"
+          },
+          {
+            "name": "h6",
+            "value": "h6"
+          }
+        ]
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "primaryText",
+        "label": "Primary CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "primaryLink",
+        "label": "Primary CTA Link"
+      },
+      {
+        "component": "select",
+        "name": "primaryTarget",
+        "value": "",
+        "label": "Open Primary Link in New Page ?",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Yes",
+            "value": "_blank"
+          },
+          {
+            "name": "No",
+            "value": "_self"
+          }
+        ]
+      },
+      {
+        "component": "text-input",
+        "name": "exteriorLabel",
+        "value": "",
+        "label": "Exteriror",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "interiorLabel",
+        "value": "",
+        "label": "Interior",
         "valueType": "string"
       }
     ]
