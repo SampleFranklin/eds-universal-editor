@@ -1,8 +1,7 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import utility from '../../utility/utility.js';
-
 export default function decorate(block) {
-  function getDealerLocator() {
+  function getHeroBannerDealer() {
     const [
       imageEl,
       pretitleEl,
@@ -18,10 +17,10 @@ export default function decorate(block) {
       const altTextEl = imageEl.querySelector('figcaption');
       const alt = altTextEl?.textContent?.trim() || 'image';
       img.setAttribute('alt', alt);
-      img.classList.add('dealer-locator__image-container');
+      img.classList.add('hero-banner-dealer__image-container');
     }
 
-    const pretitle = pretitleEl?.textContent?.trim() || '';
+   const pretitle = pretitleEl?.textContent?.trim() || '';
     const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.outerHTML).join('');
     const ctas = Array.from(ctaEls).map((ctaEl) => {
       const [ctaTextEl, ctaLinkEl] = ctaEl.children;
@@ -37,24 +36,22 @@ export default function decorate(block) {
       image, pretitle, description, ctas,
     };
   }
-
-  const dealerLocator = getDealerLocator();
-
-  block.innerHTML = utility.sanitizeHtml(`
-    <div class="dealer-locator__container right-seperator">
-      <div class="dealer-locator__container">
-        <div class="dealer-locator__section">
-          <div class="dealer-locator__image-container">
-            ${(dealerLocator.image) ? dealerLocator.image.outerHTML : ''}
-            <div class="dealer-locator__overlay">
-              <div class="dealer-locator__content">
-                <p class="pre-title">${dealerLocator.pretitle}</p>
+const heroBannerDealer = getHeroBannerDealer();
+block.innerHTML = utility.sanitizeHtml(`
+    <div class="hero-banner-dealer__container right-seperator">
+      <div class="hero-banner-dealer__container">
+        <div class="hero-banner-dealer__section">
+          <div class="hero-banner-dealer__image-container">
+            ${(heroBannerDealer.image) ? heroBannerDealer.image.outerHTML : ''}
+            <div class="hero-banner-dealer__overlay">
+              <div class="hero-banner-dealer__content">
+                <p class="pre-title">${heroBannerDealer.pretitle}</p>
               </div>
-              <div class="dealer-locator__description">${dealerLocator.description}</div>
-              <div class="dealer-locator__action">
+              <div class="hero-banner-dealer__description">${heroBannerDealer.description}</div>
+              <div class="hero-banner-dealer__action">
                 <div class="scroll-bar"></div>
                 <ul class="list-container">
-                  ${dealerLocator.ctas.join('')}
+                  ${heroBannerDealer.ctas.join('')}
                 </ul>
               </div>
             </div>
@@ -73,8 +70,8 @@ export default function decorate(block) {
   }
 
   function setupScrollHighlight() {
-    const ctaElements = document.querySelectorAll('.dealer-locator__action .cta-text');
-    const scrollBar = document.querySelector('.dealer-locator__action .scroll-bar');
+    const ctaElements = document.querySelectorAll('.hero-banner-dealer__action .cta-text');
+    const scrollBar = document.querySelector('.hero-banner-dealer__action .scroll-bar');
 
     // Initial highlight setup
     function highlightFirstCTA() {

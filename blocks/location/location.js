@@ -1,29 +1,54 @@
 import { fetchPlaceholders } from '../../scripts/aem.js';
+import utility from '../../utility/utility.js';
 
 export default async function decorate(block) {
-  const [titleEl, fylTextEl, dylTextEl] = block.children;
+  console.log(block);
+  const [titleEl, fylTextEl, dylTextEl, searchTextEl, ...citiesEl] = block.children;
   const title = titleEl?.textContent?.trim();
   const fylText = fylTextEl?.textContent?.trim();
   const dylText = dylTextEl?.textContent?.trim();
+  const searchText = searchTextEl?.textContent?.trim();
+  const cities = citiesEl.map((element) => {
+    const [iconEl, altTextEl, cityEl] = element.children;
+    const imgSrc = iconEl?.querySelector('img')?.src;
+    const altText = altTextEl?.textContent?.trim() || 'icon';
+    const city = cityEl?.textContent?.trim() || '';
 
-  block.innerHTML = `
-          <button class="location-btn">
-              Delhi
-          </button>
-          <div class="geo-location">
-              <p class="geo-location__text">${title}</p>
-              <div class="detect-location">
-                  <p class="find-location__text">${fylText}</p>
-                  <p class="separator">or</p>
-                  <div class="detect-location__cta">
-                  <p class="detect-location__text">
-                      ${dylText}
-                  </p>
-              </div>
-          </div>
-      `;
+    element.innerHTML = `
+      <img src="${imgSrc}" alt="${altText}" loading="lazy">${city}
+    `;
+    moveInstrumentation(element, element.firstElementChild);
+    return element.innerHTML;
+  }).join('');
+  // block.innerHTML = utility.sanitizeHtml(`
+  //         <button class="location-btn">
+  //             Delhi
+  //         </button>
+  //         <div class="geo-location">
+  //             <p class="geo-location__text">${title}</p>
+  //             <div class="detect-location">
+  //                 <p class="find-location__text">${fylText}</p>
+  //                 <p class="separator">or</p>
+  //                 <div class="detect-location__cta">
+  //                 <p class="detect-location__text">
+  //                     ${dylText}
+  //                 </p>
+  //             </div>
+  //             <div class="cities">${cities}</div>
+  //         </div>
+  //     `);
+  const { publishDomain, apiKey } = await fetchPlaceholders();
+  const url = `https://publish-p135331-e1341966.adobeaemcloud.com//content/nexa/services/token`;
+  let authorization = null;
+  try {
+    const auth = await fetch(url);
+    authorization = await auth.text();
+  } catch (e) {
+    authorization = ''
+  }
+  let citiesObject = {};
   function processData(data) {
-    const citiesObject = data.reduce((acc, item) => {
+    const citiesObject = data?.reduce((acc, item) => {
       acc[item.cityDesc] = {
         cityDesc: item.cityDesc,
         cityCode: item.cityCode,
@@ -35,22 +60,7 @@ export default async function decorate(block) {
     }, {});
     return citiesObject;
   }
-  const { apiKey, authorization } = await fetchPlaceholders();
-  const defaultHeaders = {
-    'x-api-key': apiKey,
-    Authorization: authorization,
-  };
-
-  const urlWithParams = 'https://api.preprod.developersatmarutisuzuki.in/dms/v1/api/common/msil/dms/dealer-only-cities?channel=EXC';
-  const response = await fetch(urlWithParams, { method: 'GET', headers: defaultHeaders });
-  const result = await response.json();
-  const filteredData = result?.data?.filter((obj) => obj.cityDesc !== null);
-  const citiesObject = processData(filteredData);
-  const locationButton = block.querySelector('.location-btn');
-  const geoLocationDiv = block.querySelector('.geo-location');
-  const detectLocationCTA = block.querySelector('.detect-location__cta');
-
-  // Function to calculate distance between two points using Haversine formula
+// Function to calculate distance between two points using Haversine formula
   function calculateDistance(lat1, lon1, lat2, lon2) {
     const R = 6371;
     const dLat = ((lat2 - lat1) * Math.PI) / 180;
@@ -67,6 +77,8 @@ export default async function decorate(block) {
   // Function to auto-select the nearest city based on user's location
   function autoSelectNearestCity(latitude, longitude) {
     let nearestCity = null;
+    let forCode = null;
+    let cityCode = null;
     let minDistance = Infinity;
 
     // Iterating over all cities and logging latitude and longitude
@@ -77,11 +89,15 @@ export default async function decorate(block) {
       if (distance < minDistance) {
         minDistance = distance;
         nearestCity = cityName;
+        forCode = citiesObject[cityName].forCode;
+        cityCode = citiesObject[cityName].cityCode;
       }
     });
     // Update the nearest city in the dropdown
     const location = block.querySelector('.location-btn');
     location.innerHTML = nearestCity;
+    location.setAttribute('data-forcode', forCode);
+    location.setAttribute('data-citycode', cityCode);
   }
   function showPosition(position) {
     const lat = position.coords.latitude;
@@ -98,7 +114,22 @@ export default async function decorate(block) {
     }
   }
 
-  locationButton.addEventListener('click', () => {
+  const defaultHeaders = {
+    'x-api-key': apiKey,
+    Authorization: authorization,
+  };
+
+  const urlWithParams = 'https://api.preprod.developersatmarutisuzuki.in/dms/v1/api/common/msil/dms/dealer-only-cities?channel=EXC';
+  let result = null;
+  try{
+    const response = await fetch(urlWithParams, { method: 'GET', headers: defaultHeaders });
+    result = await response.json();
+    const filteredData = result?.data?.filter((obj) => obj.cityDesc !== null);
+    citiesObject = processData(filteredData);
+    const locationButton = block.querySelector('.location-btn');
+    const geoLocationDiv = block.querySelector('.geo-location');
+    const detectLocationCTA = block.querySelector('.detect-location__cta');
+    locationButton.addEventListener('click', () => {
     if (
       geoLocationDiv.style.display === 'none'
       || geoLocationDiv.style.display === ''
@@ -108,8 +139,12 @@ export default async function decorate(block) {
       geoLocationDiv.style.display = 'none';
     }
   });
-  detectLocationCTA.addEventListener('click', () => {
+    detectLocationCTA.addEventListener('click', () => {
     geoLocationDiv.style.display = 'none';
     requestLocationPermission();
   });
+  }
+  catch(e){
+    throw new Error('Network response was not ok', e);
+  }
 }
