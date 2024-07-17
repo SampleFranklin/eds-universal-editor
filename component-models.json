@@ -3390,21 +3390,21 @@
       },
       {
         "component": "text-input",
-        "name": "primaryText",
-        "label": "Primary CTA Text",
+        "name": "ctaText",
+        "label": "CTA Text",
         "valueType": "string"
       },
       {
         "component": "aem-content",
         "valueType": "string",
-        "name": "primaryLink",
-        "label": "Primary CTA Link"
+        "name": "link",
+        "label": "CTA Link"
       },
       {
         "component": "select",
-        "name": "primaryTarget",
+        "name": "target",
         "value": "",
-        "label": "Open Primary Link in New Page ?",
+        "label": "Open Link in New Page ?",
         "valueType": "string",
         "options": [
           {
