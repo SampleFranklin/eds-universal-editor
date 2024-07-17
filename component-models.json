@@ -3315,7 +3315,7 @@
     ]
   },
   {
-    "id": "cities",
+    "id": "city",
     "fields": [
       {
         "component": "reference",
@@ -3327,13 +3327,13 @@
       {
         "component": "text",
         "valueType": "string",
-        "name": "alt",
+        "name": "iconAlt",
         "label": "Alt Text"
       },
       {
         "component": "text-input",
-        "name": "city",
-        "label": "City",
+        "name": "cityName",
+        "label": "City Name",
         "valueType": "string"
       }
     ]

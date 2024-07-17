@@ -269,7 +269,7 @@
   {
     "id": "location",
     "components": [
-      "cities"
+      "city"
     ]
   }
 ]
