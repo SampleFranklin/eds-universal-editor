@@ -1182,7 +1182,7 @@
         },
         {
           "title": "Logo List",
-          "id": "logolist",
+          "id": "logo-list",
           "plugins": {
             "xwalk": {
               "page": {
