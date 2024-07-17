@@ -1165,21 +1165,6 @@
           }
         },
         {
-          "title": "City",
-          "id": "city",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "name": "City",
-                  "model": "city"
-                }
-              }
-            }
-          }
-        },
-        {
           "title": "Logo List",
           "id": "logo-list",
           "plugins": {

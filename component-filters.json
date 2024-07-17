@@ -266,11 +266,5 @@
     "components": [
       "brand-header-item"
     ]
-  },
-  {
-    "id": "location",
-    "components": [
-      "city"
-    ]
   }
 ]

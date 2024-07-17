@@ -1204,6 +1204,19 @@
         "valueType": "string",
         "name": "searchText",
         "label": "Search Text"
+      },
+      {
+        "component": "multiselect",
+        "name": "cities",
+        "label": "Select Top Cities",
+        "valueType": "string",
+        "options": [
+          { "name": "Delhi", "value": "08" },
+          { "name": "Bengaluru", "value": "02" },
+          { "name": "Mumbai", "value": "05" },
+          { "name": "Kolkata", "value": "06" },
+          { "name": "Pune", "value": "19" }
+        ]
       }
     ]
   },
@@ -3343,30 +3356,6 @@
         "valueType": "string",
         "name": "scrollToClass",
         "label": "Scroll To Section Class"
-      }
-    ]
-  },
-  {
-    "id": "city",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "icon",
-        "label": "Icon",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "iconAlt",
-        "label": "Alt Text"
-      },
-      {
-        "component": "text-input",
-        "name": "cityName",
-        "label": "City Name",
-        "valueType": "string"
       }
     ]
   },
