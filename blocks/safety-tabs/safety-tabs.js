@@ -129,10 +129,20 @@ function initializeHotspotExpansion(block){
 
               if (this.classList.contains("open-top")) {
                   line.style.top = `${-68}px`;
-                  line.style.left = `${rect.left - containerRect.left + 17}px`;
+               
                   line.style.height = `${rect.bottom - containerRect.top + 68  }px`;
                   this.style.top = `calc(0% - 68px - 10px)`;
-                  this.style.left= `${rect.left  - containerRect.left + 12}px`;
+
+                  const isMobile = window.matchMedia('(max-width: 999px)').matches;
+                  if (isMobile) {
+                    this.style.left= `${rect.left  - containerRect.left + 3}px`;
+                    line.style.left = `${rect.left - containerRect.left + 5 + 3}px`;
+                  }
+                  else{
+                    this.style.left= `${rect.left  - containerRect.left + 12}px`;
+                    line.style.left = `${rect.left - containerRect.left + 5 + 12}px`;
+                  }
+                 
                  
 
                   textContainer.style.top = '0';
