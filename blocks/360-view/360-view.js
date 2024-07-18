@@ -1,7 +1,7 @@
 import ctaUtils from "../../utility/ctaUtils.js";
 import utility from "../../utility/utility.js";
 
-export default function decorate() {
+export default function decorate(block) {
   const [
     titleEl,
     descriptionEl,
@@ -27,13 +27,23 @@ export default function decorate() {
         </div>
         <div class="view360__right-section">
           ${(description) ? `<div class="view360__description">${description}</div>` : ''}
-          ${(cta) ? cta.outerHTML : ''}
+          ${(cta) ? `<div class="cta__primary">${cta.outerHTML}</div>` : ''}
         </div>
       </div>
       <div class="view360__bottom-section">
-        <div class="view360__tabs">
-          ${(exteriorLabel) ? `<span class="view360__tab-label view360__tab-label--active">${exteriorLabel}</span>` : ''} 
-          ${(interiorLabel) ? `<span class="view360__tab-label">${interiorLabel}</span>` : ''} 
+        <div class="view360__colors-wrapper">
+          <div class="temp1">
+          </div>
+        </div>
+        <div class="view360__content">
+          <div class="temp2">
+          </div>
+        </div>
+        <div class="view360__tabs-wrapper">
+          <div class="view360__tabs">
+            ${(exteriorLabel) ? `<span class="view360__tab-label view360__tab-label--active">${exteriorLabel}</span>` : ''} 
+            ${(interiorLabel) ? `<span class="view360__tab-label">${interiorLabel}</span>` : ''} 
+          </div>
         </div>
       </div>
     </div>
