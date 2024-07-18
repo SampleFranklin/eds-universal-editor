@@ -7,9 +7,10 @@
   }
   background-color: #18171a;
   padding-bottom: 36px;
-  clip-path: polygon(0 0, 100% 0, 100% 98%, 75% 98%, 72% 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 98%, 72% 98%, 68% 100%, 0 100%);
   @media (min-width: 999px) {
     padding-bottom: 90px;
+    clip-path: polygon(0 0, 100% 0, 100% 98%, 72% 98%, 70% 100%, 0 100%);
   }
 }
 .safetyTabItem {
