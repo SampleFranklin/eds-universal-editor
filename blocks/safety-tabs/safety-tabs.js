@@ -47,7 +47,7 @@ function createHotspotsHTML(hotspotsEl) {
     const [topPercent, leftPercent, title, description] = Array.from(point.querySelectorAll('p')).map(p => p?.innerHTML?.trim() || '');
     
     // Check if topPercent or leftPercent is '0'
-    if (topPercent === '0' || leftPercent === '0') {
+    if (topPercent === '0' && leftPercent === '0') {
       return ''; // Return an empty string for invalid positions
     }
 
