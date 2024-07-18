@@ -163,13 +163,18 @@ function initializeHotspotExpansion(block) {
         }
         this.dataset.circle = `${Math.random().toString(36).substr(2, 9)}`;
 
-        const isMobile = window.matchMedia("(max-width: 999px)").matches;
+        const isMobile = window.matchMedia("(max-width: 400px)").matches;
+        const isTablet = window.matchMedia("(min-width: 401px) and (max-width: 999px)").matches;
         let newTop, newLeft;
 
         if (isMobile) {
           // Center position for mobile
-          newLeft = `30%`;
-        } else {
+          newLeft = `20%`;
+        }
+        else if(isTablet){
+          newLeft = `40%`;
+        }
+        else {
           // Open-top position for desktop
           if (this.classList.contains("open-top")) {
           
@@ -189,7 +194,7 @@ function initializeHotspotExpansion(block) {
         console.log("Old Position:", rect);
         console.log("New Position:", newRect);
         console.log("Image Container Position:", containerRect);
-        drawLines(this, rect, newRect, containerRect, isMobile);
+        drawLines(this, rect, newRect, containerRect, isMobile||isTablet);
 
         this.classList.add("moved");
         textContainer.style.display = "block";
