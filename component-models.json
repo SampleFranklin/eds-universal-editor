@@ -1211,7 +1211,7 @@
         "label": "Select Top Cities",
         "valueType": "string",
         "options": [
-          { "name": "Delhi", "value": "08" },
+          { "name": "Gurugram", "value": "95" },
           { "name": "Bengaluru", "value": "02" },
           { "name": "Mumbai", "value": "05" },
           { "name": "Kolkata", "value": "06" },
