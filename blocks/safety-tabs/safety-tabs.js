@@ -5,7 +5,7 @@ function generateHighlightItemHTML(highlightItem, index) {
   const [titleEl, subtitleEl, , imageEl, ...hotspotsEl] =
     highlightItem.children;
 
-    const hotspotsHTML = createHotspotsHTML(hotspotsEl);
+  const hotspotsHTML = createHotspotsHTML(hotspotsEl);
 
   const image = imageEl?.querySelector("picture");
   if (image) {
@@ -41,19 +41,19 @@ function generateHighlightItemHTML(highlightItem, index) {
 }
 
 function createHotspotsHTML(hotspotsEl) {
-  
-  return hotspotsEl.map(point => {
-    // Assuming each el is structured as a <div> with three <p> elements
-    const [topPercent, leftPercent, title, description] = Array.from(point.querySelectorAll('p')).map(p => p?.innerHTML?.trim() || '');
-    
-    // Check if topPercent or leftPercent is '0'
-    if (topPercent === '0' && leftPercent === '0') {
-      return ''; // Return an empty string for invalid positions
-    }
+  return hotspotsEl
+    .map((point) => {
+      // Assuming each el is structured as a <div> with three <p> elements
+      const [topPercent, leftPercent, title, description] = Array.from(
+        point.querySelectorAll("p")
+      ).map((p) => p?.innerHTML?.trim() || "");
 
-    
-    
-    return `
+      // Check if topPercent or leftPercent is '0'
+      if (topPercent === "0" && leftPercent === "0") {
+        return ""; // Return an empty string for invalid positions
+      }
+
+      return `
       <div class="circle open-top" style="top: ${topPercent}%; left: ${leftPercent}%" ">
         <div class="text-container">
           <div class ="hotspot__title">
@@ -67,20 +67,22 @@ function createHotspotsHTML(hotspotsEl) {
         </div>
       </div>
     `;
-  }).join('');
+    })
+    .join("");
 }
 
-function initializeHotspotExpansion(block){
-  
+function initializeHotspotExpansion(block) {
   const circles = block.querySelectorAll(".circle");
 
-   // Function to close all expanded hotspots
-   function closeAllHotspots(currentCircle) {
-    circles.forEach(circle => {
+  // Function to close all expanded hotspots
+  function closeAllHotspots(currentCircle) {
+    circles.forEach((circle) => {
       if (circle !== currentCircle && circle.classList.contains("moved")) {
         circle.style.top = circle.dataset.originalTop;
         circle.style.left = circle.dataset.originalLeft;
-        const line = circle.parentElement.querySelector(`.line[data-circle="${circle.dataset.circle}"]`);
+        const line = circle.parentElement.querySelector(
+          `.line[data-circle="${circle.dataset.circle}"]`
+        );
         if (line) {
           line.remove();
         }
@@ -90,78 +92,73 @@ function initializeHotspotExpansion(block){
     });
   }
 
-
-
   // Add click event listener to each circle
-  circles.forEach(circle => {
-      circle.addEventListener("click", function() {
-          const rect = this.getBoundingClientRect();
-          const containerRect = this.parentElement.getBoundingClientRect();
-          const textContainer = this.querySelector(".text-container");
+  circles.forEach((circle) => {
+    circle.addEventListener("click", function () {
+      const rect = this.getBoundingClientRect();
+      const containerRect = this.parentElement.getBoundingClientRect();
+      const textContainer = this.querySelector(".text-container");
 
-          // Close any other expanded hotspots
-          closeAllHotspots(this);
-          
-          if (this.classList.contains("moved")) {
-              // Move back to original position and remove line
-              this.style.top = this.dataset.originalTop;
-              this.style.left = this.dataset.originalLeft;
-              const line = this.parentElement.querySelector(`.line[data-circle="${this.dataset.circle}"]`);
-              if (line) {
-                  line.remove();
-              }
-              textContainer.style.display = "none";
-              this.classList.remove("moved");
+      // Close any other expanded hotspots
+      closeAllHotspots(this);
+
+      if (this.classList.contains("moved")) {
+        // Move back to original position and remove line
+        this.style.top = this.dataset.originalTop;
+        this.style.left = this.dataset.originalLeft;
+        const line = this.parentElement.querySelector(
+          `.line[data-circle="${this.dataset.circle}"]`
+        );
+        if (line) {
+          line.remove();
+        }
+        textContainer.style.display = "none";
+        this.classList.remove("moved");
+      } else {
+        // Save original position
+        if (!this.dataset.originalTop) {
+          this.dataset.originalTop = this.style.top;
+        }
+        if (!this.dataset.originalLeft) {
+          this.dataset.originalLeft = this.style.left;
+        }
+        this.dataset.circle = `${Math.random().toString(36).substr(2, 9)}`;
+
+        // Create and add line
+        const line = document.createElement("div");
+        line.classList.add("line");
+        line.dataset.circle = this.dataset.circle;
+
+        if (this.classList.contains("open-top")) {
+          line.style.top = `${-68}px`;
+
+          line.style.height = `${rect.bottom - containerRect.top + 68}px`;
+          this.style.top = `calc(0% - 68px - 10px)`;
+
+          const isMobile = window.matchMedia("(max-width: 999px)").matches;
+          if (isMobile) {
+            this.style.left = `${rect.left - containerRect.left + 3}px`;
+            line.style.left = `${rect.left - containerRect.left + 5 + 3}px`;
           } else {
-              // Save original position
-              if (!this.dataset.originalTop) {
-                  this.dataset.originalTop = this.style.top;
-              }
-              if (!this.dataset.originalLeft) {
-                  this.dataset.originalLeft = this.style.left;
-              }
-              this.dataset.circle = `${Math.random().toString(36).substr(2, 9)}`;
-
-              // Create and add line
-              const line = document.createElement("div");
-              line.classList.add("line");
-              line.dataset.circle = this.dataset.circle;
-
-              if (this.classList.contains("open-top")) {
-                  line.style.top = `${-68}px`;
-               
-                  line.style.height = `${rect.bottom - containerRect.top + 68  }px`;
-                  this.style.top = `calc(0% - 68px - 10px)`;
-
-                  const isMobile = window.matchMedia('(max-width: 999px)').matches;
-                  if (isMobile) {
-                    this.style.left= `${rect.left  - containerRect.left + 3}px`;
-                    line.style.left = `${rect.left - containerRect.left + 5 + 3}px`;
-                  }
-                  else{
-                    this.style.left= `${rect.left  - containerRect.left + 12}px`;
-                    line.style.left = `${rect.left - containerRect.left + 5 + 12}px`;
-                  }
-                 
-                 
-
-                  textContainer.style.top = '0';
-                  textContainer.style.left = `15px`;
-
-              } 
-              this.parentElement.appendChild(line);
-              this.classList.add("moved");
-              textContainer.style.display = "block";
+            this.style.left = `${rect.left - containerRect.left + 12}px`;
+            line.style.left = `${rect.left - containerRect.left + 5 + 12}px`;
           }
-      });
+
+          textContainer.style.top = "0";
+          textContainer.style.left = `15px`;
+        }
+        this.parentElement.appendChild(line);
+        this.classList.add("moved");
+        textContainer.style.display = "block";
+      }
+    });
   });
 
-   // Add resize event listener to window
-   window.addEventListener("resize", closeAllHotspots);
+  // Add resize event listener to window
+  window.addEventListener("resize", closeAllHotspots);
 }
 
 export default function decorate(block) {
-
   const blockClone = block.cloneNode(true);
   const highlightItemListElements = Array.from(block.children);
   const highlightItemListElementsClone = Array.from(blockClone.children);
@@ -179,7 +176,7 @@ export default function decorate(block) {
     }
   );
 
-  block.innerHTML =  utility.sanitizeHtml(`
+  block.innerHTML = utility.sanitizeHtml(`
     <div class="safetyTabItems-container">${highlightItemsHTML}</div>
     ${switchListHTML}`);
 
