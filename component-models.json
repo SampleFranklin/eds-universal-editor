@@ -3479,20 +3479,6 @@
         "valueType": "string"
       },
       {
-        "component": "multiselect",
-        "name": "citySelectValue",
-        "label": "Select City",
-        "valueType": "string",
-        "options": [
-          { "name": "Gurgaon", "value": "gurgaon" },
-          { "name": "Delhi", "value": "delhi" },
-          { "name": "Noida", "value": "noida" },
-          { "name": "Faridabad", "value": "faridabad" },
-          { "name": "Agra", "value": "agra" },
-          { "name": "Mathura", "value": "mathura" }
-        ]
-      },
-      {
         "component": "text-input",
         "name": "visitingText",
         "value": "",
@@ -3515,16 +3501,6 @@
         "value": "",
         "label": "Showcasing Text",
         "valueType": "string"
-      },
-      {
-        "component": "multiselect",
-        "name": "showcasingTextValue",
-        "label": "Select Showcasing Text",
-        "valueType": "string",
-        "options": [
-          { "name": "All cars", "value": "all-cars" },
-          { "name": "Suv cars", "value": "suv-cars" }
-        ]
       },
       {
         "component": "text-input",
