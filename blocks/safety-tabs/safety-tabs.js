@@ -179,9 +179,9 @@ export default function decorate(block) {
     }
   );
 
-  block.innerHTML = `
+  block.innerHTML =  utility.sanitizeHtml(`
     <div class="safetyTabItems-container">${highlightItemsHTML}</div>
-    ${switchListHTML}`;
+    ${switchListHTML}`);
 
   TabUtils.setupTabs(block, "safetyTabItem");
 
