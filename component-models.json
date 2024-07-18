@@ -2609,6 +2609,13 @@
         "name": "termsConditionsText",
         "label": "Terms & Conditions Text",
         "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "thumbnail",
+        "label": "Video Thumbnail",
+        "multi": false
       }
     ]
   },
