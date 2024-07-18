@@ -168,7 +168,7 @@ function initializeHotspotExpansion(block) {
 
         if (isMobile) {
           // Center position for mobile
-          newLeft = `50%`;
+          newLeft = `30%`;
         } else {
           // Open-top position for desktop
           if (this.classList.contains("open-top")) {
