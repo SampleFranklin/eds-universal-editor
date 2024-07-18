@@ -186,7 +186,7 @@ export default async function decorate(block) {
 
   const getVideoHtml = (videoUrl) => `
   <div class="hero__video-container">
-    <video src="${videoUrl}" muted="muted" width="100%" autoplay poster="${thumbnail}"></video>
+    <video src="${videoUrl}" muted="muted" width="100%" autoplay></video>
   </div>
 `;
 
@@ -273,11 +273,12 @@ export default async function decorate(block) {
   div.className = 'hero-banner__carousel';
   const video = document.createElement('video');
   video.setAttribute("poster", thumbnail);
-  // div.appendChild(video);
+  div.appendChild(video);
   async function finalBlock() {
     if (cars) {
       const htmlPromises = cars.map((car) => getVariantHtml(car));
       const htmlResults = await Promise.all(htmlPromises);
+      div.removeChild(video);
       htmlResults.forEach((html, i) => {
         const item = document.createElement('div');
         item.classList.add('hero-banner__slides');
