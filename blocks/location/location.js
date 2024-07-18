@@ -2,53 +2,44 @@ import { fetchPlaceholders } from '../../scripts/aem.js';
 import utility from '../../utility/utility.js';
 
 export default async function decorate(block) {
-  console.log(block);
-  const [titleEl, fylTextEl, dylTextEl, searchTextEl, ...citiesEl] = block.children;
+  const [titleEl, fylTextEl, dylTextEl, searchTextEl, citiesEl] = block.children;
   const title = titleEl?.textContent?.trim();
   const fylText = fylTextEl?.textContent?.trim();
   const dylText = dylTextEl?.textContent?.trim();
   const searchText = searchTextEl?.textContent?.trim();
-  const cities = citiesEl.map((element) => {
-    const [iconEl, altTextEl, cityEl] = element.children;
-    const imgSrc = iconEl?.querySelector('img')?.src;
-    const altText = altTextEl?.textContent?.trim() || 'icon';
-    const city = cityEl?.textContent?.trim() || '';
-
-    element.innerHTML = `
-      <img src="${imgSrc}" alt="${altText}" loading="lazy">${city}
-    `;
-    moveInstrumentation(element, element.firstElementChild);
-    return element.innerHTML;
-  }).join('');
-  // block.innerHTML = utility.sanitizeHtml(`
-  //         <button class="location-btn">
-  //             Delhi
-  //         </button>
-  //         <div class="geo-location">
-  //             <p class="geo-location__text">${title}</p>
-  //             <div class="detect-location">
-  //                 <p class="find-location__text">${fylText}</p>
-  //                 <p class="separator">or</p>
-  //                 <div class="detect-location__cta">
-  //                 <p class="detect-location__text">
-  //                     ${dylText}
-  //                 </p>
-  //             </div>
-  //             <div class="cities">${cities}</div>
-  //         </div>
-  //     `);
+  const citiesList = citiesEl?.textContent?.trim();
+  const cities = citiesList.split(',');
+  block.innerHTML = utility.sanitizeHtml(`
+          <button class="location-btn">
+              Delhi
+          </button>
+          <div class="geo-location">
+              <p class="geo-location__text">${title}</p>
+              <div class="detect-location">
+                <p class="find-location__text">${fylText}</p>
+                <p class="separator">or</p>
+                <div class="detect-location__cta">
+                  <p class="detect-location__text">
+                      ${dylText}
+                  </p>
+                </div>
+              </div>
+              <div class="top__cities"></div>
+              <div class="search">${searchText}</div>
+          </div>
+      `);
   const { publishDomain, apiKey } = await fetchPlaceholders();
-  const url = `https://publish-p135331-e1341966.adobeaemcloud.com//content/nexa/services/token`;
+  const url = 'https://publish-p135331-e1341966.adobeaemcloud.com/content/nexa/services/token';
   let authorization = null;
   try {
     const auth = await fetch(url);
     authorization = await auth.text();
   } catch (e) {
-    authorization = ''
+    authorization = '';
   }
   let citiesObject = {};
   function processData(data) {
-    const citiesObject = data?.reduce((acc, item) => {
+    citiesObject = data?.reduce((acc, item) => {
       acc[item.cityDesc] = {
         cityDesc: item.cityDesc,
         cityCode: item.cityCode,
@@ -60,7 +51,7 @@ export default async function decorate(block) {
     }, {});
     return citiesObject;
   }
-// Function to calculate distance between two points using Haversine formula
+  // Function to calculate distance between two points using Haversine formula
   function calculateDistance(lat1, lon1, lat2, lon2) {
     const R = 6371;
     const dLat = ((lat2 - lat1) * Math.PI) / 180;
@@ -120,8 +111,8 @@ export default async function decorate(block) {
   };
 
   const urlWithParams = 'https://api.preprod.developersatmarutisuzuki.in/dms/v1/api/common/msil/dms/dealer-only-cities?channel=EXC';
-  let result = null;
-  try{
+  let result;
+  try {
     const response = await fetch(urlWithParams, { method: 'GET', headers: defaultHeaders });
     result = await response.json();
     const filteredData = result?.data?.filter((obj) => obj.cityDesc !== null);
@@ -129,22 +120,30 @@ export default async function decorate(block) {
     const locationButton = block.querySelector('.location-btn');
     const geoLocationDiv = block.querySelector('.geo-location');
     const detectLocationCTA = block.querySelector('.detect-location__cta');
+    const topCities = block.querySelector('.top__cities');
+    cities.forEach((cityCode) => {
+      const obj = Object.keys(citiesObject).find((key) => citiesObject[key].forCode === cityCode);
+      const p = document.createElement('p');
+      p.className = 'selected__top__city';
+      p.textContent = obj;
+      p.setAttribute('data-forcode', cityCode);
+      topCities.appendChild(p);
+    });
     locationButton.addEventListener('click', () => {
-    if (
-      geoLocationDiv.style.display === 'none'
-      || geoLocationDiv.style.display === ''
-    ) {
-      geoLocationDiv.style.display = 'block';
-    } else {
-      geoLocationDiv.style.display = 'none';
-    }
-  });
+      if (
+        geoLocationDiv.style.display === 'none'
+        || geoLocationDiv.style.display === ''
+      ) {
+        geoLocationDiv.style.display = 'block';
+      } else {
+        geoLocationDiv.style.display = 'none';
+      }
+    });
     detectLocationCTA.addEventListener('click', () => {
-    geoLocationDiv.style.display = 'none';
-    requestLocationPermission();
-  });
-  }
-  catch(e){
+      geoLocationDiv.style.display = 'none';
+      requestLocationPermission();
+    });
+  } catch (e) {
     throw new Error('Network response was not ok', e);
   }
 }
