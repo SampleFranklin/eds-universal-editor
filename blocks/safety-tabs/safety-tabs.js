@@ -97,7 +97,7 @@ function initializeHotspotExpansion(block){
           if (this.classList.contains("moved")) {
               // Move back to original position and remove line
               this.style.top = this.dataset.originalTop;
-              // this.style.left = this.dataset.originalLeft;
+              this.style.left = this.dataset.originalLeft;
               const line = this.parentElement.querySelector(`.line[data-circle="${this.dataset.circle}"]`);
               if (line) {
                   line.remove();
@@ -109,9 +109,9 @@ function initializeHotspotExpansion(block){
               if (!this.dataset.originalTop) {
                   this.dataset.originalTop = this.style.top;
               }
-              // if (!this.dataset.originalLeft) {
-              //     this.dataset.originalLeft = this.style.left;
-              // }
+              if (!this.dataset.originalLeft) {
+                  this.dataset.originalLeft = this.style.left;
+              }
               this.dataset.circle = `${Math.random().toString(36).substr(2, 9)}`;
 
               // Create and add line
@@ -121,9 +121,11 @@ function initializeHotspotExpansion(block){
 
               if (this.classList.contains("open-top")) {
                   line.style.top = `${-68}px`;
-                  line.style.left = `${rect.left - containerRect.left + 5}px`;
-                  line.style.height = `${rect.top - containerRect.top + 68  }px`;
+                  line.style.left = `${rect.left - containerRect.left + 17}px`;
+                  line.style.height = `${rect.bottom - containerRect.top + 68  }px`;
                   this.style.top = `calc(0% - 68px - 10px)`;
+                  this.style.left= `${rect.left  - containerRect.left + 12}px`;
+                 
 
                   textContainer.style.top = '0';
                   textContainer.style.left = `15px`;
