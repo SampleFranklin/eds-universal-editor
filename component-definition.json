@@ -1165,21 +1165,6 @@
           }
         },
         {
-          "title": "City",
-          "id": "city",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "name": "City",
-                  "model": "city"
-                }
-              }
-            }
-          }
-        },
-        {
           "title": "Logo List",
           "id": "logo-list",
           "plugins": {
@@ -1205,6 +1190,21 @@
                   "model": "360view",
                   "target": "_self",
                   "titleType": "h2"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Dealer Locator Filter",
+          "id": "dealer-locator-filter",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Dealer Locator Filter",
+                  "model": "dealer-locator-filter"
                 }
               }
             }

@@ -84,7 +84,8 @@
       "safety-tabs",
       "brand-header",
       "logolist",
-      "360view"
+      "360view",
+      "dealer-locator-filter"
     ]
   },
   {
@@ -264,12 +265,6 @@
     "id": "brand-header",
     "components": [
       "brand-header-item"
-    ]
-  },
-  {
-    "id": "location",
-    "components": [
-      "city"
     ]
   }
 ]
