@@ -9,6 +9,7 @@
   display:flex;
   align-items: center;
 }
+
 .location-btn::after{
     content: "";
     display: inline-block;
@@ -18,10 +19,12 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
+
 .location-btn:hover {
-  color: #FFFFFF;
+  color: #FFF;
   font-weight:500;
 }
+
 .geo-location {
   display: none;
   z-index:999;
@@ -29,11 +32,13 @@
   top:var(--nav-height);
   right:50px;
   width: 360px;
-  background-color: #FFFFFF;
+  background-color: #FFF;
+
   p{
     margin:unset;
   }
 }
+
 .geo-location__text {
   background-color: #f2f2f2;
   padding: 32px 46px 24px 24px;
@@ -43,6 +48,7 @@
   line-height:20px;
   color: #18171a;
 }
+
 .detect-location {
   padding: 24px;
   display: flex;
@@ -51,17 +57,19 @@
   justify-content: center;
   align-items: left;
 }
+
 .find-location__text {
   font-family: "Fira Sans";
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
   color: #7b7777;
-  padding: 16px 12px 16px 0px;
+  padding: 16px 12px 16px 0;
   display:flex;
   align-items: center;
   gap:12px;
 }
+
 .find-location__text::before{
   content: "";
   display: inline-block;
@@ -71,6 +79,7 @@
   background-size: contain;
   background-repeat: no-repeat;
 }
+
 .separator {
   display: flex;
   justify-content: center;
@@ -79,6 +88,7 @@
   line-height:20px;
   color:#18171a;
 }
+
 .detect-location__text {
   padding: 16px 12px;
   font-family: "Fira Sans";
@@ -91,6 +101,7 @@
   align-items: center;
   gap:12px;
 }
+
 .detect-location__text::before{
   content: "";
   display: inline-block;
@@ -100,11 +111,13 @@
   background-size: contain;
   background-repeat: no-repeat;
 }
+
 .detect-location__box.inactive{
   background-color:#f2f2f2;
   clip-path: polygon(0 0, 100% 0, 100% 91%, 55% 92%, 52% 100%, 0 100%);
-  padding: 24px 0px 24px 24px;
+  padding: 24px 0 24px 24px;
 }
+
 .detect-location__box .top__cities{
   display:none;
   gap:16px;
@@ -112,6 +125,7 @@
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+
   .selected__top__city{
     border:1px solid #b2b2b2;
     border-radius:18px;
@@ -123,12 +137,14 @@
     line-height:20px;
     text-align: center;
   }
+
   .selected__top__city:hover{
     border:none;
     color:#18171A;
-    background-color:#ffffff;
+    background-color:#fff;
   }
 }
+
 .search-location {
   display: none;
   padding:24px;
@@ -138,6 +154,7 @@
   font-size:14px;
   font-weight: 400;
   line-height: 20px;
+
   .search-box {
     display:flex;
     align-items: center;
@@ -161,6 +178,7 @@
     background-repeat: no-repeat;
   }
 }
+
 .suggested-places{
   display:flex;
   flex-direction: column;
@@ -168,10 +186,12 @@
   height:176px;
   overflow-y: scroll;
   padding:0;
+
   p{
-  padding:12px 12px;
+  padding:12px;
   color:#7b7777;
   }
+
   p:hover{
     background-color:#f2f2f2;
     color:#18171A;
