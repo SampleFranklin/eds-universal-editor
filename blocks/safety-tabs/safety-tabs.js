@@ -2,20 +2,18 @@ import TabUtils from '../../utility/tabsUtils.js';
 import utility from '../../utility/utility.js';
 
 function createHotspotsHTML(hotspotsEl) {
-
-
-
   return hotspotsEl
     .map((point) => {
-     
       // Assuming each el is structured as a <div> with three <p> elements
       const [topPercent, leftPercent, title, description] = Array.from(
         point.querySelectorAll('p'),
       ).map((p) => p?.textContent?.trim() || '');
-    
+
+      console.log('Top->', topPercent, '-->');
+      console.log('Left->', leftPercent, '-->');
 
       // Check if topPercent or leftPercent is '0'
-      if (topPercent == undefined || leftPercent == undefined || (topPercent == '0' && leftPercent == '0' )) {
+      if (topPercent === undefined || leftPercent === undefined || (topPercent === '0' && leftPercent === '0')) {
         return ''; // Return an empty string for invalid positions
       }
       return `
@@ -105,14 +103,12 @@ function initializeHotspotExpansion(block) {
         horizontalLine.dataset.circle = circle.dataset.circle;
       } else if (oldRect.left === newRect.left) {
         horizontalLine.style.left = '0';
-        horizontalLine.style.width='0';
+        horizontalLine.style.width = '0';
       } else {
         horizontalLine.style.left = `${newRect.left - containerRect.left + 5}px`;
         horizontalLine.style.width = `${Math.abs(newRect.left - oldRect.left - oldRect.width + newRect.width / 2 - 3)}px`;
         horizontalLine.dataset.circle = circle.dataset.circle;
       }
-
-     
 
       // Draw vertical line
       const verticalLine = document.createElement('div');
