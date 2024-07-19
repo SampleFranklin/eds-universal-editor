@@ -3558,7 +3558,6 @@
         "component": "aem-content",
         "valueType": "string",
         "name": "href",
-        "value": "",
         "label": "Link"
       }
     ]
