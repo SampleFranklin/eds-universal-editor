@@ -24,7 +24,7 @@
 .hero-banner-carousel__container .hero-banner-carousel__asset,
 .hero-banner-carousel__container .hero-banner-carousel__asset video,
 .hero-banner-carousel__container .hero-banner-carousel__asset img {
-  height: 100vh;
+  height: 566px;
   object-fit: cover;
 }
 
@@ -152,7 +152,7 @@
     .hero-banner-carousel__container .hero-banner-carousel__asset,
     .hero-banner-carousel__container .hero-banner-carousel__asset video,
     .hero-banner-carousel__container .hero-banner-carousel__asset img {
-        height: 50vh;
+        height: 768px;
     }
 
     .hero-banner-carousel__container .hero-banner-carousel__slides {
