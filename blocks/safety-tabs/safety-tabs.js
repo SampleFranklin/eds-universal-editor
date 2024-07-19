@@ -11,18 +11,13 @@ function createHotspotsHTML(hotspotsEl) {
       // Assuming each el is structured as a <div> with three <p> elements
       const [topPercent, leftPercent, title, description] = Array.from(
         point.querySelectorAll('p'),
-      ).map((p) => p?.innerHTML?.trim() || '');
-      console.log("Top: ", topPercent);
-      console.log("Left: ", leftPercent);
-      console.log("title: ", title);
-      console.log("description: ", description);
+      ).map((p) => p?.textContent?.trim() || '');
+    
 
       // Check if topPercent or leftPercent is '0'
-      if (topPercent=== undefined || leftPercent===undefined || (topPercent === '0' && leftPercent === '0')) {
-        // console.log("Invalid")
+      if (topPercent == undefined || leftPercent == undefined || (topPercent == '0' && leftPercent == '0' )) {
         return ''; // Return an empty string for invalid positions
       }
-      // console.log("valid")
       return `
       <div class="circle open-top" style="top: ${topPercent}%; left: ${leftPercent}%">
         <div class="text-container">
