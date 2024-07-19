@@ -165,7 +165,9 @@
   display:flex;
   flex-direction: column;
   align-items:left;
-  justify-content: center;
+  height:176px;
+  overflow-y: scroll;
+  padding:0;
   p{
   padding:12px 12px;
   color:#7b7777;

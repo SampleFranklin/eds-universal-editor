@@ -4,25 +4,16 @@
   background-color: #F2F2F2;
 }
 
-.view360__container .temp1 {
-  height: 30px;
-  width: 30px;
-  background-color: red;
-}
-
-.view360__container .temp2 {
-  height: 30px;
-  width: 30px;
-  background-color: blue;
-}
-
 .view360__container .view360__top-section {
   padding-top: 32px;
+  display: flex;
+  flex-direction: column;
 }
 
 .view360__container .view360__right-section{
   padding-top: 32px;
   padding-left: 84px;
+  align-self: flex-end;
 }
 
 .view360__container .view360__title {
@@ -111,7 +102,6 @@
 
   .view360__container .view360__top-section {
     padding-top: 64px;
-    display: flex;
     justify-content: space-between;
     align-items: stretch;
   }

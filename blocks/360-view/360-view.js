@@ -32,12 +32,8 @@ export default function decorate(block) {
       </div>
       <div class="view360__bottom-section">
         <div class="view360__colors-wrapper">
-          <div class="temp1">
-          </div>
         </div>
         <div class="view360__content">
-          <div class="temp2">
-          </div>
         </div>
         <div class="view360__tabs-wrapper">
           <div class="view360__tabs">

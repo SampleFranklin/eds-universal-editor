@@ -982,13 +982,6 @@
       },
       {
         "component": "text-input",
-        "name": "pretitle",
-        "value": "",
-        "label": "Pretitle",
-        "valueType": "string"
-      },
-      {
-        "component": "text-input",
         "name": "title",
         "value": "",
         "label": "Title",
@@ -1026,6 +1019,13 @@
             "value": "h6"
           }
         ]
+      },
+      {
+        "component": "text-input",
+        "name": "subtitle",
+        "value": "",
+        "label": "Sub Title",
+        "valueType": "string"
       },
       {
         "component": "richtext",
