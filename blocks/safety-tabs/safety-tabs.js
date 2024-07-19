@@ -97,14 +97,18 @@ function initializeHotspotExpansion(block) {
 
       if (oldRect.left < newRect.left) {
         horizontalLine.style.left = `${oldRect.left + oldRect.width - containerRect.left}px`;
+        horizontalLine.style.width = `${Math.abs(newRect.left - oldRect.left - oldRect.width + newRect.width / 2 - 3)}px`;
+        horizontalLine.dataset.circle = circle.dataset.circle;
       } else if (oldRect.left === newRect.left) {
         horizontalLine.style.left = '0';
+        horizontalLine.style.width='0';
       } else {
         horizontalLine.style.left = `${newRect.left - containerRect.left + 5}px`;
+        horizontalLine.style.width = `${Math.abs(newRect.left - oldRect.left - oldRect.width + newRect.width / 2 - 3)}px`;
+        horizontalLine.dataset.circle = circle.dataset.circle;
       }
 
-      horizontalLine.style.width = `${Math.abs(newRect.left - oldRect.left - oldRect.width + newRect.width / 2 - 3)}px`;
-      horizontalLine.dataset.circle = circle.dataset.circle;
+     
 
       // Draw vertical line
       const verticalLine = document.createElement('div');
