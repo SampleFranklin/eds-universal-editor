@@ -1,16 +1,17 @@
-import { fetchPlaceholders } from '../../scripts/aem.js';
-import utility from '../../utility/utility.js';
+import { fetchPlaceholders } from "../../scripts/aem.js";
+import utility from "../../utility/utility.js";
 
 export default async function decorate(block) {
-  const [titleEl, fylTextEl, dylTextEl, searchTextEl, citiesEl] = block.children;
+  const [titleEl, fylTextEl, dylTextEl, searchTextEl, citiesEl] =
+    block.children;
   const title = titleEl?.textContent?.trim();
   const fylText = fylTextEl?.textContent?.trim();
   const dylText = dylTextEl?.textContent?.trim();
   const searchText = searchTextEl?.textContent?.trim();
   const citiesList = citiesEl?.textContent?.trim();
-  const cities = citiesList.split(',');
+  const cities = citiesList.split(",");
   block.innerHTML = utility.sanitizeHtml(`
-          <button class="location-btn">
+          <button class="location-btn" data-forcode="08">
               Delhi
           </button>
           <div class="geo-location">
@@ -36,13 +37,14 @@ export default async function decorate(block) {
           </div>
       `);
   const { publishDomain, apiKey } = await fetchPlaceholders();
-  const url = 'https://publish-p135331-e1341966.adobeaemcloud.com/content/nexa/services/token';
+  const url =
+    "https://publish-p135331-e1341966.adobeaemcloud.com/content/nexa/services/token";
   let authorization = null;
   try {
     const auth = await fetch(url);
     authorization = await auth.text();
   } catch (e) {
-    authorization = '';
+    authorization = "";
   }
   let citiesObject = {};
   function processData(data) {
@@ -61,30 +63,32 @@ export default async function decorate(block) {
 
   // Populate All Cities for Suggested Places
   function populateAllCities() {
-    const suggestedPlaces = block.querySelector('.suggested-places');
-    suggestedPlaces.innerHTML = ''; // Clear existing suggestions
+    const suggestedPlaces = block.querySelector(".suggested-places");
+    suggestedPlaces.innerHTML = ""; // Clear existing suggestions
 
     Object.keys(citiesObject).forEach((cityName) => {
-      const p = document.createElement('p');
+      const p = document.createElement("p");
       p.textContent = cityName;
-      p.className = 'suggested__city';
-      p.setAttribute('data-forcode', citiesObject[cityName].forCode);
+      p.className = "suggested__city";
+      p.setAttribute("data-forcode", citiesObject[cityName].forCode);
       suggestedPlaces.appendChild(p);
     });
   }
 
   // Filtered Cities based on Search Input
   function filterCities(input) {
-    const suggestedPlaces = block.querySelector('.suggested-places');
-    suggestedPlaces.innerHTML = ''; // Clear existing suggestions
+    const suggestedPlaces = block.querySelector(".suggested-places");
+    suggestedPlaces.innerHTML = ""; // Clear existing suggestions
 
-    const filteredCities = Object.keys(citiesObject).filter((cityName) => new RegExp(`^${input}`, 'i').test(cityName));
+    const filteredCities = Object.keys(citiesObject).filter((cityName) =>
+      new RegExp(`^${input}`, "i").test(cityName)
+    );
 
     filteredCities.forEach((cityName) => {
-      const p = document.createElement('p');
+      const p = document.createElement("p");
       p.textContent = cityName;
-      p.className = 'suggested__city';
-      p.setAttribute('data-forcode', citiesObject[cityName].forCode);
+      p.className = "suggested__city";
+      p.setAttribute("data-forcode", citiesObject[cityName].forCode);
       suggestedPlaces.appendChild(p);
     });
   }
@@ -94,11 +98,12 @@ export default async function decorate(block) {
     const R = 6371;
     const dLat = ((lat2 - lat1) * Math.PI) / 180;
     const dLon = ((lon2 - lon1) * Math.PI) / 180;
-    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
-      + Math.cos((lat1 * Math.PI) / 180)
-        * Math.cos((lat2 * Math.PI) / 180)
-        * Math.sin(dLon / 2)
-        * Math.sin(dLon / 2);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos((lat1 * Math.PI) / 180) *
+        Math.cos((lat2 * Math.PI) / 180) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const distance = R * c; // Distance in kilometers
     return distance;
@@ -106,17 +111,15 @@ export default async function decorate(block) {
 
   // Function to update Location Button with the selected city
   function updateLocationButton(cityName, forCode) {
-    const locationButton = block.querySelector('.location-btn');
+    const locationButton = block.querySelector(".location-btn");
     locationButton.textContent = cityName;
-    locationButton.setAttribute('data-forcode', forCode);
-    // locationButton.setAttribute("data-citycode", cityCode);
-    block.querySelector('.geo-location').style.display = 'none';
+    locationButton.setAttribute("data-forcode", forCode);
+    block.querySelector(".geo-location").style.display = "none";
   }
   // Function to auto-select the nearest city based on user's location
   function autoSelectNearestCity(latitude, longitude) {
     let nearestCity = null;
     let forCode = null;
-    let cityCode = null;
     let minDistance = Infinity;
 
     // Iterating over all cities and logging latitude and longitude
@@ -127,13 +130,12 @@ export default async function decorate(block) {
         latitude,
         longitude,
         cityLatitude,
-        cityLongitude,
+        cityLongitude
       );
       if (distance < minDistance) {
         minDistance = distance;
         nearestCity = cityName;
         forCode = citiesObject[cityName].forCode;
-        cityCode = citiesObject[cityName].cityCode;
       }
     });
     // Update the nearest city in the dropdown
@@ -154,99 +156,100 @@ export default async function decorate(block) {
   }
 
   const defaultHeaders = {
-    'x-api-key': apiKey,
+    "x-api-key": apiKey,
     Authorization: authorization,
   };
 
-  const urlWithParams = 'https://api.preprod.developersatmarutisuzuki.in/dms/v1/api/common/msil/dms/dealer-only-cities?channel=EXC';
+  const urlWithParams =
+    "https://api.preprod.developersatmarutisuzuki.in/dms/v1/api/common/msil/dms/dealer-only-cities?channel=EXC";
   let result;
   try {
     const response = await fetch(urlWithParams, {
-      method: 'GET',
+      method: "GET",
       headers: defaultHeaders,
     });
     result = await response.json();
     const filteredData = result?.data?.filter((obj) => obj.cityDesc !== null);
     citiesObject = processData(filteredData);
-    const locationButton = block.querySelector('.location-btn');
-    const geoLocationDiv = block.querySelector('.geo-location');
-    const findLocation = block.querySelector('.find-location__text');
-    const separator = block.querySelector('.separator');
-    const geoLocationText = block.querySelector('.geo-location__text');
-    const detectLocationCTA = block.querySelector('.detect-location__cta');
-    const detectLocation = block.querySelector('.detect-location');
-    const detectLocationBox = block.querySelector('.detect-location__box');
-    const topCities = block.querySelector('.top__cities');
-    const searchLocation = block.querySelector('.search-location');
+    const locationButton = block.querySelector(".location-btn");
+    const geoLocationDiv = block.querySelector(".geo-location");
+    const findLocation = block.querySelector(".find-location__text");
+    const separator = block.querySelector(".separator");
+    const geoLocationText = block.querySelector(".geo-location__text");
+    const detectLocationCTA = block.querySelector(".detect-location__cta");
+    const detectLocation = block.querySelector(".detect-location");
+    const detectLocationBox = block.querySelector(".detect-location__box");
+    const topCities = block.querySelector(".top__cities");
+    const searchLocation = block.querySelector(".search-location");
 
     cities.forEach((cityCode) => {
       const obj = Object.keys(citiesObject).find(
-        (key) => citiesObject[key].forCode === cityCode,
+        (key) => citiesObject[key].forCode === cityCode
       );
-      const p = document.createElement('p');
-      p.className = 'selected__top__city';
+      const p = document.createElement("p");
+      p.className = "selected__top__city";
       p.textContent = obj;
-      p.setAttribute('data-forcode', cityCode);
+      p.setAttribute("data-forcode", cityCode);
       topCities.appendChild(p);
     });
 
     populateAllCities(); // Populate all cities initially
 
-    const searchInput = block.querySelector('.search');
-    searchInput.addEventListener('input', (e) => {
+    const searchInput = block.querySelector(".search");
+    searchInput.addEventListener("input", (e) => {
       const inputValue = e.target.value.trim();
-      if (inputValue === '') {
+      if (inputValue === "") {
         populateAllCities();
       } else {
         filterCities(inputValue);
       }
     });
 
-    locationButton.addEventListener('click', () => {
+    locationButton.addEventListener("click", () => {
       if (
-        geoLocationDiv.style.display === 'none'
-        || geoLocationDiv.style.display === ''
+        geoLocationDiv.style.display === "none" ||
+        geoLocationDiv.style.display === ""
       ) {
-        geoLocationDiv.style.display = 'block';
+        geoLocationDiv.style.display = "block";
       } else {
-        geoLocationDiv.style.display = 'none';
+        geoLocationDiv.style.display = "none";
       }
     });
-    detectLocationCTA.addEventListener('click', () => {
-      geoLocationDiv.style.display = 'none';
+    detectLocationCTA.addEventListener("click", () => {
+      geoLocationDiv.style.display = "none";
       requestLocationPermission();
     });
-    findLocation.addEventListener('click', () => {
-      findLocation.style.display = 'none';
-      separator.style.display = 'none';
-      geoLocationText.style.display = 'none';
-      topCities.style.display = 'flex';
+    findLocation.addEventListener("click", () => {
+      findLocation.style.display = "none";
+      separator.style.display = "none";
+      geoLocationText.style.display = "none";
+      topCities.style.display = "flex";
       detectLocation.style.padding = 0;
-      detectLocationBox.classList.add('inactive');
-      searchLocation.style.display = 'flex';
+      detectLocationBox.classList.add("inactive");
+      searchLocation.style.display = "flex";
     });
 
     // Add click event to suggested cities
-    const suggestedPlaces = block.querySelector('.suggested-places');
-    suggestedPlaces.addEventListener('click', (e) => {
-      if (e.target.classList.contains('suggested__city')) {
+    const suggestedPlaces = block.querySelector(".suggested-places");
+    suggestedPlaces.addEventListener("click", (e) => {
+      if (e.target.classList.contains("suggested__city")) {
         const selectedCity = e.target.textContent;
-        const selectedForCode = e.target.getAttribute('data-forcode');
+        const selectedForCode = e.target.getAttribute("data-forcode");
         updateLocationButton(selectedCity, selectedForCode);
-        searchInput.value = '';
+        searchInput.value = "";
         populateAllCities();
       }
     });
 
     // Add click event to top cities
-    topCities.addEventListener('click', (e) => {
-      if (e.target.classList.contains('selected__top__city')) {
+    topCities.addEventListener("click", (e) => {
+      if (e.target.classList.contains("selected__top__city")) {
         const selectedCity = e.target.textContent;
-        const selectedForCode = e.target.getAttribute('data-forcode');
+        const selectedForCode = e.target.getAttribute("data-forcode");
         updateLocationButton(selectedCity, selectedForCode);
       }
     });
   } catch (e) {
-    throw new Error('Network response was not ok', e);
+    throw new Error("Network response was not ok", e);
   }
 }
