@@ -31,12 +31,7 @@ export default async function decorate(block) {
                  <div class="search-box">
                   <input type="text" placeholder=${searchText} class="search" />
                  </div>
-                 <div class="suggested-places">
-                   <p>Lucknow</p>
-                   <p>Agra</p>
-                   <p>Kanpur</p>
-                   <p>Delhi</p>
-                 </div>
+                 <div class="suggested-places"></div>
                 </div>
               </div>
           </div>
@@ -65,6 +60,39 @@ export default async function decorate(block) {
     }, {});
     return citiesObject;
   }
+
+
+  function populateAllCities() {
+  const suggestedPlaces = block.querySelector('.suggested-places');
+  suggestedPlaces.innerHTML = ''; // Clear existing suggestions
+  
+  Object.keys(citiesObject).forEach(cityName => {
+    const p = document.createElement('p');
+    p.textContent = cityName;
+    p.className = "suggested__city";
+    p.setAttribute('data-forcode', citiesObject[cityName].forCode);
+    suggestedPlaces.appendChild(p);
+  });
+}
+
+function filterCities(input) {
+  const suggestedPlaces = block.querySelector('.suggested-places');
+  suggestedPlaces.innerHTML = ''; // Clear existing suggestions
+  
+  const filteredCities = Object.keys(citiesObject).filter(cityName => 
+    new RegExp(`^${input}`, 'i').test(cityName)
+  );
+  
+  filteredCities.forEach(cityName => {
+    const p = document.createElement('p');
+    p.textContent = cityName;
+    p.className = "suggested__city";
+    p.setAttribute('data-forcode', citiesObject[cityName].forCode);
+    suggestedPlaces.appendChild(p);
+  });
+}
+
+
   // Function to calculate distance between two points using Haversine formula
   function calculateDistance(lat1, lon1, lat2, lon2) {
     const R = 6371;
@@ -79,6 +107,14 @@ export default async function decorate(block) {
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const distance = R * c; // Distance in kilometers
     return distance;
+  }
+
+  function updateLocationButton(cityName, forCode, cityCode) {
+    const locationButton = block.querySelector(".location-btn");
+    locationButton.textContent = cityName;
+    locationButton.setAttribute("data-forcode", forCode);
+    // locationButton.setAttribute("data-citycode", cityCode);
+    block.querySelector(".geo-location").style.display = "none";
   }
   // Function to auto-select the nearest city based on user's location
   function autoSelectNearestCity(latitude, longitude) {
@@ -105,11 +141,9 @@ export default async function decorate(block) {
       }
     });
     // Update the nearest city in the dropdown
-    const location = block.querySelector(".location-btn");
-    location.innerHTML = nearestCity;
-    location.setAttribute("data-forcode", forCode);
-    location.setAttribute("data-citycode", cityCode);
+    updateLocationButton(nearestCity, forCode);
   }
+
   function showPosition(position) {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
@@ -160,6 +194,19 @@ export default async function decorate(block) {
       p.setAttribute("data-forcode", cityCode);
       topCities.appendChild(p);
     });
+
+    populateAllCities(); // Populate all cities initially
+
+    const searchInput = block.querySelector('.search');
+    searchInput.addEventListener('input', (e) => {
+      const inputValue = e.target.value.trim();
+      if (inputValue === '') {
+        populateAllCities();
+      } else {
+        filterCities(inputValue);
+      }
+    });
+
     locationButton.addEventListener("click", () => {
       if (
         geoLocationDiv.style.display === "none" ||
@@ -183,6 +230,42 @@ export default async function decorate(block) {
       detectLocationBox.classList.add("inactive");
       searchLocation.style.display = "flex";
     });
+
+    // Add click event to suggested cities
+const suggestedPlaces = block.querySelector('.suggested-places');
+suggestedPlaces.addEventListener('click', (e) => {
+  if (e.target.classList.contains('suggested__city')) {
+    const selectedCity = e.target.textContent;
+    const selectedForCode = e.target.getAttribute('data-forcode');
+    updateLocationButton(selectedCity, selectedForCode);
+    searchInput.value = '';
+    populateAllCities();
+  }
+});
+
+// Add click event to top cities
+topCities.addEventListener('click', (e) => {
+  if (e.target.classList.contains('selected__top__city')) {
+    const selectedCity = e.target.textContent;
+    const selectedForCode = e.target.getAttribute('data-forcode');
+    updateLocationButton(selectedCity, selectedForCode);
+  }
+});
+
+  //     // Optional: Add click event to suggested cities
+  // const suggestedPlaces = block.querySelector('.suggested-places');
+  // suggestedPlaces.addEventListener('click', (e) => {
+  //   if (e.target.tagName === 'P') {
+  //     const selectedCity = e.target.textContent;
+  //     const selectedForCode = e.target.getAttribute('data-forcode');
+  //     locationButton.textContent = selectedCity;
+  //     locationButton.setAttribute('data-forcode', selectedForCode);
+  //     geoLocationDiv.style.display = 'none';
+  //     // You might want to reset the search here
+  //     searchInput.value = '';
+  //     populateAllCities();
+  //   }
+  // });
     
   } catch (e) {
     throw new Error("Network response was not ok", e);
