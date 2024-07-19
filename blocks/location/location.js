@@ -11,7 +11,7 @@ export default async function decorate(block) {
   const cities = citiesList.split(',');
   block.innerHTML = utility.sanitizeHtml(`
           <button class="location-btn" data-forcode="08">
-              Delhi
+              DELHI
           </button>
           <div class="geo-location">
               <p class="geo-location__text">${title}</p>
