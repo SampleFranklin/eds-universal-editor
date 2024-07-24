@@ -3567,7 +3567,7 @@
     ]
   },
   {
-    "id": "dealership-activities-item",
+    "id": "dealership-activities",
     "fields": [
       {
         "component": "text-input",
@@ -3614,7 +3614,12 @@
         "value": "",
         "label": "SubTitle",
         "valueType": "string"
-      },
+      }
+    ]
+    },
+  {
+    "id": "dealership-activities-item",
+    "fields": [
       {
         "component": "text-input",
         "name": "tabname",
