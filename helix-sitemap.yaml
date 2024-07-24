@@ -1,4 +1,4 @@
  sitemaps:
    example:
      source: /query-index.json
-     destination: /sitemap-us-en.xml
+     destination: /sitemap-us.xml
