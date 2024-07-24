@@ -1218,7 +1218,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "Safety Tabs",
+                  "name": "Dealership Activities",
                   "filter": "dealership-activities",
                   "model":"dealership-activities"
                 }
@@ -1228,14 +1228,14 @@
         },
         {
           "title": "Dealership Activities Item",
-          "id": "delaership-activities-item",
+          "id": "dealership-activities-item",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "name" :"Dealership Activities Item",
-                  "model": "delaership-activities-item"
+                  "model": "dealership-activities-item"
                 }
               }
             }
