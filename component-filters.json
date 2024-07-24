@@ -85,7 +85,8 @@
       "brand-header",
       "logolist",
       "360view",
-      "dealer-locator-filter"
+      "dealer-locator-filter",
+      "dealership-activities"
     ]
   },
   {
@@ -265,6 +266,12 @@
     "id": "brand-header",
     "components": [
       "brand-header-item"
+    ]
+  },
+  {
+    "id": "dealership-activites",
+    "components": [
+      "dealership-activities-item"
     ]
   }
 ]
