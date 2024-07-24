@@ -3517,16 +3517,26 @@
         "valueType": "string"
       },
       {
+        "component": "select",
+        "name": "visitingTextValue",
+        "label": "Select Visiting Text",
+        "valueType": "string",
+        "options": [
+          { "name": "Dealer Showroom", "value": "ds" },
+          { "name": "Service Centers", "value": "sc" }
+        ]
+      },
+      {
         "component": "text-input",
         "name": "dealerShowroomLabel",
-        "value": "ds",
+        "value": "",
         "label": "Dealer Showroom Label",
         "valueType": "string"
       },
       {
         "component": "text-input",
         "name": "serviceCenterLabel",
-        "value": "sc",
+        "value": "",
         "label": "Service Centers Label",
         "valueType": "string"
       },
