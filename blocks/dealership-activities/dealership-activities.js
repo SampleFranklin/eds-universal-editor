@@ -14,6 +14,7 @@ export default async function decorate(block) {
     return items.map((itemEl, index) => {
       const [
         tabNameEl,
+        descriptionEl,
         imageEl,
         dealerNameEl,
         emailIdEl,
@@ -32,6 +33,7 @@ export default async function decorate(block) {
       const contact = contactEl?.textContent?.trim() || '';
       const primaryText = primaryTextEl?.innerHTML || '';
       const secondaryText = secondaryTextEl?.innerHTML || '';
+      const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.textContent.trim()).join('');
 
       return {
         tabName: tabNameEl?.textContent?.trim() || `Tab ${index + 1}`,
@@ -40,7 +42,7 @@ export default async function decorate(block) {
             <div class="dealership-activities__item-left">
               ${image}
             </div>
-            <div class="dealership-activities__description">${description}</div>
+            <p class="description">${description}</p>
             <div class="dealership-activities__item-right">
               <p class="dealer-name">${dealerName}</p>
               <p class="scheduled-date-time">${scheduledDate} | ${scheduledTime}</p>
@@ -49,9 +51,7 @@ export default async function decorate(block) {
               <div class="actions">
                 <div class="primary-text">${primaryText}</div>
                 <div class="secondary-text">${secondaryText}</div>
-                
-                
-              </div>
+                </div>
             </div>
           </div>
         `
