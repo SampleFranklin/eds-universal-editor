@@ -23,27 +23,29 @@
     color: #555;
   }
   
-  .tabs {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-    overflow-x: auto;
-  }
-  
-  .tabs button {
-    background-color: #007BFF;
-    border: none;
+  .tablink {
+    display: inline-block;
     padding: 10px 20px;
-    color: #fff;
+    margin: 5px; /* Space between tabs */
     cursor: pointer;
-    font-size: 1em;
-    border-radius: 5px 5px 0 0;
-    margin: 0 5px;
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 4px;
+    text-align: left;
+    transition: background-color 0.3s ease;
   }
   
-  .tabs button.active {
-    background-color: #0056b3;
+  .tablink.active {
+    background-color: black;
+    color: black;
+    border-color: black;
   }
+  
+  .tablink:hover {
+    background-color: black;
+  }
+  
+  
   
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__items {
