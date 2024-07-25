@@ -23,25 +23,6 @@
     color: #555;
   }
   
-  .tablink {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 5px; /* Space between tabs */
-    cursor: pointer;
-    border-radius: 4px;
-    text-align: left;
-    transition: background-color 0.3s ease;
-  }
-  
-  /* .tablink.active {
-    color: black;
-    border-color: black;
-  } */
-  
- 
-  
-  
-  
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__items {
     display: flex;
@@ -111,21 +92,53 @@
     background-color: #6c757d;
   }
   /* stylelint-disable-next-line rule-empty-line-before */
+  
+.tabs-wrapper {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px 0;
+  }
+  
+  /* stylelint-disable-next-line no-duplicate-selectors */
+  .tablink {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    margin-right: 5px;
+  }
+  
+  .tablink.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  /* Button styles for secondary text */
   .secondary-text {
     display: inline-block;
     padding: 8px 16px;
     margin: 5px;
     border: none;
     border-radius: 4px;
-    background-color: black;
-    color: black;
+    background-color: #007bff;
+    color: white;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
   
-  .secondary-text:hover {
-    background-color: black;
+  .secondary-text a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  
+  /* stylelint-disable-next-line rule-empty-line-before */
+  .description {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
   }
   
   

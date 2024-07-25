@@ -21,7 +21,12 @@ export default async function decorate(block) {
         scheduledTimeEl,
         contactEl,
         primaryTextEl,
-        secondaryTextEl
+        primaryAnchorEl,
+        primaryTargetEl,
+        secondaryTextEl,
+        secondaryAnchorEl,
+        secondaryTargetEl,
+        descriptionEl
       ] = itemEl.children;
 
       const image = imageEl?.querySelector('picture')?.outerHTML || '';
@@ -30,8 +35,13 @@ export default async function decorate(block) {
       const scheduledDate = scheduledDateEl?.textContent?.trim() || '';
       const scheduledTime = scheduledTimeEl?.textContent?.trim() || '';
       const contact = contactEl?.textContent?.trim() || '';
-      const primaryText = primaryTextEl?.innerHTML || '';
-      const secondaryText = secondaryTextEl?.innerHTML || '';
+      const primaryText = primaryTextEl?.textContent?.trim() || '';
+      const primaryAnchor = primaryAnchorEl?.querySelector('a')?.href || '#';
+      const primaryTarget = primaryTargetEl?.querySelector('a')?.target || '_self';
+      const secondaryText = secondaryTextEl?.textContent?.trim() || '';
+      const secondaryAnchor = secondaryAnchorEl?.querySelector('a')?.href || '#';
+      const secondaryTarget = secondaryTargetEl?.querySelector('a')?.target || '_self';
+      const description = descriptionEl?.textContent?.trim() || '';
 
       return {
         tabName: tabNameEl?.textContent?.trim() || `Tab ${index + 1}`,
@@ -46,10 +56,13 @@ export default async function decorate(block) {
               <p class="email-id">${emailId}</p>
               <p class="contact">${contact}</p>
               <div class="actions">
-                <div class="primary-text">${primaryText}</div>
-                <div class="secondary-text">${secondaryText}</div>
-                <button class="secondary-text">${secondaryText}</button>
+                <div class="primary-text">
+                  <a href="${primaryAnchor}" target="${primaryTarget}">${primaryText}</a>
                 </div>
+                <button class="secondary-text">
+                  <a href="${secondaryAnchor}" target="${secondaryTarget}">${secondaryText}</a>
+                </button>
+                <p class="description">${description}</p>
               </div>
             </div>
           </div>
@@ -80,7 +93,9 @@ export default async function decorate(block) {
           <p class="subtitle">${subtitle}</p>
         </div>
         <div class="tabs">
-          ${tabsHtml}
+          <div class="tabs-wrapper">
+            ${tabsHtml}
+          </div>
         </div>
         <div class="dealership-activities__items">
           ${itemsHtml}
