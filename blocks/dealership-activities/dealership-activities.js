@@ -38,6 +38,7 @@ export default async function decorate(block) {
   const scheduledDate = scheduledDateEl?.textContent?.trim() || '';
   const scheduledTime = scheduledTimeEl?.textContent?.trim() || '';
   const contact = contactEl?.textContent?.trim() || '';
+  console.log("subtitle")
   return {
     imgSrc: linkImageEl?.querySelector('img')?.src || '',
     dealerName,
