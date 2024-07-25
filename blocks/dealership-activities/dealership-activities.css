@@ -1,28 +1,40 @@
+/* Container for dealership activities */
 /* stylelint-disable-next-line selector-class-pattern */
 .dealership-activities__container {
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
-    
   }
   
+  /* Content within the dealership activities container */
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__content {
     text-align: left;
   }
   
+  /* Title styling */
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__title {
     margin-bottom: 20px;
   }
   
+  /* Subtitle styling */
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__title .subtitle {
     font-size: 1.2em;
     color: #555;
   }
   
+  /* Tabs wrapper to enable horizontal scroll */
+  .tabs-wrapper {
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 1px solid #ddd; /* Optional: Adds a bottom border to the tabs container */
+    padding-bottom: 10px; /* Space for the scrollbar */
+  }
+  
+  /* Tabs styling */
   .tablink {
     display: inline-block;
     padding: 10px 20px;
@@ -33,15 +45,19 @@
     transition: background-color 0.3s ease;
   }
   
-  /* .tablink.active {
-    color: black;
+  /* Active tab styling */
+  .tablink.active {
+    background-color: black;
+    color: white;
     border-color: black;
-  } */
+  }
   
- 
+  /* Tabs hover effect */
+  .tablink:hover {
+    background-color: #e2e6ea;
+  }
   
-  
-  
+  /* Container for dealership activities items */
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__items {
     display: flex;
@@ -49,6 +65,7 @@
     justify-content: space-between;
   }
   
+  /* Individual dealership activities item */
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__item {
     display: none;
@@ -57,19 +74,23 @@
     margin-bottom: 15px;
     border-bottom: 1px solid #ddd;
     width: 100%;
+    flex-direction: row;
   }
   
+  /* Active item styling */
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__item.active {
     display: flex;
   }
   
+  /* Left side of the dealership activities item */
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__item-left {
     flex: 0 0 auto;
     margin-right: 20px;
   }
   
+  /* Image styling within the item */
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__item-left img {
     width: 150px;
@@ -77,21 +98,32 @@
     object-fit: cover;
   }
   
+  /* Right side of the dealership activities item */
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__item-right {
     flex: 1;
     text-align: left;
   }
   
+  /* Paragraph styling within the item */
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__item-right p {
     margin: 5px 0;
   }
   
+  /* Description styling */
+  .description {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  /* Actions container */
   .actions {
     text-align: right;
   }
   
+  /* Button and link styling within actions */
   .actions button,
   .actions a {
     display: inline-block;
@@ -100,17 +132,22 @@
     text-decoration: none;
     color: #fff;
     border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
   
+  /* Primary button styling */
   .actions button {
     background-color: black;
     border: none;
   }
   
+  /* Secondary link styling */
   .actions a {
     background-color: #6c757d;
   }
-  /* stylelint-disable-next-line rule-empty-line-before */
+  
+  /* Secondary text button styling */
   .secondary-text {
     display: inline-block;
     padding: 8px 16px;
@@ -118,20 +155,28 @@
     border: none;
     border-radius: 4px;
     background-color: black;
-    color: black;
+    color: #fff; /* Adjusted to ensure text is readable */
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
   
+  /* Hover effect for secondary text */
   .secondary-text:hover {
-    background-color: black;
-  }
-  /* stylelint-disable-next-line rule-empty-line-before */
-  .description {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #333;
+    background-color: #333; /* Slightly lighter color on hover */
   }
   
+  /* Horizontal scrollbar styling for tabs */
+  .tabs-wrapper::-webkit-scrollbar {
+    height: 8px; /* Adjust scrollbar height */
+  }
+  
+  .tabs-wrapper::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+  }
+  
+  .tabs-wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
   
