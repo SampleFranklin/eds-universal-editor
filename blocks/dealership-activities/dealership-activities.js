@@ -60,7 +60,7 @@ export default async function decorate(block) {
   const extractTabs = (tabs) => {
     return tabs.map((tab, index) => {
       const isActive = index === 0 ? 'active' : '';
-      return `<button class="tablink ${isActive}" data-tab="tab${index + 1}">${tab.tabName}</button>`;
+      return `<div class="tablink ${isActive}" data-tab="tab${index + 1}">${tab.tabName}</div>`;
     }).join('');
   };
 
