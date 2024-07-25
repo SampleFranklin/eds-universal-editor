@@ -40,7 +40,7 @@ export default async function decorate(block) {
   const contact = contactEl?.textContent?.trim() || '';
   console.log("subtitle")
   return {
-    imgSrc: linkImageEl?.querySelector('img')?.src || '',
+    imgSrc: imageEl?.querySelector('img')?.src || '',
     dealerName,
     emailId,
     scheduledDate,
