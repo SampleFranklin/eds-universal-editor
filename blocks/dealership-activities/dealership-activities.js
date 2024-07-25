@@ -57,11 +57,19 @@ export default async function decorate(block) {
               <p class="contact">${contact}</p>
               <div class="actions">
                 <div class="primary-text">
-                  <a href="${primaryAnchor}" target="${primaryTarget}">${primaryText}</a>
+                  <div class="dealership-activities__action">
+                    <a href="${primaryAnchor}" title="${primaryText}" class="button btn-title" target="${primaryTarget}">
+                      <p class="cta-text">${primaryText}</p>
+                    </a>
+                  </div>
                 </div>
-                <button class="secondary-text">
-                  <a href="${secondaryAnchor}" target="${secondaryTarget}">${secondaryText}</a>
-                </button>
+                <div class="secondary-text">
+                  <div class="dealership-activities__action">
+                    <a href="${secondaryAnchor}" title="${secondaryText}" class="button btn-title" target="${secondaryTarget}">
+                      <p class="cta-text">${secondaryText}</p>
+                    </a>
+                  </div>
+                </div>
                 <p class="description">${description}</p>
               </div>
             </div>
