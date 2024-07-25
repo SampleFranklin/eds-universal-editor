@@ -22,7 +22,9 @@ export default async function decorate(block) {
     footer.append(fragment.firstElementChild);
   }
 
-  const linkGridSection = footer.querySelector('.link-grid-wrapper');
+  // const linkGridSection = footer.querySelector('.link-grid-wrapper');
+  const linkColumns = Array.from(footer.querySelectorAll('.link-grid-column'));
+  const linkCoulmnHTML= linkColumns.map(column => column.outerHTML).join('');
   const contactUsSection = footer.querySelector(
     '.footer-center-section .default-content-wrapper',
   );
@@ -82,7 +84,11 @@ export default async function decorate(block) {
         ${topSectionHtml}
         <div class="row">
           <div class="col-md-9 footer__columns">
-            ${linkGridSection.innerHTML}
+            <div class="link-grid-wrapper">
+                <div class="link-container-section">
+                  ${linkCoulmnHTML}
+                </div>  
+            </div>
           </div>
           <div class="col-md-3 footer__columns footer__columns-contact">
             ${contactUsHeadingSection.outerHTML}
