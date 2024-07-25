@@ -3,7 +3,7 @@ import utility from '../../utility/utility.js';
 
 export default async function decorate(block) {
   // Extract elements from the block
-  const [titleEl, subtitleEl, ...tabsAndItemsEls] = block.children;
+  const [titleEl, subtitleEl, ...dealershipActivitiesItemEl] = block.children;
 
   // Extract title and subtitle
   const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)')?.outerHTML || '';
@@ -12,59 +12,62 @@ export default async function decorate(block) {
   // Function to extract individual dealership activity items
   const extractDealershipActivityItems = (items) => {
     return items.map((itemEl, index) => {
-      const imageEl = itemEl.querySelector('.image');
-      const dealerNameEl = itemEl.querySelector('.dealer-name');
-      const contactEl = itemEl.querySelector('.contact');
-      const emailIdEl = itemEl.querySelector('.email-id');
-      const scheduledDateEl = itemEl.querySelector('.scheduled-date');
-      const scheduledTimeEl = itemEl.querySelector('.scheduled-time');
-      const primaryCtaEl = itemEl.querySelector('.primary-cta');
-      const secondaryCtaEl = itemEl.querySelector('.secondary-cta');
+      const [
+        tabNameEl,
+        imageEl,
+        dealerNameEl,
+        emailIdEl,
+        scheduledDateEl,
+        scheduledTimeEl,
+        contactEl,
+        primaryTextEl,
+        secondaryTextEl
+      ] = itemEl.children;
 
-      const image = imageEl?.querySelector('img')?.outerHTML || '';
+      const image = imageEl?.querySelector('picture')?.outerHTML || '';
       const dealerName = dealerNameEl?.textContent?.trim() || '';
-      const contact = contactEl?.textContent?.trim() || '';
       const emailId = emailIdEl?.textContent?.trim() || '';
       const scheduledDate = scheduledDateEl?.textContent?.trim() || '';
       const scheduledTime = scheduledTimeEl?.textContent?.trim() || '';
-      const primaryCta = primaryCtaEl?.querySelector('button')?.outerHTML || '';
-      const secondaryCta = secondaryCtaEl?.querySelector('a')?.outerHTML || '';
+      const contact = contactEl?.textContent?.trim() || '';
+      const primaryText = primaryTextEl?.innerHTML || '';
+      const secondaryText = secondaryTextEl?.innerHTML || '';
 
-      return `
-        <div class="dealership-activities__item" id="tab${index + 1}">
-          <div class="dealership-activities__item-left">
-            ${image}
-          </div>
-          <div class="dealership-activities__item-right">
-            <p class="dealer-name">${dealerName}</p>
-            <p class="scheduled-date-time">${scheduledDate} | ${scheduledTime}</p>
-            <p class="email-id">${emailId}</p>
-            <p class="contact">${contact}</p>
-            <div class="actions">
-              ${secondaryCta}
-              ${primaryCta}
+      return {
+        tabName: tabNameEl?.textContent?.trim() || `Tab ${index + 1}`,
+        content: `
+          <div class="dealership-activities__item" id="tab${index + 1}">
+            <div class="dealership-activities__item-left">
+              ${image}
+            </div>
+            <div class="dealership-activities__item-right">
+              <p class="dealer-name">${dealerName}</p>
+              <p class="scheduled-date-time">${scheduledDate} | ${scheduledTime}</p>
+              <p class="email-id">${emailId}</p>
+              <p class="contact">${contact}</p>
+              <div class="actions">
+                <div class="primary-text">${primaryText}</div>
+                <div class="secondary-text">${secondaryText}</div>
+              </div>
             </div>
           </div>
-        </div>
-      `;
-    }).join('');
+        `
+      };
+    });
   };
 
   // Function to extract and build the tabs
   const extractTabs = (tabs) => {
     return tabs.map((tab, index) => {
       const isActive = index === 0 ? 'active' : '';
-      return `<button class="tablink ${isActive}" data-tab="tab${index + 1}">Tab ${index + 1}</button>`;
+      return `<button class="tablink ${isActive}" data-tab="tab${index + 1}">${tab.tabName}</button>`;
     }).join('');
   };
 
-  // Separate tabs and items
-  const tabs = tabsAndItemsEls.filter((el) => el.classList.contains('tab'));
-  const items = tabsAndItemsEls.filter((el) => el.classList.contains('dealership-activities__item'));
-
   // Generate tabs and items HTML
-  const tabsHtml = extractTabs(tabs);
-  const itemsHtml = extractDealershipActivityItems(items);
+  const items = extractDealershipActivityItems(dealershipActivitiesItemEl);
+  const tabsHtml = extractTabs(items);
+  const itemsHtml = items.map(item => item.content).join('');
 
   // Set block's inner HTML
   block.innerHTML = utility.sanitizeHtml(`
