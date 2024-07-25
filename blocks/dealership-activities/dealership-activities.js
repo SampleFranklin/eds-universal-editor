@@ -1,3 +1,4 @@
+import { moveInstrumentation } from '../../scripts/scripts.js';
 import utility from '../../utility/utility.js';
 
 export default async function decorate(block) {
@@ -30,7 +31,7 @@ export default async function decorate(block) {
       const secondaryCta = secondaryCtaEl?.querySelector('a')?.outerHTML || '';
 
       return `
-        <div class="dealership-activities__item ${index === 0 ? 'active' : ''}" id="tab${index + 1}">
+        <div class="dealership-activities__item" id="tab${index + 1}">
           <div class="dealership-activities__item-left">
             ${image}
           </div>
@@ -54,7 +55,7 @@ export default async function decorate(block) {
   const extractTabs = (tabs) => {
     return tabs.map((tab, index) => {
       const isActive = index === 0 ? 'active' : '';
-      return `<button class="tablink ${isActive}" onclick="openTab(event, 'tab${index + 1}')">Tab ${index + 1}</button>`;
+      return `<button class="tablink ${isActive}" data-tab="tab${index + 1}">Tab ${index + 1}</button>`;
     }).join('');
   };
 
@@ -85,11 +86,12 @@ export default async function decorate(block) {
   `);
 
   // Function to handle tab switching and highlight
-  window.openTab = (evt, tabName) => {
+  const openTab = (evt, tabName) => {
     const tabContent = document.querySelectorAll('.dealership-activities__item');
     const tabLinks = document.querySelectorAll('.tablink');
 
     tabContent.forEach((content) => {
+      content.style.display = 'none';
       content.classList.remove('active');
     });
 
@@ -97,10 +99,29 @@ export default async function decorate(block) {
       link.classList.remove('active');
     });
 
-    document.getElementById(tabName).classList.add('active');
+    const activeTab = document.getElementById(tabName);
+    if (activeTab) {
+      activeTab.style.display = 'flex';
+      activeTab.classList.add('active');
+      moveInstrumentation(activeTab);
+    }
+
     evt.currentTarget.classList.add('active');
+    moveInstrumentation(evt.currentTarget);
   };
 
+  // Attach click event listeners to the tabs
+  document.querySelectorAll('.tablink').forEach((tabLink) => {
+    tabLink.addEventListener('click', (event) => {
+      const tabName = tabLink.getAttribute('data-tab');
+      openTab(event, tabName);
+    });
+  });
+
   // Initial tab display setup
-  document.querySelectorAll('.dealership-activities__item')[0].classList.add('active');
+  if (document.querySelectorAll('.dealership-activities__item')[0]) {
+    document.querySelectorAll('.dealership-activities__item')[0].style.display = 'flex';
+    document.querySelectorAll('.dealership-activities__item')[0].classList.add('active');
+    moveInstrumentation(document.querySelectorAll('.dealership-activities__item')[0]);
+  }
 }
