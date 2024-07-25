@@ -49,9 +49,9 @@ export default async function decorate(block) {
         tabName: tabNameEl?.textContent?.trim() || `Tab ${index + 1}`,
         content: `
           <div class="dealership-activities__item" id="tab${index + 1}">
-            <p class="description">${description}</p>
             <div class="dealership-activities__item-left">
               ${image}
+              <p class="description">${description}</p>
             </div>
             <div class="dealership-activities__item-right">
               <p class="dealer-name">${dealerName}</p>
@@ -132,6 +132,15 @@ export default async function decorate(block) {
     tabLink.addEventListener('click', (event) => {
       const tabName = tabLink.getAttribute('data-tab');
       openTab(event, tabName);
+    });
+
+    // Attach hover event listeners for scrollbar highlighting
+    tabLink.addEventListener('mouseover', () => {
+      tabLink.classList.add('highlight');
+    });
+
+    tabLink.addEventListener('mouseout', () => {
+      tabLink.classList.remove('highlight');
     });
   });
 
