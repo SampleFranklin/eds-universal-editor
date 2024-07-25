@@ -47,7 +47,9 @@ export default async function decorate(block) {
               <p class="contact">${contact}</p>
               <div class="actions">
                 <div class="primary-text">${primaryText}</div>
+                <div class="secondary-text">${secondaryText}>
                 <button class="secondary-text">${secondaryText}</button>
+                </div>
               </div>
             </div>
           </div>

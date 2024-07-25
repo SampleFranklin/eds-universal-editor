@@ -28,22 +28,17 @@
     padding: 10px 20px;
     margin: 5px; /* Space between tabs */
     cursor: pointer;
-    background-color: black;
-    border: 1px solid black;
     border-radius: 4px;
     text-align: left;
     transition: background-color 0.3s ease;
   }
   
-  .tablink.active {
-    background-color: black;
+  /* .tablink.active {
     color: black;
     border-color: black;
-  }
+  } */
   
-  .tablink:hover {
-    background-color: black;
-  }
+ 
   
   
   
@@ -108,7 +103,7 @@
   }
   
   .actions button {
-    background-color: #007BFF;
+    background-color: black;
     border: none;
   }
   
@@ -122,8 +117,8 @@
     margin: 5px;
     border: none;
     border-radius: 4px;
-    background-color: #007bff;
-    color: white;
+    background-color: black;
+    color: black;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
