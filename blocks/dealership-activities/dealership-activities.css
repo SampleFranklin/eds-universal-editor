@@ -1,0 +1,116 @@
+/* stylelint-disable-next-line selector-class-pattern */
+.dealership-activities__container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    
+  }
+  
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__content {
+    text-align: center;
+  }
+  
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__title {
+    margin-bottom: 20px;
+  }
+  
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__title .subtitle {
+    font-size: 1.2em;
+    color: #555;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    overflow-x: auto;
+  }
+  
+  .tabs button {
+    background-color: #007BFF;
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px 5px 0 0;
+    margin: 0 5px;
+  }
+  
+  .tabs button.active {
+    background-color: #0056b3;
+  }
+  
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__item {
+    display: none;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+  }
+  
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__item.active {
+    display: flex;
+  }
+  
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__item-left {
+    flex: 0 0 auto;
+    margin-right: 20px;
+  }
+  
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__item-left img {
+    width: 150px;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__item-right {
+    flex: 1;
+    text-align: left;
+  }
+  
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__item-right p {
+    margin: 5px 0;
+  }
+  
+  .actions {
+    text-align: right;
+  }
+  
+  .actions button,
+  .actions a {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+  }
+  
+  .actions button {
+    background-color: #007BFF;
+    border: none;
+  }
+  
+  .actions a {
+    background-color: #6c757d;
+  }
+  
