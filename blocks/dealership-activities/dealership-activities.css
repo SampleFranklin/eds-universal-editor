@@ -142,6 +142,9 @@
     font-style: normal;
     font-weight: 500;
     line-height: 20px; /* 125% */
+    bottom:200px;
+    /* stylelint-disable-next-line custom-property-pattern */
+    background: var(--Gradients-Gradient-1, linear-gradient(60deg, #C9D3D7 3.71%, #EBEBEB 104.51%));
   }
   
  /* Actions container */
@@ -164,18 +167,55 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    position: relative;
+    
   }
   
   /* Primary text button styling */
   .actions .primary-text {
-    color: #000;
+    color: #18171A;
     border: none;
+    padding-top:10px;
+    bottom:80px;
+    left:150px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    text-decoration: underline;
+    padding-right: 20px;
     
-  }
+    }
+    /* stylelint-disable-next-line rule-empty-line-before */
+    .primary-text::after {
+        content: ""; /* Unicode for the arrow */
+        position: absolute;
+        display: inline-block;
+        width:20px;
+        height:20px;
+        right: 0;
+        top: 50%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        transform: translateY(-50%);
+        background-image:url("../../icons/arrow_forward.svg");
+    }
+   
   
   /* Secondary text button styling */
   .actions .secondary-text {
     background-color: black;
+    bottom:60px;
+    left:180px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex: 1 0 0;
+    align-self: stretch;
+    display: flex;
+/* stylelint-disable-next-line declaration-block-no-shorthand-property-overrides */
+    padding: 8px 12px; 
+    
   }
   
   /* Secondary text button styling */
@@ -189,6 +229,10 @@
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; 
   }
   
   /* Hover effect for secondary text */
