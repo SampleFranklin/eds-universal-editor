@@ -1,4 +1,3 @@
-import { moveInstrumentation } from '../../scripts/scripts.js';
 import utility from '../../utility/utility.js';
 
 export default async function decorate(block) {
@@ -11,17 +10,15 @@ export default async function decorate(block) {
 
   // Function to extract individual dealership activity items
   const extractDealershipActivityItems = (items) => {
-    return items.map((itemEl) => {
-      const [
-        imageEl,
-        dealerNameEl,
-        contactEl,
-        emailIdEl,
-        scheduledDateEl,
-        scheduledTimeEl,
-        primaryCtaEl,
-        secondaryCtaEl,
-      ] = itemEl.children;
+    return items.map((itemEl, index) => {
+      const imageEl = itemEl.querySelector('.image');
+      const dealerNameEl = itemEl.querySelector('.dealer-name');
+      const contactEl = itemEl.querySelector('.contact');
+      const emailIdEl = itemEl.querySelector('.email-id');
+      const scheduledDateEl = itemEl.querySelector('.scheduled-date');
+      const scheduledTimeEl = itemEl.querySelector('.scheduled-time');
+      const primaryCtaEl = itemEl.querySelector('.primary-cta');
+      const secondaryCtaEl = itemEl.querySelector('.secondary-cta');
 
       const image = imageEl?.querySelector('img')?.outerHTML || '';
       const dealerName = dealerNameEl?.textContent?.trim() || '';
@@ -33,7 +30,7 @@ export default async function decorate(block) {
       const secondaryCta = secondaryCtaEl?.querySelector('a')?.outerHTML || '';
 
       return `
-        <div class="dealership-activities__item">
+        <div class="dealership-activities__item ${index === 0 ? 'active' : ''}" id="tab${index + 1}">
           <div class="dealership-activities__item-left">
             ${image}
           </div>
@@ -89,21 +86,21 @@ export default async function decorate(block) {
 
   // Function to handle tab switching and highlight
   window.openTab = (evt, tabName) => {
-    const tabContent = document.querySelectorAll('.dealership-activities__items');
+    const tabContent = document.querySelectorAll('.dealership-activities__item');
     const tabLinks = document.querySelectorAll('.tablink');
 
     tabContent.forEach((content) => {
-      content.style.display = 'none';
+      content.classList.remove('active');
     });
 
     tabLinks.forEach((link) => {
       link.classList.remove('active');
     });
 
-    document.getElementById(tabName).style.display = 'flex';
+    document.getElementById(tabName).classList.add('active');
     evt.currentTarget.classList.add('active');
   };
 
   // Initial tab display setup
-  document.querySelectorAll('.dealership-activities__items')[0].style.display = 'flex';
+  document.querySelectorAll('.dealership-activities__item')[0].classList.add('active');
 }
