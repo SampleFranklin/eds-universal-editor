@@ -1,4 +1,5 @@
-/* Container for dealership activities */
+/* stylelint-disable no-descending-specificity */
+
 /* stylelint-disable-next-line selector-class-pattern */
 .dealership-activities__container {
     max-width: 1200px;
@@ -10,6 +11,10 @@
   /* Content within the dealership activities container */
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
     text-align: left;
   }
   
@@ -17,20 +22,28 @@
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__title {
     margin-bottom: 20px;
+    color: #434649;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 36px; /* 112.5% */
+    letter-spacing: 0.64px;
   }
   
   /* Subtitle styling */
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__title .subtitle {
-    font-size: 1.2em;
-    color: #555;
+    color: #575A5E;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 133.333% */
   }
   
-  /* Tabs wrapper to enable horizontal scroll */
   .tabs-wrapper {
     overflow-x: auto;
     white-space: nowrap;
-    border-bottom: 1px solid #ddd; /* Optional: Adds a bottom border to the tabs container */
+    border-bottom: 1px solid black; /* Optional: Adds a bottom border to the tabs container */
     padding-bottom: 10px; /* Space for the scrollbar */
   }
   
@@ -47,14 +60,33 @@
   
   /* Active tab styling */
   .tablink.active {
-    color: black;
-    border-color: black;
-  }
+    color: white;
+    }
   
   /* Tabs hover effect */
   .tablink:hover {
     background-color: #e2e6ea;
   }
+  
+  /* Highlight tab on hover */
+  .tablink.highlight {
+    color: black;
+  }
+  
+  /* Tabs wrapper scrollbar styling */
+  .tabs-wrapper::-webkit-scrollbar {
+    height: 8px; /* Adjust scrollbar height */
+  }
+  
+  .tabs-wrapper::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+  }
+  
+  .tabs-wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+  
   
   /* Container for dealership activities items */
   /* stylelint-disable-next-line selector-class-pattern */
@@ -92,8 +124,8 @@
   /* Image styling within the item */
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__item-left img {
-    width: 150px;
-    height: auto;
+    width: 238px;
+    height: 135px;
     object-fit: cover;
   }
   
@@ -104,17 +136,15 @@
     text-align: left;
   }
   
-  /* Paragraph styling within the item */
-  /* stylelint-disable-next-line selector-class-pattern */
-  .dealership-activities__item-right p {
-    margin: 5px 0;
-  }
+ 
   
   /* Description styling */
   .description {
-    margin-bottom: 180px;
-    font-size: 14px;
-    color: #333;
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 125% */
   }
   
   /* Actions container */
@@ -135,8 +165,7 @@
   }
   
   /* Primary button styling */
-  .primary-text {
-    color:black;
+  .actions button {
     border: none;
   }
   
@@ -165,15 +194,19 @@
   }
   
   /* Horizontal scrollbar styling for tabs */
+  /* stylelint-disable-next-line no-duplicate-selectors */
   .tabs-wrapper::-webkit-scrollbar {
     height: 8px; /* Adjust scrollbar height */
   }
   
+  
+  /* stylelint-disable-next-line no-duplicate-selectors */
   .tabs-wrapper::-webkit-scrollbar-thumb {
     background-color: #888;
     border-radius: 4px;
   }
   
+  /* stylelint-disable-next-line no-duplicate-selectors */
   .tabs-wrapper::-webkit-scrollbar-thumb:hover {
     background-color: black;
   }
