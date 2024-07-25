@@ -1,4 +1,3 @@
-import { moveInstrumentation } from '../../scripts/scripts.js';
 import utility from '../../utility/utility.js';
 
 export default async function decorate(block) {
@@ -23,16 +22,7 @@ export default async function decorate(block) {
         secondaryCtaEl,
       ] = itemEl.children;
 
-      const image = imageEl?.querySelector('picture');
-    if (image) {
-      const img = image.querySelector('img');
-      img.removeAttribute('width');
-      img.removeAttribute('height');
-      const altTextEl = imageEl.querySelector('figcaption');
-      const alt = altTextEl?.textContent?.trim() || 'image';
-      img.setAttribute('alt', alt);
-      img.classList.add('hero-banner-dealer__image-container');
-    }
+      const image = imageEl?.querySelector('img')?.outerHTML || '';
       const dealerName = dealerNameEl?.textContent?.trim() || '';
       const contact = contactEl?.textContent?.trim() || '';
       const emailId = emailIdEl?.textContent?.trim() || '';
