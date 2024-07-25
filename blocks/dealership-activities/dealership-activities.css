@@ -60,13 +60,10 @@
   
   /* Active tab styling */
   .tablink.active {
-    color: white;
+    color: black;
     }
   
-  /* Tabs hover effect */
-  .tablink:hover {
-    background-color: #e2e6ea;
-  }
+  
   
   /* Highlight tab on hover */
   .tablink.highlight {
@@ -173,7 +170,7 @@
   .actions .primary-text {
     color: #000;
     border: none;
-    background-image:url("../../icons/location__icon.svg");
+    
   }
   
   /* Secondary text button styling */
