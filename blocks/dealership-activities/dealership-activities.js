@@ -1,143 +1,118 @@
-// export default async function decorate(block) {
-//       const [
-//         titleEl,
-//         subtitleEl,
-//         ] = block.children;
-  
-//       const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)');
-//       const subtitle = subtitleEl?.textContent?.trim() || '';
-//       return {
-//         title,
-//         subtitle,
-//     }
+import { moveInstrumentation } from '../../scripts/scripts.js';
+import utility from '../../utility/utility.js';
 
-// import { fetchPlaceholders } from '../../scripts/aem.js';
+export default async function decorate(block) {
+  // Extract elements from the block
+  const [titleEl, subtitleEl, ...tabsAndItemsEls] = block.children;
 
-// export default async function decorate(block) {
-//   const { publishDomain } = await fetchPlaceholders();
+  // Extract title and subtitle
+  const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)')?.outerHTML || '';
+  const subtitle = subtitleEl?.textContent?.trim() || '';
 
-//   function getTabHtml(id, title) {
-//     return `
-//       <button class="tablink" onclick="openTab(event, '${id}')">${title}</button>
-//     `;
-//   }
+  // Function to extract individual dealership activity items
+  const extractDealershipActivityItems = (items) => {
+    return items.map((itemEl) => {
+      const [
+        imageEl,
+        dealerNameEl,
+        contactEl,
+        emailIdEl,
+        scheduledDateEl,
+        scheduledTimeEl,
+        primaryCtaEl,
+        secondaryCtaEl,
+      ] = itemEl.children;
 
-//   function getDealershipActivityHtml(activity) {
-//     const {
-//       image,
-//       dealerName,
-//       contact,
-//       emailId,
-//       scheduledDate,
-//       scheduledTime,
-//       primaryCta,
-//       secondaryCta
-//     } = activity;
+      const image = imageEl?.querySelector('picture');
+    if (image) {
+      const img = image.querySelector('img');
+      img.removeAttribute('width');
+      img.removeAttribute('height');
+      const altTextEl = imageEl.querySelector('figcaption');
+      const alt = altTextEl?.textContent?.trim() || 'image';
+      img.setAttribute('alt', alt);
+      img.classList.add('hero-banner-dealer__image-container');
+    }
+      const dealerName = dealerNameEl?.textContent?.trim() || '';
+      const contact = contactEl?.textContent?.trim() || '';
+      const emailId = emailIdEl?.textContent?.trim() || '';
+      const scheduledDate = scheduledDateEl?.textContent?.trim() || '';
+      const scheduledTime = scheduledTimeEl?.textContent?.trim() || '';
+      const primaryCta = primaryCtaEl?.querySelector('button')?.outerHTML || '';
+      const secondaryCta = secondaryCtaEl?.querySelector('a')?.outerHTML || '';
 
-//     return `
-//       <div class="dealership-activities__item">
-//         <img src="${image}" alt="${dealerName}">
-//         <div>
-//           <p><strong>Dealer Name:</strong> ${dealerName}</p>
-//           <p><strong>Contact:</strong> ${contact}</p>
-//           <p><strong>Email ID:</strong> ${emailId}</p>
-//           <p><strong>Scheduled Date:</strong> ${scheduledDate}</p>
-//           <p><strong>Scheduled Time:</strong> ${scheduledTime}</p>
-//         </div>
-//         <div class="actions">
-//           <button type="button" class="primary-cta">${primaryCta}</button>
-//           <a href="${secondaryCta.link}" class="secondary-cta">${secondaryCta.text}</a>
-//         </div>
-//       </div>
-//     `;
-//   }
+      return `
+        <div class="dealership-activities__item">
+          <div class="dealership-activities__item-left">
+            ${image}
+          </div>
+          <div class="dealership-activities__item-right">
+            <p><strong>Dealer Name:</strong> ${dealerName}</p>
+            <p><strong>Contact:</strong> ${contact}</p>
+            <p><strong>Email ID:</strong> ${emailId}</p>
+            <p><strong>Scheduled Date:</strong> ${scheduledDate}</p>
+            <p><strong>Scheduled Time:</strong> ${scheduledTime}</p>
+            <div class="actions">
+              ${primaryCta}
+              ${secondaryCta}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  };
 
-//   function openTab(evt, tabId) {
-//     const tabContents = document.querySelectorAll('.dealership-activities__items');
-//     tabContents.forEach(tabContent => {
-//       tabContent.classList.remove('active');
-//     });
+  // Function to extract and build the tabs
+  const extractTabs = (tabs) => {
+    return tabs.map((tab, index) => {
+      const isActive = index === 0 ? 'active' : '';
+      return `<button class="tablink ${isActive}" onclick="openTab(event, 'tab${index + 1}')">Tab ${index + 1}</button>`;
+    }).join('');
+  };
 
-//     const tabLinks = document.querySelectorAll('.tablink');
-//     tabLinks.forEach(tabLink => {
-//       tabLink.classList.remove('active');
-//     });
+  // Separate tabs and items
+  const tabs = tabsAndItemsEls.filter((el) => el.classList.contains('tab'));
+  const items = tabsAndItemsEls.filter((el) => el.classList.contains('dealership-activities__item'));
 
-//     document.getElementById(tabId).classList.add('active');
-//     evt.currentTarget.classList.add('active');
-//   }
+  // Generate tabs and items HTML
+  const tabsHtml = extractTabs(tabs);
+  const itemsHtml = extractDealershipActivityItems(items);
 
-//   // Fetch and process data
-//   async function fetchData() {
-//     // Replace this URL with your data source URL
-//     const response = await fetch('/path/to/your/data.json');
-//     const data = await response.json();
-//     return data;
-//   }
+  // Set block's inner HTML
+  block.innerHTML = utility.sanitizeHtml(`
+    <div class="dealership-activities__container">
+      <div class="dealership-activities__content">
+        <div class="dealership-activities__title">
+          ${title}
+          <p class="subtitle">${subtitle}</p>
+        </div>
+        <div class="tabs">
+          ${tabsHtml}
+        </div>
+        <div class="dealership-activities__items">
+          ${itemsHtml}
+        </div>
+      </div>
+    </div>
+  `);
 
-//   // Generate the HTML for tabs and their content
-//   async function generateContent() {
-//     const data = await fetchData();
+  // Function to handle tab switching and highlight
+  window.openTab = (evt, tabName) => {
+    const tabContent = document.querySelectorAll('.dealership-activities__items');
+    const tabLinks = document.querySelectorAll('.tablink');
 
-//     const tabsHtml = data.map(tab => getTabHtml(tab.id, tab.title)).join('');
-//     const tabsContentHtml = data.map(tab => `
-//       <div id="${tab.id}" class="dealership-activities__items">
-//         ${tab.activities.map(activity => getDealershipActivityHtml(activity)).join('')}
-//       </div>
-//     `).join('');
+    tabContent.forEach((content) => {
+      content.style.display = 'none';
+    });
 
-//     block.innerHTML = `
-//       <div class="dealership-activities__container">
-//         <div class="dealership-activities__content">
-//           <div class="dealership-activities__title">
-//             <p class="pre-title">Discover the</p>
-//             <p class="title">Dealership Activities</p>
-//           </div>
-//           <p class="dealership-activities__description">Navigating the process of buying a car can be overwhelming, but our Buyer's Guide is here to make it a smooth and enjoyable experience.</p>
-//           <div class="dealership-activities__action">
-//             <a href="#" title="#" class="button btn-title" target="_self">
-//               <p class="cta-text">Explore Nearby Dealers</p>
-//             </a>
-//           </div>
-//         </div>
+    tabLinks.forEach((link) => {
+      link.classList.remove('active');
+    });
 
-//         <div class="tabs-container">
-//           <div class="tabs">
-//             ${tabsHtml}
-//           </div>
-//         </div>
+    document.getElementById(tabName).style.display = 'flex';
+    evt.currentTarget.classList.add('active');
+  };
 
-//         ${tabsContentHtml}
-//       </div>
-//     `;
-
-//     // Initialize the first tab as active
-//     document.querySelector('.tablink')?.click();
-
-//     // Add custom scroll bar styles
-//     const style = document.createElement('style');
-//     style.textContent = `
-//       .tabs-container::-webkit-scrollbar {
-//         height: 8px;
-//       }
-//       .tabs-container::-webkit-scrollbar-thumb {
-//         background-color: #007BFF;
-//         border-radius: 4px;
-//       }
-//       .tabs-container::-webkit-scrollbar-track {
-//         background-color: #f1f1f1;
-//       }
-//     `;
-//     document.head.appendChild(style);
-
-//     // Event listener to handle resizing
-//     window.addEventListener('resize', () => {
-//       // Logic for responsive behavior if needed
-//     });
-//   }
-
-//   // Generate the content on load
-//   generateContent();
-// }
-
-
+  // Initial tab display setup
+  document.querySelectorAll('.dealership-activities__items')[0].style.display = 'flex';
+}
