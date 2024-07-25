@@ -137,6 +137,7 @@
   
   /* Description styling */
   .description {
+    position: relative;
     color: #000;
     font-size: 16px;
     font-style: normal;
@@ -177,7 +178,7 @@
     border: none;
     padding-top:10px;
     bottom:80px;
-    left:150px;
+    left:180px;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -195,10 +196,11 @@
         height:20px;
         right: 0;
         top: 50%;
+        text-decoration: underline;
         background-size: contain;
         background-repeat: no-repeat;
         transform: translateY(-50%);
-        background-image:url("../../icons/arrow_forward.svg");
+        background-image:url("../../icons/arrow_with_background.svg");
     }
    
   
