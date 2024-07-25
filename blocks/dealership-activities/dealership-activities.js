@@ -121,9 +121,10 @@ export default async function decorate(block) {
   });
 
   // Initial tab display setup
-  if (document.querySelectorAll('.dealership-activities__item')[0]) {
-    document.querySelectorAll('.dealership-activities__item')[0].style.display = 'flex';
-    document.querySelectorAll('.dealership-activities__item')[0].classList.add('active');
-    moveInstrumentation(document.querySelectorAll('.dealership-activities__item')[0]);
+  const initialTab = document.querySelector('.dealership-activities__item');
+  if (initialTab) {
+    initialTab.style.display = 'flex';
+    initialTab.classList.add('active');
+    moveInstrumentation(initialTab);
   }
 }
