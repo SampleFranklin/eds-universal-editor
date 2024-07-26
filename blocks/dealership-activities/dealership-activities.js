@@ -54,11 +54,11 @@ export default async function decorate(block) {
               <p class="description">${description}</p>
             </div>
             <div class="dealership-activities__item-right">
-              <p class="dealer-name">DEALER NAME:"${dealerName}"</p>
-              <p class="scheduled-date">${scheduledDate}</p> 
-              <p class="scheduled-time">${scheduledTime}</p>
-              <p class="email-id">${emailId}</p>
-              <p class="contact">${contact}</p>
+              <p class="dealer-name">DEALER NAME:${dealerName}</p>
+              <p class="scheduled-date">SCHEDULED DATE:${scheduledDate}</p> 
+              <p class="scheduled-time">SCHEDULED TIME:${scheduledTime}</p>
+              <p class="email-id">EMAIL ID:${emailId}</p>
+              <p class="contact">CONTACT:${contact}</p>
               <div class="actions">
                 <a href="${primaryHref}" target="${primaryTarget}" class="primary-text">${primaryText}</a>
                 <a href="${secondaryHref}" target="${secondaryTarget}" class="button secondary-text">${secondaryText}</a>
