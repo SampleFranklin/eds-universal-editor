@@ -139,22 +139,12 @@ export default async function decorate(block) {
       const tabName = tabLink.getAttribute('data-tab');
       openTab(event, tabName);
     });
-
-    // Attach hover event listeners for scrollbar highlighting
-    tabLink.addEventListener('mouseover', () => {
-      tabLink.classList.add('highlight');
-    });
-
-    tabLink.addEventListener('mouseout', () => {
-      tabLink.classList.remove('highlight');
-    });
   });
 
   // Initial tab display setup
-  const initialTab = document.querySelector('.dealership-activities__item');
-  if (initialTab) {
-    initialTab.style.display = 'flex';
-    initialTab.classList.add('active');
-    moveInstrumentation(initialTab);
+  if (document.querySelectorAll('.dealership-activities__item')[0]) {
+    document.querySelectorAll('.dealership-activities__item')[0].style.display = 'flex';
+    document.querySelectorAll('.dealership-activities__item')[0].classList.add('active');
+    moveInstrumentation(document.querySelectorAll('.dealership-activities__item')[0]);
   }
 }
