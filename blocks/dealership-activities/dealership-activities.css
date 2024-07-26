@@ -144,6 +144,8 @@
     height: 135px;
     object-fit: cover;
     border-radius: 4px;
+    bottom:100px;
+    position: relative;
   }
   
   /* Right side of the dealership activities item */
@@ -205,7 +207,7 @@
     font-style: normal;
     font-weight: 500;
     line-height: 20px; /* 125% */
-    bottom: 200px;
+    bottom: 310px;
     /* stylelint-disable-next-line custom-property-pattern */
     background: var(--Gradients-Gradient-1, linear-gradient(60deg, #C9D3D7 3.71%, #EBEBEB 104.51%));
   }
