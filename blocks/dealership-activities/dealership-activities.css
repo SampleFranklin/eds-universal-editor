@@ -167,8 +167,22 @@
   }
   
   /* stylelint-disable-next-line selector-class-pattern */
-  .dealership-activities__item-right div {
+  .dealership-activities__item-right  {
     margin: 10px 0;
+  }
+  
+  
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__item-right p {
+    margin: 10px 0;
+    /* stylelint-disable-next-line custom-property-pattern */
+    color: var(--Primary-Main, #18171A);
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+    font-family: "Fira Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 133.333% */
   }
   
   /* stylelint-disable-next-line selector-class-pattern */
