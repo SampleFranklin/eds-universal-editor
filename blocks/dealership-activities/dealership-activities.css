@@ -70,9 +70,6 @@
     transition: background-color 0.3s ease;
   }
   
-  /* Active tab styling */
-  
-  
   /* Scroll line for tabs */
   .tab-scroll-line {
     position: absolute;
@@ -114,13 +111,16 @@
   /* Individual dealership activities item */
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__item {
-    display: none;
+    display: flex;
     align-items: center;
     padding: 15px;
     margin-bottom: 15px;
     border-bottom: 1px solid #ddd;
     width: 100%;
     flex-direction: row;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
   }
   
   /* Active item styling */
@@ -134,6 +134,7 @@
   .dealership-activities__item-left {
     flex: 0 0 auto;
     margin-right: 20px;
+    
   }
   
   /* Image styling within the item */
@@ -142,13 +143,19 @@
     width: 238px;
     height: 135px;
     object-fit: cover;
+    border-radius: 4px;
   }
   
   /* Right side of the dealership activities item */
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__item-right {
     flex: 1;
-    text-align: left;
+    flex-direction: column;
+  }
+
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__item-right p {
+    margin: 5px 0;
   }
   
   /* Description styling */
