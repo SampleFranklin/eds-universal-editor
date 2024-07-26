@@ -51,23 +51,13 @@
 
   
   .tabs-wrapper {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 .tabs {
     display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
-    margin-bottom: 10px;
-    flex-direction: row;
-    width: 100%;
-    align-items: center;
-    gap: 24px;
-    padding-right: 20px;
-    -ms-overflow-style: none;  
-    scrollbar-width: none;
+    position: relative;
 }
 
 .tablink {
@@ -75,33 +65,36 @@
     padding: 10px 20px;
     margin: 0 5px;
     font-size: 16px;
-    text-align: left;
+    text-align: center;
     cursor: pointer;
-    color: white;
-    /* stylelint-disable-next-line custom-property-pattern */
-    background-color: var(--Tertiary-Deep-Grey, #767879);
-    border: 1px solid #ccc;
-    transition: background-color 0.3s ease;
     position: relative;
-    z-index: 1;
+    background-color: grey; /* Default background color */
+    color: white;
+    transition: background-color 0.3s ease;
 }
 
 .tablink.active {
-    background-color: black; /* Highlight active tab */
-    border-bottom: 2px solid black;
+    background-color: black; /* Highlight color for the active tab */
 }
 
-.tablink.highlight {
-    background-color: black; /* Highlight on hover */
+.tab-scroll-line {
+    position: absolute;
+    bottom: -2px; /* Adjust based on padding */
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: grey; /* Default color for the scroll line */
+    transition: background-color 0.3s ease;
 }
 
+.tablink.active .tab-scroll-line {
+    background-color: black; /* Highlight color for the scroll line of the active tab */
+}
 
-
-/* Custom scrollbar styling */
 .tabs::-webkit-scrollbar {
-    display: none;
+    height: 8px; /* Height of the horizontal scrollbar */
 }
-/* stylelint-disable-next-line rule-empty-line-before */
+
 .tabs::-webkit-scrollbar-thumb {
     background-color: #888; /* Color of the scrollbar thumb */
     border-radius: 4px; /* Rounded corners for the scrollbar thumb */
@@ -109,22 +102,6 @@
 
 .tabs::-webkit-scrollbar-track {
     background-color: #f1f1f1; /* Background color of the scrollbar track */
-}
-
-.tablink.active::after {
-    background-color: black; /* Highlight color for the scroll line */
-}
-
-.tablink::after {
-    content: '';
-    display: block;
-    height: 2px;
-    background-color: black; /* Color of the scroll line */
-    position: absolute;
-    bottom: -4px; /* Adjust this value based on padding and border of the tab */
-    left: 0;
-    width: 100%;
-    transition: background-color 0.3s ease;
 }
 
   
