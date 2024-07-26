@@ -73,7 +73,7 @@ export default async function decorate(block) {
   // Function to extract and build the tabs
   const extractTabs = (tabs) => {
     return tabs.map((tab, index) => {
-      const isActive = index === 0 ? 'active' : '';
+      const isActive = index === 0 ? 'active default' : '';
       return `<div class="tablink ${isActive}" data-tab="tab${index + 1}">${tab.tabName}</div>`;
     }).join('');
   };
@@ -115,6 +115,9 @@ export default async function decorate(block) {
 
     tabLinks.forEach((link) => {
       link.classList.remove('active');
+      if (!link.classList.contains('default')) {
+        link.classList.remove('highlight');
+      }
     });
 
     const activeTab = document.getElementById(tabName);
@@ -137,11 +140,20 @@ export default async function decorate(block) {
 
     // Attach hover event listeners for scrollbar highlighting
     tabLink.addEventListener('mouseover', () => {
-      tabLink.classList.add('highlight');
+      tabLinks.forEach(link => {
+        if (!link.classList.contains('default')) {
+          link.classList.remove('highlight');
+        }
+      });
+      if (!tabLink.classList.contains('default')) {
+        tabLink.classList.add('highlight');
+      }
     });
 
     tabLink.addEventListener('mouseout', () => {
-      tabLink.classList.remove('highlight');
+      if (!tabLink.classList.contains('default')) {
+        tabLink.classList.remove('highlight');
+      }
     });
   });
 
