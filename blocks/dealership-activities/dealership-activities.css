@@ -71,9 +71,7 @@
   }
   
   /* Active tab styling */
-  .tablink.active {
-    background-color: black; /* Highlight color for the active tab */
-  }
+  
   
   /* Scroll line for tabs */
   .tab-scroll-line {
