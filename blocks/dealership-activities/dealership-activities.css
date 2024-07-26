@@ -150,7 +150,7 @@
   
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__item-left img  ::after {
-    content: "Your Content Here"; /* This is the text or content you want to add */
+    content: " "; 
     position: absolute;
     bottom: -20px; /* Position the content below the image */
     left: 0;
