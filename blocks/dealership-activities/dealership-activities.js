@@ -74,7 +74,12 @@ export default async function decorate(block) {
   const extractTabs = (tabs) => {
     return tabs.map((tab, index) => {
       const isActive = index === 0 ? 'active default' : '';
-      return `<div class="tablink ${isActive}" data-tab="tab${index + 1}">${tab.tabName}</div>`;
+      return `
+        <div class="tablink ${isActive}" data-tab="tab${index + 1}">
+          ${tab.tabName}
+          <hr class="tab-scroll-line">
+        </div>
+      `;
     }).join('');
   };
 
@@ -103,7 +108,6 @@ export default async function decorate(block) {
     </div>
   `);
 
-  
   // Function to handle tab switching and highlight
   const openTab = (evt, tabName) => {
     const tabContent = document.querySelectorAll('.dealership-activities__item');

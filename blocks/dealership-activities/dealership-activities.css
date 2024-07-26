@@ -1,12 +1,11 @@
-/* stylelint-disable no-descending-specificity */
-
+/* Container styling */
 /* stylelint-disable-next-line selector-class-pattern */
 .dealership-activities__container {
     max-width: 1200px;
     margin: 20px auto;
     padding: 32px;
     /* stylelint-disable-next-line custom-property-pattern */
-    background:var(--Tertiary-White, #FFF);;
+    background: var(--Tertiary-White, #FFF);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -45,22 +44,21 @@
     font-weight: 400;
     line-height: 24px; /* 133.333% */
   }
-
-
-
-
   
+  /* Tabs wrapper */
   .tabs-wrapper {
     overflow-x: auto;
     white-space: nowrap;
-}
-
-.tabs {
+  }
+  
+  /* Tabs container */
+  .tabs {
     display: flex;
     position: relative;
-}
-
-.tablink {
+  }
+  
+  /* Individual tab styling */
+  .tablink {
     display: inline-block;
     padding: 10px 20px;
     margin: 0 5px;
@@ -71,13 +69,15 @@
     background-color: grey; /* Default background color */
     color: white;
     transition: background-color 0.3s ease;
-}
-
-.tablink.active {
+  }
+  
+  /* Active tab styling */
+  .tablink.active {
     background-color: black; /* Highlight color for the active tab */
-}
-
-.tab-scroll-line {
+  }
+  
+  /* Scroll line for tabs */
+  .tab-scroll-line {
     position: absolute;
     bottom: -2px; /* Adjust based on padding */
     left: 0;
@@ -85,26 +85,26 @@
     height: 2px;
     background-color: grey; /* Default color for the scroll line */
     transition: background-color 0.3s ease;
-}
-
-.tablink.active .tab-scroll-line {
+  }
+  
+  /* Highlight scroll line for active tab */
+  .tablink.active .tab-scroll-line {
     background-color: black; /* Highlight color for the scroll line of the active tab */
-}
-
-.tabs::-webkit-scrollbar {
+  }
+  
+  /* Scrollbar styling for tabs */
+  .tabs::-webkit-scrollbar {
     height: 8px; /* Height of the horizontal scrollbar */
-}
-
-.tabs::-webkit-scrollbar-thumb {
+  }
+  
+  .tabs::-webkit-scrollbar-thumb {
     background-color: #888; /* Color of the scrollbar thumb */
     border-radius: 4px; /* Rounded corners for the scrollbar thumb */
-}
-
-.tabs::-webkit-scrollbar-track {
-    background-color: #f1f1f1; /* Background color of the scrollbar track */
-}
-
+  }
   
+  .tabs::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Background color of the scrollbar track */
+  }
   
   /* Container for dealership activities items */
   /* stylelint-disable-next-line selector-class-pattern */
@@ -154,8 +154,6 @@
     text-align: left;
   }
   
- 
-  
   /* Description styling */
   .description {
     position: relative;
@@ -164,13 +162,13 @@
     font-style: normal;
     font-weight: 500;
     line-height: 20px; /* 125% */
-    bottom:200px;
+    bottom: 200px;
     /* stylelint-disable-next-line custom-property-pattern */
     background: var(--Gradients-Gradient-1, linear-gradient(60deg, #C9D3D7 3.71%, #EBEBEB 104.51%));
   }
   
- /* Actions container */
-.actions {
+  /* Actions container */
+  .actions {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -180,7 +178,6 @@
   
   /* Button and link styling within actions */
   .actions button,
- /* stylelint-disable-next-line rule-empty-line-before */
   .actions a {
     display: block;
     margin-bottom: 10px;
@@ -191,71 +188,66 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     position: relative;
-    /* stylelint-disable-next-line declaration-block-no-duplicate-properties */
-    display: flex;
     height: 40px;
     justify-content: center;
     align-items: center;
     flex: 1 0 0;
-}
+  }
   
   /* Primary text button styling */
   .actions .primary-text {
     color: #18171A;
     border: none;
-    padding-top:10px;
-    bottom:80px;
-    left:200px;
+    padding-top: 10px;
+    bottom: 80px;
+    left: 200px;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 20px;
     padding-right: 20px;
-    
-    }
-    /* stylelint-disable-next-line rule-empty-line-before */
-    .primary-text::after {
-        content: ""; /* Unicode for the arrow */
-        position: absolute;
-        display: inline-block;
-        width:20px;
-        height:20px;
-        right: 0;
-        top: 50%;
-        background-size: contain;
-        background-repeat: no-repeat;
-        transform: translateY(-50%);
-        background-image:url("../../icons/north_east.svg");
-        padding-left: 5px;
-    }
-    /* stylelint-disable-next-line rule-empty-line-before */
-    .primary-text::before {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        border-bottom: 2px solid black; /* Thickness and color of the underline */
-    }
-   
+  }
+  
+  .primary-text::after {
+    content: ""; /* Unicode for the arrow */
+    position: absolute;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    right: 0;
+    top: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translateY(-50%);
+    background-image: url("../../icons/north_east.svg");
+    padding-left: 5px;
+  }
+  
+  .primary-text::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 2px solid black; /* Thickness and color of the underline */
+  }
   
   /* Secondary text button styling */
   .actions .secondary-text {
     background-color: black;
-    bottom:60px;
-    left:180px;
+    bottom: 60px;
+    left: 180px;
     justify-content: center;
     align-items: center;
     gap: 12px;
     flex: 1 0 0;
     align-self: stretch;
     display: flex;
-    height:40px;
-
-    
+    height: 40px;
   }
   
   /* Secondary text button styling */
+  /* stylelint-disable-next-line no-descending-specificity */
   .secondary-text {
     display: inline-block;
     padding: 8px 16px;
@@ -269,7 +261,7 @@
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 24px; 
+    line-height: 24px;
   }
   
   /* Hover effect for secondary text */
@@ -277,21 +269,13 @@
     background-color: #555;
   }
   
-  /* Horizontal scrollbar styling for tabs */
-  /* stylelint-disable-next-line no-duplicate-selectors */
-  .tabs-wrapper::-webkit-scrollbar {
-    height: 8px; /* Adjust scrollbar height */
-  }
-  
-  
-  /* stylelint-disable-next-line no-duplicate-selectors */
-  .tabs-wrapper::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 4px;
-  }
-  
-  /* stylelint-disable-next-line no-duplicate-selectors */
-  .tabs-wrapper::-webkit-scrollbar-thumb:hover {
-    background-color: black;
+  /* Breaks for items */
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__item br {
+    display: block;
+    margin: 10px 0;
+    content: '';
+    height: 1px;
+    background-color: #ddd;
   }
   
