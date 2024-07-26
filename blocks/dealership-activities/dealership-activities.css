@@ -119,9 +119,8 @@
     border-bottom: 1px solid #ddd;
     width: 100%;
     flex-direction: row;
-    border: 1px solid #ddd;
     border-radius: 4px;
-    background-color: #f9f9f9;
+    
   }
   
   /* Active item styling */
@@ -299,6 +298,6 @@
     margin: 10px 0;
     content: '';
     height: 1px;
-    background-color: #ddd;
+    
   }
   
