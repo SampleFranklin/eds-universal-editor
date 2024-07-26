@@ -95,9 +95,7 @@
     background-color: black; /* Highlight on hover */
 }
 
-.tablink:first-child {
-    background-color: black; /* Default highlight for the first tab */
-}
+
 
 /* Custom scrollbar styling */
 .tabs::-webkit-scrollbar {
