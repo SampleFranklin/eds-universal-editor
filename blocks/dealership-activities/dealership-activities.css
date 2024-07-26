@@ -1,4 +1,5 @@
-/* Container styling */
+/* stylelint-disable no-duplicate-selectors */
+
 /* stylelint-disable-next-line selector-class-pattern */
 .dealership-activities__container {
     max-width: 1200px;
@@ -158,7 +159,25 @@
     margin: 5px 0;
   }
   
-  /* Description styling */
+  
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__item-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__item-right div {
+    margin: 10px 0;
+  }
+  
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__item-right strong {
+    display: block;
+    margin-bottom: 5px;
+  }
+ 
   .description {
     position: relative;
     color: #000;
