@@ -45,6 +45,10 @@
     font-weight: 400;
     line-height: 24px; /* 133.333% */
   }
+
+
+
+
   
   .tabs-wrapper {
     display: flex;
@@ -57,6 +61,13 @@
     overflow-x: auto;
     white-space: nowrap;
     margin-bottom: 10px;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    gap: 24px;
+    padding-right: 20px;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
 }
 
 .tablink {
@@ -64,16 +75,19 @@
     padding: 10px 20px;
     margin: 0 5px;
     font-size: 16px;
-    text-align: center;
+    text-align: left;
     cursor: pointer;
     color: white;
-    background-color: grey; /* Default color */
+    /* stylelint-disable-next-line custom-property-pattern */
+    background-color: var(--Tertiary-Deep-Grey, #767879);
     border: 1px solid #ccc;
     transition: background-color 0.3s ease;
+    position: relative;
 }
 
 .tablink.active {
     background-color: black; /* Highlight active tab */
+    border-bottom: 2px solid black;
 }
 
 .tablink.highlight {
@@ -86,7 +100,7 @@
 
 /* Custom scrollbar styling */
 .tabs::-webkit-scrollbar {
-    height: 8px; /* Height of the scrollbar */
+    display: none;
 }
 
 .tabs::-webkit-scrollbar-thumb {
