@@ -54,15 +54,32 @@ export default async function decorate(block) {
               <p class="description">${description}</p>
             </div>
             <div class="dealership-activities__item-right">
-              <p class="dealer-name">DEALER NAME:${dealerName}</p>
-              <p class="scheduled-date">SCHEDULED DATE:${scheduledDate}</p> 
-              <p class="scheduled-time">SCHEDULED TIME:${scheduledTime}</p>
-              <p class="email-id">EMAIL ID:${emailId}</p>
-              <p class="contact">CONTACT:${contact}</p>
-              <div class="actions">
-                <a href="${primaryHref}" target="${primaryTarget}" class="primary-text">${primaryText}</a>
-                <a href="${secondaryHref}" target="${secondaryTarget}" class="button secondary-text">${secondaryText}</a>
-              </div>
+  <p class="dealer-name">
+    <strong>DEALER NAME:</strong><br>
+    <span contenteditable="true">${dealerName}</span>
+  </p>
+  <p class="scheduled-date">
+    <strong>SCHEDULED DATE:</strong><br>
+    <span contenteditable="true">${scheduledDate}</span>
+  </p>
+  <p class="scheduled-time">
+    <strong>SCHEDULED TIME:</strong><br>
+    <span contenteditable="true">${scheduledTime}</span>
+  </p>
+  <p class="email-id">
+    <strong>EMAIL ID:</strong><br>
+    <span contenteditable="true">${emailId}</span>
+  </p>
+  <p class="contact">
+    <strong>CONTACT:</strong><br>
+    <span contenteditable="true">${contact}</span>
+  </p>
+  <div class="actions">
+    <a href="${primaryHref}" target="${primaryTarget}" class="primary-text">${primaryText}</a>
+    <a href="${secondaryHref}" target="${secondaryTarget}" class="button secondary-text">${secondaryText}</a>
+  </div>
+</div>
+
             </div>
           </div>
         `
