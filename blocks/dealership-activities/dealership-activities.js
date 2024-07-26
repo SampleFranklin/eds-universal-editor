@@ -105,45 +105,52 @@ export default async function decorate(block) {
 
   
   // Function to handle tab switching and highlight
-const openTab = (evt, tabName) => {
-  const tabContent = document.querySelectorAll('.dealership-activities__item');
-  const tabLinks = document.querySelectorAll('.tablink');
+  const openTab = (evt, tabName) => {
+    const tabContent = document.querySelectorAll('.dealership-activities__item');
+    const tabLinks = document.querySelectorAll('.tablink');
 
-  tabContent.forEach((content) => {
-    content.style.display = 'none';
-    content.classList.remove('active');
+    tabContent.forEach((content) => {
+      content.style.display = 'none';
+      content.classList.remove('active');
+    });
+
+    tabLinks.forEach((link) => {
+      link.classList.remove('active');
+    });
+
+    const activeTab = document.getElementById(tabName);
+    if (activeTab) {
+      activeTab.style.display = 'flex';
+      activeTab.classList.add('active');
+      moveInstrumentation(activeTab);
+    }
+
+    evt.currentTarget.classList.add('active');
+    moveInstrumentation(evt.currentTarget);
+  };
+
+  // Attach click event listeners to the tabs
+  document.querySelectorAll('.tablink').forEach((tabLink) => {
+    tabLink.addEventListener('click', (event) => {
+      const tabName = tabLink.getAttribute('data-tab');
+      openTab(event, tabName);
+    });
+
+    // Attach hover event listeners for scrollbar highlighting
+    tabLink.addEventListener('mouseover', () => {
+      tabLink.classList.add('highlight');
+    });
+
+    tabLink.addEventListener('mouseout', () => {
+      tabLink.classList.remove('highlight');
+    });
   });
 
-  tabLinks.forEach((link) => {
-    link.classList.remove('active');
-  });
-
-  const activeTab = document.getElementById(tabName);
-  if (activeTab) {
-    activeTab.style.display = 'flex';
-    activeTab.classList.add('active');
-    moveInstrumentation(activeTab);
+  // Initial tab display setup
+  const initialTab = document.querySelector('.dealership-activities__item');
+  if (initialTab) {
+    initialTab.style.display = 'flex';
+    initialTab.classList.add('active');
+    moveInstrumentation(initialTab);
   }
-
-  evt.currentTarget.classList.add('active');
-  moveInstrumentation(evt.currentTarget);
-};
-
-// Attach click event listeners to the tabs
-document.querySelectorAll('.tablink').forEach((tabLink) => {
-  tabLink.addEventListener('click', (event) => {
-    const tabName = tabLink.getAttribute('data-tab');
-    openTab(event, tabName);
-  });
-
-  // Attach hover event listeners for scrollbar highlighting
-  tabLink.addEventListener('mouseover', () => {
-    tabLink.classList.add('highlight');
-  });
-
-  tabLink.addEventListener('mouseout', () => {
-    tabLink.classList.remove('highlight');
-  });
-});
-
 }
