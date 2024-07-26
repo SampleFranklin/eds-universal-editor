@@ -71,26 +71,15 @@ export default async function decorate(block) {
   };
 
   // Function to extract and build the tabs
-  // const extractTabs = (tabs) => {
-  //   return tabs.map((tab, index) => {
-  //     const isActive = index === 0 ? 'active default' : '';
-  //     return `
-  //       <div class="tablink ${isActive}" data-tab="tab${index + 1}">
-  //         ${tab.tabName}
-  //         <hr class="tab-scroll-line">
-  //       </div>
-  //     `;
-  //   }).join('');
-  // };
-
-  // Generate tabs and items HTML
-  // const items = extractDealershipActivityItems(dealershipActivitiesItemEl);
-  // const tabsHtml = extractTabs(items);
-  // const itemsHtml = items.map(item => item.content).join('');
   const extractTabs = (tabs) => {
     return tabs.map((tab, index) => {
-      const isActive = index === 0 ? 'active' : '';
-      return `<button class="tablink ${isActive}" data-tab="tab${index + 1}">${tab.tabName}</button>`;
+      const isActive = index === 0 ? 'active default' : '';
+      return `
+        <div class="tablink ${isActive}" data-tab="tab${index + 1}">
+          ${tab.tabName}
+          <hr class="tab-scroll-line">
+        </div>
+      `;
     }).join('');
   };
 
@@ -98,6 +87,7 @@ export default async function decorate(block) {
   const items = extractDealershipActivityItems(dealershipActivitiesItemEl);
   const tabsHtml = extractTabs(items);
   const itemsHtml = items.map(item => item.content).join('');
+  
 
   // Set block's inner HTML
   block.innerHTML = utility.sanitizeHtml(`
