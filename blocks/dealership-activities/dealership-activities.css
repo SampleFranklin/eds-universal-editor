@@ -4,8 +4,14 @@
 .dealership-activities__container {
     max-width: 1200px;
     margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
+    padding: 32px;
+    /* stylelint-disable-next-line custom-property-pattern */
+    background:var(--Tertiary-White, #FFF);;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 48px;
+    align-self: stretch;
   }
   
   /* Content within the dealership activities container */
