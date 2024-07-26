@@ -158,32 +158,25 @@
   }
   
   /* Button and link styling within actions */
-  .actions button{
-/* stylelint-disable-next-line declaration-block-no-shorthand-property-overrides */
-padding: 8px 12px;
-/* stylelint-disable-next-line declaration-block-no-duplicate-properties */
-display: flex;
-height: 40px;
-/* stylelint-disable-next-line declaration-block-no-duplicate-properties */
-justify-content: center;
-/* stylelint-disable-next-line declaration-block-no-duplicate-properties */
-align-items: center;
-/* stylelint-disable-next-line declaration-block-no-duplicate-properties */
-flex: 1 0 0;
-  }
-  /* stylelint-disable-next-line rule-empty-line-before */
+  .actions button,
+ /* stylelint-disable-next-line rule-empty-line-before */
   .actions a {
     display: block;
     margin-bottom: 10px;
-    padding: 10px 20px;
+    padding: 8px 12px;
     text-decoration: none;
     color: #fff;
-    border-radius: 5px;
+    border-radius: 0;
     cursor: pointer;
     transition: background-color 0.3s ease;
     position: relative;
-    
-  }
+    /* stylelint-disable-next-line declaration-block-no-duplicate-properties */
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 0;
+}
   
   /* Primary text button styling */
   .actions .primary-text {
@@ -236,6 +229,7 @@ flex: 1 0 0;
     flex: 1 0 0;
     align-self: stretch;
     display: flex;
+    height:40px;
 
     
   }
