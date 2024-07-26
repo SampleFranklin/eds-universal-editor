@@ -148,6 +148,18 @@
     position: relative;
   }
   
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__item-left img  ::after {
+    content: "Your Content Here"; /* This is the text or content you want to add */
+    position: absolute;
+    bottom: -20px; /* Position the content below the image */
+    left: 0;
+    width: 100%;
+    text-align: center; /* Center-align the text */
+    padding: 10px;
+    border-radius: 4px;
+  }
+
   /* Right side of the dealership activities item */
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__item-right {
