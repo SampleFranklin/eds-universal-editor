@@ -54,7 +54,7 @@ export default async function decorate(block) {
               <p class="description">${description}</p>
             </div>
             <div class="dealership-activities__item-right">
-              <p class="dealer-name">${dealerName}</p>
+              <p class="dealer-name">DEALER NAME:"${dealerName}"</p>
               <p class="scheduled-date">${scheduledDate}</p> 
               <p class="scheduled-time">${scheduledTime}</p>
               <p class="email-id">${emailId}</p>
