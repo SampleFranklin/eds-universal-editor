@@ -158,7 +158,20 @@
   }
   
   /* Button and link styling within actions */
-  .actions button,
+  .actions button{
+/* stylelint-disable-next-line declaration-block-no-shorthand-property-overrides */
+padding: 8px 12px;
+/* stylelint-disable-next-line declaration-block-no-duplicate-properties */
+display: flex;
+height: 40px;
+/* stylelint-disable-next-line declaration-block-no-duplicate-properties */
+justify-content: center;
+/* stylelint-disable-next-line declaration-block-no-duplicate-properties */
+align-items: center;
+/* stylelint-disable-next-line declaration-block-no-duplicate-properties */
+flex: 1 0 0;
+  }
+  /* stylelint-disable-next-line rule-empty-line-before */
   .actions a {
     display: block;
     margin-bottom: 10px;
@@ -178,7 +191,7 @@
     border: none;
     padding-top:10px;
     bottom:80px;
-    left:180px;
+    left:200px;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -223,8 +236,7 @@
     flex: 1 0 0;
     align-self: stretch;
     display: flex;
-/* stylelint-disable-next-line declaration-block-no-shorthand-property-overrides */
-    padding: 8px 12px; 
+
     
   }
   
