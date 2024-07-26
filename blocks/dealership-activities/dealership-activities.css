@@ -111,15 +111,20 @@
     background-color: #f1f1f1; /* Background color of the scrollbar track */
 }
 
-.tabs::after {
+.tablink.active::after {
+    background-color: black; /* Highlight color for the scroll line */
+}
+
+.tablink::after {
     content: '';
     display: block;
-    height: 8px;
-    width: 100%;
-    background-color: #f1f1f1; /* Background color of the scrollbar track */
+    height: 2px;
+    background-color: black; /* Color of the scroll line */
     position: absolute;
-    bottom: 0;
+    bottom: -4px; /* Adjust this value based on padding and border of the tab */
     left: 0;
+    width: 100%;
+    transition: background-color 0.3s ease;
 }
 
   
