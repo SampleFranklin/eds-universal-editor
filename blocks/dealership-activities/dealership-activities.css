@@ -149,7 +149,7 @@
   }
   
   /* stylelint-disable-next-line selector-class-pattern */
-  .dealership-activities__item-left img  ::after {
+  .dealership-activities__item-left img p ::after {
     content: " "; 
     position: absolute;
     bottom: -20px; /* Position the content below the image */
@@ -158,6 +158,10 @@
     text-align: center; /* Center-align the text */
     padding: 10px;
     border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
   }
 
   /* Right side of the dealership activities item */
