@@ -7,13 +7,13 @@ export default function decorate(block) {
   let titleHtml = '';
   const heading = titleEl?.querySelector('h1, h2, h3, h4, h5, h6') || '';
   if (heading) {
-    heading?.classList?.add('accordian-item');
+    heading?.classList?.add('accordian-item', 'link-column__heading');
     titleHtml = heading.outerHTML;
   } else {
     const titleText = titleEl?.textContent?.trim();
     if (titleText) {
       titleHtml = `
-        <p class="accordiant-item">${titleText}</p>
+        <p class="accordiant-item link-column__heading">${titleText}</p>
       `;
     }
   }
