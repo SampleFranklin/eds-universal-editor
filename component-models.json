@@ -3615,17 +3615,17 @@
       },
       {
         "component": "select",
-        "name": "Orientation",
-        "label": "orientation",
+        "name": "orientation",
+        "label": "Orientation",
         "valueType": "string",
         "options": [
           {
             "name": "Horizontal",
-            "value": "horizontal"
+            "value": "link-column-horizontal"
           },
           {
             "name": "Vertical",
-            "value": "vertical"
+            "value": "link-column-vertical"
           }
         ]
       }

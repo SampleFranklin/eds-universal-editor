@@ -1221,7 +1221,8 @@
                 "template": {
                   "name": "Link Column",
                   "filter": "link-column",
-                  "model": "link-column"
+                  "model": "link-column",
+                  "orientation": "link-column-vertical"
                 }
               }
             }
