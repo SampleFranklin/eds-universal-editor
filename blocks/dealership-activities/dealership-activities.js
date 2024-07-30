@@ -1,75 +1,94 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import utility from '../../utility/utility.js';
 
-// Example JSON data for dealership activities items
-const dealershipActivitiesData = [
-  {
-    tabName: 'Tab 1',
-    image: '<picture>...</picture>',
-    dealerName: 'Dealer One',
-    emailId: 'dealerone@example.com',
-    scheduledDate: '13th Jun, 2022',
-    scheduledTime: '14:30 PM',
-    contact: 'contact info',
-    description: 'Description for Dealer One.',
-    primaryText: 'Primary Action',
-    primaryHref: '#',
-    primaryTarget: '_self',
-    secondaryText: 'Secondary Action',
-    secondaryHref: '#',
-    secondaryTarget: '_self'
-  },
-  // Add more dealership activity items as needed
-];
-
 export default async function decorate(block) {
   // Extract elements from the block
-  const [titleEl, subtitleEl] = block.children;
+  const [titleEl, subtitleEl, ...dealershipActivitiesItemEl] = block.children;
 
   // Extract title and subtitle
   const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)')?.outerHTML || '';
   const subtitle = subtitleEl?.textContent?.trim() || '';
 
-  // Function to generate HTML for individual dealership activity items
-  const generateDealershipActivityItemsHtml = (items) => {
-    return items.map((item, index) => `
-      <div class="dealership-activities__item" id="tab${index + 1}">
-        <div class="dealership-activities__item-left">
-          ${item.image}
-          <p class="description">${item.description}</p>
-        </div>
-        <div class="dealership-activities__item-right">
-          <p class="dealer-name">
-            <strong>DEALER NAME:</strong><br>
-            <span contenteditable="true">${item.dealerName}</span>
-          </p>
-          <p class="scheduled-date">
-            <strong>SCHEDULED DATE:</strong><br>
-            <span contenteditable="true">${item.scheduledDate}</span>
-          </p>
-          <p class="scheduled-time">
-            <strong>SCHEDULED TIME:</strong><br>
-            <span contenteditable="true">${item.scheduledTime}</span>
-          </p>
-          <p class="email-id">
-            <strong>EMAIL ID:</strong><br>
-            <span contenteditable="true">${item.emailId}</span>
-          </p>
-          <p class="contact">
-            <strong>CONTACT:</strong><br>
-            <span contenteditable="true">${item.contact}</span>
-          </p>
-          <div class="actions">
-            <a href="${item.primaryHref}" target="${item.primaryTarget}" class="primary-text">${item.primaryText}</a>
-            <a href="${item.secondaryHref}" target="${item.secondaryTarget}" class="button secondary-text">${item.secondaryText}</a>
+  // Function to extract individual dealership activity items
+  const extractDealershipActivityItems = (items) => {
+    return items.map((itemEl, index) => {
+      const [
+        tabNameEl,
+        descriptionEl,
+        imageEl,
+        dealerNameEl,
+        emailIdEl,
+        scheduledDateEl,
+        scheduledTimeEl,
+        contactEl,
+        primaryTextEl,
+        primaryAnchorEl,
+        primaryTargetEl,
+        secondaryTextEl,
+        secondaryAnchorEl,
+        secondaryTargetEl
+      ] = itemEl.children;
+
+      const image = imageEl?.querySelector('picture')?.outerHTML || '';
+      const dealerName = dealerNameEl?.textContent?.trim() || '';
+      const emailId = emailIdEl?.textContent?.trim() || '';
+      const scheduledDate = scheduledDateEl?.textContent?.trim() || '';
+      const scheduledTime = scheduledTimeEl?.textContent?.trim() || '';
+      const contact = contactEl?.textContent?.trim() || '';
+      const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.textContent.trim()).join('');
+
+      const primaryText = primaryTextEl?.textContent?.trim() || '';
+      const primaryHref = primaryAnchorEl?.querySelector('a')?.href || '#';
+      const primaryTarget = primaryTargetEl?.querySelector('a')?.target || '_self';
+
+      const secondaryText = secondaryTextEl?.textContent?.trim() || '';
+      const secondaryHref = secondaryAnchorEl?.querySelector('a')?.href || '#';
+      const secondaryTarget = secondaryTargetEl?.querySelector('a')?.target || '_self';
+
+      return {
+        tabName: tabNameEl?.textContent?.trim() || `Tab ${index + 1}`,
+        content: `
+          <div class="dealership-activities__item" id="tab${index + 1}">
+            <div class="dealership-activities__item-left">
+              ${image}
+              <p class="description">${description}</p>
+            </div>
+            <div class="dealership-activities__item-right">
+  <p class="dealer-name">
+    <strong>DEALER NAME:</strong><br>
+    <span contenteditable="true">${dealerName}</span>
+  </p>
+  <p class="scheduled-date">
+    <strong>SCHEDULED DATE:</strong><br>
+    <span contenteditable="true">${scheduledDate}</span>
+  </p>
+  <p class="scheduled-time">
+    <strong>SCHEDULED TIME:</strong><br>
+    <span contenteditable="true">${scheduledTime}</span>
+  </p>
+  <p class="email-id">
+    <strong>EMAIL ID:</strong><br>
+    <span contenteditable="true">${emailId}</span>
+  </p>
+  <p class="contact">
+    <strong>CONTACT:</strong><br>
+    <span contenteditable="true">${contact}</span>
+  </p>
+  <div class="actions">
+    <a href="${primaryHref}" target="${primaryTarget}" class="primary-text">${primaryText}</a>
+    <a href="${secondaryHref}" target="${secondaryTarget}" class="button secondary-text">${secondaryText}</a>
+  </div>
+</div>
+
+            </div>
           </div>
-        </div>
-      </div>
-    `).join('');
+        `
+      };
+    });
   };
 
-  // Function to generate HTML for tabs
-  const generateTabsHtml = (tabs) => {
+  // Function to extract and build the tabs
+  const extractTabs = (tabs) => {
     return tabs.map((tab, index) => {
       const isActive = index === 0 ? 'active default' : '';
       return `
@@ -82,8 +101,10 @@ export default async function decorate(block) {
   };
 
   // Generate tabs and items HTML
-  const tabsHtml = generateTabsHtml(dealershipActivitiesData);
-  const itemsHtml = generateDealershipActivityItemsHtml(dealershipActivitiesData);
+  const items = extractDealershipActivityItems(dealershipActivitiesItemEl);
+  const tabsHtml = extractTabs(items);
+  const itemsHtml = items.map(item => item.content).join('');
+  
 
   // Set block's inner HTML
   block.innerHTML = utility.sanitizeHtml(`

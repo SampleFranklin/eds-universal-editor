@@ -5,7 +5,6 @@
     max-width: 1200px;
     margin: 20px auto;
     padding: 32px;
-    /* stylelint-disable-next-line custom-property-pattern */
     background: var(--Tertiary-White, #FFF);
     display: flex;
     flex-direction: column;
