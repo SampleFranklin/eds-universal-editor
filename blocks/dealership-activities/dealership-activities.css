@@ -5,6 +5,7 @@
     max-width: 1200px;
     margin: 20px auto;
     padding: 32px;
+    /* stylelint-disable-next-line custom-property-pattern */
     background: var(--Tertiary-White, #FFF);
     display: flex;
     flex-direction: column;
@@ -65,6 +66,9 @@
     position: relative;
     color: black;
     transition: background-color 0.3s ease;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #fff;
   }
   
   /* Scroll line for tabs */
@@ -106,13 +110,15 @@
   
   /* Individual dealership activities item */
   .dealership-activities__item {
-    display: flex;
+    display: none;
     align-items: center;
     padding: 15px;
     margin-bottom: 15px;
     width: 100%;
     flex-direction: row;
     border-radius: 4px;
+    background-color: #fff;
+    
   }
   
   /* Active item styling */
@@ -127,24 +133,19 @@
   }
   
   /* Image styling within the item */
-  .dealership-activities__item-left img {
+  .dealership-activities__item-left picture {
     width: 238px;
-    height: 135px;
-    object-fit: cover;
+    height: auto;
     border-radius: 4px;
-    position: relative;
+    margin-bottom: 10px;
   }
   
   .dealership-activities__item-left .description {
-    position: relative;
     color: #000;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: 20px; /* 125% */
-    bottom: 10px; /* Adjust based on layout */
-    /* stylelint-disable-next-line custom-property-pattern */
-    background: var(--Gradients-Gradient-1, linear-gradient(60deg, #C9D3D7 3.71%, #EBEBEB 104.51%));
   }
   
   /* Right side of the dealership activities item */
@@ -166,7 +167,7 @@
     line-height: 24px; /* 133.333% */
   }
   
-  .dealership-activities__item-right strong {
+  .dealership-activities__item-right p strong {
     display: block;
     margin-bottom: 5px;
     font-size: 14px;
@@ -178,27 +179,14 @@
     color: var(--Tertiary-Medium-grey, #B2B2B2);
   }
   
-  .dealer-name-email {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
   .dealer-name,
-  .email-id {
+  .scheduled-date,
+  .scheduled-time,
+  .email-id,
+  .contact {
     margin: 0; /* Remove default margin */
+    font-size: 16px; /* Adjust font size */
     color: #333; /* Text color */
-    font-size: 14px; /* Adjust font size */
-  }
-  
-  .paragraph-name {
-    margin-top: 10px; /* Adjust spacing between dealer info and paragraph */
-  }
-  
-  .paragraph-name p {
-    margin: 0; /* Remove default margin */
-    color: #333; /* Text color */
-    font-size: 14px; /* Adjust font size */
   }
   
   /* Actions container */
@@ -211,32 +199,32 @@
   }
   
   /* Button and link styling within actions */
-  .actions button,
   .actions a {
     display: block;
     margin-bottom: 10px;
     padding: 8px 12px;
     text-decoration: none;
     color: #fff;
-    border-radius: 0;
+    border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     position: relative;
-    height: 40px;
-    justify-content: center;
-    align-items: center;
-    flex: 1 0 0;
   }
   
   /* Primary text button styling */
   .actions .primary-text {
-    color: #18171A;
-    border: none;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-    padding-right: 20px;
+    /* stylelint-disable-next-line custom-property-pattern */
+    color: var(--Primary-Main, #18171A);
+/* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+font-family: "Fira Sans";
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 125% */
+  }
+  
+  .actions .primary-text:hover {
+    background-color: #555;
   }
   
   .primary-text::after {
@@ -254,46 +242,13 @@
     padding-left: 5px;
   }
   
-  .primary-text::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    border-bottom: 2px solid black; /* Thickness and color of the underline */
-  }
-  
   /* Secondary text button styling */
   .actions .secondary-text {
-    background-color: black;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    flex: 1 0 0;
-    align-self: stretch;
-    display: flex;
-    height: 40px;
-  }
-  
-  /* stylelint-disable-next-line no-descending-specificity */
-  .secondary-text {
-    display: inline-block;
-    padding: 8px 16px;
-    margin: 5px;
-    border: none;
-    border-radius: 4px;
+    background-color: #000;
     color: #fff;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
   }
   
-  /* Hover effect for secondary text */
-  .secondary-text:hover {
+  .actions .secondary-text:hover {
     background-color: #555;
   }
   

@@ -3,17 +3,23 @@ import utility from '../../utility/utility.js';
 
 export default async function decorate(block) {
   // Extract elements from the block
-  const [titleEl, subtitleEl, ...dealershipActivitiesItemEl] = block.children;
+  const [titleEl, subtitleEl, dealershipActivitiesTab, ...dealershipActivitiesItemEl] = block.children;
 
   // Extract title and subtitle
   const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)')?.outerHTML || '';
   const subtitle = subtitleEl?.textContent?.trim() || '';
 
+  // Extract the dealership activities tab names
+  const extractDealershipActivitiesTab = (tabEl) => {
+    return Array.from(tabEl.children).map((tab, index) => ({
+      tabName: tab.textContent.trim() || `Tab ${index + 1}`,
+    }));
+  };
+
   // Function to extract individual dealership activity items
   const extractDealershipActivityItems = (items) => {
     return items.map((itemEl, index) => {
       const [
-        tabNameEl,
         descriptionEl,
         imageEl,
         dealerNameEl,
@@ -26,7 +32,7 @@ export default async function decorate(block) {
         primaryTargetEl,
         secondaryTextEl,
         secondaryAnchorEl,
-        secondaryTargetEl
+        secondaryTargetEl,
       ] = itemEl.children;
 
       const image = imageEl?.querySelector('picture')?.outerHTML || '';
@@ -46,7 +52,7 @@ export default async function decorate(block) {
       const secondaryTarget = secondaryTargetEl?.querySelector('a')?.target || '_self';
 
       return {
-        tabName: tabNameEl?.textContent?.trim() || `Tab ${index + 1}`,
+        index,
         content: `
           <div class="dealership-activities__item" id="tab${index + 1}">
             <div class="dealership-activities__item-left">
@@ -54,57 +60,53 @@ export default async function decorate(block) {
               <p class="description">${description}</p>
             </div>
             <div class="dealership-activities__item-right">
-  <p class="dealer-name">
-    <strong>DEALER NAME:</strong><br>
-    <span contenteditable="true">${dealerName}</span>
-  </p>
-  <p class="scheduled-date">
-    <strong>SCHEDULED DATE:</strong><br>
-    <span contenteditable="true">${scheduledDate}</span>
-  </p>
-  <p class="scheduled-time">
-    <strong>SCHEDULED TIME:</strong><br>
-    <span contenteditable="true">${scheduledTime}</span>
-  </p>
-  <p class="email-id">
-    <strong>EMAIL ID:</strong><br>
-    <span contenteditable="true">${emailId}</span>
-  </p>
-  <p class="contact">
-    <strong>CONTACT:</strong><br>
-    <span contenteditable="true">${contact}</span>
-  </p>
-  <div class="actions">
-    <a href="${primaryHref}" target="${primaryTarget}" class="primary-text">${primaryText}</a>
-    <a href="${secondaryHref}" target="${secondaryTarget}" class="button secondary-text">${secondaryText}</a>
-  </div>
-</div>
-
+              <p class="dealer-name">
+                <strong>DEALER NAME:</strong><br>
+                <span contenteditable="true">${dealerName}</span>
+              </p>
+              <p class="scheduled-date">
+                <strong>SCHEDULED DATE:</strong><br>
+                <span contenteditable="true">${scheduledDate}</span>
+              </p>
+              <p class="scheduled-time">
+                <strong>SCHEDULED TIME:</strong><br>
+                <span contenteditable="true">${scheduledTime}</span>
+              </p>
+              <p class="email-id">
+                <strong>EMAIL ID:</strong><br>
+                <span contenteditable="true">${emailId}</span>
+              </p>
+              <p class="contact">
+                <strong>CONTACT:</strong><br>
+                <span contenteditable="true">${contact}</span>
+              </p>
+              <div class="actions">
+                <a href="${primaryHref}" target="${primaryTarget}" class="primary-text">${primaryText}</a>
+                <a href="${secondaryHref}" target="${secondaryTarget}" class="button secondary-text">${secondaryText}</a>
+              </div>
             </div>
           </div>
-        `
+        `,
       };
     });
   };
 
-  // Function to extract and build the tabs
-  const extractTabs = (tabs) => {
-    return tabs.map((tab, index) => {
-      const isActive = index === 0 ? 'active default' : '';
-      return `
-        <div class="tablink ${isActive}" data-tab="tab${index + 1}">
-          ${tab.tabName}
-          <hr class="tab-scroll-line">
-        </div>
-      `;
-    }).join('');
-  };
-
   // Generate tabs and items HTML
+  const tabs = extractDealershipActivitiesTab(dealershipActivitiesTab);
   const items = extractDealershipActivityItems(dealershipActivitiesItemEl);
-  const tabsHtml = extractTabs(items);
-  const itemsHtml = items.map(item => item.content).join('');
-  
+
+  const tabsHtml = tabs
+    .map(
+      (tab, index) => `
+      <div class="tablink ${index === 0 ? 'active default' : ''}" data-tab="tab${index + 1}">
+        ${tab.tabName}
+        <hr class="tab-scroll-line">
+      </div>
+    `
+    )
+    .join('');
+
+  const itemsHtml = items.map((item) => item.content).join('');
 
   // Set block's inner HTML
   block.innerHTML = utility.sanitizeHtml(`
@@ -114,7 +116,7 @@ export default async function decorate(block) {
           ${title}
           <p class="subtitle">${subtitle}</p>
         </div>
-        <div class="tabs-wrapper">
+        <div class="dealership-activities-tab">
           <div class="tabs">
             ${tabsHtml}
           </div>
