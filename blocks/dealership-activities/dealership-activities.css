@@ -108,18 +108,8 @@
   .tabs::-webkit-scrollbar-track {
     background-color: #f1f1f1; /* Background color of the scrollbar track */
   }
-  /* stylelint-disable-next-line rule-empty-line-before */
-  .dealership-activities__item-left {
-    display: none;
-    align-items: center;
-    padding: 15px;
-    margin-bottom: 15px;
-    width: 100%;
-    flex-direction: row;
-    border-radius: 4px; 
-  }
-
-  .dealership-activities__item-left .description {
+ 
+.dealership-activities__item-left .description {
     color: #000;
     font-size: 16px;
     font-style: normal;
