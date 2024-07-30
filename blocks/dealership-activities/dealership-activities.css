@@ -19,8 +19,9 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 32px;
     text-align: left;
+    align-self: stretch;
   }
   
   /* Title styling */
@@ -32,7 +33,7 @@
     font-weight: 600;
     line-height: 36px; /* 112.5% */
     letter-spacing: 0.64px;
-  }
+}
   
   /* Subtitle styling */
   .dealership-activities__title .subtitle {
@@ -41,12 +42,18 @@
     font-style: normal;
     font-weight: 400;
     line-height: 24px; /* 133.333% */
-  }
+    /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+    font-family: "Fira Sans";
+}
   
   /* Tabs wrapper */
-  .tabs-wrapper {
+  .dealership-activities-tab {
     overflow-x: auto;
     white-space: nowrap;
+    display: flex;
+    width: 1174px;
+    align-items: flex-start;
+    gap: 24px;
   }
   
   /* Tabs container */
@@ -69,6 +76,7 @@
     border: 1px solid transparent;
     border-radius: 4px;
     background-color: #fff;
+    width: 210px;
   }
   
   /* Scroll line for tabs */
@@ -100,12 +108,35 @@
   .tabs::-webkit-scrollbar-track {
     background-color: #f1f1f1; /* Background color of the scrollbar track */
   }
+
+  .dealership-activities__item-left .description {
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 125% */
+    display: flex;
+    padding: 8px 24px;
+    align-items: center;
+    gap: 4px;
+    align-self: stretch;
+    position: relative;
+    bottom: 10px; /* Adjust based on layout */
+    /* stylelint-disable-next-line custom-property-pattern */
+    background: var(--Gradients-Gradient-1, linear-gradient(60deg, #C9D3D7 3.71%, #EBEBEB 104.51%));
+  }
   
   /* Container for dealership activities items */
   .dealership-activities__items {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    /* stylelint-disable-next-line shorthand-property-no-redundant-values */
+    padding: 24px 24px 32px 24px;
+    align-items: flex-end;
+    align-self: stretch;
+    /* stylelint-disable-next-line custom-property-pattern */
+    background: var(--Tertiary-Light-grey, #F2F2F2);
   }
   
   /* Individual dealership activities item */
@@ -117,9 +148,8 @@
     width: 100%;
     flex-direction: row;
     border-radius: 4px;
-    background-color: #fff;
     
-  }
+    }
   
   /* Active item styling */
   .dealership-activities__item.active {
@@ -133,20 +163,15 @@
   }
   
   /* Image styling within the item */
-  .dealership-activities__item-left picture {
+  .dealership-activities__item-left img {
     width: 238px;
-    height: auto;
+    height: 135px;
     border-radius: 4px;
     margin-bottom: 10px;
-  }
+    mix-blend-mode: luminosity;
+}
   
-  .dealership-activities__item-left .description {
-    color: #000;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 20px; /* 125% */
-  }
+  
   
   /* Right side of the dealership activities item */
   .dealership-activities__item-right {
@@ -185,30 +210,38 @@
   .email-id,
   .contact {
     margin: 0; /* Remove default margin */
-    font-size: 16px; /* Adjust font size */
-    color: #333; /* Text color */
+    font-size: 14px; /* Adjust font size */
+    /* stylelint-disable-next-line custom-property-pattern */
+    color: var(--Tertiary-Medium-grey, #B2B2B2);
   }
   
   /* Actions container */
   .actions {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end;
     text-align: left;
     margin-top: 10px;
+    gap: 24px;
+    
   }
   
   /* Button and link styling within actions */
+  .actions button,
   .actions a {
     display: block;
     margin-bottom: 10px;
     padding: 8px 12px;
     text-decoration: none;
     color: #fff;
-    border-radius: 4px;
+    border-radius: 0;
     cursor: pointer;
     transition: background-color 0.3s ease;
     position: relative;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 0;
   }
   
   /* Primary text button styling */
@@ -216,11 +249,13 @@
     /* stylelint-disable-next-line custom-property-pattern */
     color: var(--Primary-Main, #18171A);
 /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
-font-family: "Fira Sans";
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 20px; /* 125% */
+    font-family: "Fira Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 125% */
+    border: none;
+    padding-right: 20px;
   }
   
   .actions .primary-text:hover {
@@ -231,8 +266,8 @@ line-height: 20px; /* 125% */
     content: ""; /* Unicode for the arrow */
     position: absolute;
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     right: 0;
     top: 50%;
     background-size: contain;
@@ -241,14 +276,46 @@ line-height: 20px; /* 125% */
     background-image: url("../../icons/north_east.svg");
     padding-left: 5px;
   }
+  /* stylelint-disable-next-line rule-empty-line-before */
+  .primary-text::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 2px solid black; /* Thickness and color of the underline */
+  }
   
   /* Secondary text button styling */
   .actions .secondary-text {
-    background-color: #000;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex: 1 0 0;
+    align-self: stretch;
+    display: flex;
+    height: 40px;
+  }
+  /* stylelint-disable-next-line no-descending-specificity */
+  .secondary-text {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
     color: #fff;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
   }
   
-  .actions .secondary-text:hover {
+  /* Hover effect for secondary text */
+  .secondary-text:hover {
     background-color: #555;
   }
   
