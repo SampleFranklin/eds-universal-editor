@@ -23,12 +23,13 @@ export default function decorate(block) {
   let ctaElementsHTML = '';
   if (ctasEl.length > 0) {
     ctaElementsHTML = ctasEl.map((element) => {
-      const [ctaTextEl, linkEl] = element.children;
+      const [ctaTextEl, linkEl, targetEL] = element.children;
       const ctaText = ctaTextEl?.textContent?.trim() || '';
       const link = linkEl?.querySelector('a')?.href || '';
+      const target = targetEL?.textContent?.trim() || '_self';
       const li = document.createElement('li');
       moveInstrumentation(element, li);
-      li.innerHTML = `<a href="${link}" target="_self" aria-label="${ctaText}">${ctaText}</a>`;
+      li.innerHTML = `<a href="${link}" target="${target}" aria-label="${ctaText}">${ctaText}</a>`;
       return li.outerHTML;
     }).join('');
   }
