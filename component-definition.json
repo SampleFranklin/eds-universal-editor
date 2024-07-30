@@ -1227,6 +1227,21 @@
           }
         },
         {
+          "title": "Dealership Activities Tab",
+          "id": "dealership-activities-tab",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/tab",
+                "template": {
+                  "name" :"Dealership Activities Tab",
+                  "model": "dealership-activities-tab"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Dealership Activities Item",
           "id": "dealership-activities-item",
           "plugins": {
