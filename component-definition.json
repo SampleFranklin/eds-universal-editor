@@ -1242,15 +1242,15 @@
           }
         },
         {
-          "title": "Dealership Activities Item",
-          "id": "dealership-activities-item",
+          "title": "Dealership Activities Items",
+          "id": "dealership-activities-items",
           "plugins": {
             "xwalk": {
               "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
+                "resourceType": "core/franklin/components/block/v1/block/items",
                 "template": {
-                  "name" :"Dealership Activities Item",
-                  "model": "dealership-activities-item"
+                  "name" :"Dealership Activities Items",
+                  "model": "dealership-activities-items"
                 }
               }
             }
