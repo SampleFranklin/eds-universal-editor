@@ -121,7 +121,7 @@
     gap: 4px;
     align-self: stretch;
     position: relative;
-    bottom: 350px; /* Adjust based on layout */
+    bottom: 342px; /* Adjust based on layout */
     /* stylelint-disable-next-line custom-property-pattern */
     background: var(--Gradients-Gradient-1, linear-gradient(60deg, #C9D3D7 3.71%, #EBEBEB 104.51%));
   }
@@ -132,11 +132,13 @@
     flex-wrap: wrap;
     justify-content: space-between;
     /* stylelint-disable-next-line shorthand-property-no-redundant-values */
-    padding: 24px 24px 32px 24px;
+    
     align-items: flex-end;
     align-self: stretch;
     /* stylelint-disable-next-line custom-property-pattern */
     background: var(--Tertiary-Light-grey, #F2F2F2);
+    position: relative;
+    top: 60px;
   }
   
   /* Individual dealership activities item */
@@ -169,6 +171,8 @@
     border-radius: 4px;
     margin-bottom: 10px;
     mix-blend-mode: luminosity;
+    position: relative;
+    bottom: 100px;
 }
   
   
@@ -204,15 +208,29 @@
     color: var(--Tertiary-Medium-grey, #B2B2B2);
   }
   
-  .dealer-name,
+  .dealer-name 
   .scheduled-date,
-  .scheduled-time,
-  .email-id,
+  .scheduled-time {
+    margin: 0; /* Remove default margin */
+    font-size: 14px; /* Adjust font size */
+    /* stylelint-disable-next-line custom-property-pattern */
+    color: var(--Tertiary-Medium-grey, #B2B2B2);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+  }
+  /* stylelint-disable-next-line rule-empty-line-before */
+  .email-id
   .contact {
     margin: 0; /* Remove default margin */
     font-size: 14px; /* Adjust font size */
     /* stylelint-disable-next-line custom-property-pattern */
     color: var(--Tertiary-Medium-grey, #B2B2B2);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 36px;
   }
   
   /* Actions container */
@@ -256,6 +274,9 @@
     line-height: 20px; /* 125% */
     border: none;
     padding-right: 20px;
+    width: 154px;
+    height: 20px;
+    right: 150px;
   }
   
   .actions .primary-text:hover {
@@ -275,6 +296,7 @@
     transform: translateY(-50%);
     background-image: url("../../icons/north_east.svg");
     padding-left: 5px;
+    gap:10px;
   }
   /* stylelint-disable-next-line rule-empty-line-before */
   .primary-text::before {
