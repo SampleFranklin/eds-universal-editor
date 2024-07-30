@@ -3658,35 +3658,35 @@
         "component": "text-input",
         "name": "dealerName",
         "value": "",
-        "label": "DEALER NAME",
+        "label": "Dealer Name",
         "valueType": "string"
       },
       {
         "component": "text-input",
         "name": "emailId",
         "value": "",
-        "label": "EMAIL ID",
+        "label": "Email Id",
         "valueType": "string"
       },
       {
         "component": "text-input",
         "name": "scheduledDate",
         "value": "",
-        "label": "SCHEDULED DATE",
+        "label": "Scheduled Date",
         "valueType": "string"
       },
       {
         "component": "text-input",
         "name": "scheduledTime",
         "value": "",
-        "label": "SCHEDULED TIME",
+        "label": "Scheduled Time",
         "valueType": "string"
       },
       {
         "component": "text-input",
-        "name": "scontact",
+        "name": "contact",
         "value": "",
-        "label": "CONTACT",
+        "label": "Contact",
         "valueType": "string"
       },
       {
