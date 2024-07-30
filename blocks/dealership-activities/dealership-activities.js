@@ -95,10 +95,6 @@ export default async function decorate(block) {
   const tabs = extractDealershipActivitiesTab(dealershipActivitiesTab);
   const items = extractDealershipActivityItems(dealershipActivitiesItemEl);
 
-  // Debug output for verification
-  console.log('Tabs:', tabs);
-  console.log('Items:', items);
-
   const tabsHtml = tabs
     .map(
       (tab, index) => `
@@ -165,18 +161,10 @@ export default async function decorate(block) {
     });
   });
 
-  // Hover effect to revert the first tab to normal
-  document.querySelectorAll('.tablink').forEach((tabLink) => {
-    tabLink.addEventListener('mouseover', () => {
-      document.querySelector('.tablink.active')?.classList.remove('active');
-    });
-  });
-
   // Initial tab display setup
-  const firstItem = document.querySelector('.dealership-activities__item');
-  if (firstItem) {
-    firstItem.style.display = 'flex';
-    firstItem.classList.add('active');
-    moveInstrumentation(firstItem);
+  if (document.querySelectorAll('.dealership-activities__item')[0]) {
+    document.querySelectorAll('.dealership-activities__item')[0].style.display = 'flex';
+    document.querySelectorAll('.dealership-activities__item')[0].classList.add('active');
+    moveInstrumentation(document.querySelectorAll('.dealership-activities__item')[0]);
   }
 }
