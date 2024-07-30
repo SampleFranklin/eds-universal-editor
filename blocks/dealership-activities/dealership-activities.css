@@ -334,6 +334,8 @@
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
+    width: 210px;
+    left: 140px;
   }
   
   /* Hover effect for secondary text */
