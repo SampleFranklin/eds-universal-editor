@@ -99,3 +99,133 @@
   .tab-item.active .scroll-line {
     background-color: black; /* Scroll line color for active tab */
   }
+  /* stylelint-disable-next-line rule-empty-line-before */
+  .dealer-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adjust gap as needed */
+    margin-top: 20px; /* Adjust as needed */
+    /* stylelint-disable-next-line shorthand-property-no-redundant-values */
+    padding: 24px 24px 32px 24px;
+    justify-content: space-between;
+    align-items: flex-end;
+    align-self: stretch;
+  }
+  
+  .dealer-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: white;
+  }
+  
+  .dealer-image {
+    width: 100%;
+    max-width: 200px; /* Adjust size as needed */
+    height: auto;
+    margin-bottom: 20px; /* Adjust as needed */
+  }
+  
+  .dealer-details {
+    width: 100%;
+    text-align: left; /* Left-align text */
+    /* stylelint-disable-next-line custom-property-pattern */
+    color: var(--Primary-Main, #18171A);
+
+/* Desktop/Body/Large/Medium */
+/* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+font-family: "Fira Sans";
+font-size: 18px;
+font-style: normal;
+font-weight: 500;
+line-height: 24px; /* 133.333% */
+  }
+  
+  .dealer-details strong {
+   display: block;
+    margin-top: 10px;
+    /* stylelint-disable-next-line custom-property-pattern */
+    color: var(--Tertiary-Medium-grey, #B2B2B2);
+
+/* Desktop/Others/Description */
+/* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+font-family: "Fira Sans";
+font-size: 14px;
+font-style: normal;
+/* stylelint-disable-next-line declaration-block-no-duplicate-properties */
+font-weight: 400;
+line-height: 20px; /* 142.857% */
+text-transform: uppercase;
+  }
+  
+  .primary-cta {
+    /* stylelint-disable-next-line custom-property-pattern */
+    color: var(--Primary-Main, #18171A);
+
+/* Desktop/Body/Medium/Regular */
+/* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+font-family: "Fira Sans";
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 125% */
+  }
+  
+  .primary-cta:hover {
+    color: white;
+  }
+  /* stylelint-disable-next-line rule-empty-line-before */
+  .primary-cta::after {
+    content: ""; /* Unicode for the arrow */
+    position: absolute;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    right: 0;
+    top: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translateY(-50%);
+    background-image: url("../../icons/north_east.svg");
+    padding-left: 5px;
+  }
+  
+  .primary-cta::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 2px solid black; /* Thickness and color of the underline */
+  }
+  
+  .secondary-cta {
+    
+/* stylelint-disable-next-line custom-property-pattern */
+color: var(--Tertiary-White, #FFF);
+text-align: center;
+
+/* Desktop/Buttons/Desktop- Button */
+/* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+font-family: "Fira Sans";
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 150% */
+  }
+  
+  .secondary-cta:hover {
+    /* stylelint-disable-next-line custom-property-pattern */
+    background: var(--Primary-Main, #18171A); /* Darker shade for button hover */
+    display: flex;
+padding: 8px 12px;
+justify-content: center;
+align-items: center;
+gap: 12px;
+flex: 1 0 0;
+align-self: stretch;
+    
+  }
