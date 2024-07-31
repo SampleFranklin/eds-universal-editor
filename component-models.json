@@ -3548,6 +3548,13 @@
       },
       {
         "component": "text-input",
+        "name":"trueValueShowroomLabel",
+        "value": "",
+        "label": "True Value Showroom Label",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
         "name": "showcasingText",
         "value": "",
         "label": "Showcasing Text",
