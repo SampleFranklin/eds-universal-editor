@@ -278,6 +278,28 @@ padding: 4px 58px;
     flex: 1;
     text-align: right;
   }
+  /* stylelint-disable-next-line rule-empty-line-before */
+  .dealer-scheduledate-scheduledtime-contact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   
+  .dealer-scheduleddate {
+    flex: 1;
+    font-weight: bold;
+  }
+  
+  .dealer-scheduledtime {
+    flex: 1;
+    text-align: right;
+    font-weight: bold;
+  }
+  /* stylelint-disable-next-line rule-empty-line-before */
+  .dealer-contact {
+    flex: 1;
+    text-align: right;
+  }
+
     
   
