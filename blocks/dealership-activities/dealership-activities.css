@@ -60,7 +60,6 @@
   
   }
   
-  
   /* Tabs container */
   .tabs {
     display: flex;
@@ -115,7 +114,6 @@
     /* stylelint-disable-next-line custom-property-pattern */
     background: var(--Tertiary-Light-grey, #F2F2F2);
   }
-  
   
   .dealer-card {
     display: flex;
