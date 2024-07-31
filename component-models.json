@@ -3617,17 +3617,23 @@
       }
     ]
     },
+    {
+      "id": "tab-items",
+      "fields": [
+        {
+          "component": "text-input",
+          "name": "tabname",
+          "value": "",
+          "label": "Tab Name",
+          "valueType": "string"
+        }
+      ]
+    },
   
     {
       "id": "dealership-activities-items",
     "fields": [
-      {
-        "component": "text-input",
-        "name": "tabname",
-        "value": "",
-        "label": "Tab Name",
-        "valueType": "string"
-      },
+      
       {
         "component": "richtext",
         "name": "description",
