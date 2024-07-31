@@ -1,4 +1,4 @@
-// import { moveInstrumentation } from '../../scripts/scripts.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
 import utility from '../../utility/utility.js';
 
 export default async function decorate(block) {
@@ -33,23 +33,7 @@ export default async function decorate(block) {
       secondaryText: 'More Info',
       secondaryHref: '#',
       secondaryTarget: '_self',
-    },
-    {
-      image: '<picture><img src="image3.jpg" alt="Image 3"></picture>',
-      dealerName: '<span contenteditable="true">Dealer Three</span>',
-      emailId: '<span contenteditable="true">dealerthree@example.com</span>',
-      scheduledDate: '<span contenteditable="true">2024-08-05</span>',
-      scheduledTime: '<span contenteditable="true">9:00 AM</span>',
-      contact: '<span contenteditable="true">345-678-9012</span>',
-      description: 'Description for event 3.',
-      primaryText: 'Register',
-      primaryHref: '#',
-      primaryTarget: '_self',
-      secondaryText: 'More Info',
-      secondaryHref: '#',
-      secondaryTarget: '_self',
-    },
-    
+    }
   ];
 
   // Extract elements from the block
@@ -100,10 +84,20 @@ export default async function decorate(block) {
     }).join('');
   };
 
-  // Generate tabs and items HTML
+  // Generate items for the first tab only and create empty tabs for the rest
   const items = extractDealershipActivityItems(stubbedItemsResponse);
-  const tabsHtml = extractTabs(items);
-  const itemsHtml = items.map(item => item.content).join('');
+  const tabsHtml = `
+    <div class="tablink active default" data-tab="item0">Tab 1<hr class="tab-scroll-line"></div>
+    <div class="tablink" data-tab="item1">Tab 2<hr class="tab-scroll-line"></div>
+    <div class="tablink" data-tab="item2">Tab 3<hr class="tab-scroll-line"></div>
+  `;
+  const itemsHtml = `
+    <div class="dealership-activities__item" id="item0" style="display: flex;">
+      ${items.map(item => item.content).join('')}
+    </div>
+    <div class="dealership-activities__item" id="item1" style="display: none;"></div>
+    <div class="dealership-activities__item" id="item2" style="display: none;"></div>
+  `;
 
   // Set block's inner HTML
   block.innerHTML = utility.sanitizeHtml(`
