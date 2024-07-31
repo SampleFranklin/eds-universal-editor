@@ -13,12 +13,11 @@ export default function decorate(block) {
     return data.map(dealer => `
       <div class="dealer-card">
         <picture>
-          
           <img src="${dealer.image}" alt="image" class="dealer-image"/>
         </picture>
-        <div class="dealer-details">
         <p class="dealer-description">${dealer.description}</p>
-        <strong>DEALER NAME:</strong><br>
+        <div class="dealer-details">
+          <strong>DEALER NAME:</strong><br>
           <p class="dealer-name">${dealer.dealername}</p>
           <strong>SCHEDULED TIME:</strong><br>
           <p class="dealer-scheduledtime">${dealer.scheduledtime}</p>
@@ -39,7 +38,7 @@ export default function decorate(block) {
     {
       "dealername": "Mayuri Automobile Co. Ltd.",
       "image": "/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png",
-      "description": "Upcoming test drive  |  Heads up! We have scheduled a test drive on 13th June for Wagon R",
+      "description": "Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R",
       "scheduledtime": "14:30PM",
       "scheduleddate": "13th Jun, 2024",
       "contact": "+1 (555) 123-4567",
@@ -50,15 +49,14 @@ export default function decorate(block) {
     {
       "dealername": "Mayuri Automobile Co. Ltd.",
       "image": "/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png",
-      "description": "Upcoming test drive  |  Heads up! We have scheduled a test drive on 13th June for Wagon R",
+      "description": "Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R",
       "scheduledtime": "14:30PM",
       "scheduleddate": "13th Jun, 2024",
       "contact": "+1 (555) 123-4567",
       "email": "mandi@competent-maruti.com",
       "primarycta": "Schedule a video call",
       "secondarycta": "Directions"
-    },
-    
+    }
   ];
 
   function renderContentForTab(tabIndex) {
@@ -108,7 +106,7 @@ export default function decorate(block) {
       });
       item.classList.add('active');
       item.querySelector('.scroll-line').classList.add('visible');
-      
+
       const tabIndex = parseInt(item.dataset.index, 10);
       dealerCardsContainer.innerHTML = renderContentForTab(tabIndex);
     });
