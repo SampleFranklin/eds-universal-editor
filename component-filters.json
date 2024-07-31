@@ -86,7 +86,8 @@
       "logolist",
       "360view",
       "dealer-locator-filter",
-      "dealership-activities"
+      "dealership-activities",
+      "tab-items"
     ]
   },
   {
@@ -271,8 +272,9 @@
   {
     "id": "dealership-activites",
     "components": [
-      "dealership-activities-items"
+      "tab-items"
       
    ]
   }
+  
 ]
