@@ -5,7 +5,7 @@ export default async function decorate(block) {
   // Stubbed response to simulate dynamic items
   const stubbedItemsResponse = [
     {
-      
+      index: 0,
       image: '<picture><img src="image1.jpg" alt="Image 1"></picture>',
       dealerName: 'Dealer One',
       emailId: 'dealerone@example.com',
@@ -21,7 +21,7 @@ export default async function decorate(block) {
       secondaryTarget: '_self',
     },
     {
-      
+      index: 1,
       image: '<picture><img src="image2.jpg" alt="Image 2"></picture>',
       dealerName: 'Dealer Two',
       emailId: 'dealertwo@example.com',
@@ -37,7 +37,7 @@ export default async function decorate(block) {
       secondaryTarget: '_self',
     },
     {
-      
+      index: 2,
       image: '<picture><img src="image3.jpg" alt="Image 3"></picture>',
       dealerName: 'Dealer Three',
       emailId: 'dealerthree@example.com',
@@ -57,13 +57,12 @@ export default async function decorate(block) {
   // Function to extract elements and generate HTML
   const generateHtml = () => {
     // Extract elements from the block
-    const [titleEl, subtitleEl, dealershipActivitiesTab, ...dealershipActivitiesItemEl] = block.children;
+    const [titleEl, subtitleEl, dealershipActivitiesTab] = block.children;
 
     // Debugging: Log extracted elements
     console.log('Title Element:', titleEl);
     console.log('Subtitle Element:', subtitleEl);
     console.log('Dealership Activities Tab Element:', dealershipActivitiesTab);
-    console.log('Dealership Activities Item Elements:', dealershipActivitiesItemEl);
 
     // Extract title and subtitle
     const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)')?.outerHTML || '';
@@ -130,7 +129,7 @@ export default async function decorate(block) {
     const tabsHtml = tabs
       .map(
         (tab, index) => `
-        <div class="tablink ${index === 0 ? 'active default' : ''}" data-tab="tab${index + 1}">
+        <div class="tablink ${index === 0 ? 'active default' : ''}" data-tab="all-items">
           ${tab.tabName}
           <hr class="tab-scroll-line">
         </div>
@@ -153,7 +152,7 @@ export default async function decorate(block) {
               ${tabsHtml}
             </div>
           </div>
-          <div class="dealership-activities__items">
+          <div class="dealership-activities__items" id="all-items">
             ${itemsHtml}
           </div>
         </div>
