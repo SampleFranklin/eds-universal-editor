@@ -305,6 +305,7 @@ padding: 4px 58px;
   
   .dealer-email {
     text-align: right;
+    flex: 1;
   }
   
  
@@ -314,7 +315,20 @@ padding: 4px 58px;
     gap: 20px; /* Adjust gap as needed */
   }
   
-  .dealer-schedule-contact div {
+  .dealer-schedule-contact > div {
+    flex: 1;
+  }
+  /* stylelint-disable-next-line rule-empty-line-before */
+  .dealer-scheduledtime {
+    font-weight: bold;
+  } 
+  /* stylelint-disable-next-line rule-empty-line-before */
+  .dealer-scheduleddate {
+    font-weight: bold;
+  } 
+  /* stylelint-disable-next-line rule-empty-line-before */
+  .dealer-contact {
+    margin-top: 10px; /* Space between each detail section */
     flex: 1;
   }
     

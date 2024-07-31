@@ -33,15 +33,15 @@ export default function decorate(block) {
           <div class="dealer-schedule-contact">
             <div>
               <strong>SCHEDULED TIME</strong>
-              <p class="dealer-scheduledtime">${dealer.scheduledtime}</p>
+              <span class="dealer-scheduledtime">${dealer.scheduledtime}</span>
             </div>
             <div>
               <strong>SCHEDULED DATE</strong>
-              <p class="dealer-scheduleddate">${dealer.scheduleddate}</p>
+              <span class="dealer-scheduleddate">${dealer.scheduleddate}</span>
             </div>
             <div>
               <strong>CONTACT</strong>
-              <p class="dealer-contact">${dealer.contact}</p>
+              <span class="dealer-contact">${dealer.contact}</span>
             </div>
           </div>
           
