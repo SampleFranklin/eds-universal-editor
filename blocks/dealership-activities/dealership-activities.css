@@ -100,6 +100,14 @@
   .tab-item.active .scroll-line {
     background-color: black; /* Scroll line color for active tab */
   }
+
+
+/* Wrapper for each dealer card pair */
+.dealer-card-wrapper {
+    background: #FFF; /* Ensures the background color is white, including the gap */
+    padding: 20px;
+    margin-bottom: 20px; /* Adds space between each dealer-card-wrapper */
+  }
   /* stylelint-disable-next-line rule-empty-line-before */
   .dealer-cards {
     display: flex;
