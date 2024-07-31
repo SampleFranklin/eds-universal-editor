@@ -194,6 +194,8 @@ font-style: normal;
 font-weight: 400;
 line-height: 20px; /* 125% */
 position: relative;
+bottom:660px;
+left: 470px;
   }
   
   
@@ -221,7 +223,7 @@ position: relative;
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
+    width: 180px;
     border-bottom: 2px solid black; /* Thickness and color of the underline */
   }
   
@@ -248,7 +250,7 @@ align-items: center;
 gap: 12px;
 bottom: 620px;
 left: 462px;
-align-self: stretch;
+position: relative;
 padding: 4px 55px;
   }
   
