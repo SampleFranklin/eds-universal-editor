@@ -54,6 +54,7 @@
     width: 1174px;
     align-items: flex-start;
     gap: 24px;
+    flex-direction: row;
   }
   
   /* Tabs container */
