@@ -13,8 +13,8 @@ export default function decorate(block) {
     return data.map(dealer => `
       <div class="dealer-card">
         <picture>
-          <source srcset="${dealer.imageWebp}" type="image/webp">
-          <img src="${dealer.image}" alt="${dealer.dealername}" class="dealer-image"/>
+          
+          <img src="${dealer.image}" alt="image" class="dealer-image"/>
         </picture>
         <div class="dealer-details">
         <p class="dealer-description">${dealer.description}</p>
