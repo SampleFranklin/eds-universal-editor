@@ -1,184 +1,204 @@
-// import { moveInstrumentation } from '../../scripts/scripts.js';
-// import utility from '../../utility/utility.js';
+ import { moveInstrumentation } from '../../scripts/scripts.js';
+import utility from '../../utility/utility.js';
 
-// export default async function decorate(block) {
-//   // Function to extract elements and generate HTML
-//   const generateHtml = () => {
-//     // Extract elements from the block
-//     const [titleEl, subtitleEl, dealershipActivitiesTab, ...dealershipActivitiesItemEl] = block.children;
+export default async function decorate(block) {
+  // Stubbed response to simulate dynamic items
+  const stubbedItemsResponse = [
+    {
+      index: 0,
+      image: '<picture><img src="image1.jpg" alt="Image 1"></picture>',
+      dealerName: 'Dealer One',
+      emailId: 'dealerone@example.com',
+      scheduledDate: '2024-07-30',
+      scheduledTime: '10:00 AM',
+      contact: '123-456-7890',
+      description: 'Description for event 1.',
+      primaryText: 'Register',
+      primaryHref: '#',
+      primaryTarget: '_self',
+      secondaryText: 'More Info',
+      secondaryHref: '#',
+      secondaryTarget: '_self',
+    },
+    {
+      index: 1,
+      image: '<picture><img src="image2.jpg" alt="Image 2"></picture>',
+      dealerName: 'Dealer Two',
+      emailId: 'dealertwo@example.com',
+      scheduledDate: '2024-08-01',
+      scheduledTime: '2:00 PM',
+      contact: '234-567-8901',
+      description: 'Description for event 2.',
+      primaryText: 'Register',
+      primaryHref: '#',
+      primaryTarget: '_self',
+      secondaryText: 'More Info',
+      secondaryHref: '#',
+      secondaryTarget: '_self',
+    },
+    {
+      index: 2,
+      image: '<picture><img src="image3.jpg" alt="Image 3"></picture>',
+      dealerName: 'Dealer Three',
+      emailId: 'dealerthree@example.com',
+      scheduledDate: '2024-08-05',
+      scheduledTime: '9:00 AM',
+      contact: '345-678-9012',
+      description: 'Description for event 3.',
+      primaryText: 'Register',
+      primaryHref: '#',
+      primaryTarget: '_self',
+      secondaryText: 'More Info',
+      secondaryHref: '#',
+      secondaryTarget: '_self',
+    },
+  ];
 
-//     // Extract title and subtitle
-//     const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)')?.outerHTML || '';
-//     const subtitle = subtitleEl?.textContent?.trim() || '';
+  // Function to extract elements and generate HTML
+  const generateHtml = () => {
+    // Extract elements from the block
+    const [titleEl, subtitleEl, dealershipActivitiesTab, ...dealershipActivitiesItemEl] = block.children;
 
-//     // Extract the dealership activities tab names
-//     const extractDealershipActivitiesTab = (tabEl) => {
-//       return Array.from(tabEl.children).map((tab, index) => ({
-//         tabName: tab.textContent.trim() || `Tab ${index + 1}`,
-//       }));
-//     };
+    // Extract title and subtitle
+    const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)')?.outerHTML || '';
+    const subtitle = subtitleEl?.textContent?.trim() || '';
 
-//     // Function to extract individual dealership activity items
-//     const extractDealershipActivityItems = (items) => {
-//       return items.map((itemEl, index) => {
-//         const [
-//           descriptionEl,
-//           imageEl,
-//           dealerNameEl,
-//           emailIdEl,
-//           scheduledDateEl,
-//           scheduledTimeEl,
-//           contactEl,
-//           primaryTextEl,
-//           primaryAnchorEl,
-//           primaryTargetEl,
-//           secondaryTextEl,
-//           secondaryAnchorEl,
-//           secondaryTargetEl,
-//         ] = itemEl.children;
+    // Extract the dealership activities tab names
+    const extractDealershipActivitiesTab = (tabEl) => {
+      return Array.from(tabEl.children).map((tab, index) => ({
+        tabName: tab.textContent.trim() || `Tab ${index + 1}`,
+      }));
+    };
 
-//         const image = imageEl?.querySelector('picture')?.outerHTML || '';
-//         const dealerName = dealerNameEl?.textContent?.trim() || '';
-//         const emailId = emailIdEl?.textContent?.trim() || '';
-//         const scheduledDate = scheduledDateEl?.textContent?.trim() || '';
-//         const scheduledTime = scheduledTimeEl?.textContent?.trim() || '';
-//         const contact = contactEl?.textContent?.trim() || '';
-//         const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.textContent.trim()).join('');
+    // Function to extract individual dealership activity items from stubbed response
+    const extractDealershipActivityItems = (items) => {
+      return items.map((item) => {
+        return {
+          index: item.index,
+          content: `
+            <div class="dealership-activities__item" id="tab${item.index + 1}">
+              <div class="dealership-activities__item-left">
+                ${item.image}
+                <p class="description">${item.description}</p>
+              </div>
+              <div class="dealership-activities__item-right">
+                <p class="dealer-name">
+                  <strong>DEALER NAME:</strong><br>
+                  <span contenteditable="true">${item.dealerName}</span>
+                </p>
+                <p class="scheduled-date">
+                  <strong>SCHEDULED DATE:</strong><br>
+                  <span contenteditable="true">${item.scheduledDate}</span>
+                </p>
+                <p class="scheduled-time">
+                  <strong>SCHEDULED TIME:</strong><br>
+                  <span contenteditable="true">${item.scheduledTime}</span>
+                </p>
+                <p class="email-id">
+                  <strong>EMAIL ID:</strong><br>
+                  <span contenteditable="true">${item.emailId}</span>
+                </p>
+                <p class="contact">
+                  <strong>CONTACT:</strong><br>
+                  <span contenteditable="true">${item.contact}</span>
+                </p>
+                <div class="actions">
+                  <a href="${item.primaryHref}" target="${item.primaryTarget}" class="primary-text">${item.primaryText}</a>
+                  <a href="${item.secondaryHref}" target="${item.secondaryTarget}" class="button secondary-text">${item.secondaryText}</a>
+                </div>
+              </div>
+            </div>
+          `,
+        };
+      });
+    };
 
-//         const primaryText = primaryTextEl?.textContent?.trim() || '';
-//         const primaryHref = primaryAnchorEl?.querySelector('a')?.href || '#';
-//         const primaryTarget = primaryTargetEl?.querySelector('a')?.target || '_self';
+    // Generate tabs and items HTML
+    const tabs = extractDealershipActivitiesTab(dealershipActivitiesTab);
+    const items = extractDealershipActivityItems(stubbedItemsResponse);
 
-//         const secondaryText = secondaryTextEl?.textContent?.trim() || '';
-//         const secondaryHref = secondaryAnchorEl?.querySelector('a')?.href || '#';
-//         const secondaryTarget = secondaryTargetEl?.querySelector('a')?.target || '_self';
+    const tabsHtml = tabs
+      .map(
+        (tab, index) => `
+        <div class="tablink ${index === 0 ? 'active default' : ''}" data-tab="tab${index + 1}">
+          ${tab.tabName}
+          <hr class="tab-scroll-line">
+        </div>
+      `
+      )
+      .join('');
 
-//         return {
-//           index,
-//           content: `
-//             <div class="dealership-activities__item" id="tab${index + 1}">
-//               <div class="dealership-activities__item-left">
-//                 ${image}
-//                 <p class="description">${description}</p>
-//               </div>
-//               <div class="dealership-activities__item-right">
-//                 <p class="dealer-name">
-//                   <strong>DEALER NAME:</strong><br>
-//                   <span contenteditable="true">${dealerName}</span>
-//                 </p>
-//                 <p class="scheduled-date">
-//                   <strong>SCHEDULED DATE:</strong><br>
-//                   <span contenteditable="true">${scheduledDate}</span>
-//                 </p>
-//                 <p class="scheduled-time">
-//                   <strong>SCHEDULED TIME:</strong><br>
-//                   <span contenteditable="true">${scheduledTime}</span>
-//                 </p>
-//                 <p class="email-id">
-//                   <strong>EMAIL ID:</strong><br>
-//                   <span contenteditable="true">${emailId}</span>
-//                 </p>
-//                 <p class="contact">
-//                   <strong>CONTACT:</strong><br>
-//                   <span contenteditable="true">${contact}</span>
-//                 </p>
-//                 <div class="actions">
-//                   <a href="${primaryHref}" target="${primaryTarget}" class="primary-text">${primaryText}</a>
-//                   <a href="${secondaryHref}" target="${secondaryTarget}" class="button secondary-text">${secondaryText}</a>
-//                 </div>
-//               </div>
-//             </div>
-//           `,
-//         };
-//       });
-//     };
+    const itemsHtml = items.map((item) => item.content).join('');
 
-//     // Generate tabs and items HTML
-//     const tabs = extractDealershipActivitiesTab(dealershipActivitiesTab);
-//     const items = extractDealershipActivityItems(dealershipActivitiesItemEl);
+    // Set block's inner HTML
+    block.innerHTML = utility.sanitizeHtml(`
+      <div class="dealership-activities__container">
+        <div class="dealership-activities__content">
+          <div class="dealership-activities__title">
+            ${title}
+            <p class="subtitle">${subtitle}</p>
+          </div>
+          <div class="dealership-activities-tab">
+            <div class="tabs">
+              ${tabsHtml}
+            </div>
+          </div>
+          <div class="dealership-activities__items">
+            ${itemsHtml}
+          </div>
+        </div>
+      </div>
+    `);
+  };
 
-//     const tabsHtml = tabs
-//       .map(
-//         (tab, index) => `
-//         <div class="tablink ${index === 0 ? 'active default' : ''}" data-tab="tab${index + 1}">
-//           ${tab.tabName}
-//           <hr class="tab-scroll-line">
-//         </div>
-//       `
-//       )
-//       .join('');
+  // Function to handle tab switching and highlight
+  const openTab = (evt, tabName) => {
+    const tabContent = document.querySelectorAll('.dealership-activities__item');
+    const tabLinks = document.querySelectorAll('.tablink');
 
-//     const itemsHtml = items.map((item) => item.content).join('');
+    tabContent.forEach((content) => {
+      content.style.display = 'none';
+      content.classList.remove('active');
+    });
 
-//     // Set block's inner HTML
-//     block.innerHTML = utility.sanitizeHtml(`
-//       <div class="dealership-activities__container">
-//         <div class="dealership-activities__content">
-//           <div class="dealership-activities__title">
-//             ${title}
-//             <p class="subtitle">${subtitle}</p>
-//           </div>
-//           <div class="dealership-activities-tab">
-//             <div class="tabs">
-//               ${tabsHtml}
-//             </div>
-//           </div>
-//           <div class="dealership-activities__items">
-//             ${itemsHtml}
-//           </div>
-//         </div>
-//       </div>
-//     `);
-//   };
+    tabLinks.forEach((link) => {
+      link.classList.remove('active');
+    });
 
-//   // Function to handle tab switching and highlight
-//   const openTab = (evt, tabName) => {
-//     const tabContent = document.querySelectorAll('.dealership-activities__item');
-//     const tabLinks = document.querySelectorAll('.tablink');
+    const activeTab = document.getElementById(tabName);
+    if (activeTab) {
+      activeTab.style.display = 'flex';
+      activeTab.classList.add('active');
+      moveInstrumentation(activeTab);
+    }
 
-//     tabContent.forEach((content) => {
-//       content.style.display = 'none';
-//       content.classList.remove('active');
-//     });
+    evt.currentTarget.classList.add('active');
+    moveInstrumentation(evt.currentTarget);
+  };
 
-//     tabLinks.forEach((link) => {
-//       link.classList.remove('active');
-//     });
+  // Function to attach event listeners to tabs
+  const attachTabListeners = () => {
+    document.querySelectorAll('.tablink').forEach((tabLink) => {
+      tabLink.addEventListener('click', (event) => {
+        const tabName = tabLink.getAttribute('data-tab');
+        openTab(event, tabName);
+      });
 
-//     const activeTab = document.getElementById(tabName);
-//     if (activeTab) {
-//       activeTab.style.display = 'flex';
-//       activeTab.classList.add('active');
-//       moveInstrumentation(activeTab);
-//     }
+      tabLink.addEventListener('mouseover', () => {
+        document.querySelector('.tablink.active')?.classList.remove('active');
+      });
+    });
+  };
 
-//     evt.currentTarget.classList.add('active');
-//     moveInstrumentation(evt.currentTarget);
-//   };
+  // Initial rendering and attaching listeners
+  generateHtml();
+  attachTabListeners();
 
-//   // Function to attach event listeners to tabs
-//   const attachTabListeners = () => {
-//     document.querySelectorAll('.tablink').forEach((tabLink) => {
-//       tabLink.addEventListener('click', (event) => {
-//         const tabName = tabLink.getAttribute('data-tab');
-//         openTab(event, tabName);
-//       });
-
-//       tabLink.addEventListener('mouseover', () => {
-//         document.querySelector('.tablink.active')?.classList.remove('active');
-//       });
-//     });
-//   };
-
-//   // Initial rendering and attaching listeners
-//   generateHtml();
-//   attachTabListeners();
-
-//   // Initial tab display setup
-//   const firstItem = document.querySelector('.dealership-activities__item');
-//   if (firstItem) {
-//     firstItem.style.display = 'flex';
-//     firstItem.classList.add('active');
-//     moveInstrumentation(firstItem);
-//   }
-// }
+  // Initial tab display setup
+  const firstItem = document.querySelector('.dealership-activities__item');
+  if (firstItem) {
+    firstItem.style.display = 'flex';
+    firstItem.classList.add('active');
+    moveInstrumentation(firstItem);
+  }
+}
