@@ -16,6 +16,8 @@ export default function decorate(block) {
           <img src="${dealer.image}" alt="image" class="dealer-image"/>
         </picture>
         <p class="dealer-description">${dealer.description}</p>
+        <a href="#" class="primary-cta">${dealer.primarycta}</a>
+          <button class="secondary-cta">${dealer.secondarycta}</button>
         <div class="dealer-details">
           <strong>DEALER NAME:</strong><br>
           <p class="dealer-name">${dealer.dealername}</p>
@@ -27,8 +29,7 @@ export default function decorate(block) {
           <p class="dealer-contact">${dealer.contact}</p>
           <strong>EMAIL ID:</strong><br>
           <p class="dealer-email">${dealer.email}</p>
-          <a href="#" class="primary-cta">${dealer.primarycta}</a>
-          <button class="secondary-cta">${dealer.secondarycta}</button>
+          
         </div>
       </div>
     `).join('');
