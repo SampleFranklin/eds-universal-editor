@@ -17,9 +17,9 @@ export default function decorate(block) {
         <p class="dealer-description">${dealer.description}</p>
         <strong>DEALER NAME:</strong><br>
           <h2 class="dealer-name">${dealer.dealername}</h2>
-          <strong>SCHEDULED DATE:</strong><br>
-          <p class="dealer-scheduledtime">${dealer.scheduledtime}</p>
           <strong>SCHEDULED TIME:</strong><br>
+          <p class="dealer-scheduledtime">${dealer.scheduledtime}</p>
+          <strong>SCHEDULED DATE:</strong><br>
           <p class="dealer-scheduleddate">${dealer.scheduleddate}</p>
           <strong>CONTACT:</strong><br>
           <p class="dealer-contact">${dealer.contact}</p>
@@ -34,26 +34,26 @@ export default function decorate(block) {
 
   const stubbedData = [
     {
-      "dealername": "ABC Motors",
+      "dealername": "Mayuri Automobile Co. Ltd.",
       "image": "/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png",
-      "description": "ABC Motors offers a wide range of vehicles to suit your needs. Visit us for great deals and exceptional service.",
-      "scheduledtime": "10:00 AM",
-      "scheduleddate": "2024-08-15",
+      "description": "Upcoming test drive  |  Heads up! We have scheduled a test drive on 13th June for Wagon R",
+      "scheduledtime": "14:30PM",
+      "scheduleddate": "13th Jun, 2024",
       "contact": "+1 (555) 123-4567",
-      "email": "contact@abcmotors.com",
-      "primarycta": "Book a Test Drive",
-      "secondarycta": "Get Directions"
+      "email": "mandi@competent-maruti.com",
+      "primarycta": "Schedule a video call",
+      "secondarycta": "Directions"
     },
     {
-      "dealername": "XYZ Autos",
+      "dealername": "Mayuri Automobile Co. Ltd.",
       "image": "/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png",
-      "description": "XYZ Autos provides top-quality vehicles with unbeatable prices. Come and see our latest models today.",
-      "scheduledtime": "2:00 PM",
-      "scheduleddate": "2024-08-20",
-      "contact": "+1 (555) 987-6543",
-      "email": "info@xyzautos.com",
-      "primarycta": "Schedule a Visit",
-      "secondarycta": "Contact Us"
+      "description": "Upcoming test drive  |  Heads up! We have scheduled a test drive on 13th June for Wagon R",
+      "scheduledtime": "14:30PM",
+      "scheduleddate": "13th Jun, 2024",
+      "contact": "+1 (555) 123-4567",
+      "email": "mandi@competent-maruti.com",
+      "primarycta": "Schedule a video call",
+      "secondarycta": "Directions"
     },
     
   ];
