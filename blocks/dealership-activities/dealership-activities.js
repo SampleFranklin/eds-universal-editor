@@ -31,14 +31,15 @@ export default function decorate(block) {
           </div>
 
           <div class="dealer-schedule-contact">
+          <div>
+              <strong>SCHEDULED DATE</strong>
+              <span class="dealer-scheduleddate">${dealer.scheduleddate}</span>
+            </div>
             <div>
               <strong>SCHEDULED TIME</strong>
               <span class="dealer-scheduledtime">${dealer.scheduledtime}</span>
             </div>
-            <div>
-              <strong>SCHEDULED DATE</strong>
-              <span class="dealer-scheduleddate">${dealer.scheduleddate}</span>
-            </div>
+            
             <div>
               <strong>CONTACT</strong>
               <span class="dealer-contact">${dealer.contact}</span>

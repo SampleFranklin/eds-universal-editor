@@ -300,7 +300,16 @@ padding: 4px 58px;
   }
   
   .dealer-name {
-    font-weight: bold;
+    /* stylelint-disable-next-line custom-property-pattern */
+    color: var(--Primary-Main, #18171A);
+
+/* Desktop/Body/Large/Medium */
+/* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+font-family: "Fira Sans";
+font-size: 18px;
+font-style: normal;
+font-weight: 500;
+line-height: 24px; /* 133.333% */
   }
   
   .dealer-email {
