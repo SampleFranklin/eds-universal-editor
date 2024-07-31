@@ -263,7 +263,7 @@ position: relative;
 padding: 4px 58px;
   }
   
-  .dealer-name-email {
+  /* .dealer-name-email {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -284,6 +284,27 @@ padding: 4px 58px;
     top: 20px;
     right: 86px;
 
+  } */
+
+  .dealer-name-email {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px; /* Adjust gap between name and email */
+  }
+  
+  .dealer-name-email > div {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+  }
+  
+  .dealer-name {
+    font-weight: bold;
+  }
+  
+  .dealer-email {
+    text-align: right;
   }
   
  

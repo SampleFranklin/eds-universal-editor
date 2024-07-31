@@ -19,12 +19,16 @@ export default function decorate(block) {
         <a href="#" class="primary-cta">${dealer.primarycta}</a>
           <button class="secondary-cta">${dealer.secondarycta}</button>
         <div class="dealer-details">
-           <p class="dealer-name-email">
-            <strong>DEALER NAME</strong></br> 
-            <span class="dealer-name">${dealer.dealername}</span>
-            <strong>EMAIL ID</strong></br>
-            <span class="dealer-email">${dealer.email}</span>
-          </p>
+           <div class="dealer-name-email">
+            <div>
+              <strong>DEALER NAME:</strong> 
+              <span class="dealer-name">${dealer.dealername}</span>
+            </div>
+            <div>
+              <strong>EMAIL ID:</strong> 
+              <span class="dealer-email">${dealer.email}</span>
+            </div>
+          </div>
 
           <div class="dealer-schedule-contact">
             <div>
