@@ -5,7 +5,7 @@ export default async function decorate(block) {
   // Stubbed response to simulate dynamic items
   const stubbedItemsResponse = [
     {
-      index: 0,
+      
       image: '<picture><img src="image1.jpg" alt="Image 1"></picture>',
       dealerName: 'Dealer One',
       emailId: 'dealerone@example.com',
@@ -21,7 +21,7 @@ export default async function decorate(block) {
       secondaryTarget: '_self',
     },
     {
-      index: 1,
+      
       image: '<picture><img src="image2.jpg" alt="Image 2"></picture>',
       dealerName: 'Dealer Two',
       emailId: 'dealertwo@example.com',
@@ -37,7 +37,7 @@ export default async function decorate(block) {
       secondaryTarget: '_self',
     },
     {
-      index: 2,
+      
       image: '<picture><img src="image3.jpg" alt="Image 3"></picture>',
       dealerName: 'Dealer Three',
       emailId: 'dealerthree@example.com',
