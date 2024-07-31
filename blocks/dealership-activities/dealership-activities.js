@@ -10,9 +10,10 @@ export default function decorate(block) {
   const tabs = tabElements.map(tabEl => tabEl?.textContent?.trim() || "");
 
   function createDealerCard() {
-    const tabMap = tabs.map(tab => `
-      <div class="tab-item">
+    const tabMap = tabs.map((tab, index) => `
+      <div class="tab-item ${index === 0 ? 'active' : ''}" data-index="${index}">
         ${tab}
+        <div class="scroll-line ${index === 0 ? 'visible' : ''}"></div>
       </div>
     `).join('');
 
@@ -31,7 +32,19 @@ export default function decorate(block) {
     `;
   }
 
-  // Create dealership card and set innerHTML
   const dealershipCard = createDealerCard();
   block.innerHTML = dealershipCard;
+
+  const tabItems = block.querySelectorAll('.tab-item');
+
+  tabItems.forEach(item => {
+    item.addEventListener('click', () => {
+      tabItems.forEach(tab => {
+        tab.classList.remove('active');
+        tab.querySelector('.scroll-line').classList.remove('visible');
+      });
+      item.classList.add('active');
+      item.querySelector('.scroll-line').classList.add('visible');
+    });
+  });
 }
