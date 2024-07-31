@@ -149,6 +149,10 @@ bottom: 222px;
 right: 445px;
 
   }
+  /* stylelint-disable-next-line rule-empty-line-before */
+  .dealer-card + .dealer-card {
+    margin-top: 20px; /* Adjust gap size as needed */
+  }
   
   .dealer-details {
     width: 100%;
@@ -194,7 +198,7 @@ font-style: normal;
 font-weight: 400;
 line-height: 20px; /* 125% */
 position: relative;
-bottom:660px;
+bottom: 675px;
 left: 470px;
   }
   
@@ -248,7 +252,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 gap: 12px;
-bottom: 620px;
+bottom: 650px;
 left: 462px;
 position: relative;
 padding: 4px 55px;
