@@ -55,6 +55,8 @@
     align-items: flex-start;
     gap: 24px;
     flex-direction: row;
+
+  
   }
   
   /* Tabs container */
@@ -64,7 +66,7 @@
   }
   
   /* Individual tab styling */
-  .tablink {
+  .tab-item  {
     display: inline-block;
     padding: 10px 20px;
     margin: 0 5px;
@@ -81,7 +83,7 @@
   }
   
   /* Scroll line for tabs */
-  .tab-scroll-line {
+  .tab-item-scroll-line {
     position: absolute;
     bottom: -2px; /* Adjust based on padding */
     left: 0;
@@ -92,7 +94,7 @@
   }
   
   /* Highlight scroll line for active tab */
-  .tablink.active .tab-scroll-line {
+  .tab-item.active .tab-item-scroll-line {
     background-color: black; /* Highlight color for the scroll line of the active tab */
   }
   
