@@ -25,14 +25,22 @@ export default function decorate(block) {
             <strong>EMAIL ID</strong></br>
             <span class="dealer-email">${dealer.email}</span>
           </p>
-          <p class="dealer-scheduleddate-scheduledtime-contact">
-          <strong>SCHEDULED DATE</strong><br>
-          <span class="dealer-scheduleddate">${dealer.scheduleddate}</span>
-          <strong>SCHEDULED TIME</strong></br>
-          <span class="dealer-scheduledtime">${dealer.scheduledtime}</span>
-          <strong>CONTACT</strong><br>
-          <span class="dealer-contact">${dealer.contact}</span>
-          </p>
+
+          <div class="dealer-schedule-contact">
+            <div>
+              <strong>SCHEDULED TIME:</strong>
+              <p class="dealer-scheduledtime">${dealer.scheduledtime}</p>
+            </div>
+            <div>
+              <strong>SCHEDULED DATE:</strong>
+              <p class="dealer-scheduleddate">${dealer.scheduleddate}</p>
+            </div>
+            <div>
+              <strong>CONTACT:</strong>
+              <p class="dealer-contact">${dealer.contact}</p>
+            </div>
+          </div>
+          
           
         </div>
       </div>
