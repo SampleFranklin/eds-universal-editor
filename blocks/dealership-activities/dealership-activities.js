@@ -49,21 +49,7 @@ export default async function decorate(block) {
       secondaryHref: '#',
       secondaryTarget: '_self',
     },
-    {
-      image: '<picture><img src="image4.jpg" alt="Image 4"></picture>',
-      dealerName: '<span contenteditable="true">Dealer Four</span>',
-      emailId: '<span contenteditable="true">dealerfour@example.com</span>',
-      scheduledDate: '<span contenteditable="true">2024-08-10</span>',
-      scheduledTime: '<span contenteditable="true">11:00 AM</span>',
-      contact: '<span contenteditable="true">456-789-0123</span>',
-      description: 'Description for event 4.',
-      primaryText: 'Register',
-      primaryHref: '#',
-      primaryTarget: '_self',
-      secondaryText: 'More Info',
-      secondaryHref: '#',
-      secondaryTarget: '_self',
-    },
+    
   ];
 
   // Extract elements from the block
