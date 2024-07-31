@@ -200,7 +200,7 @@ position: relative;
   /* stylelint-disable-next-line rule-empty-line-before */
   .primary-cta::after {
     content: ""; /* Unicode for the arrow */
-    position: realtive;
+    position: absolute;
     display: inline-block;
     width: 24px;
     height: 24px;
@@ -211,14 +211,14 @@ position: relative;
     transform: translateY(-50%);
     background-image: url("../../icons/north_east.svg");
     padding-left: 5px;
-    left: 470px;
+    left: 160px;
     /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
-    bottom: 660px;
+    
   }
   /* stylelint-disable-next-line rule-empty-line-before */
   .primary-cta::before {
     content: '';
-    position: relative;
+    position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
