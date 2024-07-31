@@ -12,6 +12,7 @@
     align-items: flex-start;
     gap: 48px;
     align-self: stretch;
+    
   }
   
   /* Content within the dealership activities container */
@@ -57,6 +58,11 @@
     flex-direction: row;
 
   
+  }
+  /* stylelint-disable-next-line comment-empty-line-before */
+  /* Space between two consecutive dealer cards */
+.dealer-card + .dealer-card {
+    margin-top: 20px; /* Adjust gap size as needed */
   }
   
   /* Tabs container */
@@ -114,6 +120,7 @@
     background: var(--Tertiary-Light-grey, #F2F2F2);
   }
   
+  
   .dealer-card {
     display: flex;
     flex-direction: column;
@@ -149,11 +156,7 @@ bottom: 222px;
 right: 445px;
 
   }
-  /* stylelint-disable-next-line rule-empty-line-before */
-  .dealer-card + .dealer-card {
-    margin-top: 20px; /* Adjust gap size as needed */
-    background-color: #F2F2F2;
-  }
+  
   
   .dealer-details {
     width: 100%;
