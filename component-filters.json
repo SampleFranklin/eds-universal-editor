@@ -271,8 +271,8 @@
   {
     "id": "dealership-activites",
     "components": [
-      "dealership-activities-items",
-      "dealership-activities-tab"
+      "dealership-activities-items"
+      
    ]
   }
 ]
