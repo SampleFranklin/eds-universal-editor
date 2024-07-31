@@ -121,6 +121,7 @@
   }
   
   
+  /* stylelint-disable-next-line no-descending-specificity */
   .dealer-card {
     display: flex;
     flex-direction: column;
