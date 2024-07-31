@@ -14,11 +14,16 @@ export default function decorate(block) {
       <div class="dealer-card">
         <img src="${dealer.image}" alt="${dealer.dealername}" class="dealer-image"/>
         <div class="dealer-details">
+        <p class="dealer-description">${dealer.description}</p>
+        <strong>DEALER NAME:</strong><br>
           <h2 class="dealer-name">${dealer.dealername}</h2>
-          <p class="dealer-description">${dealer.description}</p>
+          <strong>SCHEDULED DATE:</strong><br>
           <p class="dealer-scheduledtime">${dealer.scheduledtime}</p>
+          <strong>SCHEDULED TIME:</strong><br>
           <p class="dealer-scheduleddate">${dealer.scheduleddate}</p>
+          <strong>CONTACT:</strong><br>
           <p class="dealer-contact">${dealer.contact}</p>
+          <strong>EMAIL ID:</strong><br>
           <p class="dealer-email">${dealer.email}</p>
           <a href="#" class="primary-cta">${dealer.primarycta}</a>
           <button class="secondary-cta">${dealer.secondarycta}</button>
@@ -30,7 +35,7 @@ export default function decorate(block) {
   const stubbedData = [
     {
       "dealername": "ABC Motors",
-      "image": "https://example.com/images/abc-motors.jpg",
+      "image": "/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png",
       "description": "ABC Motors offers a wide range of vehicles to suit your needs. Visit us for great deals and exceptional service.",
       "scheduledtime": "10:00 AM",
       "scheduleddate": "2024-08-15",
@@ -41,7 +46,7 @@ export default function decorate(block) {
     },
     {
       "dealername": "XYZ Autos",
-      "image": "https://example.com/images/xyz-autos.jpg",
+      "image": "/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png",
       "description": "XYZ Autos provides top-quality vehicles with unbeatable prices. Come and see our latest models today.",
       "scheduledtime": "2:00 PM",
       "scheduleddate": "2024-08-20",
@@ -50,17 +55,7 @@ export default function decorate(block) {
       "primarycta": "Schedule a Visit",
       "secondarycta": "Contact Us"
     },
-    {
-      "dealername": "123 Car Dealership",
-      "image": "https://example.com/images/123-car-dealership.jpg",
-      "description": "123 Car Dealership is known for its excellent customer service and a wide selection of cars. Check out our latest offers!",
-      "scheduledtime": "11:00 AM",
-      "scheduleddate": "2024-08-25",
-      "contact": "+1 (555) 555-1234",
-      "email": "sales@123cardealership.com",
-      "primarycta": "Request a Quote",
-      "secondarycta": "View Inventory"
-    }
+    
   ];
 
   function renderContentForTab(tabIndex) {
