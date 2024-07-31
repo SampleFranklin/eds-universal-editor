@@ -41,7 +41,7 @@ export default function decorate(block) {
       "description": "Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R",
       "scheduledtime": "14:30PM",
       "scheduleddate": "13th Jun, 2024",
-      "contact": "+1 (555) 123-4567",
+      "contact": "9931242213",
       "email": "mandi@competent-maruti.com",
       "primarycta": "Schedule a video call",
       "secondarycta": "Directions"
@@ -52,7 +52,7 @@ export default function decorate(block) {
       "description": "Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R",
       "scheduledtime": "14:30PM",
       "scheduleddate": "13th Jun, 2024",
-      "contact": "+1 (555) 123-4567",
+      "contact": "9931242213",
       "email": "mandi@competent-maruti.com",
       "primarycta": "Schedule a video call",
       "secondarycta": "Directions"
