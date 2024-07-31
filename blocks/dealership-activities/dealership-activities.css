@@ -152,6 +152,7 @@ right: 445px;
   /* stylelint-disable-next-line rule-empty-line-before */
   .dealer-card + .dealer-card {
     margin-top: 20px; /* Adjust gap size as needed */
+    background-color: #F2F2F2;
   }
   
   .dealer-details {
