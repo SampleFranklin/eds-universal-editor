@@ -27,7 +27,7 @@ export default function decorate(block) {
           </p>
           <strong>SCHEDULED DATE</strong><br>
           <p class="dealer-scheduleddate">${dealer.scheduleddate}</p>
-          <strong>SCHEDULED TIME</strong><br>
+          
           <p class="dealer-scheduledtime-contact">
           <strong>SCHEDULED TIME</strong></br>
           <span class="dealer-scheduledtime">${dealer.scheduledtime}</span>
