@@ -83,7 +83,6 @@
   }
   /* stylelint-disable-next-line rule-empty-line-before */
   .tab-item.active {
-    background-color: #ccc; /* Highlight color for active tab */
     color: black; /* Text color for active tab */
   }
   
