@@ -3,7 +3,7 @@
      languages:
        us:
          source: /us/query-index.json
-         destination: /sitemap-en.xml
+         destination: /us/sitemap.xml
          hreflang: us
        fr:
          source: /fr/query-index.json
