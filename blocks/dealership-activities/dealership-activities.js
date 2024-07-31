@@ -12,11 +12,14 @@ export default function decorate(block) {
   function createDealerCard(data) {
     return data.map(dealer => `
       <div class="dealer-card">
-        <img src="${dealer.image}" alt="${dealer.dealername}" class="dealer-image"/>
+        <picture>
+          <source srcset="${dealer.imageWebp}" type="image/webp">
+          <img src="${dealer.image}" alt="${dealer.dealername}" class="dealer-image"/>
+        </picture>
         <div class="dealer-details">
         <p class="dealer-description">${dealer.description}</p>
         <strong>DEALER NAME:</strong><br>
-          <h2 class="dealer-name">${dealer.dealername}</h2>
+          <p class="dealer-name">${dealer.dealername}</p>
           <strong>SCHEDULED TIME:</strong><br>
           <p class="dealer-scheduledtime">${dealer.scheduledtime}</p>
           <strong>SCHEDULED DATE:</strong><br>
