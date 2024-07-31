@@ -1,4 +1,4 @@
- import { moveInstrumentation } from '../../scripts/scripts.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
 import utility from '../../utility/utility.js';
 
 export default async function decorate(block) {
@@ -59,6 +59,12 @@ export default async function decorate(block) {
     // Extract elements from the block
     const [titleEl, subtitleEl, dealershipActivitiesTab, ...dealershipActivitiesItemEl] = block.children;
 
+    // Debugging: Log extracted elements
+    console.log('Title Element:', titleEl);
+    console.log('Subtitle Element:', subtitleEl);
+    console.log('Dealership Activities Tab Element:', dealershipActivitiesTab);
+    console.log('Dealership Activities Item Elements:', dealershipActivitiesItemEl);
+
     // Extract title and subtitle
     const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)')?.outerHTML || '';
     const subtitle = subtitleEl?.textContent?.trim() || '';
@@ -116,6 +122,10 @@ export default async function decorate(block) {
     // Generate tabs and items HTML
     const tabs = extractDealershipActivitiesTab(dealershipActivitiesTab);
     const items = extractDealershipActivityItems(stubbedItemsResponse);
+
+    // Debugging: Log extracted tabs and items
+    console.log('Tabs:', tabs);
+    console.log('Items:', items);
 
     const tabsHtml = tabs
       .map(
