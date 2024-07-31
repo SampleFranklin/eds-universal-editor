@@ -272,17 +272,25 @@ padding: 4px 58px;
   .dealer-name {
     flex: 1;
     font-weight: bold;
+    position: relative;
+    top: 20px;
+    right: 87px;
   }
   
   .dealer-email {
     flex: 1;
     text-align: right;
+    position: relative;
+    top: 20px;
+    right: 86px;
+
   }
   /* stylelint-disable-next-line rule-empty-line-before */
   .dealer-scheduledate-scheduledtime-contact {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
   }
   
   .dealer-scheduleddate {

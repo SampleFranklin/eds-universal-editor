@@ -32,7 +32,7 @@ export default function decorate(block) {
           <span class="dealer-scheduledtime">${dealer.scheduledtime}</span>
           <strong>CONTACT</strong><br>
           <span class="dealer-contact">${dealer.contact}</span>
-          
+          </p>
           
         </div>
       </div>
