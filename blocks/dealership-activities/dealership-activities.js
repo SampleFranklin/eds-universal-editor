@@ -15,24 +15,27 @@ export default function decorate(block) {
         <picture>
           <img src="${dealer.image}" alt="image" class="dealer-image"/>
         </picture>
-        <p class="dealer-description">${dealer.description}</p>
+        <div class="dealer-description">${dealer.description}</div>
+      </div>
+      <div class="dealer-card">
         <div class="dealer-details">
-          <strong>DEALER NAME:</strong><br>
+          <strong>DEALER NAME:</strong>
           <p class="dealer-name">${dealer.dealername}</p>
-          <strong>SCHEDULED TIME:</strong><br>
+          <strong>SCHEDULED TIME:</strong>
           <p class="dealer-scheduledtime">${dealer.scheduledtime}</p>
-          <strong>SCHEDULED DATE:</strong><br>
+          <strong>SCHEDULED DATE:</strong>
           <p class="dealer-scheduleddate">${dealer.scheduleddate}</p>
-          <strong>CONTACT:</strong><br>
+          <strong>CONTACT:</strong>
           <p class="dealer-contact">${dealer.contact}</p>
-          <strong>EMAIL ID:</strong><br>
+          <strong>EMAIL ID:</strong>
           <p class="dealer-email">${dealer.email}</p>
           <a href="#" class="primary-cta">${dealer.primarycta}</a>
           <button class="secondary-cta">${dealer.secondarycta}</button>
         </div>
       </div>
     `).join('');
-  }
+}
+
 
   const stubbedData = [
     {
