@@ -59,11 +59,7 @@
 
   
   }
-  /* stylelint-disable-next-line comment-empty-line-before */
-  /* Space between two consecutive dealer cards */
-.dealer-card + .dealer-card {
-    margin-top: 20px; /* Adjust gap size as needed */
-  }
+  
   
   /* Tabs container */
   .tabs {
@@ -121,7 +117,6 @@
   }
   
   
-  /* stylelint-disable-next-line no-descending-specificity */
   .dealer-card {
     display: flex;
     flex-direction: column;
