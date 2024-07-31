@@ -110,6 +110,8 @@
     justify-content: space-between;
     align-items: flex-end;
     align-self: stretch;
+    /* stylelint-disable-next-line custom-property-pattern */
+    background: var(--Tertiary-Light-grey, #F2F2F2);
   }
   
   .dealer-card {
@@ -193,14 +195,7 @@ line-height: 20px; /* 125% */
     padding-left: 5px;
   }
   
-  .primary-cta::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    border-bottom: 2px solid black; /* Thickness and color of the underline */
-  }
+  
   
   .secondary-cta {
     
