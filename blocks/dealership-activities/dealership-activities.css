@@ -134,6 +134,10 @@
     align-items: center;
     padding: 20px;
     border-radius: 5px;
+    /* stylelint-disable-next-line custom-property-pattern */
+    background: var(--Tertiary-Light-grey, #F2F2F2); /* White background for the gap area */
+  width: 100%; /* Ensure the container takes full width */
+ 
     
   }
   
@@ -392,13 +396,7 @@ line-height: 20px; /* 125% */
 
   
   
-  /* stylelint-disable-next-line no-descending-specificity */
-  .dealer-card {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-  }
+  
 
  
     
