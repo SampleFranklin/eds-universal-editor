@@ -1,49 +1,78 @@
+import { moveInstrumentation } from '../../scripts/scripts.js';
+import utility from '../../utility/utility.js';
+
 export default async function decorate(block) {
   // Extract elements from the block
-  const [titleEl, subtitleEl, dealershipActivitiesItemsEl, tabsEl] = block.children;
-
-  // Debugging: Log extracted elements
-  console.log('Title Element:', titleEl);
-  console.log('Subtitle Element:', subtitleEl);
-  console.log('Dealership Activities Items Element:', dealershipActivitiesItemsEl);
-  console.log('Tabs Element:', tabsEl);
+  const [titleEl, subtitleEl, tabsEl, ...dealershipActivitiesItemEl] = block.children;
 
   // Extract title and subtitle
   const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)')?.outerHTML || '';
   const subtitle = subtitleEl?.textContent?.trim() || '';
-  const tabs = tabsEl ? Array.from(tabsEl).map(tabEl => tabEl?.textContent?.trim() || "") : [];
-
-  // Debugging: Log extracted title, subtitle, and tabs
-  console.log('Title:', title);
-  console.log('Subtitle:', subtitle);
-  console.log('Tabs:', tabs);
 
   // Function to extract individual dealership activity items
   const extractDealershipActivityItems = (items) => {
     return Array.from(items).map((itemEl, index) => {
       const [
+        descriptionEl,
+        imageEl,
         dealerNameEl,
         emailIdEl,
         scheduledDateEl,
         scheduledTimeEl,
-        contactEl
+        contactEl,
+        primaryTextEl,
+        primaryAnchorEl,
+        primaryTargetEl,
+        secondaryTextEl,
+        secondaryAnchorEl,
+        secondaryTargetEl
       ] = itemEl.children;
 
+      const image = imageEl?.querySelector('picture')?.outerHTML || '';
       const dealerName = dealerNameEl?.textContent?.trim() || '';
       const emailId = emailIdEl?.textContent?.trim() || '';
       const scheduledDate = scheduledDateEl?.textContent?.trim() || '';
       const scheduledTime = scheduledTimeEl?.textContent?.trim() || '';
       const contact = contactEl?.textContent?.trim() || '';
+      const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.textContent.trim()).join('');
+
+      const primaryText = primaryTextEl?.textContent?.trim() || '';
+      const primaryHref = primaryAnchorEl?.querySelector('a')?.href || '#';
+      const primaryTarget = primaryTargetEl?.querySelector('a')?.target || '_self';
+
+      const secondaryText = secondaryTextEl?.textContent?.trim() || '';
+      const secondaryHref = secondaryAnchorEl?.querySelector('a')?.href || '#';
+      const secondaryTarget = secondaryTargetEl?.querySelector('a')?.target || '_self';
 
       return {
-        
+        tabName: `Tab ${index + 1}`, // Update tab name
         content: `
-          <div class="dealership-activities__item">
-            <p class="dealer-name">${dealerName}</p>
-            <p class="scheduled-date">${scheduledDate}</p>
-            <p class="scheduled-time">${scheduledTime}</p>
-            <p class="email-id">${emailId}</p>
-            <p class="contact">${contact}</p>
+          <div class="dealership-activities__item" id="tab${index + 1}">
+            <div class="dealership-activities__item-left">
+              ${image}
+              <p class="description">${description}</p>
+            </div>
+            <div class="dealership-activities__item-right">
+              <p class="dealer-name">
+                ${dealerName}
+              </p>
+              <p class="scheduled-date">
+                ${scheduledDate}
+              </p>
+              <p class="scheduled-time">
+                ${scheduledTime}
+              </p>
+              <p class="email-id">
+                ${emailId}
+              </p>
+              <p class="contact">
+                ${contact}
+              </p>
+              <div class="actions">
+                <a href="${primaryHref}" target="${primaryTarget}" class="primary-text">${primaryText}</a>
+                <a href="${secondaryHref}" target="${secondaryTarget}" class="button secondary-text">${secondaryText}</a>
+              </div>
+            </div>
           </div>
         `
       };
@@ -51,31 +80,25 @@ export default async function decorate(block) {
   };
 
   // Function to extract and build the tabs
-  const extractTabs = (items) => {
-    const numberOfTabs = tabs.length;
-    return Array.from({ length: numberOfTabs }).map((_, index) => {
-      const isActive = index === 0 ? 'active' : '';
+  const extractTabs = (tabs) => {
+    return tabs.map((tab, index) => {
+      const isActive = index === 0 ? 'active default' : '';
       return `
         <div class="tablink ${isActive}" data-tab="tab${index + 1}">
-          ${tabs[index]}
-        </div>
-        <div id="tab${index + 1}" class="tabcontent ${isActive}">
-          ${items.filter(item => item.tabIndex === index).map(item => item.content).join('')}
+          ${tab.tabName}
+          <hr class="tab-scroll-line">
         </div>
       `;
     }).join('');
   };
 
   // Generate tabs and items HTML
-  const items = extractDealershipActivityItems(dealershipActivitiesItemsEl.children);
+  const items = extractDealershipActivityItems(dealershipActivitiesItemEl);
   const tabsHtml = extractTabs(items);
+  const itemsHtml = items.map(item => item.content).join('');
   
-  // Debugging: Log generated HTML
-  console.log('Tabs HTML:', tabsHtml);
-  console.log('Items:', items);
-
   // Set block's inner HTML
-  block.innerHTML = `
+  block.innerHTML = utility.sanitizeHtml(`
     <div class="dealership-activities__container">
       <div class="dealership-activities__content">
         <div class="dealership-activities__title">
@@ -87,13 +110,16 @@ export default async function decorate(block) {
             ${tabsHtml}
           </div>
         </div>
+        <div class="dealership-activities__items">
+          ${itemsHtml}
+        </div>
       </div>
     </div>
-  `;
+  `);
 
   // Function to handle tab switching and highlight
   const openTab = (evt, tabName) => {
-    const tabContent = document.querySelectorAll('.tabcontent');
+    const tabContent = document.querySelectorAll('.dealership-activities__item');
     const tabLinks = document.querySelectorAll('.tablink');
 
     tabContent.forEach((content) => {
@@ -107,21 +133,27 @@ export default async function decorate(block) {
 
     const activeTab = document.getElementById(tabName);
     if (activeTab) {
-      activeTab.style.display = 'block';
+      activeTab.style.display = 'flex';
       activeTab.classList.add('active');
+      moveInstrumentation(activeTab);
     }
+
+    evt.currentTarget.classList.add('active');
+    moveInstrumentation(evt.currentTarget);
   };
 
-  // Add event listeners to tabs
-  document.querySelectorAll('.tablink').forEach(tabLink => {
-    tabLink.addEventListener('click', (e) => {
-      const tabName = e.currentTarget.dataset.tab;
-      openTab(e, tabName);
+  // Attach click event listeners to the tabs
+  document.querySelectorAll('.tablink').forEach((tabLink) => {
+    tabLink.addEventListener('click', (event) => {
+      const tabName = tabLink.getAttribute('data-tab');
+      openTab(event, tabName);
     });
   });
 
-  // Initialize the first tab to be open
-  if (document.querySelector('.tablink')) {
-    document.querySelector('.tablink').click();
+  // Initial tab display setup
+  if (document.querySelectorAll('.dealership-activities__item')[0]) {
+    document.querySelectorAll('.dealership-activities__item')[0].style.display = 'flex';
+    document.querySelectorAll('.dealership-activities__item')[0].classList.add('active');
+    moveInstrumentation(document.querySelectorAll('.dealership-activities__item')[0]);
   }
 }
