@@ -3634,28 +3634,7 @@
       "id": "dealership-activities-items",
     "fields": [
       
-      {
-        "component": "richtext",
-        "name": "description",
-        "value": "",
-        "label": "Description",
-        "valueType": "string"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "label": "Image Alt",
-        "name": "imageAlt",
-        "valueType": "string",
-        "required": true,
-        "condition": { "!==": [{ "var": "image" }, ""] }
-      },
+      
       {
         "component": "text-input",
         "name": "dealerName",
