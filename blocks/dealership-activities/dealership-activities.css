@@ -1,0 +1,76 @@
+/* Container for the whole component */
+/* stylelint-disable-next-line selector-class-pattern */
+.dealership-activities__container {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Title styling */
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__title {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+  }
+  
+  .subtitle {
+    font-size: 1.2em;
+    color: #666;
+  }
+  
+  /* Tabs styling */
+  .tabs-wrapper {
+    overflow-x: auto;
+  }
+  
+  .tabs {
+    display: flex;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .tablink {
+    padding: 0.5em 1em;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    margin-right: 0.5em;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .tablink:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .tablink.active {
+    background-color: #007bff;
+    color: #fff;
+    border-bottom: 2px solid #007bff;
+  }
+  
+  /* Tab content styling */
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__items {
+    margin-top: 1em;
+  }
+  
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__item {
+    display: none; /* Hide all items by default */
+  }
+  
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__item-content {
+    padding: 1em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1em;
+  }
+  
+  /* stylelint-disable-next-line selector-class-pattern */
+  .dealership-activities__item p {
+    margin: 0.5em 0;
+  }
+  
