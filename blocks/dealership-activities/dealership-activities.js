@@ -21,11 +21,11 @@ export default function decorate(block) {
         <div class="dealer-details">
           <div class="dealer-name-schedule">
             <div>
-              <strong>DEALER NAME:</strong></br>
+              <strong>DEALER NAME:</strong>
               <span class="dealer-name">${dealer.dealername}</span>
             </div>
             <div>
-              <strong>SCHEDULED DATE:</strong></br>
+              <strong>SCHEDULED DATE:</strong>
               <span class="dealer-scheduleddate">${dealer.scheduleddate}</span>
             </div>
             <div>
