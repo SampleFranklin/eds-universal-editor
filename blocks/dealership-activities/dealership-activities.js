@@ -5,6 +5,7 @@ export default async function decorate(block) {
   // Extract title and subtitle
   const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)')?.outerHTML || '';
   const subtitle = subtitleEl?.textContent?.trim() || '';
+  const tabs = tabsEl ? Array.from(tabsEl).map(tabEl => tabEl?.textContent?.trim() || "") : [];
 
   // Function to extract individual dealership activity items
   const extractDealershipActivityItems = (items) => {
@@ -24,15 +25,14 @@ export default async function decorate(block) {
       const contact = contactEl?.textContent?.trim() || '';
 
       return {
+        tabIndex: index, // Add tab index
         content: `
-          <div class="dealership-activities__item" id="tab${index + 1}">
-            <div class="dealership-activities__item-right">
-              <p class="dealer-name">${dealerName}</p>
-              <p class="scheduled-date">${scheduledDate}</p>
-              <p class="scheduled-time">${scheduledTime}</p>
-              <p class="email-id">${emailId}</p>
-              <p class="contact">${contact}</p>
-            </div>
+          <div class="dealership-activities__item">
+            <p class="dealer-name">${dealerName}</p>
+            <p class="scheduled-date">${scheduledDate}</p>
+            <p class="scheduled-time">${scheduledTime}</p>
+            <p class="email-id">${emailId}</p>
+            <p class="contact">${contact}</p>
           </div>
         `
       };
@@ -41,16 +41,23 @@ export default async function decorate(block) {
 
   // Function to extract and build the tabs
   const extractTabs = (items) => {
-    return items.map((_, index) => {
+    const numberOfTabs = tabs.length;
+    return Array.from({ length: numberOfTabs }).map((_, index) => {
       const isActive = index === 0 ? 'active' : '';
-      return `<div class="tablink ${isActive}" data-tab="tab${index + 1}">Tab ${index + 1}</div>`;
+      return `
+        <div class="tablink ${isActive}" data-tab="tab${index + 1}">
+          ${tabs[index]}
+        </div>
+        <div id="tab${index + 1}" class="tabcontent ${isActive}">
+          ${items.filter(item => item.tabIndex === index).map(item => item.content).join('')}
+        </div>
+      `;
     }).join('');
   };
 
   // Generate tabs and items HTML
   const items = extractDealershipActivityItems(dealershipActivitiesItemsEl.children);
   const tabsHtml = extractTabs(items);
-  const itemsHtml = items.map(item => item.content).join('');
 
   // Set block's inner HTML
   block.innerHTML = `
@@ -65,16 +72,13 @@ export default async function decorate(block) {
             ${tabsHtml}
           </div>
         </div>
-        <div class="dealership-activities__items">
-          ${itemsHtml}
-        </div>
       </div>
     </div>
   `;
 
   // Function to handle tab switching and highlight
   const openTab = (evt, tabName) => {
-    const tabContent = document.querySelectorAll('.dealership-activities__item');
+    const tabContent = document.querySelectorAll('.tabcontent');
     const tabLinks = document.querySelectorAll('.tablink');
 
     tabContent.forEach((content) => {
@@ -88,7 +92,7 @@ export default async function decorate(block) {
 
     const activeTab = document.getElementById(tabName);
     if (activeTab) {
-      activeTab.style.display = 'flex';
+      activeTab.style.display = 'block';
       activeTab.classList.add('active');
     }
   };
