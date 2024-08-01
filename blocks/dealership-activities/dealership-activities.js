@@ -26,40 +26,38 @@ export default async function decorate(block) {
       const scheduledTime = scheduledTimeEl?.textContent?.trim() || '';
       const contact = contactEl?.textContent?.trim() || '';
 
-      return {
-        tabName: `Tab ${index + 1}`, // Tab names for display
-        content: `
-          <div class="dealership-activities__item" id="tab${index + 1}">
-            <div class="dealership-activities__item-content">
-              <p class="dealer-name">${dealerName}</p>
-              <p class="scheduled-date">${scheduledDate}</p>
-              <p class="scheduled-time">${scheduledTime}</p>
-              <p class="email-id">${emailId}</p>
-              <p class="contact">${contact}</p>
-            </div>
+      return `
+        <div class="dealership-activities__item" id="item${index + 1}">
+          <div class="dealership-activities__item-content">
+            <p class="dealer-name">${dealerName}</p>
+            <p class="scheduled-date">${scheduledDate}</p>
+            <p class="scheduled-time">${scheduledTime}</p>
+            <p class="email-id">${emailId}</p>
+            <p class="contact">${contact}</p>
           </div>
-        `
-      };
+        </div>
+      `;
     });
   };
 
   // Function to extract and build the tabs
-  const extractTabs = (tabs) => {
-    return tabs.map((tab, index) => {
+  const extractTabs = (tabsEl) => {
+    const tabs = Array.from(tabsEl.children).map((tabEl, index) => {
+      const tabName = tabEl.textContent.trim();
       const isActive = index === 0 ? 'active' : ''; // Default the first tab as active
       return `
-        <div class="tablink ${isActive}" data-tab="tab${index + 1}">
-          ${tab.tabName}
-          <hr class="tab-scroll-line">
+        <div class="tab-items ${isActive}" data-tab="item${index + 1}">
+          ${tabName}
+          
         </div>
       `;
     }).join('');
+    return tabs;
   };
 
   // Generate tabs and items HTML
-  const items = extractDealershipActivityItems(dealershipActivitiesItemEl);
-  const tabsHtml = extractTabs(items);
-  const itemsHtml = items.map(item => item.content).join('');
+  const itemsHtml = extractDealershipActivityItems(dealershipActivitiesItemEl);
+  const tabsHtml = extractTabs(tabsEl);
   
   // Set block's inner HTML
   block.innerHTML = utility.sanitizeHtml(`
@@ -82,7 +80,7 @@ export default async function decorate(block) {
   `);
 
   // Function to handle tab switching and highlight
-  const openTab = (evt, tabName) => {
+  const openTab = (evt, itemId) => {
     const tabContent = document.querySelectorAll('.dealership-activities__item');
     const tabLinks = document.querySelectorAll('.tablink');
 
@@ -95,7 +93,7 @@ export default async function decorate(block) {
       link.classList.remove('active');
     });
 
-    const activeTab = document.getElementById(tabName);
+    const activeTab = document.getElementById(itemId);
     if (activeTab) {
       activeTab.style.display = 'flex';
       activeTab.classList.add('active');
@@ -109,14 +107,14 @@ export default async function decorate(block) {
   // Attach click event listeners to the tabs
   document.querySelectorAll('.tablink').forEach((tabLink) => {
     tabLink.addEventListener('click', (event) => {
-      const tabName = tabLink.getAttribute('data-tab');
-      openTab(event, tabName);
+      const itemId = tabLink.getAttribute('data-tab');
+      openTab(event, itemId);
     });
   });
 
   // Initialize the first tab to be open
-  const firstTab = document.querySelector('.tablink');
-  if (firstTab) {
-    firstTab.click(); // This will trigger the click event and open the first tab
+  const firstTabLink = document.querySelector('.tablink');
+  if (firstTabLink) {
+    firstTabLink.click(); // This will trigger the click event and open the first tab
   }
 }
