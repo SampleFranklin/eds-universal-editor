@@ -115,7 +115,7 @@ export default function decorate(block) {
     <div class="dealership-activities__container">
       <div class="dealership-activities__content">
         <div class="dealership-activities__title">
-          ${title} (${totalCount} total)
+          ${title} (${totalCount})
           <p class="subtitle">${subtitle}</p>
         </div>
         <div class="dealership-activities__tabs">
