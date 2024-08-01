@@ -339,7 +339,8 @@ line-height: 20px; /* 125% */
   .dealer-schedule-contact {
     display: flex;
     justify-content: space-between;
-    gap: 20px; /* Adjust gap as needed */
+    align-items: center;
+    gap: 10px;
   }
   
   .dealer-schedule-contact > div {
@@ -377,6 +378,7 @@ line-height: 20px; /* 125% */
     flex: 1;
     /* stylelint-disable-next-line custom-property-pattern */
     color: var(--Tertiary-Deep-Grey, #767879);
+    
 
 /* Desktop/Body/Medium/Regular */
 /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
