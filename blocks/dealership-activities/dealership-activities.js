@@ -84,7 +84,7 @@ export default function decorate(block) {
     } else {
       filteredData = stubbedData.slice(2); // Remaining items
     }
-    return createDealerCard(filteredData);
+    return filteredData.map(createDealerCard).join('');
   }
 
   const tabMap = tabs.map((tab, index) => `
@@ -104,7 +104,7 @@ export default function decorate(block) {
         <div class="dealership-activities__tabs">
           ${tabMap}
         </div>
-        <div class="dealer-cards">
+        <div class="dealer-cards-container">
           ${renderContentForTab(0)} <!-- Initially render content for the first tab -->
         </div>
       </div>
@@ -114,19 +114,27 @@ export default function decorate(block) {
   block.innerHTML = dealershipActivitiesHTML;
 
   const tabItems = block.querySelectorAll('.tab-item');
-  const dealerCardsContainer = block.querySelector('.dealer-cards');
+  const dealerCardsContainer = block.querySelector('.dealer-cards-container');
 
   tabItems.forEach(item => {
-    item.addEventListener('mouseover', () => {
+    item.addEventListener('click', () => {
       tabItems.forEach(tab => {
         tab.classList.remove('active');
         tab.querySelector('.scroll-line').classList.remove('visible');
       });
       item.classList.add('active');
       item.querySelector('.scroll-line').classList.add('visible');
-
+      
       const tabIndex = parseInt(item.dataset.index, 10);
       dealerCardsContainer.innerHTML = renderContentForTab(tabIndex);
     });
+  });
+
+  // Initial hiding of extra cards
+  const cards = block.querySelectorAll('.card');
+  cards.forEach((card, index) => {
+    if (index > 1) {
+      card.style.display = 'none';
+    }
   });
 }
