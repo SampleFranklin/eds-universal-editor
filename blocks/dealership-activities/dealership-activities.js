@@ -115,7 +115,7 @@ export default function decorate(block) {
         <div class="dealership-activities__tabs">
           ${tabMap}
         </div>
-        <div class="dealer-cards-container">
+        <div class="dealer-cards">
           ${initialContent}
         </div>
       </div>
@@ -123,7 +123,7 @@ export default function decorate(block) {
   `;
 
   const tabItems = block.querySelectorAll('.tab-item');
-  const dealerCardsContainer = block.querySelector('.dealer-cards-container');
+  const dealerCardsContainer = block.querySelector('.dealer-cards');
 
   tabItems.forEach(item => {
     item.addEventListener('click', () => {
