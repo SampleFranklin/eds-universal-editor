@@ -1,68 +1,134 @@
-import { moveInstrumentation } from '../../scripts/scripts.js';
-import utility from '../../utility/utility.js';
+export default function decorate(block) {
+  const [
+    titleEl,
+    subtitleEl,
+    ...tabElements
+  ] = block.children;
 
-export default async function decorate(block) {
-  // Extract elements from the block
-  const [titleEl, subtitleEl, tabsEl] = block.children;
+  const title = titleEl?.textContent?.trim() || "";
+  const subtitle = subtitleEl?.textContent?.trim() || "";
+  const tabs = tabElements.map(tabEl => tabEl?.textContent?.trim() || "");
 
-  // Extract title and subtitle
-  const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)')?.outerHTML || '';
-  const subtitle = subtitleEl?.textContent?.trim() || '';
-
-  // Function to extract and build the tabs
-  const extractTabs = (tabsEl) => {
-    return Array.from(tabsEl.children).map((tabEl, index) => {
-      const tabName = tabEl.textContent.trim();
-      return `
-        <div class="tablink ${index === 0 ? 'active' : ''}" data-tab="tab${index + 1}">
-          ${tabName}
+  function createDealerCard(dealer, cardIndex) {
+    return `
+      <div class="dealer-card" data-card-index="${cardIndex}">
+        <picture>
+          <img src="${dealer.image}" alt="image" class="dealer-image"/>
+        </picture>
+        <p class="dealer-description">${dealer.description}</p>
+        <a href="#" class="primary-cta">${dealer.primarycta}</a>
+        <button class="secondary-cta">${dealer.secondarycta}</button>
+        <div class="dealer-details">
+          <div class="dealer-name-email">
+              <div>
+              <strong>DEALER NAME</strong>
+              <span class="dealer-name">${dealer.dealername}</span>
+              </div>
+            <div>
+              <strong>EMAIL ID</strong>
+              <span class="dealer-email">${dealer.email}</span>
+            </div>
+            
+            
+          </div>
+          <div class="dealer-schedule-contact">
+          <div>
+              <strong>SCHEDULED DATE</strong>
+              <span class="dealer-scheduleddate">${dealer.scheduleddate}</span>
+            </div>
+            <div>
+              <strong>SCHEDULED TIME</strong>
+              <span class="dealer-scheduledtime">${dealer.scheduledtime}</span>
+            </div>
+            
+            <div>
+              <strong>CONTACT</strong>
+              <span class="dealer-contact">${dealer.contact}</span>
+            </div>
+          </div>
         </div>
-      `;
-    }).join('');
-  };
+      </div>
+    `;
+  }
 
-  // Generate tabs HTML
-  const tabsHtml = extractTabs(tabsEl);
+  const stubbedData = [
+    {
+      "dealername": "Mayuri Automobile Co. Ltd.",
+      "image": "/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png",
+      "description": "Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R",
+      "scheduledtime": "14:30PM",
+      "scheduleddate": "13th Jun, 2024",
+      "contact": "9931242213",
+      "email": "mandi@competent-maruti.com",
+      "primarycta": "Schedule a video call",
+      "secondarycta": "Directions"
+    },
+    {
+      "dealername": "Mayuri Automobile Co. Ltd.",
+      "image": "/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png",
+      "description": "Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R",
+      "scheduledtime": "14:30PM",
+      "scheduleddate": "13th Jun, 2024",
+      "contact": "9931242213",
+      "email": "mandi@competent-maruti.com",
+      "primarycta": "Schedule a video call",
+      "secondarycta": "Directions"
+    },
+    
+  ];
 
-  // Set block's inner HTML
-  block.innerHTML = utility.sanitizeHtml(`
+  function renderContentForTab(tabIndex) {
+    let filteredData;
+    if (tabIndex === 0) {
+      filteredData = stubbedData.slice(0, 2); // First 2 items for the first tab
+    } else if (tabIndex === 1) {
+      filteredData = stubbedData.slice(2); // Remaining items for other tabs
+    } else {
+      filteredData = []; // No data for tabs beyond the available data
+    }
+    return filteredData.map((dealer, index) => createDealerCard(dealer, index)).join('');
+  }
+
+  const tabMap = tabs.map((tab, index) => `
+    <div class="tab-item ${index === 0 ? 'active' : ''}" data-index="${index}">
+      ${tab}
+      <div class="scroll-line ${index === 0 ? 'visible' : ''}"></div>
+    </div>
+  `).join('');
+
+  const initialContent = renderContentForTab(0);
+
+  block.innerHTML = `
     <div class="dealership-activities__container">
       <div class="dealership-activities__content">
         <div class="dealership-activities__title">
           ${title}
           <p class="subtitle">${subtitle}</p>
         </div>
-        <div class="tabs-wrapper">
-          <div class="tabs">
-            ${tabsHtml}
-          </div>
+        <div class="dealership-activities__tabs">
+          ${tabMap}
+        </div>
+        <div class="dealer-cards">
+          ${initialContent}
         </div>
       </div>
     </div>
-  `);
+  `;
 
-  // Function to handle tab switching and highlight
-  const openTab = (evt, tabName) => {
-    const tabLinks = document.querySelectorAll('.tablink');
+  const tabItems = block.querySelectorAll('.tab-item');
+  const dealerCardsContainer = block.querySelector('.dealer-cards');
 
-    tabLinks.forEach((link) => {
-      link.classList.remove('active');
-    });
+  tabItems.forEach(item => {
+    item.addEventListener('click', () => {
+      tabItems.forEach(tab => {
+        tab.classList.remove('active');
+        tab.querySelector('.scroll-line').classList.remove('visible');
+      });
+      item.classList.add('active');
+      item.querySelector('.scroll-line').classList.add('visible');
 
-    evt.currentTarget.classList.add('active');
-    moveInstrumentation(evt.currentTarget);
-  };
-
-  // Attach click event listeners to the tabs
-  document.querySelectorAll('.tablink').forEach((tabLink) => {
-    tabLink.addEventListener('click', (event) => {
-      openTab(event, tabLink.getAttribute('data-tab'));
+      const tabIndex = parseInt(item.dataset.index, 10);
+      dealerCardsContainer.innerHTML = renderContentForTab(tabIndex);
     });
   });
-
-  // Show only the first tab's content by default
-  const firstTabLink = document.querySelector('.tablink');
-  if (firstTabLink) {
-    openTab({ currentTarget: firstTabLink }, firstTabLink.getAttribute('data-tab'));
-  }
 }
