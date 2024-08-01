@@ -387,25 +387,6 @@ font-weight: 400;
 line-height: 20px; /* 125% */
   }
 
-  /* Container for all dealer cards */
-.dealer-cards-container {
-    max-height: 600px; /* Adjust height as needed */
-    overflow-y: auto; /* Enable vertical scroll */
-    /* stylelint-disable-next-line custom-property-pattern */
-    background:  var(--Tertiary-Light-grey, #F2F2F2);; /* Ensures the scroll area has a white background */
-    padding: 20px; /* Padding to create space around the content */
-    border: 1px solid #ddd; /* Optional: Add border to the container */
-  }
   
-  /* General styling for dealer cards */
-  .dealer-card-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Gap between the cards */
-    /* stylelint-disable-next-line custom-property-pattern */
-    background-color:  var(--Tertiary-Light-grey, #F2F2F2);
-    margin-bottom: 20px; /* Adjust as needed to ensure gap between card groups */
-    padding: 10px; /* Adjust as needed to ensure padding within the card group */
-  }
     
   
