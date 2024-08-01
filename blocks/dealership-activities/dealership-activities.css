@@ -387,6 +387,21 @@ font-weight: 400;
 line-height: 20px; /* 125% */
   }
 
+  /* Details card styling */
+.dealer-details-card {
+    margin-top: 20px; /* Ensure a gap between the first and second card */
+  }
+
+  .dealer-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
   
+  .dealer-cards-container .container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+  }
     
   
