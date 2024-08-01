@@ -30,7 +30,7 @@ export default function decorate(block) {
     },
     {
       dealername: 'Another Dealer Co. Ltd.',
-      image: '/content/dam/nexa-world/another-image.png',
+      image: '/content/dam/nexa-world/Baleno.jpg',
       description: 'Service Appointment | Your service appointment is scheduled for 20th June',
       scheduledtime: '10:00AM',
       scheduleddate: '20th Jun, 2024',
