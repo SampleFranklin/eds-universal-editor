@@ -2,10 +2,21 @@ export default async function decorate(block) {
   // Extract elements from the block
   const [titleEl, subtitleEl, dealershipActivitiesItemsEl, tabsEl] = block.children;
 
+  // Debugging: Log extracted elements
+  console.log('Title Element:', titleEl);
+  console.log('Subtitle Element:', subtitleEl);
+  console.log('Dealership Activities Items Element:', dealershipActivitiesItemsEl);
+  console.log('Tabs Element:', tabsEl);
+
   // Extract title and subtitle
   const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)')?.outerHTML || '';
   const subtitle = subtitleEl?.textContent?.trim() || '';
   const tabs = tabsEl ? Array.from(tabsEl).map(tabEl => tabEl?.textContent?.trim() || "") : [];
+
+  // Debugging: Log extracted title, subtitle, and tabs
+  console.log('Title:', title);
+  console.log('Subtitle:', subtitle);
+  console.log('Tabs:', tabs);
 
   // Function to extract individual dealership activity items
   const extractDealershipActivityItems = (items) => {
@@ -58,6 +69,10 @@ export default async function decorate(block) {
   // Generate tabs and items HTML
   const items = extractDealershipActivityItems(dealershipActivitiesItemsEl.children);
   const tabsHtml = extractTabs(items);
+  
+  // Debugging: Log generated HTML
+  console.log('Tabs HTML:', tabsHtml);
+  console.log('Items:', items);
 
   // Set block's inner HTML
   block.innerHTML = `
