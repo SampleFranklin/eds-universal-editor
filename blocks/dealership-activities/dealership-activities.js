@@ -45,9 +45,20 @@ export default function decorate(block) {
       "email": "mandi@competent-maruti.com",
       "primarycta": "Schedule a video call",
       "secondarycta": "Directions",
-      "category": "Showroom Visit"
+      "category": "Test Drive"
     },
-    // Add more items with different categories if needed
+    {
+      "dealername": "Another Dealer",
+      "image": "/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png",
+      "description": "Another event description",
+      "scheduledtime": "10:00AM",
+      "scheduleddate": "15th Jul, 2024",
+      "contact": "9876543210",
+      "email": "another@dealer.com",
+      "primarycta": "Get in Touch",
+      "secondarycta": "Directions",
+      "category": "Test Drive"
+    }
   ];
 
   // Calculate item counts for each category
@@ -108,6 +119,9 @@ export default function decorate(block) {
   const tabItems = block.querySelectorAll('.tab-item');
   const dealerCardsContainer = block.querySelector('.dealer-cards');
 
+  // Log tab items for debugging
+  console.log('Tab Items:', tabItems);
+
   tabItems.forEach(item => {
     item.addEventListener('click', () => {
       tabItems.forEach(tab => {
@@ -121,4 +135,7 @@ export default function decorate(block) {
       dealerCardsContainer.innerHTML = renderContentForTab(tabIndex);
     });
   });
+
+  // Debugging: Check initial content rendering
+  console.log('Initial Content:', initialContent);
 }
