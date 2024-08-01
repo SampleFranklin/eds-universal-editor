@@ -13,65 +13,29 @@ export default async function decorate(block) {
   const extractDealershipActivityItems = (items) => {
     return Array.from(items).map((itemEl, index) => {
       const [
-        descriptionEl,
-        imageEl,
         dealerNameEl,
         emailIdEl,
         scheduledDateEl,
         scheduledTimeEl,
-        contactEl,
-        primaryTextEl,
-        primaryAnchorEl,
-        primaryTargetEl,
-        secondaryTextEl,
-        secondaryAnchorEl,
-        secondaryTargetEl
+        contactEl
       ] = itemEl.children;
 
-      const image = imageEl?.querySelector('picture')?.outerHTML || '';
       const dealerName = dealerNameEl?.textContent?.trim() || '';
       const emailId = emailIdEl?.textContent?.trim() || '';
       const scheduledDate = scheduledDateEl?.textContent?.trim() || '';
       const scheduledTime = scheduledTimeEl?.textContent?.trim() || '';
       const contact = contactEl?.textContent?.trim() || '';
-      const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.textContent.trim()).join('');
-
-      const primaryText = primaryTextEl?.textContent?.trim() || '';
-      const primaryHref = primaryAnchorEl?.querySelector('a')?.href || '#';
-      const primaryTarget = primaryTargetEl?.querySelector('a')?.target || '_self';
-
-      const secondaryText = secondaryTextEl?.textContent?.trim() || '';
-      const secondaryHref = secondaryAnchorEl?.querySelector('a')?.href || '#';
-      const secondaryTarget = secondaryTargetEl?.querySelector('a')?.target || '_self';
 
       return {
-        tabName: `Tab ${index + 1}`, // Update tab name
+        tabName: `Tab ${index + 1}`, // Tab names for display
         content: `
           <div class="dealership-activities__item" id="tab${index + 1}">
-            <div class="dealership-activities__item-left">
-              ${image}
-              <p class="description">${description}</p>
-            </div>
-            <div class="dealership-activities__item-right">
-              <p class="dealer-name">
-                ${dealerName}
-              </p>
-              <p class="scheduled-date">
-                ${scheduledDate}
-              </p>
-              <p class="scheduled-time">
-                ${scheduledTime}
-              </p>
-              <p class="email-id">
-                ${emailId}
-              </p>
-              <p class="contact">
-                ${contact}
-              </p>
-              <div class="actions">
-                <a href="${primaryHref}" target="${primaryTarget}" class="primary-text">${primaryText}</a>
-                <a href="${secondaryHref}" target="${secondaryTarget}" class="button secondary-text">${secondaryText}</a>
-              </div>
+            <div class="dealership-activities__item-content">
+              <p class="dealer-name">${dealerName}</p>
+              <p class="scheduled-date">${scheduledDate}</p>
+              <p class="scheduled-time">${scheduledTime}</p>
+              <p class="email-id">${emailId}</p>
+              <p class="contact">${contact}</p>
             </div>
           </div>
         `
@@ -82,7 +46,7 @@ export default async function decorate(block) {
   // Function to extract and build the tabs
   const extractTabs = (tabs) => {
     return tabs.map((tab, index) => {
-      const isActive = index === 0 ? 'active default' : '';
+      const isActive = index === 0 ? 'active' : ''; // Default the first tab as active
       return `
         <div class="tablink ${isActive}" data-tab="tab${index + 1}">
           ${tab.tabName}
@@ -150,10 +114,9 @@ export default async function decorate(block) {
     });
   });
 
-  // Initial tab display setup
-  if (document.querySelectorAll('.dealership-activities__item')[0]) {
-    document.querySelectorAll('.dealership-activities__item')[0].style.display = 'flex';
-    document.querySelectorAll('.dealership-activities__item')[0].classList.add('active');
-    moveInstrumentation(document.querySelectorAll('.dealership-activities__item')[0]);
+  // Initialize the first tab to be open
+  const firstTab = document.querySelector('.tablink');
+  if (firstTab) {
+    firstTab.click(); // This will trigger the click event and open the first tab
   }
 }
