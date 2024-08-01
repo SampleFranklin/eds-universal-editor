@@ -48,7 +48,7 @@ export default async function decorate(block) {
       return `
         <div class="tablink ${isActive}" data-tab="tab${index + 1}">
           ${tabName}
-          <hr class="tab-scroll-line">
+          
         </div>
       `;
     }).join('');
