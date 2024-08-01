@@ -108,7 +108,22 @@
     gap: 16px; /* Spacing between elements inside the card */
   }
   /* stylelint-disable-next-line rule-empty-line-before */
+  .dealer-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adjust gap as needed */
+    margin-top: 20px; /* Adjust as needed */
+    /* stylelint-disable-next-line shorthand-property-no-redundant-values */
   
+    justify-content: space-between;
+    align-items: flex-end;
+    align-self: stretch;
+    /* stylelint-disable-next-line custom-property-pattern */
+    
+  width: 100%; /* Ensure the container takes full width */
+  padding: 0 20px; /* Optional padding for aesthetics */
+    
+  }
   
   
   /* stylelint-disable-next-line no-descending-specificity */
