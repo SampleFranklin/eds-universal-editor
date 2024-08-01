@@ -55,12 +55,13 @@ export default function decorate(block) {
 
   function mergeData(stubbed, authoring) {
     return stubbed.map((stub, index) => ({
-      ...authoring[index],
       dealername: authoring[index]?.dealername || stub.dealername,
       emailid: authoring[index]?.emailid || stub.emailid,
       scheduleddate: authoring[index]?.scheduleddate || stub.scheduleddate,
       scheduledtime: authoring[index]?.scheduledtime || stub.scheduledtime,
       contact: authoring[index]?.contact || stub.contact,
+      image: stub.image,
+      description: stub.description,
       primarycta: stub.primarycta,
       secondarycta: stub.secondarycta,
     }));
@@ -69,12 +70,17 @@ export default function decorate(block) {
   function createDealerCard(dealer, cardIndex) {
     return `
       <div class="dealer-card" data-card-index="${cardIndex}">
+        <div class="dealer-image">
+        <picture>
+          <img src="${dealer.image}" alt="Dealer Image"></picture>
+        </div>
         <div class="dealer-details">
           <div class="dealer-name">${dealer.dealername}</div>
           <div class="dealer-email">${dealer.emailid}</div>
           <div class="dealer-scheduleddate">${dealer.scheduleddate}</div>
           <div class="dealer-scheduledtime">${dealer.scheduledtime}</div>
           <div class="dealer-contact">${dealer.contact}</div>
+          <div class="dealer-description">${dealer.description}</div>
           <a href="#" class="primary-cta">${dealer.primarycta}</a>
           <button class="secondary-cta">${dealer.secondarycta}</button>
         </div>
@@ -83,8 +89,6 @@ export default function decorate(block) {
   }
 
   function getTabData(tabIndex) {
-    // Assuming each tab corresponds to a subset of data
-    // Customize this logic based on your actual tab-data relationship
     const itemsPerTab = Math.ceil(stubbedData.length / tabs.length);
     const startIndex = tabIndex * itemsPerTab;
     const endIndex = startIndex + itemsPerTab;
@@ -115,7 +119,7 @@ export default function decorate(block) {
     <div class="dealership-activities__container">
       <div class="dealership-activities__content">
         <div class="dealership-activities__title">
-          ${title} (${totalCount} total)
+          ${title} (${totalCount})
           <p class="subtitle">${subtitle}</p>
         </div>
         <div class="dealership-activities__tabs">
