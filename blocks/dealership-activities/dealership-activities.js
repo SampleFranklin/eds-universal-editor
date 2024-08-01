@@ -93,11 +93,7 @@ export default function decorate(block) {
     } else {
       filteredData = []; // No data for tabs beyond the available data
     }
-    return filteredData.map((dealer, index) => `
-      <div class="dealer-card-container">
-        ${createDealerCard(dealer, index)}
-      </div>
-    `).join('');
+    return filteredData.map((dealer, index) => createDealerCard(dealer, index)).join('');
   }
 
   const tabMap = tabs.map((tab, index) => `
