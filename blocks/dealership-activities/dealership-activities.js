@@ -28,17 +28,7 @@ export default function decorate(block) {
       primarycta: 'Schedule a video call',
       secondarycta: 'Directions',
     },
-    {
-      dealername: 'Another Dealer Co. Ltd.',
-      image: '/content/dam/nexa-world/another-image.png',
-      description: 'Service Appointment | Your service appointment is scheduled for 20th June',
-      scheduledtime: '10:00AM',
-      scheduleddate: '20th Jun, 2024',
-      contact: '9876543210',
-      emailid: 'service@another-dealer.com',
-      primarycta: 'Reschedule',
-      secondarycta: 'Directions',
-    },
+    
   ];
 
   function extractDealershipActivityItems(items) {
