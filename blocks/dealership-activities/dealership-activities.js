@@ -9,47 +9,43 @@ export default function decorate(block) {
   const subtitle = subtitleEl?.textContent?.trim() || "";
   const tabs = tabElements.map(tabEl => tabEl?.textContent?.trim() || "");
 
-  function createDealerCard(dealer,cardIndex) {
+  function createDealerCard(dealer, cardIndex) {
     return `
-      <div class="dealer-card" data-card-index="${cardIndex}>
+      <div class="dealer-card" data-card-index="${cardIndex}">
         <picture>
           <img src="${dealer.image}" alt="image" class="dealer-image"/>
         </picture>
         <p class="dealer-description">${dealer.description}</p>
         <a href="#" class="primary-cta">${dealer.primarycta}</a>
-          <button class="secondary-cta">${dealer.secondarycta}</button>
+        <button class="secondary-cta">${dealer.secondarycta}</button>
         <div class="dealer-details">
-           <div class="dealer-name-email">
+          <div class="dealer-name-email">
             <div>
-              <strong>DEALER NAME:</strong> 
+              <strong>DEALER NAME:</strong>
               <span class="dealer-name">${dealer.dealername}</span>
             </div>
             <div>
-              <strong>EMAIL ID:</strong> 
+              <strong>EMAIL ID:</strong>
               <span class="dealer-email">${dealer.email}</span>
             </div>
           </div>
-
           <div class="dealer-schedule-contact">
-          <div>
-              <strong>SCHEDULED DATE</strong>
+            <div>
+              <strong>SCHEDULED DATE:</strong>
               <span class="dealer-scheduleddate">${dealer.scheduleddate}</span>
             </div>
             <div>
-              <strong>SCHEDULED TIME</strong>
+              <strong>SCHEDULED TIME:</strong>
               <span class="dealer-scheduledtime">${dealer.scheduledtime}</span>
             </div>
-            
             <div>
-              <strong>CONTACT</strong>
+              <strong>CONTACT:</strong>
               <span class="dealer-contact">${dealer.contact}</span>
             </div>
           </div>
-          
-          
         </div>
       </div>
-    `.join('');
+    `;
   }
 
   const stubbedData = [
@@ -74,17 +70,34 @@ export default function decorate(block) {
       "email": "mandi@competent-maruti.com",
       "primarycta": "Schedule a video call",
       "secondarycta": "Directions"
+    },
+    {
+      "dealername": "Another Dealer Co. Ltd.",
+      "image": "/content/dam/nexa-world/Another_Image.png",
+      "description": "Test drive scheduled for another model.",
+      "scheduledtime": "10:00AM",
+      "scheduleddate": "20th Jun, 2024",
+      "contact": "9922442213",
+      "email": "another@dealer.com",
+      "primarycta": "Schedule a video call",
+      "secondarycta": "Directions"
     }
   ];
 
   function renderContentForTab(tabIndex) {
     let filteredData;
     if (tabIndex === 0) {
-      filteredData = stubbedData.slice(0, 2); // First 2 items
+      // Create two separate containers for the first tab
+      filteredData = stubbedData.slice(0, 2);
     } else {
-      filteredData = stubbedData.slice(2); // Remaining items
+      // Create separate containers for other tabs
+      filteredData = stubbedData.slice(2);
     }
-    return createDealerCard(filteredData);
+    return filteredData.map((dealer, index) => `
+      <div class="dealer-card-container">
+        ${createDealerCard(dealer, index)}
+      </div>
+    `).join('');
   }
 
   const tabMap = tabs.map((tab, index) => `
@@ -94,11 +107,10 @@ export default function decorate(block) {
     </div>
   `).join('');
 
-  const dealerCardHTML = stubbedData.map((dealer, index => createDealerCard(dealer,index)).join(""));
-    
-  block.innerHTML = `
+  const initialContent = renderContentForTab(0);
 
-  <div class="dealership-activities__container">
+  block.innerHTML = `
+    <div class="dealership-activities__container">
       <div class="dealership-activities__content">
         <div class="dealership-activities__title">
           ${title}
@@ -107,13 +119,15 @@ export default function decorate(block) {
         <div class="dealership-activities__tabs">
           ${tabMap}
         </div>
-        <div class="dealer-cards">
-          ${dealerCardHTML} 
+        <div class="dealer-cards-container">
+          ${initialContent}
         </div>
       </div>
-    </div>`;
+    </div>
+  `;
+
   const tabItems = block.querySelectorAll('.tab-item');
-  const dealerCardsContainer = block.querySelector('.dealer-cards');
+  const dealerCardsContainer = block.querySelector('.dealer-cards-container');
 
   tabItems.forEach(item => {
     item.addEventListener('click', () => {
