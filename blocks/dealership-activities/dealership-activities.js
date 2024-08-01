@@ -44,11 +44,9 @@ export default async function decorate(block) {
   const extractTabs = (tabsEl) => {
     return Array.from(tabsEl.children).map((tabEl, index) => {
       const tabName = tabEl.textContent.trim();
-      const isActive = index === 0 ? 'active' : ''; // Default the first tab as active
       return `
-        <div class="tablink ${isActive}" data-tab="tab${index + 1}">
+        <div class="tablink ${index === 0 ? 'active' : ''}" data-tab="tab${index + 1}">
           ${tabName}
-          
         </div>
       `;
     }).join('');
@@ -57,7 +55,7 @@ export default async function decorate(block) {
   // Generate tabs and items HTML
   const itemsHtml = extractDealershipActivityItems(dealershipActivitiesItemEl);
   const tabsHtml = extractTabs(tabsEl);
-  
+
   // Set block's inner HTML
   block.innerHTML = utility.sanitizeHtml(`
     <div class="dealership-activities__container">
@@ -70,9 +68,9 @@ export default async function decorate(block) {
           <div class="tabs">
             ${tabsHtml}
           </div>
-        </div>
-        <div class="dealership-activities__items">
-          ${itemsHtml}
+          <div class="tab-content">
+            ${itemsHtml}
+          </div>
         </div>
       </div>
     </div>
@@ -81,12 +79,23 @@ export default async function decorate(block) {
   // Function to handle tab switching and highlight
   const openTab = (evt, tabName) => {
     const tabLinks = document.querySelectorAll('.tablink');
+    const tabContents = document.querySelectorAll('.dealership-activities__item');
 
     tabLinks.forEach((link) => {
       link.classList.remove('active');
     });
 
+    tabContents.forEach((content) => {
+      content.style.display = 'none';
+    });
+
     evt.currentTarget.classList.add('active');
+
+    const activeContent = document.querySelector(`#${tabName}`);
+    if (activeContent) {
+      activeContent.style.display = 'block';
+    }
+
     moveInstrumentation(evt.currentTarget);
   };
 
@@ -98,9 +107,9 @@ export default async function decorate(block) {
     });
   });
 
-  // Initialize the first tab to be open
+  // Show only the first tab's content by default
   const firstTabLink = document.querySelector('.tablink');
   if (firstTabLink) {
-    firstTabLink.click(); // This will trigger the click event and open the first tab
+    openTab({ currentTarget: firstTabLink }, firstTabLink.getAttribute('data-tab'));
   }
 }
