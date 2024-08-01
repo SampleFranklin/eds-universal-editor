@@ -37,22 +37,21 @@ export default async function decorate(block) {
           </div>
         </div>
       `;
-    });
+    }).join('');
   };
 
   // Function to extract and build the tabs
   const extractTabs = (tabsEl) => {
-    const tabs = Array.from(tabsEl.children).map((tabEl, index) => {
+    return Array.from(tabsEl.children).map((tabEl, index) => {
       const tabName = tabEl.textContent.trim();
       const isActive = index === 0 ? 'active' : ''; // Default the first tab as active
       return `
-        <div class="tab-items ${isActive}" data-tab="item${index + 1}">
+        <div class="tablink ${isActive}" data-tab="tab${index + 1}">
           ${tabName}
-          
+          <hr class="tab-scroll-line">
         </div>
       `;
     }).join('');
-    return tabs;
   };
 
   // Generate tabs and items HTML
@@ -80,25 +79,12 @@ export default async function decorate(block) {
   `);
 
   // Function to handle tab switching and highlight
-  const openTab = (evt, itemId) => {
-    const tabContent = document.querySelectorAll('.dealership-activities__item');
+  const openTab = (evt, tabName) => {
     const tabLinks = document.querySelectorAll('.tablink');
-
-    tabContent.forEach((content) => {
-      content.style.display = 'none';
-      content.classList.remove('active');
-    });
 
     tabLinks.forEach((link) => {
       link.classList.remove('active');
     });
-
-    const activeTab = document.getElementById(itemId);
-    if (activeTab) {
-      activeTab.style.display = 'flex';
-      activeTab.classList.add('active');
-      moveInstrumentation(activeTab);
-    }
 
     evt.currentTarget.classList.add('active');
     moveInstrumentation(evt.currentTarget);
@@ -107,8 +93,8 @@ export default async function decorate(block) {
   // Attach click event listeners to the tabs
   document.querySelectorAll('.tablink').forEach((tabLink) => {
     tabLink.addEventListener('click', (event) => {
-      const itemId = tabLink.getAttribute('data-tab');
-      openTab(event, itemId);
+      const tabName = tabLink.getAttribute('data-tab');
+      openTab(event, tabName);
     });
   });
 
