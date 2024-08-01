@@ -304,21 +304,24 @@ padding: 4px 58px;
     flex-wrap: wrap;
     gap: 20px;
     margin-bottom: 10px;
+    /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
+    
 
 
   }
   
   .dealer-name-schedule > div {
     display: flex;
-  gap: 10px;
-  flex:1;
+    gap: 10px;
+    flex:1;
+    flex-direction: column;
   }
   
   .dealer-name {
     /* stylelint-disable-next-line custom-property-pattern */
     color: var(--Primary-Main, #18171A);
-
-/* Desktop/Body/Large/Medium */
+    
+    /* Desktop/Body/Large/Medium */
 /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
 font-family: "Fira Sans";
 font-size: 18px;
