@@ -33,7 +33,7 @@ export default function decorate(block) {
       "email": "mandi@competent-maruti.com",
       "primarycta": "Schedule a video call",
       "secondarycta": "Directions",
-      
+      "category": "Showroom Visit"
     },
     {
       "dealername": "Mayuri Automobile Co. Ltd.",
@@ -45,10 +45,16 @@ export default function decorate(block) {
       "email": "mandi@competent-maruti.com",
       "primarycta": "Schedule a video call",
       "secondarycta": "Directions",
-      
+      "category": "Showroom Visit"
     },
     // Add more items with different categories if needed
   ];
+
+  // Calculate item counts for each category
+  const categoryCounts = stubbedData.reduce((acc, item) => {
+    acc[item.category] = (acc[item.category] || 0) + 1;
+    return acc;
+  }, {});
 
   function renderContentForTab(tabIndex) {
     const tabName = tabs[tabIndex];
@@ -72,9 +78,10 @@ export default function decorate(block) {
     `;
   }
 
+  // Render tabs with item counts
   const tabMap = tabs.map((tab, index) => `
     <div class="tab-item ${index === 0 ? 'active' : ''}" data-index="${index}">
-      ${tab}
+      ${tab} (${categoryCounts[tab] || 0})
       <div class="scroll-line ${index === 0 ? 'visible' : ''}"></div>
     </div>
   `).join('');
