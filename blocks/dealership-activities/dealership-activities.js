@@ -38,31 +38,15 @@ export default function decorate(block) {
   function createDealerCard(dealer, cardIndex) {
     return `
       <div class="dealer-card" data-card-index="${cardIndex}">
-        <picture>
-          <img src="${dealer.image}" alt="image" class="dealer-image"/>
-        </picture>
-        <p class="dealer-description">${dealer.description}</p>
-        <a href="#" class="primary-cta">${dealer.primarycta}</a>
-        <button class="secondary-cta">${dealer.secondarycta}</button>
         <div class="dealer-details">
           <div class="dealer-name-email">
-            <div>
-              <span class="dealer-name">${dealer.dealerName}</span>
-            </div>
-            <div>
-              <span class="dealer-email">${dealer.emailid}</span>
-            </div>
+            <div class="dealer-name">${dealer.dealername}</div>
+            <div class="dealer-email">${dealer.emailid}</div>
           </div>
           <div class="dealer-schedule-contact">
-            <div>
-              <span class="dealer-scheduleddate">${dealer.scheduleddate}</span>
-            </div>
-            <div>
-              <span class="dealer-scheduledtime">${dealer.scheduledtime}</span>
-            </div>
-            <div>
-              <span class="dealer-contact">${dealer.contact}</span>
-            </div>
+            <div class="dealer-scheduleddate">${dealer.scheduleddate}</div>
+            <div class="dealer-scheduledtime">${dealer.scheduledtime}</div>
+            <div class="dealer-contact">${dealer.contact}</div>
           </div>
         </div>
       </div>
@@ -80,15 +64,11 @@ export default function decorate(block) {
       ] = itemEl.children;
 
       return {
-        dealerName: dealerNameEl?.textContent?.trim() || stubbedData[index]?.dealername || '',
+        dealername: dealerNameEl?.textContent?.trim() || stubbedData[index]?.dealername || '',
         emailid: emailIdEl?.textContent?.trim() || stubbedData[index]?.emailid || '',
         scheduleddate: scheduledDateEl?.textContent?.trim() || stubbedData[index]?.scheduleddate || '',
         scheduledtime: scheduledTimeEl?.textContent?.trim() || stubbedData[index]?.scheduledtime || '',
-        contact: contactEl?.textContent?.trim() || stubbedData[index]?.contact || '',
-        image: stubbedData[index]?.image || '',
-        description: stubbedData[index]?.description || '',
-        primarycta: stubbedData[index]?.primarycta || '',
-        secondarycta: stubbedData[index]?.secondarycta || ''
+        contact: contactEl?.textContent?.trim() || stubbedData[index]?.contact || ''
       };
     });
   }
@@ -110,6 +90,7 @@ export default function decorate(block) {
   const initialContent = renderContentForTab(0);
 
   block.innerHTML = `
+   
     <div class="dealership-activities__container">
       <div class="dealership-activities__content">
         <div class="dealership-activities__title">
