@@ -87,11 +87,11 @@ export default function decorate(block) {
   function renderContentForTab(tabIndex) {
     let filteredData;
     if (tabIndex === 0) {
-      // Create two separate containers for the first tab
-      filteredData = stubbedData.slice(0, 2);
+      filteredData = stubbedData.slice(0, 2); // First 2 items for the first tab
+    } else if (tabIndex === 1) {
+      filteredData = stubbedData.slice(2); // Remaining items for other tabs
     } else {
-      // Create separate containers for other tabs
-      filteredData = stubbedData.slice(2);
+      filteredData = []; // No data for tabs beyond the available data
     }
     return filteredData.map((dealer, index) => `
       <div class="dealer-card-container">

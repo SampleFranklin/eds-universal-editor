@@ -393,9 +393,6 @@ line-height: 20px; /* 125% */
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 5px;
-    border: 1px solid #ddd;
-    /* stylelint-disable-next-line custom-property-pattern */
-    background: var(--Tertiary-Light-grey, #F2F2F2);
   }
   
   /* stylelint-disable-next-line no-descending-specificity */
