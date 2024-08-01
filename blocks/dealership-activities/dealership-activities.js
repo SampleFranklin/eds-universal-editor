@@ -3,7 +3,7 @@ export default function decorate(block) {
 
   const title = titleEl?.textContent?.trim() || '';
   const subtitle = subtitleEl?.textContent?.trim() || '';
-  const tabs = Array.from(tabsEl.children).map(tabEl => tabEl?.textContent?.trim() || '');
+  const tabs = Array.from(tabsEl?.children || []).map(tabEl => tabEl?.textContent?.trim() || '');
 
   const stubbedData = [
     {
@@ -31,7 +31,7 @@ export default function decorate(block) {
   ];
 
   function extractDealershipActivityItems(items) {
-    return Array.from(items).map((itemEl, index) => {
+    return Array.from(items).map((itemEl) => {
       const [
         dealerNameEl,
         emailIdEl,
@@ -52,37 +52,34 @@ export default function decorate(block) {
 
   const dealershipActivitiesData = extractDealershipActivityItems(dealershipActivitiesItemEls);
 
+  function mergeData(stubbed, authoring) {
+    return authoring.length > 0 ? authoring : stubbed;
+  }
+
   function createDealerCard(dealer, cardIndex) {
     return `
       <div class="dealer-card" data-card-index="${cardIndex}">
         <div class="dealer-details">
-          <div class="dealer-name-email">
-            <div class="dealer-name">${dealer.dealername}</div>
-            <div class="dealer-email">${dealer.emailid}</div>
-          </div>
-          <div class="dealer-schedule-contact">
-            <div class="dealer-scheduleddate">${dealer.scheduleddate}</div>
-            <div class="dealer-scheduledtime">${dealer.scheduledtime}</div>
-            <div class="dealer-contact">${dealer.contact}</div>
-          </div>
+          <div class="dealer-name">${dealer.dealername}</div>
+          <div class="dealer-email">${dealer.emailid}</div>
+          <div class="dealer-scheduleddate">${dealer.scheduleddate}</div>
+          <div class="dealer-scheduledtime">${dealer.scheduledtime}</div>
+          <div class="dealer-contact">${dealer.contact}</div>
+          <a href="#" class="primary-cta">${dealer.primarycta}</a>
+          <button class="secondary-cta">${dealer.secondarycta}</button>
         </div>
       </div>
     `;
   }
 
   function renderContentForTab(tabIndex) {
-    let filteredData;
-    if (tabIndex === 0) {
-      filteredData = dealershipActivitiesData.length > 0 ? dealershipActivitiesData : stubbedData;
-    } else {
-      filteredData = []; // No additional data for other tabs in this example
-    }
-    return filteredData.map((dealer, index) => createDealerCard(dealer, index)).join('');
+    const mergedData = mergeData(stubbedData, dealershipActivitiesData);
+    return mergedData.map((dealer, index) => createDealerCard(dealer, index)).join('');
   }
 
   const tabMap = tabs.map((tab, index) => `
     <div class="tab-item ${index === 0 ? 'active' : ''}" data-index="${index}">
-      ${tab}
+      ${tab} (${dealershipActivitiesData.length || stubbedData.length})
       <div class="scroll-line ${index === 0 ? 'visible' : ''}"></div>
     </div>
   `).join('');
@@ -93,7 +90,7 @@ export default function decorate(block) {
     <div class="dealership-activities__container">
       <div class="dealership-activities__content">
         <div class="dealership-activities__title">
-          ${title}
+          ${title} (${dealershipActivitiesData.length || stubbedData.length} total)
           <p class="subtitle">${subtitle}</p>
         </div>
         <div class="dealership-activities__tabs">
