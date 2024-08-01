@@ -20,14 +20,14 @@ export default function decorate(block) {
         <button class="secondary-cta">${dealer.secondarycta}</button>
         <div class="dealer-details">
           <div class="dealer-name-email">
-            
+              <div>
               <strong>DEALER NAME</strong>
               <span class="dealer-name">${dealer.dealername}</span>
-            
-            
+              </div>
+            <div>
               <strong>EMAIL ID</strong>
               <span class="dealer-email">${dealer.email}</span>
-            
+            </div>
             
             
           </div>
