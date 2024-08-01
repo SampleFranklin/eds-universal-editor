@@ -28,6 +28,7 @@ export default function decorate(block) {
       primarycta: 'Schedule a video call',
       secondarycta: 'Directions',
     },
+    // Add more items for different tabs as needed
   ];
 
   function extractDealershipActivityItems(items) {
@@ -53,7 +54,16 @@ export default function decorate(block) {
   const dealershipActivitiesData = extractDealershipActivityItems(dealershipActivitiesItemEls);
 
   function mergeData(stubbed, authoring) {
-    return authoring.length > 0 ? authoring : stubbed;
+    return stubbed.map((stub, index) => ({
+      ...authoring[index],
+      dealername: authoring[index]?.dealername || stub.dealername,
+      emailid: authoring[index]?.emailid || stub.emailid,
+      scheduleddate: authoring[index]?.scheduleddate || stub.scheduleddate,
+      scheduledtime: authoring[index]?.scheduledtime || stub.scheduledtime,
+      contact: authoring[index]?.contact || stub.contact,
+      primarycta: stub.primarycta,
+      secondarycta: stub.secondarycta,
+    }));
   }
 
   function createDealerCard(dealer, cardIndex) {
@@ -72,25 +82,40 @@ export default function decorate(block) {
     `;
   }
 
-  function renderContentForTab(tabIndex) {
-    const mergedData = mergeData(stubbedData, dealershipActivitiesData);
-    return mergedData.map((dealer, index) => createDealerCard(dealer, index)).join('');
+  function getTabData(tabIndex) {
+    // Assuming each tab corresponds to a subset of data
+    // Customize this logic based on your actual tab-data relationship
+    const itemsPerTab = Math.ceil(stubbedData.length / tabs.length);
+    const startIndex = tabIndex * itemsPerTab;
+    const endIndex = startIndex + itemsPerTab;
+
+    return mergeData(stubbedData, dealershipActivitiesData).slice(startIndex, endIndex);
   }
 
-  const tabMap = tabs.map((tab, index) => `
-    <div class="tab-item ${index === 0 ? 'active' : ''}" data-index="${index}">
-      ${tab} (${dealershipActivitiesData.length || stubbedData.length})
-      <div class="scroll-line ${index === 0 ? 'visible' : ''}"></div>
-    </div>
-  `).join('');
+  function renderContentForTab(tabIndex) {
+    const tabData = getTabData(tabIndex);
+    return tabData.map((dealer, index) => createDealerCard(dealer, index)).join('');
+  }
+
+  function updateTabLabels() {
+    const tabDataCounts = tabs.map((_, index) => getTabData(index).length);
+    return tabs.map((tab, index) => `
+      <div class="tab-item ${index === 0 ? 'active' : ''}" data-index="${index}">
+        ${tab} (${tabDataCounts[index]})
+        <div class="scroll-line ${index === 0 ? 'visible' : ''}"></div>
+      </div>
+    `).join('');
+  }
 
   const initialContent = renderContentForTab(0);
+  const tabMap = updateTabLabels();
+  const totalCount = mergeData(stubbedData, dealershipActivitiesData).length;
 
   block.innerHTML = `
     <div class="dealership-activities__container">
       <div class="dealership-activities__content">
         <div class="dealership-activities__title">
-          ${title} (${dealershipActivitiesData.length || stubbedData.length} total)
+          ${title} (${totalCount} total)
           <p class="subtitle">${subtitle}</p>
         </div>
         <div class="dealership-activities__tabs">
