@@ -33,7 +33,7 @@ export default function decorate(block) {
       "email": "mandi@competent-maruti.com",
       "primarycta": "Schedule a video call",
       "secondarycta": "Directions",
-      "category": "Showroom Visit"
+      
     },
     {
       "dealername": "Mayuri Automobile Co. Ltd.",
@@ -45,7 +45,7 @@ export default function decorate(block) {
       "email": "mandi@competent-maruti.com",
       "primarycta": "Schedule a video call",
       "secondarycta": "Directions",
-      "category": "Showroom Visit"
+      
     },
     // Add more items with different categories if needed
   ];
