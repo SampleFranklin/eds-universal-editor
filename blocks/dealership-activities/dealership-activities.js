@@ -30,7 +30,7 @@ export default function decorate(block) {
     },
     {
       dealername: 'Another Dealer Co. Ltd.',
-      image: '/content/dam/nexa-world/Baleno.jpg',
+      image: '/content/dam/nexa-world/another-image.png',
       description: 'Service Appointment | Your service appointment is scheduled for 20th June',
       scheduledtime: '10:00AM',
       scheduleddate: '20th Jun, 2024',
@@ -125,7 +125,7 @@ export default function decorate(block) {
     <div class="dealership-activities__container">
       <div class="dealership-activities__content">
         <div class="dealership-activities__title">
-          ${title} (${totalCount})
+          ${title} (${totalCount} total)
           <p class="subtitle">${subtitle}</p>
         </div>
         <div class="dealership-activities__tabs">
@@ -141,16 +141,22 @@ export default function decorate(block) {
   const tabItems = block.querySelectorAll('.tab-item');
   const dealerCardsContainer = block.querySelector('.dealer-cards');
 
-  tabItems.forEach(item => {
-    item.addEventListener('click', () => {
-      tabItems.forEach(tab => {
+  function updateTabState(tabIndex) {
+    tabItems.forEach((tab, index) => {
+      if (index === tabIndex) {
+        tab.classList.add('active');
+        tab.querySelector('.scroll-line').classList.add('visible');
+      } else {
         tab.classList.remove('active');
         tab.querySelector('.scroll-line').classList.remove('visible');
-      });
-      item.classList.add('active');
-      item.querySelector('.scroll-line').classList.add('visible');
+      }
+    });
+  }
 
+  tabItems.forEach(item => {
+    item.addEventListener('click', () => {
       const tabIndex = parseInt(item.dataset.index, 10);
+      updateTabState(tabIndex);
       dealerCardsContainer.innerHTML = renderContentForTab(tabIndex);
     });
   });
