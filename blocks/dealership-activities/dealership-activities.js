@@ -36,7 +36,7 @@ export default async function decorate(block) {
       const contact = contactEl?.textContent?.trim() || '';
 
       return {
-        tabIndex: index, // Add tab index
+        
         content: `
           <div class="dealership-activities__item">
             <p class="dealer-name">${dealerName}</p>
