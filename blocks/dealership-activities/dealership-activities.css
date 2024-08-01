@@ -1,25 +1,50 @@
 /* Container for the whole component */
 /* stylelint-disable-next-line selector-class-pattern */
 .dealership-activities__container {
-    font-family: Arial, sans-serif;
+    display: flex;
+padding: 32px;
+flex-direction: column;
+align-items: flex-start;
+gap: 48px;
+align-self: stretch;
+/* stylelint-disable-next-line custom-property-pattern */
+background: var(--Tertiary-White, #FFF);
   }
   
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__content {
     display: flex;
-    flex-direction: column;
+flex-direction: column;
+align-items: flex-start;
+gap: 32px;
+align-self: stretch;
   }
   
   /* Title styling */
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__title {
-    font-size: 1.5em;
-    margin-bottom: 0.5em;
+    color: #434649;
+
+/* Desktop/Headings/Heading 3 */
+/* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+font-family: "Kepler Std";
+font-size: 32px;
+font-style: normal;
+font-weight: 600;
+line-height: 36px; /* 112.5% */
+letter-spacing: 0.64px;
   }
   
   .subtitle {
-    font-size: 1.2em;
-    color: #666;
+    color: #575A5E;
+
+/* Desktop/Body/Large/Regular */
+/* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+font-family: "Fira Sans";
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 133.333% */
   }
   
   /* Tabs styling */
@@ -29,32 +54,32 @@
   
   .tabs {
     display: flex;
-    border-bottom: 2px solid #ddd;
+width: 1174px;
+align-items: flex-start;
+gap: 24px;
   }
   
   .tablink {
-    padding: 0.5em 1em;
-    cursor: pointer;
-    border: 1px solid #ddd;
-    margin-right: 0.5em;
-    transition: background-color 0.3s, color 0.3s;
+    /* stylelint-disable-next-line custom-property-pattern */
+    color: var(--Primary-Main, #18171A);
+text-align: center;
+
+/* Desktop/Body/Medium/Medium */
+/* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+font-family: "Fira Sans";
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px; /* 125% */
   }
   
   .tablink:hover {
     background-color: #f0f0f0;
   }
   
-  .tablink.active {
-    background-color: #007bff;
-    color: #fff;
-    border-bottom: 2px solid #007bff;
-  }
   
-  /* Tab content styling */
-  /* stylelint-disable-next-line selector-class-pattern */
-  .dealership-activities__items {
-    margin-top: 1em;
-  }
+  
+ 
   
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__item {
@@ -63,10 +88,17 @@
   
   /* stylelint-disable-next-line selector-class-pattern */
   .dealership-activities__item-content {
-    padding: 1em;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 1em;
+    /* stylelint-disable-next-line custom-property-pattern */
+    color: var(--Tertiary-Medium-grey, #B2B2B2);
+
+/* Desktop/Others/Description */
+/* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+font-family: "Fira Sans";
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 142.857% */
+text-transform: uppercase;
   }
   
   /* stylelint-disable-next-line selector-class-pattern */
