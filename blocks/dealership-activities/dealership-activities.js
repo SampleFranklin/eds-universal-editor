@@ -9,9 +9,9 @@ export default function decorate(block) {
   const subtitle = subtitleEl?.textContent?.trim() || "";
   const tabs = tabElements.map(tabEl => tabEl?.textContent?.trim() || "");
 
-  function createDealerCard(data) {
-    return data.map(dealer => `
-      <div class="dealer-card">
+  function createDealerCard(dealer,cardIndex) {
+    return `
+      <div class="dealer-card" data-card-index="${cardIndex}>
         <picture>
           <img src="${dealer.image}" alt="image" class="dealer-image"/>
         </picture>
@@ -49,7 +49,7 @@ export default function decorate(block) {
           
         </div>
       </div>
-    `).join('');
+    `.join('');
   }
 
   const stubbedData = [
@@ -94,8 +94,11 @@ export default function decorate(block) {
     </div>
   `).join('');
 
-  const dealershipActivitiesHTML = `
-    <div class="dealership-activities__container">
+  const dealerCardHTML = stubbedData.map((dealer, index => createDealerCard(dealer,index)).join(""));
+    
+  block.innerHTML = `
+
+  <div class="dealership-activities__container">
       <div class="dealership-activities__content">
         <div class="dealership-activities__title">
           ${title}
@@ -105,14 +108,10 @@ export default function decorate(block) {
           ${tabMap}
         </div>
         <div class="dealer-cards">
-          ${renderContentForTab(0)} <!-- Initially render content for the first tab -->
+          ${dealerCardHTML} 
         </div>
       </div>
-    </div>
-  `;
-
-  block.innerHTML = dealershipActivitiesHTML;
-
+    </div>`;
   const tabItems = block.querySelectorAll('.tab-item');
   const dealerCardsContainer = block.querySelector('.dealer-cards');
 
