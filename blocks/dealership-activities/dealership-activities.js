@@ -71,17 +71,7 @@ export default function decorate(block) {
       "primarycta": "Schedule a video call",
       "secondarycta": "Directions"
     },
-    {
-      "dealername": "Another Dealer Co. Ltd.",
-      "image": "/content/dam/nexa-world/Another_Image.png",
-      "description": "Test drive scheduled for another model.",
-      "scheduledtime": "10:00AM",
-      "scheduleddate": "20th Jun, 2024",
-      "contact": "9922442213",
-      "email": "another@dealer.com",
-      "primarycta": "Schedule a video call",
-      "secondarycta": "Directions"
-    }
+    
   ];
 
   function renderContentForTab(tabIndex) {

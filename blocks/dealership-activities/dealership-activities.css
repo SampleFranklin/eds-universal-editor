@@ -102,11 +102,10 @@
   }
 
 
-/* Wrapper for each dealer card pair */
-.dealer-card-wrapper {
-    background: #FFF; /* Ensures the background color is white, including the gap */
-    padding: 20px;
-    margin-bottom: 20px; /* Adds space between each dealer-card-wrapper */
+  .dealer-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Spacing between elements inside the card */
   }
   /* stylelint-disable-next-line rule-empty-line-before */
   .dealer-cards {
@@ -148,6 +147,7 @@
     margin-bottom: 20px; /* Adjust as needed */
     position: relative;
     right: 600px;
+    border-radius: 4px;
   }
   /* stylelint-disable-next-line rule-empty-line-before */
   .dealer-description {
