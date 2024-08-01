@@ -146,14 +146,14 @@
     height: auto;
     margin-bottom: 20px; /* Adjust as needed */
     position: relative;
-    right: 600px;
+    right: 400px;
     border-radius: 4px;
   }
   /* stylelint-disable-next-line rule-empty-line-before */
   .dealer-description {
     color: #000;
 
-/* Desktop/Body/Medium/Medium */
+
 /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
 font-family: "Fira Sans";
 font-size: 16px;
@@ -164,7 +164,7 @@ line-height: 20px; /* 125% */
 background: var(--Gradients-Gradient-1, linear-gradient(60deg, #C9D3D7 3.71%, #EBEBEB 104.51%));
 position: relative;
 bottom: 222px;
-right: 445px;
+right: 220px;
 
   }
   
