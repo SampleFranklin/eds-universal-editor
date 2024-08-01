@@ -28,7 +28,17 @@ export default function decorate(block) {
       primarycta: 'Schedule a video call',
       secondarycta: 'Directions',
     },
-    // Add more items for different tabs as needed
+    {
+      dealername: 'Another Dealer Co. Ltd.',
+      image: '/content/dam/nexa-world/another-image.png',
+      description: 'Service Appointment | Your service appointment is scheduled for 20th June',
+      scheduledtime: '10:00AM',
+      scheduleddate: '20th Jun, 2024',
+      contact: '9876543210',
+      emailid: 'service@another-dealer.com',
+      primarycta: 'Reschedule',
+      secondarycta: 'Directions',
+    },
   ];
 
   function extractDealershipActivityItems(items) {
@@ -55,7 +65,7 @@ export default function decorate(block) {
 
   function mergeData(stubbed, authoring) {
     return stubbed.map((stub, index) => ({
-      dealername: authoring[index]?.dealername || stub.dealername,
+      dealername: stub.dealername, // Always use stubbed dealername
       emailid: authoring[index]?.emailid || stub.emailid,
       scheduleddate: authoring[index]?.scheduleddate || stub.scheduleddate,
       scheduledtime: authoring[index]?.scheduledtime || stub.scheduledtime,
@@ -71,8 +81,7 @@ export default function decorate(block) {
     return `
       <div class="dealer-card" data-card-index="${cardIndex}">
         <div class="dealer-image">
-        <picture>
-          <img src="${dealer.image}" alt="Dealer Image"></picture>
+          <img src="${dealer.image}" alt="Dealer Image">
         </div>
         <div class="dealer-details">
           <div class="dealer-name">${dealer.dealername}</div>
@@ -89,11 +98,8 @@ export default function decorate(block) {
   }
 
   function getTabData(tabIndex) {
-    const itemsPerTab = Math.ceil(stubbedData.length / tabs.length);
-    const startIndex = tabIndex * itemsPerTab;
-    const endIndex = startIndex + itemsPerTab;
-
-    return mergeData(stubbedData, dealershipActivitiesData).slice(startIndex, endIndex);
+    const allData = mergeData(stubbedData, dealershipActivitiesData);
+    return allData.filter((_, index) => index % tabs.length === tabIndex);
   }
 
   function renderContentForTab(tabIndex) {
