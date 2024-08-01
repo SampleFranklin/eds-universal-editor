@@ -80,23 +80,11 @@ export default function decorate(block) {
   function renderContentForTab(tabIndex) {
     let filteredData;
     if (tabIndex === 0) {
-      // Create two separate containers for the first tab
-      filteredData = `
-        <div class="container">
-          ${createDealerCard(stubbedData[0], 0)}
-        </div>
-        <div class="container">
-          ${createDealerCard(stubbedData[1], 1)}
-        </div>
-      `;
+      filteredData = stubbedData.slice(0, 2); // First 2 items
     } else {
-      filteredData = `
-        <div class="container">
-          ${createDealerCard(stubbedData[2], 2)}
-        </div>
-      `;
+      filteredData = stubbedData.slice(2); // Remaining items
     }
-    return filteredData;
+    return createDealerCard(filteredData);
   }
 
   const tabMap = tabs.map((tab, index) => `
@@ -116,8 +104,8 @@ export default function decorate(block) {
         <div class="dealership-activities__tabs">
           ${tabMap}
         </div>
-        <div class="dealer-cards-container">
-          ${renderContentForTab(0)} <!-- Initially render for the first tab -->
+        <div class="dealer-cards">
+          ${renderContentForTab(0)} <!-- Initially render content for the first tab -->
         </div>
       </div>
     </div>
@@ -126,7 +114,7 @@ export default function decorate(block) {
   block.innerHTML = dealershipActivitiesHTML;
 
   const tabItems = block.querySelectorAll('.tab-item');
-  const dealerCardsContainer = block.querySelector('.dealer-cards-container');
+  const dealerCardsContainer = block.querySelector('.dealer-cards');
 
   tabItems.forEach(item => {
     item.addEventListener('click', () => {
@@ -137,7 +125,7 @@ export default function decorate(block) {
       item.classList.add('active');
       item.querySelector('.scroll-line').classList.add('visible');
 
-      const tabIndex = parseInt(item.getAttribute('data-index'), 10);
+      const tabIndex = parseInt(item.dataset.index, 10);
       dealerCardsContainer.innerHTML = renderContentForTab(tabIndex);
     });
   });
