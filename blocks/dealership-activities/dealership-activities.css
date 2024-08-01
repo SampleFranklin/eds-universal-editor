@@ -301,9 +301,9 @@ padding: 4px 58px;
 
   .dealer-name-email {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
     /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
     
 
@@ -311,12 +311,7 @@ padding: 4px 58px;
   }
   
   .dealer-name-email > div {
-    display: flex;
-    gap: 10px;
-    flex:1;
-    flex-direction: row;
-    position: relative;
-    left: 300px;
+    flex: 1;
   }
   
   .dealer-name {
