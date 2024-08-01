@@ -41,11 +41,11 @@ export default function decorate(block) {
       ] = itemEl.children;
 
       return {
-        dealername: dealerNameEl?.textContent?.trim() || stubbedData[index]?.dealername || '',
-        emailid: emailIdEl?.textContent?.trim() || stubbedData[index]?.emailid || '',
-        scheduleddate: scheduledDateEl?.textContent?.trim() || stubbedData[index]?.scheduleddate || '',
-        scheduledtime: scheduledTimeEl?.textContent?.trim() || stubbedData[index]?.scheduledtime || '',
-        contact: contactEl?.textContent?.trim() || stubbedData[index]?.contact || '',
+        dealername: dealerNameEl?.textContent?.trim() || '',
+        emailid: emailIdEl?.textContent?.trim() || '',
+        scheduleddate: scheduledDateEl?.textContent?.trim() || '',
+        scheduledtime: scheduledTimeEl?.textContent?.trim() || '',
+        contact: contactEl?.textContent?.trim() || '',
       };
     });
   }
@@ -73,11 +73,9 @@ export default function decorate(block) {
   function renderContentForTab(tabIndex) {
     let filteredData;
     if (tabIndex === 0) {
-      filteredData = dealershipActivitiesData.slice(0, 2); // First 2 items for the first tab
-    } else if (tabIndex === 1) {
-      filteredData = dealershipActivitiesData.slice(2); // Remaining items for other tabs
+      filteredData = dealershipActivitiesData.length > 0 ? dealershipActivitiesData : stubbedData;
     } else {
-      filteredData = []; // No data for tabs beyond the available data
+      filteredData = []; // No additional data for other tabs in this example
     }
     return filteredData.map((dealer, index) => createDealerCard(dealer, index)).join('');
   }
