@@ -73,18 +73,17 @@ export default function decorate(block) {
     `;
   }
 
+  function renderStubbedData() {
+    return stubbedData.map((dealer, index) => createDealerCard(dealer, index, true)).join('');
+  }
+
   function getTabData(tabIndex) {
     const allData = dealershipActivitiesData;
     return allData.filter((_, index) => index % tabs.length === tabIndex);
   }
 
-  function renderContentForTab(tabIndex) {
-    const stubbedContent = stubbedData.map((dealer, index) => createDealerCard(dealer, index, true)).join('');
-    const extractedContent = getTabData(tabIndex).map((dealer, index) => createDealerCard(dealer, index, false)).join('');
-    return `
-      <div class="stubbed-content">${stubbedContent}</div>
-      <div class="extracted-content">${extractedContent}</div>
-    `;
+  function renderExtractedData(tabIndex) {
+    return getTabData(tabIndex).map((dealer, index) => createDealerCard(dealer, index, false)).join('');
   }
 
   function updateTabLabels() {
@@ -97,7 +96,7 @@ export default function decorate(block) {
     `).join('');
   }
 
-  const initialContent = renderContentForTab(0);
+  const initialExtractedContent = renderExtractedData(0);
   const tabMap = updateTabLabels();
   const totalCount = stubbedData.length + dealershipActivitiesData.length;
 
@@ -112,14 +111,15 @@ export default function decorate(block) {
           ${tabMap}
         </div>
         <div class="dealer-cards">
-          ${initialContent}
+          <div class="stubbed-content">${renderStubbedData()}</div>
+          <div class="extracted-content">${initialExtractedContent}</div>
         </div>
       </div>
     </div>
   `;
 
   const tabItems = block.querySelectorAll('.tab-item');
-  const dealerCardsContainer = block.querySelector('.dealer-cards');
+  const extractedContentContainer = block.querySelector('.extracted-content');
 
   function updateTabState(tabIndex) {
     tabItems.forEach((tab, index) => {
@@ -137,7 +137,7 @@ export default function decorate(block) {
     item.addEventListener('click', () => {
       const tabIndex = parseInt(item.dataset.index, 10);
       updateTabState(tabIndex);
-      dealerCardsContainer.innerHTML = renderContentForTab(tabIndex);
+      extractedContentContainer.innerHTML = renderExtractedData(tabIndex);
     });
   });
 }
