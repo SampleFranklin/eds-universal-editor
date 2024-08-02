@@ -16,6 +16,7 @@ export default function decorate(block) {
       emailid: 'mandi@competent-maruti.com',
       primarycta: 'Schedule a video call',
       secondarycta: 'Directions',
+      tab: 'Test Drive'
     },
     {
       dealername: 'Mayuri Automobile Co. Ltd.',
@@ -27,8 +28,8 @@ export default function decorate(block) {
       emailid: 'mandi@competent-maruti.com',
       primarycta: 'Schedule a video call',
       secondarycta: 'Directions',
+      tab: 'Test Drive'
     },
-    
   ];
 
   function extractDealershipActivityItems(items) {
@@ -47,6 +48,7 @@ export default function decorate(block) {
         scheduleddate: scheduledDateEl?.textContent?.trim() || '',
         scheduledtime: scheduledTimeEl?.textContent?.trim() || '',
         contact: contactEl?.textContent?.trim() || '',
+        tab: 'Other', // Default tab if not provided
       };
     });
   }
@@ -54,17 +56,18 @@ export default function decorate(block) {
   const dealershipActivitiesData = extractDealershipActivityItems(dealershipActivitiesItemEls);
 
   function mergeData(stubbed, authoring) {
-    return stubbed.map((stub, index) => ({
-      dealername: stub.dealername, // Always use stubbed dealername
-      emailid: authoring[index]?.emailid || stub.emailid,
-      scheduleddate: authoring[index]?.scheduleddate || stub.scheduleddate,
-      scheduledtime: authoring[index]?.scheduledtime || stub.scheduledtime,
-      contact: authoring[index]?.contact || stub.contact,
-      image: stub.image,
-      description: stub.description,
-      primarycta: stub.primarycta,
-      secondarycta: stub.secondarycta,
-    }));
+    return stubbed.concat(authoring.map((item, index) => ({
+      dealername: item.dealername || stubbed[index % stubbed.length].dealername,
+      emailid: item.emailid || stubbed[index % stubbed.length].emailid,
+      scheduleddate: item.scheduleddate || stubbed[index % stubbed.length].scheduleddate,
+      scheduledtime: item.scheduledtime || stubbed[index % stubbed.length].scheduledtime,
+      contact: item.contact || stubbed[index % stubbed.length].contact,
+      image: stubbed[index % stubbed.length].image,
+      description: stubbed[index % stubbed.length].description,
+      primarycta: stubbed[index % stubbed.length].primarycta,
+      secondarycta: stubbed[index % stubbed.length].secondarycta,
+      tab: item.tab,
+    })));
   }
 
   function createDealerCard(dealer, cardIndex) {
@@ -87,27 +90,27 @@ export default function decorate(block) {
     `;
   }
 
-  function getTabData(tabIndex) {
+  function getTabData(tab) {
     const allData = mergeData(stubbedData, dealershipActivitiesData);
-    return allData.filter((_, index) => index % tabs.length === tabIndex);
+    return allData.filter(item => item.tab === tab);
   }
 
-  function renderContentForTab(tabIndex) {
-    const tabData = getTabData(tabIndex);
+  function renderContentForTab(tab) {
+    const tabData = getTabData(tab);
     return tabData.map((dealer, index) => createDealerCard(dealer, index)).join('');
   }
 
   function updateTabLabels() {
-    const tabDataCounts = tabs.map((_, index) => getTabData(index).length);
+    const tabDataCounts = tabs.map(tab => getTabData(tab).length);
     return tabs.map((tab, index) => `
-      <div class="tab-item ${index === 0 ? 'active' : ''}" data-index="${index}">
+      <div class="tab-item ${index === 0 ? 'active' : ''}" data-tab="${tab}">
         ${tab} (${tabDataCounts[index]})
         <div class="scroll-line ${index === 0 ? 'visible' : ''}"></div>
       </div>
     `).join('');
   }
 
-  const initialContent = renderContentForTab(0);
+  const initialContent = renderContentForTab(tabs[0]);
   const tabMap = updateTabLabels();
   const totalCount = mergeData(stubbedData, dealershipActivitiesData).length;
 
@@ -131,23 +134,23 @@ export default function decorate(block) {
   const tabItems = block.querySelectorAll('.tab-item');
   const dealerCardsContainer = block.querySelector('.dealer-cards');
 
-  function updateTabState(tabIndex) {
-    tabItems.forEach((tab, index) => {
-      if (index === tabIndex) {
-        tab.classList.add('active');
-        tab.querySelector('.scroll-line').classList.add('visible');
+  function updateTabState(tab) {
+    tabItems.forEach((item) => {
+      if (item.dataset.tab === tab) {
+        item.classList.add('active');
+        item.querySelector('.scroll-line').classList.add('visible');
       } else {
-        tab.classList.remove('active');
-        tab.querySelector('.scroll-line').classList.remove('visible');
+        item.classList.remove('active');
+        item.querySelector('.scroll-line').classList.remove('visible');
       }
     });
   }
 
   tabItems.forEach(item => {
     item.addEventListener('click', () => {
-      const tabIndex = parseInt(item.dataset.index, 10);
-      updateTabState(tabIndex);
-      dealerCardsContainer.innerHTML = renderContentForTab(tabIndex);
+      const tab = item.dataset.tab;
+      updateTabState(tab);
+      dealerCardsContainer.innerHTML = renderContentForTab(tab);
     });
   });
 }
