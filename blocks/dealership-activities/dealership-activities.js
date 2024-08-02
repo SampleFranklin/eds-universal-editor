@@ -5,6 +5,7 @@ export default function decorate(block) {
   const subtitle = subtitleEl?.textContent?.trim() || '';
   const tabs = Array.from(tabsEl?.children || []).map(tabEl => tabEl?.textContent?.trim() || '');
 
+  // Stubbed data
   const stubbedData = [
     {
       dealername: 'Mayuri Automobile Co. Ltd.',
@@ -37,7 +38,7 @@ export default function decorate(block) {
         emailIdEl,
         scheduledDateEl,
         scheduledTimeEl,
-        contactEl,
+        contactEl
       ] = itemEl.children;
 
       return {
@@ -52,48 +53,38 @@ export default function decorate(block) {
 
   const dealershipActivitiesData = extractDealershipActivityItems(dealershipActivitiesItemEls);
 
-  function mergeData(stubbed, authoring) {
-    return stubbed.map((stub, index) => ({
-      dealername: stub.dealername,
-      emailid: authoring[index]?.emailid || stub.emailid,
-      scheduleddate: authoring[index]?.scheduleddate || stub.scheduleddate,
-      scheduledtime: authoring[index]?.scheduledtime || stub.scheduledtime,
-      contact: authoring[index]?.contact || stub.contact,
-      image: stub.image,
-      description: stub.description,
-      primarycta: stub.primarycta,
-      secondarycta: stub.secondarycta,
-    }));
-  }
-
-  function createDealerCard(dealer, cardIndex) {
+  function createDealerCard(dealer, cardIndex, isStubbed) {
     return `
-      <div class="dealer-card" data-card-index="${cardIndex}">
-        <div class="dealer-image">
+      <div class="dealer-card ${isStubbed ? 'stubbed' : 'extracted'}" data-card-index="${cardIndex}">
+        ${isStubbed ? `<div class="dealer-image">
           <img src="${dealer.image}" alt="Dealer Image">
-        </div>
+        </div>` : ''}
         <div class="dealer-details">
           <div class="dealer-name">${dealer.dealername}</div>
           <div class="dealer-email">${dealer.emailid}</div>
           <div class="dealer-scheduleddate">${dealer.scheduleddate}</div>
           <div class="dealer-scheduledtime">${dealer.scheduledtime}</div>
           <div class="dealer-contact">${dealer.contact}</div>
-          <div class="dealer-description">${dealer.description}</div>
+          ${isStubbed ? `<div class="dealer-description">${dealer.description}</div>
           <a href="#" class="primary-cta">${dealer.primarycta}</a>
-          <button class="secondary-cta">${dealer.secondarycta}</button>
+          <button class="secondary-cta">${dealer.secondarycta}</button>` : ''}
         </div>
       </div>
     `;
   }
 
   function getTabData(tabIndex) {
-    const allData = mergeData(stubbedData, dealershipActivitiesData);
+    const allData = dealershipActivitiesData;
     return allData.filter((_, index) => index % tabs.length === tabIndex);
   }
 
   function renderContentForTab(tabIndex) {
-    const tabData = getTabData(tabIndex);
-    return tabData.map((dealer, index) => createDealerCard(dealer, index)).join('');
+    const stubbedContent = stubbedData.map((dealer, index) => createDealerCard(dealer, index, true)).join('');
+    const extractedContent = getTabData(tabIndex).map((dealer, index) => createDealerCard(dealer, index, false)).join('');
+    return `
+      <div class="stubbed-content">${stubbedContent}</div>
+      <div class="extracted-content">${extractedContent}</div>
+    `;
   }
 
   function updateTabLabels() {
@@ -108,7 +99,7 @@ export default function decorate(block) {
 
   const initialContent = renderContentForTab(0);
   const tabMap = updateTabLabels();
-  const totalCount = mergeData(stubbedData, dealershipActivitiesData).length;
+  const totalCount = stubbedData.length + dealershipActivitiesData.length;
 
   block.innerHTML = `
     <div class="dealership-activities__container">
