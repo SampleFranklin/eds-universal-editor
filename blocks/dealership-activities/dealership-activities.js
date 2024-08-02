@@ -42,11 +42,12 @@ export default function decorate(block) {
   
  
   }
+  const dealership = getDealershipActivities();
   block.innerHTML = utility.sanitizeHtml(`
     <div class="dealership-activities__container>
     <div class="dealership-activities__content>
-    <p class="title">${title}</p>
-    <p class="sub-title">${subtitle}
+    <p class="title">${dealership.title}</p>
+    <p class="sub-title">${dealership.subtitle}</p>
     <div class="dealership-activities__tabs">
                 <div class="scroll-bar"></div>
                 <ul class="list-container">
