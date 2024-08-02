@@ -1,138 +1,149 @@
-// export default function decorate(block) {
-//   const [titleEl, subtitleEl, tabsEl, ...dealershipActivitiesItemEls] = block.children;
+export default function decorate(block) {
+  const [titleEl, subtitleEl, tabsEl, ...dealershipActivitiesItemEls] = block.children;
 
-//   const title = titleEl?.textContent?.trim() || '';
-//   const subtitle = subtitleEl?.textContent?.trim() || '';
-//   const tabs = Array.from(tabsEl?.children || []).map(tabEl => tabEl?.textContent?.trim() || '');
+  const title = titleEl?.textContent?.trim() || '';
+  const subtitle = subtitleEl?.textContent?.trim() || '';
+  const tabs = Array.from(tabsEl?.children || []).map(tabEl => tabEl?.textContent?.trim() || '');
 
-//   // Stubbed data
-//   const stubbedData = [
-//     {
-//       dealername: 'Mayuri Automobile Co. Ltd.',
-//       image: '/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png',
-//       description: 'Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R',
-//       scheduledtime: '14:30PM',
-//       scheduleddate: '13th Jun, 2024',
-//       contact: '9931242213',
-//       emailid: 'mandi@competent-maruti.com',
-//       primarycta: 'Schedule a video call',
-//       secondarycta: 'Directions',
-//     },
-//     {
-//       dealername: 'Mayuri Automobile Co. Ltd.',
-//       image: '/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png',
-//       description: 'Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R',
-//       scheduledtime: '14:30PM',
-//       scheduleddate: '13th Jun, 2024',
-//       contact: '9931242213',
-//       emailid: 'mandi@competent-maruti.com',
-//       primarycta: 'Schedule a video call',
-//       secondarycta: 'Directions',
-//     },
-//   ];
+ function createDealerCard(data){
+  return`
+  <div class ="card" data-category="${data.category}">
+  <div class="image">
+  <img src="{data.image}" alt="carImage" class="car-image"/>
+  </div>
+  <div class=items">
+  <div class="description">${data.description}</div>
+  <div class ="dname">
+  ${data.dealername}<br/>
+  </div>
+  <div class="dealeremailId">
+  ${data.emailid}<br/>
+  </div>
+  <div class="dealerscheduleddate">
+  ${data.scheduleddate}<br/>
+  </div>
+  <div class="dealerscheduledtime">
+  ${data.scheduledtime}<br/>
+  </div>
+  <div class="dealercontact">
+  ${data.contact}<br/>
+  </div>
+  <div class="primarylink">
+  ${data.primarycta}<br/>
+  </div>
+  <div class="secondarylink">
+  ${data.secondarycta}<br/>
+  </div>
+  </div>
 
-//   function extractDealershipActivityItems(items) {
-//     return Array.from(items).map((itemEl) => {
-//       const [
-//         dealerNameEl,
-//         emailIdEl,
-//         scheduledDateEl,
-//         scheduledTimeEl,
-//         contactEl,
-//       ] = itemEl.children;
-
-//       return {
-//         dealername: dealerNameEl?.textContent?.trim() || '',
-//         emailid: emailIdEl?.textContent?.trim() || '',
-//         scheduleddate: scheduledDateEl?.textContent?.trim() || '',
-//         scheduledtime: scheduledTimeEl?.textContent?.trim() || '',
-//         contact: contactEl?.textContent?.trim() || '',
-//       };
-//     });
-//   }
-
-//   const dealershipActivitiesData = extractDealershipActivityItems(dealershipActivitiesItemEls);
-
-//   function createDealerCard(dealer, cardIndex, isStubbed) {
-//     return `
-//       <div class="dealer-card ${isStubbed ? 'stubbed' : 'extracted'}" data-card-index="${cardIndex}">
-//         ${isStubbed ? `<div class="dealer-image">
-//           <img src="${dealer.image}" alt="Dealer Image">
-//         </div>` : ''}
-//         <div class="dealer-details">
-//           <div class="dealer-name">${dealer.dealername}</div>
-//           <div class="dealer-email">${dealer.emailid}</div>
-//           <div class="dealer-scheduleddate">${dealer.scheduleddate}</div>
-//           <div class="dealer-scheduledtime">${dealer.scheduledtime}</div>
-//           <div class="dealer-contact">${dealer.contact}</div>
-//           ${isStubbed ? `<div class="dealer-description">${dealer.description}</div>
-//           <a href="#" class="primary-cta">${dealer.primarycta}</a>
-//           <button class="secondary-cta">${dealer.secondarycta}</button>` : ''}
-//         </div>
-//       </div>
-//     `;
-//   }
-
-//   function renderContentForTab(tabIndex) {
-//     const stubbedContent = tabIndex === 0 ? stubbedData.map((dealer, index) => createDealerCard(dealer, index, true)).join('') : '';
-//     const extractedContent = tabIndex < dealershipActivitiesData.length ? createDealerCard(dealershipActivitiesData[tabIndex], tabIndex, false) : '';
-//     return `
-//       ${stubbedContent}
-//       ${extractedContent}
-//     `;
-//   }
-
-//   function updateTabLabels() {
-//     const tabDataCounts = tabs.map((_, index) => (index === 0 ? stubbedData.length : (index < dealershipActivitiesData.length ? 1 : 0)));
-//     return tabs.map((tab, index) => `
-//       <div class="tab-item ${index === 0 ? 'active' : ''}" data-index="${index}">
-//         ${tab} (${tabDataCounts[index]})
-//         <div class="scroll-line ${index === 0 ? 'visible' : ''}"></div>
-//       </div>
-//     `).join('');
-//   }
-
-//   const initialContent = tabs.map((_, index) => renderContentForTab(index)).join('');
-//   const tabMap = updateTabLabels();
-//   const totalCount = stubbedData.length + dealershipActivitiesData.length;
-
-//   block.innerHTML = `
-//     <div class="dealership-activities__container">
-//       <div class="dealership-activities__content">
-//         <div class="dealership-activities__title">
-//           ${title} (${totalCount})
-//           <p class="subtitle">${subtitle}</p>
-//         </div>
-//         <div class="dealership-activities__tabs">
-//           ${tabMap}
-//         </div>
-//         <div class="dealer-cards">
-//           ${initialContent}
-//         </div>
-//       </div>
-//     </div>
-//   `;
-
-//   const tabItems = block.querySelectorAll('.tab-item');
-//   const dealerCardsContainer = block.querySelector('.dealer-cards');
-
-//   function updateTabState(tabIndex) {
-//     tabItems.forEach((tab, index) => {
-//       if (index === tabIndex) {
-//         tab.classList.add('active');
-//         tab.querySelector('.scroll-line').classList.add('visible');
-//       } else {
-//         tab.classList.remove('active');
-//         tab.querySelector('.scroll-line').classList.remove('visible');
-//       }
-//     });
-//   }
-
-//   tabItems.forEach(item => {
-//     item.addEventListener('click', () => {
-//       const tabIndex = parseInt(item.dataset.index, 10);
-//       updateTabState(tabIndex);
-//       dealerCardsContainer.innerHTML = renderContentForTab(tabIndex);
-//     });
-//   });
-// }
+`  }
+const mockData=[
+  {
+    dealername: 'Mayuri Automobile Co. Ltd.',
+    image: '/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png',
+    description: 'Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R',
+    scheduledtime: '14:30PM',
+    scheduleddate: '13th Jun, 2024',
+    contact: '9931242213',
+    emailid: 'mandi@competent-maruti.com',
+    primarycta: 'Schedule a video call',
+    secondarycta: 'Directions',
+    category:"Showromm Visit",
+  },
+  {
+    dealername: 'Mayuri Automobile Co. Ltd.',
+    image: '/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png',
+    description: 'Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R',
+    scheduledtime: '14:30PM',
+    scheduleddate: '13th Jun, 2024',
+    contact: '9931242213',
+    emailid: 'mandi@competent-maruti.com',
+    primarycta: 'Schedule a video call',
+    secondarycta: 'Directions',
+    category:"Test Drive",
+  },
+  {
+    dealername: 'Mayuri Automobile Co. Ltd.',
+    image: '/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png',
+    description: 'Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R',
+    scheduledtime: '14:30PM',
+    scheduleddate: '13th Jun, 2024',
+    contact: '9931242213',
+    emailid: 'mandi@competent-maruti.com',
+    primarycta: 'Schedule a video call',
+    secondarycta: 'Directions',
+    category:"Showroom Visit",
+  },
+];
+const cardsHTML = mockData.map(data => createDealerCard(data)).join("");
+ 
+    block.innerHTML = `
+        <div class="main-container">
+            <div class="title-section">
+                <div class="titleNew">${title}</div>
+                <div class="subtitleNew">${subtitle}</div>
+            </div>
+            <div class="rowNew">
+                <div class="col-sm-3">
+                    <div class="tabs">${tabName}</div>
+                </div>
+                
+                
+            </div>
+            <div class="cards-section">
+                ${cardsHTML}
+            </div>
+        </div>
+    `;
+ 
+    document.addEventListener('DOMContentLoaded', () => {
+      const block = document.querySelector('.block');
+  
+      fetchData().then(data => {
+          // Render tabs
+          const tabContainer = document.createElement('div');
+          tabContainer.classList.add('tab-container');
+          data.tabs.forEach(tabData => {
+              const tab = document.createElement('div');
+              tab.id = tabData.id;
+              tab.textContent = tabData.text;
+              tab.dataset.category = tabData.category;
+              tab.classList.add('tab');
+              tabContainer.appendChild(tab);
+          });
+          block.appendChild(tabContainer);
+  
+          // Render cards
+          const cardContainer = document.createElement('div');
+          cardContainer.classList.add('card-container');
+          data.cards.forEach(cardData => {
+              const card = document.createElement('div');
+              card.classList.add('card');
+              card.dataset.category = cardData.category;
+              card.textContent = cardData.content;
+              card.style.display = 'none';  // Initially hide all cards
+              cardContainer.appendChild(card);
+          });
+          block.appendChild(cardContainer);
+  
+          // Add event listeners to tabs
+          const tabs = block.querySelectorAll('.tab');
+          const cards = block.querySelectorAll('.card');
+          tabs.forEach(tab => {
+              tab.addEventListener('click', () => {
+                  const category = tab.dataset.category;
+                  cards.forEach(card => {
+                      card.style.display = card.dataset.category === category ? 'block' : 'none';
+                  });
+                  tabs.forEach(t => t.classList.remove('active')); // Remove active class from all tabs
+                  tab.classList.add('active'); // Add active class to the clicked tab
+              });
+          });
+  
+          // Activate the first tab and its cards by default
+          if (tabs.length > 0) {
+              tabs[0].click();
+          }
+      });
+  });
+}  
