@@ -38,7 +38,7 @@ export default function decorate(block) {
         emailIdEl,
         scheduledDateEl,
         scheduledTimeEl,
-        contactEl
+        contactEl,
       ] = itemEl.children;
 
       return {
@@ -73,21 +73,17 @@ export default function decorate(block) {
     `;
   }
 
-  function renderStubbedData() {
-    return stubbedData.map((dealer, index) => createDealerCard(dealer, index, true)).join('');
-  }
-
-  function getTabData(tabIndex) {
-    const allData = dealershipActivitiesData;
-    return allData.filter((_, index) => index % tabs.length === tabIndex);
-  }
-
-  function renderExtractedData(tabIndex) {
-    return getTabData(tabIndex).map((dealer, index) => createDealerCard(dealer, index, false)).join('');
+  function renderContentForTab(tabIndex) {
+    const stubbedContent = tabIndex === 0 ? stubbedData.map((dealer, index) => createDealerCard(dealer, index, true)).join('') : '';
+    const extractedContent = tabIndex < dealershipActivitiesData.length ? createDealerCard(dealershipActivitiesData[tabIndex], tabIndex, false) : '';
+    return `
+      ${stubbedContent}
+      ${extractedContent}
+    `;
   }
 
   function updateTabLabels() {
-    const tabDataCounts = tabs.map((_, index) => getTabData(index).length);
+    const tabDataCounts = tabs.map((_, index) => (index === 0 ? stubbedData.length : (index < dealershipActivitiesData.length ? 1 : 0)));
     return tabs.map((tab, index) => `
       <div class="tab-item ${index === 0 ? 'active' : ''}" data-index="${index}">
         ${tab} (${tabDataCounts[index]})
@@ -96,7 +92,7 @@ export default function decorate(block) {
     `).join('');
   }
 
-  const initialExtractedContent = renderExtractedData(0);
+  const initialContent = tabs.map((_, index) => renderContentForTab(index)).join('');
   const tabMap = updateTabLabels();
   const totalCount = stubbedData.length + dealershipActivitiesData.length;
 
@@ -111,15 +107,14 @@ export default function decorate(block) {
           ${tabMap}
         </div>
         <div class="dealer-cards">
-          <div class="stubbed-content">${renderStubbedData()}</div>
-          <div class="extracted-content">${initialExtractedContent}</div>
+          ${initialContent}
         </div>
       </div>
     </div>
   `;
 
   const tabItems = block.querySelectorAll('.tab-item');
-  const extractedContentContainer = block.querySelector('.extracted-content');
+  const dealerCardsContainer = block.querySelector('.dealer-cards');
 
   function updateTabState(tabIndex) {
     tabItems.forEach((tab, index) => {
@@ -137,7 +132,7 @@ export default function decorate(block) {
     item.addEventListener('click', () => {
       const tabIndex = parseInt(item.dataset.index, 10);
       updateTabState(tabIndex);
-      extractedContentContainer.innerHTML = renderExtractedData(tabIndex);
+      dealerCardsContainer.innerHTML = renderContentForTab(tabIndex);
     });
   });
 }
