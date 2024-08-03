@@ -52,7 +52,18 @@ export default function decorate(block) {
       secondaryCta: "Directions",
       tab: "showroom_visit"
     },
-    // Add more stubbed data as needed
+    {
+      dealerName: "Mayuri Automobile Co. Ltd.",
+      image: "/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png",
+      description: "Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R",
+      scheduledTime: "14:30PM",
+      scheduledDate: "13th Jun, 2024",
+      contact: "9931242213",
+      emailId: "mandi@competent-maruti.com",
+      primaryCta: "Schedule a video call",
+      secondaryCta: "Directions",
+      tab: "showroom_visit"
+    },
   ];
 
   const dealership = getDealershipActivities();
@@ -67,10 +78,10 @@ export default function decorate(block) {
     )
   );
 
-  // Combine authoring items and stubbed items
+  // Combine authoring items and stubbed items for rendering
   const allItems = [...authoringItems, ...stubbedItems];
 
-  // Generate HTML for all items
+  // Generate HTML for all items with separation
   const itemsHtml = allItems.map(data => `
     <div class="dealer-card">
       ${data.image ? `<div class="dealer-image"><picture><img src="${data.image}" alt="Dealer Image"></picture></div>` : ''}
@@ -86,6 +97,7 @@ export default function decorate(block) {
       </div>
       ${data.primaryCta ? `<a href="#" class="primary-cta">${data.primaryCta}</a>` : ''}
       ${data.secondaryCta ? `<button class="cta-button secondary">${data.secondaryCta}</button>` : ''}
+      <p class="item-source">${data.tab === 'showroom_visit' ? 'Authoring Item' : 'Stubbed Item'}</p>
     </div>
   `).join('');
 
@@ -131,6 +143,7 @@ export default function decorate(block) {
         </div>
         ${data.primaryCta ? `<a href="#" class="primary-cta">${data.primaryCta}</a>` : ''}
         ${data.secondaryCta ? `<button class="cta-button secondary">${data.secondaryCta}</button>` : ''}
+        <p class="item-source">${data.tab === 'showroom_visit' ? 'Authoring Item' : 'Stubbed Item'}</p>
       </div>
     `).join('');
 
