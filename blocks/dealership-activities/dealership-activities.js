@@ -93,7 +93,7 @@ export default function decorate(block) {
         <p ${data.contact}</p>
       </div>
       
-        <a href="#" class="primary-cta">${dealer.primarycta}</a>
+        <a href="#" class="primary-cta">${data.primaryCta}</a>
       <button class="cta-button secondary">${data.secondaryCta}</button>
     </div>`,
     tab: data.tab,
