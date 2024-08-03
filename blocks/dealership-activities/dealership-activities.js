@@ -93,12 +93,12 @@ export default function decorate(block) {
       <img src="${data.image}" alt="Dealer Image">
       </picture>
       </div>
-      <div>
+      <div class="dealer-name-schedule">
       <p> class ="dealer-name">${data.dealerName}</p></br>
       <p> class= "dealer-date">${data.scheduledDate}</p>
       <p> class ="dealer-time">${data.scheduledTime}</p>
       </div>
-      <div>
+      <div class="dealer-email-contact">
       <p> class ="dealer-email"><p>${data.emailId}</p></br>
       <p> class ="dealer-contact">${data.contact}</p>
       </div>
