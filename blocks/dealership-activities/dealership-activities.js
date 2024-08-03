@@ -62,10 +62,7 @@ export default function decorate(block) {
     const stubbed = stubbedData.find(stub =>
       stub.dealerName === item.dealerName &&
       stub.scheduledDate === item.scheduledDate &&
-      stub.scheduledTime === item.scheduledTime &&
-      stub.emailId === item.emailId &&
-      stub.contact === item.contact 
-
+      stub.scheduledTime === item.scheduledTime 
     );
     return {
       ...item,
@@ -73,11 +70,11 @@ export default function decorate(block) {
       description: stubbed?.description || '',
       primaryCta: stubbed?.primaryCta || '',
       secondaryCta: stubbed?.secondaryCta || '',
-      // dealerName:stubbed?.dealerName || '',
-      // emailId:stubbed?.emailId || '',
-      // scheduledDate:stubbed?.scheduledDate || '',
-      // scheduleTime:stubbed?.scheduledTime || '',
-      // contact:stubbed?.contact || '',
+      // dealerName: stubbed?.dealerName || '',
+      // emailId: stubbed?.emailId || '',
+      // scheduledDate: stubbed?.scheduledDate || '',
+      // scheduledTime: stubbed?.scheduledTime || '',
+      // contact: stubbed?.contact || '',
       tab: item.tab,
     };
   });
@@ -85,23 +82,27 @@ export default function decorate(block) {
   console.log("Combined Items:", combinedItems); // Log combined items for debugging
 
   // Generate HTML for combined items
-  const itemsHtml = combinedItems.map(data => `
-    <div class="dealer-card">
-      ${data.image ? `<div class="dealer-image"><picture><img src="${data.image}" alt="Dealer Image"></picture></div>` : ''}
-      ${data.description ? `<p class="dealer-description">${data.description}</p>` : ''}
-      <div class="dealer-name-schedule">
-        <p class="dealer-name">${data.dealerName}</p>
-        <p class="dealer-date">${data.scheduledDate}</p>
-        <p class="dealer-time">${data.scheduledTime}</p>
+  const itemsHtml = combinedItems.map(data => {
+    console.log("Rendering Item:", data); // Log each item data
+
+    return `
+      <div class="dealer-card">
+        ${data.image ? `<div class="dealer-image"><picture><img src="${data.image}" alt="Dealer Image"></picture></div>` : ''}
+        ${data.description ? `<p class="dealer-description">${data.description}</p>` : ''}
+        <div class="dealer-name-schedule">
+          <p class="dealer-name">${data.dealerName}</p>
+          <p class="dealer-date">${data.scheduledDate}</p>
+          <p class="dealer-time">${data.scheduledTime}</p>
+        </div>
+        <div class="dealer-email-contact">
+          <p class="dealer-email">${data.emailId}</p>
+          <p class="dealer-contact">${data.contact}</p>
+        </div>
+        ${data.primaryCta ? `<a href="#" class="primary-cta">${data.primaryCta}</a>` : ''}
+        ${data.secondaryCta ? `<button class="cta-button secondary">${data.secondaryCta}</button>` : ''}
       </div>
-      <div class="dealer-email-contact">
-        <p class="dealer-email">${data.emailId}</p>
-        <p class="dealer-contact">${data.contact}</p>
-      </div>
-      ${data.primaryCta ? `<a href="#" class="primary-cta">${data.primaryCta}</a>` : ''}
-      ${data.secondaryCta ? `<button class="cta-button secondary">${data.secondaryCta}</button>` : ''}
-    </div>
-  `).join('');
+    `;
+  }).join('');
 
   block.innerHTML = utility.sanitizeHtml(`
     <section class="dealer-activities">
