@@ -83,16 +83,16 @@ export default function decorate(block) {
         </picture>
       </div>
       <div class="dealer-name-schedule">
-        <p class="dealer-name">${data.dealerName}</p><br>
-        <p class="dealer-date">${data.scheduledDate}</p>
-        <p class="dealer-time">${data.scheduledTime}</p>
+        <p ${data.dealerName}</p><br>
+        <p ${data.scheduledDate}</p>
+        <p ${data.scheduledTime}</p>
       </div>
       <div class="dealer-email-contact">
-        <p class="dealer-email">${data.emailId}</p><br>
-        <p class="dealer-contact">${data.contact}</p>
+        <p ${data.emailId}</p><br>
+        <p ${data.contact}</p>
       </div>
-      <p class="description">${data.description}</p>
-      <button class="cta-button primary">${data.primaryCta}</button>
+      <p class="dealer-description">${dealer.description}</p>
+        <a href="#" class="primary-cta">${dealer.primarycta}</a>
       <button class="cta-button secondary">${data.secondaryCta}</button>
     </div>`,
     tab: data.tab,
