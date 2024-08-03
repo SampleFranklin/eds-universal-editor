@@ -226,25 +226,39 @@ position: relative;
   .primary-cta {
     color: var(--Primary-Main, #18171A);
 
-/* Desktop/Body/Medium/Regular */
-font-family: "Fira Sans";
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 20px; /* 125% */
-width: auto;
-    background: var(--primary-main-color);
-    color: var(--secondary-main-color);
-    text-align: center;
-    align-items: center;
-    font-family: var(--font-primary-nexa);
-    font-size: 14px;
+    /* Desktop/Body/Medium/Regular */
+    font-family: "Fira Sans";
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px;
-    border-radius: inherit;
-    margin: inherit;
+    line-height: 20px; /* 125% */
 
+  }
+
+
+  .primary-cta::after {
+    content: ""; /* Unicode for the arrow */
+    position: absolute;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    right: 0;
+    top: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translateY(-50%);
+    background-image: url("../../icons/north_east.svg");
+    padding-left: 5px;
+    left: 160px;
+  }
+
+  .primary-cta::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 180px;
+    border-bottom: 2px solid black; /* Thickness and color of the underline */
   }
   
   .cta-button.secondary {
