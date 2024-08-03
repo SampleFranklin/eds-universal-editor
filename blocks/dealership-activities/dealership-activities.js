@@ -12,7 +12,7 @@ export default function decorate(block) {
     const tabname3 = tabname3El?.textContent?.trim() || '';
 
     const items = Array.from(dealershipActivitiesItemEls).map((itemEl) => {
-      const [dealerNameEl, emailIdEl, scheduledDateEl, scheduledTimeEl, contactEl, , , ] = itemEl.children;
+      const [dealerNameEl, emailIdEl, scheduledDateEl, scheduledTimeEl, contactEl] = itemEl.children;
       const dealerName = dealerNameEl?.textContent?.trim() || '';
       const emailId = emailIdEl?.textContent?.trim() || '';
       const scheduledDate = scheduledDateEl?.textContent?.trim() || '';
@@ -84,6 +84,8 @@ export default function decorate(block) {
       tab: item.tab,
     };
   });
+
+  console.log("Combined Items:", combinedItems); // Log combined items for debugging
 
   const allItemsHtml = combinedItems.map(data => `
     <div class="dealer-card">
