@@ -80,22 +80,10 @@
   .dealership-activities__tab.active::after {
     border-bottom: 2px solid #18171A;
   }
-  .list-container {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
+  
   
   .dealer-card {
-    display: flex;
-    flex-direction: column;
-    gap: 48px;
-  overflow: scroll;
-  overflow-x: hidden;
-  margin-top: 48px;
+    
   display: flex;
 padding: 24px 24px 32px 24px;
 justify-content: space-between;
@@ -104,11 +92,7 @@ align-self: stretch;
 background: var(--Tertiary-Light-grey, #F2F2F2);
   }
   
-  .dealer-card__content {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+  
   
   .dealer-card__name,
   .dealer-card__email,
