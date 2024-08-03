@@ -56,7 +56,7 @@ export default function decorate(block) {
             </div>
             <div class="dealer-activities__items">
                 <ul class="list-container">
-                    ${dealership.items.join('')}
+                    ${dealership.items}
                 </ul>
             </div>
         </div>
