@@ -12,7 +12,7 @@ export default function decorate(block) {
     const tabname3 = tabname3El?.textContent?.trim() || '';
 
     const items = Array.from(dealershipActivitiesItemEls).map((itemEl) => {
-      const [dealerNameEl, emailIdEl, scheduledDateEl, scheduledTimeEl, contactEl, primaryCtaEl, secondaryCtaEl] = itemEl.children;
+      const [dealerNameEl, emailIdEl, scheduledDateEl, scheduledTimeEl, contactEl, primaryCtaEl, secondaryCtaEl,descriptionEl] = itemEl.children;
       const dealerName = dealerNameEl?.textContent?.trim() || '';
       const emailId = emailIdEl?.textContent?.trim() || '';
       const scheduledDate = scheduledDateEl?.textContent?.trim() || '';
@@ -20,6 +20,7 @@ export default function decorate(block) {
       const contact = contactEl?.textContent?.trim() || '';
       const primaryCta = primaryCtaEl?.textContent?.trim() || '';
       const secondaryCta = secondaryCtaEl?.textContent?.trim() || '';
+      const description = descriptionEl?.textContent?.trim() || '';
 
       return {
         dealerName,
@@ -29,6 +30,7 @@ export default function decorate(block) {
         contact,
         primaryCta,
         secondaryCta,
+        description,
         tab: 'showroom_visit' // Adjust as needed
       };
     });
@@ -83,6 +85,7 @@ export default function decorate(block) {
       <p>${data.description}</p>
       <button class="cta-button primary">${data.primarycta}</button>
       <button class="cta-button secondary">${data.secondarycta}</button>
+      <p class="description">${data.description}</p>
     </div>`,
     tab: data.tab,
   }));
