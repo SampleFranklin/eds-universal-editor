@@ -139,8 +139,8 @@ font-weight: 400;
 line-height: 20px; /* 142.857% */
 text-transform: uppercase;
 position: relative;
-top: 50px;
-left: 250px;
+top: 70px;
+left: 180px;
   }
 
   .dealer-date {
@@ -154,8 +154,8 @@ font-weight: 400;
 line-height: 20px; /* 142.857% */
 text-transform: uppercase;
 position: relative;
-top: 100px;
-left: 300px;
+top: 68px;
+left: 180px;
   }
 
   .dealer-time {
@@ -169,8 +169,8 @@ font-weight: 400;
 line-height: 20px; /* 142.857% */
 text-transform: uppercase;
 position: relative;
-top: 20px;
-left: 500px;
+bottom: 335px;
+left: 320px;
   }
 
   .dealer-email-contact {
@@ -191,8 +191,8 @@ font-weight: 400;
 line-height: 20px; /* 142.857% */
 text-transform: uppercase;
 position: relative;
-    right: 340px;
-    top: 25px;
+    right: 300px;
+    bottom: 325px;
   }
 
   .dealer-contact {
@@ -205,6 +205,9 @@ font-style: normal;
 font-weight: 400;
 line-height: 20px; /* 142.857% */
 text-transform: uppercase;
+position: relative;
+    bottom: 13px;
+    right: 300px;
   }
 
 
