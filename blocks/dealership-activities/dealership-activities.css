@@ -92,9 +92,6 @@
     gap: 4px;
     background: var(--Gradients-Gradient-1, linear-gradient(60deg, #C9D3D7 3.71%, #EBEBEB 104.51%));
     position: absolute;
-    top: -50px; /* Adjust to position above the card */
-    left: 0;
-    right: 0;
     justify-content: center; /* Center the description horizontally */
   }
   .dealer-card {
