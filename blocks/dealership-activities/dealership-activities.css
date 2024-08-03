@@ -269,7 +269,10 @@ background-color: #18171A;
     width: 238px;
     height: 135px;
     mix-blend-mode: luminosity;
+    position: relative;
+    bottom: 670px;
   }
+
   
   
 
