@@ -12,7 +12,7 @@ export default function decorate(block) {
     const tabname3 = tabname3El?.textContent?.trim() || '';
 
     const items = Array.from(dealershipActivitiesItemEls).map((itemEl) => {
-      const [dealerNameEl, emailIdEl, scheduledDateEl, scheduledTimeEl, contactEl, primaryCtaEl, secondaryCtaEl,descriptionEl] = itemEl.children;
+      const [dealerNameEl, emailIdEl, scheduledDateEl, scheduledTimeEl, contactEl, primaryCtaEl, secondaryCtaEl, descriptionEl] = itemEl.children;
       const dealerName = dealerNameEl?.textContent?.trim() || '';
       const emailId = emailIdEl?.textContent?.trim() || '';
       const scheduledDate = scheduledDateEl?.textContent?.trim() || '';
@@ -93,10 +93,9 @@ export default function decorate(block) {
       <p>${data.scheduledDate}</p>
       <p>${data.scheduledTime}</p>
       <p>${data.contact}</p>
-      <p>${data.description}</p>
+      <div class="description">${data.description}</div>
       <button class="cta-button primary">${data.primarycta}</button>
       <button class="cta-button secondary">${data.secondarycta}</button>
-      <p class="description">${description}</p>
     </div>`,
     tab: data.tab,
   }));
