@@ -54,8 +54,8 @@ export default function decorate(block) {
       scheduledDate: "13th Jun, 2024",
       contact: "9931242213",
       emailId: "mandi@competent-maruti.com",
-      primarycta: "Schedule a video call",
-      secondarycta: "Directions",
+      primaryCta: "Schedule a video call",
+      secondaryCta: "Directions",
       tab: "showroom_visit" // Specify tab for stubbed data
     },
     {
@@ -66,45 +66,34 @@ export default function decorate(block) {
       scheduledDate: "13th Jun, 2024",
       contact: "9931242213",
       emailId: "mandi@competent-maruti.com",
-      primarycta: "Schedule a video call",
-      secondarycta: "Directions",
+      primaryCta: "Schedule a video call",
+      secondaryCta: "Directions",
       tab: "showroom_visit" // Specify tab for stubbed data
     },
   ];
 
   const dealership = getDealershipActivities();
-  const totalItems = Math.max(dealership.items.length, stubbedData.length);
-
-  const combinedItems = Array.from({ length: totalItems }).map((_, index) => {
-    const dynamicItem = dealership.items[index] || {};
-    const stubbedItem = stubbedData[index] || {};
-
-    return {
-      ...dynamicItem,
-      ...stubbedItem,
-      description: stubbedItem.description || dynamicItem.description // Prioritize stubbed description
-    };
-  });
+  const combinedItems = [...dealership.items, ...stubbedData];
 
   const allItems = combinedItems.map(data => ({
     html: `<div class="dealer-card">
-      <div class= "dealer-image">
-      <picture>
-      <img src="${data.image}" alt="Dealer Image">
-      </picture>
+      <div class="dealer-image">
+        <picture>
+          <img src="${data.image}" alt="Dealer Image">
+        </picture>
       </div>
       <div class="dealer-name-schedule">
-      <p> class ="dealer-name">${data.dealerName}</p></br>
-      <p> class= "dealer-date">${data.scheduledDate}</p>
-      <p> class ="dealer-time">${data.scheduledTime}</p>
+        <p class="dealer-name">${data.dealerName}</p><br>
+        <p class="dealer-date">${data.scheduledDate}</p>
+        <p class="dealer-time">${data.scheduledTime}</p>
       </div>
       <div class="dealer-email-contact">
-      <p> class ="dealer-email"><p>${data.emailId}</p></br>
-      <p> class ="dealer-contact">${data.contact}</p>
+        <p class="dealer-email">${data.emailId}</p><br>
+        <p class="dealer-contact">${data.contact}</p>
       </div>
-      <p> class="description">${data.description}</p>
-      <button class="cta-button primary">${data.primarycta}</button>
-      <button class="cta-button secondary">${data.secondarycta}</button>
+      <p class="description">${data.description}</p>
+      <button class="cta-button primary">${data.primaryCta}</button>
+      <button class="cta-button secondary">${data.secondaryCta}</button>
     </div>`,
     tab: data.tab,
   }));
@@ -119,7 +108,7 @@ export default function decorate(block) {
     <section class="dealer-activities">
       <div class="dealership-activities-container">
         <div class="dealership-activities__content">
-          <span class="dealership-activities__title">${dealership.title} (${totalItems})</span>
+          <span class="dealership-activities__title">${dealership.title} (${combinedItems.length})</span>
           <p class="dealership-activities__subtitle">${dealership.subtitle}</p>
           <div class="dealership-activities__tabs">
             <p class="dealership-activities__tab active" id="showroom_visit">${dealership.tabname1} (${itemsByTab.showroom_visit.length})</p>
