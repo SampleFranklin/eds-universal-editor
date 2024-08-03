@@ -75,7 +75,14 @@ export default function decorate(block) {
   const dealership = getDealershipActivities();
   const combinedItems = [...dealership.items, ...stubbedData];
 
-  const allItems = combinedItems.map(data => ({
+  // Ensure unique items
+  const uniqueItems = combinedItems.filter((item, index, self) =>
+    index === self.findIndex((t) => (
+      t.dealerName === item.dealerName && t.description === item.description
+    ))
+  );
+
+  const allItems = uniqueItems.map(data => ({
     html: `<div class="dealer-card">
       <div class="dealer-image">
         <picture>
@@ -108,7 +115,7 @@ export default function decorate(block) {
     <section class="dealer-activities">
       <div class="dealership-activities-container">
         <div class="dealership-activities__content">
-          <span class="dealership-activities__title">${dealership.title} (${combinedItems.length})</span>
+          <span class="dealership-activities__title">${dealership.title} (${uniqueItems.length})</span>
           <p class="dealership-activities__subtitle">${dealership.subtitle}</p>
           <div class="dealership-activities__tabs">
             <p class="dealership-activities__tab active" id="showroom_visit">${dealership.tabname1} (${itemsByTab.showroom_visit.length})</p>
