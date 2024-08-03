@@ -72,9 +72,6 @@ export default function decorate(block) {
     },
   ];
 
-  const dealership = getDealershipActivities();
-  const combinedItems = [...dealership.items, ...stubbedData];
-
   const allItems = combinedItems.map(data => ({
     html: `<div class="dealer-card">
       <div class="dealer-image">
@@ -84,20 +81,20 @@ export default function decorate(block) {
       </div>
       <p class="dealer-description">${data.description}</p>
       <div class="dealer-name-schedule">
-        <p ${data.dealerName}</p><br>
-        <p ${data.scheduledDate}</p>
-        <p ${data.scheduledTime}</p>
+        <p class="dealer-name">${data.dealerName}</p><br>
+        <p class="dealer-date">${data.scheduledDate}</p>
+        <p class="dealer-time">${data.scheduledTime}</p>
       </div>
       <div class="dealer-email-contact">
-        <p ${data.emailId}</p><br>
-        <p ${data.contact}</p>
+        <p class="dealer-email">${data.emailId}</p><br>
+        <p class="dealer-contact">${data.contact}</p>
       </div>
-      
-        <a href="#" class="primary-cta">${data.primaryCta}</a>
+      <a href="#" class="primary-cta">${data.primaryCta}</a>
       <button class="cta-button secondary">${data.secondaryCta}</button>
     </div>`,
     tab: data.tab,
   }));
+  
 
   const itemsByTab = {
     showroom_visit: allItems.filter(item => item.tab === 'showroom_visit'),
