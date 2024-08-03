@@ -12,12 +12,14 @@ export default function decorate(block) {
     const tabname3 = tabname3El?.textContent?.trim() || '';
 
     const items = Array.from(dealershipActivitiesItemEls).map((itemEl) => {
-      const [dealerNameEl, emailIdEl, scheduledDateEl, scheduledTimeEl, contactEl] = itemEl.children;
+      const [dealerNameEl, emailIdEl, scheduledDateEl, scheduledTimeEl, contactEl, primaryCtaEl, secondaryCtaEl] = itemEl.children;
       const dealerName = dealerNameEl?.textContent?.trim() || '';
       const emailId = emailIdEl?.textContent?.trim() || '';
       const scheduledDate = scheduledDateEl?.textContent?.trim() || '';
       const scheduledTime = scheduledTimeEl?.textContent?.trim() || '';
       const contact = contactEl?.textContent?.trim() || '';
+      const primaryCta = primaryCtaEl?.textContent?.trim() || '';
+      const secondaryCta = secondaryCtaEl?.textContent?.trim() || '';
 
       return {
         html: `<div class="dealer-card">
@@ -26,6 +28,8 @@ export default function decorate(block) {
           <p>${scheduledDate}</p>
           <p>${scheduledTime}</p>
           <p>${contact}</p>
+          <a href class=" primary-cta">${primaryCta}</a>
+          <button class="cta-button secondary">${secondaryCta}</button>
         </div>`,
         tab: 'showroom_visit' // Adjust as needed
       };
@@ -50,28 +54,11 @@ export default function decorate(block) {
       scheduledDate: "13th Jun, 2024",
       contact: "9931242213",
       email: "mandi@competent-maruti.com",
+      primarycta: "Schedule a video call",
+      secondarycta: "Directions",
       tab: "showroom_visit" // Specify tab for stubbed data
     },
-    {
-      dealerName: "Mayuri Automobile Co. Ltd.",
-      image: "/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png",
-      description: "Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R",
-      scheduledTime: "14:30PM",
-      scheduledDate: "13th Jun, 2024",
-      contact: "9931242213",
-      email: "mandi@competent-maruti.com",
-      tab: "test_drive" // Specify tab for stubbed data
-    },
-    {
-      dealerName: "Mayuri Automobile Co. Ltd.",
-      image: "/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png",
-      description: "Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R",
-      scheduledTime: "14:30PM",
-      scheduledDate: "13th Jun, 2024",
-      contact: "9931242213",
-      email: "mandi@competent-maruti.com",
-      tab: "booked" // Specify tab for stubbed data
-    },
+    // Add more stubbed data as needed
   ];
 
   const dealership = getDealershipActivities();
@@ -89,6 +76,8 @@ export default function decorate(block) {
         <p>${data.scheduledTime}</p>
         <p>${data.contact}</p>
         <p>${data.description}</p>
+        <button class="cta-button primary">${data.primarycta}</button>
+        <button class="cta-button secondary">${data.secondarycta}</button>
       </div>`,
       tab: data.tab,
     }))
