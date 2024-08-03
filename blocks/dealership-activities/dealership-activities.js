@@ -82,6 +82,7 @@ export default function decorate(block) {
           <img src="${data.image}" alt="Dealer Image">
         </picture>
       </div>
+      <p class="dealer-description">${data.description}</p>
       <div class="dealer-name-schedule">
         <p ${data.dealerName}</p><br>
         <p ${data.scheduledDate}</p>
@@ -91,7 +92,7 @@ export default function decorate(block) {
         <p ${data.emailId}</p><br>
         <p ${data.contact}</p>
       </div>
-      <p class="dealer-description">${dealer.description}</p>
+      
         <a href="#" class="primary-cta">${dealer.primarycta}</a>
       <button class="cta-button secondary">${data.secondaryCta}</button>
     </div>`,
