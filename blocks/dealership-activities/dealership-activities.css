@@ -37,8 +37,7 @@
   margin-bottom: 20px;
 }
 .dealership-activities__tabs {
-  display: flex;
-    border-bottom: 1px solid var(--tertiary-light-grey, #F2F2F2);
+    display: flex;
     gap: 24px;
     margin: unset;
     padding: unset;
@@ -81,5 +80,51 @@
   .dealership-activities__tab.active::after {
     border-bottom: 2px solid #18171A;
   }
+  .list-container {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .dealer-card {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  overflow: scroll;
+  overflow-x: hidden;
+  margin-top: 48px;
+  display: flex;
+padding: 24px 24px 32px 24px;
+justify-content: space-between;
+align-items: flex-end;
+align-self: stretch;
+background: var(--Tertiary-Light-grey, #F2F2F2);
+  }
+  
+  .dealer-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .dealer-card__name,
+  .dealer-card__email,
+  .dealer-card__date,
+  .dealer-card__time,
+  .dealer-card__contact {
+    color: var(--Tertiary-Medium-grey, #B2B2B2);
+
+/* Desktop/Others/Description */
+font-family: "Fira Sans";
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 142.857% */
+text-transform: uppercase;
+  }
+  
   
 

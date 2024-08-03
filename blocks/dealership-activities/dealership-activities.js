@@ -20,11 +20,11 @@ export default function decorate(block) {
       const contact = contactEl?.textContent?.trim() || '';
 
       const li = document.createElement('li');
-      li.innerHTML = `<p class="dealer-items">
-        ${dealerName}<br>
+      li.innerHTML = `<p class="dealer-card">
+        ${dealerName}
         ${emailId}<br>
-        ${scheduledDate}<br>
-        ${scheduledTime}<br>
+        ${scheduledDate}
+        ${scheduledTime}
         ${contact}
       </p>`;
       moveInstrumentation(itemEl, li);
