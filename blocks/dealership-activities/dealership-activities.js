@@ -20,7 +20,7 @@ export default function decorate(block) {
       const contact = contactEl?.textContent?.trim() || '';
       const primaryCta = primaryCtaEl?.textContent?.trim() || '';
       const secondaryCta = secondaryCtaEl?.textContent?.trim() || '';
-      const description = Array.from(descriptionEl.querySelectorAll('p')).map((p) => p.textContent.trim()).join('');
+      const description = description?.textContent?.trim() || '';
 
       return {
         dealerName,
