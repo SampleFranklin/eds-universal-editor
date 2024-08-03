@@ -62,8 +62,9 @@ export default function decorate(block) {
     const stubbed = stubbedData.find(stub =>
       stub.dealerName === item.dealerName &&
       stub.scheduledDate === item.scheduledDate &&
-      stub.scheduledTime === item.scheduledTime 
-    
+      stub.scheduledTime === item.scheduledTime &&
+      stub.emailId === item.emailId &&
+      stub.contact === item.contact 
 
     );
     return {
