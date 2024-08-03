@@ -28,7 +28,7 @@ export default function decorate(block) {
           <p>${scheduledDate}</p>
           <p>${scheduledTime}</p>
           <p>${contact}</p>
-          <a href="#" class="primary-cta">${primaryCta}</a>
+          <button class="cta-button primary">${primaryCta}</button>
           <button class="cta-button secondary">${secondaryCta}</button>
         </div>`,
         tab: 'showroom_visit' // Adjust as needed

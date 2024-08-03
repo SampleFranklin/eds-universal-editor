@@ -151,6 +151,60 @@ text-transform: uppercase;
   .dealer-card__contact {
     margin-top: 10px;
   }
+
+  .cta-button {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .cta-button.primary {
+    color: var(--Primary-Main, #18171A);
+
+/* Desktop/Body/Medium/Regular */
+font-family: "Fira Sans";
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 125% */
+  }
+  
+  .cta-button.secondary {
+    color: var(--Tertiary-White, #FFF);
+text-align: center;
+
+/* Desktop/Buttons/Desktop- Button */
+font-family: "Fira Sans";
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 150% */
+background-color: #18171A;
+  }
+  
+  .cta-button.primary:hover {
+    background: inherit;
+    color: inherit;
+    border-bottom: 0.64px solid var(--primary-main-color);
+  }
+  
+  .cta-button.secondary:hover {
+    background: inherit;
+    color: inherit;
+    border-bottom: 0.64px solid var(--primary-main-color);
+  }
+  .cta-button.primary::after {
+    content: "";
+    background: url("/icons/external_arrow.svg");
+    width: 17px;
+    height: 17px;
+  }
   
   
 
