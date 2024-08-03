@@ -54,9 +54,9 @@ export default function decorate(block) {
       scheduledDate: "13th Jun, 2024",
       contact: "9931242213",
       emailId: "mandi@competent-maruti.com",
-      primaryCta: "Schedule a video call",
-      secondaryCta: "Directions",
-      tab: "showroom_visit" // Specify tab for stubbed data
+      primarycta: "Schedule a video call",
+      secondarycta: "Directions",
+      tab: "showroom_visit"
     },
     {
       dealerName: "Mayuri Automobile Co. Ltd.",
@@ -66,11 +66,14 @@ export default function decorate(block) {
       scheduledDate: "13th Jun, 2024",
       contact: "9931242213",
       emailId: "mandi@competent-maruti.com",
-      primaryCta: "Schedule a video call",
-      secondaryCta: "Directions",
-      tab: "showroom_visit" // Specify tab for stubbed data
+      primarycta: "Schedule a video call",
+      secondarycta: "Directions",
+      tab: "showroom_visit"
     },
   ];
+
+  const dealership = getDealershipActivities();
+  const combinedItems = [...dealership.items, ...stubbedData];
 
   const allItems = combinedItems.map(data => ({
     html: `<div class="dealer-card">
@@ -94,7 +97,6 @@ export default function decorate(block) {
     </div>`,
     tab: data.tab,
   }));
-  
 
   const itemsByTab = {
     showroom_visit: allItems.filter(item => item.tab === 'showroom_visit'),
