@@ -52,65 +52,14 @@ export default function decorate(block) {
       secondaryCta: "Directions",
       tab: "showroom_visit"
     },
-    {
-      dealerName: "Mayuri Automobile Co. Ltd.",
-      image: "/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png",
-      description: "Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R",
-      scheduledTime: "14:30PM",
-      scheduledDate: "13th Jun, 2024",
-      contact: "9931242213",
-      emailId: "mandi@competent-maruti.com",
-      primaryCta: "Schedule a video call",
-      secondaryCta: "Directions",
-      tab: "showroom_visit"
-    },
-    {
-      dealerName: "Mayuri Automobile Co. Ltd.",
-      image: "/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png",
-      description: "Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R",
-      scheduledTime: "14:30PM",
-      scheduledDate: "13th Jun, 2024",
-      contact: "9931242213",
-      emailId: "mandi@competent-maruti.com",
-      primaryCta: "Schedule a video call",
-      secondaryCta: "Directions",
-      tab: "test_drive"
-    },
-    {
-      dealerName: "Mayuri Automobile Co. Ltd.",
-      image: "/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png",
-      description: "Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R",
-      scheduledTime: "14:30PM",
-      scheduledDate: "13th Jun, 2024",
-      contact: "9931242213",
-      emailId: "mandi@competent-maruti.com",
-      primaryCta: "Schedule a video call",
-      secondaryCta: "Directions",
-      tab: "booked"
-    },
+    // Add more stubbed data as needed
   ];
 
   const dealership = getDealershipActivities();
 
-  // Combine authoring items with stubbed data
-  const combinedItems = dealership.items.map(item => {
-    const stubbed = stubbedData.find(stub =>
-      stub.dealerName === item.dealerName &&
-      stub.scheduledDate === item.scheduledDate &&
-      stub.scheduledTime === item.scheduledTime
-    );
-    return {
-      ...item,
-      image: stubbed?.image || '',
-      description: stubbed?.description || '',
-      primaryCta: stubbed?.primaryCta || '',
-      secondaryCta: stubbed?.secondaryCta || '',
-      tab: item.tab,
-    };
-  });
-
-  // Include stubbed data that is not in authoring items
-  const stubbedItemsNotInAuthoring = stubbedData.filter(stub => 
+  // Separate authoring items and stubbed items
+  const authoringItems = dealership.items;
+  const stubbedItems = stubbedData.filter(stub =>
     !dealership.items.some(item =>
       item.dealerName === stub.dealerName &&
       item.scheduledDate === stub.scheduledDate &&
@@ -118,7 +67,8 @@ export default function decorate(block) {
     )
   );
 
-  const allItems = combinedItems.concat(stubbedItemsNotInAuthoring);
+  // Combine authoring items and stubbed items
+  const allItems = [...authoringItems, ...stubbedItems];
 
   // Generate HTML for all items
   const itemsHtml = allItems.map(data => `
