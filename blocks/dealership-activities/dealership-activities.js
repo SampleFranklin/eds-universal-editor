@@ -105,13 +105,11 @@ export default function decorate(block) {
         </div>
         <div class="dealer-activities__items">
           <div class="authoring-items">
-            <h2>Authoring Items</h2>
             <ul class="list-container">
               ${authoringItemsHtml}
             </ul>
           </div>
           <div class="stubbed-items">
-            <h2>Stubbed Items</h2>
             <ul class="list-container">
               ${stubbedItemsHtml}
             </ul>
