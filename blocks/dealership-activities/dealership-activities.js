@@ -12,15 +12,12 @@ export default function decorate(block) {
     const tabname3 = tabname3El?.textContent?.trim() || '';
 
     const items = Array.from(dealershipActivitiesItemEls).map((itemEl) => {
-      const [dealerNameEl, emailIdEl, scheduledDateEl, scheduledTimeEl, contactEl, primaryCtaEl, secondaryCtaEl, descriptionEl] = itemEl.children;
+      const [dealerNameEl, emailIdEl, scheduledDateEl, scheduledTimeEl, contactEl, , , ] = itemEl.children;
       const dealerName = dealerNameEl?.textContent?.trim() || '';
       const emailId = emailIdEl?.textContent?.trim() || '';
       const scheduledDate = scheduledDateEl?.textContent?.trim() || '';
       const scheduledTime = scheduledTimeEl?.textContent?.trim() || '';
       const contact = contactEl?.textContent?.trim() || '';
-      const primaryCta = primaryCtaEl?.textContent?.trim() || '';
-      const secondaryCta = secondaryCtaEl?.textContent?.trim() || '';
-      const description = descriptionEl?.textContent?.trim() || '';
 
       return {
         dealerName,
@@ -28,9 +25,6 @@ export default function decorate(block) {
         scheduledDate,
         scheduledTime,
         contact,
-        primaryCta,
-        secondaryCta,
-        description,
         tab: 'showroom_visit' // Adjust as needed
       };
     });
@@ -73,17 +67,26 @@ export default function decorate(block) {
   ];
 
   const dealership = getDealershipActivities();
-  const combinedItems = [...dealership.items, ...stubbedData];
 
-  // Ensure unique items
-  const uniqueItems = combinedItems.filter((item, index, self) =>
-    index === self.findIndex((t) => (
-      t.dealerName === item.dealerName && t.description === item.description
-    ))
-  );
+  // Combine the dynamically generated items with the stubbed data
+  const combinedItems = dealership.items.map(item => {
+    const stubbed = stubbedData.find(stub => 
+      stub.dealerName === item.dealerName && 
+      stub.scheduledDate === item.scheduledDate && 
+      stub.scheduledTime === item.scheduledTime
+    );
+    return {
+      ...item,
+      image: stubbed?.image || '',
+      description: stubbed?.description || '',
+      primaryCta: stubbed?.primaryCta || '',
+      secondaryCta: stubbed?.secondaryCta || '',
+      tab: item.tab,
+    };
+  });
 
-  const allItems = uniqueItems.map(data => ({
-    html: `<div class="dealer-card">
+  const allItemsHtml = combinedItems.map(data => `
+    <div class="dealer-card">
       <div class="dealer-image">
         <picture>
           <img src="${data.image}" alt="Dealer Image">
@@ -91,41 +94,33 @@ export default function decorate(block) {
       </div>
       <p class="dealer-description">${data.description}</p>
       <div class="dealer-name-schedule">
-        <p class="dealer-name">${data.dealerName}</p>
+        <p class="dealer-name">${data.dealerName}</p><br>
         <p class="dealer-date">${data.scheduledDate}</p>
         <p class="dealer-time">${data.scheduledTime}</p>
       </div>
       <div class="dealer-email-contact">
-        <p class="dealer-email">${data.emailId}</p>
+        <p class="dealer-email">${data.emailId}</p><br>
         <p class="dealer-contact">${data.contact}</p>
       </div>
       <a href="#" class="primary-cta">${data.primaryCta}</a>
       <button class="cta-button secondary">${data.secondaryCta}</button>
-    </div>`,
-    tab: data.tab,
-  }));
-
-  const itemsByTab = {
-    showroom_visit: allItems.filter(item => item.tab === 'showroom_visit'),
-    test_drive: allItems.filter(item => item.tab === 'test_drive'),
-    booked: allItems.filter(item => item.tab === 'booked')
-  };
+    </div>`).join('');
 
   block.innerHTML = utility.sanitizeHtml(`
     <section class="dealer-activities">
       <div class="dealership-activities-container">
         <div class="dealership-activities__content">
-          <span class="dealership-activities__title">${dealership.title} (${uniqueItems.length})</span>
+          <span class="dealership-activities__title">${dealership.title} (${combinedItems.length})</span>
           <p class="dealership-activities__subtitle">${dealership.subtitle}</p>
           <div class="dealership-activities__tabs">
-            <p class="dealership-activities__tab active" id="showroom_visit">${dealership.tabname1} (${itemsByTab.showroom_visit.length})</p>
-            <p class="dealership-activities__tab" id="test_drive">${dealership.tabname2} (${itemsByTab.test_drive.length})</p>
-            <p class="dealership-activities__tab" id="booked">${dealership.tabname3} (${itemsByTab.booked.length})</p>
+            <p class="dealership-activities__tab active" id="showroom_visit">${dealership.tabname1} (${combinedItems.filter(item => item.tab === 'showroom_visit').length})</p>
+            <p class="dealership-activities__tab" id="test_drive">${dealership.tabname2} (${combinedItems.filter(item => item.tab === 'test_drive').length})</p>
+            <p class="dealership-activities__tab" id="booked">${dealership.tabname3} (${combinedItems.filter(item => item.tab === 'booked').length})</p>
           </div>
         </div>
         <div class="dealer-activities__items">
           <ul class="list-container">
-            ${itemsByTab.showroom_visit.map(item => item.html).join('')}
+            ${allItemsHtml}
           </ul>
         </div>
       </div>
@@ -138,9 +133,28 @@ export default function decorate(block) {
     event.target.classList.add('active');
 
     const selectedTab = event.target.id;
-    const filteredItems = itemsByTab[selectedTab];
-    
-    block.querySelector('.list-container').innerHTML = filteredItems.map(item => item.html).join('');
+    const filteredItemsHtml = combinedItems.filter(item => item.tab === selectedTab).map(data => `
+      <div class="dealer-card">
+        <div class="dealer-image">
+          <picture>
+            <img src="${data.image}" alt="Dealer Image">
+          </picture>
+        </div>
+        <p class="dealer-description">${data.description}</p>
+        <div class="dealer-name-schedule">
+          <p class="dealer-name">${data.dealerName}</p><br>
+          <p class="dealer-date">${data.scheduledDate}</p>
+          <p class="dealer-time">${data.scheduledTime}</p>
+        </div>
+        <div class="dealer-email-contact">
+          <p class="dealer-email">${data.emailId}</p><br>
+          <p class="dealer-contact">${data.contact}</p>
+        </div>
+        <a href="#" class="primary-cta">${data.primaryCta}</a>
+        <button class="cta-button secondary">${data.secondaryCta}</button>
+      </div>`).join('');
+
+    block.querySelector('.list-container').innerHTML = filteredItemsHtml;
   }
 
   const tabs = block.querySelectorAll('.dealership-activities__tab');
