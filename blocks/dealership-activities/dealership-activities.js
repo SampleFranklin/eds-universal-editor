@@ -105,6 +105,7 @@ export default function decorate(block) {
     test_drive: allItems.filter(item => item.tab === 'test_drive'),
     booked: allItems.filter(item => item.tab === 'booked')
   };
+  console.log("vineetha");
 
   block.innerHTML = utility.sanitizeHtml(`
     <section class="dealer-activities">
