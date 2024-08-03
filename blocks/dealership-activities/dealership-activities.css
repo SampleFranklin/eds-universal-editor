@@ -80,7 +80,7 @@
   .dealership-activities__tab.active::after {
     border-bottom: 2px solid #18171A;
   }
-  .description {
+  .dealer-description {
     color: #000;
     font-size: 16px;
     font-style: normal;
