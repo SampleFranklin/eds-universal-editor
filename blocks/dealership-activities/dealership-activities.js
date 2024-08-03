@@ -73,34 +73,47 @@ export default function decorate(block) {
   ];
 
   const dealership = getDealershipActivities();
-  const combinedItems = [...dealership.items, ...stubbedData];
 
-  // Ensure unique items
-  const uniqueItems = combinedItems.filter((item, index, self) =>
-    index === self.findIndex((t) => (
-      t.dealerName === item.dealerName && t.description === item.description
-    ))
-  );
+  // Merge items based on common properties
+  const mergeItems = (items1, items2) => {
+    const mergedItems = [];
+    const map = new Map();
 
-  const allItems = uniqueItems.map(data => ({
+    [...items1, ...items2].forEach(item => {
+      const key = `${item.dealerName}-${item.description}`;
+      if (map.has(key)) {
+        // Merge properties of existing item
+        Object.assign(map.get(key), item);
+      } else {
+        map.set(key, item);
+      }
+    });
+
+    map.forEach(item => mergedItems.push(item));
+    return mergedItems;
+  };
+
+  const combinedItems = mergeItems(dealership.items, stubbedData);
+
+  const allItems = combinedItems.map(data => ({
     html: `<div class="dealer-card">
       <div class="dealer-image">
         <picture>
-          <img src="${data.image}" alt="Dealer Image">
+          <img src="${data.image || ''}" alt="Dealer Image">
         </picture>
       </div>
-      <p class="dealer-description">${data.description}</p>
+      <p class="dealer-description">${data.description || ''}</p>
       <div class="dealer-name-schedule">
-        <p class="dealer-name">${data.dealerName}</p><br>
-        <p class="dealer-date">${data.scheduledDate}</p>
-        <p class="dealer-time">${data.scheduledTime}</p>
+        <p class="dealer-name">${data.dealerName || ''}</p><br>
+        <p class="dealer-date">${data.scheduledDate || ''}</p>
+        <p class="dealer-time">${data.scheduledTime || ''}</p>
       </div>
       <div class="dealer-email-contact">
-        <p class="dealer-email">${data.emailId}</p><br>
-        <p class="dealer-contact">${data.contact}</p>
+        <p class="dealer-email">${data.emailId || ''}</p><br>
+        <p class="dealer-contact">${data.contact || ''}</p>
       </div>
-      <a href="#" class="primary-cta">${data.primaryCta}</a>
-      <button class="cta-button secondary">${data.secondaryCta}</button>
+      <a href="#" class="primary-cta">${data.primaryCta || ''}</a>
+      <button class="cta-button secondary">${data.secondaryCta || ''}</button>
     </div>`,
     tab: data.tab,
   }));
@@ -115,7 +128,7 @@ export default function decorate(block) {
     <section class="dealer-activities">
       <div class="dealership-activities-container">
         <div class="dealership-activities__content">
-          <span class="dealership-activities__title">${dealership.title} (${uniqueItems.length})</span>
+          <span class="dealership-activities__title">${dealership.title} (${combinedItems.length})</span>
           <p class="dealership-activities__subtitle">${dealership.subtitle}</p>
           <div class="dealership-activities__tabs">
             <p class="dealership-activities__tab active" id="showroom_visit">${dealership.tabname1} (${itemsByTab.showroom_visit.length})</p>
