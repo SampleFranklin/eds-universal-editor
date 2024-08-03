@@ -265,5 +265,11 @@ background-color: #18171A;
     height: 17px;
   }
   
+  .dealer-image {
+    width: 238px;
+    height: 135px;
+    mix-blend-mode: luminosity;
+  }
+  
   
 
