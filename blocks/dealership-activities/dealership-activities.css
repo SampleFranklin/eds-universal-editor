@@ -223,7 +223,7 @@ position: relative;
     text-align: center;
   }
   
-  .cta-button.primary {
+  .primary-cta {
     color: var(--Primary-Main, #18171A);
 
 /* Desktop/Body/Medium/Regular */
@@ -232,6 +232,19 @@ font-size: 16px;
 font-style: normal;
 font-weight: 400;
 line-height: 20px; /* 125% */
+width: auto;
+    background: var(--primary-main-color);
+    color: var(--secondary-main-color);
+    text-align: center;
+    align-items: center;
+    font-family: var(--font-primary-nexa);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    border-radius: inherit;
+    margin: inherit;
+
   }
   
   .cta-button.secondary {
@@ -245,19 +258,25 @@ font-style: normal;
 font-weight: 400;
 line-height: 24px; /* 150% */
 background-color: #18171A;
+position: relative;
+    bottom: 660px;
+    right: 10px;
+    align-items: stretch;
+    width: 200px;
+
   }
   
-  .cta-button.primary:hover {
+  /* .primary-cta:hover {
     background: inherit;
     color: inherit;
     border-bottom: 0.64px solid var(--primary-main-color);
-  }
+  } */
   
-  .cta-button.secondary:hover {
+  /* .cta-button.secondary:hover {
     background: inherit;
     color: inherit;
     border-bottom: 0.64px solid var(--primary-main-color);
-  }
+  } */
   .cta-button.primary::after {
     content: "";
     background: url("/icons/external_arrow.svg");
