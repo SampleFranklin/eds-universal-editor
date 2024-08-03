@@ -88,7 +88,7 @@
     font-weight: 500;
     line-height: 20px; /* 125% */
     display: flex;
-    padding: 4px 22px;
+    padding: 8px 24px;
     align-items: center;
     gap: 4px;
     background: var(--Gradients-Gradient-1, linear-gradient(60deg, #C9D3D7 3.71%, #EBEBEB 104.51%));
