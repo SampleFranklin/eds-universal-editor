@@ -53,7 +53,7 @@ export default function decorate(block) {
       scheduledTime: "14:30PM",
       scheduledDate: "13th Jun, 2024",
       contact: "9931242213",
-      email: "mandi@competent-maruti.com",
+      emailId: "mandi@competent-maruti.com",
       primarycta: "Schedule a video call",
       secondarycta: "Directions",
       tab: "showroom_visit" // Specify tab for stubbed data
@@ -65,7 +65,7 @@ export default function decorate(block) {
       scheduledTime: "14:30PM",
       scheduledDate: "13th Jun, 2024",
       contact: "9931242213",
-      email: "mandi@competent-maruti.com",
+      emailId: "mandi@competent-maruti.com",
       primarycta: "Schedule a video call",
       secondarycta: "Directions",
       tab: "showroom_visit" // Specify tab for stubbed data
@@ -88,13 +88,21 @@ export default function decorate(block) {
 
   const allItems = combinedItems.map(data => ({
     html: `<div class="dealer-card">
+      <div class= "dealer-image">
+      <picture>
       <img src="${data.image}" alt="Dealer Image">
-      <p>${data.dealerName}</p>
-      <p>${data.emailId}</p>
-      <p>${data.scheduledDate}</p>
-      <p>${data.scheduledTime}</p>
-      <p>${data.contact}</p>
-      <p>${data.description}</p>
+      </picture>
+      </div>
+      <div>
+      <p> class ="dealer-name">${data.dealerName}</p></br>
+      <p> class= "dealer-date">${data.scheduledDate}</p>
+      <p> class ="dealer-time">${data.scheduledTime}</p>
+      </div>
+      <div>
+      <p> class ="dealer-email"><p>${data.emailId}</p></br>
+      <p> class ="dealer-contact">${data.contact}</p>
+      </div>
+      <p> class="description">${data.description}</p>
       <button class="cta-button primary">${data.primarycta}</button>
       <button class="cta-button secondary">${data.secondarycta}</button>
     </div>`,
