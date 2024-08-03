@@ -3614,35 +3614,31 @@
         "value": "",
         "label": "SubTitle",
         "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "tabname1",
+        "value": "",
+        "label": "Tab Name1",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "tabname2",
+        "value": "",
+        "label": "Tab Name2",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "tabname3",
+        "value": "",
+        "label": "Tab Name3",
+        "valueType": "string"
       }
     ]
     },
-    {
-      "id": "tab-items",
-      "fields": [
-        {
-          "component": "text-input",
-          "name": "tabname1",
-          "value": "",
-          "label": "Tab Name1",
-          "valueType": "string"
-        },
-        {
-          "component": "text-input",
-          "name": "tabname2",
-          "value": "",
-          "label": "Tab Name2",
-          "valueType": "string"
-        },
-        {
-          "component": "text-input",
-          "name": "tabname3",
-          "value": "",
-          "label": "Tab Name3",
-          "valueType": "string"
-        }
-      ]
-    },
+  
   
     {
       "id": "dealership-activities-items",
