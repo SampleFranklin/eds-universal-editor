@@ -49,9 +49,9 @@ export default function decorate(block) {
                 <span class="dealership-activities__title">${dealership.title}</span>
                 <p class="dealership-activities__subtitle">${dealership.subtitle}</p>
                 <div class="dealership-activities__tabs">
-                 <p class="dealership-activities__tab active" id="showroom_visit">${dealership.tabname1}</p>
+                  <p class="dealership-activities__tab active" id="showroom_visit">${dealership.tabname1}</p>
                   <p class="dealership-activities__tab" id="test_drive">${dealership.tabname2}</p>
-                  <p  class="dealership-activities__tab" id="booked">${dealership.tabname3}</p>
+                  <p class="dealership-activities__tab" id="booked">${dealership.tabname3}</p>
                 </div>
             </div>
             <div class="dealer-activities__items">
@@ -62,4 +62,13 @@ export default function decorate(block) {
         </div>
     </section>
   `);
+
+  function handleTabClick(event) {
+    const tabs = block.querySelectorAll('.dealership-activities__tab');
+    tabs.forEach(tab => tab.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  const tabs = block.querySelectorAll('.dealership-activities__tab');
+  tabs.forEach(tab => tab.addEventListener('click', handleTabClick));
 }
