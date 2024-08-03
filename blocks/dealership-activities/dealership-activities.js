@@ -62,9 +62,8 @@ export default function decorate(block) {
     const stubbed = stubbedData.find(stub =>
       stub.dealerName === item.dealerName &&
       stub.scheduledDate === item.scheduledDate &&
-      stub.scheduledTime === item.scheduledTime &&
-      stub.emailId === item.emailId &&
-      stub.contact === item.contact
+      stub.scheduledTime === item.scheduledTime 
+    
 
     );
     return {
@@ -73,11 +72,11 @@ export default function decorate(block) {
       description: stubbed?.description || '',
       primaryCta: stubbed?.primaryCta || '',
       secondaryCta: stubbed?.secondaryCta || '',
-      dealerName:stubbed?.dealerName || '',
-      emailId:stubbed?.emailId || '',
-      scheduledDate:stubbed?.scheduledDate || '',
-      scheduleTime:stubbed?.scheduledTime || '',
-      contact:stubbed?.contact || '',
+      // dealerName:stubbed?.dealerName || '',
+      // emailId:stubbed?.emailId || '',
+      // scheduledDate:stubbed?.scheduledDate || '',
+      // scheduleTime:stubbed?.scheduledTime || '',
+      // contact:stubbed?.contact || '',
       tab: item.tab,
     };
   });

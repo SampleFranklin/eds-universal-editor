@@ -122,14 +122,80 @@ margin-top:72px;
     color: var(--Tertiary-Medium-grey, #B2B2B2);
   }
   
-  
-  
-  
-  .dealer-card__name,
-  .dealer-card__email,
-  .dealer-card__date,
-  .dealer-card__time,
-  .dealer-card__contact {
+  .dealer-name-schedule {
+    display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 32px;
+  }
+  .dealer-name {
+    color: var(--Tertiary-Medium-grey, #B2B2B2);
+
+/* Desktop/Others/Description */
+font-family: "Fira Sans";
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 142.857% */
+text-transform: uppercase;
+position: relative;
+top: 50px;
+left: 250px;
+  }
+
+  .dealer-date {
+    color: var(--Tertiary-Medium-grey, #B2B2B2);
+
+/* Desktop/Others/Description */
+font-family: "Fira Sans";
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 142.857% */
+text-transform: uppercase;
+position: relative;
+top: 100px;
+left: 300px;
+  }
+
+  .dealer-time {
+    color: var(--Tertiary-Medium-grey, #B2B2B2);
+
+/* Desktop/Others/Description */
+font-family: "Fira Sans";
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 142.857% */
+text-transform: uppercase;
+position: relative;
+top: 20px;
+left: 500px;
+  }
+
+  .dealer-email-contact {
+    display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 36px;
+  }
+
+  .dealer-email {
+    color: var(--Tertiary-Medium-grey, #B2B2B2);
+
+/* Desktop/Others/Description */
+font-family: "Fira Sans";
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 142.857% */
+text-transform: uppercase;
+position: relative;
+    right: 340px;
+    top: 25px;
+  }
+
+  .dealer-contact {
     color: var(--Tertiary-Medium-grey, #B2B2B2);
 
 /* Desktop/Others/Description */
@@ -141,32 +207,6 @@ line-height: 20px; /* 142.857% */
 text-transform: uppercase;
   }
 
-  .dealer-card__name {
-    font-family: "Fira Sans";
-    font-size: 16px;
-    font-weight: bold;
-    color: #434649;
-  }
-  
-  .dealer-card__email,
-  .dealer-card__date,
-  .dealer-card__time,
-  .dealer-card__contact {
-    font-family: "Fira Sans";
-    font-size: 14px;
-    color: #434649;
-  }
-  
-  /* Additional styles for alignment and spacing */
-  .dealer-card__date,
-  .dealer-card__time {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .dealer-card__contact {
-    margin-top: 10px;
-  }
 
   .cta-button {
     display: inline-block;
