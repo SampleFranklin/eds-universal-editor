@@ -27,7 +27,7 @@ export default function decorate(block) {
           <p>${scheduledTime}</p>
           <p>${contact}</p>
         </div>`,
-        tab: 'showroom_visit' // Adjust as needed
+        tab: 'showroom_visit' // Adjust as needed based on your logic
       };
     });
 
@@ -60,17 +60,7 @@ export default function decorate(block) {
       scheduledDate: "13th Jun, 2024",
       contact: "9931242213",
       email: "mandi@competent-maruti.com",
-      tab: "test_drive" // Specify tab for stubbed data
-    },
-    {
-      dealerName: "Mayuri Automobile Co. Ltd.",
-      image: "/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png",
-      description: "Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R",
-      scheduledTime: "14:30PM",
-      scheduledDate: "13th Jun, 2024",
-      contact: "9931242213",
-      email: "mandi@competent-maruti.com",
-      tab: "booked" // Specify tab for stubbed data
+      tab: "showroom_visit" // Specify tab for stubbed data
     },
   ];
 
@@ -94,10 +84,10 @@ export default function decorate(block) {
     }))
   ];
 
+  // Group items by tab
   const itemsByTab = {
     showroom_visit: allItems.filter(item => item.tab === 'showroom_visit'),
-    test_drive: allItems.filter(item => item.tab === 'test_drive'),
-    booked: allItems.filter(item => item.tab === 'booked')
+    test_drive: allItems.filter(item => item.tab === 'test_drive')
   };
 
   block.innerHTML = utility.sanitizeHtml(`
@@ -109,7 +99,6 @@ export default function decorate(block) {
           <div class="dealership-activities__tabs">
             <p class="dealership-activities__tab active" id="showroom_visit">${dealership.tabname1} (${itemsByTab.showroom_visit.length})</p>
             <p class="dealership-activities__tab" id="test_drive">${dealership.tabname2} (${itemsByTab.test_drive.length})</p>
-            <p class="dealership-activities__tab" id="booked">${dealership.tabname3} (${itemsByTab.booked.length})</p>
           </div>
         </div>
         <div class="dealer-activities__items">
