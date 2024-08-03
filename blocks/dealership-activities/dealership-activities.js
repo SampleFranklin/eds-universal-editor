@@ -22,15 +22,13 @@ export default function decorate(block) {
       const secondaryCta = secondaryCtaEl?.textContent?.trim() || '';
 
       return {
-        html: `<div class="dealer-card">
-          <p>${dealerName}</p>
-          <p>${emailId}</p>
-          <p>${scheduledDate}</p>
-          <p>${scheduledTime}</p>
-          <p>${contact}</p>
-          <button class="cta-button primary">${primaryCta}</button>
-          <button class="cta-button secondary">${secondaryCta}</button>
-        </div>`,
+        dealerName,
+        emailId,
+        scheduledDate,
+        scheduledTime,
+        contact,
+        primaryCta,
+        secondaryCta,
         tab: 'showroom_visit' // Adjust as needed
       };
     });
@@ -62,26 +60,32 @@ export default function decorate(block) {
   ];
 
   const dealership = getDealershipActivities();
-  const totalItems = dealership.items.length + stubbedData.length;
+  const totalItems = Math.max(dealership.items.length, stubbedData.length);
 
-  // Combine dealership items with stubbed data
-  const allItems = [
-    ...dealership.items,
-    ...stubbedData.map(data => ({
-      html: `<div class="dealer-card">
-        <img src="${data.image}" alt="Dealer Image">
-        <p>${data.dealerName}</p>
-        <p>${data.email}</p>
-        <p>${data.scheduledDate}</p>
-        <p>${data.scheduledTime}</p>
-        <p>${data.contact}</p>
-        <p>${data.description}</p>
-        <button class="cta-button primary">${data.primarycta}</button>
-        <button class="cta-button secondary">${data.secondarycta}</button>
-      </div>`,
-      tab: data.tab,
-    }))
-  ];
+  const combinedItems = Array.from({ length: totalItems }).map((_, index) => {
+    const dynamicItem = dealership.items[index] || {};
+    const stubbedItem = stubbedData[index] || {};
+
+    return {
+      ...dynamicItem,
+      ...stubbedItem,
+    };
+  });
+
+  const allItems = combinedItems.map(data => ({
+    html: `<div class="dealer-card">
+      <img src="${data.image}" alt="Dealer Image">
+      <p>${data.dealerName}</p>
+      <p>${data.emailId}</p>
+      <p>${data.scheduledDate}</p>
+      <p>${data.scheduledTime}</p>
+      <p>${data.contact}</p>
+      <p>${data.description}</p>
+      <button class="cta-button primary">${data.primarycta}</button>
+      <button class="cta-button secondary">${data.secondarycta}</button>
+    </div>`,
+    tab: data.tab,
+  }));
 
   const itemsByTab = {
     showroom_visit: allItems.filter(item => item.tab === 'showroom_visit'),
