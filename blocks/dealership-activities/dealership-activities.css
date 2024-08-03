@@ -105,7 +105,7 @@ align-items: flex-end;
 align-self: stretch;
 background: var(--Tertiary-Light-grey, #F2F2F2);
 height: 200px;
-margin:60px;
+margin-bottom:60px;
   }
 
   .list-container {
