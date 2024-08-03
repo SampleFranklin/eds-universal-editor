@@ -102,6 +102,7 @@ background: var(--Tertiary-Light-grey, #F2F2F2);
     font-weight: 400;
     line-height: 20px; /* 142.857% */
     text-transform: uppercase;
+    color: var(--Tertiary-Medium-grey, #B2B2B2);
   }
   
   
