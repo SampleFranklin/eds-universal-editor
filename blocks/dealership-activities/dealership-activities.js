@@ -45,7 +45,7 @@ function getDealershipActivities() {
     items,
     tabMap
   };
-}
+
 
 
   const stubbedData = [
