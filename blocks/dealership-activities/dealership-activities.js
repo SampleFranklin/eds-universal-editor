@@ -68,38 +68,16 @@ export default function decorate(block) {
 
   const dealership = getDealershipActivities();
 
-  // Generate HTML for authoring items
-  const authoringItemsHtml = dealership.items.map(data => `
-    <div class="authoring-item">
-      <div class="dealer-name-schedule">
-        <p class="dealer-name">${data.dealerName}</p>
-        <p class="dealer-date">${data.scheduledDate}</p>
-        <p class="dealer-time">${data.scheduledTime}</p>
-      </div>
-      <div class="dealer-email-contact">
-        <p class="dealer-email">${data.emailId}</p>
-        <p class="dealer-contact">${data.contact}</p>
-      </div>
-    </div>
-  `).join('');
-
-  // Generate HTML for stubbed items
-  const stubbedItemsHtml = stubbedData.map(data => `
-    <div class="stubbed-item">
-      ${data.image ? `<div class="dealer-image"><picture><img src="${data.image}" alt="Dealer Image"></picture></div>` : ''}
-      ${data.description ? `<p class="dealer-description">${data.description}</p>` : ''}
-      ${data.primaryCta ? `<a href="#" class="primary-cta">${data.primaryCta}</a>` : ''}
-      ${data.secondaryCta ? `<button class="cta-button secondary">${data.secondaryCta}</button>` : ''}
-    </div>
-  `).join('');
-
-  // Combine authoring items and stubbed items into the same card
+  // Generate HTML for authoring items and combine with stubbed items
   const combinedItemsHtml = dealership.items.map(authoringItem => {
     const stubbedItem = stubbedData.find(stub => 
       stub.dealerName === authoringItem.dealerName &&
       stub.scheduledDate === authoringItem.scheduledDate &&
       stub.scheduledTime === authoringItem.scheduledTime
     );
+
+    console.log('Authoring Item:', authoringItem);
+    console.log('Stubbed Item:', stubbedItem);
 
     return `
       <div class="dealer-card">
@@ -125,11 +103,14 @@ export default function decorate(block) {
     `;
   }).join('');
 
+  // Count the actual number of cards being displayed
+  const actualCardCount = dealership.items.length;
+
   block.innerHTML = utility.sanitizeHtml(`
     <section class="dealer-activities">
       <div class="dealership-activities-container">
         <div class="dealership-activities__content">
-          <span class="dealership-activities__title">${dealership.title} (${dealership.items.length + stubbedData.length})</span>
+          <span class="dealership-activities__title">${dealership.title} (${actualCardCount})</span>
           <p class="dealership-activities__subtitle">${dealership.subtitle}</p>
           <div class="dealership-activities__tabs">
             <p class="dealership-activities__tab active" id="showroom_visit">${dealership.tabname1} (${dealership.items.filter(item => item.tab === 'showroom_visit').length})</p>
@@ -158,6 +139,9 @@ export default function decorate(block) {
         stub.scheduledDate === authoringItem.scheduledDate &&
         stub.scheduledTime === authoringItem.scheduledTime
       );
+
+      console.log('Filtered Authoring Item:', authoringItem);
+      console.log('Filtered Stubbed Item:', stubbedItem);
 
       return `
         <div class="dealer-card">
