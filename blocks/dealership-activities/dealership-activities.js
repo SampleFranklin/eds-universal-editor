@@ -25,8 +25,8 @@ export default function decorate(block) {
       const scheduledTime = scheduledTimeEl?.textContent?.trim() || '';
       const contact = contactEl?.textContent?.trim() || '';
 
-      // Ensure the tab field is dynamically set based on actual content or default to 'showroom_visit'
-      const tab = itemEl.dataset.tab || 'showroom_visit'; 
+      // Determine tab for each item based on a data attribute or content
+      const tab = itemEl.dataset.tab || 'showroom_visit'; // Example: Use data attribute
 
       return {
         dealerName,
@@ -79,11 +79,11 @@ export default function decorate(block) {
       image: "/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png",
       description: "Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R",
       scheduledTime: "14:30PM",
-      scheduledDate: "13th Jun, 2024",
+      scheduledDate: "14th Jun, 2024",
       contact: "9931242213",
       emailId: "mandi@competent-maruti.com",
       primaryCta: "Schedule a video call",
-      secondaryCta: "Rescheduled",
+      secondaryCta: "reschedule",
       tab: "booked"
     },
   ];
@@ -172,13 +172,13 @@ export default function decorate(block) {
     const filteredItems = dealership.items.filter(item => item.tab === selectedTab);
     const filteredCardsHtml = generateCardsHtml(filteredItems);
 
-    // Update the count for each tab
     const totalTabCount = {
       'showroom_visit': dealership.items.filter(item => item.tab === 'showroom_visit').length,
       'test_drive': dealership.items.filter(item => item.tab === 'test_drive').length,
       'booked': dealership.items.filter(item => item.tab === 'booked').length,
     };
 
+    // Update the count for each tab
     tabs.forEach(tab => {
       const tabId = tab.id;
       tab.innerHTML = `${dealership.tabMap[tabId]} (${totalTabCount[tabId]})`;
