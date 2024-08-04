@@ -25,7 +25,7 @@ export default function decorate(block) {
         scheduledDate,
         scheduledTime,
         contact,
-        tab: 'showroom_visit' // Adjust as needed
+        tab: 'showroom_visit' // Default tab, adjust as needed
       };
     });
 
@@ -62,7 +62,19 @@ export default function decorate(block) {
       emailId: "mandi@competent-maruti.com",
       primaryCta: "Schedule a video call",
       secondaryCta: "Directions",
-      tab: "test_drive" // Added new tab for this item
+      tab: "showroom_visit"
+    },
+    {
+      dealerName: "Mayuri Automobile Co. Ltd.",
+      image: "/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png",
+      description: "Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R",
+      scheduledTime: "14:30PM",
+      scheduledDate: "13th Jun, 2024",
+      contact: "9931242213",
+      emailId: "mandi@competent-maruti.com",
+      primaryCta: "Schedule a video call",
+      secondaryCta: "Directions",
+      tab: "test_drive"
     },
   ];
 
@@ -73,7 +85,7 @@ export default function decorate(block) {
     return items.map((authoringItem, index) => {
       const stubbedItem = stubbedData[index];
       return `
-        <div class="dealer-card">
+        <div class="dealer-card" data-tab="${authoringItem.tab}">
           <div class="authoring-item">
             <div class="dealer-name-schedule">
               <p class="dealer-name">${authoringItem.dealerName}</p>
@@ -128,21 +140,33 @@ export default function decorate(block) {
     </section>
   `);
 
+  // Add move instrumentation to authoring items only
+  const authoringItems = block.querySelectorAll('.authoring-item');
+  authoringItems.forEach(item => moveInstrumentation(item, {
+    allowedTypes: ['authoring-item']
+  }));
+
   function handleTabClick(event) {
     const tabs = block.querySelectorAll('.dealership-activities__tab');
     tabs.forEach(tab => tab.classList.remove('active'));
     event.target.classList.add('active');
 
     const selectedTab = event.target.id;
-    const filteredAuthoringItems = dealership.items.filter(item => item.tab === selectedTab);
-    const filteredStubbedItems = stubbedData.filter(item => item.tab === selectedTab);
 
-    const filteredCardsHtml = generateCardsHtml(filteredAuthoringItems.concat(filteredStubbedItems));
-
-    const cardsContainer = block.querySelector('.list-container');
-    cardsContainer.innerHTML = filteredCardsHtml;
+    // Filter cards based on selected tab
+    const cards = block.querySelectorAll('.dealer-card');
+    cards.forEach(card => {
+      if (card.getAttribute('data-tab') === selectedTab) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
   }
 
   const tabs = block.querySelectorAll('.dealership-activities__tab');
   tabs.forEach(tab => tab.addEventListener('click', handleTabClick));
+
+  // Initial display of cards for the active tab
+  handleTabClick({ target: block.querySelector('.dealership-activities__tab.active') });
 }
