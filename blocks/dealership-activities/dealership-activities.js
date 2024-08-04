@@ -25,7 +25,9 @@ export default function decorate(block) {
         scheduledDate,
         scheduledTime,
         contact,
-       // tab: 'showroom_visit' // Adjust as needed
+        tab: 'showroom_visit', // Adjust as needed
+        tab:'test_drive',
+        tab:'booked'
       };
     });
 
