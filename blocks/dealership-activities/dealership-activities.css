@@ -408,9 +408,11 @@ left: 143px;
 align-items: flex-start;
 align-self: stretch;
   }
-  .scroll-bar.highlight {
+  .scrollable-wrapper.highlight ::before {
+    content:'';
     background-color: #f2f2f2;
     width: 4px;
     left:22px;
     top:0;
+    position:relative
     }
