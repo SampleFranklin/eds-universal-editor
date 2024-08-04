@@ -92,8 +92,8 @@
     background: var(--Gradients-Gradient-1, linear-gradient(60deg, #C9D3D7 3.71%, #EBEBEB 104.51%));
     position: relative;
     justify-content: center; /* Center the description horizontally */
-    left: 63px;
-    top: 335px;
+    right: 350px;
+    bottom: 243px;
     /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
     font-family: "Fira Sans";
     width: 100%;
@@ -143,7 +143,7 @@ line-height: 20px; /* 142.857% */
 text-transform: uppercase;
 position: relative;
 top: 190px;
-left: 618px;
+left: 320px;
   }
 
   .dealer-date {
