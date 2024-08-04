@@ -111,7 +111,7 @@ background: var(--Tertiary-Light-grey, #F2F2F2);
 height: 250px;
 margin-bottom:60px;
 margin-top:72px;
-overflow: scroll;
+
   }
 
   .list-container {
@@ -340,7 +340,7 @@ position: relative;
     line-height: 20px; /* 125% */
     position: relative;
     top: 55px;
-    left: 290px;
+    left: 285px;
 
 
   }
@@ -408,3 +408,9 @@ left: 143px;
 align-items: flex-start;
 align-self: stretch;
   }
+  .scroll-bar.highlight {
+    background-color: #f2f2f2;
+    width: 4px;
+    left:22px;
+    top:0;
+    }
