@@ -25,7 +25,7 @@ export default function decorate(block) {
         scheduledDate,
         scheduledTime,
         contact,
-        tab: 'showroom_visit' // Default tab; adjust as needed
+        tab: 'showroom_visit' // Adjust as needed
       };
     });
 
@@ -50,7 +50,7 @@ export default function decorate(block) {
       emailId: "mandi@competent-maruti.com",
       primaryCta: "Schedule a video call",
       secondaryCta: "Directions",
-      tab: "showroom_visit" // Default tab; change as needed
+      tab: "showroom_visit"
     },
     {
       dealerName: "Mayuri Automobile Co. Ltd.",
@@ -74,30 +74,27 @@ export default function decorate(block) {
       emailId: "mandi@competent-maruti.com",
       primaryCta: "Schedule a video call",
       secondaryCta: "Directions",
-      tab: "test_drive" // Correct tab
+      tab: "test_drive" // Correct tab for the third item
     },
   ];
 
   const dealership = getDealershipActivities();
 
-  // Debug: Log the parsed dealership activities and stubbed data
-  console.log('Dealership Activities:', dealership);
-  console.log('Stubbed Data:', stubbedData);
-
+  // Function to generate HTML for cards based on filtered items
   function generateCardsHtml(items) {
-    return items.map((item, index) => {
+    return items.map((authoringItem, index) => {
       const stubbedItem = stubbedData[index];
       return `
-        <div class="dealer-card">
+        <div class="dealer-card" data-tab="${stubbedItem.tab}">
           <div class="authoring-item">
             <div class="dealer-name-schedule">
-              <p class="dealer-name">${item.dealerName}</p>
-              <p class="dealer-date">${item.scheduledDate}</p>
-              <p class="dealer-time">${item.scheduledTime}</p>
+              <p class="dealer-name">${authoringItem.dealerName}</p>
+              <p class="dealer-date">${authoringItem.scheduledDate}</p>
+              <p class="dealer-time">${authoringItem.scheduledTime}</p>
             </div>
             <div class="dealer-email-contact">
-              <p class="dealer-email">${item.emailId}</p>
-              <p class="dealer-contact">${item.contact}</p>
+              <p class="dealer-email">${authoringItem.emailId}</p>
+              <p class="dealer-contact">${authoringItem.contact}</p>
             </div>
           </div>
           <div class="stubbed-item">
@@ -116,41 +113,37 @@ export default function decorate(block) {
     }).join('');
   }
 
-  function updateTabCounts() {
-    const tabCounts = {
-      showroom_visit: dealership.items.filter(item => item.tab === 'showroom_visit').length,
-      test_drive: dealership.items.filter(item => item.tab === 'test_drive').length,
-      booked: dealership.items.filter(item => item.tab === 'booked').length
-    };
-    block.querySelector('#showroom_visit').textContent = `${dealership.tabname1} (${tabCounts.showroom_visit})`;
-    block.querySelector('#test_drive').textContent = `${dealership.tabname2} (${tabCounts.test_drive})`;
-    block.querySelector('#booked').textContent = `${dealership.tabname3} (${tabCounts.booked})`;
+  // Initial render
+  function renderInitialContent() {
+    const totalCount = dealership.items.length;
+    const showroomVisitCount = dealership.items.filter(item => item.tab === 'showroom_visit').length;
+    const testDriveCount = dealership.items.filter(item => item.tab === 'test_drive').length;
+    const bookedCount = dealership.items.filter(item => item.tab === 'booked').length;
+
+    block.innerHTML = utility.sanitizeHtml(`
+      <section class="dealer-activities">
+        <div class="dealership-activities-container">
+          <div class="dealership-activities__content">
+            <span class="dealership-activities__title">${dealership.title} (${totalCount})</span>
+            <p class="dealership-activities__subtitle">${dealership.subtitle}</p>
+            <div class="dealership-activities__tabs">
+              <p class="dealership-activities__tab active" id="showroom_visit">${dealership.tabname1} (${showroomVisitCount})</p>
+              <p class="dealership-activities__tab" id="test_drive">${dealership.tabname2} (${testDriveCount})</p>
+              <p class="dealership-activities__tab" id="booked">${dealership.tabname3} (${bookedCount})</p>
+            </div>
+          </div>
+          <div class="dealer-activities__items">
+            <ul class="list-container">
+              ${generateCardsHtml(dealership.items)}
+            </ul>
+          </div>
+        </div>
+      </section>
+    `);
   }
 
-  const cardsHtml = generateCardsHtml(dealership.items);
-
-  block.innerHTML = utility.sanitizeHtml(`
-    <section class="dealer-activities">
-      <div class="dealership-activities-container">
-        <div class="dealership-activities__content">
-          <span class="dealership-activities__title">${dealership.title} (${dealership.items.length})</span>
-          <p class="dealership-activities__subtitle">${dealership.subtitle}</p>
-          <div class="dealership-activities__tabs">
-            <button class="tab active" id="showroom_visit">${dealership.tabname1} (0)</button>
-            <button class="tab" id="test_drive">${dealership.tabname2} (0)</button>
-            <button class="tab" id="booked">${dealership.tabname3} (0)</button>
-          </div>
-        </div>
-        <div class="dealer-activities__items">
-          <div class="list-container">
-            ${cardsHtml}
-          </div>
-        </div>
-      </div>
-    </section>
-  `);
-
-  updateTabCounts();
+  // Call initial render
+  renderInitialContent();
 
   // Add move instrumentation to authoring items only
   const authoringItems = block.querySelectorAll('.authoring-item');
@@ -159,24 +152,34 @@ export default function decorate(block) {
   }));
 
   function handleTabClick(event) {
-    const tabs = block.querySelectorAll('.tab');
+    const tabs = block.querySelectorAll('.dealership-activities__tab');
     tabs.forEach(tab => tab.classList.remove('active'));
     event.target.classList.add('active');
 
     const selectedTab = event.target.id;
     const filteredItems = dealership.items.filter(item => item.tab === selectedTab);
-
     const filteredCardsHtml = generateCardsHtml(filteredItems);
 
-    // Debug: Log the HTML being set for the selected tab
-    console.log('Filtered Cards HTML for Selected Tab:', filteredCardsHtml);
+    // Update tab counts
+    const selectedTabCount = filteredItems.length;
+    const totalTabCount = {
+      'showroom_visit': dealership.items.filter(item => item.tab === 'showroom_visit').length,
+      'test_drive': dealership.items.filter(item => item.tab === 'test_drive').length,
+      'booked': dealership.items.filter(item => item.tab === 'booked').length,
+    };
+
+    // Update the count for each tab
+    tabs.forEach(tab => {
+      const tabId = tab.id;
+      tab.innerHTML = `${dealership[`tabname${Object.keys(totalTabCount).indexOf(tabId) + 1}`]} (${totalTabCount[tabId]})`;
+    });
+
+    // Update the count for the selected tab
+    event.target.innerHTML = `${dealership[`tabname${Object.keys(totalTabCount).indexOf(selectedTab) + 1}`]} (${selectedTabCount})`;
 
     block.querySelector('.list-container').innerHTML = filteredCardsHtml;
-
-    // Update tab counts after filtering
-    updateTabCounts();
   }
 
-  const tabs = block.querySelectorAll('.tab');
+  const tabs = block.querySelectorAll('.dealership-activities__tab');
   tabs.forEach(tab => tab.addEventListener('click', handleTabClick));
 }
