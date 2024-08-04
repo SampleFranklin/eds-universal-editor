@@ -93,7 +93,7 @@
     position: relative;
     justify-content: center; /* Center the description horizontally */
     right: 350px;
-    bottom: 243px;
+    top: 80px;
     /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
     font-family: "Fira Sans";
     width: 100%;
