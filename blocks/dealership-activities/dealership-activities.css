@@ -388,26 +388,22 @@ left: 143px;
 
   .scrollable-wrapper {
     position: relative;
-    height: 600px; /* Adjust as needed */
     overflow-y: scroll; /* Enable vertical scrolling */
-    padding-right: 15px; /* Space for scrollbar */
+    height: 600px; /* Adjust as needed */
+    padding-right: 20px; /* Space for scrollbar line */
+    box-sizing: content-box; /* Ensure padding does not affect width calculation */
   }
   
-  .scrollable-wrapper::-webkit-scrollbar {
-    width: 12px; /* Adjust width */
+  .scrollable-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px; /* Width of scrollbar line */
+    height: 100%; /* Full height of the container */
+    background: #888; /* Color of scrollbar line */
+    z-index: 10; /* Ensure it is above the content */
+    display: flex;
+align-items: flex-start;
+align-self: stretch;
   }
-  
-  .scrollable-wrapper::-webkit-scrollbar-thumb {
-    background: #888; /* Scrollbar color */
-    border-radius: 6px; /* Rounded corners */
-  }
-  
-  .scrollable-wrapper::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Color on hover */
-  }
-  
-  .scrollable-wrapper {
-    scrollbar-width: thin; /* Thinner scrollbar */
-    scrollbar-color: #888 #f1f1f1; /* Scrollbar thumb and track color */
-  }
-  
