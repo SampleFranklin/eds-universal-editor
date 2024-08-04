@@ -83,7 +83,7 @@ export default function decorate(block) {
       contact: "9931242213",
       emailId: "mandi@competent-maruti.com",
       primaryCta: "Schedule a video call",
-      secondaryCta: "Directions",
+      secondaryCta: "Rescheduled",
       tab: "booked"
     },
   ];
