@@ -143,7 +143,7 @@ line-height: 20px; /* 142.857% */
 text-transform: uppercase;
 position: relative;
 top: 190px;
-left: 320px;
+left: 618px;
   }
 
   .dealer-date {
@@ -210,7 +210,7 @@ line-height: 20px; /* 142.857% */
 text-transform: uppercase;
 position: relative;
     bottom: 23px;
-    left: 650px;
+    left: 618px;
   }
 
 
@@ -238,7 +238,7 @@ position: relative;
     white-space: nowrap;
     position: relative;
     left: 550px;
-    top: 170px;
+    top: 190px;
 
   }
 
@@ -324,7 +324,7 @@ font-weight: 500;
 line-height: 24px; /* 133.333% */
 position: relative;
     top: 95px;
-    right: 430px;
+    right: 10px;
   }
   .dealership-emailid {
     color: var(--Tertiary-Deep-Grey, #767879);
@@ -337,7 +337,7 @@ position: relative;
     line-height: 20px; /* 125% */
     position: relative;
     top: 55px;
-    right: 90px;
+    left: 290px;
 
 
   }
@@ -353,7 +353,7 @@ font-weight: 500;
 line-height: 24px; /* 133.333% */
 position: relative;
     top: 95px;
-    right: 430px;
+    right: 10px;
   }
 
   .dealership-time {
@@ -367,7 +367,7 @@ font-weight: 500;
 line-height: 24px; /* 133.333% */
 top: 53px;
 position: relative;
-right: 240px;
+left: 143px;
   }
 
   .dealership-contact {
@@ -380,7 +380,7 @@ right: 240px;
     font-weight: 400;
     line-height: 20px; /* 125% */
     position: relative;
-    right: 90px;
+    left: 290px;
     top: 14px;
   }
 
