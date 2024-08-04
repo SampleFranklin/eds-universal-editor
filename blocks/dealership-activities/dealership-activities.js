@@ -2,54 +2,51 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 import utility from '../../utility/utility.js';
 
 export default function decorate(block) {
-  function decorate(block) {
-    function getDealershipActivities() {
-      const [titleEl, subtitleEl, tabname1El, tabname2El, tabname3El, ...dealershipActivitiesItemEls] = block.children;
-  
-      const title = titleEl?.textContent?.trim() || '';
-      const subtitle = subtitleEl?.textContent?.trim() || '';
-      const tabname1 = tabname1El?.textContent?.trim() || '';
-      const tabname2 = tabname2El?.textContent?.trim() || '';
-      const tabname3 = tabname3El?.textContent?.trim() || '';
-  
-      const tabMap = {
-        'showroom_visit': tabname1,
-        'test_drive': tabname2,
-        'booked': tabname3
-      };
-  
-      const items = Array.from(dealershipActivitiesItemEls).map((itemEl) => {
-        const [dealerNameEl, emailIdEl, scheduledDateEl, scheduledTimeEl, contactEl] = itemEl.children;
-        const dealerName = dealerNameEl?.textContent?.trim() || '';
-        const emailId = emailIdEl?.textContent?.trim() || '';
-        const scheduledDate = scheduledDateEl?.textContent?.trim() || '';
-        const scheduledTime = scheduledTimeEl?.textContent?.trim() || '';
-        const contact = contactEl?.textContent?.trim() || '';
-  
-        // Determine tab for each item
-        const tab = 'showroom_visit'; // Replace with dynamic logic if needed
-  
-        return {
-          dealerName,
-          emailId,
-          scheduledDate,
-          scheduledTime,
-          contact,
-          tab
-        };
-      });
-  
+  function getDealershipActivities() {
+    const [titleEl, subtitleEl, tabname1El, tabname2El, tabname3El, ...dealershipActivitiesItemEls] = block.children;
+
+    const title = titleEl?.textContent?.trim() || '';
+    const subtitle = subtitleEl?.textContent?.trim() || '';
+    const tabname1 = tabname1El?.textContent?.trim() || '';
+    const tabname2 = tabname2El?.textContent?.trim() || '';
+    const tabname3 = tabname3El?.textContent?.trim() || '';
+
+    const tabMap = {
+      'showroom_visit': tabname1,
+      'test_drive': tabname2,
+      'booked': tabname3
+    };
+
+    const items = Array.from(dealershipActivitiesItemEls).map((itemEl) => {
+      const [dealerNameEl, emailIdEl, scheduledDateEl, scheduledTimeEl, contactEl] = itemEl.children;
+      const dealerName = dealerNameEl?.textContent?.trim() || '';
+      const emailId = emailIdEl?.textContent?.trim() || '';
+      const scheduledDate = scheduledDateEl?.textContent?.trim() || '';
+      const scheduledTime = scheduledTimeEl?.textContent?.trim() || '';
+      const contact = contactEl?.textContent?.trim() || '';
+
+      // Ensure the tab field is dynamically set based on actual content or default to 'showroom_visit'
+      const tab = itemEl.dataset.tab || 'showroom_visit'; 
+
       return {
-        title,
-        subtitle,
-        tabname1,
-        tabname2,
-        tabname3,
-        items,
-        tabMap
+        dealerName,
+        emailId,
+        scheduledDate,
+        scheduledTime,
+        contact,
+        tab
       };
-    }
-  
+    });
+
+    return {
+      title,
+      subtitle,
+      tabname1,
+      tabname2,
+      tabname3,
+      items,
+      tabMap
+    };
   }
 
   const stubbedData = [
@@ -97,11 +94,11 @@ export default function decorate(block) {
   console.log('Dealership Activities:', dealership);
   console.log('Stubbed Data:', stubbedData);
 
-  // Function to generate HTML for cards based on filtered items
   function generateCardsHtml(items) {
-    return items.map((item, index) => {
+    return items.map((item) => {
       const stubbedItem = stubbedData.find(stub => stub.tab === item.tab);
       if (!stubbedItem) return ''; // Skip if no corresponding stubbed data
+
       return `
         <div class="dealer-card" data-tab="${item.tab}">
           <div class="authoring-item">
@@ -131,7 +128,6 @@ export default function decorate(block) {
     }).join('');
   }
 
-  // Initial render
   function renderInitialContent() {
     const totalCount = dealership.items.length;
     const showroomVisitCount = dealership.items.filter(item => item.tab === 'showroom_visit').length;
@@ -160,10 +156,8 @@ export default function decorate(block) {
     `);
   }
 
-  // Call initial render
   renderInitialContent();
 
-  // Add move instrumentation to authoring items only
   const authoringItems = block.querySelectorAll('.authoring-item');
   authoringItems.forEach(item => moveInstrumentation(item, {
     allowedTypes: ['authoring-item']
@@ -178,21 +172,17 @@ export default function decorate(block) {
     const filteredItems = dealership.items.filter(item => item.tab === selectedTab);
     const filteredCardsHtml = generateCardsHtml(filteredItems);
 
-    const selectedTabCount = filteredItems.length;
+    // Update the count for each tab
     const totalTabCount = {
       'showroom_visit': dealership.items.filter(item => item.tab === 'showroom_visit').length,
       'test_drive': dealership.items.filter(item => item.tab === 'test_drive').length,
       'booked': dealership.items.filter(item => item.tab === 'booked').length,
     };
 
-    // Update the count for each tab
     tabs.forEach(tab => {
       const tabId = tab.id;
-      tab.innerHTML = `${dealership[`tabname${Object.keys(totalTabCount).indexOf(tabId) + 1}`]} (${totalTabCount[tabId]})`;
+      tab.innerHTML = `${dealership.tabMap[tabId]} (${totalTabCount[tabId]})`;
     });
-
-    // Debug: Log the HTML being set for the selected tab
-    console.log('Filtered Cards HTML for Selected Tab:', filteredCardsHtml);
 
     block.querySelector('.list-container').innerHTML = filteredCardsHtml;
   }
