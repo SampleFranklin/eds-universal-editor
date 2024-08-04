@@ -98,14 +98,14 @@ export default function decorate(block) {
     <div class="dealer-card stubbed-item">
       ${data.image ? `<div class="dealer-image"><picture><img src="${data.image}" alt="Dealer Image"></picture></div>` : ''}
       ${data.description ? `<p class="dealer-description">${data.description}</p>` : ''}
-      <div class="dealer-name-schedule">
-        <p class="dealer-name">${data.dealerName}</p>
-        <p class="dealer-date">${data.scheduledDate}</p>
-        <p class="dealer-time">${data.scheduledTime}</p>
+      <div class="dealer-stubbed-items">
+        <p class="dealership-name">${data.dealerName}</p>
+        <p class="dealership-date">${data.scheduledDate}</p>
+        <p class="dealership-time">${data.scheduledTime}</p>
       </div>
-      <div class="dealer-email-contact">
-        <p class="dealer-email">${data.emailId}</p>
-        <p class="dealer-contact">${data.contact}</p>
+      <div class="dealership-email-contact">
+        <p class="dealership-email">${data.emailId}</p>
+        <p class="dealership-contact">${data.contact}</p>
       </div>
       ${data.primaryCta ? `<a href="#" class="primary-cta">${data.primaryCta}</a>` : ''}
       ${data.secondaryCta ? `<button class="cta-button secondary">${data.secondaryCta}</button>` : ''}
@@ -158,14 +158,14 @@ export default function decorate(block) {
       <div class="dealer-card stubbed-item">
         ${data.image ? `<div class="dealer-image"><picture><img src="${data.image}" alt="Dealer Image"></picture></div>` : ''}
         ${data.description ? `<p class="dealer-description">${data.description}</p>` : ''}
-        <div class="dealer-name-schedule">
-          <p class="dealer-name">${data.dealerName}</p>
-          <p class="dealer-date">${data.scheduledDate}</p>
-          <p class="dealer-time">${data.scheduledTime}</p>
+        <div class="dealership-name-schedule">
+          <p class="dealership-name">${data.dealerName}</p>
+          <p class="dealership-date">${data.scheduledDate}</p>
+          <p class="dealership-time">${data.scheduledTime}</p>
         </div>
-        <div class="dealer-email-contact">
-          <p class="dealer-email">${data.emailId}</p>
-          <p class="dealer-contact">${data.contact}</p>
+        <div class="dealership-email-contact">
+          <p class="dealership-email">${data.emailId}</p>
+          <p class="dealership-contact">${data.contact}</p>
         </div>
         ${data.primaryCta ? `<a href="#" class="primary-cta">${data.primaryCta}</a>` : ''}
         ${data.secondaryCta ? `<button class="cta-button secondary">${data.secondaryCta}</button>` : ''}
