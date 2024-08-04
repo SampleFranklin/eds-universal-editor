@@ -26,6 +26,7 @@ export default function decorate(block) {
         scheduledTime,
         contact,
         tab: 'showroom_visit' // Adjust as needed
+        
       };
     });
 
@@ -74,11 +75,15 @@ export default function decorate(block) {
       emailId: "mandi@competent-maruti.com",
       primaryCta: "Schedule a video call",
       secondaryCta: "Directions",
-      tab: "test_drive" // Correct tab for the third item
+      tab: "booked"
     },
   ];
 
   const dealership = getDealershipActivities();
+
+  // Debug: Log the parsed dealership activities and stubbed data
+  console.log('Dealership Activities:', dealership);
+  console.log('Stubbed Data:', stubbedData);
 
   // Function to generate HTML for cards based on filtered items
   function generateCardsHtml(items) {
@@ -160,7 +165,6 @@ export default function decorate(block) {
     const filteredItems = dealership.items.filter(item => item.tab === selectedTab);
     const filteredCardsHtml = generateCardsHtml(filteredItems);
 
-    // Update tab counts
     const selectedTabCount = filteredItems.length;
     const totalTabCount = {
       'showroom_visit': dealership.items.filter(item => item.tab === 'showroom_visit').length,
@@ -174,8 +178,8 @@ export default function decorate(block) {
       tab.innerHTML = `${dealership[`tabname${Object.keys(totalTabCount).indexOf(tabId) + 1}`]} (${totalTabCount[tabId]})`;
     });
 
-    // Update the count for the selected tab
-    event.target.innerHTML = `${dealership[`tabname${Object.keys(totalTabCount).indexOf(selectedTab) + 1}`]} (${selectedTabCount})`;
+    // Debug: Log the HTML being set for the selected tab
+    console.log('Filtered Cards HTML for Selected Tab:', filteredCardsHtml);
 
     block.querySelector('.list-container').innerHTML = filteredCardsHtml;
   }
