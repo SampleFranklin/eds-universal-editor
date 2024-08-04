@@ -67,8 +67,76 @@ export default function decorate(block) {
   ];
 
   const dealership = getDealershipActivities();
-    // Generate HTML for authoring items
-    const authoringItemsHtml = dealership.items.map(authoringItem => `
+
+  // Generate HTML for authoring items
+  const authoringItemsHtml = dealership.items.map(authoringItem => `
+    <div class="authoring-item">
+      <div class="dealer-name-schedule">
+        <p class="dealer-name">${authoringItem.dealerName}</p>
+        <p class="dealer-date">${authoringItem.scheduledDate}</p>
+        <p class="dealer-time">${authoringItem.scheduledTime}</p>
+      </div>
+      <div class="dealer-email-contact">
+        <p class="dealer-email">${authoringItem.emailId}</p>
+        <p class="dealer-contact">${authoringItem.contact}</p>
+      </div>
+    </div>
+  `).join('');
+
+  // Generate HTML for stubbed items
+  const stubbedItemsHtml = stubbedData.map(stubbedItem => `
+    <div class="stubbed-item">
+      ${stubbedItem.image ? `<div class="dealer-image"><picture><img src="${stubbedItem.image}" alt="Dealer Image"></picture></div>` : ''}
+      ${stubbedItem.description ? `<p class="dealer-description">${stubbedItem.description}</p>` : ''}
+      ${stubbedItem.primaryCta ? `<a href="#" class="primary-cta">${stubbedItem.primaryCta}</a>` : ''}
+      ${stubbedItem.secondaryCta ? `<button class="cta-button secondary">${stubbedItem.secondaryCta}</button>` : ''}
+      ${stubbedItem.dealerName ? `<p class="dealership-name">${stubbedItem.dealerName}</p>` : ''}
+      ${stubbedItem.emailId ? `<p class="dealership-emailid">${stubbedItem.emailId}</p>` : ''}
+      ${stubbedItem.scheduledDate ? `<p class="dealership-date">${stubbedItem.scheduledDate}</p>` : ''}
+      ${stubbedItem.scheduledTime ? `<p class="dealership-time">${stubbedItem.scheduledTime}</p>` : ''}
+      ${stubbedItem.contact ? `<p class="dealership-contact">${stubbedItem.contact}</p>` : ''}
+    </div>
+  `).join('');
+
+  // Combine the HTML for all items
+  const combinedItemsHtml = `
+    <div class="dealer-card">
+      ${authoringItemsHtml}
+      ${stubbedItemsHtml}
+    </div>
+  `;
+
+  // Count the actual number of cards being displayed
+  const actualCardCount = dealership.items.length + stubbedData.length;
+
+  block.innerHTML = utility.sanitizeHtml(`
+    <section class="dealer-activities">
+      <div class="dealership-activities-container">
+        <div class="dealership-activities__content">
+          <span class="dealership-activities__title">${dealership.title} (${actualCardCount})</span>
+          <p class="dealership-activities__subtitle">${dealership.subtitle}</p>
+          <div class="dealership-activities__tabs">
+            <p class="dealership-activities__tab active" id="showroom_visit">${dealership.tabname1} (${dealership.items.filter(item => item.tab === 'showroom_visit').length + stubbedData.filter(item => item.tab === 'showroom_visit').length})</p>
+            <p class="dealership-activities__tab" id="test_drive">${dealership.tabname2} (${dealership.items.filter(item => item.tab === 'test_drive').length + stubbedData.filter(item => item.tab === 'test_drive').length})</p>
+            <p class="dealership-activities__tab" id="booked">${dealership.tabname3} (${dealership.items.filter(item => item.tab === 'booked').length + stubbedData.filter(item => item.tab === 'booked').length})</p>
+          </div>
+        </div>
+        <div class="dealer-activities__items">
+          <ul class="list-container">
+            ${combinedItemsHtml}
+          </ul>
+        </div>
+      </div>
+    </section>
+  `);
+
+  function handleTabClick(event) {
+    const tabs = block.querySelectorAll('.dealership-activities__tab');
+    tabs.forEach(tab => tab.classList.remove('active'));
+    event.target.classList.add('active');
+
+    const selectedTab = event.target.id;
+    const filteredAuthoringItemsHtml = dealership.items.filter(item => item.tab === selectedTab).map(authoringItem => `
       <div class="authoring-item">
         <div class="dealer-name-schedule">
           <p class="dealer-name">${authoringItem.dealerName}</p>
@@ -81,9 +149,8 @@ export default function decorate(block) {
         </div>
       </div>
     `).join('');
-  
-    // Generate HTML for stubbed items
-    const stubbedItemsHtml = stubbedData.map(stubbedItem => `
+
+    const filteredStubbedItemsHtml = stubbedData.filter(item => item.tab === selectedTab).map(stubbedItem => `
       <div class="stubbed-item">
         ${stubbedItem.image ? `<div class="dealer-image"><picture><img src="${stubbedItem.image}" alt="Dealer Image"></picture></div>` : ''}
         ${stubbedItem.description ? `<p class="dealer-description">${stubbedItem.description}</p>` : ''}
@@ -96,83 +163,17 @@ export default function decorate(block) {
         ${stubbedItem.contact ? `<p class="dealership-contact">${stubbedItem.contact}</p>` : ''}
       </div>
     `).join('');
-  
-    // Combine the HTML for all items
+
     const combinedItemsHtml = `
       <div class="dealer-card">
-        ${authoringItemsHtml}
-        ${stubbedItemsHtml}
+        ${filteredAuthoringItemsHtml}
+        ${filteredStubbedItemsHtml}
       </div>
     `;
-  
-    // Count the actual number of cards being displayed
-    const actualCardCount = dealership.items.length + stubbedData.length;
-  
-    block.innerHTML = utility.sanitizeHtml(`
-      <section class="dealer-activities">
-        <div class="dealership-activities-container">
-          <div class="dealership-activities__content">
-            <span class="dealership-activities__title">${dealership.title} (${actualCardCount})</span>
-            <p class="dealership-activities__subtitle">${dealership.subtitle}</p>
-            <div class="dealership-activities__tabs">
-              <p class="dealership-activities__tab active" id="showroom_visit">${dealership.tabname1} (${dealership.items.filter(item => item.tab === 'showroom_visit').length})</p>
-              <p class="dealership-activities__tab" id="test_drive">${dealership.tabname2} (${dealership.items.filter(item => item.tab === 'test_drive').length})</p>
-              <p class="dealership-activities__tab" id="booked">${dealership.tabname3} (${dealership.items.filter(item => item.tab === 'booked').length})</p>
-            </div>
-          </div>
-          <div class="dealer-activities__items">
-            <ul class="list-container">
-              ${combinedItemsHtml}
-            </ul>
-          </div>
-        </div>
-      </section>
-    `);
-    function handleTabClick(event) {
-      const tabs = block.querySelectorAll('.dealership-activities__tab');
-      tabs.forEach(tab => tab.classList.remove('active'));
-      event.target.classList.add('active');
-  
-      const selectedTab = event.target.id;
-      const filteredAuthoringItemsHtml = dealership.items.filter(item => item.tab === selectedTab).map(authoringItem => `
-        <div class="authoring-item">
-          <div class="dealer-name-schedule">
-            <p class="dealer-name">${authoringItem.dealerName}</p>
-            <p class="dealer-date">${authoringItem.scheduledDate}</p>
-            <p class="dealer-time">${authoringItem.scheduledTime}</p>
-          </div>
-          <div class="dealer-email-contact">
-            <p class="dealer-email">${authoringItem.emailId}</p>
-            <p class="dealer-contact">${authoringItem.contact}</p>
-          </div>
-        </div>
-      `).join('');
-  
-      const filteredStubbedItemsHtml = stubbedData.filter(item => item.tab === selectedTab).map(stubbedItem => `
-        <div class="stubbed-item">
-          ${stubbedItem.image ? `<div class="dealer-image"><picture><img src="${stubbedItem.image}" alt="Dealer Image"></picture></div>` : ''}
-          ${stubbedItem.description ? `<p class="dealer-description">${stubbedItem.description}</p>` : ''}
-          ${stubbedItem.primaryCta ? `<a href="#" class="primary-cta">${stubbedItem.primaryCta}</a>` : ''}
-          ${stubbedItem.secondaryCta ? `<button class="cta-button secondary">${stubbedItem.secondaryCta}</button>` : ''}
-          ${stubbedItem.dealerName ? `<p class="dealership-name">${stubbedItem.dealerName}</p>` : ''}
-          ${stubbedItem.emailId ? `<p class="dealership-emailid">${stubbedItem.emailId}</p>` : ''}
-          ${stubbedItem.scheduledDate ? `<p class="dealership-date">${stubbedItem.scheduledDate}</p>` : ''}
-          ${stubbedItem.scheduledTime ? `<p class="dealership-time">${stubbedItem.scheduledTime}</p>` : ''}
-          ${stubbedItem.contact ? `<p class="dealership-contact">${stubbedItem.contact}</p>` : ''}
-        </div>
-      `).join('');
-  
-      const combinedItemsHtml = `
-        <div class="dealer-card">
-          ${filteredAuthoringItemsHtml}
-          ${filteredStubbedItemsHtml}
-        </div>
-      `;
-  
-      block.querySelector('.list-container').innerHTML = combinedItemsHtml;
-    }
-  
-    const tabs = block.querySelectorAll('.dealership-activities__tab');
-    tabs.forEach(tab => tab.addEventListener('click', handleTabClick));
+
+    block.querySelector('.list-container').innerHTML = combinedItemsHtml;
   }
-    
+
+  const tabs = block.querySelectorAll('.dealership-activities__tab');
+  tabs.forEach(tab => tab.addEventListener('click', handleTabClick));
+}
