@@ -104,15 +104,11 @@
  display: flex;
 padding: 24px 24px 32px 24px;
 justify-content: space-between;
-align-items: flex-end;
-align-self: stretch;
 background: var(--Tertiary-Light-grey, #F2F2F2);
 height: 250px;
 margin-bottom:60px;
 margin-top:48px;
-
-display: flex;
-    flex-direction: column;
+flex-direction: column;
     gap: 48px;
     overflow: scroll;
     overflow-x: hidden;
