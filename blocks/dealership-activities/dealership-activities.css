@@ -194,7 +194,7 @@ font-weight: 400;
 line-height: 20px; /* 142.857% */
 text-transform: uppercase;
 position: relative;
-left: 650px;
+left: 618px;
 bottom: 16px;
   }
 
@@ -309,8 +309,8 @@ padding: 4px 58px;
     height: 135px;
     mix-blend-mode: luminosity;
     position: relative;
-    top:260px;
-    right:700px;
+    top:330px;
+    right:300px;
   }
 
   .dealership-name {
