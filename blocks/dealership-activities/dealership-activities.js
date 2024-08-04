@@ -25,7 +25,7 @@ export default function decorate(block) {
         scheduledDate,
         scheduledTime,
         contact,
-        tab: 'showroom_visit' // This should be dynamic based on your logic
+        tab: 'booked' // This should be dynamic based on your logic
       };
     });
 
