@@ -1,45 +1,52 @@
-import { moveInstrumentation } from '../../scripts/scripts.js';
-import utility from '../../utility/utility.js';
+function getDealershipActivities() {
+  const [titleEl, subtitleEl, tabname1El, tabname2El, tabname3El, ...dealershipActivitiesItemEls] = block.children;
 
-export default function decorate(block) {
-  function getDealershipActivities() {
-    const [titleEl, subtitleEl, tabname1El, tabname2El, tabname3El, ...dealershipActivitiesItemEls] = block.children;
+  const title = titleEl?.textContent?.trim() || '';
+  const subtitle = subtitleEl?.textContent?.trim() || '';
+  const tabname1 = tabname1El?.textContent?.trim() || '';
+  const tabname2 = tabname2El?.textContent?.trim() || '';
+  const tabname3 = tabname3El?.textContent?.trim() || '';
 
-    const title = titleEl?.textContent?.trim() || '';
-    const subtitle = subtitleEl?.textContent?.trim() || '';
-    const tabname1 = tabname1El?.textContent?.trim() || '';
-    const tabname2 = tabname2El?.textContent?.trim() || '';
-    const tabname3 = tabname3El?.textContent?.trim() || '';
+  // Create a map for tabs
+  const tabMap = {
+    'showroom_visit': tabname1,
+    'test_drive': tabname2,
+    'booked': tabname3
+  };
 
-    const items = Array.from(dealershipActivitiesItemEls).map((itemEl) => {
-      const [dealerNameEl, emailIdEl, scheduledDateEl, scheduledTimeEl, contactEl] = itemEl.children;
-      const dealerName = dealerNameEl?.textContent?.trim() || '';
-      const emailId = emailIdEl?.textContent?.trim() || '';
-      const scheduledDate = scheduledDateEl?.textContent?.trim() || '';
-      const scheduledTime = scheduledTimeEl?.textContent?.trim() || '';
-      const contact = contactEl?.textContent?.trim() || '';
+  const items = Array.from(dealershipActivitiesItemEls).map((itemEl) => {
+    const [dealerNameEl, emailIdEl, scheduledDateEl, scheduledTimeEl, contactEl] = itemEl.children;
+    const dealerName = dealerNameEl?.textContent?.trim() || '';
+    const emailId = emailIdEl?.textContent?.trim() || '';
+    const scheduledDate = scheduledDateEl?.textContent?.trim() || '';
+    const scheduledTime = scheduledTimeEl?.textContent?.trim() || '';
+    const contact = contactEl?.textContent?.trim() || '';
 
-      return {
-        dealerName,
-        emailId,
-        scheduledDate,
-        scheduledTime,
-        contact,
-        tabname1: 'showroom_visit',
-        tabname2:'test_drive', // This should be dynamic based on your logic
-        tabename3:'booked'
-      };
-    });
+    // Determine tab for each item based on its content or some other logic
+    // For this example, let's assume a static tab assignment for demonstration
+    const tab = 'showroom_visit'; // Default value, adjust based on your logic
 
     return {
-      title,
-      subtitle,
-      tabname1,
-      tabname2,
-      tabname3,
-      items,
+      dealerName,
+      emailId,
+      scheduledDate,
+      scheduledTime,
+      contact,
+      tab
     };
-  }
+  });
+
+  return {
+    title,
+    subtitle,
+    tabname1,
+    tabname2,
+    tabname3,
+    items,
+    tabMap
+  };
+}
+
 
   const stubbedData = [
     {
