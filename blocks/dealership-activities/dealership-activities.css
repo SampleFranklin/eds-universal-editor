@@ -104,14 +104,13 @@
  display: flex;
 padding: 24px 24px 32px 24px;
 justify-content: space-between;
+align-items: flex-end;
+align-self: stretch;
 background: var(--Tertiary-Light-grey, #F2F2F2);
 height: 250px;
 margin-bottom:60px;
-margin-top:48px;
-flex-direction: column;
-    gap: 48px;
-    overflow: scroll;
-    overflow-x: hidden;
+margin-top:72px;
+overflow: scroll;
   }
 
   .list-container {
@@ -387,4 +386,28 @@ left: 143px;
     top: 14px;
   }
 
+  .scrollable-wrapper {
+    position: relative;
+    height: 600px; /* Adjust as needed */
+    overflow-y: scroll; /* Enable vertical scrolling */
+    padding-right: 15px; /* Space for scrollbar */
+  }
+  
+  .scrollable-wrapper::-webkit-scrollbar {
+    width: 12px; /* Adjust width */
+  }
+  
+  .scrollable-wrapper::-webkit-scrollbar-thumb {
+    background: #888; /* Scrollbar color */
+    border-radius: 6px; /* Rounded corners */
+  }
+  
+  .scrollable-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color on hover */
+  }
+  
+  .scrollable-wrapper {
+    scrollbar-width: thin; /* Thinner scrollbar */
+    scrollbar-color: #888 #f1f1f1; /* Scrollbar thumb and track color */
+  }
   

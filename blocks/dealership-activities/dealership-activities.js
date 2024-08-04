@@ -136,20 +136,24 @@ export default function decorate(block) {
 
     block.innerHTML = utility.sanitizeHtml(`
       <section class="dealer-activities">
+
         <div class="dealership-activities-container">
           <div class="dealership-activities__content">
             <span class="dealership-activities__title">${dealership.title} (${totalCount})</span>
             <p class="dealership-activities__subtitle">${dealership.subtitle}</p>
+            x
             <div class="dealership-activities__tabs">
               <p class="dealership-activities__tab active" id="showroom_visit">${dealership.tabname1} (${showroomVisitCount})</p>
               <p class="dealership-activities__tab" id="test_drive">${dealership.tabname2} (${testDriveCount})</p>
               <p class="dealership-activities__tab" id="booked">${dealership.tabname3} (${bookedCount})</p>
             </div>
           </div>
+          <div class="scrollable-wrapper">
           <div class="dealer-activities__items">
             <ul class="list-container">
               ${generateCardsHtml(dealership.items)}
             </ul>
+            </div>
           </div>
         </div>
       </section>
