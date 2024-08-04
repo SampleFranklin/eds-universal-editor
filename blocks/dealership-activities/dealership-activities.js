@@ -68,19 +68,25 @@ export default function decorate(block) {
 
   const dealership = getDealershipActivities();
 
-  // Separate authoring items and stubbed items
-  const authoringItems = dealership.items;
-  const stubbedItems = stubbedData.filter(stub =>
-    !dealership.items.some(item =>
-      item.dealerName === stub.dealerName &&
-      item.scheduledDate === stub.scheduledDate &&
-      item.scheduledTime === stub.scheduledTime
-    )
-  );
+  // Combine authoring items and stubbed items
+  const combinedItems = dealership.items.map(authoringItem => {
+    const stubbedItem = stubbedData.find(stub => 
+      stub.dealerName === authoringItem.dealerName &&
+      stub.scheduledDate === authoringItem.scheduledDate &&
+      stub.scheduledTime === authoringItem.scheduledTime
+    );
 
-  // Generate HTML for authoring items
-  const authoringItemsHtml = authoringItems.map(data => `
-    <div class="dealer-card authoring-item">
+    return {
+      ...authoringItem,
+      ...stubbedItem
+    };
+  });
+
+  // Generate HTML for combined items
+  const combinedItemsHtml = combinedItems.map(data => `
+    <div class="dealer-card">
+      ${data.image ? `<div class="dealer-image"><picture><img src="${data.image}" alt="Dealer Image"></picture></div>` : ''}
+      ${data.description ? `<p class="dealer-description">${data.description}</p>` : ''}
       <div class="dealer-name-schedule">
         <p class="dealer-name">${data.dealerName}</p>
         <p class="dealer-date">${data.scheduledDate}</p>
@@ -89,23 +95,6 @@ export default function decorate(block) {
       <div class="dealer-email-contact">
         <p class="dealer-email">${data.emailId}</p>
         <p class="dealer-contact">${data.contact}</p>
-      </div>
-    </div>
-  `).join('');
-
-  // Generate HTML for stubbed items
-  const stubbedItemsHtml = stubbedItems.map(data => `
-    <div class="dealer-card stubbed-item">
-      ${data.image ? `<div class="dealer-image"><picture><img src="${data.image}" alt="Dealer Image"></picture></div>` : ''}
-      ${data.description ? `<p class="dealer-description">${data.description}</p>` : ''}
-      <div class="dealer-stubbed-items">
-        <p class="dealership-name">${data.dealerName}</p>
-        <p class="dealership-date">${data.scheduledDate}</p>
-        <p class="dealership-time">${data.scheduledTime}</p>
-      </div>
-      <div class="dealership-email-contact">
-        <p class="dealership-email">${data.emailId}</p>
-        <p class="dealership-contact">${data.contact}</p>
       </div>
       ${data.primaryCta ? `<a href="#" class="primary-cta">${data.primaryCta}</a>` : ''}
       ${data.secondaryCta ? `<button class="cta-button secondary">${data.secondaryCta}</button>` : ''}
@@ -116,18 +105,17 @@ export default function decorate(block) {
     <section class="dealer-activities">
       <div class="dealership-activities-container">
         <div class="dealership-activities__content">
-          <span class="dealership-activities__title">${dealership.title} (${authoringItems.length + stubbedItems.length})</span>
+          <span class="dealership-activities__title">${dealership.title} (${combinedItems.length})</span>
           <p class="dealership-activities__subtitle">${dealership.subtitle}</p>
           <div class="dealership-activities__tabs">
-            <p class="dealership-activities__tab active" id="showroom_visit">${dealership.tabname1} (${authoringItems.filter(item => item.tab === 'showroom_visit').length + stubbedItems.filter(item => item.tab === 'showroom_visit').length})</p>
-            <p class="dealership-activities__tab" id="test_drive">${dealership.tabname2} (${authoringItems.filter(item => item.tab === 'test_drive').length + stubbedItems.filter(item => item.tab === 'test_drive').length})</p>
-            <p class="dealership-activities__tab" id="booked">${dealership.tabname3} (${authoringItems.filter(item => item.tab === 'booked').length + stubbedItems.filter(item => item.tab === 'booked').length})</p>
+            <p class="dealership-activities__tab active" id="showroom_visit">${dealership.tabname1} (${combinedItems.filter(item => item.tab === 'showroom_visit').length})</p>
+            <p class="dealership-activities__tab" id="test_drive">${dealership.tabname2} (${combinedItems.filter(item => item.tab === 'test_drive').length})</p>
+            <p class="dealership-activities__tab" id="booked">${dealership.tabname3} (${combinedItems.filter(item => item.tab === 'booked').length})</p>
           </div>
         </div>
         <div class="dealer-activities__items">
           <ul class="list-container">
-            ${authoringItemsHtml}
-            ${stubbedItemsHtml}
+            ${combinedItemsHtml}
           </ul>
         </div>
       </div>
@@ -140,8 +128,10 @@ export default function decorate(block) {
     event.target.classList.add('active');
 
     const selectedTab = event.target.id;
-    const filteredAuthoringItemsHtml = authoringItems.filter(item => item.tab === selectedTab).map(data => `
-      <div class="dealer-card authoring-item">
+    const filteredItemsHtml = combinedItems.filter(item => item.tab === selectedTab).map(data => `
+      <div class="dealer-card">
+        ${data.image ? `<div class="dealer-image"><picture><img src="${data.image}" alt="Dealer Image"></picture></div>` : ''}
+        ${data.description ? `<p class="dealer-description">${data.description}</p>` : ''}
         <div class="dealer-name-schedule">
           <p class="dealer-name">${data.dealerName}</p>
           <p class="dealer-date">${data.scheduledDate}</p>
@@ -151,28 +141,12 @@ export default function decorate(block) {
           <p class="dealer-email">${data.emailId}</p>
           <p class="dealer-contact">${data.contact}</p>
         </div>
-      </div>
-    `).join('');
-
-    const filteredStubbedItemsHtml = stubbedItems.filter(item => item.tab === selectedTab).map(data => `
-      <div class="dealer-card stubbed-item">
-        ${data.image ? `<div class="dealer-image"><picture><img src="${data.image}" alt="Dealer Image"></picture></div>` : ''}
-        ${data.description ? `<p class="dealer-description">${data.description}</p>` : ''}
-        <div class="dealership-name-schedule">
-          <p class="dealership-name">${data.dealerName}</p>
-          <p class="dealership-date">${data.scheduledDate}</p>
-          <p class="dealership-time">${data.scheduledTime}</p>
-        </div>
-        <div class="dealership-email-contact">
-          <p class="dealership-email">${data.emailId}</p>
-          <p class="dealership-contact">${data.contact}</p>
-        </div>
         ${data.primaryCta ? `<a href="#" class="primary-cta">${data.primaryCta}</a>` : ''}
         ${data.secondaryCta ? `<button class="cta-button secondary">${data.secondaryCta}</button>` : ''}
       </div>
     `).join('');
 
-    block.querySelector('.list-container').innerHTML = filteredAuthoringItemsHtml + filteredStubbedItemsHtml;
+    block.querySelector('.list-container').innerHTML = filteredItemsHtml;
   }
 
   const tabs = block.querySelectorAll('.dealership-activities__tab');
