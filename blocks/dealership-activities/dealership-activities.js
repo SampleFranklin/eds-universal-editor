@@ -25,8 +25,7 @@ export default function decorate(block) {
         scheduledDate,
         scheduledTime,
         contact,
-        tab: 'showroom_visit' // Adjust as needed
-        
+        tab: 'showroom_visit' // This should be dynamic based on your logic
       };
     });
 
@@ -87,19 +86,20 @@ export default function decorate(block) {
 
   // Function to generate HTML for cards based on filtered items
   function generateCardsHtml(items) {
-    return items.map((authoringItem, index) => {
-      const stubbedItem = stubbedData[index];
+    return items.map((item, index) => {
+      const stubbedItem = stubbedData.find(stub => stub.tab === item.tab);
+      if (!stubbedItem) return ''; // Skip if no corresponding stubbed data
       return `
-        <div class="dealer-card" data-tab="${stubbedItem.tab}">
+        <div class="dealer-card" data-tab="${item.tab}">
           <div class="authoring-item">
             <div class="dealer-name-schedule">
-              <p class="dealer-name">${authoringItem.dealerName}</p>
-              <p class="dealer-date">${authoringItem.scheduledDate}</p>
-              <p class="dealer-time">${authoringItem.scheduledTime}</p>
+              <p class="dealer-name">${item.dealerName}</p>
+              <p class="dealer-date">${item.scheduledDate}</p>
+              <p class="dealer-time">${item.scheduledTime}</p>
             </div>
             <div class="dealer-email-contact">
-              <p class="dealer-email">${authoringItem.emailId}</p>
-              <p class="dealer-contact">${authoringItem.contact}</p>
+              <p class="dealer-email">${item.emailId}</p>
+              <p class="dealer-contact">${item.contact}</p>
             </div>
           </div>
           <div class="stubbed-item">
