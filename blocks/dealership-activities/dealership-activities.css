@@ -1,6 +1,7 @@
 .dealership-activities-container {
   background: var(--tertiary-white, #FFF);
   padding: 32px;
+  padding-right: 20px;
 }
 
 /* stylelint-disable-next-line selector-class-pattern */
@@ -388,7 +389,7 @@ left: 143px;
 
   .scrollable-wrapper {
     position: relative;
-    overflow-y: scroll; /* Enable vertical scrolling */
+    
     height: 600px; /* Adjust as needed */
     padding-right: 20px; /* Space for scrollbar line */
     box-sizing: content-box; /* Ensure padding does not affect width calculation */
