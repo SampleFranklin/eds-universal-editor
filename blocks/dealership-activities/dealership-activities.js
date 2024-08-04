@@ -86,19 +86,22 @@ export default function decorate(block) {
 
   // Function to generate HTML for cards based on filtered items
   function generateCardsHtml(items) {
-    return items.map((authoringItem, index) => {
-      const stubbedItem = stubbedData[index];
+    return items.map((item) => {
+      // Find the corresponding stubbed item for the current authoring item
+      const stubbedItem = stubbedData.find(stub => stub.emailId === item.emailId && stub.scheduledDate === item.scheduledDate);
+      if (!stubbedItem) return '';
+
       return `
         <div class="dealer-card" data-tab="${stubbedItem.tab}">
           <div class="authoring-item">
             <div class="dealer-name-schedule">
-              <p class="dealer-name">${authoringItem.dealerName}</p>
-              <p class="dealer-date">${authoringItem.scheduledDate}</p>
-              <p class="dealer-time">${authoringItem.scheduledTime}</p>
+              <p class="dealer-name">${item.dealerName}</p>
+              <p class="dealer-date">${item.scheduledDate}</p>
+              <p class="dealer-time">${item.scheduledTime}</p>
             </div>
             <div class="dealer-email-contact">
-              <p class="dealer-email">${authoringItem.emailId}</p>
-              <p class="dealer-contact">${authoringItem.contact}</p>
+              <p class="dealer-email">${item.emailId}</p>
+              <p class="dealer-contact">${item.contact}</p>
             </div>
           </div>
           <div class="stubbed-item">
@@ -171,16 +174,18 @@ export default function decorate(block) {
       'booked': dealership.items.filter(item => item.tab === 'booked').length,
     };
 
-    // Update the count for each tab
-    tabs.forEach(tab => {
-      const tabId = tab.id;
-      tab.innerHTML = `${dealership[`tabname${Object.keys(totalTabCount).indexOf(tabId) + 1}`]} (${totalTabCount[tabId]})`;
-    });
-
-    // Debug: Log the HTML being set for the selected tab
     console.log('Filtered Cards HTML for Selected Tab:', filteredCardsHtml);
 
     block.querySelector('.list-container').innerHTML = filteredCardsHtml;
+
+    // Update tab counts
+    tabs.forEach(tab => {
+      const tabId = tab.id;
+      const countSpan = tab.querySelector('span');
+      if (countSpan) {
+        countSpan.textContent = `${dealership.tabname1} (${totalTabCount[tabId] || 0})`;
+      }
+    });
   }
 
   const tabs = block.querySelectorAll('.dealership-activities__tab');
