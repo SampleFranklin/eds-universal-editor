@@ -74,38 +74,46 @@ export default function decorate(block) {
       emailId: "mandi@competent-maruti.com",
       primaryCta: "Schedule a video call",
       secondaryCta: "Directions",
-      tab: "booked" // Correct tab for the third item
+      tab: "test_drive" // Correct tab for the third item
     },
   ];
 
   const dealership = getDealershipActivities();
 
+  // Function to generate HTML for cards based on filtered items
   function generateCardsHtml(items) {
-    return items.map((item) => {
+    return items.map((authoringItem, index) => {
+      const stubbedItem = stubbedData[index];
       return `
-        <div class="dealer-card" data-tab="${item.tab}">
-          <div class="dealership-activities-item">
+        <div class="dealer-card" data-tab="${stubbedItem.tab}">
+          <div class="authoring-item">
             <div class="dealer-name-schedule">
-              <p class="dealer-name">${item.dealerName}</p>
-              <p class="dealer-date">${item.scheduledDate}</p>
-              <p class="dealer-time">${item.scheduledTime}</p>
+              <p class="dealer-name">${authoringItem.dealerName}</p>
+              <p class="dealer-date">${authoringItem.scheduledDate}</p>
+              <p class="dealer-time">${authoringItem.scheduledTime}</p>
             </div>
             <div class="dealer-email-contact">
-              <p class="dealer-email">${item.emailId}</p>
-              <p class="dealer-contact">${item.contact}</p>
+              <p class="dealer-email">${authoringItem.emailId}</p>
+              <p class="dealer-contact">${authoringItem.contact}</p>
             </div>
           </div>
           <div class="stubbed-item">
-            ${item.image ? `<div class="dealer-image"><picture><img src="${item.image}" alt="Dealer Image"></picture></div>` : ''}
-            ${item.description ? `<p class="dealer-description">${item.description}</p>` : ''}
-            ${item.primaryCta ? `<a href="#" class="primary-cta">${item.primaryCta}</a>` : ''}
-            ${item.secondaryCta ? `<button class="cta-button secondary">${item.secondaryCta}</button>` : ''}
+            ${stubbedItem.image ? `<div class="dealer-image"><picture><img src="${stubbedItem.image}" alt="Dealer Image"></picture></div>` : ''}
+            ${stubbedItem.description ? `<p class="dealer-description">${stubbedItem.description}</p>` : ''}
+            ${stubbedItem.primaryCta ? `<a href="#" class="primary-cta">${stubbedItem.primaryCta}</a>` : ''}
+            ${stubbedItem.secondaryCta ? `<button class="cta-button secondary">${stubbedItem.secondaryCta}</button>` : ''}
+            ${stubbedItem.dealerName ? `<p class="dealership-name">${stubbedItem.dealerName}</p>` : ''}
+            ${stubbedItem.emailId ? `<p class="dealership-emailid">${stubbedItem.emailId}</p>` : ''}
+            ${stubbedItem.scheduledDate ? `<p class="dealership-date">${stubbedItem.scheduledDate}</p>` : ''}
+            ${stubbedItem.scheduledTime ? `<p class="dealership-time">${stubbedItem.scheduledTime}</p>` : ''}
+            ${stubbedItem.contact ? `<p class="dealership-contact">${stubbedItem.contact}</p>` : ''}
           </div>
         </div>
       `;
     }).join('');
   }
 
+  // Initial render
   function renderInitialContent() {
     const totalCount = dealership.items.length;
     const showroomVisitCount = dealership.items.filter(item => item.tab === 'showroom_visit').length;
@@ -134,12 +142,13 @@ export default function decorate(block) {
     `);
   }
 
+  // Call initial render
   renderInitialContent();
 
-  // Apply moveInstrumentation to elements with class .dealership-activities-item
-  const activitiesItems = block.querySelectorAll('.dealership-activities-item');
-  activitiesItems.forEach(item => moveInstrumentation(item, {
-    allowedTypes: ['dealership-activities-item']
+  // Add move instrumentation to authoring items only
+  const authoringItems = block.querySelectorAll('.authoring-item');
+  authoringItems.forEach(item => moveInstrumentation(item, {
+    allowedTypes: ['authoring-item']
   }));
 
   function handleTabClick(event) {
@@ -151,6 +160,7 @@ export default function decorate(block) {
     const filteredItems = dealership.items.filter(item => item.tab === selectedTab);
     const filteredCardsHtml = generateCardsHtml(filteredItems);
 
+    // Update tab counts
     const selectedTabCount = filteredItems.length;
     const totalTabCount = {
       'showroom_visit': dealership.items.filter(item => item.tab === 'showroom_visit').length,
@@ -158,11 +168,13 @@ export default function decorate(block) {
       'booked': dealership.items.filter(item => item.tab === 'booked').length,
     };
 
+    // Update the count for each tab
     tabs.forEach(tab => {
       const tabId = tab.id;
       tab.innerHTML = `${dealership[`tabname${Object.keys(totalTabCount).indexOf(tabId) + 1}`]} (${totalTabCount[tabId]})`;
     });
 
+    // Update the count for the selected tab
     event.target.innerHTML = `${dealership[`tabname${Object.keys(totalTabCount).indexOf(selectedTab) + 1}`]} (${selectedTabCount})`;
 
     block.querySelector('.list-container').innerHTML = filteredCardsHtml;
