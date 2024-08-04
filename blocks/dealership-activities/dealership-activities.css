@@ -311,6 +311,61 @@ position: relative;
     bottom: 670px;
   }
 
+  .dealership-name {
+    color: var(--Primary-Main, #18171A);
+
+/* Desktop/Body/Large/Medium */
+font-family: "Fira Sans";
+font-size: 18px;
+font-style: normal;
+font-weight: 500;
+line-height: 24px; /* 133.333% */
+  }
+  .dealership-emailid {
+    color: var(--Tertiary-Deep-Grey, #767879);
+
+    /* Desktop/Body/Medium/Regular */
+    font-family: "Fira Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 125% */
+
+  }
+  
+  .dealership-date {
+    color: var(--Primary-Main, #18171A);
+
+/* Desktop/Body/Large/Medium */
+font-family: "Fira Sans";
+font-size: 18px;
+font-style: normal;
+font-weight: 500;
+line-height: 24px; /* 133.333% */
+  }
+
+  .dealership-time {
+    color: var(--Primary-Main, #18171A);
+
+/* Desktop/Body/Large/Medium */
+font-family: "Fira Sans";
+font-size: 18px;
+font-style: normal;
+font-weight: 500;
+line-height: 24px; /* 133.333% */
+  }
+
+  .dealership-contact {
+    color: var(--Tertiary-Deep-Grey, #767879);
+
+    /* Desktop/Body/Medium/Regular */
+    font-family: "Fira Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 125% */
+  }
+
   
   
 
