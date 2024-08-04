@@ -157,33 +157,20 @@ export default function decorate(block) {
   }));
 
   function handleTabClick(event) {
-    const tabs = block.querySelectorAll('.dealership-activities__tab');
-    tabs.forEach(tab => tab.classList.remove('active'));
-    event.target.classList.add('active');
-
-    const selectedTab = event.target.id;
-    const filteredItems = dealership.items.filter(item => item.tab === selectedTab);
-    const filteredCardsHtml = generateCardsHtml(filteredItems);
-
-    const selectedTabCount = filteredItems.length;
-    const totalTabCount = {
-      'showroom_visit': dealership.items.filter(item => item.tab === 'showroom_visit').length,
-      'test_drive': dealership.items.filter(item => item.tab === 'test_drive').length,
-      'booked': dealership.items.filter(item => item.tab === 'booked').length,
-    };
-
-    // Update the count for each tab
-    tabs.forEach(tab => {
-      const tabId = tab.id;
-      tab.innerHTML = `${dealership[`tabname${Object.keys(totalTabCount).indexOf(tabId) + 1}`]} (${totalTabCount[tabId]})`;
+    const tabName = event.target.getAttribute('data-tab');
+    const filteredItems = dealership.items
+      .filter(item => {
+        const stubbedItem = stubbedData.find(stub => stub.emailId === item.emailId && stub.scheduledDate === item.scheduledDate);
+        return stubbedItem && stubbedItem.tab === tabName;
+      })
+      .concat(stubbedData.filter(stub => stub.tab === tabName)); // Include stubbed items
+  
+    const cardsHtml = generateCardsHtml(filteredItems);
+    document.querySelector('.cards').innerHTML = cardsHtml;
+  
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.classList.remove('active');
     });
-
-    // Debug: Log the HTML being set for the selected tab
-    console.log('Filtered Cards HTML for Selected Tab:', filteredCardsHtml);
-
-    block.querySelector('.list-container').innerHTML = filteredCardsHtml;
+    event.target.classList.add('active');
   }
-
-  const tabs = block.querySelectorAll('.dealership-activities__tab');
-  tabs.forEach(tab => tab.addEventListener('click', handleTabClick));
-}
+}  
