@@ -97,7 +97,8 @@
     /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
     font-family: "Fira Sans";
     width: 100%;
-    align-self: stretch
+    align-self: stretch;
+    background-size: cover;
   }
   .dealer-card {
  display: flex;
