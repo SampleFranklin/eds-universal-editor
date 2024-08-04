@@ -157,20 +157,39 @@ export default function decorate(block) {
   }));
 
   function handleTabClick(event) {
-    const tabName = event.target.getAttribute('data-tab');
-    const filteredItems = dealership.items
-      .filter(item => {
-        const stubbedItem = stubbedData.find(stub => stub.emailId === item.emailId && stub.scheduledDate === item.scheduledDate);
-        return stubbedItem && stubbedItem.tab === tabName;
-      })
-      .concat(stubbedData.filter(stub => stub.tab === tabName)); // Include stubbed items
+    const selectedTab = event.target.getAttribute('data-tab');
+    
+    // Filter items based on the selected tab
+    const filteredItems = stubbedData.filter(item => item.tab === selectedTab);
+    
+    // Generate HTML for filtered cards
+    const cardsHtml = filteredItems.map(item => `
+      <div class="dealer-card">
+        <div class="dealer-image"><picture><img src="${item.image}" alt="Dealer Image"></picture></div>
+        <p class="dealer-description">${item.description}</p>
+        <a href="#" class="primary-cta">${item.primaryCta}</a>
+        <button class="cta-button secondary">${item.secondaryCta}</button>
+        <p class="dealership-name">${item.dealerName}</p>
+        <p class="dealership-emailid">${item.emailId}</p>
+        <p class="dealership-date">${item.scheduledDate}</p>
+        <p class="dealership-time">${item.scheduledTime}</p>
+        <p class="dealership-contact">${item.contact}</p>
+      </div>
+    `).join('');
   
-    const cardsHtml = generateCardsHtml(filteredItems);
+    // Set HTML content for cards container
     document.querySelector('.cards').innerHTML = cardsHtml;
   
-    document.querySelectorAll('.tab').forEach(tab => {
-      tab.classList.remove('active');
-    });
+    // Update active tab
+    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
     event.target.classList.add('active');
   }
+<div class="dealership-activities__tabs">
+  <button class="tab" data-tab="showroom_visit">Showroom Visit</button>
+  <button class="tab" data-tab="test_drive">Test Drive</button>
+  <button class="tab" data-tab="booked">Booked</button>
+</div>
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', handleTabClick);
+});
 }  
