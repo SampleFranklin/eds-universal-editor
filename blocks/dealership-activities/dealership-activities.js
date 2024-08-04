@@ -87,7 +87,7 @@ export default function decorate(block) {
             ${stubbedItem.description ? `<p class="dealer-description">${stubbedItem.description}</p>` : ''}
             ${stubbedItem.primaryCta ? `<a href="#" class="primary-cta">${stubbedItem.primaryCta}</a>` : ''}
             ${stubbedItem.secondaryCta ? `<button class="cta-button secondary">${stubbedItem.secondaryCta}</button>` : ''}
-          </div>` : ''}
+          </div>` : '<p>Stubbed item not found</p>'}
         <div class="authoring-item">
           <div class="dealer-name-schedule">
             <p class="dealer-name">${authoringItem.dealerName}</p>
@@ -151,7 +151,7 @@ export default function decorate(block) {
               ${stubbedItem.description ? `<p class="dealer-description">${stubbedItem.description}</p>` : ''}
               ${stubbedItem.primaryCta ? `<a href="#" class="primary-cta">${stubbedItem.primaryCta}</a>` : ''}
               ${stubbedItem.secondaryCta ? `<button class="cta-button secondary">${stubbedItem.secondaryCta}</button>` : ''}
-            </div>` : ''}
+            </div>` : '<p>Stubbed item not found</p>'}
           <div class="authoring-item">
             <div class="dealer-name-schedule">
               <p class="dealer-name">${authoringItem.dealerName}</p>
