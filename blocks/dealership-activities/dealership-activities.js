@@ -25,6 +25,7 @@ export default function decorate(block) {
       const scheduledTime = scheduledTimeEl?.textContent?.trim() || '';
       const contact = contactEl?.textContent?.trim() || '';
 
+      // Determine tab for each item based on a data attribute or content
       const tab = itemEl.dataset.tab || 'showroom_visit'; // Example: Use data attribute
 
       return {
@@ -78,34 +79,24 @@ export default function decorate(block) {
       image: "/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png",
       description: "Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R",
       scheduledTime: "14:30PM",
-      scheduledDate: "13th Jun, 2024",
+      scheduledDate: "14th Jun, 2024",
       contact: "9931242213",
       emailId: "mandi@competent-maruti.com",
       primaryCta: "Schedule a video call",
-      secondaryCta: "Directions",
+      secondaryCta: "reschedule",
       tab: "booked"
     },
   ];
-
-  // Create a map from tab to stubbed data
-  const stubbedDataMap = stubbedData.reduce((map, item) => {
-    if (!map[item.tab]) {
-      map[item.tab] = [];
-    }
-    map[item.tab].push(item);
-    return map;
-  }, {});
 
   const dealership = getDealershipActivities();
 
   // Debug: Log the parsed dealership activities and stubbed data
   console.log('Dealership Activities:', dealership);
-  console.log('Stubbed Data Map:', stubbedDataMap);
+  console.log('Stubbed Data:', stubbedData);
 
   function generateCardsHtml(items) {
     return items.map((item) => {
-      const stubbedItems = stubbedDataMap[item.tab] || [];
-      const stubbedItem = stubbedItems.find(stub => stub.dealerName === item.dealerName); // Example match
+      const stubbedItem = stubbedData.find(stub => stub.tab === item.tab);
       if (!stubbedItem) return ''; // Skip if no corresponding stubbed data
 
       return `
@@ -181,13 +172,13 @@ export default function decorate(block) {
     const filteredItems = dealership.items.filter(item => item.tab === selectedTab);
     const filteredCardsHtml = generateCardsHtml(filteredItems);
 
-    const selectedTabCount = filteredItems.length;
     const totalTabCount = {
       'showroom_visit': dealership.items.filter(item => item.tab === 'showroom_visit').length,
       'test_drive': dealership.items.filter(item => item.tab === 'test_drive').length,
       'booked': dealership.items.filter(item => item.tab === 'booked').length,
     };
 
+    // Update the count for each tab
     tabs.forEach(tab => {
       const tabId = tab.id;
       tab.innerHTML = `${dealership.tabMap[tabId]} (${totalTabCount[tabId]})`;
