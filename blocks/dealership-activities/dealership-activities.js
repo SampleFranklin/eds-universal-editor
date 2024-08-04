@@ -148,12 +148,12 @@ export default function decorate(block) {
               <p class="dealership-activities__tab" id="booked">${dealership.tabname3} (${bookedCount})</p>
             </div>
           </div>
-          <div class="scrollable-wrapper">
+          
           <div class="dealer-activities__items">
             <ul class="list-container">
               ${generateCardsHtml(dealership.items)}
             </ul>
-            </div>
+            
           </div>
         </div>
       </section>
