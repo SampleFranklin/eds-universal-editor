@@ -68,6 +68,10 @@ export default function decorate(block) {
 
   const dealership = getDealershipActivities();
 
+  // Debug: Log the parsed dealership activities and stubbed data
+  console.log('Dealership Activities:', dealership);
+  console.log('Stubbed Data:', stubbedData);
+
   // Generate HTML for authoring items
   const authoringItemsHtml = dealership.items.map(authoringItem => `
     <div class="authoring-item">
@@ -105,6 +109,9 @@ export default function decorate(block) {
       ${stubbedItemsHtml}
     </div>
   `;
+
+  // Debug: Log the generated HTML for verification
+  console.log('Combined Items HTML:', combinedItemsHtml);
 
   // Count the actual number of cards being displayed
   const actualCardCount = dealership.items.length + stubbedData.length;
@@ -170,6 +177,9 @@ export default function decorate(block) {
         ${filteredStubbedItemsHtml}
       </div>
     `;
+
+    // Debug: Log the HTML being set for the selected tab
+    console.log('Combined Items HTML for Selected Tab:', combinedItemsHtml);
 
     block.querySelector('.list-container').innerHTML = combinedItemsHtml;
   }
