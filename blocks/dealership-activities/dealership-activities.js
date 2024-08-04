@@ -88,7 +88,7 @@ export default function decorate(block) {
   const cardsHtml = dealership.items.map((authoringItem, index) => {
     const stubbedItem = stubbedData[index];
     return `
-      <div class="dealer-card">
+      <div class="dealer-card" data-tab="${authoringItem.tab}">
         <div class="authoring-item">
           <div class="dealer-name-schedule">
             <p class="dealer-name">${authoringItem.dealerName}</p>
@@ -155,7 +155,7 @@ export default function decorate(block) {
       const stubbedItem = stubbedData[index];
       if (authoringItem.tab === selectedTab || stubbedItem.tab === selectedTab) {
         return `
-          <div class="dealer-card">
+          <div class="dealer-card" data-tab="${authoringItem.tab}">
             <div class="authoring-item">
               <div class="dealer-name-schedule">
                 <p class="dealer-name">${authoringItem.dealerName}</p>
