@@ -81,7 +81,6 @@
   }
   .dealer-description {
     color: #000;
-    top: 502px;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -91,9 +90,14 @@
     align-items: center;
     gap: 4px;
     background: var(--Gradients-Gradient-1, linear-gradient(60deg, #C9D3D7 3.71%, #EBEBEB 104.51%));
-    position: absolute;
+    position: relative;
     justify-content: center; /* Center the description horizontally */
     left: 63px;
+    top: 335px;
+    /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+    font-family: "Fira Sans";
+    width: 100%;
+    align-self: stretch
   }
   .dealer-card {
  display: flex;
@@ -281,6 +285,14 @@ position: relative;
     right: 10px;
     align-items: stretch;
     width: 200px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+
+
+padding: 4px 58px;
 
   }
   
