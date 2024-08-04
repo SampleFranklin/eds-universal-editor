@@ -89,6 +89,7 @@ export default function decorate(block) {
         ${stubbedItem.description ? `<p class="dealer-description">${stubbedItem.description}</p>` : ''}
         ${stubbedItem.primaryCta ? `<a href="#" class="primary-cta">${stubbedItem.primaryCta}</a>` : ''}
         ${stubbedItem.secondaryCta ? `<button class="cta-button secondary">${stubbedItem.secondaryCta}</button>` : ''}
+        ${stubbedItem.dealerName ? `<p class="dealership-name">${stubbedItem.dealerName}</p>` : ''}
       </div>
     `).join('');
   
@@ -149,6 +150,7 @@ export default function decorate(block) {
           ${stubbedItem.description ? `<p class="dealer-description">${stubbedItem.description}</p>` : ''}
           ${stubbedItem.primaryCta ? `<a href="#" class="primary-cta">${stubbedItem.primaryCta}</a>` : ''}
           ${stubbedItem.secondaryCta ? `<button class="cta-button secondary">${stubbedItem.secondaryCta}</button>` : ''}
+          ${stubbedItem.dealerName ? `<p class="dealership-name">${stubbedItem.dealerName}</p>` : ''}
         </div>
       `).join('');
   
