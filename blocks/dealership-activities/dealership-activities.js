@@ -24,7 +24,7 @@ function getDealershipActivities() {
 
     // Determine tab for each item based on its content or some other logic
     // For this example, let's assume a static tab assignment for demonstration
-    const tab = 'showroom_visit'; // Default value, adjust based on your logic
+    
 
     return {
       dealerName,
@@ -32,7 +32,7 @@ function getDealershipActivities() {
       scheduledDate,
       scheduledTime,
       contact,
-      tab
+      tab :'showroom_visit'
     };
   });
 
