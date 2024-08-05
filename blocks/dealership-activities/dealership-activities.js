@@ -72,7 +72,7 @@ export default function decorate(block) {
       emailId: "mandi@competent-maruti.com",
       primaryCta: "Schedule a video call",
       secondaryCta: "Directions",
-      tab: "showroom_visit"
+      tab: "test_drive"
     },
     {
       dealerName: "Mayuri Automobile Co. Ltd.",
@@ -83,7 +83,7 @@ export default function decorate(block) {
       contact: "9931242213",
       emailId: "mandi@competent-maruti.com",
       primaryCta: "Schedule a video call",
-      secondaryCta: "reschedule",
+      secondaryCta: "Reschedule",
       tab: "booked"
     },
   ];
@@ -96,10 +96,9 @@ export default function decorate(block) {
 
   function generateCardsHtml(items) {
     return items.map((item) => {
-      const stubbedItem = stubbedData.find(stub => stub.tab === item.tab);
-      if (!stubbedItem) return ''; // Skip if no corresponding stubbed data
+      const stubbedItems = stubbedData.filter(stub => stub.tab === item.tab);
 
-      return `
+      return stubbedItems.map(stubbedItem => `
         <div class="dealer-card" data-tab="${item.tab}">
           <div class="authoring-item">
             <div class="dealer-name-schedule">
@@ -124,15 +123,15 @@ export default function decorate(block) {
             ${stubbedItem.contact ? `<p class="dealership-contact">${stubbedItem.contact}</p>` : ''}
           </div>
         </div>
-      `;
+      `).join('');
     }).join('');
   }
 
   function renderInitialContent() {
-    const totalCount = dealership.items.length;
-    const showroomVisitCount = dealership.items.filter(item => item.tab === 'showroom_visit').length;
-    const testDriveCount = dealership.items.filter(item => item.tab === 'test_drive').length;
-    const bookedCount = dealership.items.filter(item => item.tab === 'booked').length;
+    const totalCount = dealership.items.length + stubbedData.length;
+    const showroomVisitCount = dealership.items.filter(item => item.tab === 'showroom_visit').length + stubbedData.filter(stub => stub.tab === 'showroom_visit').length;
+    const testDriveCount = dealership.items.filter(item => item.tab === 'test_drive').length + stubbedData.filter(stub => stub.tab === 'test_drive').length;
+    const bookedCount = dealership.items.filter(item => item.tab === 'booked').length + stubbedData.filter(stub => stub.tab === 'booked').length;
 
     block.innerHTML = utility.sanitizeHtml(`
       <section class="dealer-activities">
@@ -174,12 +173,13 @@ export default function decorate(block) {
 
     const selectedTab = event.target.id;
     const filteredItems = dealership.items.filter(item => item.tab === selectedTab);
+    const filteredStubbedItems = stubbedData.filter(stub => stub.tab === selectedTab);
     const filteredCardsHtml = generateCardsHtml(filteredItems);
 
     const totalTabCount = {
-      'showroom_visit': dealership.items.filter(item => item.tab === 'showroom_visit').length,
-      'test_drive': dealership.items.filter(item => item.tab === 'test_drive').length,
-      'booked': dealership.items.filter(item => item.tab === 'booked').length,
+      'showroom_visit': dealership.items.filter(item => item.tab === 'showroom_visit').length + stubbedData.filter(stub => stub.tab === 'showroom_visit').length,
+      'test_drive': dealership.items.filter(item => item.tab === 'test_drive').length + stubbedData.filter(stub => stub.tab === 'test_drive').length,
+      'booked': dealership.items.filter(item => item.tab === 'booked').length + stubbedData.filter(stub => stub.tab === 'booked').length,
     };
 
     // Update the count for each tab
