@@ -89,6 +89,34 @@ export default function decorate(block) {
 
   const dealership = getDealershipActivities();
 
+  function combineItems(authoringItems, stubbedItems) {
+    const combinedItems = [];
+
+    authoringItems.forEach(authoringItem => {
+      const stubbedItem = stubbedItems.find(item => item.tab === authoringItem.tab);
+
+      if (stubbedItem) {
+        combinedItems.push({
+          ...authoringItem,
+          ...stubbedItem
+        });
+      } else {
+        combinedItems.push(authoringItem);
+      }
+    });
+
+    // Add stubbed items that don't have corresponding authoring items
+    stubbedItems.forEach(stubbedItem => {
+      const authoringItem = authoringItems.find(item => item.tab === stubbedItem.tab);
+
+      if (!authoringItem) {
+        combinedItems.push(stubbedItem);
+      }
+    });
+
+    return combinedItems;
+  }
+
   function generateCardsHtml(items) {
     return items.map((item) => `
       <div class="dealer-card" data-tab="${item.tab}">
@@ -108,11 +136,6 @@ export default function decorate(block) {
           ${item.description ? `<p class="dealer-description">${item.description}</p>` : ''}
           ${item.primaryCta ? `<a href="#" class="primary-cta">${item.primaryCta}</a>` : ''}
           ${item.secondaryCta ? `<button class="cta-button secondary">${item.secondaryCta}</button>` : ''}
-          ${item.dealerName ? `<p class="dealership-name">${item.dealerName}</p>` : ''}
-          ${item.emailId ? `<p class="dealership-emailid">${item.emailId}</p>` : ''}
-          ${item.scheduledDate ? `<p class="dealership-date">${item.scheduledDate}</p>` : ''}
-          ${item.scheduledTime ? `<p class="dealership-time">${item.scheduledTime}</p>` : ''}
-          ${item.contact ? `<p class="dealership-contact">${item.contact}</p>` : ''}
         </div>
       </div>
     `).join('');
@@ -120,7 +143,7 @@ export default function decorate(block) {
 
   function renderInitialContent() {
     // Combine authoring and stubbed data
-    const combinedItems = dealership.items.concat(stubbedData);
+    const combinedItems = combineItems(dealership.items, stubbedData);
 
     // Filter items by tab
     const showroomVisitItems = combinedItems.filter(item => item.tab === 'showroom_visit');
@@ -171,7 +194,7 @@ export default function decorate(block) {
     event.target.classList.add('active');
 
     const selectedTab = event.target.id;
-    const combinedItems = dealership.items.concat(stubbedData);
+    const combinedItems = combineItems(dealership.items, stubbedData);
 
     // Filter items based on selected tab
     const itemsForTab = combinedItems.filter(item => item.tab === selectedTab);
@@ -181,21 +204,21 @@ export default function decorate(block) {
     const totalTabCount = {
       'showroom_visit': combinedItems.filter(item => item.tab === 'showroom_visit').length,
       'test_drive': combinedItems.filter(item => item.tab === 'test_drive').length,
-      'booked': combinedItems.filter(item => item.tab === 'booked').length,
+      'booked': combinedItems.filter(item => item.tab === 'booked').length
     };
 
-    tabs.forEach(tab => {
-      const tabId = tab.id;
-      tab.innerHTML = `${dealership.tabMap[tabId]} (${totalTabCount[tabId]})`;
-    });
+    block.querySelector(`#showroom_visit`).textContent = `${dealership.tabMap['showroom_visit']} (${totalTabCount['showroom_visit']})`;
+    block.querySelector(`#test_drive`).textContent = `${dealership.tabMap['test_drive']} (${totalTabCount['test_drive']})`;
+    block.querySelector(`#booked`).textContent = `${dealership.tabMap['booked']} (${totalTabCount['booked']})`;
 
-    block.querySelector('.list-container').innerHTML = filteredCardsHtml;
+    // Update the card container
+    const listContainer = block.querySelector('.list-container');
+    listContainer.innerHTML = filteredCardsHtml;
 
-    // Reattach event listeners to ensure they persist after content update
+    // Reattach event listeners after updating the DOM
     attachTabEventListeners();
   }
 
-  // Initial content rendering
   renderInitialContent();
 
   // Ensure instrumentation is moved
