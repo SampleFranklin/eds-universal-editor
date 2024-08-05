@@ -94,9 +94,8 @@ export default function decorate(block) {
   console.log('Dealership Activities:', dealership);
   console.log('Stubbed Data:', stubbedData);
 
-  function generateCardsHtml(items, stubbedItems) {
-    const combinedItems = [...items, ...stubbedItems];
-    return combinedItems.map((item) => `
+  function generateCardsHtml(items) {
+    return items.map((item) => `
       <div class="dealer-card" data-tab="${item.tab}">
         <div class="authoring-item">
           <div class="dealer-name-schedule">
@@ -132,7 +131,6 @@ export default function decorate(block) {
 
     block.innerHTML = utility.sanitizeHtml(`
       <section class="dealer-activities">
-
         <div class="dealership-activities-container">
           <div class="dealership-activities__content">
             <span class="dealership-activities__title">${dealership.title} (${totalCount})</span>
@@ -145,10 +143,10 @@ export default function decorate(block) {
             </div>
           </div>
           <div class="scrollable-wrapper">
-          <div class="dealer-activities__items">
-            <ul class="list-container">
-              ${generateCardsHtml(dealership.items, stubbedData)}
-            </ul>
+            <div class="dealer-activities__items">
+              <ul class="list-container">
+                ${generateCardsHtml(dealership.items.filter(item => item.tab === 'showroom_visit').concat(stubbedData.filter(stub => stub.tab === 'showroom_visit')))}
+              </ul>
             </div>
           </div>
         </div>
@@ -168,7 +166,7 @@ export default function decorate(block) {
     const selectedTab = event.target.id;
     const filteredItems = dealership.items.filter(item => item.tab === selectedTab);
     const filteredStubbedItems = stubbedData.filter(stub => stub.tab === selectedTab);
-    const filteredCardsHtml = generateCardsHtml(filteredItems, filteredStubbedItems);
+    const filteredCardsHtml = generateCardsHtml(filteredItems.concat(filteredStubbedItems));
 
     const totalTabCount = {
       'showroom_visit': dealership.items.filter(item => item.tab === 'showroom_visit').length + stubbedData.filter(stub => stub.tab === 'showroom_visit').length,
