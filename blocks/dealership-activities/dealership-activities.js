@@ -154,14 +154,11 @@ export default function decorate(block) {
         </div>
       </section>
     `);
+
+    // Attach event listeners after rendering
+    const tabs = block.querySelectorAll('.dealership-activities__tab');
+    tabs.forEach(tab => tab.addEventListener('click', handleTabClick));
   }
-
-  renderInitialContent();
-
-  const authoringItems = block.querySelectorAll('.authoring-item');
-  authoringItems.forEach(item => moveInstrumentation(item, {
-    allowedTypes: ['authoring-item']
-  }));
 
   function handleTabClick(event) {
     const tabs = block.querySelectorAll('.dealership-activities__tab');
@@ -188,6 +185,6 @@ export default function decorate(block) {
     block.querySelector('.list-container').innerHTML = filteredCardsHtml;
   }
 
-  const tabs = block.querySelectorAll('.dealership-activities__tab');
-  tabs.forEach(tab => tab.addEventListener('click', handleTabClick));
+  // Initial content rendering
+  renderInitialContent();
 }
