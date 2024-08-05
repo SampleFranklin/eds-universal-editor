@@ -1,5 +1,5 @@
 import utility from '../../utility/utility.js';
-
+import { moveInstrumentation } from '../../scripts/scripts.js';
 export default function decorate(block) {
   function getDealershipActivities() {
     const [
@@ -39,12 +39,13 @@ export default function decorate(block) {
     title, subtitle, tabname1, tabname2, tabname3, items,
   };
 }
+console.log("vineetha")
 const dealershipActivities = getDealershipActivities();
 block.innerHTML = utility.sanitizeHtml(`
   <div class="dealer-activities">
         <div class="dealership-activities-container">
             <div class="dealership-activities__content">
-                <span class="dealership-activities__title">${dealershipActivities.title}</span>
+                <p class="dealership-activities__title">${dealershipActivities.title}</p>
                 <p class="dealership-activities__subtitle">${dealershipActivities.subtitle}</p>
                 <ul class="dealer__tabs">
                     <li class="dealer__tab active" id="showroom_visit">${dealershipActivities.tabname1}</li>
