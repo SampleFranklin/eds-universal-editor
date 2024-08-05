@@ -122,12 +122,12 @@ export default function decorate(block) {
     // Combine authoring and stubbed data
     const combinedItems = dealership.items.concat(stubbedData);
 
-    // Calculate counts
-    const totalCount = combinedItems.length;
+    // Filter items by tab
     const showroomVisitItems = combinedItems.filter(item => item.tab === 'showroom_visit');
     const testDriveItems = combinedItems.filter(item => item.tab === 'test_drive');
     const bookedItems = combinedItems.filter(item => item.tab === 'booked');
 
+    // Calculate counts
     const showroomVisitCount = showroomVisitItems.length;
     const testDriveCount = testDriveItems.length;
     const bookedCount = bookedItems.length;
@@ -136,7 +136,7 @@ export default function decorate(block) {
       <section class="dealer-activities">
         <div class="dealership-activities-container">
           <div class="dealership-activities__content">
-            <span class="dealership-activities__title">${dealership.title} (${totalCount})</span>
+            <span class="dealership-activities__title">${dealership.title} (${combinedItems.length})</span>
             <p class="dealership-activities__subtitle">${dealership.subtitle}</p>
             
             <div class="dealership-activities__tabs">
