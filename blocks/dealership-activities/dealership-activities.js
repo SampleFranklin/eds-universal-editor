@@ -8,7 +8,7 @@ export default function decorate(block) {
   const tabname2 = tabname2El?.textContent?.trim() || "";
   const tabname3 = tabname3El?.textContent?.trim() || "";
 
-  const [dealerNameEl, scheduledDateEl, scheduledTimeEl, emailIdEl, contactEl] =
+  const [dealerNameEl, emailIdEl,scheduledDateEl, scheduledTimeEl,  contactEl] =
     labelsEl.children;
 
   const dealerName = dealerNameEl?.textContent?.trim() || "";

@@ -250,7 +250,7 @@ body {
 
   .secondary-btn::after {
     content: "";
-    background: url("/icons/arrow.svg");
+    background: url("../../icons/arrow.svg");
     width: 24px;
     height: 24px;
   }
