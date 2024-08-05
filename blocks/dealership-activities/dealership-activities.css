@@ -417,6 +417,6 @@ align-self: stretch;
     top: 0;
     right: 2px; /* Position it just before the scrollbar line */
     width: 2px; /* Width of the highlighted line */
-    height: 50px; /* Full height of the container */
+    height: 70px; /* Full height of the container */
     z-index: 11; /* Ensure it is above the scrollbar line */
   }

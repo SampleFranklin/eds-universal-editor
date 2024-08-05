@@ -72,7 +72,7 @@ export default function decorate(block) {
       emailId: "mandi@competent-maruti.com",
       primaryCta: "Schedule a video call",
       secondaryCta: "Directions",
-      tab: "test_drive"
+      tab: "showroom_visit"
     },
     {
       dealerName: "Mayuri Automobile Co. Ltd.",
