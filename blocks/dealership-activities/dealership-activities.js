@@ -45,7 +45,7 @@ block.innerHTML = utility.sanitizeHtml(`
   <div class="dealer-activities">
         <div class="dealership-activities-container">
             <div class="dealership-activities__content">
-                <p class="dealership-activities__title">${dealershipActivities.title}</p>
+                <p class="dealership-activities__title">${(title) ? title.outerHTML : ''}</p>
                 <p class="dealership-activities__subtitle">${dealershipActivities.subtitle}</p>
                 <ul class="dealer__tabs">
                     <li class="dealer__tab active" id="showroom_visit">${dealershipActivities.tabname1}</li>
