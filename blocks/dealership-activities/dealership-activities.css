@@ -408,14 +408,15 @@ left: 143px;
     display: flex;
 align-items: flex-start;
 align-self: stretch;
+
   }
   .scrollable-wrapper::before {
     content: '';
     position: absolute;
+   fill: var(--gradient-3, linear-gradient(34deg, #C9D3D7 18.09%, #EBEBEB 102.51%, #EBEBEB 102.51%));
     top: 0;
     right: 2px; /* Position it just before the scrollbar line */
     width: 2px; /* Width of the highlighted line */
     height: 50px; /* Full height of the container */
-    background:  #888; /* Color of the highlighted line */
     z-index: 11; /* Ensure it is above the scrollbar line */
   }
