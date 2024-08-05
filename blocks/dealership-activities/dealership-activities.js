@@ -200,17 +200,6 @@ export default function decorate(block) {
     const itemsForTab = combinedItems.filter(item => item.tab === selectedTab);
     const filteredCardsHtml = generateCardsHtml(itemsForTab);
 
-    // Update the count for each tab
-    const totalTabCount = {
-      'showroom_visit': combinedItems.filter(item => item.tab === 'showroom_visit').length,
-      'test_drive': combinedItems.filter(item => item.tab === 'test_drive').length,
-      'booked': combinedItems.filter(item => item.tab === 'booked').length
-    };
-
-    block.querySelector(`[data-tab="showroom_visit"]`).textContent = `${dealership.tabMap['showroom_visit']} (${totalTabCount['showroom_visit']})`;
-    block.querySelector(`[data-tab="test_drive"]`).textContent = `${dealership.tabMap['test_drive']} (${totalTabCount['test_drive']})`;
-    block.querySelector(`[data-tab="booked"]`).textContent = `${dealership.tabMap['booked']} (${totalTabCount['booked']})`;
-
     // Update the card container
     const listContainer = block.querySelector('.list-container');
     listContainer.innerHTML = filteredCardsHtml;
