@@ -98,6 +98,7 @@
     /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
     font-family: "Fira Sans";
     width: 100%;
+    height:100%;
     
     
   }
@@ -390,7 +391,7 @@ left: 143px;
   .scrollable-wrapper {
     position: relative;
     
-    height: 600px; /* Adjust as needed */
+    height: 580px; /* Adjust as needed */
     padding-right: 20px; /* Space for scrollbar line */
     box-sizing: content-box; /* Ensure padding does not affect width calculation */
   }
