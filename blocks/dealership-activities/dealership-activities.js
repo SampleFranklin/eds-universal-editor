@@ -72,7 +72,7 @@ export default function decorate(block) {
       emailId: "mandi@competent-maruti.com",
       primaryCta: "Schedule a video call",
       secondaryCta: "Directions",
-      tab: "showroom_visit"
+      tab: "test_drive"
     },
     {
       dealerName: "Mayuri Automobile Co. Ltd.",
@@ -94,37 +94,34 @@ export default function decorate(block) {
   console.log('Dealership Activities:', dealership);
   console.log('Stubbed Data:', stubbedData);
 
-  function generateCardsHtml(items) {
-    return items.map((item) => {
-      const stubbedItems = stubbedData.filter(stub => stub.tab === item.tab);
-
-      return stubbedItems.map(stubbedItem => `
-        <div class="dealer-card" data-tab="${item.tab}">
-          <div class="authoring-item">
-            <div class="dealer-name-schedule">
-              <p class="dealer-name">${item.dealerName}</p>
-              <p class="dealer-date">${item.scheduledDate}</p>
-              <p class="dealer-time">${item.scheduledTime}</p>
-            </div>
-            <div class="dealer-email-contact">
-              <p class="dealer-email">${item.emailId}</p>
-              <p class="dealer-contact">${item.contact}</p>
-            </div>
+  function generateCardsHtml(items, stubbedItems) {
+    const combinedItems = [...items, ...stubbedItems];
+    return combinedItems.map((item) => `
+      <div class="dealer-card" data-tab="${item.tab}">
+        <div class="authoring-item">
+          <div class="dealer-name-schedule">
+            <p class="dealer-name">${item.dealerName}</p>
+            <p class="dealer-date">${item.scheduledDate}</p>
+            <p class="dealer-time">${item.scheduledTime}</p>
           </div>
-          <div class="stubbed-item">
-            ${stubbedItem.image ? `<div class="dealer-image"><picture><img src="${stubbedItem.image}" alt="Dealer Image"></picture></div>` : ''}
-            ${stubbedItem.description ? `<p class="dealer-description">${stubbedItem.description}</p>` : ''}
-            ${stubbedItem.primaryCta ? `<a href="#" class="primary-cta">${stubbedItem.primaryCta}</a>` : ''}
-            ${stubbedItem.secondaryCta ? `<button class="cta-button secondary">${stubbedItem.secondaryCta}</button>` : ''}
-            ${stubbedItem.dealerName ? `<p class="dealership-name">${stubbedItem.dealerName}</p>` : ''}
-            ${stubbedItem.emailId ? `<p class="dealership-emailid">${stubbedItem.emailId}</p>` : ''}
-            ${stubbedItem.scheduledDate ? `<p class="dealership-date">${stubbedItem.scheduledDate}</p>` : ''}
-            ${stubbedItem.scheduledTime ? `<p class="dealership-time">${stubbedItem.scheduledTime}</p>` : ''}
-            ${stubbedItem.contact ? `<p class="dealership-contact">${stubbedItem.contact}</p>` : ''}
+          <div class="dealer-email-contact">
+            <p class="dealer-email">${item.emailId}</p>
+            <p class="dealer-contact">${item.contact}</p>
           </div>
         </div>
-      `).join('');
-    }).join('');
+        <div class="stubbed-item">
+          ${item.image ? `<div class="dealer-image"><picture><img src="${item.image}" alt="Dealer Image"></picture></div>` : ''}
+          ${item.description ? `<p class="dealer-description">${item.description}</p>` : ''}
+          ${item.primaryCta ? `<a href="#" class="primary-cta">${item.primaryCta}</a>` : ''}
+          ${item.secondaryCta ? `<button class="cta-button secondary">${item.secondaryCta}</button>` : ''}
+          ${item.dealerName ? `<p class="dealership-name">${item.dealerName}</p>` : ''}
+          ${item.emailId ? `<p class="dealership-emailid">${item.emailId}</p>` : ''}
+          ${item.scheduledDate ? `<p class="dealership-date">${item.scheduledDate}</p>` : ''}
+          ${item.scheduledTime ? `<p class="dealership-time">${item.scheduledTime}</p>` : ''}
+          ${item.contact ? `<p class="dealership-contact">${item.contact}</p>` : ''}
+        </div>
+      </div>
+    `).join('');
   }
 
   function renderInitialContent() {
@@ -150,7 +147,7 @@ export default function decorate(block) {
           <div class="scrollable-wrapper">
           <div class="dealer-activities__items">
             <ul class="list-container">
-              ${generateCardsHtml(dealership.items)}
+              ${generateCardsHtml(dealership.items, stubbedData)}
             </ul>
             </div>
           </div>
@@ -174,7 +171,7 @@ export default function decorate(block) {
     const selectedTab = event.target.id;
     const filteredItems = dealership.items.filter(item => item.tab === selectedTab);
     const filteredStubbedItems = stubbedData.filter(stub => stub.tab === selectedTab);
-    const filteredCardsHtml = generateCardsHtml(filteredItems);
+    const filteredCardsHtml = generateCardsHtml(filteredItems, filteredStubbedItems);
 
     const totalTabCount = {
       'showroom_visit': dealership.items.filter(item => item.tab === 'showroom_visit').length + stubbedData.filter(stub => stub.tab === 'showroom_visit').length,
