@@ -163,9 +163,9 @@ export default function decorate(block) {
             <p class="dealership-activities__subtitle">${dealership.subtitle}</p>
             
             <div class="dealership-activities__tabs">
-              <p class="dealership-activities__tab active" id="showroom_visit">${dealership.tabname1} (${showroomVisitCount})</p>
-              <p class="dealership-activities__tab" id="test_drive">${dealership.tabname2} (${testDriveCount})</p>
-              <p class="dealership-activities__tab" id="booked">${dealership.tabname3} (${bookedCount})</p>
+              <p class="dealership-activities__tab active" data-tab="showroom_visit">${dealership.tabname1} (${showroomVisitCount})</p>
+              <p class="dealership-activities__tab" data-tab="test_drive">${dealership.tabname2} (${testDriveCount})</p>
+              <p class="dealership-activities__tab" data-tab="booked">${dealership.tabname3} (${bookedCount})</p>
             </div>
           </div>
           <div class="scrollable-wrapper">
@@ -193,7 +193,7 @@ export default function decorate(block) {
     tabs.forEach(tab => tab.classList.remove('active'));
     event.target.classList.add('active');
 
-    const selectedTab = event.target.id;
+    const selectedTab = event.target.dataset.tab;
     const combinedItems = combineItems(dealership.items, stubbedData);
 
     // Filter items based on selected tab
@@ -207,9 +207,9 @@ export default function decorate(block) {
       'booked': combinedItems.filter(item => item.tab === 'booked').length
     };
 
-    block.querySelector(`#showroom_visit`).textContent = `${dealership.tabMap['showroom_visit']} (${totalTabCount['showroom_visit']})`;
-    block.querySelector(`#test_drive`).textContent = `${dealership.tabMap['test_drive']} (${totalTabCount['test_drive']})`;
-    block.querySelector(`#booked`).textContent = `${dealership.tabMap['booked']} (${totalTabCount['booked']})`;
+    block.querySelector(`[data-tab="showroom_visit"]`).textContent = `${dealership.tabMap['showroom_visit']} (${totalTabCount['showroom_visit']})`;
+    block.querySelector(`[data-tab="test_drive"]`).textContent = `${dealership.tabMap['test_drive']} (${totalTabCount['test_drive']})`;
+    block.querySelector(`[data-tab="booked"]`).textContent = `${dealership.tabMap['booked']} (${totalTabCount['booked']})`;
 
     // Update the card container
     const listContainer = block.querySelector('.list-container');
