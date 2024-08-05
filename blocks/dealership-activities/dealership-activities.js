@@ -70,21 +70,10 @@ export default function decorate(block) {
       contact: "9931242213",
       emailId: "mandi@competent-maruti.com",
       primaryCta: "Schedule a video call",
-      secondaryCta: "Directions",
+      secondaryCta: "Reschedule",
       tab: "test_drive"
     },
-    {
-      dealerName: "Mayuri Automobile Co. Ltd.",
-      image: "/content/dam/nexa-world/Ar_Vk_Maruti_Rangman_Front%203-4th%20Bridge%20Motion%20Shot_V3_SL%204.png",
-      description: "Upcoming test drive | Heads up! We have scheduled a test drive on 13th June for Wagon R",
-      scheduledTime: "14:30PM",
-      scheduledDate: "14th Jun, 2024",
-      contact: "9931242213",
-      emailId: "mandi@competent-maruti.com",
-      primaryCta: "Schedule a video call",
-      secondaryCta: "Reschedule",
-      tab: "booked"
-    },
+    
   ];
 
   const dealership = getDealershipActivities();
