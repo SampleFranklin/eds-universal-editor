@@ -25,7 +25,6 @@ export default function decorate(block) {
       const scheduledTime = scheduledTimeEl?.textContent?.trim() || '';
       const contact = contactEl?.textContent?.trim() || '';
 
-      // Determine tab for each item based on a data attribute or content
       const tab = itemEl.dataset.tab || 'showroom_visit'; // Example: Use data attribute
 
       return {
@@ -90,10 +89,6 @@ export default function decorate(block) {
 
   const dealership = getDealershipActivities();
 
-  // Debug: Log the parsed dealership activities and stubbed data
-  console.log('Dealership Activities:', dealership);
-  console.log('Stubbed Data:', stubbedData);
-
   function generateCardsHtml(items) {
     return items.map((item) => `
       <div class="dealer-card" data-tab="${item.tab}">
@@ -124,10 +119,18 @@ export default function decorate(block) {
   }
 
   function renderInitialContent() {
-    const totalCount = dealership.items.length + stubbedData.length;
-    const showroomVisitCount = dealership.items.filter(item => item.tab === 'showroom_visit').length + stubbedData.filter(stub => stub.tab === 'showroom_visit').length;
-    const testDriveCount = dealership.items.filter(item => item.tab === 'test_drive').length + stubbedData.filter(stub => stub.tab === 'test_drive').length;
-    const bookedCount = dealership.items.filter(item => item.tab === 'booked').length + stubbedData.filter(stub => stub.tab === 'booked').length;
+    // Combine authoring and stubbed data
+    const combinedItems = dealership.items.concat(stubbedData);
+
+    // Calculate counts
+    const totalCount = combinedItems.length;
+    const showroomVisitItems = combinedItems.filter(item => item.tab === 'showroom_visit');
+    const testDriveItems = combinedItems.filter(item => item.tab === 'test_drive');
+    const bookedItems = combinedItems.filter(item => item.tab === 'booked');
+
+    const showroomVisitCount = showroomVisitItems.length;
+    const testDriveCount = testDriveItems.length;
+    const bookedCount = bookedItems.length;
 
     block.innerHTML = utility.sanitizeHtml(`
       <section class="dealer-activities">
@@ -145,7 +148,7 @@ export default function decorate(block) {
           <div class="scrollable-wrapper">
             <div class="dealer-activities__items">
               <ul class="list-container">
-                ${generateCardsHtml(dealership.items.filter(item => item.tab === 'showroom_visit').concat(stubbedData.filter(stub => stub.tab === 'showroom_visit')))}
+                ${generateCardsHtml(showroomVisitItems)}
               </ul>
             </div>
           </div>
@@ -164,17 +167,19 @@ export default function decorate(block) {
     event.target.classList.add('active');
 
     const selectedTab = event.target.id;
-    const filteredItems = dealership.items.filter(item => item.tab === selectedTab);
-    const filteredStubbedItems = stubbedData.filter(stub => stub.tab === selectedTab);
-    const filteredCardsHtml = generateCardsHtml(filteredItems.concat(filteredStubbedItems));
+    const combinedItems = dealership.items.concat(stubbedData);
 
-    const totalTabCount = {
-      'showroom_visit': dealership.items.filter(item => item.tab === 'showroom_visit').length + stubbedData.filter(stub => stub.tab === 'showroom_visit').length,
-      'test_drive': dealership.items.filter(item => item.tab === 'test_drive').length + stubbedData.filter(stub => stub.tab === 'test_drive').length,
-      'booked': dealership.items.filter(item => item.tab === 'booked').length + stubbedData.filter(stub => stub.tab === 'booked').length,
-    };
+    // Filter items based on selected tab
+    const itemsForTab = combinedItems.filter(item => item.tab === selectedTab);
+    const filteredCardsHtml = generateCardsHtml(itemsForTab);
 
     // Update the count for each tab
+    const totalTabCount = {
+      'showroom_visit': combinedItems.filter(item => item.tab === 'showroom_visit').length,
+      'test_drive': combinedItems.filter(item => item.tab === 'test_drive').length,
+      'booked': combinedItems.filter(item => item.tab === 'booked').length,
+    };
+
     tabs.forEach(tab => {
       const tabId = tab.id;
       tab.innerHTML = `${dealership.tabMap[tabId]} (${totalTabCount[tabId]})`;
@@ -185,4 +190,10 @@ export default function decorate(block) {
 
   // Initial content rendering
   renderInitialContent();
+
+  // Ensure instrumentation is moved
+  const authoringItems = block.querySelectorAll('.authoring-item');
+  authoringItems.forEach(item => moveInstrumentation(item, {
+    allowedTypes: ['authoring-item']
+  }));
 }
