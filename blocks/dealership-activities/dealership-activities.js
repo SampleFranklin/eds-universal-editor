@@ -1,3 +1,5 @@
+import { moveInstrumentation } from '../../scripts/scripts.js';
+
 export default function decorate(block) {
   const [titleEl, subtitleEl, tabname1El, tabname2El, tabname3El, labelsEl] =
     block.children;
@@ -81,7 +83,7 @@ export default function decorate(block) {
               </div>
             </div>`;
   }
-
+ 
   // Function to render activity cards
   function renderActivityCards(activityType) {
     return dealershipData[activityType]
@@ -138,6 +140,7 @@ export default function decorate(block) {
           ".dealer__activities-notification-cards"
         );
         cardsContainer.innerHTML = renderActivityCards(activityType);
+        
       });
     });
   }
@@ -145,7 +148,10 @@ export default function decorate(block) {
   // Initialize the component
   function init() {
     block.innerHTML = createDealershipActivitiesHTML();
+    const initialCards = block.querySelector(".dealer__activity-body");
+    moveInstrumentation(labelsEl,initialCards);
     setupTabListeners();
+  
   }
 
   // Call the initialization function
