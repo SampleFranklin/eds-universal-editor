@@ -70,7 +70,7 @@ export default function decorate(block) {
     return `
             <div class="dealer-activities-container">
               <div class="dealership-activities__content">
-                <span class="dealership-activities__title">${(title) ? title.outerHTML : ''} (${totalActivities})</span>
+                <span class="dealership-activities__title">${title} (${totalActivities})</span>
                   <p class="dealership-activities__subtitle">${subtitle}</p>
                   <ul class="dealer__tabs">
                     <li class="dealer__tab active" id="showroomVisit">${tabname1} (${dealershipData.showroomVisit.length})</li>
