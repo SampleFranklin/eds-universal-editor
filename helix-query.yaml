@@ -1,9 +1,10 @@
+version: 1
 indices:
-  eds:
+  site:
     include:
-      - /us/en/**
+      - '/**'
     exclude:
-      - /us/en/test-page/testing-nesting/**
+      - '/drafts/**'
     target: /query-index.json
     properties:
       lastModified:
@@ -11,7 +12,4 @@ indices:
         value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
       title:
         select: head > meta[property="og:title"]
-        value: attribute(el, "content")
-      description:
-        select: head > meta[property="og:description"]
         value: attribute(el, "content")
