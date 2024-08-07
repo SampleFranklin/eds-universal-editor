@@ -1,25 +1,12 @@
 version: 1
 indices:
-  en:
+  default:
     include:
-      - /us/en/**
+      - /**
     exclude:
       - /us/en/test-page/testing-nesting/**
       - /us/en/nexa-demo
-    target: /en/query-index.json
-    properties:
-      title:
-        select: head > meta[property="og:title"]
-        value: attribute(el, "content")
-      description:
-        select: head > meta[property="og:description"]
-        value: attribute(el, "content")
-  hi:
-    include:
-      - /us/hi/**
-    exclude:
-      - /us/hi/new-page/**
-    target: /hi/query-index.json
+    target: /query-index.json
     properties:
       title:
         select: head > meta[property="og:title"]
