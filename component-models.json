@@ -3629,7 +3629,7 @@
         "component": "select",
         "name": "cardHeadingType",
         "value": "h2",
-        "label": "Type",
+        "label": "Card Heading Type",
         "valueType": "string",
         "options": [
           {
@@ -3673,7 +3673,7 @@
         "component": "select",
         "name": "mapHeadingType",
         "value": "h2",
-        "label": "Type",
+        "label": "Map Heading Type",
         "valueType": "string",
         "options": [
           {
