@@ -4,8 +4,7 @@ indices:
     include:
       - /**
     exclude:
-      - /us/en/test-page/testing-nesting/**
-      - /us/en/nexa-demo/**
+      - /us/en/test-page/**
     target: /query-index.json
     properties:
       title:
