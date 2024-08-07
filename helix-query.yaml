@@ -3,6 +3,7 @@ indices:
   site:
     include:
       - '/**'
+      - /us/**
     exclude:
       - '/drafts/**'
     target: /query-index.json
