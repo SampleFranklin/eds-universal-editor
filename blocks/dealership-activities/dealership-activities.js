@@ -70,7 +70,7 @@ export default function decorate(block) {
     return `
             <div class="dealer-activities-container">
               <div class="dealership-activities__content">
-                <span class="dealership-activities__title">${title} (${totalActivities})</span>
+                <span class="dealership-activities__title">${title}</span>
                   <p class="dealership-activities__subtitle">${subtitle}</p>
                   <ul class="dealer__tabs">
                     <li class="dealer__tab active" id="showroomVisit">${tabname1} (${dealershipData.showroomVisit.length})</li>
@@ -151,6 +151,7 @@ export default function decorate(block) {
   // Initialize the component
   function init() {
     block.innerHTML = utility.sanitizeHtml(createDealershipActivitiesHTML());
+    block.querySelector('.dealership-activities__title')?.firstElementChild?.textContent = `${title} (${totalActivities})`;
     const initialCards = block.querySelector(".dealer__activity-body");
     moveInstrumentation(labelsEl, initialCards);
     setupTabListeners();
