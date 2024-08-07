@@ -1,0 +1,12 @@
+sitemaps:
+   example:
+     languages:
+       us:
+         source: /query-index.json
+         destination: /sitemap-us.xml
+         hreflang: us
+       en:
+         source: /query-index.json
+         destination: /sitemap-en.xml
+         hreflang: en
+        
