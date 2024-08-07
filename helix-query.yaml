@@ -5,7 +5,7 @@ indices:
       - /**
     exclude:
       - /us/en/test-page/testing-nesting/**
-      - /us/en/nexa-demo
+      - /us/en/nexa-demo/**
     target: /query-index.json
     properties:
       title:
