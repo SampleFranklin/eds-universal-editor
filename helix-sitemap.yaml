@@ -8,6 +8,7 @@ sitemaps:
         destination: /sitemap-en.xml
         hreflang: en
       hi:
+        origin: https://main--eds-universal-editor--samplefranklin.hlx.live
         source: /hi/query-index.json
         destination: /sitemap-hi.xml
         hreflang: hi
