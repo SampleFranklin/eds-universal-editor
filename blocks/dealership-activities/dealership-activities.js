@@ -150,8 +150,11 @@ export default function decorate(block) {
 
   // Initialize the component
   function init() {
-    block.innerHTML = utility.sanitizeHtml(createDealershipActivitiesHTML());
-    block.querySelector('.dealership-activities__title')?.firstElementChild?.textContent = `${title} (${totalActivities})`;
+    block.innerHTML = utility.sanitizeHtml(createDealershipActivitiesHTML())
+    
+    if(block.querySelector('dealership-activities__title')?.firstElementChild) {
+      block.querySelector('dealership-activities__title').firstElementChild.textContent = `${title} (${totalActivities})`
+    }
     const initialCards = block.querySelector(".dealer__activity-body");
     moveInstrumentation(labelsEl, initialCards);
     setupTabListeners();
