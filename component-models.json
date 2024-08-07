@@ -3573,11 +3573,12 @@
         "label": "Select Radius Text",
         "valueType": "string",
         "options": [
+          { "name": "5", "value": "5" },
           { "name": "10", "value": "10" },
-          { "name": "20", "value": "20" },
-          { "name": "30", "value": "30" },
-          { "name": "40", "value": "40" },
-          { "name": "50", "value": "50" }
+          { "name": "15", "value": "15" },
+          { "name": "25", "value": "25" },
+          { "name": "35", "value": "35" },
+          { "name": "50+", "value": "50+" }
         ]
       },
       {
@@ -3586,6 +3587,110 @@
         "value": "",
         "label": "Distance Text",
         "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "viewType",
+        "value": "",
+        "label": "View Type",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Card View",
+            "value": "cardView"
+          },
+          {
+            "name": "Map View",
+            "value": "mapView"
+          }
+        ]
+      },
+      {
+        "component": "text-input",
+        "name": "exploreCtaText",
+        "label": "Explore CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "exploreCtaLink",
+        "label": "Explore CTA Link"
+      },
+      {
+        "component": "select",
+        "name": "titleType",
+        "value": "h2",
+        "label": "Card Heading",
+        "description": "Value should contains dealer-count placeholder ${dealer-count}",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "h1",
+            "value": "h1"
+          },
+          {
+            "name": "h2",
+            "value": "h2"
+          },
+          {
+            "name": "h3",
+            "value": "h3"
+          },
+          {
+            "name": "h4",
+            "value": "h4"
+          },
+          {
+            "name": "h5",
+            "value": "h5"
+          },
+          {
+            "name": "h6",
+            "value": "h6"
+          },
+          {
+            "name": "None",
+            "value": "p"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "titleType",
+        "value": "h2",
+        "label": "Map Heading",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "h1",
+            "value": "h1"
+          },
+          {
+            "name": "h2",
+            "value": "h2"
+          },
+          {
+            "name": "h3",
+            "value": "h3"
+          },
+          {
+            "name": "h4",
+            "value": "h4"
+          },
+          {
+            "name": "h5",
+            "value": "h5"
+          },
+          {
+            "name": "h6",
+            "value": "h6"
+          },
+          {
+            "name": "None",
+            "value": "p"
+          }
+        ]
       }
     ]
   }
