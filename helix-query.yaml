@@ -3,8 +3,6 @@ indices:
   default:
     include:
       - /**
-    exclude:
-      - /us/en/test-page/**
     target: /query-index.json
     properties:
       lastModified:
