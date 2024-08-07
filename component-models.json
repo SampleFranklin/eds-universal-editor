@@ -3618,11 +3618,18 @@
         "label": "Explore CTA Link"
       },
       {
-        "component": "select",
-        "name": "titleType",
-        "value": "h2",
-        "label": "Card Heading",
+        "component": "text-input",
+        "name": "cardHeading",
+        "value": "",
         "description": "Value should contains dealer-count placeholder ${dealer-count}",
+        "label": "Card Heading",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "cardHeadingType",
+        "value": "h2",
+        "label": "Type",
         "valueType": "string",
         "options": [
           {
@@ -3656,10 +3663,17 @@
         ]
       },
       {
-        "component": "select",
-        "name": "titleType",
-        "value": "h2",
+        "component": "text-input",
+        "name": "mapHeading",
+        "value": "",
         "label": "Map Heading",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "mapHeadingType",
+        "value": "h2",
+        "label": "Type",
         "valueType": "string",
         "options": [
           {
