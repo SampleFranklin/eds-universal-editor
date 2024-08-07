@@ -1,12 +1,12 @@
 version: 1
 indices:
-  default:
+  en:
     include:
-      - /**
+      - /us/en/**
     exclude:
       - /us/en/test-page/testing-nesting/**
       - /us/en/nexa-demo
-    target: /query-index.json
+    target: /en/query-index.json
     properties:
       title:
         select: head > meta[property="og:title"]
@@ -14,13 +14,12 @@ indices:
       description:
         select: head > meta[property="og:description"]
         value: attribute(el, "content")
-  en:
+  hi:
     include:
-      - /us/en/**
+      - /us/hi/**
     exclude:
-      - /us/en/test-page/testing-nesting/**
-      - /us/en/arena-demo
-    target: /en/query-index.json
+      - /us/hi/new-page/**
+    target: /hi/query-index.json
     properties:
       title:
         select: head > meta[property="og:title"]
