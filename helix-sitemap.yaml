@@ -2,7 +2,7 @@ sitemaps:
    example:
      languages:
        us:
-         source: /query-index.json
+         source: /us/query-index.json
          destination: /sitemap-us.xml
          hreflang: us
        en:

@@ -1,10 +1,23 @@
 indices:
   eds:
     include:
-      - /us/en/**
+      - /**
     exclude:
       - /us/en/test-page/testing-nesting/**
     target: /query-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      description:
+        select: head > meta[property="og:description"]
+        value: attribute(el, "content")
+  us:
+    include:
+      - /us/**
+    exclude:
+      - /us/en/test-page/testing-nesting/**
+    target: /us/query-index.json
     properties:
       title:
         select: head > meta[property="og:title"]
