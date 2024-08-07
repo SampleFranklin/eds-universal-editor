@@ -2,11 +2,11 @@
    example:
      languages:
        us:
-         source: /us/query-index.json
+         source: /query-index.json
          destination: /sitemap-us.xml
          hreflang: us
        en:
-         source: /en/query-index.json
+         source: /query-index.json
          destination: /sitemap-en.xml
          hreflang: en
         
