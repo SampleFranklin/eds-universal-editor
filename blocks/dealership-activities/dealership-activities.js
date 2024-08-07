@@ -62,10 +62,7 @@ export default function decorate(block) {
 
   // Function to create the entire HTML structure
   function createDealershipActivitiesHTML() {
-    const totalActivities =
-      dealershipData.showroomVisit.length +
-      dealershipData.testDrive.length +
-      dealershipData.booked.length;
+    
 
     return `
             <div class="dealer-activities-container">
@@ -153,6 +150,10 @@ export default function decorate(block) {
     block.innerHTML = utility.sanitizeHtml(createDealershipActivitiesHTML())
     
     if(block.querySelector('dealership-activities__title')?.firstElementChild) {
+      const totalActivities =
+      dealershipData.showroomVisit.length +
+      dealershipData.testDrive.length +
+      dealershipData.booked.length;
       block.querySelector('dealership-activities__title').firstElementChild.textContent = `${title} (${totalActivities})`
     }
     const initialCards = block.querySelector(".dealer__activity-body");
