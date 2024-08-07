@@ -4,7 +4,7 @@ export default function decorate(block) {
   const [titleEl, subtitleEl, tabname1El, tabname2El, tabname3El, labelsEl] =
     block.children;
     const title =
-    titleEl?.querySelector(":is(h1,h2,h3,h4,h5,h6)")?.textContent?.trim() || "";
+    titleEl?.querySelector(":is(h1,h2,h3,h4,h5,h6)")?.outerHTML || "";
   const subtitle = subtitleEl?.textContent?.trim() || "";
   const tabname1 = tabname1El?.textContent?.trim() || "";
   const tabname2 = tabname2El?.textContent?.trim() || "";
@@ -130,20 +130,21 @@ export default function decorate(block) {
                       </div>`).join("");
   }
 
+  // Handle tab click event
+  function handleTabClick(event) {
+    const tabs = block.querySelectorAll(".dealer__tab");
+    tabs.forEach((t) => t.classList.remove("active"));
+    event.currentTarget.classList.add("active");
+    const activityType = event.currentTarget.id;
+    const cardsContainer = block.querySelector(".dealer__activities-notification-cards");
+    cardsContainer.innerHTML = renderActivityCards(activityType);
+  }
+
   // Set up event listeners for tab switching
   function setupTabListeners() {
     const tabs = block.querySelectorAll(".dealer__tab");
     tabs.forEach((tab) => {
-      tab.addEventListener("click", function () {
-        tabs.forEach((t) => t.classList.remove("active"));
-        this.classList.add("active");
-        const activityType = this.id;
-        const cardsContainer = block.querySelector(
-          ".dealer__activities-notification-cards"
-        );
-        cardsContainer.innerHTML = renderActivityCards(activityType);
-        
-      });
+      tab.addEventListener("click", handleTabClick);
     });
   }
 
@@ -151,9 +152,8 @@ export default function decorate(block) {
   function init() {
     block.innerHTML = utility.sanitizeHtml(createDealershipActivitiesHTML());
     const initialCards = block.querySelector(".dealer__activity-body");
-    moveInstrumentation(labelsEl,initialCards);
+    moveInstrumentation(labelsEl, initialCards);
     setupTabListeners();
-  
   }
 
   // Call the initialization function
