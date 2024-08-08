@@ -11,8 +11,8 @@ indices:
         select: none
         value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
       changefreq:
-        select: none
-        value: "always"
+        select: head > meta[property="changefreq"]
+        value: attribute(el, "content")
       title:
         select: head > meta[property="og:title"]
         value: attribute(el, "content")
