@@ -3956,13 +3956,27 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "phoneIcon",
-        "label": "Image",
+        "name": "desktopPhoneIcon",
+        "label": "Phone Image for Desktop",
         "multi": false
       },
       {
         "component": "text-input",
-        "name": "phoneIconAlt",
+        "name": "desktopPhoneIconAlt",
+        "value": "",
+        "label": "phoneIcon Alt Text",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "mobilePhoneIcon",
+        "label": "Phone Image for Mobile",
+        "multi": false
+      },
+      {
+        "component": "text-input",
+        "name": "mobilePhoneIconAlt",
         "value": "",
         "label": "phoneIcon Alt Text",
         "valueType": "string"
@@ -3976,7 +3990,9 @@
       }
     ]
     
-    }
+    },
+
+
   
   
 
