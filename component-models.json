@@ -3882,17 +3882,62 @@
         "valueType": "string"
       },
       {
-        "component": "text-input",
+        "component": "text",
         "name": "contact",
         "value": "",
         "label": "Contact",
         "valueType": "string"
       }
-      
-      
     ]
     
     }
+
+
+    ,
+    
+  
+    {
+      "id": "road-support-item",
+    "fields": [
+      {
+        "component": "text-input",
+        "name": "phoneNumber1",
+        "value": "",
+        "label": "Phone Number 1",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "phoneNumber2",
+        "value": "",
+        "label": "Phone Number 2",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "phoneIcon",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text-input",
+        "name": "phoneIconAlt",
+        "value": "",
+        "label": "phoneIcon Alt Text",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string"
+      }
+    ]
+    
+    }
+  
   
 
 ]
