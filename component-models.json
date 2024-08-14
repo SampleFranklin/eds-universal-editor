@@ -3882,17 +3882,118 @@
         "valueType": "string"
       },
       {
-        "component": "text-input",
+        "component": "text",
         "name": "contact",
         "value": "",
         "label": "Contact",
         "valueType": "string"
       }
-      
-      
     ]
     
     }
+
+
+    ,
+    
+  
+    {
+      "id": "road-support-item",
+    "fields": [
+      {
+        "component": "text-input",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "titleType",
+        "value": "h2",
+        "label": "Type",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "h1",
+            "value": "h1"
+          },
+          {
+            "name": "h2",
+            "value": "h2"
+          },
+          {
+            "name": "h3",
+            "value": "h3"
+          },
+          {
+            "name": "h4",
+            "value": "h4"
+          },
+          {
+            "name": "h5",
+            "value": "h5"
+          },
+          {
+            "name": "h6",
+            "value": "h6"
+          }
+        ]
+      },
+      {
+        "component": "text-input",
+        "name": "phoneNumber1",
+        "value": "",
+        "label": "Phone Number 1",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "phoneNumber2",
+        "value": "",
+        "label": "Phone Number 2",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "desktopPhoneIcon",
+        "label": "Phone Image for Desktop",
+        "multi": false
+      },
+      {
+        "component": "text-input",
+        "name": "desktopPhoneIconAlt",
+        "value": "",
+        "label": "phoneIcon Alt Text",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "mobilePhoneIcon",
+        "label": "Phone Image for Mobile",
+        "multi": false
+      },
+      {
+        "component": "text-input",
+        "name": "mobilePhoneIconAlt",
+        "value": "",
+        "label": "phoneIcon Alt Text",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string"
+      }
+    ]
+    
+    }
+
+
+  
   
 
 ]
