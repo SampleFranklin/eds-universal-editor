@@ -4064,106 +4064,39 @@
             "valueType":"string"
           },
           {
-            "component":"select",
+            "component":"text",
             "name":"state",
             "value":"",
             "label":"State",
-            "valueType":"string",
-            "options": [
-              {
-                "name": "SELECT STATE",
-                "value": "default"
-              }
-            ]
+            "valueType":"string"
           },
           {
-            "component":"select",
+            "component":"text",
             "name":"city",
             "value":"",
             "label":"City",
-            "valueType":"string",
-            "options": [
-              {
-                "name": "SELECT CITY",
-                "value": "default"
-              }
-            ]
+            "valueType":"string"
           },
           {
-            "component":"select",
+            "component":"text",
             "name":"dealer",
             "value":"",
             "label":"Dealer",
-            "valueType":"string",
-            "options": [
-              {
-                "name": "SELECT DEALER",
-                "value": "default"
-              }
-            ]
+            "valueType":"string"
           },
           {
-            "component":"select",
-            "name":"state",
-            "value":"",
-            "label":"State",
-            "valueType":"string",
-            "options": [
-              {
-                "name": "SELECT STATE",
-                "value": "default"
-              }
-            ]
-          },
-          {
-            "component":"select",
+            "component":"text",
             "name":"buyerType",
             "value":"",
             "label":"Buyer Type",
-            "valueType":"string",
-            "options": [
-              {
-                "name": "SELECT BUYER TYPE",
-                "value": "default"
-              },
-              {
-                "name": "MY FIRST CAR",
-                "value": "first__car"
-              },
-              {
-                "name": "ADDITIONAL CAR",
-                "value": "additional__car"
-              },
-              {
-                "name": "EXCHANGE OF AN OLD CAR",
-                "value": "exchange__car"
-              }
-            ]
+            "valueType":"string"
           },
           {
-            "component":"select",
+            "component":"text",
             "name":"model",
             "value":"",
             "label":"Model",
-            "valueType":"string",
-            "options": [
-              {
-                "name": "SELECT MODEL",
-                "value": "default"
-              },
-              {
-                "name": "ALTO K10",
-                "value": "altoK10"
-              },
-              {
-                "name": "BREZZA",
-                "value": "brezza"
-              },
-              {
-                "name": "CELERIO",
-                "value": "celerio"
-              }
-            ]
+            "valueType":"string"
           }
         ]
       }
