@@ -4093,7 +4093,7 @@
           },
           {
             "component":"text",
-            "name":"model",
+            "name":"carModel",
             "value":"",
             "label":"Model",
             "valueType":"string"
