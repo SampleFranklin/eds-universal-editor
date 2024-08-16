@@ -3991,7 +3991,184 @@
     ]
     
     }
-
+  ,
+  {
+    "id": "book-showroom-visit",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "titleType",
+        "value": "h3",
+        "label": "Title Type",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "h1",
+            "value": "h1"
+          },
+          {
+            "name": "h2",
+            "value": "h2"
+          },
+          {
+            "name": "h3",
+            "value": "h3"
+          },
+          {
+            "name": "h4",
+            "value": "h4"
+          },
+          {
+            "name": "h5",
+            "value": "h5"
+          },
+          {
+            "name": "h6",
+            "value": "h6"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "name": "subtitle",
+        "value": "",
+        "label": "Sub-Title",
+        "valueType": "string"
+      },
+      {
+        "component": "container",
+        "label": "Form Details",
+        "name": "formContainer",
+        "valueType": "string",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "text",
+            "name": "name",
+            "value": "",
+            "label": "Name",
+            "valueType": "string"
+          },
+          {
+            "component":"text",
+            "name":"emailId",
+            "value":"",
+            "label":"Email ID",
+            "valueType":"string"
+          },
+          {
+            "component":"select",
+            "name":"state",
+            "value":"",
+            "label":"State",
+            "valueType":"string",
+            "options": [
+              {
+                "name": "SELECT STATE",
+                "value": "default"
+              }
+            ]
+          },
+          {
+            "component":"select",
+            "name":"city",
+            "value":"",
+            "label":"City",
+            "valueType":"string",
+            "options": [
+              {
+                "name": "SELECT CITY",
+                "value": "default"
+              }
+            ]
+          },
+          {
+            "component":"select",
+            "name":"dealer",
+            "value":"",
+            "label":"Dealer",
+            "valueType":"string",
+            "options": [
+              {
+                "name": "SELECT DEALER",
+                "value": "default"
+              }
+            ]
+          },
+          {
+            "component":"select",
+            "name":"state",
+            "value":"",
+            "label":"State",
+            "valueType":"string",
+            "options": [
+              {
+                "name": "SELECT STATE",
+                "value": "default"
+              }
+            ]
+          },
+          {
+            "component":"select",
+            "name":"buyerType",
+            "value":"",
+            "label":"Buyer Type",
+            "valueType":"string",
+            "options": [
+              {
+                "name": "SELECT BUYER TYPE",
+                "value": "default"
+              },
+              {
+                "name": "MY FIRST CAR",
+                "value": "first__car"
+              },
+              {
+                "name": "ADDITIONAL CAR",
+                "value": "additional__car"
+              },
+              {
+                "name": "EXCHANGE OF AN OLD CAR",
+                "value": "exchange__car"
+              }
+            ]
+          },
+          {
+            "component":"select",
+            "name":"model",
+            "value":"",
+            "label":"Model",
+            "valueType":"string",
+            "options": [
+              {
+                "name": "SELECT MODEL",
+                "value": "default"
+              },
+              {
+                "name": "ALTO K10",
+                "value": "altoK10"
+              },
+              {
+                "name": "BREZZA",
+                "value": "brezza"
+              },
+              {
+                "name": "CELERIO",
+                "value": "celerio"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 
   
   

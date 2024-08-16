@@ -89,7 +89,8 @@
         "link-column",
       "dealership-activities",
       "road-support",
-      "extended-warranty"
+      "extended-warranty",
+      "book-showroom-visit"
     ]
   },
   {
@@ -282,5 +283,9 @@
     "components": [
       "dealership-activities-items"
    ]
+  },
+  {
+    "id": "book-showroom-visit",
+    "components": []
   }
 ]
