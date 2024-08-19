@@ -4099,6 +4099,34 @@
             "valueType":"string"
           }
         ]
+      },
+      {
+        "component": "text",
+        "name": "mobileNumber",
+        "value": "",
+        "label": "Mobile",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "enterOTP",
+        "value": "",
+        "label": "OTP Label",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "checkboxLabel",
+        "value": "",
+        "label": "Checkbox Label",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "submitButtonLabel",
+        "value": "",
+        "label": "Submit Button Label",
+        "valueType": "string"
       }
     ]
   }
