@@ -3991,9 +3991,209 @@
     ]
     
     }
-
-
-  
-  
-
+  ,
+  {
+    "id": "book-showroom-visit",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "titleType",
+        "value": "h3",
+        "label": "Title Type",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "h1",
+            "value": "h1"
+          },
+          {
+            "name": "h2",
+            "value": "h2"
+          },
+          {
+            "name": "h3",
+            "value": "h3"
+          },
+          {
+            "name": "h4",
+            "value": "h4"
+          },
+          {
+            "name": "h5",
+            "value": "h5"
+          },
+          {
+            "name": "h6",
+            "value": "h6"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "name": "subtitle",
+        "value": "",
+        "label": "Sub-Title",
+        "valueType": "string"
+      },
+      {
+        "component": "container",
+        "label": "Form Details",
+        "name": "formContainer",
+        "valueType": "string",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "text",
+            "name": "personName",
+            "value": "",
+            "label": "Name",
+            "valueType": "string"
+          },
+          {
+            "component":"text",
+            "name":"emailId",
+            "value":"",
+            "label":"Email ID",
+            "valueType":"string"
+          },
+          {
+            "component":"text",
+            "name":"state",
+            "value":"",
+            "label":"State",
+            "valueType":"string"
+          },
+          {
+            "component":"text",
+            "name":"city",
+            "value":"",
+            "label":"City",
+            "valueType":"string"
+          },
+          {
+            "component":"text",
+            "name":"dealer",
+            "value":"",
+            "label":"Dealer",
+            "valueType":"string"
+          },
+          {
+            "component":"text",
+            "name":"buyerType",
+            "value":"",
+            "label":"Buyer Type",
+            "valueType":"string"
+          },
+          {
+            "component":"text",
+            "name":"carModel",
+            "value":"",
+            "label":"Model",
+            "valueType":"string"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "name": "mobileNumber",
+        "value": "",
+        "label": "Mobile",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "enterOTP",
+        "value": "",
+        "label": "OTP Label",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "checkboxLabel",
+        "value": "",
+        "label": "Checkbox Label",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "submitButtonLabel",
+        "value": "",
+        "label": "Submit Button Label",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "image-banner",
+    "fields": [
+      {
+        "component": "text-input",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "titleType",
+        "value": "h2",
+        "label": "Type",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "h1",
+            "value": "h1"
+          },
+          {
+            "name": "h2",
+            "value": "h2"
+          },
+          {
+            "name": "h3",
+            "value": "h3"
+          },
+          {
+            "name": "h4",
+            "value": "h4"
+          },
+          {
+            "name": "h5",
+            "value": "h5"
+          },
+          {
+            "name": "h6",
+            "value": "h6"
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "label": "Desktop Image(Default Img)",
+        "name": "desktopImage",
+        "valueType": "string",
+        "required": true
+      },
+      {
+        "component": "text",
+        "label": "Desktop Image Alt",
+        "name": "desktopImageAlt",
+        "valueType": "string",
+        "required": true,
+        "condition": { "!==": [{ "var": "desktopImage" }, ""] }
+      },
+      {
+        "component": "reference",
+        "label": "Mobile Image",
+        "name": "mobileImage",
+        "valueType": "string"
+      }
+    ]
+  }
 ]

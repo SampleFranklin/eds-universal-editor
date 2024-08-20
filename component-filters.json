@@ -88,8 +88,10 @@
       "dealer-locator-filter",
         "link-column",
       "dealership-activities",
-      "road-support"
-      
+      "road-support",
+      "extended-warranty",
+      "book-showroom-visit",
+      "image-banner"
     ]
   },
   {
@@ -282,5 +284,9 @@
     "components": [
       "dealership-activities-items"
    ]
+  },
+  {
+    "id": "book-showroom-visit",
+    "components": []
   }
 ]
