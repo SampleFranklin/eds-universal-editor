@@ -1,7 +1,7 @@
 import utility from '../../utility/utility.js';
 
 export default async function decorate(block) {
-    const [titleEl, subTitleEl, nameEl, emailEl, stateEl, cityEl, dealerEL, buyerTypeEl, modelEl] = block.children;
+    const [titleEl, subTitleEl, nameEl, emailEl, stateEl, cityEl, dealerEL, buyerTypeEl, modelEl, mobileEl, otpEl, checkboxEl, btnLabelEl] = block.children;
 
     const getFieldData = (element) => {
         return element?.textContent?.trim() || '';
@@ -16,21 +16,22 @@ export default async function decorate(block) {
     const dealer = getFieldData(dealerEL);
     const buyerType = getFieldData(buyerTypeEl);
     const model = getFieldData(modelEl);
+    const mobile = getFieldData(mobileEl);
+    const otp = getFieldData(otpEl);
+    const checkbox = getFieldData(checkboxEl);
+    const btnLabel = getFieldData(btnLabelEl);
 
     // Sample JSON data
     const testJson = {
-        "states": [
-            {
+        "states": [{
                 "id": "1",
                 "name": "Maharashtra",
                 "abbreviation": "MH",
-                "cities": [
-                    {
+                "cities": [{
                         "id": "1",
                         "name": "Mumbai",
                         "zipcode": "400001",
-                        "carDealerships": [
-                            {
+                        "carDealerships": [{
                                 "id": "1",
                                 "name": "Mumbai Motors",
                                 "address": "101 Marine Drive",
@@ -50,15 +51,13 @@ export default async function decorate(block) {
                         "id": "2",
                         "name": "Pune",
                         "zipcode": "411001",
-                        "carDealerships": [
-                            {
-                                "id": "3",
-                                "name": "Pune Auto World",
-                                "address": "303 MG Road",
-                                "phone": "020-12345678",
-                                "website": "http://www.puneautoworld.in"
-                            }
-                        ]
+                        "carDealerships": [{
+                            "id": "3",
+                            "name": "Pune Auto World",
+                            "address": "303 MG Road",
+                            "phone": "020-12345678",
+                            "website": "http://www.puneautoworld.in"
+                        }]
                     }
                 ]
             },
@@ -66,34 +65,29 @@ export default async function decorate(block) {
                 "id": "2",
                 "name": "Karnataka",
                 "abbreviation": "KT",
-                "cities": [
-                    {
+                "cities": [{
                         "id": "3",
                         "name": "Bengaluru",
                         "zipcode": "560001",
-                        "carDealerships": [
-                            {
-                                "id": "4",
-                                "name": "Bengaluru Auto Hub",
-                                "address": "404 Brigade Road",
-                                "phone": "080-12345678",
-                                "website": "http://www.bengaluruautohub.in"
-                            }
-                        ]
+                        "carDealerships": [{
+                            "id": "4",
+                            "name": "Bengaluru Auto Hub",
+                            "address": "404 Brigade Road",
+                            "phone": "080-12345678",
+                            "website": "http://www.bengaluruautohub.in"
+                        }]
                     },
                     {
                         "id": "4",
                         "name": "Mysuru",
                         "zipcode": "570001",
-                        "carDealerships": [
-                            {
-                                "id": "5",
-                                "name": "Mysuru Motors",
-                                "address": "505 Krishnamurthy Road",
-                                "phone": "0821-1234567",
-                                "website": "http://www.mysurumotors.in"
-                            }
-                        ]
+                        "carDealerships": [{
+                            "id": "5",
+                            "name": "Mysuru Motors",
+                            "address": "505 Krishnamurthy Road",
+                            "phone": "0821-1234567",
+                            "website": "http://www.mysurumotors.in"
+                        }]
                     }
                 ]
             },
@@ -101,55 +95,46 @@ export default async function decorate(block) {
                 "id": "3",
                 "name": "Delhi",
                 "abbreviation": "DL",
-                "cities": [
-                    {
-                        "id": "5",
-                        "name": "New Delhi",
-                        "zipcode": "110001",
-                        "carDealerships": [
-                            {
-                                "id": "6",
-                                "name": "Delhi Car Mart",
-                                "address": "123 Connaught Place",
-                                "phone": "011-12345678",
-                                "website": "http://www.delhicarmart.in"
-                            }
-                        ]
-                    }
-                ]
+                "cities": [{
+                    "id": "5",
+                    "name": "New Delhi",
+                    "zipcode": "110001",
+                    "carDealerships": [{
+                        "id": "6",
+                        "name": "Delhi Car Mart",
+                        "address": "123 Connaught Place",
+                        "phone": "011-12345678",
+                        "website": "http://www.delhicarmart.in"
+                    }]
+                }]
             },
             {
                 "id": "4",
                 "name": "Tamil Nadu",
                 "abbreviation": "TN",
-                "cities": [
-                    {
+                "cities": [{
                         "id": "6",
                         "name": "Chennai",
                         "zipcode": "600001",
-                        "carDealerships": [
-                            {
-                                "id": "7",
-                                "name": "Chennai Auto Plaza",
-                                "address": "234 Mount Road",
-                                "phone": "044-12345678",
-                                "website": "http://www.chennaiautoplaza.in"
-                            }
-                        ]
+                        "carDealerships": [{
+                            "id": "7",
+                            "name": "Chennai Auto Plaza",
+                            "address": "234 Mount Road",
+                            "phone": "044-12345678",
+                            "website": "http://www.chennaiautoplaza.in"
+                        }]
                     },
                     {
                         "id": "7",
                         "name": "Coimbatore",
                         "zipcode": "641001",
-                        "carDealerships": [
-                            {
-                                "id": "8",
-                                "name": "Coimbatore Motors",
-                                "address": "345 Avinashi Road",
-                                "phone": "0422-123456",
-                                "website": "http://www.coimbatoremotors.in"
-                            }
-                        ]
+                        "carDealerships": [{
+                            "id": "8",
+                            "name": "Coimbatore Motors",
+                            "address": "345 Avinashi Road",
+                            "phone": "0422-123456",
+                            "website": "http://www.coimbatoremotors.in"
+                        }]
                     }
                 ]
             },
@@ -157,22 +142,18 @@ export default async function decorate(block) {
                 "id": "5",
                 "name": "West Bengal",
                 "abbreviation": "WB",
-                "cities": [
-                    {
-                        "id": "8",
-                        "name": "Kolkata",
-                        "zipcode": "700001",
-                        "carDealerships": [
-                            {
-                                "id": "9",
-                                "name": "Kolkata Cars",
-                                "address": "456 Park Street",
-                                "phone": "033-12345678",
-                                "website": "http://www.kolkata-cars.in"
-                            }
-                        ]
-                    }
-                ]
+                "cities": [{
+                    "id": "8",
+                    "name": "Kolkata",
+                    "zipcode": "700001",
+                    "carDealerships": [{
+                        "id": "9",
+                        "name": "Kolkata Cars",
+                        "address": "456 Park Street",
+                        "phone": "033-12345678",
+                        "website": "http://www.kolkata-cars.in"
+                    }]
+                }]
             }
         ]
     };
@@ -186,9 +167,11 @@ export default async function decorate(block) {
             <form class="testDrive" name="testDriveform" novalidate="novalidate">
                 <div class="form-group form-group-bottom">
                     <input type="text" id="bttfname" name="name" class="form-control" placeholder=${name} maxlength="30">
+                    <span class="error-message" id="nameError" style="color: red; display: none;">Please enter your name.</span>
                 </div>
                 <div class="form-group form-group-bottom">
                     <input type="email" name="email" id="newTestEmail" class="form-control" placeholder=${email}>
+                    <span class="error-message" id="emailError" style="color: red; display: none;">Please enter a valid email address.</span>
                 </div>
                 <div class="form-group form-group-bottom">
                     <select name="dealerstate" id="dealerstate" class="form-control bookTestDrive_dealerState" onchange="populateCities()">
@@ -229,16 +212,19 @@ export default async function decorate(block) {
                         <option value="UT">UTTARAKHAND</option>
                         <option value="WB">WEST BENGAL</option>
                     </select>
+                    <span class="error-message" id="stateError" style="color: red; display: none;">Please select a state.</span>
                 </div>
                 <div class="form-group form-group-bottom">
                     <select name="dealercity" id="dealercity" class="form-control bookTestDrive_dealerCity" onchange="populateDealers()">
                         <option value="">${city}</option>
                     </select>
+                    <span class="error-message" id="cityError" style="color: red; display: none;">Please select a city.</span>
                 </div>
                 <div class="form-group form-group-bottom">
                     <select name="dealer" id="dealer" class="form-control bookTestDrive_dealer">
                         <option value="">${dealer}</option>
                     </select>
+                    <span class="error-message" id="dealerError" style="color: red; display: none;">Please select a dealer.</span>
                 </div>
                 <div class="form-group form-group-bottom">
                     <select type="buyerType" name="buyerType" id="newbuyerType" class="form-control">
@@ -247,9 +233,10 @@ export default async function decorate(block) {
                         <option value="2">ADDITIONAL CAR</option>
                         <option value="3">EXCHANGE OF AN OLD CAR</option>
                     </select>
+                    <span class="error-message" id="buyerTypeError" style="color: red; display: none;">Please select a buyer type.</span>
                 </div>
                 <div class="form-group form-group-bottom">
-                    <select name="model" id="testCarModalName" class="form-control bookTestDrive_car">
+                    <select name="model" id="testCarModelName" class="form-control bookTestDrive_car">
                         <option value="">${model}</option>
                         <option value="AT-ATR4EV100">ALTO K10</option>
                         <option value="VZ-VZR4CV100">BREZZA</option>
@@ -266,11 +253,13 @@ export default async function decorate(block) {
                         <option value="ER-ERRCTL200">Tour M</option>
                         <option value="VR-VRTPGHF00">Tour V</option>
                     </select>
+                    <span class="error-message" id="modelError" style="color: red; display: none;">Please select a car model.</span>
                 </div>
                 <div class="form-group form-group-bottom">
                     <div>
-                        <input type="text" name="mobile" id="newTestMobile" class="form-control" placeholder="Mobile*" onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="10" maxlength="10" required="" aria-required="true" autocomplete="off">
-                        <span class="btsendotp sendOtp otp">Send OTP</span>
+                        <input type="text" name="mobile" id="newTestMobile" class="form-control" placeholder=${mobile} onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="10" maxlength="10" required="" aria-required="true" autocomplete="off">
+                        <span class="error-message" id="mobileError" style="color: red; display: none;">Please enter a 10-digit mobile number.</span>
+                        <span id="sendOtpBtn" class="btsendotp sendOtp otp">Send OTP</span>
                         <span id="error-span" style="color:#f00;"></span>
                     </div>
                     <div id="bsd" class="divResendInfo" style="margin-top: 45px; white-space:nowrap; position:absolute; top:5px; right:115px; font-size:12px; color: green; font-weight: bold; text-align: left; margin-left: 15px; display: none;">
@@ -279,17 +268,18 @@ export default async function decorate(block) {
                     </div>
                 </div>
                 <div class="form-group otpTxt btdotpTxt form-group-bottom">
-                    <input type="text" name="otp" id="btdResendOtp" class="form-control" placeholder="Enter OTP*" onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="5" maxlength="5" autocomplete="off">
+                    <input type="text" name="otp" id="btdResendOtp" class="form-control" placeholder=${otp} onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="5" maxlength="5" autocomplete="off">
                     <span id="otptestDriveError" style="display: none; color:red;">OTP not matching</span>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" id="btdcheckbox" value="">
+                    <input type="checkbox" id="btdcheckbox" disabled value="">
                     <label>
-                        I agree that by clicking the ‘Submit’ button below, I am explicitly soliciting a call and message via whatsapp or any other medium from Maruti Suzuki India Ltd or its partners on my ‘Mobile’.
+                        ${checkbox}
                     </label>
+                    <span class="error-message" id="checkboxError" style="color: red; display: none;">Please agree to the terms and conditions.</span>
                 </div>
                 <div class="form-group submit">
-                    <button type="button" id="btnbookshowroomVisit" style="margin-bottom: 10px;background-color: grey; border: 2px solid grey;">Submit</button>
+                    <button type="button" id="btnbookshowroomVisit" style="margin-bottom: 10px;background-color: grey; border: 2px solid grey;">${btnLabel}</button>
                 </div>
             </form>
             <input type="hidden" id="dealerType" value="S">
@@ -340,6 +330,163 @@ export default async function decorate(block) {
         }
     };
 
+    // Function to validate the form
+    function validateField(field) {
+        let isValid = true;
+
+        switch (field.id) {
+            case 'bttfname':
+                if (!field.value.trim()) {
+                    document.getElementById('nameError').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('nameError').style.display = 'none';
+                }
+                break;
+
+            case 'newTestEmail':
+                if (!field.value.trim() || !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(field.value)) {
+                    document.getElementById('emailError').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('emailError').style.display = 'none';
+                }
+                break;
+
+            case 'dealerstate':
+                if (!field.value.trim()) {
+                    document.getElementById('stateError').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('stateError').style.display = 'none';
+                }
+                break;
+
+            case 'dealercity':
+                if (!field.value.trim()) {
+                    document.getElementById('cityError').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('cityError').style.display = 'none';
+                }
+                break;
+
+            case 'dealer':
+                if (!field.value.trim()) {
+                    document.getElementById('dealerError').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('dealerError').style.display = 'none';
+                }
+                break;
+
+            case 'newbuyerType':
+                if (!field.value.trim()) {
+                    document.getElementById('buyerTypeError').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('buyerTypeError').style.display = 'none';
+                }
+                break;
+
+            case 'testCarModelName':
+                if (!field.value.trim()) {
+                    document.getElementById('modelError').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('modelError').style.display = 'none';
+                }
+                break;
+
+            case 'newTestMobile':
+                if (!/^\d{10}$/.test(field.value)) {
+                    document.getElementById('mobileError').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('mobileError').style.display = 'none';
+                }
+                break;
+
+            case 'btdResendOtp':
+                if (field.value.trim() && field.value.length !== 5) {
+                    document.getElementById('otptestDriveError').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('otptestDriveError').style.display = 'none';
+                }
+                break;
+
+            default:
+                break;
+        }
+
+        // Enable/Disable submit button based on field validation
+        document.getElementById('btnbookshowroomVisit').disabled = !isValid;
+
+        return isValid;
+    }
+
+    // Function to handle OTP sending
+    document.handleOtp = function() {
+        // Validate all fields
+        const allFields = document.querySelectorAll('#defaultNewForm input, #defaultNewForm select');
+        let isValid = true;
+
+        allFields.forEach(field => {
+            if (!validateField(field)) {
+                isValid = false;
+            }
+        });
+
+        if (isValid) {
+            // If form is valid, proceed with OTP sending
+            document.getElementById('error-span').textContent = '';
+            // Logic for sending OTP goes here
+            verifyOtp();
+        }
+    };
+
+    // Function to handle OTP verification
+    function verifyOtp() {
+        const otpField = document.getElementById('btdResendOtp');
+        const otpValue = otpField.value.trim();
+
+        // Example logic for OTP verification
+        if (otpValue.length === 5) {
+            // Assume OTP is valid, you can add real verification logic here
+            document.getElementById('btdcheckbox').disabled = false;
+            //            document.getElementById('checkboxError').style.display = 'none';
+        } else {
+            //            document.getElementById('checkboxError').style.display = 'block';
+        }
+    }
+
     // Inject form HTML into the block
     block.innerHTML = utility.sanitizeHtml(formContent);
+
+    // Event listeners for form fields
+    document.querySelectorAll('#defaultNewForm input, #defaultNewForm select').forEach(field => {
+        field.addEventListener('input', () => {
+            validateField(field);
+        });
+    });
+
+    // Add event listener to the Send OTP button
+    const sendOtpBtn = document.querySelector('#sendOtpBtn');
+    sendOtpBtn.addEventListener('click', (event) => {
+        document.handleOtp();
+    });
+
+    // Event listener for OTP field
+    document.getElementById('btdResendOtp').addEventListener('input', () => {
+        verifyOtp();
+    });
+
+    // Event listener for checkbox
+    document.getElementById('btdcheckbox').addEventListener('change', () => {
+        validateField(document.getElementById('btdcheckbox'));
+    });
+
 }
+
+//${testJson.states.map(state => `<option value="${state.abbreviation}">${state.name}</option>`).join('')}
