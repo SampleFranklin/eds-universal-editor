@@ -4129,9 +4129,71 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "image-banner",
+    "fields": [
+      {
+        "component": "text-input",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "titleType",
+        "value": "h2",
+        "label": "Type",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "h1",
+            "value": "h1"
+          },
+          {
+            "name": "h2",
+            "value": "h2"
+          },
+          {
+            "name": "h3",
+            "value": "h3"
+          },
+          {
+            "name": "h4",
+            "value": "h4"
+          },
+          {
+            "name": "h5",
+            "value": "h5"
+          },
+          {
+            "name": "h6",
+            "value": "h6"
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "label": "Desktop Image(Default Img)",
+        "name": "desktopImage",
+        "valueType": "string",
+        "required": true
+      },
+      {
+        "component": "text",
+        "label": "Desktop Image Alt",
+        "name": "desktopImageAlt",
+        "valueType": "string",
+        "required": true,
+        "condition": { "!==": [{ "var": "desktopImage" }, ""] }
+      },
+      {
+        "component": "reference",
+        "label": "Mobile Image",
+        "name": "mobileImage",
+        "valueType": "string"
+      }
+    ]
   }
-
-  
-  
-
 ]
