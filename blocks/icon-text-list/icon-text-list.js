@@ -1,16 +1,15 @@
 import utility from '../../utility/utility.js';
 
 export default async function decorate(block) {
-  const title = block.children[0]?.querySelector(':is(h1,h2,h3,h4,h5,h6');
+    const [titleEl, ...cardsEl] = block.children;
+  const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6');
   title?.classList?.add('container', 'icon-text-title');
-  // Select all the <div> elements that represent each advantage card
-  const cardElements = block.querySelectorAll('div > picture');
 
   // Initialize a string to hold the HTML structure
   let newContainerHTML = `${title?.outerHTML}<div class="container advantages-container">`;
 
   // Loop through each card element and build the desired structure using template literals
-  cardElements?.forEach((pictureElement, index) => {
+  cardsEl?.forEach((pictureElement, index) => {
     // Get the image from the <picture> tag
     const imgElement = pictureElement?.querySelector('img');
     pictureElement.classList.add('advantage-class');
