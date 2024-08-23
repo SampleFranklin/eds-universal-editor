@@ -12,9 +12,9 @@ export default async function decorate(block) {
   cardsEl?.forEach((pictureElement, index) => {
     // Get the image from the <picture> tag
     const imgElement = pictureElement?.querySelector('img');
+    const imgAlt = pictureElement.innerText.trim();
     pictureElement.classList.add('advantage-class');
     const imgSrc = imgElement ? imgElement.src : '';
-    const imgAlt = imgElement ? imgElement.alt : `Advantage ${index + 1} Icon`;
 
     // Get the text content from the <p> tag
     const textElement = pictureElement?.parentElement?.nextElementSibling?.querySelector('p');
