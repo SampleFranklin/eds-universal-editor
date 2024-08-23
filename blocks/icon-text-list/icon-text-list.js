@@ -1,4 +1,3 @@
-/*
 import utility from '../../utility/utility.js';
 
 export default async function decorate(block) {
@@ -11,14 +10,14 @@ export default async function decorate(block) {
   let newContainerHTML = `${title?.outerHTML}<div class="container advantages-container">`;
 
   // Loop through each card element and build the desired structure using template literals
-  cardElements.forEach((pictureElement, index) => {
+  cardElements?.forEach((pictureElement, index) => {
     // Get the image from the <picture> tag
-    const imgElement = pictureElement.querySelector('img');
+    const imgElement = pictureElement?.querySelector('img');
     const imgSrc = imgElement ? imgElement.src : '';
     const imgAlt = imgElement ? imgElement.alt : `Advantage ${index + 1} Icon`;
 
     // Get the text content from the <p> tag
-    const textElement = pictureElement.parentElement.nextElementSibling.querySelector('p');
+    const textElement = pictureElement?.parentElement?.nextElementSibling?.querySelector('p');
     const textContent = textElement ? textElement.innerHTML : '';
 
     // Append the HTML for this card to the container string using template literals
@@ -40,4 +39,3 @@ export default async function decorate(block) {
   // Append the new container to the body or another parent element
   block.innerHTML = utility.sanitizeHtml(newContainerHTML);
 }
-*/
