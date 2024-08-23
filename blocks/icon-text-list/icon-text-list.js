@@ -1,3 +1,4 @@
+/*
 import utility from '../../utility/utility.js';
 
 export default async function decorate(block) {
@@ -39,3 +40,4 @@ export default async function decorate(block) {
   // Append the new container to the body or another parent element
   block.innerHTML = utility.sanitizeHtml(newContainerHTML);
 }
+*/
