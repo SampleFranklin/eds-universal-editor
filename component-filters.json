@@ -91,7 +91,8 @@
       "road-support",
       "extended-warranty",
       "book-showroom-visit",
-      "image-banner"
+      "image-banner",
+      "icon-text-list"
     ]
   },
   {
@@ -288,5 +289,11 @@
   {
     "id": "book-showroom-visit",
     "components": []
+  },
+  {
+    "id": "icon-text-list",
+    "components": [
+      "icon-text-item"
+    ]
   }
 ]
