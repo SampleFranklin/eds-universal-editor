@@ -4,6 +4,7 @@
     "/content/eds-universal-editor/metadata:/metadata.json",
     "/content/eds-universal-editor/placeholders:/placeholders.json",
     "/content/eds-universal-editor/redirects:/redirects.json",
-    "/content/eds-universal-editor/configuration:/.helix/config.json"
+    "/content/eds-universal-editor/configuration:/.helix/config.json",
+    "/content/eds-universal-editor/us/en/press-releases/:/us/en/press-releases/details"
   ]
 }
