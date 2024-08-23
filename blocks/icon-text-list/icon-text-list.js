@@ -13,6 +13,7 @@ export default async function decorate(block) {
   cardElements?.forEach((pictureElement, index) => {
     // Get the image from the <picture> tag
     const imgElement = pictureElement?.querySelector('img');
+    pictureElement.classList.add('advantage-class');
     const imgSrc = imgElement ? imgElement.src : '';
     const imgAlt = imgElement ? imgElement.alt : `Advantage ${index + 1} Icon`;
 
@@ -21,15 +22,14 @@ export default async function decorate(block) {
     const textContent = textElement ? textElement.innerHTML : '';
 
     // Append the HTML for this card to the container string using template literals
-    newContainerHTML += `
-              <div class="advantage-card">
+    pictureElement.innerHTML = `
                   <div class="icon">
                       <img src="${imgSrc}" alt="${imgAlt}">
                   </div>
                   <div class="content">
                       <p>${textContent}</p>
-                  </div>
-              </div>`;
+                  </div>`;
+                  newContainerHTML += pictureElement.outerHTML;
   });
 
   // Close the container div
