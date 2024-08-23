@@ -1,7 +1,7 @@
 import utility from '../../utility/utility.js';
 
 export default async function decorate(block) {
-    const [titleEl, ...cardsEl] = block.children;
+  const [titleEl, ...cardsEl] = block.children;
   const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6');
   title?.classList?.add('container', 'icon-text-title');
 

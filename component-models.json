@@ -4254,6 +4254,13 @@
         "name": "rte",
         "label": "Description",
         "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "alt",
+        "value": "",
+        "label": "Alt Text",
+        "valueType": "string"
       }
     ]
   }
