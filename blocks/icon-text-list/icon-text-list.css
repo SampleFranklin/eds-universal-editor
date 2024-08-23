@@ -1,0 +1,105 @@
+.icon-text-list {
+  padding: 4rem 1.5rem;
+
+  .icon-text-title {
+    font-family: var(--font-primary-nexa);
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.375rem;
+    margin-bottom: 2.1875rem;
+    text-align: center;
+  }
+
+  .advantages-container {
+    display: flex;
+    overflow-x: scroll;
+    padding: 0 0 0.625rem;
+    gap: 1.25rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin; /* For Firefox */
+    -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+    align-items: stretch;
+  }
+
+  .advantage-card {
+    display: flex;
+    align-items: center;
+    padding: 2.5rem 0.9375rem 0.625rem;
+    position: relative;
+    margin-top: 1.875rem;
+    background-color: #faf8f8;
+    border: 1px solid #dadada;
+    text-align: center;
+    flex: 1 0 9.375rem;
+    scroll-snap-align: start;
+
+    .icon {
+      position: absolute;
+      background-color: var(--tertiary-black);
+      border-radius: 50%;
+      width: 3.625rem;
+      height: 3.625rem;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: -29px;
+      left: 0;
+      right: 0;
+    }
+
+    p {
+      font-family: var(--font-primary-nexa);
+      font-size: 0.875rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1rem;
+      color: var(--tertiary-black);
+      margin: 0;
+      text-align: left;
+
+      strong {
+        font-weight: 500;
+      }
+    }
+  }
+
+  @media (width > 767px) and (width < 1024px) {
+    .icon-text-title {
+      font-size: 1.5rem;
+      line-height: 1.75rem;
+      margin-bottom: 2.1875rem;
+    }
+
+    .advantages-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.25rem;
+      overflow-x: visible; /* Disable scroll on larger screens */
+      padding: 0 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .advantage-card {
+      padding: 3.125rem 1.25rem 2.5rem;
+      flex-shrink: 1;
+      flex-basis: calc(33.33% - 14px);
+    }
+  }
+
+  @media (width > 1023px) {
+    .advantages-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.25rem;
+      overflow-x: visible; /* Disable scroll on larger screens */
+      padding: 0 1.25rem;
+    }
+
+    .advantage-card {
+      padding: 3.125rem 1.25rem 2.5rem;
+      flex-shrink: 1;
+    }
+  }
+}
