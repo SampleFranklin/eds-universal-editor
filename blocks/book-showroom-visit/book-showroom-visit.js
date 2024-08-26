@@ -21,142 +21,44 @@ export default async function decorate(block) {
     const checkbox = getFieldData(checkboxEl);
     const btnLabel = getFieldData(btnLabelEl);
 
-    // Sample JSON data
-    const testJson = {
-        "states": [{
-                "id": "1",
-                "name": "Maharashtra",
-                "abbreviation": "MH",
-                "cities": [{
-                        "id": "1",
-                        "name": "Mumbai",
-                        "zipcode": "400001",
-                        "carDealerships": [{
-                                "id": "1",
-                                "name": "Mumbai Motors",
-                                "address": "101 Marine Drive",
-                                "phone": "022-12345678",
-                                "website": "http://www.mumbaimotors.in"
-                            },
-                            {
-                                "id": "2",
-                                "name": "South Bombay Cars",
-                                "address": "202 Colaba Causeway",
-                                "phone": "022-87654321",
-                                "website": "http://www.southbombaycars.in"
-                            }
-                        ]
-                    },
-                    {
-                        "id": "2",
-                        "name": "Pune",
-                        "zipcode": "411001",
-                        "carDealerships": [{
-                            "id": "3",
-                            "name": "Pune Auto World",
-                            "address": "303 MG Road",
-                            "phone": "020-12345678",
-                            "website": "http://www.puneautoworld.in"
-                        }]
-                    }
-                ]
-            },
-            {
-                "id": "2",
-                "name": "Karnataka",
-                "abbreviation": "KT",
-                "cities": [{
-                        "id": "3",
-                        "name": "Bengaluru",
-                        "zipcode": "560001",
-                        "carDealerships": [{
-                            "id": "4",
-                            "name": "Bengaluru Auto Hub",
-                            "address": "404 Brigade Road",
-                            "phone": "080-12345678",
-                            "website": "http://www.bengaluruautohub.in"
-                        }]
-                    },
-                    {
-                        "id": "4",
-                        "name": "Mysuru",
-                        "zipcode": "570001",
-                        "carDealerships": [{
-                            "id": "5",
-                            "name": "Mysuru Motors",
-                            "address": "505 Krishnamurthy Road",
-                            "phone": "0821-1234567",
-                            "website": "http://www.mysurumotors.in"
-                        }]
-                    }
-                ]
-            },
-            {
-                "id": "3",
-                "name": "Delhi",
-                "abbreviation": "DL",
-                "cities": [{
-                    "id": "5",
-                    "name": "New Delhi",
-                    "zipcode": "110001",
-                    "carDealerships": [{
-                        "id": "6",
-                        "name": "Delhi Car Mart",
-                        "address": "123 Connaught Place",
-                        "phone": "011-12345678",
-                        "website": "http://www.delhicarmart.in"
-                    }]
-                }]
-            },
-            {
-                "id": "4",
-                "name": "Tamil Nadu",
-                "abbreviation": "TN",
-                "cities": [{
-                        "id": "6",
-                        "name": "Chennai",
-                        "zipcode": "600001",
-                        "carDealerships": [{
-                            "id": "7",
-                            "name": "Chennai Auto Plaza",
-                            "address": "234 Mount Road",
-                            "phone": "044-12345678",
-                            "website": "http://www.chennaiautoplaza.in"
-                        }]
-                    },
-                    {
-                        "id": "7",
-                        "name": "Coimbatore",
-                        "zipcode": "641001",
-                        "carDealerships": [{
-                            "id": "8",
-                            "name": "Coimbatore Motors",
-                            "address": "345 Avinashi Road",
-                            "phone": "0422-123456",
-                            "website": "http://www.coimbatoremotors.in"
-                        }]
-                    }
-                ]
-            },
-            {
-                "id": "5",
-                "name": "West Bengal",
-                "abbreviation": "WB",
-                "cities": [{
-                    "id": "8",
-                    "name": "Kolkata",
-                    "zipcode": "700001",
-                    "carDealerships": [{
-                        "id": "9",
-                        "name": "Kolkata Cars",
-                        "address": "456 Park Street",
-                        "phone": "033-12345678",
-                        "website": "http://www.kolkata-cars.in"
-                    }]
-                }]
-            }
-        ]
+//  const { publishDomain, apiKey } = await fetchPlaceholders();
+    const url = 'https://dev-arena.marutisuzuki.com/content/arena/services/token';
+//  const url = `${publishDomain}/content/arena/services/token`;
+    let authorization = null;
+    try {
+        const auth = await fetch(url);
+        authorization = await auth.text();
+    } catch (e) {
+        authorization = '';
+    }
+
+    const defaultHeaders = {
+        'x-api-key': '3Oa87EBtBK9k4QQa87eYDaTB2CcLnbp7aqd00kqH',
+        Authorization: authorization,
     };
+
+    const urlWithParams = 'https://api.preprod.developersatmarutisuzuki.in/masterdata/v1/common/CommonMasterData/state-list';
+    let result;
+    try {
+    const response = await fetch(urlWithParams, {
+      method: 'GET',
+      headers: defaultHeaders,
+    });
+    result = await response.json();
+    console.log(result);
+    } catch (e) {
+        throw new Error('Network response was not ok', e);
+    }
+
+    const graphQLUrl = 'https://publish-p135331-e1341966.adobeaemcloud.com/graphql/execute.json/msil-platform/CarModelById?z=10';
+    let output;
+    try {
+        const resp = await fetch(graphQLUrl);
+        output = await resp.json();
+        console.log(output);
+    } catch (e) {
+        throw new Error('Network response was not ok', e);
+    }
 
     // Build the form HTML content
     const formContent = `
@@ -176,41 +78,7 @@ export default async function decorate(block) {
                 <div class="form-group form-group-bottom">
                     <select name="dealerstate" id="dealerstate" class="form-control bookTestDrive_dealerState" onchange="populateCities()">
                         <option value="">${state}</option>
-                        <option value="AN">ANDAMAN AND NICOBAR ISLANDS</option>
-                        <option value="AP">ANDHRA PRADESH</option>
-                        <option value="AR">ARUNACHAL PRADESH</option>
-                        <option value="AS">ASSAM</option>
-                        <option value="BH">BIHAR</option>
-                        <option value="CG">CHANDIGARH</option>
-                        <option value="CH">CHHATTISGARH</option>
-                        <option value="DN">DADRA AND NAGAR HAVELI</option>
-                        <option value="DL">DELHI</option>
-                        <option value="GO">GOA</option>
-                        <option value="GJ">GUJARAT</option>
-                        <option value="HN">HARYANA</option>
-                        <option value="HP">HIMACHAL PRADESH</option>
-                        <option value="JK">JAMMU AND KASHMIR</option>
-                        <option value="JH">JHARKHAND</option>
-                        <option value="KT">KARNATAKA</option>
-                        <option value="KL">KERALA</option>
-                        <option value="LA">LADAKH</option>
-                        <option value="MP">MADHYA PRADESH</option>
-                        <option value="MH">MAHARASHTRA</option>
-                        <option value="MN">MANIPUR</option>
-                        <option value="ML">MEGHALAYA</option>
-                        <option value="MZ">MIZORAM</option>
-                        <option value="NG">NAGALAND</option>
-                        <option value="OS">ODISHA</option>
-                        <option value="PC">PONDICHERRY</option>
-                        <option value="PJ">PUNJAB</option>
-                        <option value="RJ">RAJASTHAN</option>
-                        <option value="SK">SIKKIM</option>
-                        <option value="TN">TAMIL NADU</option>
-                        <option value="TL">TELANGANA</option>
-                        <option value="TR">TRIPURA</option>
-                        <option value="UP">UTTAR PRADESH</option>
-                        <option value="UT">UTTARAKHAND</option>
-                        <option value="WB">WEST BENGAL</option>
+                        ${result.data.map(state => `<option value="${state.stateCode}">${state.stateDescription}</option>`).join('')}
                     </select>
                     <span class="error-message" id="stateError" style="color: red; display: none;">Please select a state.</span>
                 </div>
@@ -238,20 +106,7 @@ export default async function decorate(block) {
                 <div class="form-group form-group-bottom">
                     <select name="model" id="testCarModelName" class="form-control bookTestDrive_car">
                         <option value="">${model}</option>
-                        <option value="AT-ATR4EV100">ALTO K10</option>
-                        <option value="VZ-VZR4CV100">BREZZA</option>
-                        <option value="CL-CLR4CV100">CELERIO</option>
-                        <option value="DI-DRR4HV100">DZIRE</option>
-                        <option value="VR-VRRPGHF00">EECO</option>
-                        <option value="ER-ERR4FV100">ERTIGA</option>
-                        <option value="SP-SPR4BV100">S-PRESSO</option>
-                        <option value="SI-SIR4AL100">SWIFT</option>
-                        <option value="WA-WAR4HV100">WAGONR</option>
-                        <option value="AN-ANR4TLB00">Tour H1</option>
-                        <option value="WA-WAR4TL100">Tour H3</option>
-                        <option value="DI-DRRCTL100">Tour S</option>
-                        <option value="ER-ERRCTL200">Tour M</option>
-                        <option value="VR-VRTPGHF00">Tour V</option>
+                        ${output.data.carModelList.items.filter(carModel => (carModel._path.includes('/arena') == true)).map(carModel => `<option value="${carModel.modelDesc}">${carModel.modelDesc}</option>`).join('')}
                     </select>
                     <span class="error-message" id="modelError" style="color: red; display: none;">Please select a car model.</span>
                 </div>
@@ -259,7 +114,7 @@ export default async function decorate(block) {
                     <div>
                         <input type="text" name="mobile" id="newTestMobile" class="form-control" placeholder=${mobile} onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="10" maxlength="10" required="" aria-required="true" autocomplete="off">
                         <span class="error-message" id="mobileError" style="color: red; display: none;">Please enter a 10-digit mobile number.</span>
-                        <span id="sendOtpBtn" class="btsendotp sendOtp otp">Send OTP</span>
+                        <span id="sendOtpBtn" class="btsendotp sendOtp otp" style="border: 2px solid black;">Send OTP</span>
                         <span id="error-span" style="color:#f00;"></span>
                     </div>
                     <div id="bsd" class="divResendInfo" style="margin-top: 45px; white-space:nowrap; position:absolute; top:5px; right:115px; font-size:12px; color: green; font-weight: bold; text-align: left; margin-left: 15px; display: none;">
@@ -269,7 +124,7 @@ export default async function decorate(block) {
                 </div>
                 <div class="form-group otpTxt btdotpTxt form-group-bottom">
                     <input type="text" name="otp" id="btdResendOtp" class="form-control" placeholder=${otp} onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="5" maxlength="5" autocomplete="off">
-                    <span id="otptestDriveError" style="display: none; color:red;">OTP not matching</span>
+                    <span id="otptestDriveError" style="display: none; color:red;">Please enter at least 5 characters.</span>
                 </div>
                 <div class="checkbox">
                     <input type="checkbox" id="btdcheckbox" disabled value="">
@@ -289,7 +144,7 @@ export default async function decorate(block) {
     `;
 
     // Function to populate cities based on selected state
-    document.populateCities = function() {
+    document.populateCities = async function() {
         const stateAbbreviation = document.getElementById('dealerstate').value;
         const cityDropdown = document.getElementById('dealercity');
         const dealerDropdown = document.getElementById('dealer');
@@ -298,34 +153,45 @@ export default async function decorate(block) {
         cityDropdown.innerHTML = '<option value="">Select City</option>';
         dealerDropdown.innerHTML = '<option value="">Select Dealer</option>';
 
-        // Find the selected state
-        const state = testJson.states.find(state => state.abbreviation === stateAbbreviation);
-        if (state) {
-            // Populate cities
-            state.cities.forEach(city => {
-                cityDropdown.innerHTML += `<option value="${city.name}">${city.name}</option>`;
-            });
+        if(stateAbbreviation){
+            const getCitiesUrl = 'https://api.preprod.developersatmarutisuzuki.in/dms/v1/api/common/msil/dms/dealer-only-cities?channel=NRM&stateCode='+stateAbbreviation;
+            try {
+                const response = await fetch(getCitiesUrl, {
+                  method: 'GET',
+                  headers: defaultHeaders,
+                });
+                if (!response.ok) throw new Error('Network response was not ok');
+                const cities = await response.json();
+                const options = cities.data.filter(city => city.cityDesc).map(city => `<option value="${city.cityCode}">${city.cityDesc}</option>`).join('');
+                cityDropdown.innerHTML += options;
+            } catch (e) {
+                throw new Error('Network response was not ok', e);
+            }
         }
     };
 
     // Function to populate dealers based on selected city
-    document.populateDealers = function() {
+    document.populateDealers = async function() {
         const stateAbbreviation = document.getElementById('dealerstate').value;
-        const cityName = document.getElementById('dealercity').value;
+        const cityCode = document.getElementById('dealercity').value;
+        console.log(cityCode);
         const dealerDropdown = document.getElementById('dealer');
-
         // Clear existing options
         dealerDropdown.innerHTML = '<option value="">Select Dealer</option>';
 
-        // Find the selected state and city data
-        const state = testJson.states.find(state => state.abbreviation === stateAbbreviation);
-        if (state) {
-            const city = state.cities.find(city => city.name === cityName);
-            if (city) {
-                // Populate dealers
-                city.carDealerships.forEach(dealer => {
-                    dealerDropdown.innerHTML += `<option value="${dealer.name}">${dealer.name}</option>`;
-                });
+        if (cityCode) {
+            // Define the API endpoint to fetch dealers based on the cityCode
+            const getDealersUrl = 'https://api.preprod.developersatmarutisuzuki.in/dms/v1/api/common/msil/dms/dealer-master?channel=NRM&outletType=O&cityCd='+cityCode;
+            try {
+                const response = await fetch(getDealersUrl, { method: 'GET', headers: defaultHeaders });
+                if (!response.ok) throw new Error('Network response was not ok');
+                const dealers = await response.json();
+                console.log(dealers);
+                // Filter and populate dealer dropdown
+                const options = dealers.data.filter(dealer => dealer.name).map(dealer => `<option value="${dealer.dealerCode}">${dealer.name}</option>`).join('');
+                dealerDropdown.innerHTML += options;
+            } catch (error) {
+                console.error('Failed to fetch dealers:', error);
             }
         }
     };
@@ -426,8 +292,31 @@ export default async function decorate(block) {
         return isValid;
     }
 
+    let timerInterval;
+    let remainingTime = 90; // Timer duration in seconds
+
+    function startTimer() {
+        const sendOtpBtn = document.getElementById('sendOtpBtn');
+        const timerDisplay = document.getElementById('bsd');
+        sendOtpBtn.style.pointerEvents = 'none';
+        timerDisplay.style.display = 'inline';
+        timerDisplay.innerHTML = `<span>RESEND OTP IN</span> &nbsp;<span id="bsd_m">${Math.floor(remainingTime / 60).toString().padStart(2, '0')}</span>:<span id="bsd_s">${(remainingTime % 60).toString().padStart(2, '0')}</span>`;
+
+        timerInterval = setInterval(() => {
+            remainingTime -= 1;
+            if (remainingTime <= 0) {
+                clearInterval(timerInterval);
+                sendOtpBtn.style.pointerEvents = 'auto';
+                timerDisplay.style.display = 'none';
+                remainingTime = 90; // Reset timer
+            } else {
+                document.getElementById('bsd_m').textContent = Math.floor(remainingTime / 60).toString().padStart(2, '0');
+                document.getElementById('bsd_s').textContent = (remainingTime % 60).toString().padStart(2, '0');
+            }
+        }, 1000);
+    }
     // Function to handle OTP sending
-    document.handleOtp = function() {
+    document.handleOtp = async function() {
         // Validate all fields
         const allFields = document.querySelectorAll('#defaultNewForm input, #defaultNewForm select');
         let isValid = true;
@@ -439,10 +328,35 @@ export default async function decorate(block) {
         });
 
         if (isValid) {
+            const mobileNumber = document.getElementById('newTestMobile').value;
+            console.log(mobileNumber);
+
+            const requestBody = {
+              otpLength: 5,
+              mobile: mobileNumber,
+              validity:"300"
+            };
+
             // If form is valid, proceed with OTP sending
             document.getElementById('error-span').textContent = '';
-            // Logic for sending OTP goes here
-            verifyOtp();
+            const sendOtpBtn = document.getElementById('sendOtpBtn');
+            const sendOtpUrl = 'https://api.preprod.developersatmarutisuzuki.in/masterdata/v1/common/CommonMasterData/send-otp'
+            try {
+                const response = await fetch(sendOtpUrl, {
+                  method: 'POST',
+                  headers: {
+                    ...defaultHeaders,
+                    'Content-Type': 'application/json' // Ensure the header specifies JSON content
+                  },
+                  body: JSON.stringify(requestBody) // Convert the body to a JSON string
+                });
+                if (!response.ok) throw new Error('Network response was not ok');
+                const otpResponse = await response.json();
+                sendOtpBtn.innerText = 'RESEND OTP';
+                startTimer();
+            } catch (error) {
+                console.error('Failed to Send OTP:', error);
+            }
         }
     };
 
@@ -450,14 +364,10 @@ export default async function decorate(block) {
     function verifyOtp() {
         const otpField = document.getElementById('btdResendOtp');
         const otpValue = otpField.value.trim();
-
-        // Example logic for OTP verification
         if (otpValue.length === 5) {
-            // Assume OTP is valid, you can add real verification logic here
             document.getElementById('btdcheckbox').disabled = false;
-            //            document.getElementById('checkboxError').style.display = 'none';
         } else {
-            //            document.getElementById('checkboxError').style.display = 'block';
+            document.getElementById('btdcheckbox').disabled = true;
         }
     }
 
@@ -472,8 +382,8 @@ export default async function decorate(block) {
     });
 
     // Add event listener to the Send OTP button
-    const sendOtpBtn = document.querySelector('#sendOtpBtn');
-    sendOtpBtn.addEventListener('click', (event) => {
+    const sendOtpBtnSelector = document.querySelector('#sendOtpBtn');
+    sendOtpBtnSelector.addEventListener('click', (event) => {
         document.handleOtp();
     });
 
@@ -489,4 +399,3 @@ export default async function decorate(block) {
 
 }
 
-//${testJson.states.map(state => `<option value="${state.abbreviation}">${state.name}</option>`).join('')}
