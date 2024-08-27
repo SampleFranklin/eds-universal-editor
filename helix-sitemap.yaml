@@ -1,8 +1,14 @@
 version: 1
 sitemaps:
-  default:
-    host: main--eds-universal-editor--samplefranklin.hlx.live
-    source: /query-index.json
-    destination: /sitemap.xml
-    lastmod: YYYY-MM-DD
-    changefreq: changefreq
+  default: en
+  site:
+    languages:
+      en:
+        source: /en/query-index.json
+        destination: /sitemap-en.xml
+        hreflang: en
+      hi:
+        source: /hi/query-index.json
+        destination: /sitemap-hi.xml
+        hreflang: hi
+        alternate: /hi/{path}

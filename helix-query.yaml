@@ -1,18 +1,31 @@
 version: 1
 indices:
-  default:
+  en:
     include:
-      - '/**'
+      - '/us/en/**'
     exclude:
       - '/us/en/test-page/**'
-    target: /query-index.json
+    target: /en/query-index.json
     properties:
       lastModified:
         select: none
         value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
-      changefreq:
-        select: head > meta[name="changefreq"]
+      title:
+        select: head > meta[property="og:title"]
         value: attribute(el, "content")
+      description:
+        select: head > meta[property="og:description"]
+        value: attribute(el, "content")
+  hi:
+    include:
+      - '/us/hi/**'
+    exclude:
+      - '/us/hi/new-page/**'
+    target: /hi/query-index.json
+    properties:
+      lastModified:
+        select: none
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
       title:
         select: head > meta[property="og:title"]
         value: attribute(el, "content")
