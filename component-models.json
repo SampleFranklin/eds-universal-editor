@@ -4265,319 +4265,58 @@
     ]
   },
   {
-    "id": "escalate-form",
+    "id": "notice-list",
   "fields": [
     {
-      "component": "text-input",
-      "name": "formTitle",
+      "component": "richtext",
+      "name": "title",
       "value": "",
-      "label": "Form Title",
-      "valueType": "string"
-    },
-    {
-      "component": "select",
-      "name": "formTitleType",
-      "value": "h1",
-      "label": "formTitleType",
-      "valueType": "string",
-      "options": [
-        {
-          "name": "h1",
-          "value": "h1"
-        },
-        {
-          "name": "h2",
-          "value": "h2"
-        },
-        {
-          "name": "h3",
-          "value": "h3"
-        },
-        {
-          "name": "h4",
-          "value": "h4"
-        },
-        {
-          "name": "h5",
-          "value": "h5"
-        },
-        {
-          "name": "h6",
-          "value": "h6"
-        }
-      ]
-    },
-    {
-      "component": "text-input",
-      "name": "subTitle",
-      "value": "",
-      "label": "Sub Title",
-      "valueType": "string"
-    },
-    {
-      "component": "select",
-      "name": "subTitleType",
-      "value": "h1",
-      "label": "subTitle Type",
-      "valueType": "string",
-      "options": [
-        {
-          "name": "h1",
-          "value": "h1"
-        },
-        {
-          "name": "h2",
-          "value": "h2"
-        },
-        {
-          "name": "h3",
-          "value": "h3"
-        },
-        {
-          "name": "h4",
-          "value": "h4"
-        },
-        {
-          "name": "h5",
-          "value": "h5"
-        },
-        {
-          "name": "h6",
-          "value": "h6"
-        }
-      ]
-    },
-    {
-      "component": "text-input",
-      "name": "actionDescription",
-      "value": "",
-      "label": "Action Description",
-      "valueType": "string"
-    },
-    {
-      "component": "text-input",
-      "name": "primaryLinkText",
-      "label": "Primary CTA Text",
-      "valueType": "string"
-    },
-    {
-      "component": "aem-content",
-      "valueType": "string",
-      "name": "primaryLink",
-      "label": "Primary CTA Link"
-    },
-    {
-      "component": "select",
-      "name": "primaryLinkTarget",
-      "value": "",
-      "label": "Open Link in New Page ?",
-      "valueType": "string",
-      "options": [
-        {
-          "name": "Yes",
-          "value": "_blank"
-        },
-        {
-          "name": "No",
-          "value": "_self"
-        }
-      ]
-    },
-    {
-      "component": "text-input",
-      "name": "secondaryLinkText",
-      "label": "Secondary CTA Text",
-      "valueType": "string"
-    },
-    {
-      "component": "aem-content",
-      "valueType": "string",
-      "name": "secondaryLink",
-      "label": "Secondary CTA Link"
-    },
-    {
-      "component": "select",
-      "name": "secondaryLinkTarget",
-      "value": "",
-      "label": "Open Link in New Page ?",
-      "valueType": "string",
-      "options": [
-        {
-          "name": "Yes",
-          "value": "_blank"
-        },
-        {
-          "name": "No",
-          "value": "_self"
-        }
-      ]
-    },
-    {
-      "component": "text-input",
-      "name": "section1Title",
-      "value": "",
-      "label": "Section 1 Title",
-      "valueType": "string"
-    },
-    {
-      "component": "select",
-      "name": "section1TitleType",
-      "value": "h1",
-      "label": "Section1 Title Type",
-      "valueType": "string",
-      "options": [
-        {
-          "name": "h1",
-          "value": "h1"
-        },
-        {
-          "name": "h2",
-          "value": "h2"
-        },
-        {
-          "name": "h3",
-          "value": "h3"
-        },
-        {
-          "name": "h4",
-          "value": "h4"
-        },
-        {
-          "name": "h5",
-          "value": "h5"
-        },
-        {
-          "name": "h6",
-          "value": "h6"
-        }
-      ]
-    },
-
-    {
-      "component": "text-input",
-      "name": "section2Title",
-      "value": "",
-      "label": "Section 2 Title",
+      "label": "Title",
       "valueType": "string"
     }
-    ,
-    {
-      "component": "select",
-      "name": "section2TitleType",
-      "value": "h1",
-      "label": "Section2 Title Type",
-      "valueType": "string",
-      "options": [
-        {
-          "name": "h1",
-          "value": "h1"
-        },
-        {
-          "name": "h2",
-          "value": "h2"
-        },
-        {
-          "name": "h3",
-          "value": "h3"
-        },
-        {
-          "name": "h4",
-          "value": "h4"
-        },
-        {
-          "name": "h5",
-          "value": "h5"
-        },
-        {
-          "name": "h6",
-          "value": "h6"
-        }
-      ]
-    },
-
-    {
-      "component": "text-input",
-      "name": "section3Title",
-      "value": "",
-      "label": "Section 3 Title",
-      "valueType": "string"
-    },
-    {
-      "component": "select",
-      "name": "section3TitleType",
-      "value": "h1",
-      "label": "Section3 Title Type",
-      "valueType": "string",
-      "options": [
-        {
-          "name": "h1",
-          "value": "h1"
-        },
-        {
-          "name": "h2",
-          "value": "h2"
-        },
-        {
-          "name": "h3",
-          "value": "h3"
-        },
-        {
-          "name": "h4",
-          "value": "h4"
-        },
-        {
-          "name": "h5",
-          "value": "h5"
-        },
-        {
-          "name": "h6",
-          "value": "h6"
-        }
-      ]
-    },
-
-    {
-      "component": "text-input",
-      "name": "section4Title",
-      "value": "",
-      "label": "Section 4 Title",
-      "valueType": "string"
-    }
-    ,
-    {
-      "component": "select",
-      "name": "section4TitleType",
-      "value": "h1",
-      "label": "Section4 Title Type",
-      "valueType": "string",
-      "options": [
-        {
-          "name": "h1",
-          "value": "h1"
-        },
-        {
-          "name": "h2",
-          "value": "h2"
-        },
-        {
-          "name": "h3",
-          "value": "h3"
-        },
-        {
-          "name": "h4",
-          "value": "h4"
-        },
-        {
-          "name": "h5",
-          "value": "h5"
-        },
-        {
-          "name": "h6",
-          "value": "h6"
-        }
-      ]
-    }
-
   ]
+},
+{
+  "id": "notice",
+"fields": [
+  {
+    "component": "text-input",
+    "name": "title",
+    "value": "",
+    "label": "Title",
+    "valueType": "string"
+  },
+  {
+    "component": "radio-group",
+    "label": "Labeled as NEW",
+    "name": "isNew",
+    "valueType": "string",
+    "options": [
+      { "name": "Yes", "value": "(NEW)" },
+      { "name": "No", "value": "" }
+    ]
+  },
+  {
+    "component": "richtext",
+    "name": "description",
+    "value": "",
+    "label": "Description",
+    "valueType": "string"
+  },
+  {
+    "component": "text-input",
+    "name": "backCTAText",
+    "value": "",
+    "label": "CTA 1 Text",
+    "valueType": "string"
+  },
+  {
+    "component": "text-input",
+    "name": "nextCTAText",
+    "value": "",
+    "label": "CTA 2 Text",
+    "valueType": "string"
+  }
+]
 }
 ]

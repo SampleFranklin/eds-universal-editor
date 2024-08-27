@@ -93,7 +93,7 @@
       "book-showroom-visit",
       "image-banner",
       "icon-text-list",
-       "escalate-form"
+      "notice-list"
     ]
   },
   {
@@ -295,6 +295,12 @@
     "id": "icon-text-list",
     "components": [
       "icon-text-item"
+    ]
+  },
+  {
+    "id": "notice-list",
+    "components": [
+      "notice"
     ]
   }
 ]
