@@ -4287,13 +4287,6 @@
     "valueType": "string"
   },
   {
-    "component": "text-input",
-    "name": "title",
-    "value": "",
-    "label": "Title",
-    "valueType": "string"
-  },
-  {
     "component": "radio-group",
     "label": "Labeled as NEW",
     "name": "isNew",
@@ -4302,6 +4295,13 @@
       { "name": "Yes", "value": "(NEW)" },
       { "name": "No", "value": "" }
     ]
+  },
+  {
+    "component": "text-input",
+    "name": "title",
+    "value": "",
+    "label": "Title",
+    "valueType": "string"
   },
   {
     "component": "richtext",
