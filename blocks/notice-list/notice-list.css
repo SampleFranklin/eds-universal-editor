@@ -1,0 +1,60 @@
+.container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #222; /* Dark text on light background */
+}
+
+.container.active {
+    display: block;
+}
+
+h2 {
+    color: #ff5722; /* Bright contrasting heading color */
+}
+
+p a {
+    display: block;
+    cursor: pointer;
+    margin: 5px 0;
+    padding: 10px;
+    background-color: #03a9f4; /* Bright blue for links */
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+p a:hover {
+    background-color: #0288d1; /* Darker shade on hover */
+}
+
+button {
+    margin: 10px 5px 0;
+    padding: 10px 15px;
+    border: none;
+    background-color: #ff5722; /* Contrasting bright color for buttons */
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #e64a19; /* Darker shade on hover */
+}
+
+.hidden {
+    display: none;
+}
+
+.description {
+    margin-bottom: 20px;
+    color: #212121; /* Dark text color for description */
+}
+
+.container3 {
+    background-color: #4caf50; /* Green background for Container 3 */
+    color: white; /* White text for contrast */
+}
