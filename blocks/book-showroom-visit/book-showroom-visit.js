@@ -1,3 +1,4 @@
+import { fetchPlaceholders } from '../../scripts/aem.js';
 import utility from "../../utility/utility.js";
 
 export default async function decorate(block) {
@@ -35,9 +36,9 @@ export default async function decorate(block) {
   const checkbox = getFieldData(checkboxEl);
   const btnLabel = getFieldData(btnLabelEl);
 
-  //  const { publishDomain, apiKey } = await fetchPlaceholders();
-  const url = "https://dev-arena.marutisuzuki.com/content/arena/services/token";
-  //  const url = `${publishDomain}/content/arena/services/token`;
+  const { publishDomain, apiKey } = await fetchPlaceholders();
+  const url = `${publishDomain}/content/arena/services/token`;
+
   let authorization = null;
   try {
     const auth = await fetch(url);
@@ -47,7 +48,7 @@ export default async function decorate(block) {
   }
 
   const defaultHeaders = {
-    "x-api-key": "3Oa87EBtBK9k4QQa87eYDaTB2CcLnbp7aqd00kqH",
+    "x-api-key": apiKey,
     Authorization: authorization,
   };
 
@@ -153,7 +154,7 @@ export default async function decorate(block) {
                         <input type="text" value="90" id="bsd_seconds" style="display: none">
                     </div>
                 </div>
-                <div class="form_field_bb otpTxt btdotpTxt">
+                <div id="enterotp" class="form_field_bb otpTxt btdotpTxt" style="display: none;">
                     <input type="text" name="otp" id="btdResendOtp" class="form-control" placeholder=${otp} onkeypress="return event.charCode >= 48 && event.charCode <= 57" minlength="5" maxlength="5" autocomplete="off">
                     <span id="otptestDriveError" style="display: none; color:red;">Please enter at least 5 characters.</span>
                 </div>
@@ -353,6 +354,7 @@ export default async function decorate(block) {
     const sendOtpBtn = document.getElementById("sendOtpBtn");
     const timerDisplay = document.getElementById("bsd");
     sendOtpBtn.style.pointerEvents = "none";
+    document.getElementById("newTestMobile").disabled = true;
     timerDisplay.style.display = "inline";
     timerDisplay.innerHTML = `<span>RESEND OTP IN</span> &nbsp;<span id="bsd_m">${Math.floor(
       remainingTime / 60
@@ -367,6 +369,7 @@ export default async function decorate(block) {
       if (remainingTime <= 0) {
         clearInterval(timerInterval);
         sendOtpBtn.style.pointerEvents = "auto";
+        document.getElementById("newTestMobile").disabled = false;
         timerDisplay.style.display = "none";
         remainingTime = 90; // Reset timer
       } else {
@@ -422,6 +425,7 @@ export default async function decorate(block) {
         if (!response.ok) throw new Error("Network response was not ok");
         const otpResponse = await response.json();
         sendOtpBtn.innerText = "RESEND OTP";
+        document.getElementById("enterotp").style.display = 'block';
         startTimer();
       } catch (error) {
         console.error("Failed to Send OTP:", error);
