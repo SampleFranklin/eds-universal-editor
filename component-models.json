@@ -4287,6 +4287,16 @@
     "valueType": "string"
   },
   {
+    "component": "radio-group",
+    "label": "Labeled as NEW",
+    "name": "isNew",
+    "valueType": "string",
+    "options": [
+      { "name": "Yes", "value": "(NEW)" },
+      { "name": "No", "value": "" }
+    ]
+  },
+  {
     "component": "richtext",
     "name": "description",
     "value": "",
