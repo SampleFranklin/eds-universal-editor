@@ -4281,6 +4281,13 @@
 "fields": [
   {
     "component": "text-input",
+    "name": "titleList",
+    "value": "",
+    "label": "Title for List",
+    "valueType": "string"
+  },
+  {
+    "component": "text-input",
     "name": "title",
     "value": "",
     "label": "Title",
