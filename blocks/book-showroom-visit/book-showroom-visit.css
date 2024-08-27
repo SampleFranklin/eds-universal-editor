@@ -1,0 +1,115 @@
+.book-showroom-visit {
+  padding-bottom: 60px;
+}
+.book-showroom-visit h3 {
+  font-size: 26px;
+  color: #2d3494;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.book_showroom {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.form_field_bb {
+  padding-bottom: 1rem;
+}
+.form_field_bb .form-control {
+  width: 100%;
+  padding: 0.375rem 0;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: #000;
+  border: 0;
+  border-bottom: 1px solid #2d3494;
+  border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+}
+.form_field_bb .form-control:focus {
+  border-color: #000;
+  outline: none;
+}
+.form_field_bb ::placeholder {
+  color: #000;
+  opacity: 1;
+}
+
+.form_field_bb ::-ms-input-placeholder {
+  color: #000;
+}
+.form_field_bb select {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M11.9999 15.0385L6.34619 9.3845L7.39994 8.33075L11.9999 12.9308L16.5999 8.33075L17.6537 9.3845L11.9999 15.0385Z" fill="black"/></svg>');
+  background-position: 98% center;
+  background-repeat: no-repeat;
+  padding-right: 30px !important;
+}
+.form_field_bb.field-otp {
+  position: relative;
+}
+.form_field_bb.field-otp .btsendotp {
+  font-size: 14px;
+  color: #2d3494;
+  text-transform: uppercase;
+  font-weight: 400;
+  position: absolute;
+  top: 7px;
+  right: 0;
+  border: none;
+}
+.form_field_bb label.error,
+.form_field_bb .error-message {
+  color: red;
+  font-size: 13px;
+}
+.checkbox {
+  position: relative;
+  display: flex;
+  width: 100%;
+  font-size: 12px;
+  font-weight: 500;
+  color: #000;
+  margin: 25px 0 12px;
+  gap: 15px;
+}
+
+.form_field_bb.otpTxt.btdotpTxt span {
+  color: red;
+  font-size: 13px;
+}
+.submit_ctrl {
+  display: flex;
+  justify-content: center;
+}
+.submit_ctrl button {
+  text-align: center;
+  width: 110px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 37px;
+  color: #fff;
+  background: #000;
+  display: inline-block;
+  border: 1px solid #000;
+  text-decoration: none;
+  transition: 0.5s;
+  text-transform: uppercase;
+}
+@media (width >= 1024px) {
+  .book-showroom-visit .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  .form-row .form_field_bb {
+    width: 25%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
