@@ -36,6 +36,7 @@ export default function decorate(block) {
 
     block.innerHTML = `
         <div id="container1" class="container">
+            <p>${componentSeparator}</p>
             <h2>${compTitle}</h2>
             ${listOfNotice}
         </div>
@@ -51,61 +52,5 @@ export default function decorate(block) {
         </div>
     `;
 
-    const links = document.querySelectorAll("#container1 a");
-    
-    
-   
-    links.forEach(link => {
-        link.addEventListener("click", function (event) {
-            event.preventDefault();
-            const index = this.getAttribute("data-index");
-            showDescription(index);
-        });
-    });
-
-  
-    document.querySelectorAll("#backButton").forEach(btn => {
-        btn.addEventListener("click", showContainer1);
-    })
-    document.querySelectorAll("#container3Button").forEach(btn => {
-        btn.addEventListener("click", showContainer3);
-    })
-    document.querySelectorAll("#backButton2").forEach(btn => {
-        btn.addEventListener("click", showContainer1);
-    })
-   
-
-
-function showDescription(index) {
-    const parentElement = block.parentElement.parentElement;
-    const siblings = Array.from(parentElement.children).filter(child => child !== block.parentElement);
-
-    siblings.forEach(block => block.classList.add('hidden'));
-    document.getElementById('container1').classList.add('hidden');
-    document.getElementById('container2').classList.remove('hidden');
-
-    
-    let descriptions = document.getElementsByClassName('description');
-    for (let i = 0; i < descriptions.length; i++) {
-        descriptions[i].classList.add('hidden');
-    }
-
-    
-    document.getElementById(`description${index}`).classList.remove('hidden');
-}
-
-function showContainer1() {
-    const parentElement = block.parentElement.parentElement;
-    const siblings = Array.from(parentElement.children).filter(child => child !== block.parentElement);
-
-    siblings.forEach(block => block.classList.remove('hidden'));
-    document.getElementById('container1').classList.remove('hidden');
-    document.getElementById('container2').classList.add('hidden');
-    document.getElementById('container3').classList.add('hidden');
-}
-
-function showContainer3() {
-    document.getElementById('container2').classList.add('hidden');
-    document.getElementById('container3').classList.remove('hidden');
-}
+   return block;
 }

@@ -2,6 +2,9 @@ import utility from '../../utility/utility.js';
 import teaser from '../../utility/teaserUtils.js';
 
 export default function decorate(block) {
+
+
+
   function resetFocus(cards) {
     cards.forEach((card) => {
       card.classList.remove('teaser__card--focused');
