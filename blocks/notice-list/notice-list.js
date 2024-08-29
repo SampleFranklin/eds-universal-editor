@@ -1,6 +1,8 @@
 export default function decorate(block) {
     const [titleEl, ...noticesEl] = block.children;
 
+    console.log(Array.from(noticesEl[0].children)[0]);
+
     const componentSeparator = titleEl.querySelector('p')?.textContent?.trim() || "";
     const compTitle = titleEl.querySelector('h1, h2, h3, h4, h5, h6')?.textContent?.trim() || "";
     
@@ -24,12 +26,14 @@ export default function decorate(block) {
     </p>
 `).join('');
 
+   
+   
     block.innerHTML = `
         <div id="container1" class="container">
             <p>${componentSeparator}</p>
             <h2>${compTitle}</h2>
             <div>
-            ${noticesEL[0].outerHTML}
+            ${Array.from(noticesEl[0].children)[0]}
             </div>
         </div>`
     
