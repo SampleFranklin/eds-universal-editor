@@ -30,14 +30,14 @@ export default function decorate(block) {
 
  
    
-    block.innerHTML = `
-        <div id="container1" class="container">
-            <p>${componentSeparator}</p>
-            ${compTitle.outerHTML}
-            <div>
-            <p>Sample text</p>
-            </div>
-        </div>`
+    // block.innerHTML = `
+    //     <div id="container1" class="container">
+    //         <p>${componentSeparator}</p>
+    //         ${compTitle.outerHTML}
+    //         <div>
+    //         <p>Sample text</p>
+    //         </div>
+    //     </div>`
     
     return block;
 }
