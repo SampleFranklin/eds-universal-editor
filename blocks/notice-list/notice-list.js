@@ -26,9 +26,16 @@ export default function decorate(block) {
     </p>
 `).join('');
 
+   console.log(listOfNotice);
    
-   
-   
+    block.innerHTML = `
+        <div id="container1" class="container">
+            <p>${componentSeparator}</p>
+            <h2>${compTitle}</h2>
+            <div>
+            ${listOfNotice}
+            </div>
+        </div>`
     
     return block;
 }
