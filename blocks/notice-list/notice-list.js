@@ -18,19 +18,14 @@ export default function decorate(block) {
 
     const listOfNotice = notices.map(notice => `
         <div>
-            <p class="notice__title" data-index="${notice.index}">${notice.listTitle}</p>
-            ${notice.isNew ? `<p class="notice_new-identifier">${notice.isNew}</p>` : ""}
+            <div><p class="notice__title" data-index="${notice.index}">${notice.listTitle}</p>  </div>
+            ${notice.isNew ? `<div><p class="notice_new-identifier">${notice.isNew}</p>  </div>` : "<div></div>"}
         </div>
     `).join('');
 
     block.innerHTML = `
         <div class="notice-list block" data-block-name="notice-list" data-block-status="loaded">
-            <div>
-                <div>
-                    <p class="notice-list__separator"><strong>${componentSeparator}</strong></p>
-                    <h3 class="notice-list__title">${compTitle}</h3>
-                </div>
-            </div>
+            ${titleEl.outerHTML}
             ${listOfNotice}
         </div>
     `;
