@@ -3,7 +3,7 @@ export default function decorate(block) {
     const [titleEl, ...noticesEl] = blockClone.children;
 
     const componentSeparator = titleEl.querySelector('p')?.textContent?.trim() || "";
-    const compTitle = titleEl.querySelector('h1, h2, h3, h4, h5, h6')?.textContent?.trim() || "";
+    const compTitle = titleEl.querySelector('h1, h2, h3, h4, h5, h6') || "";
 
     const notices = noticesEl.map(notice => {
         const [listTitleEl, isNewEl, titleEl, descEl, cta1El, cta2El] = notice.children;
@@ -19,9 +19,9 @@ export default function decorate(block) {
     });
 
     const listOfNotice = notices.map((notice, index) => `
-        <div>
+        <div class="notice-link" data-index="${index}">
             <p>
-                <a href="#" data-index="${index}">${notice.listTitle} ${notice.isNew}</a>
+                ${notice.listTitle} ${notice.isNew}
             </p>
         </div>
     `).join('');
@@ -36,20 +36,17 @@ export default function decorate(block) {
     `).join('');
 
    
-    //transformHTML(block,noticesBody);
+    transformHTML(block,noticesBody);
 
  block.innerHTML = `
             <div>
-                <div>
-                    <p>${componentSeparator}</p>
-                    <h2>${compTitle}</h2>
-                </div>
+                ${titleEl?.outerHTML}
             </div> 
             <div>
                 ${listOfNotice}
             </div>`;
 
-    const links = document.querySelectorAll("#container1 a");
+    const links = document.querySelectorAll(".notice-link");
     
     
    
@@ -75,10 +72,7 @@ export default function decorate(block) {
 
 
 function showDescription(index) {
-    const parentElement = block.parentElement.parentElement;
-    const siblings = Array.from(parentElement.children).filter(child => child !== block.parentElement);
-
-    siblings.forEach(block => block.classList.add('hidden'));
+   
     document.getElementById('container1').classList.add('hidden');
     document.getElementById('container2').classList.remove('hidden');
 
@@ -93,10 +87,7 @@ function showDescription(index) {
 }
 
 function showContainer1() {
-    const parentElement = block.parentElement.parentElement;
-    const siblings = Array.from(parentElement.children).filter(child => child !== block.parentElement);
-
-    siblings.forEach(block => block.classList.remove('hidden'));
+    
     document.getElementById('container1').classList.remove('hidden');
     document.getElementById('container2').classList.add('hidden');
     document.getElementById('container3').classList.add('hidden');
