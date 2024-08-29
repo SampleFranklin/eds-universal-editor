@@ -33,7 +33,7 @@ export default function decorate(block) {
             <p>${componentSeparator}</p>
             <h2>${compTitle}</h2>
             <div>
-            ${listOfNotice}
+            <p>Sample text</p>
             </div>
         </div>`
     
