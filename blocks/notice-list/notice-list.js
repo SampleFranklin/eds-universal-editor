@@ -19,9 +19,11 @@ export default function decorate(block) {
     });
 
     const listOfNotice = notices.map((notice, index) => `
+        <div>
         <p>
             <a href="#" data-index="${index}">${notice.listTitle} ${notice.isNew}</a>
         </p>
+        </div>
     `).join('');
 
     const noticesBody = notices.map((notice, index) => `
