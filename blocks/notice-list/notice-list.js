@@ -40,10 +40,10 @@ export default function decorate(block) {
    
     transformHTML(block,noticesBody);
 
-    // block.innerHTML = `
-    //     <p>${componentSeparator}</p>
-    //     <h2>${compTitle}</h2>
-    //     ${listOfNotice}`;
+    block.innerHTML = `
+        <p>${componentSeparator}</p>
+        <h2>${compTitle}</h2>
+        ${listOfNotice}`;
 
     const links = document.querySelectorAll("#container1 a");
     
