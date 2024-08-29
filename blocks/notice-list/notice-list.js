@@ -34,6 +34,46 @@ export default function decorate(block) {
         return noticesElClone;
     }
 
+    
+    function showDescription(index) {
+
+        const parentElement = block.parentElement.parentElement;
+        const siblings = Array.from(parentElement.children).filter(child => child !== block.parentElement);
+        siblings.forEach(block => block.classList.add('hidden'));
+
+        document.getElementById('container1').classList.add('hidden');
+        document.getElementById('container2').classList.remove('hidden');
+
+
+        let descriptions = document.getElementsByClassName('description');
+        for (let i = 0; i < descriptions.length; i++) {
+            descriptions[i].classList.add('hidden');
+        }
+
+
+        document.getElementById(`description${index}`).classList.remove('hidden');
+    }
+
+    function showcontainer1() {
+        const parentElement = block.parentElement.parentElement;
+        const siblings = Array.from(parentElement.children).filter(child => child !== block.parentElement);
+        siblings.forEach(block => block.classList.remove('hidden'));
+
+        document.getElementById('container1').classList.remove('hidden');
+        document.getElementById('container2').classList.add('hidden');
+        document.getElementById('container3').classList.add('hidden');
+    }
+
+    function showcontainer3(submitLink) {
+
+        const submitBtn = document.querySelector("#container3 #submitBtn");
+        submitBtn.setAttribute('submit-link', submitLink);
+
+        document.getElementById('container2').classList.add('hidden');
+        document.getElementById('container3').classList.remove('hidden');
+    }
+
+
 
 
     const [titleEl, ...noticesEl] = block.children;
@@ -62,7 +102,7 @@ export default function decorate(block) {
             <button id="backButton">${notice.cta1}</button>
             <h4>${notice.title}</h4>
             ${notice.descEl}
-            <button id="containerr3Button">${notice.cta2}</button>
+            <button id="container3Button" data-submit-link="${index}">${notice.cta2}</button>
         </div>
     `).join('');
 
@@ -74,26 +114,27 @@ export default function decorate(block) {
     //transformHTML(block, allNoticesHTML);
 
     block.innerHTML = `
-             <div id="containerr1" class="containerr">
+             <div id="container1" class="container">
                 ${titleEl.outerHTML}
                 ${listTiltleHTML}  
             </div>
 
-            <div id="containerr2" class="containerr hidden">
+            <div id="container2" class="container hidden">
                 ${allNoticesHTML}
             </div>
 
-            <div id="containerr3" class="containerr hidden">
-                <h2>containerr 3</h2>
-                <p>This is the content of containerr 3.</p>
+            <div id="container3" class="container hidden">
+                <h2>container 3</h2>
+                <p>This is the content of container 3.</p>
                 <button  id="backButton2">Back</button>
+                <button  id="submitBtn" >Check</button>
             </div>
     `;
 
 
 
     //Adding Event Listener to list titles
-    const links = document.querySelectorAll("#containerr1 a");
+    const links = document.querySelectorAll("#container1 a");
     links.forEach(link => {
         link.addEventListener("click", function (event) {
             event.preventDefault();
@@ -102,93 +143,22 @@ export default function decorate(block) {
         });
     });
 
+    
+
     document.querySelectorAll("#backButton").forEach(btn => {
-        btn.addEventListener("click", showcontainerr1);
+        btn.addEventListener("click", showcontainer1);
     })
-    document.querySelectorAll("#containerr3Button").forEach(btn => {
-        btn.addEventListener("click", showcontainerr3);
+    
+    document.querySelectorAll("#container3Button").forEach(btn => {
+        
+        btn.addEventListener("click", function (event) {
+            event.preventDefault();
+            const index = this.getAttribute("data-submit-link");
+            showcontainer3(index);
+        });
     })
     document.querySelectorAll("#backButton2").forEach(btn => {
-        btn.addEventListener("click", showcontainerr1);
+        btn.addEventListener("click", showcontainer1);
     })
-
-
-    function showDescription(index) {
-
-        const parentElement = block.parentElement.parentElement;
-        const siblings = Array.from(parentElement.children).filter(child => child !== block.parentElement);
-        siblings.forEach(block => block.classList.add('hidden'));
-
-        document.getElementById('containerr1').classList.add('hidden');
-        document.getElementById('containerr2').classList.remove('hidden');
-
-
-        let descriptions = document.getElementsByClassName('description');
-        for (let i = 0; i < descriptions.length; i++) {
-            descriptions[i].classList.add('hidden');
-        }
-
-
-        document.getElementById(`description${index}`).classList.remove('hidden');
-    }
-
-    function showcontainerr1() {
-        const parentElement = block.parentElement.parentElement;
-        const siblings = Array.from(parentElement.children).filter(child => child !== block.parentElement);
-        siblings.forEach(block => block.classList.remove('hidden'));
-
-        document.getElementById('containerr1').classList.remove('hidden');
-        document.getElementById('containerr2').classList.add('hidden');
-        document.getElementById('containerr3').classList.add('hidden');
-    }
-
-    function showcontainerr3() {
-        document.getElementById('containerr2').classList.add('hidden');
-        document.getElementById('containerr3').classList.remove('hidden');
-    }
-
-    function transformHTML(noticeListBlock, containerr2Items) {
-        // Get the parent element which is the initial containerr
-        const originalcontainerr = noticeListBlock.closest('.section');
-
-        // Create new containerrs
-        const containerr1 = document.createElement('div');
-        containerr1.id = 'containerr1';
-        containerr1.className = 'containerr';
-
-        const containerr2 = document.createElement('div');
-        containerr2.id = 'containerr2';
-        containerr2.className = 'containerr hidden';
-        containerr2.innerHTML = containerr2Items;
-
-
-        const containerr3 = document.createElement('div');
-        containerr3.id = 'containerr3';
-        containerr3.className = 'containerr hidden';
-        containerr3.innerHTML = `
-        <div">
-            <button id="backButton">BACK</button>
-            <h4>SAMPLE containerr 3</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-        </div>`
-
-        // Get all child elements of the original containerr
-        const childElements = Array.from(originalcontainerr.children);
-
-        // Append all children except the last one to containerr1
-        for (let i = 0; i < childElements.length; i++) {
-            containerr1.appendChild(childElements[i]);
-        }
-
-        // Clear the original containerr and append the new containerrs
-        while (originalcontainerr.firstChild) {
-            originalcontainerr.removeChild(originalcontainerr.firstChild);
-        }
-
-        originalcontainerr.appendChild(containerr1);
-        originalcontainerr.appendChild(containerr2);
-        originalcontainerr.appendChild(containerr3);
-    }
-
 
 }
