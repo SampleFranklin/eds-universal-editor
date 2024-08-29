@@ -32,9 +32,7 @@ export default function decorate(block) {
         <div id="container1" class="container">
             <p>${componentSeparator}</p>
             <h2>${compTitle}</h2>
-            <div>
-            ${Array.from(noticesEl[0].children)[0].outerHTML}
-            </div>
+
         </div>`
     
     return block;
