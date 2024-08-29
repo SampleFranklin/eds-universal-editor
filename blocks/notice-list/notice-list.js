@@ -1,34 +1,50 @@
 export default function decorate(block) {
-    console.log(block);
+    //console.log(block);
 
     const [titleEl, ...noticesEl] = block.children;
-    console.log(noticesEl);
+    //console.log(noticesEl);
 
-    const componentSeparator = titleEl.querySelector('p')?.textContent?.trim() || "";
-    const compTitle = titleEl.querySelector('h1, h2, h3, h4, h5, h6')?.textContent?.trim() || "";
-
-    const notices = Array.from(noticesEl).map((notice, index) => {
-        const [listTitleEl, isNewEl] = notice.children;
-        return {
-            listTitle: listTitleEl?.textContent?.trim() || "",
-            isNew: isNewEl?.textContent?.trim() || "",
-            index: index + 1
-        };
+    const titleELClone =  titleEl.cloneNode(true);
+    const noticesElClone = Array.from(noticesEl).map((notice) => {
+        let noticeClone = notice.cloneNode(true);
+        return noticeClone;
     });
 
-    const listOfNotice = notices.map(notice => `
-        <div>
-            <div><p class="notice__title" data-index="${notice.index}">${notice.listTitle}</p>  </div>
-            ${notice.isNew ? `<div><p class="notice_new-identifier">${notice.isNew}</p>  </div>` : "<div></div>"}
-        </div>
-    `).join('');
+    let vavi = keepOnlyFirstDivInNotices(noticesElClone);
+    const vaviHTML = vavi.map(notice=>{
+        return notice.outerHTML
+    }).join('');
+    
+    console.log(vaviHTML)
+    
 
     block.innerHTML = `
         <div class="notice-list block" data-block-name="notice-list" data-block-status="loaded">
             ${titleEl.outerHTML}
-            ${listOfNotice}
+            ${vaviHTML}
         </div>
     `;
 
     return block;
+
+    function keepOnlyFirstDivInNotices(noticesElClone) {
+        // Iterate over each element in noticesElClone
+        noticesElClone.forEach(notice => {
+            // Convert notice.children (HTMLCollection) to an array and iterate over each child
+           
+                // Find all div elements within the current child
+                const divs = notice.querySelectorAll('div');
+                console.log("DIVS:", divs);
+                // If there are multiple divs, remove all but the first one
+                divs.forEach((div, index) => {
+                    if (index > 0) {
+                        div.remove();
+                    }
+                });
+            ;
+        });
+        
+
+        return noticesElClone;
+    }
 }
