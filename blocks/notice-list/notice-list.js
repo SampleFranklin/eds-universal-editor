@@ -36,7 +36,7 @@ export default function decorate(block) {
     `).join('');
 
    
-    transformHTML(block,noticesBody);
+    //transformHTML(block,noticesBody);
 
  block.innerHTML = `
             <div>
