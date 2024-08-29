@@ -42,5 +42,7 @@ export default function decorate(block) {
     //         </div>
     //     </div>`
     
+    block.innerHTML='';
+    block.append(container);
     return block;
 }
