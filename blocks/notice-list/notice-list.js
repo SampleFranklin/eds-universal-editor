@@ -20,9 +20,11 @@ export default function decorate(block) {
 
     const listOfNotice = notices.map((notice, index) => `
         <div>
+         <div>
         <p>
             <a href="#" data-index="${index}">${notice.listTitle} ${notice.isNew}</a>
         </p>
+         </div>
         </div>
     `).join('');
 
@@ -38,10 +40,10 @@ export default function decorate(block) {
    
     transformHTML(block,noticesBody);
 
-    block.innerHTML = `
-        <p>${componentSeparator}</p>
-        <h2>${compTitle}</h2>
-        ${listOfNotice}`;
+    // block.innerHTML = `
+    //     <p>${componentSeparator}</p>
+    //     <h2>${compTitle}</h2>
+    //     ${listOfNotice}`;
 
     const links = document.querySelectorAll("#container1 a");
     
