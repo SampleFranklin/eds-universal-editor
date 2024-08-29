@@ -1,5 +1,6 @@
 export default function decorate(block) {
-    const [titleEl, ...noticesEl] = block.children;
+    const blockClone = block.cloneNode(true);
+    const [titleEl, ...noticesEl] = blockClone.children;
 
     const componentSeparator = titleEl.querySelector('p')?.textContent?.trim() || "";
     const compTitle = titleEl.querySelector('h1, h2, h3, h4, h5, h6')?.textContent?.trim() || "";
