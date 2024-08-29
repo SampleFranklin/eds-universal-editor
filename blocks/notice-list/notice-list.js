@@ -1,4 +1,5 @@
-export default function decorate(block) {
+import vindecorate from '../vin-check/vin-check.js';
+export default async function decorate(block) {
 
     function keepOnlyFirstDivInNotices(noticesElClone) {
         // Iterate over each element in noticesElClone
@@ -64,9 +65,12 @@ export default function decorate(block) {
         document.getElementById('container3').classList.add('hidden');
     }
 
-    function showcontainer3(submitLink) {
+   function showcontainer3(submitLink) {
 
-        const submitBtn = document.querySelector("#container3 #submitBtn");
+        const container3 = block.querySelector("#container3");
+        container3.append(vinCheckEL)
+
+        const submitBtn = container3.querySelector(".check");
         submitBtn.setAttribute('submit-link', submitLink);
 
         document.getElementById('container2').classList.add('hidden');
@@ -76,7 +80,7 @@ export default function decorate(block) {
 
 
 
-    const [titleEl, ...noticesEl] = block.children;
+    const [titleEl, vinCheckEL , ...noticesEl] = block.children;
 
     const titleELClone = titleEl.cloneNode(true);
     const noticesElClone = Array.from(noticesEl).map((notice) => {
@@ -111,6 +115,8 @@ export default function decorate(block) {
         return notice.outerHTML
     }).join('');
 
+    await vindecorate(vinCheckEL);
+
     //transformHTML(block, allNoticesHTML);
 
     block.innerHTML = `
@@ -124,10 +130,8 @@ export default function decorate(block) {
             </div>
 
             <div id="container3" class="container hidden">
-                <h2>container 3</h2>
-                <p>This is the content of container 3.</p>
-                <button  id="backButton2">Back</button>
-                <button  id="submitBtn" >Check</button>
+                <button  id="backButton2">Back</button>    
+                
             </div>
     `;
 

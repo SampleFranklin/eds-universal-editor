@@ -85,4 +85,6 @@ export default async function decorate(block) {
     vinFailureMessageContainer.style.display = 'none';
     vinSuccessMessageContainer.style.display = 'none';
   });
+
+  return block
 }

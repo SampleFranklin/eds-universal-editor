@@ -14,7 +14,7 @@ h2 {
     color: #ff5722; /* Bright contrasting heading color */
 }
 
-p a {
+#container1 p a {
     display: block;
     cursor: pointer;
     margin: 5px 0;
@@ -26,8 +26,8 @@ p a {
     transition: background-color 0.3s, color 0.3s;
 }
 
-p a:hover {
-    background-color: #0288d1; /* Darker shade on hover */
+#container1 p a:hover {
+    background-color: #0d7db9; /* Darker shade on hover */
 }
 
 button {
@@ -54,7 +54,14 @@ button:hover {
     color: #212121; /* Dark text color for description */
 }
 
-.container3 {
-    background-color: #4caf50; /* Green background for Container 3 */
-    color: white; /* White text for contrast */
+#container3 {
+    background-color: #fbfdfb; /* Green background for Container 3 */
+    color: rgb(9, 0, 0); /* White text for contrast */
+   
+    
+    
+}
+
+#container3 .vin-check__container .vin-check__actions .clear {
+    display: none;
 }
