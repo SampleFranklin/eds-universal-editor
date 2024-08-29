@@ -1,5 +1,6 @@
-import vindecorate from '../vin-check/vin-check.js';
+import vinCheckDecorate from '../vin-check/vin-check.js';
 export default async function decorate(block) {
+
 
     function keepOnlyFirstDivInNotices(noticesElClone) {
         // Iterate over each element in noticesElClone
@@ -77,9 +78,6 @@ export default async function decorate(block) {
         document.getElementById('container3').classList.remove('hidden');
     }
 
-
-
-
     const [titleEl, vinCheckEL , ...noticesEl] = block.children;
 
     const titleELClone = titleEl.cloneNode(true);
@@ -115,11 +113,9 @@ export default async function decorate(block) {
         return notice.outerHTML
     }).join('');
 
-    await vindecorate(vinCheckEL);
+    await vinCheckDecorate(vinCheckEL);
 
-    //transformHTML(block, allNoticesHTML);
-
-    block.innerHTML = `
+        block.innerHTML = `
              <div id="container1" class="container">
                 ${titleEl.outerHTML}
                 ${listTiltleHTML}  
