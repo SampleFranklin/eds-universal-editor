@@ -1,11 +1,11 @@
 export default function decorate(block) {
-    
+
     function keepOnlyFirstDivInNotices(noticesElClone) {
         // Iterate over each element in noticesElClone
         noticesElClone.forEach((notice, index) => {
             // Find all div elements within the current notice
             const divs = notice.querySelectorAll('div');
-            
+
             // Iterate over the divs, keep the first one, and remove the rest
             divs.forEach((div, divIndex) => {
                 if (divIndex > 0) {
@@ -16,29 +16,29 @@ export default function decorate(block) {
                         pElement.classList.add('notice_list-title');
 
                         const secondDiv = notice.querySelectorAll('div')[1];
-                        const secondDivText = (secondDiv?.textContent)? `<span>${secondDiv?.textContent.trim()}</span>` : '';
+                        const secondDivText = (secondDiv?.textContent) ? `<span>${secondDiv?.textContent.trim()}</span>` : '';
 
                         const aElement = document.createElement('a');
-                        aElement.href = '#';  
-                        aElement.innerHTML =`${pElement.textContent || ''} ${secondDivText} `; 
+                        aElement.href = '#';
+                        aElement.innerHTML = `${pElement.textContent || ''} ${secondDivText} `;
                         aElement.setAttribute('data-index', index);
 
-                        pElement.innerHTML ="";
+                        pElement.innerHTML = "";
                         pElement.append(aElement);
-                      
+
                     }
                 }
             });
         });
-    
+
         return noticesElClone;
     }
 
 
-    
+
     const [titleEl, ...noticesEl] = block.children;
-   
-    const titleELClone =  titleEl.cloneNode(true);
+
+    const titleELClone = titleEl.cloneNode(true);
     const noticesElClone = Array.from(noticesEl).map((notice) => {
         let noticeClone = notice.cloneNode(true);
         return noticeClone;
@@ -51,7 +51,7 @@ export default function decorate(block) {
             listTitle: listTitleEl?.textContent?.trim() || "",
             isNew: isNewEl?.textContent?.trim() || "",
             title: titleEl?.textContent?.trim() || "",
-            descEl: descEl?.innerHTML || "", 
+            descEl: descEl?.innerHTML || "",
             cta1: cta1El?.textContent?.trim() || "",
             cta2: cta2El?.textContent?.trim() || ""
         };
@@ -66,16 +66,28 @@ export default function decorate(block) {
         </div>
     `).join('');
 
-    let alteredNoticesEL = keepOnlyFirstDivInNotices(noticesElClone);  
-    const listTiltleHTML = alteredNoticesEL.map(notice=>{
+    let alteredNoticesEL = keepOnlyFirstDivInNotices(noticesElClone);
+    const listTiltleHTML = alteredNoticesEL.map(notice => {
         return notice.outerHTML
     }).join('');
-    
-    transformHTML(block, allNoticesHTML);
+
+    //transformHTML(block, allNoticesHTML);
 
     block.innerHTML = `
-            ${titleEl.outerHTML}
-            ${listTiltleHTML}  
+             <div id="container1" class="container">
+                 ${titleEl.outerHTML}
+                ${listTiltleHTML}  
+            </div>
+
+            <div id="container2" class="container hidden">
+                ${allNoticesHTML}
+            </div>
+
+            <div id="container3" class="container hidden">
+                <h2>Container 3</h2>
+                <p>This is the content of Container 3.</p>
+                <button  id="backButton2">Back</button>
+            </div>
     `;
 
 
@@ -89,7 +101,7 @@ export default function decorate(block) {
             showDescription(index);
         });
     });
-    
+
     document.querySelectorAll("#backButton").forEach(btn => {
         btn.addEventListener("click", showContainer1);
     })
@@ -99,28 +111,37 @@ export default function decorate(block) {
     document.querySelectorAll("#backButton2").forEach(btn => {
         btn.addEventListener("click", showContainer1);
     })
-    
+
 
     function showDescription(index) {
+
+        const parentElement = block.parentElement.parentElement;
+        const siblings = Array.from(parentElement.children).filter(child => child !== block.parentElement);
+        siblings.forEach(block => block.classList.add('hidden'));
+
         document.getElementById('container1').classList.add('hidden');
         document.getElementById('container2').classList.remove('hidden');
-    
-        
+
+
         let descriptions = document.getElementsByClassName('description');
         for (let i = 0; i < descriptions.length; i++) {
             descriptions[i].classList.add('hidden');
         }
-    
-        
+
+
         document.getElementById(`description${index}`).classList.remove('hidden');
     }
-    
+
     function showContainer1() {
+        const parentElement = block.parentElement.parentElement;
+        const siblings = Array.from(parentElement.children).filter(child => child !== block.parentElement);
+        siblings.forEach(block => block.classList.remove('hidden'));
+
         document.getElementById('container1').classList.remove('hidden');
         document.getElementById('container2').classList.add('hidden');
         document.getElementById('container3').classList.add('hidden');
     }
-    
+
     function showContainer3() {
         document.getElementById('container2').classList.add('hidden');
         document.getElementById('container3').classList.remove('hidden');
@@ -129,45 +150,45 @@ export default function decorate(block) {
     function transformHTML(noticeListBlock, container2Items) {
         // Get the parent element which is the initial container
         const originalContainer = noticeListBlock.closest('.section');
-    
+
         // Create new containers
         const container1 = document.createElement('div');
         container1.id = 'container1';
         container1.className = 'container';
-    
+
         const container2 = document.createElement('div');
         container2.id = 'container2';
         container2.className = 'container hidden';
         container2.innerHTML = container2Items;
-    
-    
+
+
         const container3 = document.createElement('div');
         container3.id = 'container3';
         container3.className = 'container hidden';
-        container3.innerHTML= `
+        container3.innerHTML = `
         <div">
             <button id="backButton">BACK</button>
             <h4>SAMPLE CONTAINER 3</h4>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
         </div>`
-    
+
         // Get all child elements of the original container
         const childElements = Array.from(originalContainer.children);
-    
+
         // Append all children except the last one to container1
         for (let i = 0; i < childElements.length; i++) {
             container1.appendChild(childElements[i]);
         }
-    
+
         // Clear the original container and append the new containers
         while (originalContainer.firstChild) {
             originalContainer.removeChild(originalContainer.firstChild);
         }
-    
+
         originalContainer.appendChild(container1);
         originalContainer.appendChild(container2);
         originalContainer.appendChild(container3);
     }
 
-    
+
 }
