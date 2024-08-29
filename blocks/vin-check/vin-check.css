@@ -1,0 +1,144 @@
+.vin-check__container {
+    border: 1px solid #ccc;
+    max-width: 100%;
+    margin: 30px 15px 10px;
+    padding: 10px;
+
+    @media (width >= 768px){
+      padding: 30px;
+      margin:50px 40px 10px;
+    }
+
+    @media (width >= 999px){
+      margin: 50px 60px 10px;
+    }
+  }
+
+  .vin-check__container .vin-check__title {
+    font-family: var(--font-primary-nexa), sans-serif;
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    line-height: 32px;
+  }
+
+  .vin-check__container .vin-check__subtitle {
+    font-family: var(--font-primary-nexa), sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 24px;
+    color: var(--text-color);
+    margin-bottom: 16px;
+
+    @media (width >= 768px){
+      font-size: 16px;
+    }
+  }
+
+  .vin-check__searchBox{
+    @media (width >= 768px){
+      display:flex;
+      justify-content: space-between;
+    }
+  }
+
+  .vin-check__searchBox .vin-check__inputBox {
+    border: 1px solid var(--dark-color);
+    border-radius: 2px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+
+    @media (width >= 768px){
+      width: 60%;
+      margin-bottom:0;
+      margin-right: 15px;
+    }
+
+    .chassis__input {
+      width: 100%;
+      border: none;
+      padding: 10px;
+      height: 50px;
+      text-transform: uppercase;
+      color: #5b5b5b;
+      font-family: "Fira Sans", sans-serif;
+      font-size: 15px;
+    }
+  }
+
+  .vin-check__searchBox .vin-check__actions {
+    width: 100%;
+    display: flex;
+    gap: 6%;
+
+    @media (width >= 768px){
+      width: 40%;
+      gap:0;
+      justify-content: space-between;
+    }
+
+    button {
+      width: 47%;
+      text-transform: uppercase;
+      color: var(--tertiary-white);
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #b7b7b7;
+      border-radius: 2px;
+      height: 50px;
+      cursor: pointer;
+
+      @media (width >= 768px){
+        width: 100%;
+        margin: 0 15px;
+      }
+    }
+
+    .check {
+      font-size: 18px;
+      background-color: var(--text-color);
+      opacity: 0.95;
+    }
+
+    .clear {
+      font-size: 15px;
+      background-color: #666;
+    }
+  }
+
+  .vin-check__container .msg{
+    height: auto;
+    margin: 15px 0;
+    font-family: var(--font-primary-nexa), sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: left;
+    color: green;
+
+    @media( width >= 768px){
+      font-size:16px;
+    }
+  }
+
+  .vin-check__success-message {
+    display: none;
+  }
+
+  .vin-check__failure-message {
+    display: none;
+  }
+
+ .vin-check__container .nexa__loader {
+   display: none;
+   justify-content: center;
+   align-items: center;
+   position: fixed;
+   height: 100vh;
+   width: 100%;
+   z-index: 999999;
+   background-color: var(--tertiary-white);
+   top:0;
+   left:0;
+ }

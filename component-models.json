@@ -4325,5 +4325,96 @@
     "valueType": "string"
   }
 ]
+},
+{
+  "id": "vin-check",
+  "fields": [
+    {
+      "component": "text-input",
+      "name": "title",
+      "label": "Title",
+      "valueType": "string"
+    },
+    {
+      "component": "select",
+      "name": "titleType",
+      "value": "h3",
+      "label": "Type",
+      "valueType": "string",
+      "options": [
+        {
+          "name": "h1",
+          "value": "h1"
+        },
+        {
+          "name": "h2",
+          "value": "h2"
+        },
+        {
+          "name": "h3",
+          "value": "h3"
+        },
+        {
+          "name": "h4",
+          "value": "h4"
+        },
+        {
+          "name": "h5",
+          "value": "h5"
+        },
+        {
+          "name": "h6",
+          "value": "h6"
+        }
+      ]
+    },
+    {
+      "component": "text-input",
+      "name": "subTitle",
+      "value": "",
+      "label": "Sub Title",
+      "valueType": "string"
+    },
+    {
+      "component": "text-input",
+      "name": "placeHolder",
+      "value": "",
+      "label": "Placeholder",
+      "valueType": "string"
+    },
+    {
+      "component": "text-input",
+      "name": "requiredValidationMessage",
+      "value": "",
+      "label": "Required Validation Message",
+      "valueType": "string"
+    },
+    {
+      "component": "richtext",
+      "name": "successMessage",
+      "label": "Success Message",
+      "valueType": "string"
+    },
+    {
+      "component": "richtext",
+      "name": "errorMessage",
+      "label": "Error Message",
+      "valueType": "string"
+    },
+    {
+      "component": "text-input",
+      "name": "submitButtonLabel",
+      "value": "",
+      "label": "Submit Button Label",
+      "valueType": "string"
+    },
+    {
+      "component": "text-input",
+      "name": "clearButtonLabel",
+      "value": "",
+      "label": "Clear Button Label",
+      "valueType": "string"
+    }
+  ]
 }
 ]

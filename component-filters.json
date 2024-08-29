@@ -93,7 +93,8 @@
       "book-showroom-visit",
       "image-banner",
       "icon-text-list",
-      "notice-list"
+      "notice-list",
+      "vin-check"
     ]
   },
   {
@@ -300,7 +301,8 @@
   {
     "id": "notice-list",
     "components": [
-      "notice"
+      "notice",
+      "vin-check"
     ]
   }
 ]
