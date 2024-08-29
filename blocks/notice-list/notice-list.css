@@ -1,4 +1,4 @@
-.container {
+.containerr {
     background: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -6,7 +6,7 @@
     color: #222; /* Dark text on light background */
 }
 
-.container.active {
+.containerr.active {
     display: block;
 }
 
@@ -54,7 +54,7 @@ button:hover {
     color: #212121; /* Dark text color for description */
 }
 
-.container3 {
+.containerr3 {
     background-color: #4caf50; /* Green background for Container 3 */
     color: white; /* White text for contrast */
 }

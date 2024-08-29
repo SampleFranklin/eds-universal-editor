@@ -62,7 +62,7 @@ export default function decorate(block) {
             <button id="backButton">${notice.cta1}</button>
             <h4>${notice.title}</h4>
             ${notice.descEl}
-            <button id="container3Button">${notice.cta2}</button>
+            <button id="containerr3Button">${notice.cta2}</button>
         </div>
     `).join('');
 
@@ -74,17 +74,18 @@ export default function decorate(block) {
     //transformHTML(block, allNoticesHTML);
 
     block.innerHTML = `
-             <div id="container1" class="container">
+             <div id="containerr1" class="containerr">
+                ${titleEl.outerHTML}
                 ${listTiltleHTML}  
             </div>
 
-            <div id="container2" class="container hidden">
+            <div id="containerr2" class="containerr hidden">
                 ${allNoticesHTML}
             </div>
 
-            <div id="container3" class="container hidden">
-                <h2>Container 3</h2>
-                <p>This is the content of Container 3.</p>
+            <div id="containerr3" class="containerr hidden">
+                <h2>containerr 3</h2>
+                <p>This is the content of containerr 3.</p>
                 <button  id="backButton2">Back</button>
             </div>
     `;
@@ -92,7 +93,7 @@ export default function decorate(block) {
 
 
     //Adding Event Listener to list titles
-    const links = document.querySelectorAll("#container1 a");
+    const links = document.querySelectorAll("#containerr1 a");
     links.forEach(link => {
         link.addEventListener("click", function (event) {
             event.preventDefault();
@@ -102,13 +103,13 @@ export default function decorate(block) {
     });
 
     document.querySelectorAll("#backButton").forEach(btn => {
-        btn.addEventListener("click", showContainer1);
+        btn.addEventListener("click", showcontainerr1);
     })
-    document.querySelectorAll("#container3Button").forEach(btn => {
-        btn.addEventListener("click", showContainer3);
+    document.querySelectorAll("#containerr3Button").forEach(btn => {
+        btn.addEventListener("click", showcontainerr3);
     })
     document.querySelectorAll("#backButton2").forEach(btn => {
-        btn.addEventListener("click", showContainer1);
+        btn.addEventListener("click", showcontainerr1);
     })
 
 
@@ -118,8 +119,8 @@ export default function decorate(block) {
         const siblings = Array.from(parentElement.children).filter(child => child !== block.parentElement);
         siblings.forEach(block => block.classList.add('hidden'));
 
-        document.getElementById('container1').classList.add('hidden');
-        document.getElementById('container2').classList.remove('hidden');
+        document.getElementById('containerr1').classList.add('hidden');
+        document.getElementById('containerr2').classList.remove('hidden');
 
 
         let descriptions = document.getElementsByClassName('description');
@@ -131,62 +132,62 @@ export default function decorate(block) {
         document.getElementById(`description${index}`).classList.remove('hidden');
     }
 
-    function showContainer1() {
+    function showcontainerr1() {
         const parentElement = block.parentElement.parentElement;
         const siblings = Array.from(parentElement.children).filter(child => child !== block.parentElement);
         siblings.forEach(block => block.classList.remove('hidden'));
 
-        document.getElementById('container1').classList.remove('hidden');
-        document.getElementById('container2').classList.add('hidden');
-        document.getElementById('container3').classList.add('hidden');
+        document.getElementById('containerr1').classList.remove('hidden');
+        document.getElementById('containerr2').classList.add('hidden');
+        document.getElementById('containerr3').classList.add('hidden');
     }
 
-    function showContainer3() {
-        document.getElementById('container2').classList.add('hidden');
-        document.getElementById('container3').classList.remove('hidden');
+    function showcontainerr3() {
+        document.getElementById('containerr2').classList.add('hidden');
+        document.getElementById('containerr3').classList.remove('hidden');
     }
 
-    function transformHTML(noticeListBlock, container2Items) {
-        // Get the parent element which is the initial container
-        const originalContainer = noticeListBlock.closest('.section');
+    function transformHTML(noticeListBlock, containerr2Items) {
+        // Get the parent element which is the initial containerr
+        const originalcontainerr = noticeListBlock.closest('.section');
 
-        // Create new containers
-        const container1 = document.createElement('div');
-        container1.id = 'container1';
-        container1.className = 'container';
+        // Create new containerrs
+        const containerr1 = document.createElement('div');
+        containerr1.id = 'containerr1';
+        containerr1.className = 'containerr';
 
-        const container2 = document.createElement('div');
-        container2.id = 'container2';
-        container2.className = 'container hidden';
-        container2.innerHTML = container2Items;
+        const containerr2 = document.createElement('div');
+        containerr2.id = 'containerr2';
+        containerr2.className = 'containerr hidden';
+        containerr2.innerHTML = containerr2Items;
 
 
-        const container3 = document.createElement('div');
-        container3.id = 'container3';
-        container3.className = 'container hidden';
-        container3.innerHTML = `
+        const containerr3 = document.createElement('div');
+        containerr3.id = 'containerr3';
+        containerr3.className = 'containerr hidden';
+        containerr3.innerHTML = `
         <div">
             <button id="backButton">BACK</button>
-            <h4>SAMPLE CONTAINER 3</h4>
+            <h4>SAMPLE containerr 3</h4>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
         </div>`
 
-        // Get all child elements of the original container
-        const childElements = Array.from(originalContainer.children);
+        // Get all child elements of the original containerr
+        const childElements = Array.from(originalcontainerr.children);
 
-        // Append all children except the last one to container1
+        // Append all children except the last one to containerr1
         for (let i = 0; i < childElements.length; i++) {
-            container1.appendChild(childElements[i]);
+            containerr1.appendChild(childElements[i]);
         }
 
-        // Clear the original container and append the new containers
-        while (originalContainer.firstChild) {
-            originalContainer.removeChild(originalContainer.firstChild);
+        // Clear the original containerr and append the new containerrs
+        while (originalcontainerr.firstChild) {
+            originalcontainerr.removeChild(originalcontainerr.firstChild);
         }
 
-        originalContainer.appendChild(container1);
-        originalContainer.appendChild(container2);
-        originalContainer.appendChild(container3);
+        originalcontainerr.appendChild(containerr1);
+        originalcontainerr.appendChild(containerr2);
+        originalcontainerr.appendChild(containerr3);
     }
 
 
