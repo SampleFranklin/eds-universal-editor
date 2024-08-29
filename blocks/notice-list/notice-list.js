@@ -75,7 +75,6 @@ export default function decorate(block) {
 
     block.innerHTML = `
              <div id="container1" class="container">
-                 ${titleEl.outerHTML}
                 ${listTiltleHTML}  
             </div>
 
