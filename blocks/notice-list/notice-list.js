@@ -28,12 +28,7 @@ export default function decorate(block) {
 
    
    
-    block.innerHTML = `
-        <div id="container1" class="container">
-            <p>${componentSeparator}</p>
-            <h2>${compTitle}</h2>
-
-        </div>`
+   
     
     return block;
 }
