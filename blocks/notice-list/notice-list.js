@@ -111,7 +111,11 @@ export default async function decorate(block) {
 
     const [titleEl, vinCheckEL, ...noticesEl] = block.children;
 
-    const titleELClone = titleEl.cloneNode(true);
+    const compSeparator = titleEl?.querySelector('p') || "";
+    compSeparator.classList.add('comp-separator');
+    const componentHeading = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)') || "";
+    componentHeading.classList.add('comp-heading');
+
     const noticesElClone = Array.from(noticesEl).map((notice) => {
         let noticeClone = notice.cloneNode(true);
         return noticeClone;
@@ -140,8 +144,14 @@ export default async function decorate(block) {
 
         block.innerHTML = `
              <div id="container1" class="container">
-                ${titleEl.outerHTML}
-                ${listTiltleHTML}  
+                <div class="notice-list__heading_container">
+                    ${compSeparator?.outerHTML || ''}
+                    ${componentHeading?.outerHTML || ''}
+                </div>
+                <div class="notice-list__list_container">
+                    ${listTiltleHTML}  
+                </div>
+                
             </div>
 
             <div id="container2" class="container hidden">
