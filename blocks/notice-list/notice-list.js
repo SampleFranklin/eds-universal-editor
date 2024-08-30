@@ -36,6 +36,12 @@ export default async function decorate(block) {
         return noticesElClone;
     }
 
+    function emptyContainer2(){
+        const container2= block.querySelector('#container2')
+        container2.innerHTML='';
+
+        return container2;
+    }
     
     function showDescription(index) {
 
@@ -44,16 +50,37 @@ export default async function decorate(block) {
         siblings.forEach(block => block.classList.add('hidden'));
 
         document.getElementById('container1').classList.add('hidden');
-        document.getElementById('container2').classList.remove('hidden');
+        
 
+        const container2 = emptyContainer2();
+       
+        const notice = noticesDetails[index];
 
-        let descriptions = document.getElementsByClassName('description');
-        for (let i = 0; i < descriptions.length; i++) {
-            descriptions[i].classList.add('hidden');
-        }
+        const noticeHTML = `
+            <div id="description${index}" class="description">
+                <button id="backButton">${notice.cta1}</button>
+                <h4>${notice.title}</h4>
+                ${notice.descEl}
+                <button id="container3Button" data-submit-link="${index}">${notice.cta2}</button>
+            </div>
+            `;
 
+      container2.innerHTML = noticeHTML;
+     
+      document.querySelector("#backButton").addEventListener("click", ()=>{
+         emptyContainer2();
+         showcontainer1();
+     });
 
-        document.getElementById(`description${index}`).classList.remove('hidden');
+     document.querySelector("#container3Button").addEventListener("click", function (event) {
+         event.preventDefault();
+         const index = this.getAttribute("data-submit-link");
+         emptyContainer2();
+         showcontainer3(index);
+     });
+    
+     container2.classList.remove('hidden');
+
     }
 
     function showcontainer1() {
@@ -103,14 +130,6 @@ export default async function decorate(block) {
         };
     });
 
-    const allNoticesHTML = noticesDetails.map((notice, index) => `
-        <div id="description${index}" class="description hidden">
-            <button id="backButton">${notice.cta1}</button>
-            <h4>${notice.title}</h4>
-            ${notice.descEl}
-            <button id="container3Button" data-submit-link="${index}">${notice.cta2}</button>
-        </div>
-    `).join('');
 
     let alteredNoticesEL = keepOnlyFirstDivInNotices(noticesElClone);
     const listTiltleHTML = alteredNoticesEL.map(notice => {
@@ -126,7 +145,6 @@ export default async function decorate(block) {
             </div>
 
             <div id="container2" class="container hidden">
-             
             </div>
 
             <div id="container3" class="container hidden">
@@ -148,19 +166,6 @@ export default async function decorate(block) {
     });
 
     
-
-    document.querySelectorAll("#backButton").forEach(btn => {
-        btn.addEventListener("click", showcontainer1);
-    })
-    
-    document.querySelectorAll("#container3Button").forEach(btn => {
-        
-        btn.addEventListener("click", function (event) {
-            event.preventDefault();
-            const index = this.getAttribute("data-submit-link");
-            showcontainer3(index);
-        });
-    })
     document.querySelectorAll("#backButton2").forEach(btn => {
         btn.addEventListener("click", showcontainer1);
     })
