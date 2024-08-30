@@ -78,7 +78,11 @@ export default async function decorate(block) {
         document.getElementById('container3').classList.remove('hidden');
     }
 
-    const [titleEl, vinCheckEL , ...noticesEl] = block.children;
+
+    const blockClone = block.cloneNode(true);
+    console.log(blockClone)
+
+    const [titleEl, vinCheckEL, ...noticesEl] = block.children;
 
     const titleELClone = titleEl.cloneNode(true);
     const noticesElClone = Array.from(noticesEl).map((notice) => {
@@ -122,7 +126,7 @@ export default async function decorate(block) {
             </div>
 
             <div id="container2" class="container hidden">
-                ${allNoticesHTML}
+             
             </div>
 
             <div id="container3" class="container hidden">
