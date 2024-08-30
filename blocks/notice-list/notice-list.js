@@ -36,11 +36,11 @@ export default async function decorate(block) {
         return noticesElClone;
     }
 
-    function emptyContainer2(){
-        const container2= block.querySelector('#container2')
-        container2.innerHTML='';
+    function emptyContainer3(){
+        const container3= block.querySelector('#container3')
+        container3.innerHTML='';
 
-        return container2;
+        return container3;
     }
     
     function showDescription(index) {
@@ -49,10 +49,10 @@ export default async function decorate(block) {
         const siblings = Array.from(parentElement.children).filter(child => child !== block.parentElement);
         siblings.forEach(block => block.classList.add('hidden'));
 
-        document.getElementById('container1').classList.add('hidden');
+        document.getElementById('container2').classList.add('hidden');
         
 
-        const container2 = emptyContainer2();
+        const container3 = emptyContainer3();
        
         const notice = noticesDetails[index];
 
@@ -65,44 +65,44 @@ export default async function decorate(block) {
             </div>
             `;
 
-      container2.innerHTML = noticeHTML;
+      container3.innerHTML = noticeHTML;
      
       document.querySelector("#backButton").addEventListener("click", ()=>{
-         emptyContainer2();
-         showcontainer1();
+         emptyContainer3();
+         showcontainer2();
      });
 
      document.querySelector("#container3Button").addEventListener("click", function (event) {
          event.preventDefault();
          const index = this.getAttribute("data-submit-link");
-         emptyContainer2();
-         showcontainer3(index);
+         emptyContainer3();
+         showcontainer1(index);
      });
     
-     container2.classList.remove('hidden');
+     container3.classList.remove('hidden');
 
     }
 
-    function showcontainer1() {
+    function showcontainer2() {
         const parentElement = block.parentElement.parentElement;
         const siblings = Array.from(parentElement.children).filter(child => child !== block.parentElement);
         siblings.forEach(block => block.classList.remove('hidden'));
 
-        document.getElementById('container1').classList.remove('hidden');
-        document.getElementById('container2').classList.add('hidden');
+        document.getElementById('container2').classList.remove('hidden');
+        document.getElementById('container1').classList.add('hidden');
         document.getElementById('container3').classList.add('hidden');
     }
 
-   function showcontainer3(submitLink) {
+   function showcontainer1(submitLink) {
 
-        const container3 = block.querySelector("#container3");
-        container3.append(vinCheckEL)
+        const container1 = block.querySelector("#container1");
+        container1.append(vinCheckEL)
 
-        const submitBtn = container3.querySelector(".check");
+        const submitBtn = container1.querySelector(".check");
         submitBtn.setAttribute('submit-link', submitLink);
 
-        document.getElementById('container2').classList.add('hidden');
-        document.getElementById('container3').classList.remove('hidden');
+        document.getElementById('container3').classList.add('hidden');
+        document.getElementById('container1').classList.remove('hidden');
     }
 
 
@@ -143,7 +143,12 @@ export default async function decorate(block) {
     await vinCheckDecorate(vinCheckEL);
 
         block.innerHTML = `
-             <div id="container1" class="container">
+             <div id="container1" class="container hidden">
+                <button  id="backButton2">Back</button>    
+                
+            </div>
+
+             <div id="container2" class="container">
                 <div class="notice-list__heading_container">
                     ${compSeparator?.outerHTML || ''}
                     ${componentHeading?.outerHTML || ''}
@@ -154,19 +159,16 @@ export default async function decorate(block) {
                 
             </div>
 
-            <div id="container2" class="container hidden">
+            <div id="container3" class="container hidden">
             </div>
 
-            <div id="container3" class="container hidden">
-                <button  id="backButton2">Back</button>    
-                
-            </div>
+           
     `;
 
 
 
     //Adding Event Listener to list titles
-    const links = document.querySelectorAll("#container1 a");
+    const links = document.querySelectorAll("#container2 a");
     links.forEach(link => {
         link.addEventListener("click", function (event) {
             event.preventDefault();
@@ -177,7 +179,7 @@ export default async function decorate(block) {
 
     
     document.querySelectorAll("#backButton2").forEach(btn => {
-        btn.addEventListener("click", showcontainer1);
+        btn.addEventListener("click", showcontainer2);
     })
 
 }
