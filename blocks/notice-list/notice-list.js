@@ -49,7 +49,7 @@ export default async function decorate(block) {
         const siblings = Array.from(parentElement.children).filter(child => child !== block.parentElement);
         siblings.forEach(block => block.classList.add('hidden'));
 
-        document.getElementById('container2').classList.add('hidden');
+        block.querySelector('#container2').classList.add('hidden');
         
 
         const container3 = emptyContainer3();
@@ -61,18 +61,18 @@ export default async function decorate(block) {
                 <button id="backButton">${notice.cta1}</button>
                 <h4>${notice.title}</h4>
                 ${notice.descEl}
-                <button id="container3Button" data-submit-link="${index}">${notice.cta2}</button>
+                <button id="checkHereBtn" data-submit-link="${index}">${notice.cta2}</button>
             </div>
             `;
 
       container3.innerHTML = noticeHTML;
      
-      document.querySelector("#backButton").addEventListener("click", ()=>{
+      container3.querySelector("#backButton").addEventListener("click", ()=>{
          emptyContainer3();
          showcontainer2();
      });
 
-     document.querySelector("#container3Button").addEventListener("click", function (event) {
+     container3.querySelector("#checkHereBtn").addEventListener("click", function (event) {
          event.preventDefault();
          const index = this.getAttribute("data-submit-link");
          emptyContainer3();
@@ -88,21 +88,17 @@ export default async function decorate(block) {
         const siblings = Array.from(parentElement.children).filter(child => child !== block.parentElement);
         siblings.forEach(block => block.classList.remove('hidden'));
 
-        document.getElementById('container2').classList.remove('hidden');
-        document.getElementById('container1').classList.add('hidden');
-        document.getElementById('container3').classList.add('hidden');
+        block.querySelector('#container1').classList.add('hidden');
+        block.querySelector('#container3').classList.add('hidden');
+        block.querySelector('#container2').classList.remove('hidden');
     }
 
    function showcontainer1(submitLink) {
-
-        const container1 = block.querySelector("#container1");
-        container1.append(vinCheckEL)
-
-        const submitBtn = container1.querySelector(".check");
+        const submitBtn = block.querySelector("#container1 .check");
         submitBtn.setAttribute('submit-link', submitLink);
 
-        document.getElementById('container3').classList.add('hidden');
-        document.getElementById('container1').classList.remove('hidden');
+        block.querySelector('#container3').classList.add('hidden');
+        block.querySelector('#container1').classList.remove('hidden');
     }
 
 
@@ -168,7 +164,7 @@ export default async function decorate(block) {
 
 
     //Adding Event Listener to list titles
-    const links = document.querySelectorAll("#container2 a");
+    const links = block.querySelectorAll("#container2 a");
     links.forEach(link => {
         link.addEventListener("click", function (event) {
             event.preventDefault();
@@ -178,8 +174,11 @@ export default async function decorate(block) {
     });
 
     
-    document.querySelectorAll("#backButton2").forEach(btn => {
+    block.querySelectorAll("#backButton2").forEach(btn => {
         btn.addEventListener("click", showcontainer2);
     })
+
+    const container1 = block.querySelector("#container1");
+    container1.append(vinCheckEL)
 
 }
