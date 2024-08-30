@@ -14,7 +14,7 @@ h2 {
     color: #ff5722; /* Bright contrasting heading color */
 }
 
-#container1 p a {
+#container2 p a {
     display: block;
     cursor: pointer;
     margin: 5px 0;
@@ -25,10 +25,10 @@ h2 {
    
 }
 
-#container1 p a:hover {
+#container2 p a:hover {
     border: 2px solid black;
 }
-#container1 .notice_list-title span {
+#container2 .notice_list-title span {
     color: red;
 }
 button {
@@ -55,7 +55,7 @@ button:hover {
     color: #212121; /* Dark text color for description */
 }
 
-#container3 {
+#container1 {
     background-color: #fbfdfb; /* Green background for Container 3 */
     color: rgb(9, 0, 0); /* White text for contrast */
    
