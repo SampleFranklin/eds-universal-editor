@@ -3707,6 +3707,152 @@
         ]
       }
     ]
+  },
+  {
+    "id": "contact-us-complaint",
+    "fields": [
+      {
+        "component": "text-input",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "subtitle",
+        "value": "",
+        "label": "SubTitle",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "complaintTitle",
+        "value": "Complaint",
+        "label": "Complaint Section Title",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "attachmentTitle",
+        "value": "",
+        "label": "Attachment Title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "textAttachment",
+        "value": "",
+        "label": "Attachment Text",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "personalInfoTitle",
+        "value": "Personal Information",
+        "label": "Personal Information Section Title",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "dealerInfoTitle",
+        "value": "Dealer Information",
+        "label": "Dealer Information Section Title",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "vehicleInfoTitle",
+        "value": "Vehicle Information",
+        "label": "Vehicle Information Section Title",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "salesSubmissionText",
+        "value": "Click here to submit to Dealer Showroom Manager",
+        "label": "Sales Submission Text",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "servicesSubmissionText",
+        "value": "Click here to submit to Dealer Workshop In-charge",
+        "label": "Services Submission Text",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "trueValueSubmissionText",
+        "value": "Click here to submit to True Value Manager",
+        "label": "True Value Submission Text",
+        "valueType": "string"
+      },
+      {
+        "component": "text-input",
+        "name": "sparePartsSubmissionText",
+        "value": "Click here to submit to Distributor Operations Manager",
+        "label": "Spare Parts Submission Text",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "successMessage",
+        "value": "",
+        "label": "Success Message",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "responseTimeMessage",
+        "value": "",
+        "label": "Response Time Message",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "theme",
+        "label": "Form Theme",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Light",
+            "value": "light"
+          },
+          {
+            "name": "Dark",
+            "value": "dark"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "style",
+        "label": "Form Style",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": "default"
+          },
+          {
+            "name": "Primary",
+            "value": "primary"
+          },
+          {
+            "name": "Secondary",
+            "value": "secondary"
+          }
+        ]
+      }
+    ]
   }
   ,
   {
