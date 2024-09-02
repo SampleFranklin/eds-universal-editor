@@ -1021,7 +1021,7 @@
           }
         },
         {
-          "title": "MFE POC",
+          "title": "EBook POC",
           "id": "ebook-poc",
           "plugins": {
             "xwalk": {
