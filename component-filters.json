@@ -95,7 +95,8 @@
       "icon-text-list",
       "notice-list",
       "vin-check",
-      "contact-us-complaint"
+      "contact-us-complaint",
+      "ebook-poc"
     ]
   },
   {
@@ -244,6 +245,10 @@
   },
   {
     "id": "mfe-poc",
+    "components": []
+  },
+  {
+    "id": "ebook-poc",
     "components": []
   },
   {
