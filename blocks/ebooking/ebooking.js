@@ -65,5 +65,5 @@ export default function decorate(block) {
  console.log("Ebook Component Loaded");
 
   block.innerHTML = '';
-  block.appendChild(component);
+  block.appendChild(ebookComponent);
 }
