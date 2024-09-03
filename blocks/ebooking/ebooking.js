@@ -59,11 +59,18 @@ export default function decorate(block) {
 
   loadScript('https://d1lzjb5dkpjvo6.cloudfront.net/martech-ebook.js');
   loadStylesheet('https://d1lzjb5dkpjvo6.cloudfront.net/styles.css');
-  const ebookComponent = `<div>
-                                  <martech-ebook channel="NRM"></martech-ebook>
-                              </div>`;
+  // Create the div element
+  let div = document.createElement("div");
+
+  let martechEbook = document.createElement("martech-ebook");
+
+  martechEbook.setAttribute("channel", "NRM");
+
+  div.appendChild(martechEbook);
+
+
  console.log("Ebook Component Loaded");
 
   block.innerHTML = '';
-  block.appendChild(ebookComponent);
+  block.appendChild(div);
 }
