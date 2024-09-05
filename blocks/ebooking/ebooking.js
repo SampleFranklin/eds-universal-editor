@@ -25,8 +25,8 @@ export default function decorate(block) {
   }
 
 
-  loadScript('https://d1lzjb5dkpjvo6.cloudfront.net/martech-ebook.js');
-  loadStylesheet('https://d1lzjb5dkpjvo6.cloudfront.net/styles.css');
+  loadScript('https://d2d2kvwow67n8r.cloudfront.net/martech-ebook.js');
+  loadStylesheet('https://d2d2kvwow67n8r.cloudfront.net/styles.css');
 
   let div = document.createElement("div");
   let martechEbook = document.createElement("martech-ebook");
@@ -39,8 +39,8 @@ export default function decorate(block) {
   block.appendChild(div);
 
   const component = document.querySelector("martech-ebook");
-  component.inpCarDetail = '{"modelCode": "VZ","variantCode": "VZRCCV1","colorCode": "Z7Q"}';
-  component.inpSourceDetail = '{"sourceName":"Hyperlocal-Arena","sourceUrl": "https://scstage-arena-cd.azurewebsites.net/e-booking/microsite" }';
+ // component.inpCarDetail = '{"modelCode": "VZ","variantCode": "VZRCCV1","colorCode": "Z7Q"}';
+  component.inpSourceDetail = '{"sourceName":"Arena","sourceUrl": "https://scstage-arena-cd.azurewebsites.net/e-booking/microsite" }';
 
   //Listen To Events
   const myElement = document.querySelector("martech-ebook");
