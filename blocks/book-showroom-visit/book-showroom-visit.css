@@ -81,6 +81,11 @@
   color: red;
   font-size: 13px;
 }
+
+.btsendotp:hover{
+    cursor: pointer;
+}
+
 .submit_ctrl {
   display: flex;
   justify-content: center;

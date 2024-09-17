@@ -1,5 +1,5 @@
-import { fetchPlaceholders } from '../../scripts/aem.js';
-import utility from "../../utility/utility.js";
+import { fetchPlaceholders } from '../../commons/scripts/aem.js';
+import utility from '../../utility/utility.js';
 
 export default async function decorate(block) {
   const [
@@ -18,11 +18,9 @@ export default async function decorate(block) {
     btnLabelEl,
   ] = block.children;
 
-  const getFieldData = (element) => {
-    return element?.textContent?.trim() || "";
-  };
+  const getFieldData = (element) => element?.textContent?.trim() || '';
 
-  const title = titleEl?.querySelector(":is(h1,h2,h3,h4,h5,h6)");
+  const title = titleEl?.querySelector(':is(h1,h2,h3,h4,h5,h6)');
   const subTitle = getFieldData(subTitleEl);
   const name = getFieldData(nameEl);
   const email = getFieldData(emailEl);
@@ -36,52 +34,49 @@ export default async function decorate(block) {
   const checkbox = getFieldData(checkboxEl);
   const btnLabel = getFieldData(btnLabelEl);
 
-  const { publishDomain, apiKey } = await fetchPlaceholders();
-  const url = `${publishDomain}/content/arena/services/token`;
+//  const { publishDomain, apiKey } = await fetchPlaceholders();
+//  const url = `${publishDomain}/content/arena/services/token`;
+  const url = "https://dev-arena.marutisuzuki.com/content/arena/services/token";
 
   let authorization = null;
   try {
     const auth = await fetch(url);
     authorization = await auth.text();
   } catch (e) {
-    authorization = "";
+    authorization = '';
   }
 
   const defaultHeaders = {
-    "x-api-key": apiKey,
+    'x-api-key': apiKey,
     Authorization: authorization,
   };
 
-  const urlWithParams =
-    "https://api.preprod.developersatmarutisuzuki.in/masterdata/v1/common/CommonMasterData/state-list";
+  const urlWithParams = 'https://api.preprod.developersatmarutisuzuki.in/masterdata/v1/common/CommonMasterData/state-list';
   let result;
   try {
     const response = await fetch(urlWithParams, {
-      method: "GET",
+      method: 'GET',
       headers: defaultHeaders,
     });
     result = await response.json();
-    console.log(result);
   } catch (e) {
-    throw new Error("Network response was not ok", e);
+    throw new Error('Network response was not ok', e);
   }
 
-  const graphQLUrl =
-    "https://publish-p135331-e1341966.adobeaemcloud.com/graphql/execute.json/msil-platform/CarModelById?z=10";
+  const graphQLUrl = 'https://publish-p135331-e1341966.adobeaemcloud.com/graphql/execute.json/msil-platform/CarModelById?z=10';
   let output;
   try {
     const resp = await fetch(graphQLUrl);
     output = await resp.json();
-    console.log(output);
   } catch (e) {
-    throw new Error("Network response was not ok", e);
+    throw new Error('Network response was not ok', e);
   }
 
   // Build the form HTML content
   const formContent = `
     <div class="container btdform" id="defaultNewForm" style="display:block;">
         <div class="bookTestDrive bookTest">
-            ${title ? `${title.outerHTML}` : ""}
+            ${title ? `${title.outerHTML}` : ''}
             <p>${subTitle}</p>
             <form class="testDrive" name="testDriveform" novalidate="novalidate">
             <div class="form-row">
@@ -97,11 +92,10 @@ export default async function decorate(block) {
                     <select name="dealerstate" id="dealerstate" class="form-control bookTestDrive_dealerState" onchange="populateCities()">
                         <option value="">${state}</option>
                         ${result.data
-                          .map(
-                            (state) =>
-                              `<option value="${state.stateCode}">${state.stateDescription}</option>`
-                          )
-                          .join("")}
+    .map(
+      (stateObj) => `<option value="${stateObj.stateCode}">${stateObj.stateDescription}</option>`,
+    )
+    .join('')}
                     </select>
                     <span class="error-message" id="stateError" style="color: red; display: none;">Please select a state.</span>
                 </div>
@@ -130,15 +124,13 @@ export default async function decorate(block) {
                     <select name="model" id="testCarModelName" class="form-control bookTestDrive_car">
                         <option value="">${model}</option>
                         ${output.data.carModelList.items
-                          .filter(
-                            (carModel) =>
-                              carModel._path.includes("/arena") == true
-                          )
-                          .map(
-                            (carModel) =>
-                              `<option value="${carModel.modelDesc}">${carModel.modelDesc}</option>`
-                          )
-                          .join("")}
+    .filter(
+      (carModel) => carModel._path.includes('/arena') === true,
+    )
+    .map(
+      (carModel) => `<option value="${carModel.modelDesc}">${carModel.modelDesc}</option>`,
+    )
+    .join('')}
                     </select>
                     <span class="error-message" id="modelError" style="color: red; display: none;">Please select a car model.</span>
                 </div>
@@ -178,72 +170,65 @@ export default async function decorate(block) {
 
   // Function to populate cities based on selected state
   document.populateCities = async function () {
-    const stateAbbreviation = document.getElementById("dealerstate").value;
-    const cityDropdown = document.getElementById("dealercity");
-    const dealerDropdown = document.getElementById("dealer");
+    const stateAbbreviation = document.getElementById('dealerstate').value;
+    const cityDropdown = document.getElementById('dealercity');
+    const dealerDropdown = document.getElementById('dealer');
 
     // Clear existing options
     cityDropdown.innerHTML = '<option value="">Select City</option>';
     dealerDropdown.innerHTML = '<option value="">Select Dealer</option>';
 
     if (stateAbbreviation) {
-      const getCitiesUrl =
-        "https://api.preprod.developersatmarutisuzuki.in/dms/v1/api/common/msil/dms/dealer-only-cities?channel=NRM&stateCode=" +
-        stateAbbreviation;
+      const getCitiesUrl = `https://api.preprod.developersatmarutisuzuki.in/dms/v1/api/common/msil/dms/dealer-only-cities?channel=NRM&stateCode=${
+        stateAbbreviation}`;
       try {
         const response = await fetch(getCitiesUrl, {
-          method: "GET",
+          method: 'GET',
           headers: defaultHeaders,
         });
-        if (!response.ok) throw new Error("Network response was not ok");
+        if (!response.ok) throw new Error('Network response was not ok');
         const cities = await response.json();
         const options = cities.data
-          .filter((city) => city.cityDesc)
+          .filter((cityObj) => cityObj.cityDesc)
           .map(
-            (city) =>
-              `<option value="${city.cityCode}">${city.cityDesc}</option>`
+            (cityObj) => `<option value="${cityObj.cityCode}">${cityObj.cityDesc}</option>`,
           )
-          .join("");
+          .join('');
         cityDropdown.innerHTML += options;
       } catch (e) {
-        throw new Error("Network response was not ok", e);
+        throw new Error('Network response was not ok', e);
       }
     }
   };
 
   // Function to populate dealers based on selected city
   document.populateDealers = async function () {
-    const stateAbbreviation = document.getElementById("dealerstate").value;
-    const cityCode = document.getElementById("dealercity").value;
-    console.log(cityCode);
-    const dealerDropdown = document.getElementById("dealer");
+    const cityCode = document.getElementById('dealercity').value;
+    const dealerDropdown = document.getElementById('dealer');
     // Clear existing options
     dealerDropdown.innerHTML = '<option value="">Select Dealer</option>';
 
     if (cityCode) {
       // Define the API endpoint to fetch dealers based on the cityCode
-      const getDealersUrl =
-        "https://api.preprod.developersatmarutisuzuki.in/dms/v1/api/common/msil/dms/dealer-master?channel=NRM&outletType=O&cityCd=" +
-        cityCode;
+      const getDealersUrl = `https://api.preprod.developersatmarutisuzuki.in/dms/v1/api/common/msil/dms/dealer-master?channel=NRM&outletType=O&cityCd=${
+        cityCode}`;
       try {
         const response = await fetch(getDealersUrl, {
-          method: "GET",
+          method: 'GET',
           headers: defaultHeaders,
         });
-        if (!response.ok) throw new Error("Network response was not ok");
+        if (!response.ok) throw new Error('Network response was not ok');
         const dealers = await response.json();
-        console.log(dealers);
         // Filter and populate dealer dropdown
         const options = dealers.data
-          .filter((dealer) => dealer.name)
+          .filter((dealerObj) => dealerObj.name)
           .map(
-            (dealer) =>
-              `<option value="${dealer.dealerCode}">${dealer.name}</option>`
+            (dealerObj) => `<option value="${dealerObj.dealerCode}">${dealerObj.name}</option>`,
           )
-          .join("");
+          .join('');
         dealerDropdown.innerHTML += options;
       } catch (error) {
-        console.error("Failed to fetch dealers:", error);
+        console.error('Failed to fetch dealers:', error);
       }
     }
   };
@@ -253,87 +238,87 @@ export default async function decorate(block) {
     let isValid = true;
 
     switch (field.id) {
-      case "bttfname":
+      case 'bttfname':
         if (!field.value.trim()) {
-          document.getElementById("nameError").style.display = "block";
+          document.getElementById('nameError').style.display = 'block';
           isValid = false;
         } else {
-          document.getElementById("nameError").style.display = "none";
+          document.getElementById('nameError').style.display = 'none';
         }
         break;
 
-      case "newTestEmail":
+      case 'newTestEmail':
         if (
-          !field.value.trim() ||
-          !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(field.value)
+          !field.value.trim()
+          || !/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(field.value)
         ) {
-          document.getElementById("emailError").style.display = "block";
+          document.getElementById('emailError').style.display = 'block';
           isValid = false;
         } else {
-          document.getElementById("emailError").style.display = "none";
+          document.getElementById('emailError').style.display = 'none';
         }
         break;
 
-      case "dealerstate":
+      case 'dealerstate':
         if (!field.value.trim()) {
-          document.getElementById("stateError").style.display = "block";
+          document.getElementById('stateError').style.display = 'block';
           isValid = false;
         } else {
-          document.getElementById("stateError").style.display = "none";
+          document.getElementById('stateError').style.display = 'none';
         }
         break;
 
-      case "dealercity":
+      case 'dealercity':
         if (!field.value.trim()) {
-          document.getElementById("cityError").style.display = "block";
+          document.getElementById('cityError').style.display = 'block';
           isValid = false;
         } else {
-          document.getElementById("cityError").style.display = "none";
+          document.getElementById('cityError').style.display = 'none';
         }
         break;
 
-      case "dealer":
+      case 'dealer':
         if (!field.value.trim()) {
-          document.getElementById("dealerError").style.display = "block";
+          document.getElementById('dealerError').style.display = 'block';
           isValid = false;
         } else {
-          document.getElementById("dealerError").style.display = "none";
+          document.getElementById('dealerError').style.display = 'none';
         }
         break;
 
-      case "newbuyerType":
+      case 'newbuyerType':
         if (!field.value.trim()) {
-          document.getElementById("buyerTypeError").style.display = "block";
+          document.getElementById('buyerTypeError').style.display = 'block';
           isValid = false;
         } else {
-          document.getElementById("buyerTypeError").style.display = "none";
+          document.getElementById('buyerTypeError').style.display = 'none';
         }
         break;
 
-      case "testCarModelName":
+      case 'testCarModelName':
         if (!field.value.trim()) {
-          document.getElementById("modelError").style.display = "block";
+          document.getElementById('modelError').style.display = 'block';
           isValid = false;
         } else {
-          document.getElementById("modelError").style.display = "none";
+          document.getElementById('modelError').style.display = 'none';
         }
         break;
 
-      case "newTestMobile":
+      case 'newTestMobile':
         if (!/^\d{10}$/.test(field.value)) {
-          document.getElementById("mobileError").style.display = "block";
+          document.getElementById('mobileError').style.display = 'block';
           isValid = false;
         } else {
-          document.getElementById("mobileError").style.display = "none";
+          document.getElementById('mobileError').style.display = 'none';
         }
         break;
 
-      case "btdResendOtp":
+      case 'btdResendOtp':
         if (field.value.trim() && field.value.length !== 5) {
-          document.getElementById("otptestDriveError").style.display = "block";
+          document.getElementById('otptestDriveError').style.display = 'block';
           isValid = false;
         } else {
-          document.getElementById("otptestDriveError").style.display = "none";
+          document.getElementById('otptestDriveError').style.display = 'none';
         }
         break;
 
@@ -342,7 +327,7 @@ export default async function decorate(block) {
     }
 
     // Enable/Disable submit button based on field validation
-    document.getElementById("btnbookshowroomVisit").disabled = !isValid;
+    document.getElementById('btnbookshowroomVisit').disabled = !isValid;
 
     return isValid;
   }
@@ -351,36 +336,36 @@ export default async function decorate(block) {
   let remainingTime = 90; // Timer duration in seconds
 
   function startTimer() {
-    const sendOtpBtn = document.getElementById("sendOtpBtn");
-    const timerDisplay = document.getElementById("bsd");
-    sendOtpBtn.style.pointerEvents = "none";
-    document.getElementById("newTestMobile").disabled = true;
-    timerDisplay.style.display = "inline";
+    const sendOtpBtn = document.getElementById('sendOtpBtn');
+    const timerDisplay = document.getElementById('bsd');
+    sendOtpBtn.style.pointerEvents = 'none';
+    document.getElementById('newTestMobile').disabled = true;
+    timerDisplay.style.display = 'inline';
     timerDisplay.innerHTML = `<span>RESEND OTP IN</span> &nbsp;<span id="bsd_m">${Math.floor(
-      remainingTime / 60
+      remainingTime / 60,
     )
       .toString()
-      .padStart(2, "0")}</span>:<span id="bsd_s">${(remainingTime % 60)
+      .padStart(2, '0')}</span>:<span id="bsd_s">${(remainingTime % 60)
       .toString()
-      .padStart(2, "0")}</span>`;
+      .padStart(2, '0')}</span>`;
 
     timerInterval = setInterval(() => {
       remainingTime -= 1;
       if (remainingTime <= 0) {
         clearInterval(timerInterval);
-        sendOtpBtn.style.pointerEvents = "auto";
-        document.getElementById("newTestMobile").disabled = false;
-        timerDisplay.style.display = "none";
+        sendOtpBtn.style.pointerEvents = 'auto';
+        document.getElementById('newTestMobile').disabled = false;
+        timerDisplay.style.display = 'none';
         remainingTime = 90; // Reset timer
       } else {
-        document.getElementById("bsd_m").textContent = Math.floor(
-          remainingTime / 60
+        document.getElementById('bsd_m').textContent = Math.floor(
+          remainingTime / 60,
         )
           .toString()
-          .padStart(2, "0");
-        document.getElementById("bsd_s").textContent = (remainingTime % 60)
+          .padStart(2, '0');
+        document.getElementById('bsd_s').textContent = (remainingTime % 60)
           .toString()
-          .padStart(2, "0");
+          .padStart(2, '0');
       }
     }, 1000);
   }
@@ -388,7 +373,7 @@ export default async function decorate(block) {
   document.handleOtp = async function () {
     // Validate all fields
     const allFields = document.querySelectorAll(
-      "#defaultNewForm input, #defaultNewForm select"
+      '#defaultNewForm input, #defaultNewForm select',
     );
     let isValid = true;
 
@@ -399,48 +384,44 @@ export default async function decorate(block) {
     });
 
     if (isValid) {
-      const mobileNumber = document.getElementById("newTestMobile").value;
-      console.log(mobileNumber);
-
+      const mobileNumber = document.getElementById('newTestMobile').value;
       const requestBody = {
         otpLength: 5,
         mobile: mobileNumber,
-        validity: "300",
+        validity: '300',
       };
 
       // If form is valid, proceed with OTP sending
-      document.getElementById("error-span").textContent = "";
-      const sendOtpBtn = document.getElementById("sendOtpBtn");
-      const sendOtpUrl =
-        "https://api.preprod.developersatmarutisuzuki.in/masterdata/v1/common/CommonMasterData/send-otp";
+      document.getElementById('error-span').textContent = '';
+      const sendOtpBtn = document.getElementById('sendOtpBtn');
+      const sendOtpUrl = 'https://api.preprod.developersatmarutisuzuki.in/masterdata/v1/common/CommonMasterData/send-otp';
       try {
         const response = await fetch(sendOtpUrl, {
-          method: "POST",
+          method: 'POST',
           headers: {
             ...defaultHeaders,
-            "Content-Type": "application/json", // Ensure the header specifies JSON content
+            'Content-Type': 'application/json', // Ensure the header specifies JSON content
           },
           body: JSON.stringify(requestBody), // Convert the body to a JSON string
         });
-        if (!response.ok) throw new Error("Network response was not ok");
-        const otpResponse = await response.json();
-        sendOtpBtn.innerText = "RESEND OTP";
-        document.getElementById("enterotp").style.display = 'block';
+        if (!response.ok) throw new Error('Network response was not ok');
+        sendOtpBtn.innerText = 'RESEND OTP';
+        document.getElementById('enterotp').style.display = 'block';
         startTimer();
       } catch (error) {
-        console.error("Failed to Send OTP:", error);
+        console.error('Failed to Send OTP:', error);
       }
     }
   };
 
   // Function to handle OTP verification
   function verifyOtp() {
-    const otpField = document.getElementById("btdResendOtp");
+    const otpField = document.getElementById('btdResendOtp');
     const otpValue = otpField.value.trim();
     if (otpValue.length === 5) {
-      document.getElementById("btdcheckbox").disabled = false;
+      document.getElementById('btdcheckbox').disabled = false;
     } else {
-      document.getElementById("btdcheckbox").disabled = true;
+      document.getElementById('btdcheckbox').disabled = true;
     }
   }
 
@@ -449,26 +430,26 @@ export default async function decorate(block) {
 
   // Event listeners for form fields
   document
-    .querySelectorAll("#defaultNewForm input, #defaultNewForm select")
+    .querySelectorAll('#defaultNewForm input, #defaultNewForm select')
     .forEach((field) => {
-      field.addEventListener("input", () => {
+      field.addEventListener('input', () => {
         validateField(field);
       });
     });
 
   // Add event listener to the Send OTP button
-  const sendOtpBtnSelector = document.querySelector("#sendOtpBtn");
-  sendOtpBtnSelector.addEventListener("click", (event) => {
+  const sendOtpBtnSelector = document.querySelector('#sendOtpBtn');
+  sendOtpBtnSelector.addEventListener('click', () => {
     document.handleOtp();
   });
 
   // Event listener for OTP field
-  document.getElementById("btdResendOtp").addEventListener("input", () => {
+  document.getElementById('btdResendOtp').addEventListener('input', () => {
     verifyOtp();
   });
 
   // Event listener for checkbox
-  document.getElementById("btdcheckbox").addEventListener("change", () => {
-    validateField(document.getElementById("btdcheckbox"));
+  document.getElementById('btdcheckbox').addEventListener('change', () => {
+    validateField(document.getElementById('btdcheckbox'));
   });
 }
