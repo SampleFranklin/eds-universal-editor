@@ -85,7 +85,10 @@
       "brand-header",
       "logolist",
       "360view",
-      "dealer-locator-filter"
+      "dealer-locator-filter",
+      "purchase-list",
+      "purchase-item"
+
     ]
   },
   {
@@ -259,6 +262,12 @@
     "id": "safety-tabs",
     "components": [
       "safety-item"
+    ]
+  },
+  {
+    "id": "purchase-list",
+    "components": [
+      "purchase-item"
     ]
   },
   {
