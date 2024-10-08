@@ -95,13 +95,20 @@
       "icon-text-list",
       "notice-list",
       "vin-check",
-      "contact-us-complaint"
+      "contact-us-complaint",
+      "car-detail-brand-philosophy"
     ]
   },
   {
     "id": "customSection",
     "components": [
       "list"
+    ]
+  },
+  {
+    "id": "car-detail-brand-philosophy",
+    "components": [
+      "car-detail-brand-philosophy-item"
     ]
   },
   {

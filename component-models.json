@@ -4473,6 +4473,57 @@
 ]
 },
 {
+  "id": "car-detail-brand-philosophy-item",
+  "fields": [
+    {
+      "component": "reference",
+      "valueType": "string",
+      "name": "brand-philosophy_video",
+      "label": "Video",
+      "multi": false
+    },
+    {
+      "component": "reference",
+      "valueType": "string",
+      "name": "brand-philosophy_mobileVideo",
+      "label": "Mobile Video",
+      "multi": false
+    },
+    {
+      "component": "reference",
+      "valueType": "string",
+      "name": "brand-philosophy_image",
+      "label": "Image",
+      "multi": false
+    },
+    {
+      "component": "reference",
+      "valueType": "string",
+      "name": "brand-philosophy_mobileImage",
+      "label": "Mobile Image",
+      "multi": false
+    },
+    {
+      "component": "text",
+      "valueType": "string",
+      "name": "brand-philosophy_altText",
+      "label": "Alt Text"
+    },
+    {
+      "component": "richtext",
+      "valueType": "string",
+      "name": "brand-philosophy_title",
+      "label": "Title"
+    },
+    {
+      "component": "number",
+      "valueType": "number",
+      "name": "brand-philosophy_duration",
+      "label": "Duration"
+    }
+  ]
+},
+{
   "id": "vin-check",
   "fields": [
     {
