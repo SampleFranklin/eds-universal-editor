@@ -96,6 +96,7 @@
       "notice-list",
       "vin-check",
       "contact-us-complaint",
+      "ebooking",
       "car-detail-brand-philosophy"
     ]
   },
@@ -251,6 +252,10 @@
   },
   {
     "id": "mfe-poc",
+    "components": []
+  },
+  {
+    "id": "ebooking",
     "components": []
   },
   {
