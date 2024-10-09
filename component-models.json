@@ -4478,28 +4478,28 @@
     {
       "component": "reference",
       "valueType": "string",
-      "name": "brand-philosophy_video",
+      "name": "video",
       "label": "Video",
       "multi": false
     },
     {
       "component": "reference",
       "valueType": "string",
-      "name": "brand-philosophy_mobileVideo",
+      "name": "videoMobile",
       "label": "Mobile Video",
       "multi": false
     },
     {
       "component": "reference",
       "valueType": "string",
-      "name": "brand-philosophy_image",
+      "name": "image",
       "label": "Image",
       "multi": false
     },
     {
       "component": "reference",
       "valueType": "string",
-      "name": "brand-philosophy_mobileImage",
+      "name": "imageMobile",
       "label": "Mobile Image",
       "multi": false
     },
