@@ -4483,11 +4483,25 @@
       "multi": false
     },
     {
+      "component": "boolean",
+      "valueType": "boolean",
+      "name": "brand-v_allowMobileVideo",
+      "label": "Separate Video for Mobile"
+    },
+    {
       "component": "reference",
       "valueType": "string",
-      "name": "brand-v_videoMobile",
+      "name": "brand-v_mobileVideo",
       "label": "Mobile Video",
-      "multi": false
+      "multi": false,
+      "condition": {
+        "===": [
+          {
+            "var": "brand-v_allowMobileVideo"
+          },
+          true
+        ]
+      }
     },
     {
       "component": "reference",
@@ -4495,6 +4509,27 @@
       "name": "brand-i_image",
       "label": "Image",
       "multi": false
+    },
+    {
+      "component": "boolean",
+      "valueType": "boolean",
+      "name": "brand-i_allowMobileImage",
+      "label": "Separate Video for Mobile"
+    },
+    {
+      "component": "reference",
+      "valueType": "string",
+      "name": "brand-i_mobileImage",
+      "label": "Mobile Image",
+      "multi": false,
+      "condition": {
+        "===": [
+          {
+            "var": "brand-i_allowMobileImage"
+          },
+          true
+        ]
+      }
     },
     {
       "component": "reference",
