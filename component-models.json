@@ -4478,28 +4478,28 @@
     {
       "component": "reference",
       "valueType": "string",
-      "name": "video",
+      "name": "brand-v_video",
       "label": "Video",
       "multi": false
     },
     {
       "component": "reference",
       "valueType": "string",
-      "name": "videoMobile",
+      "name": "brand-v_videoMobile",
       "label": "Mobile Video",
       "multi": false
     },
     {
       "component": "reference",
       "valueType": "string",
-      "name": "image",
+      "name": "brand-i_image",
       "label": "Image",
       "multi": false
     },
     {
       "component": "reference",
       "valueType": "string",
-      "name": "imageMobile",
+      "name": "brand-i_imageMobile",
       "label": "Mobile Image",
       "multi": false
     },
